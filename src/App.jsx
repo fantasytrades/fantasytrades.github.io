@@ -279,7 +279,7 @@ function interestLabel(lvl) {
 function interestColor(level) {
   if (level === "LOW") return COLORS.danger;
   if (level === "MEDIUM") return COLORS.warn;
-  return COLORS.danger;
+  return COLORS.success;
 }
 function interestButtonStyle(isActive, level) {
   const bg = isActive ? interestColor(level) : COLORS.sky;
