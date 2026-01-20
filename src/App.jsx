@@ -312,24 +312,16 @@ function interestBadgeStyle(level) {
 
 /** ========= ADP fetch ========= */
 async function fetchAdpWithFallback() {
-  const yearNow = new Date().getFullYear();
-  const yearsToTry = [yearNow, yearNow - 1];
+  const url = `${import.meta.env.BASE_URL}adp.json`;
+  const res = await fetch(url, { cache: "no-store" });
+  if (!res.ok) throw new Error(`ADP local error ${res.status}`);
 
-  let lastErr = null;
-  for (const y of yearsToTry) {
-    try {
-      const url = `/ffc/api/v1/adp/${ADP_SCORING}?teams=${ADP_TEAMS}&year=${y}`;
-      const res = await fetch(url);
-      if (!res.ok) throw new Error(`ADP error ${res.status} (year=${y})`);
-      const data = await res.json();
-      if (!data?.players || !Array.isArray(data.players)) throw new Error("ADP payload inválido");
-      return { year: y, players: data.players };
-    } catch (e) {
-      lastErr = e;
-    }
-  }
-  throw lastErr || new Error("No se pudo cargar ADP");
+  const payload = await res.json();
+  if (!payload?.players || !Array.isArray(payload.players)) throw new Error("ADP payload inválido");
+
+  return { year: payload?.meta?.year ?? new Date().getFullYear(), players: payload.players };
 }
+
 
 /** ========= ROSTER VIEW (slots) ========= */
 function sortByRankAsc(a, b) {
