@@ -1,38 +1,62 @@
 name: Deploy Vite to GitHub Pages
 
 on:
-  push:
-    branches: ["main"]
   workflow_dispatch:
 
+  push:
+    branches: [main]
+    paths-ignore:
+      - "public/adp.json"   # evita que el commit automático del ADP dispare otro deploy
+
+  schedule:
+    - cron: "0 12 * * *"    # todos los días 12:00 UTC (cambialo si querés)
+
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
+          cache: "npm"
 
       - name: Install
         run: npm ci
 
+      # --- 1) Actualiza ADP (tu prebuild) ---
+      - name: Update ADP
+        run: npm run prebuild
+
+      # --- 2) Commit del ADP si cambió ---
+      - name: Commit updated ADP (if changed)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/adp.json
+          git diff --cached --quiet || git commit -m "chore: update ADP [skip ci]"
+          git push
+
+      # --- 3) Build ---
       - name: Build
         run: npm run build
 
+      # --- 4) Upload artifact para Pages ---
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -44,6 +68,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
