@@ -14,10 +14,10 @@ import { useEffect, useMemo, useRef, useState } from "react";
  *   VITE_GH_OWNER, VITE_GH_REPO, VITE_GH_BRANCH, VITE_GH_TOKEN
  */
 
-const GH_OWNER = import.meta.env.VITE_GH_OWNER || "fantasytrades";
-const GH_REPO = import.meta.env.VITE_GH_REPO || "fantasytrades.github.io";
-const GH_BRANCH = import.meta.env.VITE_GH_BRANCH || "main";
-const GH_TOKEN = import.meta.env.VITE_GH_TOKEN || "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"; // podés hardcodearlo si querés
+const GH_OWNER = import.meta.env.VITE_GH_OWNER;
+const GH_REPO = import.meta.env.VITE_GH_REPO;
+const GH_BRANCH = import.meta.env.VITE_GH_BRANCH;
+const GH_TOKEN = import.meta.env.VITE_GH_TOKEN;
 const GH_API = "https://api.github.com";
 
 const PATH_USERS = "data/users.json";
