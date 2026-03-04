@@ -39,6 +39,16 @@ jobs:
       - name: Install
         run: npm ci
 
+      # ✅ Usa el Secret VITE_GH_TOKEN (NO lo commitees en .env)
+      - name: Create .env (from GitHub Secrets)
+        run: |
+          cat > .env <<'EOF'
+          VITE_GH_OWNER=fantasytrades
+          VITE_GH_REPO=fantasytrades.github.io
+          VITE_GH_BRANCH=main
+          VITE_GH_TOKEN=${{ secrets.VITE_GH_TOKEN }}
+          EOF
+
       # --- 1) Actualiza ADP (tu prebuild) ---
       - name: Update ADP
         run: npm run prebuild
