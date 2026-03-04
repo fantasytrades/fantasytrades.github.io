@@ -142,6 +142,7 @@ const THEME_VARS = {
     "--c-soft": "#0B1324",
     "--c-danger": "#EF4444",
     "--c-success": "#22C55E",
+    "--c-shadow": "0 10px 30px rgba(0,0,0,0.18)",
   },
   light: {
     "--c-page": "#FFFFFF",
@@ -154,18 +155,96 @@ const THEME_VARS = {
     "--c-soft": "#F8FAFC",
     "--c-danger": "#EF4444",
     "--c-success": "#22C55E",
+    "--c-shadow": "0 10px 24px rgba(15,23,42,0.10)",
   },
 };
 
-function Card({ children, style }) {
+function GlobalStyles() {
+  return (
+    <style>{`
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body, #root { height: 100%; }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+          "Apple Color Emoji", "Segoe UI Emoji";
+      }
+      button, input, select { font: inherit; }
+      input::placeholder { color: rgba(128, 140, 160, 0.9); }
+      html[data-theme="dark"] { color-scheme: dark; }
+      html[data-theme="light"] { color-scheme: light; }
+
+      .ftbPage{
+        min-height: 100vh;
+        padding: clamp(14px, 2.2vw, 22px);
+        color: var(--c-navy);
+        background:
+          radial-gradient(900px circle at 12% -10%, rgba(59,130,246,0.25), transparent 55%),
+          radial-gradient(700px circle at 90% 10%, rgba(34,197,94,0.12), transparent 50%),
+          var(--c-page);
+      }
+      html[data-theme="light"] .ftbPage{
+        background:
+          radial-gradient(900px circle at 12% -10%, rgba(47,128,237,0.18), transparent 55%),
+          radial-gradient(700px circle at 90% 10%, rgba(34,197,94,0.10), transparent 50%),
+          var(--c-page);
+      }
+
+      .ftbContainer{ max-width: 1100px; margin: 0 auto; }
+      .ftbTitle{ margin: 14px 0 18px; font-size: clamp(28px, 5vw, 46px); letter-spacing:-1px; line-height:1.05; }
+
+      .authCard{ max-width: 560px; margin: 0 auto; }
+
+      .grid3{ display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+      .grid2{ display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+
+      .topbar{
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        padding: 8px 0;
+      }
+      .topbarInner{
+        max-width: 1100px;
+        margin: 0 auto;
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .assetRow{ display:grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; }
+      .assetActions{ display:flex; flex-direction: column; gap: 8px; justify-content: space-between; }
+      .breakAnywhere{ min-width: 0; overflow-wrap: anywhere; }
+
+      @media (max-width: 860px){
+        .grid3{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+      @media (max-width: 720px){
+        .topbarInner{ flex-wrap: wrap; }
+        .grid3{ grid-template-columns: 1fr; }
+        .grid2{ grid-template-columns: 1fr; }
+        .assetRow{ grid-template-columns: 1fr; }
+        .assetActions{ flex-direction: row; justify-content: flex-end; }
+        .assetActions > button{ flex: 1; }
+      }
+    `}</style>
+  );
+}
+
+function Card({ children, style, className }) {
   return (
     <div
+      className={className}
       style={{
         background: COLORS.surface,
         border: `1px solid ${COLORS.border}`,
         borderRadius: 18,
-        padding: 18,
-        boxShadow: "0 10px 30px rgba(0,0,0,0.18)",
+        padding: "clamp(14px, 2vw, 18px)",
+        boxShadow: "var(--c-shadow)",
+        overflow: "hidden",
         ...style,
       }}
     >
@@ -173,15 +252,19 @@ function Card({ children, style }) {
     </div>
   );
 }
-function Input({ value, onChange, placeholder, type = "text", style }) {
+function Input({ value, onChange, placeholder, type = "text", style, className }) {
   return (
     <input
+      className={className}
       type={type}
       value={value}
       placeholder={placeholder}
       onChange={(e) => onChange(e.target.value)}
       style={{
         width: "100%",
+        display: "block",
+        minWidth: 0,
+        boxSizing: "border-box",
         padding: "14px 14px",
         borderRadius: 14,
         border: `1px solid ${COLORS.border}`,
@@ -194,7 +277,7 @@ function Input({ value, onChange, placeholder, type = "text", style }) {
     />
   );
 }
-function Button({ children, onClick, disabled, variant = "primary", style, title }) {
+function Button({ children, onClick, disabled, variant = "primary", style, title, className }) {
   const bg =
     variant === "primary"
       ? COLORS.blue
@@ -205,11 +288,15 @@ function Button({ children, onClick, disabled, variant = "primary", style, title
   const color = variant === "ghost" ? COLORS.navy : "#fff";
   return (
     <button
+      className={className}
       title={title}
       onClick={onClick}
       disabled={disabled}
       style={{
         padding: "12px 14px",
+        minWidth: 0,
+        boxSizing: "border-box",
+        lineHeight: 1.2,
         borderRadius: 14,
         border,
         background: bg,
@@ -293,6 +380,7 @@ export default function App() {
   const applyTheme = (t) => {
     setTheme(t);
     localStorage.setItem("ftb_theme", t);
+    document.documentElement.dataset.theme = t;
     const vars = THEME_VARS[t] || THEME_VARS.dark;
     Object.entries(vars).forEach(([k, v]) => document.documentElement.style.setProperty(k, v));
   };
@@ -540,7 +628,9 @@ export default function App() {
 
   if (bootError) {
     return (
-      <div style={{ minHeight: "100vh", background: COLORS.page, color: COLORS.navy, padding: 24 }}>
+      <div className="ftbPage">
+        <GlobalStyles />
+        <div className="ftbContainer">
         <h2 style={{ marginTop: 0 }}>Error</h2>
         <Card>
           <div style={{ color: COLORS.danger, fontWeight: 800, marginBottom: 10 }}>{bootError}</div>
@@ -557,19 +647,21 @@ export default function App() {
           </Button>
         </Card>
       </div>
+      </div>
     );
   }
 
   return (
-    <div style={{ minHeight: "100vh", background: COLORS.page, color: COLORS.navy, padding: 22 }}>
+    <div className="ftbPage">
+      <GlobalStyles />
       <TopBar theme={theme} onTheme={applyTheme} me={me} onLogout={logout} />
 
-      <div style={{ maxWidth: 980, margin: "0 auto" }}>
-        <h1 style={{ margin: "14px 0 18px", fontSize: 46, letterSpacing: -1 }}>Fantasy Trade Board</h1>
+      <div className="ftbContainer">
+        <h1 className="ftbTitle">Fantasy Trade Board</h1>
 
         {!me ? (
-          <Card>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
+          <Card className="authCard">
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
               <h2 style={{ margin: 0 }}>{authMode === "login" ? "Iniciar sesión" : "Crear cuenta"}</h2>
               <Button
                 variant="ghost"
@@ -600,7 +692,7 @@ export default function App() {
         ) : (
           <div style={{ display: "grid", gap: 16 }}>
             <Card>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
                 <div>
                   <div style={{ fontSize: 14, color: COLORS.gray }}>Conectado como</div>
                   <div style={{ fontSize: 18, fontWeight: 900 }}>{me.email}</div>
@@ -613,7 +705,7 @@ export default function App() {
                 </div>
               </div>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12, marginTop: 14 }}>
+              <div className="grid3" style={{ marginTop: 14 }}>
                 <div>
                   <div style={{ fontSize: 13, color: COLORS.gray, marginBottom: 6 }}>Display name</div>
                   <Input value={myDisplayName} onChange={(v) => onProfileChange({ display_name: v })} placeholder="Ej: Nico" />
@@ -629,6 +721,8 @@ export default function App() {
                     onChange={(e) => onProfileChange({ team_status: e.target.value })}
                     style={{
                       width: "100%",
+                      minWidth: 0,
+                      boxSizing: "border-box",
                       padding: "14px 14px",
                       borderRadius: 14,
                       border: `1px solid ${COLORS.border}`,
@@ -656,7 +750,7 @@ export default function App() {
               onSetInterest={setInterest}
             />
 
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+            <div className="grid2">
               <Card>
                 <h3 style={{ marginTop: 0 }}>Incoming (a mí)</h3>
                 {myIncoming.length === 0 ? (
@@ -683,27 +777,17 @@ export default function App() {
 
 function TopBar({ theme, onTheme, me, onLogout }) {
   return (
-    <div
-      style={{
-        position: "sticky",
-        top: 0,
-        zIndex: 10,
-        backdropFilter: "blur(10px)",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        gap: 12,
-        padding: "8px 2px",
-      }}
-    >
-      <Button variant="ghost" onClick={() => onTheme(theme === "dark" ? "light" : "dark")}>
-        {theme === "dark" ? "☀️ Light" : "🌙 Dark"}
-      </Button>
-      {me && (
-        <Button variant="danger" onClick={onLogout}>
-          Salir
+    <div className="topbar">
+      <div className="topbarInner">
+        <Button variant="ghost" onClick={() => onTheme(theme === "dark" ? "light" : "dark")}>
+          {theme === "dark" ? "☀️ Light" : "🌙 Dark"}
         </Button>
-      )}
+        {me && (
+          <Button variant="danger" onClick={onLogout}>
+            Salir
+          </Button>
+        )}
+      </div>
     </div>
   );
 }
@@ -720,13 +804,16 @@ function LeagueBoard({ me, teams, interests, picks, byUser, onSetInterest }) {
 
   return (
     <Card>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
         <h2 style={{ margin: 0 }}>Liga</h2>
         <select
           value={selectedUserId}
           onChange={(e) => setSelectedUserId(e.target.value)}
           style={{
             padding: "10px 12px",
+            minWidth: 220,
+            flex: "1 1 220px",
+            boxSizing: "border-box",
             borderRadius: 12,
             border: `1px solid ${COLORS.border}`,
             background: COLORS.sky,
@@ -786,10 +873,8 @@ function AssetRow({ label, current, onSet }) {
   const level = current?.level || "NONE";
   return (
     <div
+      className="assetRow"
       style={{
-        display: "grid",
-        gridTemplateColumns: "1fr auto",
-        gap: 10,
         padding: 12,
         borderRadius: 14,
         border: `1px solid ${COLORS.border}`,
@@ -797,7 +882,7 @@ function AssetRow({ label, current, onSet }) {
       }}
     >
       <div style={{ display: "grid", gap: 8 }}>
-        <div style={{ fontWeight: 900 }}>{label}</div>
+        <div className="breakAnywhere" style={{ fontWeight: 900 }}>{label}</div>
 
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
           <Button variant={level === "LOW" ? "primary" : "ghost"} onClick={() => onSet(level === "LOW" ? "NONE" : "LOW", note)} style={{ padding: "8px 10px" }}>
@@ -817,7 +902,7 @@ function AssetRow({ label, current, onSet }) {
         <Input value={note} onChange={setNote} placeholder="nota (opcional)" />
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 8, justifyContent: "space-between" }}>
+      <div className="assetActions">
         <Button variant="primary" onClick={() => onSet(level, note)} style={{ padding: "10px 12px" }}>
           Guardar
         </Button>
@@ -840,8 +925,8 @@ function InterestList({ rows, byUser }) {
           const to = byUser.get(r.to_user_id);
           return (
             <div key={r.key} style={{ padding: 12, borderRadius: 14, border: `1px solid ${COLORS.border}`, background: COLORS.soft }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 10 }}>
-                <div style={{ fontWeight: 900 }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 10, flexWrap: "wrap" }}>
+                <div className="breakAnywhere" style={{ fontWeight: 900 }}>
                   {(from?.display_name || r.from_user_id)} → {(to?.display_name || r.to_user_id)}
                 </div>
                 <Pill tone={r.level === "HIGH" ? "good" : "neutral"}>{r.level}</Pill>
