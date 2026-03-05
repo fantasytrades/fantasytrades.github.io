@@ -407,7 +407,28 @@ function Styles() {
       .badge{ padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:#F1F5F9; font-weight:1000; font-size:12px; color:#0F172A; }
 
       /* === Roster slot tags (QB/RB/WR/TE/WRT/BN) === */
-      .rosterItem{ gap:12px; }
+      .rosterItem{
+        display:grid;
+        grid-template-columns: 64px 1fr auto;
+        align-items:center;
+        gap:12px;
+      }
+      .rosterItem .left{ min-width:0; }
+      .actions{
+        display:flex;
+        align-items:center;
+        justify-content:flex-end;
+        gap:10px;
+        flex-wrap:nowrap;
+        white-space:nowrap;
+      }
+      .actions > button{ white-space:nowrap; }
+      .actions .statusBtn{ min-width:132px; text-align:center; }
+      .actions .valueBtn{ min-width:110px; text-align:center; }
+      @media(max-width:720px){
+        .rosterItem{ grid-template-columns: 54px 1fr; }
+        .actions{ grid-column: 1 / -1; justify-content:flex-end; }
+      }
       .posTag{
         width:54px; height:44px; border-radius:14px;
         display:flex; align-items:center; justify-content:center;
@@ -672,7 +693,7 @@ function MyTeamView({
                                 </div>
                               </div>
 
-                              <div className="row" style={{ justifyContent: "flex-end", gap: 10 }}>
+                              <div className="actions">
                                 <button className="ghost valueBtn" disabled={saving} onClick={() => onSetPlayerValue?.(r.id)}>
                                   {r.value ? "Editar valor" : "Valor"}
                                 </button>
@@ -770,6 +791,8 @@ function LeagueView({ me, teams, interests, onSetInterest }) {
               {selectedRoster.map((r) => {
                 const key = `${me.id}::${selected.user_id}::PLAYER::${r.id}`;
                 const cur = interests.find((x) => x.key === key)?.level || "NONE";
+                const stKey = normStatusKey(r.status);
+                const img = pickImg(r);
                 return (
                   <div key={r.id} className="item">
                     <div className="left">
@@ -777,7 +800,7 @@ function LeagueView({ me, teams, interests, onSetInterest }) {
                       <div style={{ minWidth: 0 }}>
                         <div className="name">{r.name}</div>
                         <div className="muted sub">
-                          {normPos(r.pos)} · {r.nfl || "-"} · <span className={`pill pill-${r.status || "AVAILABLE"}`}>{STATUS_LABEL[r.status] || r.status}</span>
+                          {normPos(r.pos)} · {r.nfl || "-"} · <span className={`pill pill-${stKey}`}>{STATUS_LABEL[stKey]}</span>
                         </div>
                       </div>
                     </div>
@@ -805,7 +828,7 @@ function LeagueView({ me, teams, interests, onSetInterest }) {
                     <div style={{ minWidth: 0 }}>
                       <div className="name">{p.label || p.id}</div>
                       <div className="muted sub">
-                        {p.id} · <span className={`pill pill-${p.status || "AVAILABLE"}`}>{STATUS_LABEL[p.status] || p.status}</span>
+                        {p.id} · <span className={`pill pill-${normStatusKey(p.status)}`}>{STATUS_LABEL[normStatusKey(p.status)] || p.status}</span>
                       </div>
                     </div>
                     <select value={cur} onChange={(e) => onSetInterest(selected.user_id, "PICK", p.id, e.target.value)} style={{ maxWidth: 160 }}>
