@@ -1,9 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
 
 /**
- * Fantasy Trades — App.jsx (robusto)
- * - Persistencia en GitHub: data/users.json, data/league_teams.json, data/interests.json
- * - Roster y picks se guardan como OBJETOS (no depende 100% del adp.json)
+ * Fantasy Trades — App.jsx (conflict-proof)
+ *
+ * Persistencia GitHub:
+ *  - data/users.json
+ *  - data/interests.json
+ *  - data/teams/<user_id>.json   ✅ (1 archivo por usuario)
+ *
+ * Legacy (solo lectura fallback):
+ *  - data/league_teams.json
  *
  * ENV:
  *  VITE_GH_OWNER, VITE_GH_REPO, VITE_GH_BRANCH, VITE_GH_TOKEN
@@ -15,9 +21,12 @@ const GH_BRANCH = import.meta.env.VITE_GH_BRANCH || "main";
 const GH_TOKEN = import.meta.env.VITE_GH_TOKEN;
 
 const GH_API = "https://api.github.com";
+
 const PATH_USERS = "data/users.json";
-const PATH_TEAMS = "data/league_teams.json";
 const PATH_INTERESTS = "data/interests.json";
+
+const TEAMS_DIR = "data/teams";
+const PATH_TEAMS_LEGACY = "data/league_teams.json"; // fallback lectura
 
 const LEAGUE_SIZE = 10;
 
@@ -31,18 +40,22 @@ const SLOT_LIMITS = [
   { key: "BENCH", label: "BN", limit: 21, accepts: ["QB", "RB", "WR", "TE"] },
 ];
 
-// Status (propio del dueño del asset)
+// Estado de disponibilidad (dueño del asset)
 const STATUS_CYCLE = ["AVAILABLE", "LISTENING", "NOT_AVAILABLE"];
-const STATUS_LABEL = { AVAILABLE: "Disponible", LISTENING: "En escucha", NOT_AVAILABLE: "No disponible" };
+const STATUS_LABEL = {
+  AVAILABLE: "Disponible",
+  LISTENING: "En escucha",
+  NOT_AVAILABLE: "No disponible",
+};
 
 // Intereses (usuario mirando assets ajenos)
 const INTEREST_LEVELS = ["NONE", "LOW", "MEDIUM", "HIGH"];
 const INTEREST_LABEL = { NONE: "—", LOW: "Bajo", MEDIUM: "Medio", HIGH: "Alto" };
 
+/** ================= Helpers ================= */
 function nowIso() {
   return new Date().toISOString();
 }
-
 function safeJsonParse(txt, fallback) {
   try {
     return JSON.parse(txt);
@@ -50,41 +63,74 @@ function safeJsonParse(txt, fallback) {
     return fallback;
   }
 }
-
 function b64encodeUtf8(str) {
   return btoa(unescape(encodeURIComponent(str)));
 }
 function b64decodeUtf8(b64) {
   return decodeURIComponent(escape(atob(b64)));
 }
-
 async function sha256Hex(str) {
   const enc = new TextEncoder().encode(str);
   const buf = await crypto.subtle.digest("SHA-256", enc);
   return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
 }
-
 function uid(prefix = "user") {
   return `${prefix}_${Math.random().toString(36).slice(2, 10)}${Date.now().toString(36)}`;
 }
+function normPos(pos) {
+  const p = String(pos || "").toUpperCase();
+  if (["QB", "RB", "WR", "TE"].includes(p)) return p;
+  return p;
+}
+function initials(name) {
+  const s = String(name || "").trim();
+  if (!s) return "?";
+  const parts = s.split(/\s+/).filter(Boolean);
+  const a = parts[0]?.[0] || "";
+  const b = parts.length > 1 ? parts[parts.length - 1]?.[0] || "" : parts[0]?.[1] || "";
+  return (a + b).toUpperCase();
+}
+function cycleStatus(curr) {
+  const i = STATUS_CYCLE.indexOf(curr);
+  return STATUS_CYCLE[(i + 1) % STATUS_CYCLE.length];
+}
 
+/** ================= Picks catalog ================= */
+function pickCatalog() {
+  const out = [];
+  for (let rnd = 1; rnd <= 6; rnd++) {
+    for (let slot = 1; slot <= LEAGUE_SIZE; slot++) {
+      const id = `2026-${rnd}.${String(slot).padStart(2, "0")}`;
+      out.push({ id, label: `${rnd}.${String(slot).padStart(2, "0")} 2026` });
+    }
+  }
+  const future = (year) => {
+    for (let rnd = 1; rnd <= 6; rnd++) {
+      const suf =
+        rnd === 1 ? "1era" : rnd === 2 ? "2da" : rnd === 3 ? "3era" : rnd === 4 ? "4ta" : rnd === 5 ? "5ta" : "6ta";
+      out.push({ id: `${year}-${rnd}`, label: `${suf} ${year}` });
+    }
+  };
+  future(2027);
+  future(2028);
+  return out;
+}
+const PICKS = pickCatalog();
+const PICK_LABEL = new Map(PICKS.map((p) => [String(p.id), p.label]));
+
+/** ================= GitHub API ================= */
 function ghAuthHeaderValue(token) {
   if (!token) return null;
   const t = String(token).trim();
   if (!t) return null;
   return t.startsWith("github_pat_") ? `Bearer ${t}` : `token ${t}`;
 }
-
 function ghHeaders() {
-  const h = {
-    Accept: "application/vnd.github+json",
-    "X-GitHub-Api-Version": "2022-11-28",
-  };
+  const h = { Accept: "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28" };
   const auth = ghAuthHeaderValue(GH_TOKEN);
   if (auth) h.Authorization = auth;
   return h;
 }
-
 async function ghError(res) {
   const text = await res.text();
   let msg = text;
@@ -97,7 +143,6 @@ async function ghError(res) {
   err.raw = text;
   return err;
 }
-
 async function ghGetFile(path) {
   const url = `${GH_API}/repos/${GH_OWNER}/${GH_REPO}/contents/${path}?ref=${encodeURIComponent(GH_BRANCH)}`;
   const res = await fetch(url, { headers: ghHeaders() });
@@ -107,14 +152,9 @@ async function ghGetFile(path) {
   const raw = j?.content ? b64decodeUtf8(String(j.content).split("\n").join("")) : "";
   return { exists: true, sha: j.sha, content: raw };
 }
-
 async function ghPutFile(path, content, sha = null, message = null) {
   const url = `${GH_API}/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`;
-  const body = {
-    message: message || `update ${path}`,
-    content: b64encodeUtf8(content),
-    branch: GH_BRANCH,
-  };
+  const body = { message: message || `update ${path}`, content: b64encodeUtf8(content), branch: GH_BRANCH };
   if (sha) body.sha = sha;
 
   const res = await fetch(url, {
@@ -131,28 +171,27 @@ async function ghPutFile(path, content, sha = null, message = null) {
   if (!res.ok) throw await ghError(res);
   return res.json();
 }
-
 async function ghGetJson(path, fallback) {
   const f = await ghGetFile(path);
   if (!f.exists) return { data: fallback, sha: null };
   return { data: safeJsonParse(f.content, fallback), sha: f.sha };
 }
-
 async function ghPutJson(path, data, sha, message) {
-  const txt = JSON.stringify(data, null, 2);
-  return ghPutFile(path, `${txt}\n`, sha, message);
+  const txt = JSON.stringify(data, null, 2) + "\n";
+  return ghPutFile(path, txt, sha, message);
 }
 
-/** Serializa escrituras (evita 409 frecuentes) */
+/** Serializa escrituras (dentro de ESTA pestaña) */
 let ghWriteQueue = Promise.resolve();
 function ghEnqueueWrite(fn) {
   ghWriteQueue = ghWriteQueue.then(fn, fn);
   return ghWriteQueue;
 }
 
+/** Reintento robusto para archivos compartidos (users/interests) */
 async function ghPutJsonWithRetry(path, mutator, label) {
   return ghEnqueueWrite(async () => {
-    const MAX = 6; // más intentos = menos “sha mismatch”
+    const MAX = 8;
     for (let attempt = 0; attempt < MAX; attempt++) {
       const { data, sha } = await ghGetJson(path, []);
       const arr = Array.isArray(data) ? data : [];
@@ -162,62 +201,123 @@ async function ghPutJsonWithRetry(path, mutator, label) {
         await ghPutJson(path, next, sha, label);
         return next;
       } catch (e) {
-        // 409 = “sha does not match”
         if (e?.status === 409 || e?.code === 409) {
-          // backoff chiquito para que no choque contra escrituras de otros
-          const ms = 120 + attempt * 180;
+          const ms = 140 + attempt * 220;
           await new Promise((r) => setTimeout(r, ms));
           continue;
         }
         throw e;
       }
     }
-    throw new Error(`No se pudo guardar: demasiados conflictos (409) en ${path}. Cerrá pestañas duplicadas y probá de nuevo.`);
+    throw new Error(`No se pudo guardar (muchos 409) en ${path}`);
   });
 }
 
-function normPos(pos) {
-  const p = String(pos || "").toUpperCase();
-  if (["QB", "RB", "WR", "TE"].includes(p)) return p;
-  return p;
+/** Listar carpeta (para leer todos los teams) */
+async function ghListDir(path) {
+  const url = `${GH_API}/repos/${GH_OWNER}/${GH_REPO}/contents/${path}?ref=${encodeURIComponent(GH_BRANCH)}`;
+  const res = await fetch(url, { headers: ghHeaders() });
+  if (res.status === 404) return [];
+  if (!res.ok) throw await ghError(res);
+  const j = await res.json();
+  return Array.isArray(j) ? j : [];
 }
 
-function cycleStatus(curr) {
-  const i = STATUS_CYCLE.indexOf(curr);
-  return STATUS_CYCLE[(i + 1) % STATUS_CYCLE.length];
+/** Team file helpers */
+async function ghGetTeamFile(userId) {
+  return ghGetJson(`${TEAMS_DIR}/${userId}.json`, null);
+}
+async function ghPutTeamFile(userId, teamObj, sha, message) {
+  const txt = JSON.stringify(teamObj, null, 2) + "\n";
+  return ghPutFile(`${TEAMS_DIR}/${userId}.json`, txt, sha, message);
 }
 
-function pickCatalog() {
-  const out = [];
-  for (let rnd = 1; rnd <= 6; rnd++) {
-    for (let slot = 1; slot <= LEAGUE_SIZE; slot++) {
-      const id = `2026-${rnd}.${String(slot).padStart(2, "0")}`;
-      out.push({ id, label: `${rnd}.${String(slot).padStart(2, "0")} 2026` });
-    }
+/** ================= Schema normalization ================= */
+function normalizeTeamRow(row) {
+  const out = { ...row };
+
+  const roster = Array.isArray(row?.roster) ? row.roster : [];
+  out.roster = roster
+    .map((x) => {
+      if (!x) return null;
+      if (typeof x === "string" || typeof x === "number") {
+        const id = String(x);
+        return { id, name: `Jugador ${id}`, pos: "?", nfl: "", status: "AVAILABLE" };
+      }
+      if (typeof x === "object") {
+        const id = x.id != null ? String(x.id) : x.player_id != null ? String(x.player_id) : "";
+        if (!id) return null;
+        return {
+          id,
+          name: x.name || x.player_name || `Jugador ${id}`,
+          pos: normPos(x.pos || x.position || x.player_pos || "?"),
+          nfl: x.nfl || x.team || x.player_team || "",
+          status: x.status || x.availability || "AVAILABLE",
+        };
+      }
+      return null;
+    })
+    .filter(Boolean);
+
+  const picks = Array.isArray(row?.picks) ? row.picks : [];
+  out.picks = picks
+    .map((x) => {
+      if (!x) return null;
+      if (typeof x === "string" || typeof x === "number") {
+        const id = String(x);
+        const label = PICK_LABEL.get(id) || id;
+        return { id, label, status: "AVAILABLE" };
+      }
+      if (typeof x === "object") {
+        const id = String(x.id || x.pick_id || "");
+        if (!id) return null;
+        const label = x.label || PICK_LABEL.get(id) || id;
+        return { id, label, status: x.status || "AVAILABLE" };
+      }
+      return null;
+    })
+    .filter(Boolean);
+
+  // availability viejo
+  if (row?.availability && typeof row.availability === "object") {
+    const av = row.availability;
+    out.roster = out.roster.map((r) => {
+      const k = `PLAYER:${r.id}`;
+      return av[k] ? { ...r, status: av[k] } : r;
+    });
+    out.picks = out.picks.map((p) => {
+      const k = `PICK:${p.id}`;
+      return av[k] ? { ...p, status: av[k] } : p;
+    });
   }
-  const future = (year) => {
-    for (let rnd = 1; rnd <= 6; rnd++) {
-      const suf = rnd === 1 ? "1era" : rnd === 2 ? "2da" : rnd === 3 ? "3era" : rnd === 4 ? "4ta" : rnd === 5 ? "5ta" : "6ta";
-      out.push({ id: `${year}-${rnd}`, label: `${suf} ${year}` });
-    }
-  };
-  future(2027);
-  future(2028);
+
   return out;
 }
 
-const PICKS = pickCatalog();
+/** ================= Slot assignment ================= */
+function assignSlots(roster) {
+  const remaining = roster.slice();
+  const slots = Object.fromEntries(SLOT_LIMITS.map((s) => [s.key, []]));
 
-function initials(name) {
-  const s = String(name || "").trim();
-  if (!s) return "?";
-  const parts = s.split(/\s+/).filter(Boolean);
-  const a = parts[0]?.[0] || "";
-  const b = parts.length > 1 ? parts[parts.length - 1]?.[0] || "" : parts[0]?.[1] || "";
-  return (a + b).toUpperCase();
+  const take = (accepts) => {
+    const idx = remaining.findIndex((p) => accepts.includes(normPos(p.pos)));
+    if (idx === -1) return null;
+    return remaining.splice(idx, 1)[0];
+  };
+
+  for (const s of SLOT_LIMITS.filter((x) => x.key !== "BENCH")) {
+    while (slots[s.key].length < s.limit) {
+      const p = take(s.accepts);
+      if (!p) break;
+      slots[s.key].push(p);
+    }
+  }
+
+  slots.BENCH = remaining.slice(0, SLOT_LIMITS.find((x) => x.key === "BENCH").limit);
+  return slots;
 }
 
-/** ============ UI mini kit ============ */
+/** ================= Styles ================= */
 function Styles() {
   return (
     <style>{`
@@ -242,6 +342,7 @@ function Styles() {
       button{ padding:12px 12px; border-radius:12px; border:1px solid transparent; background:var(--blue); color:white; font-weight:900; cursor:pointer; }
       button.ghost{ background:transparent; border:1px solid var(--border); color:var(--text); }
       button.danger{ background:var(--danger); }
+      button:disabled{ opacity:0.6; cursor:not-allowed; }
       .muted{ color:var(--muted); }
       .dock{ position:fixed; left:0; right:0; bottom:0; background:var(--bg); border-top:1px solid var(--border); z-index:60; }
       .dockin{ max-width:1180px; margin:0 auto; padding:10px 12px; display:grid; grid-template-columns:repeat(4,1fr); gap:6px; }
@@ -253,105 +354,18 @@ function Styles() {
       .av{ width:34px; height:34px; border-radius:999px; background:var(--sky); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-weight:1000; }
       .name{ font-weight:1000; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
       .sub{ font-size:12px; font-weight:900; }
-      .pill{ padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:var(--sky); font-weight:1000; font-size:12px; }
       .slots{ display:grid; gap:12px; }
       .slot{ border:1px solid var(--border); background:var(--card); border-radius:14px; padding:12px; }
       .slothead{ display:flex; justify-content:space-between; align-items:baseline; }
       .seg{ display:flex; flex-wrap:wrap; gap:8px; }
       .seg button{ padding:8px 10px; border-radius:999px; }
       .seg button.active{ background:var(--blue); }
+      .pill{ display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:var(--sky); font-weight:1000; font-size:12px; }
     `}</style>
   );
 }
 
-/** ============ Normalización de schema viejo ============ */
-function normalizeTeamRow(row) {
-  // row.roster puede ser: [ "5177", ... ] o [{id,name,pos,nfl,status}, ...] o [{type:"PLAYER", id,...}]
-  // row.picks idem.
-  const out = { ...row };
-
-  const roster = Array.isArray(row?.roster) ? row.roster : [];
-  out.roster = roster
-    .map((x) => {
-      if (!x) return null;
-      if (typeof x === "string" || typeof x === "number") {
-        // no tenemos nombre/pos, queda “stub”
-        return { id: String(x), name: `Jugador ${String(x)}`, pos: "?", nfl: "", status: "AVAILABLE" };
-      }
-      if (typeof x === "object") {
-        const id = x.id != null ? String(x.id) : x.player_id != null ? String(x.player_id) : "";
-        if (!id) return null;
-        return {
-          id,
-          name: x.name || x.player_name || `Jugador ${id}`,
-          pos: normPos(x.pos || x.position || x.player_pos || "?"),
-          nfl: x.nfl || x.team || x.player_team || "",
-          status: x.status || x.availability || "AVAILABLE",
-        };
-      }
-      return null;
-    })
-    .filter(Boolean);
-
-  const picks = Array.isArray(row?.picks) ? row.picks : [];
-  out.picks = picks
-    .map((x) => {
-      if (!x) return null;
-      if (typeof x === "string" || typeof x === "number") {
-        const id = String(x);
-        const label = PICKS.find((p) => p.id === id)?.label || id;
-        return { id, label, status: "AVAILABLE" };
-      }
-      if (typeof x === "object") {
-        const id = String(x.id || x.pick_id || "");
-        if (!id) return null;
-        const label = x.label || PICKS.find((p) => p.id === id)?.label || id;
-        return { id, label, status: x.status || "AVAILABLE" };
-      }
-      return null;
-    })
-    .filter(Boolean);
-
-  // availability viejo: map "PLAYER:<id>" => status
-  if (row?.availability && typeof row.availability === "object") {
-    const av = row.availability;
-    out.roster = out.roster.map((r) => {
-      const k = `PLAYER:${r.id}`;
-      return av[k] ? { ...r, status: av[k] } : r;
-    });
-    out.picks = out.picks.map((p) => {
-      const k = `PICK:${p.id}`;
-      return av[k] ? { ...p, status: av[k] } : p;
-    });
-  }
-
-  return out;
-}
-
-/** ============ Slots ============ */
-function assignSlots(roster) {
-  const remaining = roster.slice();
-  const slots = Object.fromEntries(SLOT_LIMITS.map((s) => [s.key, []]));
-
-  const take = (accepts) => {
-    const idx = remaining.findIndex((p) => accepts.includes(normPos(p.pos)));
-    if (idx === -1) return null;
-    return remaining.splice(idx, 1)[0];
-  };
-
-  for (const s of SLOT_LIMITS.filter((x) => x.key !== "BENCH")) {
-    while (slots[s.key].length < s.limit) {
-      const p = take(s.accepts);
-      if (!p) break;
-      slots[s.key].push(p);
-    }
-  }
-
-  slots.BENCH = remaining.slice(0, SLOT_LIMITS.find((x) => x.key === "BENCH").limit);
-  return slots;
-}
-
-/** ============ App ============ */
+/** ================= App ================= */
 export default function App() {
   const [bootError, setBootError] = useState("");
 
@@ -385,7 +399,6 @@ export default function App() {
   const [myTeamStatus, setMyTeamStatus] = useState("Contendiendo");
   const [saveInfo, setSaveInfo] = useState("");
 
-  // --- boot checks ---
   useEffect(() => {
     if (!GH_OWNER || !GH_REPO) setBootError("Faltan VITE_GH_OWNER / VITE_GH_REPO");
     else if (!GH_TOKEN) setBootError("Falta VITE_GH_TOKEN");
@@ -395,6 +408,14 @@ export default function App() {
     if (me) localStorage.setItem("ft_session", JSON.stringify(me));
     else localStorage.removeItem("ft_session");
   }, [me]);
+
+  function friendlyAuthError(e) {
+    const s = e?.status;
+    if (s === 401) return "GitHub 401: token inválido";
+    if (s === 403) return "GitHub 403: sin permisos / rate limit";
+    if (s === 404) return "GitHub 404: faltan /data/*.json";
+    return String(e?.message || e);
+  }
 
   const playersById = useMemo(() => {
     const m = new Map();
@@ -416,13 +437,49 @@ export default function App() {
   }
 
   async function refreshData() {
-    const [{ data: t }, { data: i }] = await Promise.all([
-      ghGetJson(PATH_TEAMS, []),
-      ghGetJson(PATH_INTERESTS, []),
-    ]);
-    const normTeams = (Array.isArray(t) ? t : []).map(normalizeTeamRow);
-    setTeams(normTeams);
+    // Interests
+    const [{ data: i }] = await Promise.all([ghGetJson(PATH_INTERESTS, [])]);
     setInterests(Array.isArray(i) ? i : []);
+
+    // Teams from new dir
+    const items = await ghListDir(TEAMS_DIR);
+
+    if (items.length > 0) {
+      const jsonFiles = items.filter((x) => x.type === "file" && String(x.name || "").endsWith(".json"));
+      const teamsArr = [];
+      for (const f of jsonFiles) {
+        try {
+          const { data } = await ghGetJson(`${TEAMS_DIR}/${f.name}`, null);
+          if (data && data.user_id) teamsArr.push(normalizeTeamRow(data));
+        } catch {
+          // ignore
+        }
+      }
+      setTeams(teamsArr);
+      return;
+    }
+
+    // Fallback legacy
+    const { data: legacy } = await ghGetJson(PATH_TEAMS_LEGACY, []);
+    const normTeams = (Array.isArray(legacy) ? legacy : []).map(normalizeTeamRow);
+    setTeams(normTeams);
+  }
+
+  async function ensureTeamRow(userId, userEmail) {
+    const existing = await ghGetTeamFile(userId);
+    if (existing?.data && existing.data.user_id) return;
+
+    const team = normalizeTeamRow({
+      user_id: userId,
+      display_name: userEmail.split("@")[0],
+      team_name: "",
+      team_status: "Contendiendo",
+      roster: [],
+      picks: [],
+      updated_at: nowIso(),
+    });
+
+    await ghPutTeamFile(userId, team, null, `create team ${userId}`);
   }
 
   useEffect(() => {
@@ -441,7 +498,7 @@ export default function App() {
 
   useEffect(() => {
     if (!me) return;
-    const row = teams.find((x) => x.user_id === me.id);
+    const row = teamsByUser.get(me.id);
     if (row) {
       setMyDisplayName(row.display_name || "");
       setMyTeamName(row.team_name || "");
@@ -451,42 +508,27 @@ export default function App() {
       setMyTeamName("");
       setMyTeamStatus("Contendiendo");
     }
-  }, [me, teams]);
+  }, [me, teamsByUser]);
 
   const myOutgoing = useMemo(() => (me ? interests.filter((x) => x.from_user_id === me.id) : []), [interests, me]);
   const myIncoming = useMemo(() => (me ? interests.filter((x) => x.to_user_id === me.id) : []), [interests, me]);
 
-  function friendlyAuthError(e) {
-    const s = e?.status;
-    if (s === 401) return "GitHub 401: token inválido";
-    if (s === 403) return "GitHub 403: sin permisos / rate limit";
-    if (s === 404) return "GitHub 404: faltan /data/*.json";
-    return String(e?.message || e);
-  }
-
-  async function ensureTeamRow(userId, userEmail) {
-    const next = await ghPutJsonWithRetry(
-      PATH_TEAMS,
-      (cur) => {
-        const exists = cur.some((x) => x.user_id === userId);
-        if (exists) return cur;
-        return [
-          ...cur,
-          {
-            user_id: userId,
-            display_name: userEmail.split("@")[0],
-            team_name: "",
-            team_status: "Contendiendo",
-            roster: [],
-            picks: [],
-            updated_at: nowIso(),
-          },
-        ];
-      },
-      "ensure team row"
-    );
-    setTeams(next.map(normalizeTeamRow));
-  }
+  // maps to display names in Home/Interests
+  const playerMetaById = useMemo(() => {
+    const m = new Map();
+    // from ADP
+    for (const p of players) {
+      m.set(String(p.player_id), { name: p.name, pos: normPos(p.position), nfl: p.team || "" });
+    }
+    // from teams roster (more robust)
+    for (const t of teams) {
+      for (const r of t.roster || []) {
+        const id = String(r.id);
+        if (!m.has(id)) m.set(id, { name: r.name, pos: normPos(r.pos), nfl: r.nfl || "" });
+      }
+    }
+    return m;
+  }, [players, teams]);
 
   async function signup() {
     setAuthBusy(true);
@@ -505,11 +547,13 @@ export default function App() {
         (cur) => [...cur, { id: userId, email: em, pass_hash: pwHash, created_at: nowIso() }],
         "create user"
       );
-      await ensureTeamRow(userId, em);
 
+      await ensureTeamRow(userId, em);
       setMe({ id: userId, email: em });
       setPass("");
       setPass2("");
+
+      await refreshData();
     } catch (e) {
       setAuthErr(friendlyAuthError(e));
     } finally {
@@ -531,10 +575,13 @@ export default function App() {
       const pwHash = await sha256Hex(pass);
       if (String(u.pass_hash) !== pwHash) throw new Error("Contraseña incorrecta");
 
+      await ensureTeamRow(u.id, u.email);
+
       setMe({ id: u.id, email: u.email });
       setPass("");
       setPass2("");
-      await ensureTeamRow(u.id, u.email);
+
+      await refreshData();
     } catch (e) {
       setAuthErr(friendlyAuthError(e));
     } finally {
@@ -554,23 +601,20 @@ export default function App() {
     if (!me) return;
     setSaveInfo("Guardando...");
     try {
-      const next = await ghPutJsonWithRetry(
-        PATH_TEAMS,
-        (cur) =>
-          cur.map((t) =>
-            t.user_id !== me.id
-              ? t
-              : {
-                  ...t,
-                  display_name: myDisplayName.trim(),
-                  team_name: myTeamName.trim(),
-                  team_status: myTeamStatus,
-                  updated_at: nowIso(),
-                }
-          ),
-        "update profile"
-      );
-      setTeams(next.map(normalizeTeamRow));
+      const { data: curr, sha } = await ghGetTeamFile(me.id);
+      const base = normalizeTeamRow(curr || { user_id: me.id, roster: [], picks: [] });
+
+      const next = {
+        ...base,
+        display_name: myDisplayName.trim(),
+        team_name: myTeamName.trim(),
+        team_status: myTeamStatus,
+        updated_at: nowIso(),
+      };
+
+      await ghPutTeamFile(me.id, next, sha || null, "update profile");
+      await refreshData();
+
       setSaveInfo("Guardado ✅");
       setTimeout(() => setSaveInfo(""), 900);
     } catch (e) {
@@ -582,12 +626,14 @@ export default function App() {
     if (!me) return;
     setSaveInfo("Guardando...");
     try {
-      const next = await ghPutJsonWithRetry(
-        PATH_TEAMS,
-        (cur) => cur.map((t) => (t.user_id !== me.id ? t : mutator({ ...t, updated_at: nowIso() }))),
-        label
-      );
-      setTeams(next.map(normalizeTeamRow));
+      const { data: curr, sha } = await ghGetTeamFile(me.id);
+      const base = normalizeTeamRow(curr || { user_id: me.id, roster: [], picks: [] });
+
+      const updated = normalizeTeamRow(mutator({ ...base, updated_at: nowIso() }));
+
+      await ghPutTeamFile(me.id, updated, sha || null, label);
+      await refreshData();
+
       setSaveInfo("Guardado ✅");
       setTimeout(() => setSaveInfo(""), 650);
     } catch (e) {
@@ -599,35 +645,40 @@ export default function App() {
     if (!me) return;
     const key = `${me.id}::${toUserId}::${assetType}::${assetId}`;
 
-    const next = await ghPutJsonWithRetry(
-      PATH_INTERESTS,
-      (cur) => {
-        const rest = cur.filter((x) => x.key !== key);
-        if (level === "NONE") return rest;
-        return [
-          ...rest,
-          {
-            key,
-            from_user_id: me.id,
-            to_user_id: toUserId,
-            asset_type: assetType,
-            asset_id: assetId,
-            level,
-            updated_at: nowIso(),
-          },
-        ];
-      },
-      "set interest"
-    );
-    setInterests(next);
+    try {
+      const next = await ghPutJsonWithRetry(
+        PATH_INTERESTS,
+        (cur) => {
+          const rest = cur.filter((x) => x.key !== key);
+          if (level === "NONE") return rest;
+          return [
+            ...rest,
+            {
+              key,
+              from_user_id: me.id,
+              to_user_id: toUserId,
+              asset_type: assetType,
+              asset_id: assetId,
+              level,
+              updated_at: nowIso(),
+            },
+          ];
+        },
+        "set interest"
+      );
+      setInterests(next);
+    } catch (e) {
+      // no bloqueamos la app: mostramos aviso en saveInfo
+      setSaveInfo(friendlyAuthError(e));
+      setTimeout(() => setSaveInfo(""), 1200);
+    }
   }
 
-  // --- derived: my roster, my picks, slots ---
+  // derived: my roster, picks, slots
   const myRoster = useMemo(() => (Array.isArray(myRow?.roster) ? myRow.roster : []), [myRow]);
   const myPicks = useMemo(() => (Array.isArray(myRow?.picks) ? myRow.picks : []), [myRow]);
   const slots = useMemo(() => assignSlots(myRoster), [myRoster]);
 
-  // --- views ---
   if (bootError) {
     return (
       <>
@@ -637,7 +688,7 @@ export default function App() {
           <div className="card">
             <div style={{ fontWeight: 1000, color: "var(--danger)" }}>{bootError}</div>
             <div className="muted" style={{ marginTop: 10 }}>
-              Revisá ENV y que existan: data/users.json, data/league_teams.json, data/interests.json
+              Revisá ENV y que existan: data/users.json, data/interests.json (teams se crea sola).
             </div>
           </div>
         </div>
@@ -728,16 +779,23 @@ export default function App() {
             </div>
 
             {tab === "home" ? (
-              <Home myOutgoing={myOutgoing} myIncoming={myIncoming} teamsByUser={teamsByUser} />
-            ) : tab === "league" ? (
-              <League
+              <Home
                 me={me}
-                teams={teams}
-                interests={interests}
-                onSetInterest={setInterest}
+                myOutgoing={myOutgoing}
+                myIncoming={myIncoming}
+                teamsByUser={teamsByUser}
+                playerMetaById={playerMetaById}
               />
+            ) : tab === "league" ? (
+              <League me={me} teams={teams} interests={interests} onSetInterest={setInterest} />
             ) : tab === "interests" ? (
-              <Interests me={me} teamsByUser={teamsByUser} myOutgoing={myOutgoing} myIncoming={myIncoming} />
+              <Interests
+                me={me}
+                teamsByUser={teamsByUser}
+                myOutgoing={myOutgoing}
+                myIncoming={myIncoming}
+                playerMetaById={playerMetaById}
+              />
             ) : (
               <MyTeam
                 players={players}
@@ -747,75 +805,64 @@ export default function App() {
                 onAddPlayer={(adpPlayer) =>
                   updateMyTeam(
                     (t) => {
-                      const tt = normalizeTeamRow(t);
-                      const exists = tt.roster.some((r) => String(r.id) === String(adpPlayer.player_id));
+                      const exists = (t.roster || []).some((r) => String(r.id) === String(adpPlayer.player_id));
                       if (exists) return t;
-                      const nextRoster = [
-                        ...tt.roster,
-                        {
-                          id: String(adpPlayer.player_id),
-                          name: adpPlayer.name,
-                          pos: normPos(adpPlayer.position),
-                          nfl: adpPlayer.team || "",
-                          status: "AVAILABLE",
-                        },
-                      ];
-                      return { ...t, roster: nextRoster };
+                      return {
+                        ...t,
+                        roster: [
+                          ...(t.roster || []),
+                          {
+                            id: String(adpPlayer.player_id),
+                            name: adpPlayer.name,
+                            pos: normPos(adpPlayer.position),
+                            nfl: adpPlayer.team || "",
+                            status: "AVAILABLE",
+                          },
+                        ],
+                      };
                     },
                     "add player"
                   )
                 }
                 onRemovePlayer={(id) =>
                   updateMyTeam(
-                    (t) => {
-                      const tt = normalizeTeamRow(t);
-                      return { ...t, roster: tt.roster.filter((r) => String(r.id) !== String(id)) };
-                    },
+                    (t) => ({ ...t, roster: (t.roster || []).filter((r) => String(r.id) !== String(id)) }),
                     "remove player"
                   )
                 }
                 onTogglePlayerStatus={(id) =>
                   updateMyTeam(
-                    (t) => {
-                      const tt = normalizeTeamRow(t);
-                      const next = tt.roster.map((r) =>
+                    (t) => ({
+                      ...t,
+                      roster: (t.roster || []).map((r) =>
                         String(r.id) !== String(id) ? r : { ...r, status: cycleStatus(r.status || "AVAILABLE") }
-                      );
-                      return { ...t, roster: next };
-                    },
+                      ),
+                    }),
                     "toggle player status"
                   )
                 }
                 onAddPick={(pickId) =>
                   updateMyTeam(
                     (t) => {
-                      const tt = normalizeTeamRow(t);
-                      const exists = tt.picks.some((p) => String(p.id) === String(pickId));
+                      const exists = (t.picks || []).some((p) => String(p.id) === String(pickId));
                       if (exists) return t;
-                      const label = PICKS.find((p) => p.id === pickId)?.label || pickId;
-                      return { ...t, picks: [...tt.picks, { id: pickId, label, status: "AVAILABLE" }] };
+                      const label = PICK_LABEL.get(String(pickId)) || String(pickId);
+                      return { ...t, picks: [...(t.picks || []), { id: String(pickId), label, status: "AVAILABLE" }] };
                     },
                     "add pick"
                   )
                 }
                 onRemovePick={(pickId) =>
-                  updateMyTeam(
-                    (t) => {
-                      const tt = normalizeTeamRow(t);
-                      return { ...t, picks: tt.picks.filter((p) => String(p.id) !== String(pickId)) };
-                    },
-                    "remove pick"
-                  )
+                  updateMyTeam((t) => ({ ...t, picks: (t.picks || []).filter((p) => String(p.id) !== String(pickId)) }), "remove pick")
                 }
                 onTogglePickStatus={(pickId) =>
                   updateMyTeam(
-                    (t) => {
-                      const tt = normalizeTeamRow(t);
-                      const next = tt.picks.map((p) =>
+                    (t) => ({
+                      ...t,
+                      picks: (t.picks || []).map((p) =>
                         String(p.id) !== String(pickId) ? p : { ...p, status: cycleStatus(p.status || "AVAILABLE") }
-                      );
-                      return { ...t, picks: next };
-                    },
+                      ),
+                    }),
                     "toggle pick status"
                   )
                 }
@@ -847,9 +894,19 @@ export default function App() {
   );
 }
 
-/** ============ Views ============ */
+/** ================= Views ================= */
 
-function Home({ myOutgoing, myIncoming, teamsByUser }) {
+function Home({ me, myOutgoing, myIncoming, teamsByUser, playerMetaById }) {
+  const fmtAsset = (x) => {
+    if (x.asset_type === "PLAYER") {
+      const meta = playerMetaById.get(String(x.asset_id));
+      if (meta) return `${meta.name} (${meta.pos} ${meta.nfl || "-"})`;
+      return `Jugador ${x.asset_id}`;
+    }
+    const label = PICK_LABEL.get(String(x.asset_id)) || String(x.asset_id);
+    return label;
+  };
+
   return (
     <div className="grid2" style={{ marginTop: 12 }}>
       <div className="card">
@@ -866,7 +923,7 @@ function Home({ myOutgoing, myIncoming, teamsByUser }) {
                 return (
                   <div key={x.key} className="item">
                     <div style={{ minWidth: 0 }}>
-                      <div className="name">{x.asset_type === "PLAYER" ? `Jugador ${x.asset_id}` : `Pick ${x.asset_id}`}</div>
+                      <div className="name">{fmtAsset(x)}</div>
                       <div className="muted sub">
                         Dueño: {owner?.display_name || x.to_user_id} {owner?.team_name ? `— ${owner.team_name}` : ""}
                       </div>
@@ -880,7 +937,7 @@ function Home({ myOutgoing, myIncoming, teamsByUser }) {
       </div>
 
       <div className="card">
-        <h3 style={{ marginTop: 0 }}>Interesados en lo mío</h3>
+        <h3 style={{ marginTop: 0 }}>Interesados en mi equipo</h3>
         {myIncoming.length === 0 ? (
           <div className="muted">Todavía nadie marcó interés.</div>
         ) : (
@@ -893,7 +950,7 @@ function Home({ myOutgoing, myIncoming, teamsByUser }) {
                 return (
                   <div key={x.key} className="item">
                     <div style={{ minWidth: 0 }}>
-                      <div className="name">{x.asset_type === "PLAYER" ? `Jugador ${x.asset_id}` : `Pick ${x.asset_id}`}</div>
+                      <div className="name">{fmtAsset(x)}</div>
                       <div className="muted sub">
                         Interesado: {who?.display_name || x.from_user_id} {who?.team_name ? `— ${who.team_name}` : ""}
                       </div>
@@ -950,8 +1007,12 @@ function MyTeam({
           </div>
           <div className="sp" />
           <div className="seg">
-            <button className={mode === "players" ? "active" : ""} onClick={() => setMode("players")}>Jugadores</button>
-            <button className={mode === "picks" ? "active" : ""} onClick={() => setMode("picks")}>Picks</button>
+            <button className={mode === "players" ? "active" : ""} onClick={() => setMode("players")}>
+              Jugadores
+            </button>
+            <button className={mode === "picks" ? "active" : ""} onClick={() => setMode("picks")}>
+              Picks
+            </button>
           </div>
         </div>
       </div>
@@ -981,7 +1042,9 @@ function MyTeam({
                         <div className="av">{initials(p.name)}</div>
                         <div style={{ minWidth: 0 }}>
                           <div className="name">{p.name}</div>
-                          <div className="muted sub">{normPos(p.position)} · {p.team || "-"} · ADP {p.adp_formatted || "-"}</div>
+                          <div className="muted sub">
+                            {normPos(p.position)} · {p.team || "-"} · ADP {p.adp_formatted || "-"}
+                          </div>
                         </div>
                       </div>
                       <button className={added ? "ghost" : ""} disabled={added} onClick={() => onAddPlayer(p)}>
@@ -1007,7 +1070,9 @@ function MyTeam({
               >
                 <option value="">+ Agregar pick…</option>
                 {PICKS.filter((p) => !pickIds.has(String(p.id))).map((p) => (
-                  <option key={p.id} value={p.id}>{p.label}</option>
+                  <option key={p.id} value={p.id}>
+                    {p.label}
+                  </option>
                 ))}
               </select>
             </>
@@ -1027,7 +1092,9 @@ function MyTeam({
                     <div key={s.key} className="slot">
                       <div className="slothead">
                         <div style={{ fontWeight: 1000 }}>{s.label}</div>
-                        <div className="muted sub">{list.length}/{s.limit}</div>
+                        <div className="muted sub">
+                          {list.length}/{s.limit}
+                        </div>
                       </div>
 
                       <div className="list" style={{ marginTop: 10 }}>
@@ -1038,14 +1105,18 @@ function MyTeam({
                               <div className="av">{initials(r.name)}</div>
                               <div style={{ minWidth: 0 }}>
                                 <div className="name">{r.name}</div>
-                                <div className="muted sub">{normPos(r.pos)} · {r.nfl || "-"}</div>
+                                <div className="muted sub">
+                                  {normPos(r.pos)} · {r.nfl || "-"}
+                                </div>
                               </div>
                             </div>
                             <div className="row" style={{ justifyContent: "flex-end" }}>
                               <button className="ghost" onClick={() => onTogglePlayerStatus(r.id)}>
                                 {STATUS_LABEL[r.status] || r.status}
                               </button>
-                              <button className="danger" onClick={() => onRemovePlayer(r.id)}>✕</button>
+                              <button className="danger" onClick={() => onRemovePlayer(r.id)}>
+                                ✕
+                              </button>
                             </div>
                           </div>
                         ))}
@@ -1060,20 +1131,25 @@ function MyTeam({
               <h3 style={{ marginTop: 0 }}>Mis picks</h3>
               <div className="list" style={{ marginTop: 12 }}>
                 {myPicks.length === 0 ? <div className="muted">No agregaste picks todavía.</div> : null}
-                {myPicks.slice().sort((a, b) => String(a.id).localeCompare(String(b.id))).map((p) => (
-                  <div key={p.id} className="item">
-                    <div style={{ minWidth: 0 }}>
-                      <div className="name">{p.label || p.id}</div>
-                      <div className="muted sub">{p.id}</div>
+                {myPicks
+                  .slice()
+                  .sort((a, b) => String(a.id).localeCompare(String(b.id)))
+                  .map((p) => (
+                    <div key={p.id} className="item">
+                      <div style={{ minWidth: 0 }}>
+                        <div className="name">{p.label || p.id}</div>
+                        <div className="muted sub">{p.id}</div>
+                      </div>
+                      <div className="row" style={{ justifyContent: "flex-end" }}>
+                        <button className="ghost" onClick={() => onTogglePickStatus(p.id)}>
+                          {STATUS_LABEL[p.status] || p.status}
+                        </button>
+                        <button className="danger" onClick={() => onRemovePick(p.id)}>
+                          ✕
+                        </button>
+                      </div>
                     </div>
-                    <div className="row" style={{ justifyContent: "flex-end" }}>
-                      <button className="ghost" onClick={() => onTogglePickStatus(p.id)}>
-                        {STATUS_LABEL[p.status] || p.status}
-                      </button>
-                      <button className="danger" onClick={() => onRemovePick(p.id)}>✕</button>
-                    </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             </>
           )}
@@ -1092,6 +1168,7 @@ function League({ me, teams, interests, onSetInterest }) {
   }, [others, selectedId]);
 
   const selected = useMemo(() => others.find((t) => t.user_id === selectedId), [others, selectedId]);
+
   const selectedRoster = selected?.roster || [];
   const selectedPicks = selected?.picks || [];
 
@@ -1112,12 +1189,18 @@ function League({ me, teams, interests, onSetInterest }) {
       </div>
 
       {!selected ? (
-        <div className="muted" style={{ marginTop: 12 }}>No hay equipo seleccionado.</div>
+        <div className="muted" style={{ marginTop: 12 }}>
+          No hay equipo seleccionado.
+        </div>
       ) : (
         <div className="grid2" style={{ marginTop: 12 }}>
           <div className="card">
-            <div style={{ fontWeight: 1000, fontSize: 18 }}>{selected.display_name} {selected.team_name ? `— ${selected.team_name}` : ""}</div>
-            <div className="muted" style={{ fontWeight: 900, marginTop: 4 }}>{selected.team_status || "—"}</div>
+            <div style={{ fontWeight: 1000, fontSize: 18 }}>
+              {selected.display_name} {selected.team_name ? `— ${selected.team_name}` : ""}
+            </div>
+            <div className="muted" style={{ fontWeight: 900, marginTop: 4 }}>
+              {selected.team_status || "—"}
+            </div>
 
             <h3 style={{ marginTop: 14 }}>Jugadores</h3>
             <div className="muted sub">Marcá tu interés: Bajo / Medio / Alto</div>
@@ -1183,7 +1266,16 @@ function League({ me, teams, interests, onSetInterest }) {
   );
 }
 
-function Interests({ me, teamsByUser, myOutgoing, myIncoming }) {
+function Interests({ me, teamsByUser, myOutgoing, myIncoming, playerMetaById }) {
+  const fmtAsset = (x) => {
+    if (x.asset_type === "PLAYER") {
+      const meta = playerMetaById.get(String(x.asset_id));
+      if (meta) return `${meta.name} (${meta.pos} ${meta.nfl || "-"})`;
+      return `Jugador ${x.asset_id}`;
+    }
+    return PICK_LABEL.get(String(x.asset_id)) || String(x.asset_id);
+  };
+
   return (
     <div className="grid2" style={{ marginTop: 12 }}>
       <div className="card">
@@ -1200,7 +1292,7 @@ function Interests({ me, teamsByUser, myOutgoing, myIncoming }) {
                 return (
                   <div key={x.key} className="item">
                     <div style={{ minWidth: 0 }}>
-                      <div className="name">{x.asset_type === "PLAYER" ? `Jugador ${x.asset_id}` : `Pick ${x.asset_id}`}</div>
+                      <div className="name">{fmtAsset(x)}</div>
                       <div className="muted sub">
                         Dueño: {owner?.display_name || x.to_user_id} {owner?.team_name ? `— ${owner.team_name}` : ""}
                       </div>
@@ -1227,7 +1319,7 @@ function Interests({ me, teamsByUser, myOutgoing, myIncoming }) {
                 return (
                   <div key={x.key} className="item">
                     <div style={{ minWidth: 0 }}>
-                      <div className="name">{x.asset_type === "PLAYER" ? `Jugador ${x.asset_id}` : `Pick ${x.asset_id}`}</div>
+                      <div className="name">{fmtAsset(x)}</div>
                       <div className="muted sub">
                         Interesado: {who?.display_name || x.from_user_id} {who?.team_name ? `— ${who.team_name}` : ""}
                       </div>
