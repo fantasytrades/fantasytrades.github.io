@@ -33,7 +33,7 @@ const LEAGUE_SIZE = 10;
 const SLOT_LIMITS = [
   { key: "QB", label: "QB", limit: 1, accepts: ["QB"] },
   { key: "RB", label: "RB", limit: 2, accepts: ["RB"] },
-  { key: "WR", label: "WR", limit: 1, accepts: ["WR"] },
+  { key: "WR", label: "WR", limit: 2, accepts: ["WR"] },
   { key: "TE", label: "TE", limit: 1, accepts: ["TE"] },
   { key: "FLEX", label: "FLEX", limit: 3, accepts: ["RB", "WR", "TE"] },
   { key: "BENCH", label: "BN", limit: 21, accepts: ["QB", "RB", "WR", "TE"] },
@@ -1137,7 +1137,7 @@ export default function App() {
                   <div style={{ fontWeight: 1000, fontSize: 18 }}>{myDisplayName || me.email}</div>
                   <div className="muted" style={{ fontWeight: 900 }}>{myTeamName || "Sin nombre de equipo"}</div>
                   <div className="muted" style={{ marginTop: 6, fontSize: 13 }}>
-                    Slots: 1QB 2RB 1WR 1TE 3FLEX 21BN · Picks 2026 (1.01–6.10) + 2027/2028 por ronda
+                    Slots: 1QB 2RB 2WR 1TE 3FLEX 21BN · Picks 2026 (1.01–6.10) + 2027/2028 por ronda
                   </div>
                 </div>
 
