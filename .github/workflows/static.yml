@@ -44,12 +44,25 @@ jobs:
         run: npm run prebuild
       # --- 2) Commit del ADP si cambió ---
       - name: Commit updated ADP (if changed)
+        continue-on-error: true
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
           git add public/adp.json
-          git diff --cached --quiet || git commit -m "chore: update ADP [skip ci]"
-          git push
+          if git diff --cached --quiet; then
+            echo "No ADP changes"
+            exit 0
+          fi
+
+          git commit -m "chore: update ADP [skip ci]" || true
+
+          # trae cambios remotos y rebasea tu commit encima
+          git pull --rebase origin main || (git rebase --abort || true)
+
+          # intenta pushear; si no se puede, no frena el build/deploy
+          git push origin HEAD:main || echo "Push rejected (fetch first). Skipping push."
+    
       # --- 3) Build ---
       - name: Build
         run: npm run build
