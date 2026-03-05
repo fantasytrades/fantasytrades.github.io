@@ -1,45 +1,34 @@
 name: Deploy Vite to GitHub Pages
-
 on:
   workflow_dispatch:
-
   push:
     branches: [main]
     paths-ignore:
       - "public/adp.json"   # evita que el commit automático del ADP dispare otro deploy
-
   schedule:
     - cron: "0 12 * * *"    # todos los días 12:00 UTC (cambialo si querés)
-
 permissions:
   contents: write
   pages: write
   id-token: write
-
 concurrency:
   group: "pages"
   cancel-in-progress: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "npm"
-
       - name: Install
-        run: npm ci
-
-      # ✅ Usa el Secret VITE_GH_TOKEN (NO lo commitees en .env)
+        run: npm install
       - name: Create .env (from GitHub Secrets)
         run: |
           cat > .env <<'EOF'
@@ -47,12 +36,13 @@ jobs:
           VITE_GH_REPO=fantasytrades.github.io
           VITE_GH_BRANCH=main
           VITE_GH_TOKEN=${{ secrets.VITE_GH_TOKEN }}
+          VITE_FIREBASE_API_KEY=AIzaSyCDOOwEbbXDio00xSnRg7pGYnzs51bZ1vE
+          VITE_FIREBASE_PROJECT_ID=fantasy-trades-d992a
+          VITE_FIREBASE_APP_ID=1:111630512150:web:9c379e792b0d40e1fb8537
           EOF
-
       # --- 1) Actualiza ADP (tu prebuild) ---
       - name: Update ADP
         run: npm run prebuild
-
       # --- 2) Commit del ADP si cambió ---
       - name: Commit updated ADP (if changed)
         run: |
@@ -61,24 +51,20 @@ jobs:
           git add public/adp.json
           git diff --cached --quiet || git commit -m "chore: update ADP [skip ci]"
           git push
-
       # --- 3) Build ---
       - name: Build
         run: npm run build
-
       # --- 4) Upload artifact para Pages ---
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
