@@ -36,6 +36,8 @@ const db = getFirestore(fbApp);
 // ---- Constants ----
 const LEAGUE_SIZE = 10;
 
+
+const ALLOWED_POSITIONS = new Set([\"QB\",\"RB\",\"WR\",\"TE\"]);
 const SLOT_LIMITS = [
   { key: "QB",    label: "QB",   limit: 1,  accepts: ["QB"] },
   { key: "RB",    label: "RB",   limit: 2,  accepts: ["RB"] },
@@ -756,7 +758,9 @@ function MyTeamView({
     const qq = q.trim().toLowerCase();
     return (players || [])
       .filter((p) => {
-        const pos = normPos(p.position);
+        const posRaw = String(p?.position ?? p?.pos ?? p?.player_position ?? "").toUpperCase();
+        if (!ALLOWED_POSITIONS.has(posRaw)) return false;
+        const pos = normPos(posRaw);
         if (posFilter !== "ALL") {
           if (posFilter === "FLEX") {
             if (!["RB", "WR", "TE"].includes(pos)) return false;
