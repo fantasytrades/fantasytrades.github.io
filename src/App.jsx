@@ -1,71 +1,62 @@
 import { useEffect, useMemo, useState } from "react";
+import { initializeApp } from "firebase/app";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  getDocs,
+  query,
+  where,
+  deleteDoc,
+} from "firebase/firestore";
 
 /**
- * Fantasy Trades — App.jsx (stable + conflict-proof)
+ * Fantasy Trades — App.jsx (Firebase Firestore)
  *
- * Persistencia GitHub:
- *  - data/users.json
- *  - data/interests.json
- *  - data/teams/<user_id>.json  (1 file por usuario)
- *
- * Fallback legacy (solo lectura):
- *  - data/league_teams.json
- *
- * ENV:
- *  VITE_GH_OWNER, VITE_GH_REPO, VITE_GH_BRANCH, VITE_GH_TOKEN
+ * Colecciones Firestore:
+ *  - users/{userId}     → { email, pass_hash, created_at }
+ *  - teams/{userId}     → { user_id, display_name, team_name, team_status, roster[], picks[], updated_at }
+ *  - interests/{key}   → { key, from_user_id, to_user_id, asset_type, asset_id, level, updated_at }
  */
 
-const GH_OWNER = import.meta.env.VITE_GH_OWNER;
-const GH_REPO = import.meta.env.VITE_GH_REPO;
-const GH_BRANCH = import.meta.env.VITE_GH_BRANCH || "main";
-const GH_TOKEN = import.meta.env.VITE_GH_TOKEN;
+// ---- Firebase init ----
+const firebaseConfig = {
+  apiKey: "AIzaSyCDOOwEbbXDio00xSnRg7pGYnzs51bZ1vE",
+  authDomain: "fantasy-trades-d992a.firebaseapp.com",
+  projectId: "fantasy-trades-d992a",
+  storageBucket: "fantasy-trades-d992a.firebasestorage.app",
+  messagingSenderId: "111630512150",
+  appId: "1:111630512150:web:9c379e792b0d40e1fb8537",
+};
+const fbApp = initializeApp(firebaseConfig);
+const db = getFirestore(fbApp);
 
-const GH_API = "https://api.github.com";
-const PATH_USERS = "data/users.json";
-const PATH_INTERESTS = "data/interests.json";
-
-const TEAMS_DIR = "data/teams";
-const PATH_TEAMS_LEGACY = "data/league_teams.json"; // fallback lectura
-
+// ---- Constants ----
 const LEAGUE_SIZE = 10;
 
-// Slots: 1 QB, 2 RB, 1 WR, 1 TE, 3 FLEX, 21 BN
 const SLOT_LIMITS = [
-  { key: "QB", label: "QB", limit: 1, accepts: ["QB"] },
-  { key: "RB", label: "RB", limit: 2, accepts: ["RB"] },
-  { key: "WR", label: "WR", limit: 2, accepts: ["WR"] },
-  { key: "TE", label: "TE", limit: 1, accepts: ["TE"] },
-  { key: "FLEX", label: "FLEX", limit: 3, accepts: ["RB", "WR", "TE"] },
-  { key: "BENCH", label: "BN", limit: 21, accepts: ["QB", "RB", "WR", "TE"] },
+  { key: "QB",    label: "QB",   limit: 1,  accepts: ["QB"] },
+  { key: "RB",    label: "RB",   limit: 2,  accepts: ["RB"] },
+  { key: "WR",    label: "WR",   limit: 2,  accepts: ["WR"] },
+  { key: "TE",    label: "TE",   limit: 1,  accepts: ["TE"] },
+  { key: "FLEX",  label: "FLEX", limit: 3,  accepts: ["RB", "WR", "TE"] },
+  { key: "BENCH", label: "BN",   limit: 21, accepts: ["QB", "RB", "WR", "TE"] },
 ];
 
-// Estado de disponibilidad (dueño del asset)
 const STATUS_CYCLE = ["AVAILABLE", "LISTENING", "NOT_AVAILABLE"];
 const STATUS_LABEL = {
-  AVAILABLE: "Disponible",
-  LISTENING: "En escucha",
+  AVAILABLE:     "Disponible",
+  LISTENING:     "En escucha",
   NOT_AVAILABLE: "No disponible",
 };
-
-// Intereses (usuario mirando assets ajenos)
 const INTEREST_LABEL = { NONE: "—", LOW: "Bajo", MEDIUM: "Medio", HIGH: "Alto" };
 
-// ---------- helpers ----------
-function nowIso() {
-  return new Date().toISOString();
-}
+// ---- Helpers ----
+function nowIso() { return new Date().toISOString(); }
 function safeJsonParse(txt, fallback) {
-  try {
-    return JSON.parse(txt);
-  } catch {
-    return fallback;
-  }
-}
-function b64encodeUtf8(str) {
-  return btoa(unescape(encodeURIComponent(str)));
-}
-function b64decodeUtf8(b64) {
-  return decodeURIComponent(escape(atob(b64)));
+  try { return JSON.parse(txt); } catch { return fallback; }
 }
 async function sha256Hex(str) {
   const enc = new TextEncoder().encode(str);
@@ -77,8 +68,7 @@ function uid(prefix = "user") {
 }
 function normPos(pos) {
   const p = String(pos || "").toUpperCase();
-  if (["QB", "RB", "WR", "TE"].includes(p)) return p;
-  return p || "?";
+  return ["QB", "RB", "WR", "TE"].includes(p) ? p : p || "?";
 }
 function initials(name) {
   const s = String(name || "").trim();
@@ -93,7 +83,7 @@ function cycleStatus(curr) {
   return STATUS_CYCLE[(i + 1) % STATUS_CYCLE.length];
 }
 
-// ---------- picks ----------
+// ---- Picks catalog ----
 function pickCatalog() {
   const out = [];
   for (let rnd = 1; rnd <= 6; rnd++) {
@@ -103,10 +93,9 @@ function pickCatalog() {
     }
   }
   const future = (year) => {
+    const names = ["1era", "2da", "3era", "4ta", "5ta", "6ta"];
     for (let rnd = 1; rnd <= 6; rnd++) {
-      const suf =
-        rnd === 1 ? "1era" : rnd === 2 ? "2da" : rnd === 3 ? "3era" : rnd === 4 ? "4ta" : rnd === 5 ? "5ta" : "6ta";
-      out.push({ id: `${year}-${rnd}`, label: `${suf} ${year}` });
+      out.push({ id: `${year}-${rnd}`, label: `${names[rnd - 1]} ${year}` });
     }
   };
   future(2027);
@@ -116,253 +105,89 @@ function pickCatalog() {
 const PICKS = pickCatalog();
 const PICK_LABEL = new Map(PICKS.map((p) => [String(p.id), p.label]));
 
-// ---------- github api ----------
-function ghAuthHeaderValue(token) {
-  if (!token) return null;
-  const t = String(token).trim();
-  if (!t) return null;
-  return t.startsWith("github_pat_") ? `Bearer ${t}` : `token ${t}`;
+// ---- Firestore helpers ----
+async function fsGetUser(email) {
+  const snap = await getDocs(query(collection(db, "users"), where("email", "==", email)));
+  if (snap.empty) return null;
+  return { id: snap.docs[0].id, ...snap.docs[0].data() };
 }
-function ghHeaders() {
-  const h = {
-    Accept: "application/vnd.github+json",
-    "X-GitHub-Api-Version": "2022-11-28",
-  };
-  const auth = ghAuthHeaderValue(GH_TOKEN);
-  if (auth) h.Authorization = auth;
-  return h;
+async function fsCreateUser(userId, email, passHash) {
+  await setDoc(doc(db, "users", userId), { email, pass_hash: passHash, created_at: nowIso() });
 }
-async function ghError(res) {
-  const text = await res.text();
-  let msg = text;
-  try {
-    const j = JSON.parse(text);
-    msg = j?.message ? String(j.message) : text;
-  } catch {}
-  const err = new Error(msg);
-  err.status = res.status;
-  err.raw = text;
-  return err;
+async function fsGetTeam(userId) {
+  const snap = await getDoc(doc(db, "teams", userId));
+  if (!snap.exists()) return null;
+  return { user_id: userId, ...snap.data() };
 }
-async function ghGetFile(path) {
-  const url = `${GH_API}/repos/${GH_OWNER}/${GH_REPO}/contents/${path}?ref=${encodeURIComponent(GH_BRANCH)}`;
-  const res = await fetch(url, { headers: ghHeaders() });
-  if (res.status === 404) return { exists: false, sha: null, content: "" };
-  if (!res.ok) throw await ghError(res);
-  const j = await res.json();
-  const raw = j?.content ? b64decodeUtf8(String(j.content).split("\n").join("")) : "";
-  return { exists: true, sha: j.sha, content: raw };
+async function fsSetTeam(userId, data) {
+  await setDoc(doc(db, "teams", userId), { ...data, updated_at: nowIso() });
 }
-async function ghPutFile(path, content, sha = null, message = null) {
-  const url = `${GH_API}/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`;
-  const body = {
-    message: message || `update ${path}`,
-    content: b64encodeUtf8(content),
-    branch: GH_BRANCH,
-  };
-  if (sha) body.sha = sha;
-
-  const res = await fetch(url, {
-    method: "PUT",
-    headers: { ...ghHeaders(), "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
-
-  if (res.status === 409) {
-    const e = await ghError(res);
-    e.code = 409;
-    throw e;
-  }
-  if (!res.ok) throw await ghError(res);
-  return res.json();
+async function fsGetAllTeams() {
+  const snap = await getDocs(collection(db, "teams"));
+  return snap.docs.map((d) => ({ user_id: d.id, ...d.data() }));
 }
-async function ghGetJson(path, fallback) {
-  const f = await ghGetFile(path);
-  if (!f.exists) return { data: fallback, sha: null };
-  return { data: safeJsonParse(f.content, fallback), sha: f.sha };
+async function fsGetAllInterests() {
+  const snap = await getDocs(collection(db, "interests"));
+  return snap.docs.map((d) => d.data());
 }
-async function ghPutJson(path, data, sha, message) {
-  const txt = JSON.stringify(data, null, 2) + "\n";
-  return ghPutFile(path, txt, sha, message);
+async function fsSetInterest(key, data) {
+  await setDoc(doc(db, "interests", key), data);
+}
+async function fsDeleteInterest(key) {
+  await deleteDoc(doc(db, "interests", key));
 }
 
-// serializa escrituras en esta pestaña
-// Mutex real: solo 1 write a la vez, los demás esperan en cola
-const _ghQueue = { running: false, queue: [] };
-function ghEnqueueWrite(fn) {
-  return new Promise((resolve, reject) => {
-    _ghQueue.queue.push({ fn, resolve, reject });
-    _ghDrainQueue();
-  });
-}
-async function _ghDrainQueue() {
-  if (_ghQueue.running) return;
-  const next = _ghQueue.queue.shift();
-  if (!next) return;
-  _ghQueue.running = true;
-  try {
-    const result = await next.fn();
-    next.resolve(result);
-  } catch (e) {
-    next.reject(e);
-  } finally {
-    _ghQueue.running = false;
-    _ghDrainQueue();
-  }
-}
-
-// retry para archivos compartidos (users/interests)
-async function ghPutJsonWithRetry(path, mutator, label) {
-  return ghEnqueueWrite(async () => {
-    const MAX = 10;
-    for (let attempt = 0; attempt < MAX; attempt++) {
-      const { data, sha } = await ghGetJson(path, []);
-      const arr = Array.isArray(data) ? data : [];
-      const next = mutator(arr);
-      try {
-        await ghPutJson(path, next, sha, label);
-        return next;
-      } catch (e) {
-        if (e?.status === 409 || e?.code === 409) {
-          const ms = 500 + attempt * 600;
-          await new Promise((r) => setTimeout(r, ms));
-          continue;
-        }
-        throw e;
-      }
-    }
-    throw new Error(`No se pudo guardar (muchos 409) en ${path}`);
-  });
-}
-
-// listar carpeta
-async function ghListDir(path) {
-  const url = `${GH_API}/repos/${GH_OWNER}/${GH_REPO}/contents/${path}?ref=${encodeURIComponent(GH_BRANCH)}`;
-  const res = await fetch(url, { headers: ghHeaders() });
-  if (res.status === 404) return [];
-  if (!res.ok) throw await ghError(res);
-  const j = await res.json();
-  return Array.isArray(j) ? j : [];
-}
-
-// team file helpers
-async function ghGetTeamFile(userId) {
-  return ghGetJson(`${TEAMS_DIR}/${userId}.json`, null);
-}
-async function ghPutTeamFile(userId, teamObj, sha, message) {
-  const txt = JSON.stringify(teamObj, null, 2) + "\n";
-  return ghPutFile(`${TEAMS_DIR}/${userId}.json`, txt, sha, message);
-}
-
-// retry para tu team file
-// El mutex ghEnqueueWrite garantiza que solo 1 write corre a la vez.
-// En cada intento hacemos GET fresco para obtener el SHA actual.
-async function ghPutTeamWithRetry(userId, mutator, label) {
-  return ghEnqueueWrite(async () => {
-    const MAX = 15;
-    for (let attempt = 0; attempt < MAX; attempt++) {
-      // Siempre GET fresco: nunca reutilizar SHA de intento anterior
-      const { data: curr, sha } = await ghGetTeamFile(userId);
-
-      const base = normalizeTeamRow(
-        curr || {
-          user_id: userId,
-          display_name: "",
-          team_name: "",
-          team_status: "Contendiendo",
-          roster: [],
-          picks: [],
-          updated_at: nowIso(),
-        }
-      );
-
-      const next = normalizeTeamRow(mutator({ ...base, updated_at: nowIso() }));
-
-      try {
-        const putResult = await ghPutTeamFile(userId, next, sha || null, label);
-        // Esperar brevemente para que GitHub consolide el commit
-        // antes de liberar el mutex (la siguiente operación en cola leerá el SHA nuevo)
-        await new Promise((r) => setTimeout(r, 800));
-        return next;
-      } catch (e) {
-        if (e?.status === 409 || e?.code === 409) {
-          // Backoff exponencial: 1s, 2s, 3s, 4s...
-          const ms = 1000 * (attempt + 1);
-          await new Promise((r) => setTimeout(r, ms));
-          continue;
-        }
-        throw e;
-      }
-    }
-    throw new Error(`No se pudo guardar: demasiados 409 en data/teams/${userId}.json`);
-  });
-}
-
-// ---------- normalize schema ----------
+// ---- Normalize team ----
 function normalizeTeamRow(row) {
   const out = { ...row };
-
   const roster = Array.isArray(row?.roster) ? row.roster : [];
-  out.roster = roster
-    .map((x) => {
-      if (!x) return null;
-      if (typeof x === "string" || typeof x === "number") {
-        const id = String(x);
-        return { id, name: `Jugador ${id}`, pos: "?", nfl: "", status: "AVAILABLE" };
-      }
-      if (typeof x === "object") {
-        const id = x.id != null ? String(x.id) : x.player_id != null ? String(x.player_id) : "";
-        if (!id) return null;
-        return {
-          id,
-          name: x.name || x.player_name || `Jugador ${id}`,
-          pos: normPos(x.pos || x.position || x.player_pos || "?"),
-          nfl: x.nfl || x.team || x.player_team || "",
-          status: x.status || x.availability || "AVAILABLE",
-        };
-      }
-      return null;
-    })
-    .filter(Boolean);
+  out.roster = roster.map((x) => {
+    if (!x) return null;
+    if (typeof x === "string" || typeof x === "number") {
+      const id = String(x);
+      return { id, name: `Jugador ${id}`, pos: "?", nfl: "", status: "AVAILABLE" };
+    }
+    if (typeof x === "object") {
+      const id = x.id != null ? String(x.id) : x.player_id != null ? String(x.player_id) : "";
+      if (!id) return null;
+      return {
+        id,
+        name: x.name || x.player_name || `Jugador ${id}`,
+        pos: normPos(x.pos || x.position || "?"),
+        nfl: x.nfl || x.team || "",
+        status: x.status || "AVAILABLE",
+      };
+    }
+    return null;
+  }).filter(Boolean);
 
   const picks = Array.isArray(row?.picks) ? row.picks : [];
-  out.picks = picks
-    .map((x) => {
-      if (!x) return null;
-      if (typeof x === "string" || typeof x === "number") {
-        const id = String(x);
-        return { id, label: PICK_LABEL.get(id) || id, status: "AVAILABLE" };
-      }
-      if (typeof x === "object") {
-        const id = String(x.id || x.pick_id || "");
-        if (!id) return null;
-        return { id, label: x.label || PICK_LABEL.get(id) || id, status: x.status || "AVAILABLE" };
-      }
-      return null;
-    })
-    .filter(Boolean);
-
-  // availability viejo
-  if (row?.availability && typeof row.availability === "object") {
-    const av = row.availability;
-    out.roster = out.roster.map((r) => (av[`PLAYER:${r.id}`] ? { ...r, status: av[`PLAYER:${r.id}`] } : r));
-    out.picks = out.picks.map((p) => (av[`PICK:${p.id}`] ? { ...p, status: av[`PICK:${p.id}`] } : p));
-  }
+  out.picks = picks.map((x) => {
+    if (!x) return null;
+    if (typeof x === "string" || typeof x === "number") {
+      const id = String(x);
+      return { id, label: PICK_LABEL.get(id) || id, status: "AVAILABLE" };
+    }
+    if (typeof x === "object") {
+      const id = String(x.id || "");
+      if (!id) return null;
+      return { id, label: x.label || PICK_LABEL.get(id) || id, status: x.status || "AVAILABLE" };
+    }
+    return null;
+  }).filter(Boolean);
 
   return out;
 }
 
-// ---------- slots ----------
+// ---- Slots ----
 function assignSlots(roster) {
   const remaining = roster.slice();
   const slots = Object.fromEntries(SLOT_LIMITS.map((s) => [s.key, []]));
-
   const take = (accepts) => {
     const idx = remaining.findIndex((p) => accepts.includes(normPos(p.pos)));
     if (idx === -1) return null;
     return remaining.splice(idx, 1)[0];
   };
-
   for (const s of SLOT_LIMITS.filter((x) => x.key !== "BENCH")) {
     while (slots[s.key].length < s.limit) {
       const p = take(s.accepts);
@@ -370,12 +195,11 @@ function assignSlots(roster) {
       slots[s.key].push(p);
     }
   }
-
   slots.BENCH = remaining.slice(0, SLOT_LIMITS.find((x) => x.key === "BENCH").limit);
   return slots;
 }
 
-// ---------- styles ----------
+// ---- Styles ----
 function Styles() {
   return (
     <style>{`
@@ -424,18 +248,11 @@ function Styles() {
   );
 }
 
-// ---------- Views ----------
+// ---- MyTeamView ----
 function MyTeamView({
-  players,
-  myRoster,
-  myPicks,
-  slots,
-  onAddPlayer,
-  onRemovePlayer,
-  onTogglePlayerStatus,
-  onAddPick,
-  onRemovePick,
-  onTogglePickStatus,
+  players, myRoster, myPicks, slots,
+  onAddPlayer, onRemovePlayer, onTogglePlayerStatus,
+  onAddPick, onRemovePick, onTogglePickStatus,
   saving,
 }) {
   const [mode, setMode] = useState("players");
@@ -455,7 +272,7 @@ function MyTeamView({
   }, [players, q, posFilter]);
 
   const rosterIds = useMemo(() => new Set((myRoster || []).map((r) => String(r.id))), [myRoster]);
-  const pickIds = useMemo(() => new Set((myPicks || []).map((p) => String(p.id))), [myPicks]);
+  const pickIds   = useMemo(() => new Set((myPicks  || []).map((p) => String(p.id))), [myPicks]);
 
   return (
     <div style={{ marginTop: 12 }}>
@@ -467,12 +284,8 @@ function MyTeamView({
           </div>
           <div className="sp" />
           <div className="seg">
-            <button className={mode === "players" ? "active" : ""} onClick={() => setMode("players")}>
-              Jugadores
-            </button>
-            <button className={mode === "picks" ? "active" : ""} onClick={() => setMode("picks")}>
-              Picks
-            </button>
+            <button className={mode === "players" ? "active" : ""} onClick={() => setMode("players")}>Jugadores</button>
+            <button className={mode === "picks"   ? "active" : ""} onClick={() => setMode("picks")}>Picks</button>
           </div>
         </div>
       </div>
@@ -491,7 +304,6 @@ function MyTeamView({
                   ))}
                 </div>
               </div>
-
               <div className="list" style={{ marginTop: 12 }}>
                 {filtered.map((p) => {
                   const id = String(p.player_id);
@@ -502,13 +314,11 @@ function MyTeamView({
                         <div className="av">{initials(p.name)}</div>
                         <div style={{ minWidth: 0 }}>
                           <div className="name">{p.name}</div>
-                          <div className="muted sub">
-                            {normPos(p.position)} · {p.team || "-"} · ADP {p.adp_formatted || "-"}
-                          </div>
+                          <div className="muted sub">{normPos(p.position)} · {p.team || "-"} · ADP {p.adp_formatted || "-"}</div>
                         </div>
                       </div>
                       <button className={added ? "ghost" : ""} disabled={added || saving} onClick={() => onAddPlayer(p)}>
-                        {added ? "Agregado" : "+ Agregar"}
+                        {added ? "Agregado" : saving ? "..." : "+ Agregar"}
                       </button>
                     </div>
                   );
@@ -523,17 +333,11 @@ function MyTeamView({
               <select
                 defaultValue=""
                 disabled={saving}
-                onChange={(e) => {
-                  const v = e.target.value;
-                  if (v) onAddPick(v);
-                  e.target.value = "";
-                }}
+                onChange={(e) => { const v = e.target.value; if (v) onAddPick(v); e.target.value = ""; }}
               >
                 <option value="">+ Agregar pick…</option>
                 {PICKS.filter((p) => !pickIds.has(String(p.id))).map((p) => (
-                  <option key={p.id} value={p.id}>
-                    {p.label}
-                  </option>
+                  <option key={p.id} value={p.id}>{p.label}</option>
                 ))}
               </select>
             </>
@@ -545,7 +349,6 @@ function MyTeamView({
             <>
               <h3 style={{ marginTop: 0 }}>Slots</h3>
               <div className="muted sub">Auto: QB/RB/WR/TE → FLEX → BN</div>
-
               <div className="slots" style={{ marginTop: 12 }}>
                 {SLOT_LIMITS.map((s) => {
                   const list = slots[s.key] || [];
@@ -553,11 +356,8 @@ function MyTeamView({
                     <div key={s.key} className="slot">
                       <div className="slothead">
                         <div style={{ fontWeight: 1000 }}>{s.label}</div>
-                        <div className="muted sub">
-                          {list.length}/{s.limit}
-                        </div>
+                        <div className="muted sub">{list.length}/{s.limit}</div>
                       </div>
-
                       <div className="list" style={{ marginTop: 10 }}>
                         {list.length === 0 ? <div className="muted">—</div> : null}
                         {list.map((r) => (
@@ -566,18 +366,14 @@ function MyTeamView({
                               <div className="av">{initials(r.name)}</div>
                               <div style={{ minWidth: 0 }}>
                                 <div className="name">{r.name}</div>
-                                <div className="muted sub">
-                                  {normPos(r.pos)} · {r.nfl || "-"}
-                                </div>
+                                <div className="muted sub">{normPos(r.pos)} · {r.nfl || "-"}</div>
                               </div>
                             </div>
                             <div className="row" style={{ justifyContent: "flex-end" }}>
                               <button className="ghost" disabled={saving} onClick={() => onTogglePlayerStatus(r.id)}>
                                 {STATUS_LABEL[r.status] || r.status}
                               </button>
-                              <button className="danger" disabled={saving} onClick={() => onRemovePlayer(r.id)}>
-                                ✕
-                              </button>
+                              <button className="danger" disabled={saving} onClick={() => onRemovePlayer(r.id)}>✕</button>
                             </div>
                           </div>
                         ))}
@@ -592,25 +388,20 @@ function MyTeamView({
               <h3 style={{ marginTop: 0 }}>Mis picks</h3>
               <div className="list" style={{ marginTop: 12 }}>
                 {myPicks.length === 0 ? <div className="muted">No agregaste picks todavía.</div> : null}
-                {myPicks
-                  .slice()
-                  .sort((a, b) => String(a.id).localeCompare(String(b.id)))
-                  .map((p) => (
-                    <div key={p.id} className="item">
-                      <div style={{ minWidth: 0 }}>
-                        <div className="name">{p.label || p.id}</div>
-                        <div className="muted sub">{p.id}</div>
-                      </div>
-                      <div className="row" style={{ justifyContent: "flex-end" }}>
-                        <button className="ghost" disabled={saving} onClick={() => onTogglePickStatus(p.id)}>
-                          {STATUS_LABEL[p.status] || p.status}
-                        </button>
-                        <button className="danger" disabled={saving} onClick={() => onRemovePick(p.id)}>
-                          ✕
-                        </button>
-                      </div>
+                {myPicks.slice().sort((a, b) => String(a.id).localeCompare(String(b.id))).map((p) => (
+                  <div key={p.id} className="item">
+                    <div style={{ minWidth: 0 }}>
+                      <div className="name">{p.label || p.id}</div>
+                      <div className="muted sub">{p.id}</div>
                     </div>
-                  ))}
+                    <div className="row" style={{ justifyContent: "flex-end" }}>
+                      <button className="ghost" disabled={saving} onClick={() => onTogglePickStatus(p.id)}>
+                        {STATUS_LABEL[p.status] || p.status}
+                      </button>
+                      <button className="danger" disabled={saving} onClick={() => onRemovePick(p.id)}>✕</button>
+                    </div>
+                  </div>
+                ))}
               </div>
             </>
           )}
@@ -620,6 +411,7 @@ function MyTeamView({
   );
 }
 
+// ---- LeagueView ----
 function LeagueView({ me, teams, interests, onSetInterest }) {
   const [selectedId, setSelectedId] = useState("");
   const others = useMemo(() => teams.filter((t) => t.user_id !== me.id), [teams, me]);
@@ -628,9 +420,9 @@ function LeagueView({ me, teams, interests, onSetInterest }) {
     if (!selectedId && others.length) setSelectedId(others[0].user_id);
   }, [others, selectedId]);
 
-  const selected = useMemo(() => others.find((t) => t.user_id === selectedId), [others, selectedId]);
+  const selected       = useMemo(() => others.find((t) => t.user_id === selectedId), [others, selectedId]);
   const selectedRoster = selected?.roster || [];
-  const selectedPicks = selected?.picks || [];
+  const selectedPicks  = selected?.picks  || [];
 
   return (
     <div style={{ marginTop: 12 }}>
@@ -649,22 +441,16 @@ function LeagueView({ me, teams, interests, onSetInterest }) {
       </div>
 
       {!selected ? (
-        <div className="muted" style={{ marginTop: 12 }}>
-          No hay equipo seleccionado.
-        </div>
+        <div className="muted" style={{ marginTop: 12 }}>No hay equipo seleccionado.</div>
       ) : (
         <div className="grid2" style={{ marginTop: 12 }}>
           <div className="card">
             <div style={{ fontWeight: 1000, fontSize: 18 }}>
               {selected.display_name} {selected.team_name ? `— ${selected.team_name}` : ""}
             </div>
-            <div className="muted" style={{ fontWeight: 900, marginTop: 4 }}>
-              {selected.team_status || "—"}
-            </div>
-
+            <div className="muted" style={{ fontWeight: 900, marginTop: 4 }}>{selected.team_status || "—"}</div>
             <h3 style={{ marginTop: 14 }}>Jugadores</h3>
             <div className="muted sub">Marcá tu interés: Bajo / Medio / Alto</div>
-
             <div className="list" style={{ marginTop: 12 }}>
               {selectedRoster.length === 0 ? <div className="muted">Sin roster cargado.</div> : null}
               {selectedRoster.map((r) => {
@@ -681,12 +467,7 @@ function LeagueView({ me, teams, interests, onSetInterest }) {
                         </div>
                       </div>
                     </div>
-
-                    <select
-                      value={cur}
-                      onChange={(e) => onSetInterest(selected.user_id, "PLAYER", r.id, e.target.value)}
-                      style={{ maxWidth: 160 }}
-                    >
+                    <select value={cur} onChange={(e) => onSetInterest(selected.user_id, "PLAYER", r.id, e.target.value)} style={{ maxWidth: 160 }}>
                       <option value="NONE">—</option>
                       <option value="LOW">Bajo</option>
                       <option value="MEDIUM">Medio</option>
@@ -713,11 +494,7 @@ function LeagueView({ me, teams, interests, onSetInterest }) {
                         {p.id} · <span className="pill">{STATUS_LABEL[p.status] || p.status}</span>
                       </div>
                     </div>
-                    <select
-                      value={cur}
-                      onChange={(e) => onSetInterest(selected.user_id, "PICK", p.id, e.target.value)}
-                      style={{ maxWidth: 160 }}
-                    >
+                    <select value={cur} onChange={(e) => onSetInterest(selected.user_id, "PICK", p.id, e.target.value)} style={{ maxWidth: 160 }}>
                       <option value="NONE">—</option>
                       <option value="LOW">Bajo</option>
                       <option value="MEDIUM">Medio</option>
@@ -734,6 +511,7 @@ function LeagueView({ me, teams, interests, onSetInterest }) {
   );
 }
 
+// ---- InterestsView ----
 function InterestsView({ teamsByUser, myOutgoing, myIncoming, metaById }) {
   const fmtAsset = (x) => {
     if (x.asset_type === "PLAYER") {
@@ -751,23 +529,20 @@ function InterestsView({ teamsByUser, myOutgoing, myIncoming, metaById }) {
           <div className="muted">No marcaste intereses todavía.</div>
         ) : (
           <div className="list">
-            {myOutgoing
-              .slice()
-              .sort((a, b) => String(b.updated_at || "").localeCompare(String(a.updated_at || "")))
-              .map((x) => {
-                const owner = teamsByUser.get(x.to_user_id);
-                return (
-                  <div key={x.key} className="item">
-                    <div style={{ minWidth: 0 }}>
-                      <div className="name">{fmtAsset(x)}</div>
-                      <div className="muted sub">
-                        Dueño: {owner?.display_name || x.to_user_id} {owner?.team_name ? `— ${owner.team_name}` : ""}
-                      </div>
+            {myOutgoing.slice().sort((a, b) => String(b.updated_at || "").localeCompare(String(a.updated_at || ""))).map((x) => {
+              const owner = teamsByUser.get(x.to_user_id);
+              return (
+                <div key={x.key} className="item">
+                  <div style={{ minWidth: 0 }}>
+                    <div className="name">{fmtAsset(x)}</div>
+                    <div className="muted sub">
+                      Dueño: {owner?.display_name || x.to_user_id} {owner?.team_name ? `— ${owner.team_name}` : ""}
                     </div>
-                    <div className="badge">{INTEREST_LABEL[x.level] || x.level}</div>
                   </div>
-                );
-              })}
+                  <div className="badge">{INTEREST_LABEL[x.level] || x.level}</div>
+                </div>
+              );
+            })}
           </div>
         )}
       </div>
@@ -778,23 +553,20 @@ function InterestsView({ teamsByUser, myOutgoing, myIncoming, metaById }) {
           <div className="muted">Todavía nadie marcó interés.</div>
         ) : (
           <div className="list">
-            {myIncoming
-              .slice()
-              .sort((a, b) => String(b.updated_at || "").localeCompare(String(a.updated_at || "")))
-              .map((x) => {
-                const who = teamsByUser.get(x.from_user_id);
-                return (
-                  <div key={x.key} className="item">
-                    <div style={{ minWidth: 0 }}>
-                      <div className="name">{fmtAsset(x)}</div>
-                      <div className="muted sub">
-                        Interesado: {who?.display_name || x.from_user_id} {who?.team_name ? `— ${who.team_name}` : ""}
-                      </div>
+            {myIncoming.slice().sort((a, b) => String(b.updated_at || "").localeCompare(String(a.updated_at || ""))).map((x) => {
+              const who = teamsByUser.get(x.from_user_id);
+              return (
+                <div key={x.key} className="item">
+                  <div style={{ minWidth: 0 }}>
+                    <div className="name">{fmtAsset(x)}</div>
+                    <div className="muted sub">
+                      Interesado: {who?.display_name || x.from_user_id} {who?.team_name ? `— ${who.team_name}` : ""}
                     </div>
-                    <div className="badge">{INTEREST_LABEL[x.level] || x.level}</div>
                   </div>
-                );
-              })}
+                  <div className="badge">{INTEREST_LABEL[x.level] || x.level}</div>
+                </div>
+              );
+            })}
           </div>
         )}
       </div>
@@ -802,55 +574,39 @@ function InterestsView({ teamsByUser, myOutgoing, myIncoming, metaById }) {
   );
 }
 
-// ---------- App ----------
+// ---- App ----
 export default function App() {
-  const [bootError, setBootError] = useState("");
-
   const [me, setMe] = useState(() => {
     const s = localStorage.getItem("ft_session");
     return s ? safeJsonParse(s, null) : null;
   });
 
   const [authMode, setAuthMode] = useState("login");
-  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
-  const [pass2, setPass2] = useState("");
-  const [authErr, setAuthErr] = useState("");
+  const [email,    setEmail]    = useState("");
+  const [pass,     setPass]     = useState("");
+  const [pass2,    setPass2]    = useState("");
+  const [authErr,  setAuthErr]  = useState("");
   const [authBusy, setAuthBusy] = useState(false);
 
   const [tab, setTab] = useState(() => localStorage.getItem("ft_tab") || "team");
   useEffect(() => localStorage.setItem("ft_tab", tab), [tab]);
 
-  const [teams, setTeams] = useState([]);
-  const [interests, setInterests] = useState([]);
-  const [players, setPlayers] = useState([]);
+  const [teams,          setTeams]          = useState([]);
+  const [interests,      setInterests]      = useState([]);
+  const [players,        setPlayers]        = useState([]);
   const [playersLoading, setPlayersLoading] = useState(false);
 
   const [myDisplayName, setMyDisplayName] = useState("");
-  const [myTeamName, setMyTeamName] = useState("");
-  const [myTeamStatus, setMyTeamStatus] = useState("Contendiendo");
+  const [myTeamName,    setMyTeamName]    = useState("");
+  const [myTeamStatus,  setMyTeamStatus]  = useState("Contendiendo");
 
   const [saveInfo, setSaveInfo] = useState("");
-  const [pendingOps, setPendingOps] = useState(0);
-  const saving = pendingOps > 0;
-
-  useEffect(() => {
-    if (!GH_OWNER || !GH_REPO) setBootError("Faltan VITE_GH_OWNER / VITE_GH_REPO");
-    else if (!GH_TOKEN) setBootError("Falta VITE_GH_TOKEN");
-  }, []);
+  const [saving,   setSaving]   = useState(false);
 
   useEffect(() => {
     if (me) localStorage.setItem("ft_session", JSON.stringify(me));
     else localStorage.removeItem("ft_session");
   }, [me]);
-
-  function friendlyAuthError(e) {
-    const s = e?.status;
-    if (s === 401) return "GitHub 401: token inválido";
-    if (s === 403) return "GitHub 403: sin permisos / rate limit";
-    if (s === 404) return "GitHub 404: faltan /data/*.json";
-    return String(e?.message || e);
-  }
 
   async function loadPlayers() {
     setPlayersLoading(true);
@@ -866,61 +622,21 @@ export default function App() {
   }
 
   async function refreshData() {
-    // interests
-    const { data: i } = await ghGetJson(PATH_INTERESTS, []);
-    setInterests(Array.isArray(i) ? i : []);
-
-    // teams new
-    const items = await ghListDir(TEAMS_DIR);
-    if (items.length > 0) {
-      const jsonFiles = items.filter((x) => x.type === "file" && String(x.name || "").endsWith(".json"));
-      const arr = [];
-      for (const f of jsonFiles) {
-        try {
-          const { data } = await ghGetJson(`${TEAMS_DIR}/${f.name}`, null);
-          if (data?.user_id) arr.push(normalizeTeamRow(data));
-        } catch {}
-      }
-      setTeams(arr);
-      return;
-    }
-
-    // legacy fallback
-    const { data: legacy } = await ghGetJson(PATH_TEAMS_LEGACY, []);
-    setTeams((Array.isArray(legacy) ? legacy : []).map(normalizeTeamRow));
+    const [allTeams, allInterests] = await Promise.all([
+      fsGetAllTeams(),
+      fsGetAllInterests(),
+    ]);
+    setTeams(allTeams.map(normalizeTeamRow));
+    setInterests(allInterests);
   }
 
-  async function ensureTeamFile(userId, userEmail) {
-    const existing = await ghGetTeamFile(userId);
-    if (existing?.data?.user_id) return;
-
-    const team = normalizeTeamRow({
-      user_id: userId,
-      display_name: userEmail.split("@")[0],
-      team_name: "",
-      team_status: "Contendiendo",
-      roster: [],
-      picks: [],
-      updated_at: nowIso(),
-    });
-
-    await ghPutTeamFile(userId, team, null, `create team ${userId}`);
-  }
-
-  // boot after login
   useEffect(() => {
     if (!me) return;
-    (async () => {
-      try {
-        await Promise.all([loadPlayers(), refreshData()]);
-      } catch (e) {
-        setBootError(String(e?.message || e));
-      }
-    })();
+    Promise.all([loadPlayers(), refreshData()]).catch(console.error);
   }, [me?.id]);
 
   const teamsByUser = useMemo(() => new Map(teams.map((t) => [t.user_id, t])), [teams]);
-  const myRow = useMemo(() => (me ? teamsByUser.get(me.id) : null), [me, teamsByUser]);
+  const myRow       = useMemo(() => (me ? teamsByUser.get(me.id) : null), [me, teamsByUser]);
 
   useEffect(() => {
     if (!me) return;
@@ -937,11 +653,10 @@ export default function App() {
   }, [me, teamsByUser]);
 
   const myOutgoing = useMemo(() => (me ? interests.filter((x) => x.from_user_id === me.id) : []), [me, interests]);
-  const myIncoming = useMemo(() => (me ? interests.filter((x) => x.to_user_id === me.id) : []), [me, interests]);
-
-  const myRoster = useMemo(() => (Array.isArray(myRow?.roster) ? myRow.roster : []), [myRow]);
-  const myPicks = useMemo(() => (Array.isArray(myRow?.picks) ? myRow.picks : []), [myRow]);
-  const slots = useMemo(() => assignSlots(myRoster), [myRoster]);
+  const myIncoming = useMemo(() => (me ? interests.filter((x) => x.to_user_id   === me.id) : []), [me, interests]);
+  const myRoster   = useMemo(() => (Array.isArray(myRow?.roster) ? myRow.roster : []), [myRow]);
+  const myPicks    = useMemo(() => (Array.isArray(myRow?.picks)  ? myRow.picks  : []), [myRow]);
+  const slots      = useMemo(() => assignSlots(myRoster), [myRoster]);
 
   const metaById = useMemo(() => {
     const m = new Map();
@@ -950,38 +665,42 @@ export default function App() {
     }
     for (const t of teams) {
       for (const r of t.roster || []) {
-        const id = String(r.id);
-        if (!m.has(id)) m.set(id, { name: r.name, pos: normPos(r.pos), nfl: r.nfl || "" });
+        if (!m.has(String(r.id))) m.set(String(r.id), { name: r.name, pos: normPos(r.pos), nfl: r.nfl || "" });
       }
     }
     return m;
   }, [players, teams]);
 
+  // ---- Auth ----
   async function signup() {
     setAuthBusy(true);
     setAuthErr("");
     try {
       const em = email.trim().toLowerCase();
       if (!em.includes("@")) throw new Error("Email inválido");
-      if (pass.length < 4) throw new Error("Contraseña muy corta");
-      if (pass !== pass2) throw new Error("No coinciden");
+      if (pass.length < 4)   throw new Error("Contraseña muy corta");
+      if (pass !== pass2)    throw new Error("No coinciden");
+
+      const existing = await fsGetUser(em);
+      if (existing) throw new Error("Ya existe una cuenta con ese email");
 
       const pwHash = await sha256Hex(pass);
       const userId = uid("user");
+      await fsCreateUser(userId, em, pwHash);
+      await fsSetTeam(userId, normalizeTeamRow({
+        user_id: userId,
+        display_name: em.split("@")[0],
+        team_name: "",
+        team_status: "Contendiendo",
+        roster: [],
+        picks: [],
+      }));
 
-      await ghPutJsonWithRetry(
-        PATH_USERS,
-        (cur) => [...cur, { id: userId, email: em, pass_hash: pwHash, created_at: nowIso() }],
-        "create user"
-      );
-
-      await ensureTeamFile(userId, em);
       setMe({ id: userId, email: em });
-      setPass("");
-      setPass2("");
+      setPass(""); setPass2("");
       await refreshData();
     } catch (e) {
-      setAuthErr(friendlyAuthError(e));
+      setAuthErr(String(e?.message || e));
     } finally {
       setAuthBusy(false);
     }
@@ -994,20 +713,29 @@ export default function App() {
       const em = email.trim().toLowerCase();
       if (!em.includes("@")) throw new Error("Email inválido");
 
-      const { data: users } = await ghGetJson(PATH_USERS, []);
-      const u = (Array.isArray(users) ? users : []).find((x) => String(x.email).toLowerCase() === em);
+      const u = await fsGetUser(em);
       if (!u) throw new Error("Usuario no encontrado");
 
       const pwHash = await sha256Hex(pass);
       if (String(u.pass_hash) !== pwHash) throw new Error("Contraseña incorrecta");
 
-      await ensureTeamFile(u.id, u.email);
+      const existingTeam = await fsGetTeam(u.id);
+      if (!existingTeam) {
+        await fsSetTeam(u.id, normalizeTeamRow({
+          user_id: u.id,
+          display_name: em.split("@")[0],
+          team_name: "",
+          team_status: "Contendiendo",
+          roster: [],
+          picks: [],
+        }));
+      }
+
       setMe({ id: u.id, email: u.email });
-      setPass("");
-      setPass2("");
+      setPass(""); setPass2("");
       await refreshData();
     } catch (e) {
-      setAuthErr(friendlyAuthError(e));
+      setAuthErr(String(e?.message || e));
     } finally {
       setAuthBusy(false);
     }
@@ -1015,27 +743,65 @@ export default function App() {
 
   function logout() {
     setMe(null);
-    setEmail("");
-    setPass("");
-    setPass2("");
+    setEmail(""); setPass(""); setPass2("");
     setTab("team");
+  }
+
+  // ---- Team mutations — instantáneas con Firestore ----
+  async function updateMyTeam(mutator, label) {
+    if (!me) return;
+    setSaving(true);
+    try {
+      const current = normalizeTeamRow(
+        (await fsGetTeam(me.id)) || {
+          user_id: me.id,
+          display_name: myDisplayName,
+          team_name: myTeamName,
+          team_status: myTeamStatus,
+          roster: [],
+          picks: [],
+        }
+      );
+      const next = normalizeTeamRow(mutator({ ...current, updated_at: nowIso() }));
+      await fsSetTeam(me.id, next);
+      // Actualizar estado local sin recargar todos los equipos
+      setTeams((prev) => {
+        const idx = prev.findIndex((t) => t.user_id === me.id);
+        if (idx === -1) return [...prev, next];
+        const copy = [...prev];
+        copy[idx] = next;
+        return copy;
+      });
+    } catch (e) {
+      setSaveInfo(String(e?.message || e));
+      setTimeout(() => setSaveInfo(""), 2500);
+    } finally {
+      setSaving(false);
+    }
   }
 
   async function saveMyProfile() {
     if (!me) return;
-    setPendingOps((n) => n + 1);
+    setSaving(true);
     setSaveInfo("Guardando...");
     try {
-      const next = await ghPutTeamWithRetry(
-        me.id,
-        (t) => ({
-          ...t,
-          display_name: myDisplayName.trim(),
-          team_name: myTeamName.trim(),
-          team_status: myTeamStatus,
-        }),
-        "update profile"
+      const current = normalizeTeamRow(
+        (await fsGetTeam(me.id)) || {
+          user_id: me.id,
+          display_name: "",
+          team_name: "",
+          team_status: "Contendiendo",
+          roster: [],
+          picks: [],
+        }
       );
+      const next = normalizeTeamRow({
+        ...current,
+        display_name: myDisplayName.trim(),
+        team_name:    myTeamName.trim(),
+        team_status:  myTeamStatus,
+      });
+      await fsSetTeam(me.id, next);
       setTeams((prev) => {
         const idx = prev.findIndex((t) => t.user_id === me.id);
         if (idx === -1) return [...prev, next];
@@ -1044,33 +810,11 @@ export default function App() {
         return copy;
       });
       setSaveInfo("Guardado ✅");
-      setTimeout(() => { setSaveInfo(""); refreshData(); }, 1500);
+      setTimeout(() => setSaveInfo(""), 1500);
     } catch (e) {
-      setSaveInfo(friendlyAuthError(e));
+      setSaveInfo(String(e?.message || e));
     } finally {
-      setPendingOps((n) => Math.max(0, n - 1));
-    }
-  }
-
-  async function updateMyTeam(mutator, label) {
-    if (!me) return;
-    setPendingOps((n) => n + 1);
-    setSaveInfo("Guardando...");
-    try {
-      const next = await ghPutTeamWithRetry(me.id, mutator, label);
-      setTeams((prev) => {
-        const idx = prev.findIndex((t) => t.user_id === me.id);
-        if (idx === -1) return [...prev, next];
-        const copy = [...prev];
-        copy[idx] = next;
-        return copy;
-      });
-      setSaveInfo("Guardado ✅");
-      setTimeout(() => setSaveInfo(""), 650);
-    } catch (e) {
-      setSaveInfo(friendlyAuthError(e));
-    } finally {
-      setPendingOps((n) => Math.max(0, n - 1));
+      setSaving(false);
     }
   }
 
@@ -1078,65 +822,38 @@ export default function App() {
     if (!me) return;
     const key = `${me.id}::${toUserId}::${assetType}::${assetId}`;
     try {
-      const next = await ghPutJsonWithRetry(
-        PATH_INTERESTS,
-        (cur) => {
-          const rest = cur.filter((x) => x.key !== key);
-          if (level === "NONE") return rest;
-          return [
-            ...rest,
-            {
-              key,
-              from_user_id: me.id,
-              to_user_id: toUserId,
-              asset_type: assetType,
-              asset_id: assetId,
-              level,
-              updated_at: nowIso(),
-            },
-          ];
-        },
-        "set interest"
-      );
-      setInterests(next);
+      if (level === "NONE") {
+        await fsDeleteInterest(key);
+        setInterests((prev) => prev.filter((x) => x.key !== key));
+      } else {
+        const data = {
+          key,
+          from_user_id: me.id,
+          to_user_id:   toUserId,
+          asset_type:   assetType,
+          asset_id:     assetId,
+          level,
+          updated_at:   nowIso(),
+        };
+        await fsSetInterest(key, data);
+        setInterests((prev) => [...prev.filter((x) => x.key !== key), data]);
+      }
     } catch (e) {
-      setSaveInfo(friendlyAuthError(e));
-      setTimeout(() => setSaveInfo(""), 1200);
+      setSaveInfo(String(e?.message || e));
+      setTimeout(() => setSaveInfo(""), 2500);
     }
-  }
-
-  if (bootError) {
-    return (
-      <>
-        <Styles />
-        <div className="wrap">
-          <h2 className="title">Error</h2>
-          <div className="card">
-            <div style={{ fontWeight: 1000, color: "var(--danger)" }}>{bootError}</div>
-            <div className="muted" style={{ marginTop: 10 }}>
-              Revisá ENV y que existan data/users.json y data/interests.json.
-            </div>
-          </div>
-        </div>
-      </>
-    );
   }
 
   return (
     <>
       <Styles />
-
       <div className="top">
         <div className="topin">
           <div style={{ fontWeight: 1000 }}>Fantasy Trades</div>
           <div className="sp" />
           {playersLoading ? <div className="chip" style={{ cursor: "default" }}>ADP…</div> : null}
           {me ? <div className="chip" style={{ cursor: "default" }}>{me.email}</div> : null}
-          {me ? (
-            <button className="chip" onClick={logout}>
-              Salir
-            </button>
-          ) : null}
+          {me ? <button className="chip" onClick={logout}>Salir</button> : null}
         </div>
       </div>
 
@@ -1148,26 +865,17 @@ export default function App() {
             <div className="row">
               <div style={{ fontWeight: 1000, fontSize: 18 }}>{authMode === "login" ? "Iniciar sesión" : "Crear cuenta"}</div>
               <div className="sp" />
-              <button
-                className="ghost"
-                onClick={() => {
-                  setAuthMode(authMode === "login" ? "signup" : "login");
-                  setAuthErr("");
-                }}
-              >
+              <button className="ghost" onClick={() => { setAuthMode(authMode === "login" ? "signup" : "login"); setAuthErr(""); }}>
                 {authMode === "login" ? "Crear cuenta" : "Tengo cuenta"}
               </button>
             </div>
-
             <div style={{ display: "grid", gap: 10, marginTop: 12 }}>
               <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email" />
-              <input value={pass} onChange={(e) => setPass(e.target.value)} placeholder="contraseña" type="password" />
+              <input value={pass}  onChange={(e) => setPass(e.target.value)}  placeholder="contraseña" type="password" />
               {authMode === "signup" ? (
                 <input value={pass2} onChange={(e) => setPass2(e.target.value)} placeholder="repetir contraseña" type="password" />
               ) : null}
-
               {authErr ? <div style={{ fontWeight: 1000, color: "var(--danger)" }}>{authErr}</div> : null}
-
               <button disabled={authBusy} onClick={authMode === "login" ? login : signup}>
                 {authBusy ? "..." : authMode === "login" ? "Entrar" : "Crear"}
               </button>
@@ -1184,11 +892,10 @@ export default function App() {
                     Slots: 1QB 2RB 2WR 1TE 3FLEX 21BN · Picks 2026 (1.01–6.10) + 2027/2028 por ronda
                   </div>
                 </div>
-
                 <div style={{ display: "grid", gap: 10 }}>
                   <div className="row">
                     <input value={myDisplayName} onChange={(e) => setMyDisplayName(e.target.value)} placeholder="Tu nombre" />
-                    <input value={myTeamName} onChange={(e) => setMyTeamName(e.target.value)} placeholder="Nombre del equipo" />
+                    <input value={myTeamName}    onChange={(e) => setMyTeamName(e.target.value)}    placeholder="Nombre del equipo" />
                     <select value={myTeamStatus} onChange={(e) => setMyTeamStatus(e.target.value)}>
                       <option>Contendiendo</option>
                       <option>Reconstrucción</option>
@@ -1204,12 +911,10 @@ export default function App() {
               </div>
             </div>
 
-            {tab === "home" ? (
+            {tab === "home" || tab === "interests" ? (
               <InterestsView teamsByUser={teamsByUser} myOutgoing={myOutgoing} myIncoming={myIncoming} metaById={metaById} />
             ) : tab === "league" ? (
               <LeagueView me={me} teams={teams} interests={interests} onSetInterest={setInterest} />
-            ) : tab === "interests" ? (
-              <InterestsView teamsByUser={teamsByUser} myOutgoing={myOutgoing} myIncoming={myIncoming} metaById={metaById} />
             ) : (
               <MyTeamView
                 players={players}
@@ -1217,63 +922,30 @@ export default function App() {
                 myPicks={myPicks}
                 slots={slots}
                 saving={saving}
-                onAddPlayer={(adpPlayer) =>
-                  updateMyTeam(
-                    (t) => {
-                      const exists = (t.roster || []).some((r) => String(r.id) === String(adpPlayer.player_id));
-                      if (exists) return t;
-                      return {
-                        ...t,
-                        roster: [
-                          ...(t.roster || []),
-                          {
-                            id: String(adpPlayer.player_id),
-                            name: adpPlayer.name,
-                            pos: normPos(adpPlayer.position),
-                            nfl: adpPlayer.team || "",
-                            status: "AVAILABLE",
-                          },
-                        ],
-                      };
-                    },
-                    "add player"
-                  )
-                }
-                onRemovePlayer={(id) => updateMyTeam((t) => ({ ...t, roster: (t.roster || []).filter((r) => String(r.id) !== String(id)) }), "remove player")}
-                onTogglePlayerStatus={(id) =>
-                  updateMyTeam(
-                    (t) => ({
-                      ...t,
-                      roster: (t.roster || []).map((r) =>
-                        String(r.id) !== String(id) ? r : { ...r, status: cycleStatus(r.status || "AVAILABLE") }
-                      ),
-                    }),
-                    "toggle player status"
-                  )
-                }
-                onAddPick={(pickId) =>
-                  updateMyTeam(
-                    (t) => {
-                      const exists = (t.picks || []).some((p) => String(p.id) === String(pickId));
-                      if (exists) return t;
-                      const label = PICK_LABEL.get(String(pickId)) || String(pickId);
-                      return { ...t, picks: [...(t.picks || []), { id: String(pickId), label, status: "AVAILABLE" }] };
-                    },
-                    "add pick"
-                  )
-                }
-                onRemovePick={(pickId) => updateMyTeam((t) => ({ ...t, picks: (t.picks || []).filter((p) => String(p.id) !== String(pickId)) }), "remove pick")}
-                onTogglePickStatus={(pickId) =>
-                  updateMyTeam(
-                    (t) => ({
-                      ...t,
-                      picks: (t.picks || []).map((p) =>
-                        String(p.id) !== String(pickId) ? p : { ...p, status: cycleStatus(p.status || "AVAILABLE") }
-                      ),
-                    }),
-                    "toggle pick status"
-                  )
-                }
+                onAddPlayer={(p) => updateMyTeam((t) => {
+                  const exists = (t.roster || []).some((r) => String(r.id) === String(p.player_id));
+                  if (exists) return t;
+                  return { ...t, roster: [...(t.roster || []), { id: String(p.player_id), name: p.name, pos: normPos(p.position), nfl: p.team || "", status: "AVAILABLE" }] };
+                }, "add player")}
+                onRemovePlayer={(id) => updateMyTeam((t) => ({
+                  ...t, roster: (t.roster || []).filter((r) => String(r.id) !== String(id)),
+                }), "remove player")}
+                onTogglePlayerStatus={(id) => updateMyTeam((t) => ({
+                  ...t,
+                  roster: (t.roster || []).map((r) => String(r.id) !== String(id) ? r : { ...r, status: cycleStatus(r.status || "AVAILABLE") }),
+                }), "toggle status")}
+                onAddPick={(pickId) => updateMyTeam((t) => {
+                  const exists = (t.picks || []).some((p) => String(p.id) === String(pickId));
+                  if (exists) return t;
+                  return { ...t, picks: [...(t.picks || []), { id: String(pickId), label: PICK_LABEL.get(String(pickId)) || String(pickId), status: "AVAILABLE" }] };
+                }, "add pick")}
+                onRemovePick={(pickId) => updateMyTeam((t) => ({
+                  ...t, picks: (t.picks || []).filter((p) => String(p.id) !== String(pickId)),
+                }), "remove pick")}
+                onTogglePickStatus={(pickId) => updateMyTeam((t) => ({
+                  ...t,
+                  picks: (t.picks || []).map((p) => String(p.id) !== String(pickId) ? p : { ...p, status: cycleStatus(p.status || "AVAILABLE") }),
+                }), "toggle pick status")}
               />
             )}
           </>
@@ -1283,10 +955,10 @@ export default function App() {
       {me ? (
         <div className="dock">
           <div className="dockin">
-            <button className={`dockbtn ${tab === "home" ? "active" : ""}`} onClick={() => setTab("home")}>Inicio</button>
-            <button className={`dockbtn ${tab === "league" ? "active" : ""}`} onClick={() => setTab("league")}>Liga</button>
+            <button className={`dockbtn ${tab === "home"      ? "active" : ""}`} onClick={() => setTab("home")}>Inicio</button>
+            <button className={`dockbtn ${tab === "league"    ? "active" : ""}`} onClick={() => setTab("league")}>Liga</button>
             <button className={`dockbtn ${tab === "interests" ? "active" : ""}`} onClick={() => setTab("interests")}>Intereses</button>
-            <button className={`dockbtn ${tab === "team" ? "active" : ""}`} onClick={() => setTab("team")}>Mi equipo</button>
+            <button className={`dockbtn ${tab === "team"      ? "active" : ""}`} onClick={() => setTab("team")}>Mi equipo</button>
           </div>
         </div>
       ) : null}
