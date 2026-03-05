@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: 20
       - name: Install
-        run: npm install
+        run: npm install --no-package-lock
       - name: Create .env (from GitHub Secrets)
         run: |
           cat > .env <<'EOF'
