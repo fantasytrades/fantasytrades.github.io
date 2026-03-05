@@ -999,7 +999,7 @@ export default function App() {
     if (!me) return;
     setSaveInfo("Guardando...");
     try {
-      await ghPutTeamWithRetry(
+      const next = await ghPutTeamWithRetry(
         me.id,
         (t) => ({
           ...t,
@@ -1009,9 +1009,16 @@ export default function App() {
         }),
         "update profile"
       );
-      await refreshData();
+      // Actualizar estado local inmediatamente
+      setTeams((prev) => {
+        const idx = prev.findIndex((t) => t.user_id === me.id);
+        if (idx === -1) return [...prev, next];
+        const copy = [...prev];
+        copy[idx] = next;
+        return copy;
+      });
       setSaveInfo("Guardado ✅");
-      setTimeout(() => setSaveInfo(""), 900);
+      setTimeout(() => { setSaveInfo(""); refreshData(); }, 1500);
     } catch (e) {
       setSaveInfo(friendlyAuthError(e));
     }
@@ -1021,8 +1028,15 @@ export default function App() {
     if (!me) return;
     setSaveInfo("Guardando...");
     try {
-      await ghPutTeamWithRetry(me.id, mutator, label);
-      await refreshData();
+      const next = await ghPutTeamWithRetry(me.id, mutator, label);
+      // Actualizar estado local inmediatamente sin recargar todos los equipos
+      setTeams((prev) => {
+        const idx = prev.findIndex((t) => t.user_id === me.id);
+        if (idx === -1) return [...prev, next];
+        const copy = [...prev];
+        copy[idx] = next;
+        return copy;
+      });
       setSaveInfo("Guardado ✅");
       setTimeout(() => setSaveInfo(""), 650);
     } catch (e) {
