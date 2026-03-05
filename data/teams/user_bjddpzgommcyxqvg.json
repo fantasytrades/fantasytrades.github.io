@@ -5,13 +5,6 @@
   "team_status": "Contendiendo",
   "roster": [
     {
-      "id": "5177",
-      "name": "Ja'Marr Chase",
-      "pos": "WR",
-      "nfl": "CIN",
-      "status": "AVAILABLE"
-    },
-    {
       "id": "5672",
       "name": "Jahmyr Gibbs",
       "pos": "RB",
@@ -48,5 +41,5 @@
     }
   ],
   "picks": [],
-  "updated_at": "2026-03-05T06:06:20.720Z"
+  "updated_at": "2026-03-05T06:07:28.606Z"
 }
