@@ -99,6 +99,25 @@ function initials(name) {
   const b = parts.length > 1 ? parts[parts.length - 1]?.[0] || "" : parts[0]?.[1] || "";
   return (a + b).toUpperCase();
 }
+
+function pickImg(obj) {
+  if (!obj) return "";
+  const url =
+    obj.photo ||
+    obj.image ||
+    obj.headshot ||
+    obj.player_image ||
+    obj.playerImage ||
+    obj.img ||
+    obj.avatar ||
+    obj.avatar_url ||
+    obj.playerImg ||
+    obj.player_img ||
+    obj.photo_url ||
+    "";
+  return typeof url === "string" ? url : "";
+}
+
 function cycleStatus(curr) {
   const key = normStatusKey(curr);
   const i = STATUS_CYCLE.indexOf(key);
@@ -302,6 +321,49 @@ function Styles() {
         background:#F1F5F9; border:1px solid #E2E8F0;
         display:flex; align-items:center; justify-content:center; font-weight:1000; color:#0F172A;
       }
+
+      .av{ overflow:hidden; }
+      .av img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+      .posMini{
+        display:inline-flex; align-items:center; justify-content:center;
+        font-size:11px; font-weight:1000;
+        padding:2px 8px; border-radius:999px;
+        margin-right:8px;
+        color:#fff;
+      }
+      .posMini-QB{ background:var(--pos-qb); }
+      .posMini-RB{ background:var(--pos-rb); color:#063b36; }
+      .posMini-WR{ background:var(--pos-wr); }
+      .posMini-TE{ background:var(--pos-te); color:#5b2b00; }
+
+      .valueTag{
+        margin-top:6px;
+        display:inline-flex;
+        padding:5px 10px;
+        border-radius:999px;
+        border:1px solid #CFE3FF;
+        background:var(--sky);
+        color:var(--blue);
+        font-weight:1000;
+        font-size:12px;
+        width:fit-content;
+      }
+      .valueBtn{
+        padding:10px 14px;
+        border-radius:12px;
+        color:var(--blue);
+        border-color:#CFE3FF;
+        background:#fff;
+        box-shadow:none;
+        font-weight:1000;
+      }
+
+      .profileRow{ flex-wrap:nowrap; }
+      .profileRow > input, .profileRow > select{ min-width:0; }
+      @media(max-width:860px){ .profileRow{ flex-wrap:wrap; } }
+
+      .dockbtn{ padding:10px 12px; border-radius:14px; }
       .name{ font-weight:1000; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
       .sub{ font-size:12px; font-weight:900; }
 
@@ -393,9 +455,9 @@ function Styles() {
         font-weight:950;
       }
       .btnAdd.added{
-        background:#F1F5F9;
-        border-color:var(--border);
-        color:#64748B;
+        background:#F8FAFC;
+        border-color:#E2E8F0;
+        color:#94A3B8;
       }
 
       .itemTight{ padding:12px 12px; border-radius:16px; }
@@ -443,6 +505,7 @@ function MyTeamView({
   players, myRoster, myPicks, slots,
   onAddPlayer, onRemovePlayer, onTogglePlayerStatus,
   onAddPick, onRemovePick, onTogglePickStatus,
+  onSetPlayerValue,
   saving,
 }) {
   const [mode, setMode] = useState("players");
@@ -469,6 +532,13 @@ function MyTeamView({
 
   const rosterIds = useMemo(() => new Set((myRoster || []).map((r) => String(r.id))), [myRoster]);
   const pickIds   = useMemo(() => new Set((myPicks  || []).map((p) => String(p.id))), [myPicks]);
+
+  const metaById = useMemo(() => {
+    const m = new Map();
+    (players || []).forEach((p) => m.set(String(p.player_id), p));
+    return m;
+  }, [players]);
+
 
   return (
     <div style={{ marginTop: 12 }}>
@@ -497,13 +567,15 @@ function MyTeamView({
                 {filtered.map((p) => {
                   const id = String(p.player_id);
                   const added = rosterIds.has(id);
+                  const pos = normPos(p.position);
+                  const img = pickImg(p);
                   return (
                     <div key={id} className="item itemTight">
                       <div className="left">
-                        <div className="av">{initials(p.name)}</div>
+                        <div className="av">{img ? <img src={img} alt={p.name} /> : initials(p.name)}</div>
                         <div style={{ minWidth: 0 }}>
                           <div className="name">{p.name}</div>
-                          <div className="muted sub">{normPos(p.position)} · {p.team || "-"} {p.adp_formatted ? `· ADP ${p.adp_formatted}` : ""}</div>
+                          <div className="muted sub"><span className={`posMini posMini-${pos}`}>{pos}</span>{p.team || "-"} {p.adp_formatted ? `· ADP ${p.adp_formatted}` : ""}</div>
                         </div>
                       </div>
                       <button
@@ -584,19 +656,26 @@ function MyTeamView({
                         {list.length === 0 ? null : null}
                         {list.map((r) => {
                           const stKey = normStatusKey(r.status);
+                          const meta = metaById.get(String(r.id));
+                          const img = pickImg(meta);
+                          const pos = normPos(r.pos);
                           return (
                             <div key={r.id} className="item rosterItem itemTight">
                               <div className={`posTag pos-${s.key}`}>{s.key === "FLEX" ? "WRT" : (s.key === "BENCH" ? "BN" : s.label)}</div>
 
                               <div className="left" style={{ minWidth: 0 }}>
-                                <div className="av">{initials(r.name)}</div>
+                                <div className="av">{img ? <img src={img} alt={r.name} /> : initials(r.name)}</div>
                                 <div style={{ minWidth: 0 }}>
                                   <div className="name">{r.name}</div>
-                                  <div className="muted sub">{normPos(r.pos)} · {r.nfl || "-"}</div>
+                                  <div className="muted sub"><span className={`posMini posMini-${pos}`}>{pos}</span>{r.nfl || "-"}</div>
+                                  {r.value ? <div className="valueTag">{r.value}</div> : null}
                                 </div>
                               </div>
 
                               <div className="row" style={{ justifyContent: "flex-end", gap: 10 }}>
+                                <button className="ghost valueBtn" disabled={saving} onClick={() => onSetPlayerValue?.(r.id)}>
+                                  {r.value ? "Editar valor" : "Valor"}
+                                </button>
                                 <button className={`statusBtn status-${stKey}`} disabled={saving} onClick={() => onTogglePlayerStatus(r.id)}>
                                   {STATUS_LABEL[stKey]}
                                 </button>
@@ -694,7 +773,7 @@ function LeagueView({ me, teams, interests, onSetInterest }) {
                 return (
                   <div key={r.id} className="item">
                     <div className="left">
-                      <div className="av">{initials(r.name)}</div>
+                      <div className="av">{img ? <img src={img} alt={r.name} /> : initials(r.name)}</div>
                       <div style={{ minWidth: 0 }}>
                         <div className="name">{r.name}</div>
                         <div className="muted sub">
@@ -1127,7 +1206,7 @@ export default function App() {
                   </div>
                 </div>
                 <div style={{ display: "grid", gap: 10 }}>
-                  <div className="row">
+                  <div className="row profileRow">
                     <input value={myDisplayName} onChange={(e) => setMyDisplayName(e.target.value)} placeholder="Tu nombre" />
                     <input value={myTeamName}    onChange={(e) => setMyTeamName(e.target.value)}    placeholder="Nombre del equipo" />
                     <select value={myTeamStatus} onChange={(e) => setMyTeamStatus(e.target.value)}>
@@ -1180,6 +1259,15 @@ export default function App() {
                   ...t,
                   picks: (t.picks || []).map((p) => String(p.id) !== String(pickId) ? p : { ...p, status: cycleStatus(p.status || "AVAILABLE") }),
                 }), "toggle pick status")}
+                onSetPlayerValue={(id) => {
+                  const curr = (myRoster || []).find((x) => String(x.id) === String(id))?.value || "";
+                  const v = window.prompt("Valor (texto libre)", curr);
+                  if (v === null) return;
+                  updateMyTeam((t) => ({
+                    ...t,
+                    roster: (t.roster || []).map((r) => (String(r.id) === String(id) ? { ...r, value: String(v).trim() } : r)),
+                  }), "set value");
+                }}
               />
             )}
           </>
