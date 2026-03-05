@@ -374,7 +374,68 @@ function Styles() {
 
       .pill-AVAILABLE{ background:rgba(22,163,74,0.14); border-color:rgba(22,163,74,0.28); color:#166534; }
       .pill-LISTENING{ background:rgba(245,158,11,0.16); border-color:rgba(245,158,11,0.30); color:#92400E; }
-      .pill-NOT_AVAILABLE{ background:rgba(239,68,68,0.14); border-color:rgba(239,68,68,0.28); color:#991B1B; }\n    `}</style>
+      .pill-NOT_AVAILABLE{ background:rgba(239,68,68,0.14); border-color:rgba(239,68,68,0.28); color:#991B1B; }
+      /* === Mock-match refinements === */
+      .profileCard{ background:var(--sky); }
+      .row > input, .row > select{ width:auto; flex:1; min-width:180px; }
+      @media(max-width:720px){ .row > input, .row > select{ min-width:0; width:100%; } }
+
+      .segTabsFull{ width:100%; }
+      .segTabsFull button{ flex:1; }
+
+      .btnAdd{
+        background:var(--sky);
+        border:1px solid #CFE3FF;
+        color:var(--blue);
+        box-shadow:none;
+        padding:10px 14px;
+        border-radius:12px;
+        font-weight:950;
+      }
+      .btnAdd.added{
+        background:#F1F5F9;
+        border-color:var(--border);
+        color:#64748B;
+      }
+
+      .itemTight{ padding:12px 12px; border-radius:16px; }
+      .scrollList{ max-height:560px; overflow:auto; padding-right:4px; }
+      @media(max-width:980px){ .scrollList{ max-height:none; } }
+
+      .slotsFlat{ gap:18px; }
+      .slotSection{ padding-top:4px; }
+      .slotheadFlat{ padding:0 2px; }
+
+      .iconBtn{
+        width:38px; height:38px; padding:0;
+        border-radius:12px;
+        display:inline-flex; align-items:center; justify-content:center;
+        background:#fff;
+        border:1px solid var(--border);
+        box-shadow:none;
+        color:#334155;
+        font-weight:1000;
+      }
+      .iconBtn.iconDanger{ color:#DC2626; border-color:#F3B4B4; background:#fff; }
+      .iconBtn:hover{ background:#F8FAFC; }
+
+      .statusBtn{
+        border-radius:999px;
+        padding:10px 14px;
+        box-shadow:none;
+        font-weight:1000;
+      }
+
+      .dockbtn{
+        padding:10px 0;
+        border-radius:14px;
+        font-weight:900;
+        background:transparent;
+        border:1px solid transparent;
+        box-shadow:none;
+      }
+      .dockbtn.active{ background:var(--sky); border-color:#CFE3FF; }
+\n    `}</style>
   );
 }
 // ---- MyTeamView ----
@@ -393,7 +454,13 @@ function MyTeamView({
     return (players || [])
       .filter((p) => {
         const pos = normPos(p.position);
-        if (posFilter !== "ALL" && pos !== posFilter) return false;
+        if (posFilter !== "ALL") {
+          if (posFilter === "FLEX") {
+            if (!["RB", "WR", "TE"].includes(pos)) return false;
+          } else {
+            if (pos !== posFilter) return false;
+          }
+        }
         if (!qq) return true;
         return String(p.name || "").toLowerCase().includes(qq);
       })
@@ -405,49 +472,46 @@ function MyTeamView({
 
   return (
     <div style={{ marginTop: 12 }}>
-      <div className="card" style={{ marginBottom: 12 }}>
-        <div className="row" style={{ alignItems: "baseline" }}>
-          <h2 style={{ margin: 0 }}>Mi equipo</h2>
-          <div className="muted" style={{ fontWeight: 900 }}>
-            Estado: <span className={`pill pill-AVAILABLE`}>{STATUS_LABEL.AVAILABLE}</span> → <span className={`pill pill-LISTENING`}>{STATUS_LABEL.LISTENING}</span> → <span className={`pill pill-NOT_AVAILABLE`}>{STATUS_LABEL.NOT_AVAILABLE}</span>
-          </div>
-          <div className="sp" />
-          <div className="seg segTabs">
+      <div className="grid2">
+        {/* Left: Players / Picks list */}
+        <div className="card">
+          <div className="seg segTabs segTabsFull">
             <button className={mode === "players" ? "active" : ""} onClick={() => setMode("players")}>Jugadores</button>
             <button className={mode === "picks"   ? "active" : ""} onClick={() => setMode("picks")}>Picks</button>
           </div>
-        </div>
-      </div>
 
-      <div className="grid2">
-        <div className="card">
           {mode === "players" ? (
             <>
-              <div style={{ display: "grid", gap: 10 }}>
-                <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Buscar jugador..." />
+              <div style={{ display: "grid", gap: 10, marginTop: 12 }}>
+                <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Buscar jugador por nombre..." />
                 <div className="seg segFilters">
-                  {["ALL", "QB", "RB", "WR", "TE"].map((p) => (
+                  {["ALL", "QB", "RB", "WR", "TE", "FLEX"].map((p) => (
                     <button key={p} className={posFilter === p ? "active" : ""} onClick={() => setPosFilter(p)}>
                       {p === "ALL" ? "Todos" : p}
                     </button>
                   ))}
                 </div>
               </div>
-              <div className="list" style={{ marginTop: 12 }}>
+
+              <div className="list scrollList" style={{ marginTop: 12 }}>
                 {filtered.map((p) => {
                   const id = String(p.player_id);
                   const added = rosterIds.has(id);
                   return (
-                    <div key={id} className="item">
+                    <div key={id} className="item itemTight">
                       <div className="left">
                         <div className="av">{initials(p.name)}</div>
                         <div style={{ minWidth: 0 }}>
                           <div className="name">{p.name}</div>
-                          <div className="muted sub">{normPos(p.position)} · {p.team || "-"} · ADP {p.adp_formatted || "-"}</div>
+                          <div className="muted sub">{normPos(p.position)} · {p.team || "-"} {p.adp_formatted ? `· ADP ${p.adp_formatted}` : ""}</div>
                         </div>
                       </div>
-                      <button className={added ? "ghost" : ""} disabled={added || saving} onClick={() => onAddPlayer(p)}>
-                        {added ? "Agregado" : saving ? "..." : "+ Agregar"}
+                      <button
+                        className={added ? "btnAdd added" : "btnAdd"}
+                        disabled={added || saving}
+                        onClick={() => onAddPlayer(p)}
+                      >
+                        {added ? "Agregado" : "+ Agregar"}
                       </button>
                     </div>
                   );
@@ -456,62 +520,91 @@ function MyTeamView({
             </>
           ) : (
             <>
-              <div className="muted" style={{ fontWeight: 900, marginBottom: 10 }}>
-                2026: 1.01–6.10 · 2027/2028: rondas (1era…6ta)
+              <div style={{ display: "grid", gap: 10, marginTop: 12 }}>
+                <select
+                  defaultValue=""
+                  disabled={saving}
+                  onChange={(e) => { const v = e.target.value; if (v) onAddPick(v); e.target.value = ""; }}
+                >
+                  <option value="">+ Agregar pick…</option>
+                  {PICKS.filter((p) => !pickIds.has(String(p.id))).map((p) => (
+                    <option key={p.id} value={p.id}>{p.label}</option>
+                  ))}
+                </select>
+
+                <div className="list scrollList">
+                  {myPicks.length === 0 ? <div className="muted">No agregaste picks todavía.</div> : null}
+                  {myPicks.slice().sort((a, b) => String(a.id).localeCompare(String(b.id))).map((p) => {
+                    const stKey = normStatusKey(p.status);
+                    return (
+                      <div key={p.id} className="item itemTight">
+                        <div style={{ minWidth: 0 }}>
+                          <div className="name">{p.label || p.id}</div>
+                          <div className="muted sub">{p.id}</div>
+                        </div>
+                        <div className="row" style={{ justifyContent: "flex-end" }}>
+                          <button className={`statusBtn status-${stKey}`} disabled={saving} onClick={() => onTogglePickStatus(p.id)}>
+                            {STATUS_LABEL[stKey]}
+                          </button>
+                          <button className="iconBtn iconDanger" disabled={saving} onClick={() => onRemovePick(p.id)} aria-label="Eliminar">✕</button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-              <select
-                defaultValue=""
-                disabled={saving}
-                onChange={(e) => { const v = e.target.value; if (v) onAddPick(v); e.target.value = ""; }}
-              >
-                <option value="">+ Agregar pick…</option>
-                {PICKS.filter((p) => !pickIds.has(String(p.id))).map((p) => (
-                  <option key={p.id} value={p.id}>{p.label}</option>
-                ))}
-              </select>
             </>
           )}
         </div>
 
+        {/* Right: Slots / Picks details */}
         <div className="card">
           {mode === "players" ? (
             <>
-              <h3 style={{ marginTop: 0 }}>Slots</h3>
-              <div className="muted sub">Auto: QB/RB/WR/TE → FLEX → BN</div>
-              <div className="slots" style={{ marginTop: 12 }}>
+              <div className="row" style={{ alignItems: "baseline", marginBottom: 6 }}>
+                <h3 style={{ margin: 0 }}>Mi equipo (slots)</h3>
+                <div className="sp" />
+                <div className="muted sub">Auto: QB/RB/WR/TE → FLEX → BN</div>
+              </div>
+              <div className="muted sub" style={{ marginBottom: 12 }}>
+                Tocá el botón de estado: <b>Disponible</b> → <b>En escucha</b> → <b>No disponible</b>
+              </div>
+
+              <div className="slots slotsFlat">
                 {SLOT_LIMITS.map((s) => {
                   const list = slots[s.key] || [];
                   return (
-                    <div key={s.key} className="slot">
-                      <div className="slothead">
-                        <div style={{ fontWeight: 1000 }}>{s.label}</div>
+                    <div key={s.key} className="slotSection">
+                      <div className="slothead slotheadFlat">
+                        <div style={{ fontWeight: 1000 }}>{s.key === "BENCH" ? "BN" : s.label}</div>
                         <div className="muted sub">{list.length}/{s.limit}</div>
                       </div>
+
                       <div className="list" style={{ marginTop: 10 }}>
-                        {list.length === 0 ? <div className="muted">—</div> : null}
-                        {list.map((r) => (
-                          <div key={r.id} className="item rosterItem">
-                            <div className={`posTag pos-${s.key}`}>{s.key === "FLEX" ? "WRT" : s.label}</div>
-                            <div className="left">
-                              <div className="av">{initials(r.name)}</div>
-                              <div style={{ minWidth: 0 }}>
-                                <div className="name">{r.name}</div>
-                                <div className="muted sub">{normPos(r.pos)} · {r.nfl || "-"}</div>
+                        {list.length === 0 ? null : null}
+                        {list.map((r) => {
+                          const stKey = normStatusKey(r.status);
+                          return (
+                            <div key={r.id} className="item rosterItem itemTight">
+                              <div className={`posTag pos-${s.key}`}>{s.key === "FLEX" ? "WRT" : (s.key === "BENCH" ? "BN" : s.label)}</div>
+
+                              <div className="left" style={{ minWidth: 0 }}>
+                                <div className="av">{initials(r.name)}</div>
+                                <div style={{ minWidth: 0 }}>
+                                  <div className="name">{r.name}</div>
+                                  <div className="muted sub">{normPos(r.pos)} · {r.nfl || "-"}</div>
+                                </div>
+                              </div>
+
+                              <div className="row" style={{ justifyContent: "flex-end", gap: 10 }}>
+                                <button className={`statusBtn status-${stKey}`} disabled={saving} onClick={() => onTogglePlayerStatus(r.id)}>
+                                  {STATUS_LABEL[stKey]}
+                                </button>
+                                <button className="iconBtn iconDanger" disabled={saving} onClick={() => onRemovePlayer(r.id)} aria-label="Eliminar">✕</button>
                               </div>
                             </div>
-                            <div className="row" style={{ justifyContent: "flex-end" }}>
-                              {(() => {
-                                const stKey = normStatusKey(r.status);
-                                return (
-                                  <button className={`ghost statusBtn status-${stKey}`} disabled={saving} onClick={() => onTogglePlayerStatus(r.id)}>
-                                    {STATUS_LABEL[stKey]}
-                                  </button>
-                                );
-                              })()}
-                              <button className="danger" disabled={saving} onClick={() => onRemovePlayer(r.id)}>✕</button>
-                            </div>
-                          </div>
-                        ))}
+                          );
+                        })}
                       </div>
                     </div>
                   );
@@ -521,27 +614,28 @@ function MyTeamView({
           ) : (
             <>
               <h3 style={{ marginTop: 0 }}>Mis picks</h3>
-              <div className="list" style={{ marginTop: 12 }}>
+              <div className="muted sub" style={{ marginBottom: 12 }}>
+                Tocá el botón de estado: <b>Disponible</b> → <b>En escucha</b> → <b>No disponible</b>
+              </div>
+              <div className="list scrollList">
                 {myPicks.length === 0 ? <div className="muted">No agregaste picks todavía.</div> : null}
-                {myPicks.slice().sort((a, b) => String(a.id).localeCompare(String(b.id))).map((p) => (
-                  <div key={p.id} className="item">
-                    <div style={{ minWidth: 0 }}>
-                      <div className="name">{p.label || p.id}</div>
-                      <div className="muted sub">{p.id}</div>
+                {myPicks.slice().sort((a, b) => String(a.id).localeCompare(String(b.id))).map((p) => {
+                  const stKey = normStatusKey(p.status);
+                  return (
+                    <div key={p.id} className="item itemTight">
+                      <div style={{ minWidth: 0 }}>
+                        <div className="name">{p.label || p.id}</div>
+                        <div className="muted sub">{p.id}</div>
+                      </div>
+                      <div className="row" style={{ justifyContent: "flex-end" }}>
+                        <button className={`statusBtn status-${stKey}`} disabled={saving} onClick={() => onTogglePickStatus(p.id)}>
+                          {STATUS_LABEL[stKey]}
+                        </button>
+                        <button className="iconBtn iconDanger" disabled={saving} onClick={() => onRemovePick(p.id)} aria-label="Eliminar">✕</button>
+                      </div>
                     </div>
-                    <div className="row" style={{ justifyContent: "flex-end" }}>
-                      {(() => {
-                        const stKey = normStatusKey(p.status);
-                        return (
-                          <button className={`ghost statusBtn status-${stKey}`} disabled={saving} onClick={() => onTogglePickStatus(p.id)}>
-                            {STATUS_LABEL[stKey]}
-                          </button>
-                        );
-                      })()}
-                      <button className="danger" disabled={saving} onClick={() => onRemovePick(p.id)}>✕</button>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </>
           )}
@@ -550,6 +644,7 @@ function MyTeamView({
     </div>
   );
 }
+
 
 // ---- LeagueView ----
 function LeagueView({ me, teams, interests, onSetInterest }) {
@@ -566,7 +661,7 @@ function LeagueView({ me, teams, interests, onSetInterest }) {
 
   return (
     <div style={{ marginTop: 12 }}>
-      <div className="card" style={{ background: "var(--sky)" }}>
+      <div className="card profileCard">
         <div className="row">
           <h2 style={{ margin: 0 }}>Liga</h2>
           <div className="sp" />
@@ -989,7 +1084,7 @@ export default function App() {
       <Styles />
       <div className="top">
         <div className="topin">
-          <div style={{ fontWeight: 1000 }}>Fantasy Trades</div>
+          <div style={{ fontWeight: 1000 }}>Fantasy Trade Board</div>
           <div className="sp" />
           {playersLoading ? <div className="chip" style={{ cursor: "default" }}>ADP…</div> : null}
           {me ? <div className="chip" style={{ cursor: "default" }}>{me.email}</div> : null}
@@ -998,8 +1093,7 @@ export default function App() {
       </div>
 
       <div className="wrap">
-        <h1 className="title">Trade Board</h1>
-
+        
         {!me ? (
           <div className="card">
             <div className="row">
@@ -1023,7 +1117,7 @@ export default function App() {
           </div>
         ) : (
           <>
-            <div className="card" style={{ background: "var(--sky)" }}>
+            <div className="card profileCard">
               <div className="grid2">
                 <div>
                   <div style={{ fontWeight: 1000, fontSize: 18 }}>{myDisplayName || me.email}</div>
