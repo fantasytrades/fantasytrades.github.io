@@ -41,7 +41,7 @@ const SLOT_LIMITS = [
   { key: "RB",    label: "RB",   limit: 2,  accepts: ["RB"] },
   { key: "WR",    label: "WR",   limit: 2,  accepts: ["WR"] },
   { key: "TE",    label: "TE",   limit: 1,  accepts: ["TE"] },
-  { key: "FLEX",  label: "WRT",  limit: 3,  accepts: ["RB", "WR", "TE"] },
+  { key: "FLEX",  label: "FLEX", limit: 3,  accepts: ["RB", "WR", "TE"] },
   { key: "BENCH", label: "BN",   limit: 21, accepts: ["QB", "RB", "WR", "TE"] },
 ];
 
@@ -202,22 +202,11 @@ function assignSlots(roster) {
 // ---- Styles ----
 function Styles() {
   return (
-    <style>{`      :root{
+    <style>{`
+      :root{
         --bg:#0B1220; --card:#0F172A; --soft:#0B1324; --sky:#111B2F;
         --text:#E6EEFF; --muted:#A8B3C7; --border:#22304A; --blue:#3B82F6;
-        --danger:#EF4444; --shadow:0 10px 30px rgba(0,0,0,0.18);
-
-        /* Position colors */
-        --pos-qb:#FF2D7D;
-        --pos-rb:#11D3B1;
-        --pos-wr:#59A5FF;
-        --pos-te:#FFB14A;
-        --pos-bn:#A6BED6;
-
-        /* Status colors */
-        --st-available:#22C55E;
-        --st-listening:#FACC15;
-        --st-not:#EF4444;
+        --danger:#EF4444; --ok:#22C55E; --warn:#EAB308; --pos-qb:#FF2D83; --pos-rb:#11D6C7; --pos-wr:#63A7FF; --pos-te:#FFB04A; --pos-bn:#9FB4C8; --shadow:0 10px 30px rgba(0,0,0,0.18);
       }
       body{ margin:0; background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; }
       *{ box-sizing:border-box; }
@@ -242,63 +231,48 @@ function Styles() {
       .dockbtn{ background:transparent; border:1px solid transparent; color:var(--muted); }
       .dockbtn.active{ background:var(--sky); border:1px solid var(--border); color:var(--text); }
       .list{ display:grid; gap:10px; }
-
       .item{ display:flex; justify-content:space-between; gap:10px; align-items:center; padding:10px 12px; border-radius:14px; border:1px solid var(--border); background:var(--soft); }
-
-      /* Roster rows (Mi equipo → Slots) */
-      .item.rosterItem{ gap:12px; padding:14px 14px; border-radius:18px; background:linear-gradient(135deg, rgba(17,27,47,0.85), rgba(15,23,42,0.92)); }
-      .item.rosterItem .left{ gap:12px; flex:1; }
-      .item.rosterItem .av{ width:38px; height:38px; }
-      .item.rosterItem .name{ font-size:16px; }
-      .item.rosterItem .sub{ font-size:12px; opacity:0.95; }
-
-      .posTag{ width:58px; height:42px; border-radius:16px; display:flex; align-items:center; justify-content:center; font-weight:1100; font-size:14px; color:#06101f; flex:0 0 auto; user-select:none; }
-      .posTag.pos-QB{ background:var(--pos-qb); }
-      .posTag.pos-RB{ background:var(--pos-rb); }
-      .posTag.pos-WR{ background:var(--pos-wr); }
-      .posTag.pos-TE{ background:var(--pos-te); }
-      .posTag.pos-BENCH{ background:var(--pos-bn); color:#06101f; }
-      .posTag.pos-FLEX{
-        background:linear-gradient(90deg,
-          var(--pos-wr) 0%, var(--pos-wr) 33%,
-          var(--pos-rb) 33%, var(--pos-rb) 66%,
-          var(--pos-te) 66%, var(--pos-te) 100%
-        );
-        letter-spacing:0.14em;
-        padding-left:0.12em;
-      }
-
       .left{ display:flex; gap:10px; align-items:center; min-width:0; }
       .av{ width:34px; height:34px; border-radius:999px; background:var(--sky); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-weight:1000; }
       .name{ font-weight:1000; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
       .sub{ font-size:12px; font-weight:900; }
-
-      .slots{ display:grid; gap:18px; }
-      .slot{ border:0; background:transparent; padding:0; }
-      .slothead{ display:flex; justify-content:space-between; align-items:baseline; padding:6px 2px; }
-      .slothead > div:first-child{ letter-spacing:0.06em; }
-
+      .slots{ display:grid; gap:12px; }
+      .slot{ border:1px solid var(--border); background:var(--card); border-radius:14px; padding:12px; }
+      .slothead{ display:flex; justify-content:space-between; align-items:baseline; }
       .seg{ display:flex; flex-wrap:wrap; gap:8px; }
       .seg button{ padding:8px 10px; border-radius:999px; }
       .seg button.active{ background:var(--blue); }
-
       .pill{ display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:var(--sky); font-weight:1000; font-size:12px; }
-      .pill.status-AVAILABLE{ background:rgba(34,197,94,0.16); border-color:rgba(34,197,94,0.5); color:rgb(134,239,172); }
-      .pill.status-LISTENING{ background:rgba(250,204,21,0.16); border-color:rgba(250,204,21,0.5); color:rgb(253,224,71); }
-      .pill.status-NOT_AVAILABLE{ background:rgba(239,68,68,0.16); border-color:rgba(239,68,68,0.5); color:rgb(252,165,165); }
-
-      .statusBtn{ border-radius:999px; padding:9px 12px; font-size:12px; font-weight:1000; line-height:1; }
-      .statusBtn.status-AVAILABLE{ background:rgba(34,197,94,0.18); border-color:rgba(34,197,94,0.55); color:rgb(134,239,172); }
-      .statusBtn.status-LISTENING{ background:rgba(250,204,21,0.18); border-color:rgba(250,204,21,0.55); color:rgb(253,224,71); }
-      .statusBtn.status-NOT_AVAILABLE{ background:rgba(239,68,68,0.18); border-color:rgba(239,68,68,0.55); color:rgb(252,165,165); }
-
       .badge{ padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:var(--sky); font-weight:1000; font-size:12px; }
+      /* === Roster slot tags (QB/RB/WR/TE/WRT/BN) === */
+      .rosterItem{ gap:12px; }
+      .posTag{
+        width:54px; height:44px; border-radius:14px;
+        display:flex; align-items:center; justify-content:center;
+        font-weight:1100; letter-spacing:0.02em;
+        color:#07111f;
+        box-shadow:0 6px 16px rgba(0,0,0,0.18);
+      }
+      .pos-QB{ background:var(--pos-qb); }
+      .pos-RB{ background:var(--pos-rb); }
+      .pos-WR{ background:var(--pos-wr); }
+      .pos-TE{ background:var(--pos-te); }
+      .pos-BENCH{ background:var(--pos-bn); }
+      .pos-FLEX{ background:linear-gradient(90deg, var(--pos-wr) 0 34%, var(--pos-rb) 34% 67%, var(--pos-te) 67% 100%); }
 
       @media(max-width:520px){
-        .posTag{ width:52px; height:38px; border-radius:14px; font-size:13px; }
-        .item.rosterItem{ padding:12px 12px; }
-        .item.rosterItem .av{ width:36px; height:36px; }
+        .posTag{ width:48px; height:40px; border-radius:13px; }
       }
+
+      /* === Status colors === */
+      .statusBtn{ border:1px solid var(--border); }
+      .status-AVAILABLE{ background:rgba(34,197,94,0.20); border-color:rgba(34,197,94,0.40); color:#D7FFE4; }
+      .status-LISTENING{ background:rgba(234,179,8,0.20); border-color:rgba(234,179,8,0.45); color:#FFF2B8; }
+      .status-NOT_AVAILABLE{ background:rgba(239,68,68,0.20); border-color:rgba(239,68,68,0.45); color:#FFD0D0; }
+      .pill-AVAILABLE{ background:rgba(34,197,94,0.20); border-color:rgba(34,197,94,0.40); color:#D7FFE4; }
+      .pill-LISTENING{ background:rgba(234,179,8,0.20); border-color:rgba(234,179,8,0.45); color:#FFF2B8; }
+      .pill-NOT_AVAILABLE{ background:rgba(239,68,68,0.20); border-color:rgba(239,68,68,0.45); color:#FFD0D0; }
+
     `}</style>
   );
 }
@@ -335,7 +309,7 @@ function MyTeamView({
         <div className="row" style={{ alignItems: "baseline" }}>
           <h2 style={{ margin: 0 }}>Mi equipo</h2>
           <div className="muted" style={{ fontWeight: 900 }}>
-            Estado: {STATUS_LABEL.AVAILABLE} → {STATUS_LABEL.LISTENING} → {STATUS_LABEL.NOT_AVAILABLE}
+            Estado: <span className={`pill pill-AVAILABLE`}>{STATUS_LABEL.AVAILABLE}</span> → <span className={`pill pill-LISTENING`}>{STATUS_LABEL.LISTENING}</span> → <span className={`pill pill-NOT_AVAILABLE`}>{STATUS_LABEL.NOT_AVAILABLE}</span>
           </div>
           <div className="sp" />
           <div className="seg">
@@ -410,14 +384,14 @@ function MyTeamView({
                   return (
                     <div key={s.key} className="slot">
                       <div className="slothead">
-                        <div style={{ fontWeight: 1000 }}>{s.key === "BENCH" ? "BENCH" : s.key === "FLEX" ? "FLEX" : s.label}</div>
+                        <div style={{ fontWeight: 1000 }}>{s.label}</div>
                         <div className="muted sub">{list.length}/{s.limit}</div>
                       </div>
                       <div className="list" style={{ marginTop: 10 }}>
                         {list.length === 0 ? <div className="muted">—</div> : null}
                         {list.map((r) => (
                           <div key={r.id} className="item rosterItem">
-                            <div className={`posTag pos-${s.key}`}>{s.label}</div>
+                            <div className={`posTag pos-${s.key}`}>{s.key === "FLEX" ? "WRT" : s.label}</div>
                             <div className="left">
                               <div className="av">{initials(r.name)}</div>
                               <div style={{ minWidth: 0 }}>
@@ -519,7 +493,7 @@ function LeagueView({ me, teams, interests, onSetInterest }) {
                       <div style={{ minWidth: 0 }}>
                         <div className="name">{r.name}</div>
                         <div className="muted sub">
-                          {normPos(r.pos)} · {r.nfl || "-"} · <span className={`pill status-${r.status || "AVAILABLE"}`}>{STATUS_LABEL[r.status] || r.status}</span>
+                          {normPos(r.pos)} · {r.nfl || "-"} · <span className={`pill pill-${r.status || "AVAILABLE"}`}>{STATUS_LABEL[r.status] || r.status}</span>
                         </div>
                       </div>
                     </div>
@@ -547,7 +521,7 @@ function LeagueView({ me, teams, interests, onSetInterest }) {
                     <div style={{ minWidth: 0 }}>
                       <div className="name">{p.label || p.id}</div>
                       <div className="muted sub">
-                        {p.id} · <span className={`pill status-${p.status || "AVAILABLE"}`}>{STATUS_LABEL[p.status] || p.status}</span>
+                        {p.id} · <span className={`pill pill-${p.status || "AVAILABLE"}`}>{STATUS_LABEL[p.status] || p.status}</span>
                       </div>
                     </div>
                     <select value={cur} onChange={(e) => onSetInterest(selected.user_id, "PICK", p.id, e.target.value)} style={{ maxWidth: 160 }}>
