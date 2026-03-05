@@ -350,7 +350,7 @@ function Styles() {
         width:fit-content;
       }
       .valueBtn{
-        padding:10px 14px;
+        padding:9px 12px;
         border-radius:12px;
         color:var(--blue);
         border-color:#CFE3FF;
@@ -376,16 +376,16 @@ function Styles() {
       .seg{ display:flex; flex-wrap:wrap; gap:8px; }
       .seg.segTabs{
         background:var(--sky); border:1px solid #CFE3FF;
-        padding:6px; border-radius:16px;
+        padding:5px; border-radius:16px;
       }
       .seg.segTabs button{
         background:transparent; border:1px solid transparent; color:#1E293B;
-        padding:10px 16px; border-radius:12px;
+        padding:10px 14px; border-radius:12px;
         box-shadow:none;
       }
       .seg.segTabs button.active{
         background:var(--blue); color:#fff;
-        box-shadow:0 10px 22px rgba(47,125,246,0.22);
+        box-shadow:none;
       }
 
       .seg.segFilters button{
@@ -395,7 +395,7 @@ function Styles() {
       }
       .seg.segFilters button.active{
         background:var(--blue); border-color:rgba(47,125,246,0.35); color:#fff;
-        box-shadow:0 10px 22px rgba(47,125,246,0.18);
+        box-shadow:none;
       }
 
       /* Pills / badges */
@@ -409,7 +409,7 @@ function Styles() {
       /* === Roster slot tags (QB/RB/WR/TE/WRT/BN) === */
       .rosterItem{
         display:grid;
-        grid-template-columns: 64px 1fr auto;
+        grid-template-columns: 56px 1fr auto;
         align-items:center;
         gap:12px;
       }
@@ -423,14 +423,14 @@ function Styles() {
         white-space:nowrap;
       }
       .actions > button{ white-space:nowrap; }
-      .actions .statusBtn{ min-width:132px; text-align:center; }
-      .actions .valueBtn{ min-width:110px; text-align:center; }
+      .actions .statusBtn{ min-width:118px; text-align:center; }
+      .actions .valueBtn{ min-width:92px; text-align:center; }
       @media(max-width:720px){
         .rosterItem{ grid-template-columns: 54px 1fr; }
         .actions{ grid-column: 1 / -1; justify-content:flex-end; }
       }
       .posTag{
-        width:54px; height:44px; border-radius:14px;
+        width:48px; height:40px; border-radius:14px;
         display:flex; align-items:center; justify-content:center;
         font-weight:1100; letter-spacing:0.02em;
         color:#fff;
@@ -481,7 +481,7 @@ function Styles() {
         color:#94A3B8;
       }
 
-      .itemTight{ padding:12px 12px; border-radius:16px; }
+      .itemTight{ padding:10px 12px; border-radius:16px; }
       .scrollList{ max-height:560px; overflow:auto; padding-right:4px; }
       @media(max-width:980px){ .scrollList{ max-height:none; } }
 
@@ -504,7 +504,7 @@ function Styles() {
 
       .statusBtn{
         border-radius:999px;
-        padding:10px 14px;
+        padding:9px 12px;
         box-shadow:none;
         font-weight:1000;
       }
