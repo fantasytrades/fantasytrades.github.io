@@ -45,8 +45,15 @@
       "pos": "RB",
       "nfl": "PHI",
       "status": "AVAILABLE"
+    },
+    {
+      "id": "6183",
+      "name": "Malik Nabers",
+      "pos": "WR",
+      "nfl": "NYG",
+      "status": "AVAILABLE"
     }
   ],
   "picks": [],
-  "updated_at": "2026-03-05T05:44:01.415Z"
+  "updated_at": "2026-03-05T05:45:11.398Z"
 }
