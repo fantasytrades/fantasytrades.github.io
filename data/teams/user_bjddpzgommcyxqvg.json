@@ -23,7 +23,7 @@
       "name": "Jahmyr Gibbs",
       "pos": "RB",
       "nfl": "DET",
-      "status": "LISTENING"
+      "status": "NOT_AVAILABLE"
     },
     {
       "id": "4869",
@@ -55,5 +55,5 @@
     }
   ],
   "picks": [],
-  "updated_at": "2026-03-05T05:46:16.387Z"
+  "updated_at": "2026-03-05T05:47:22.374Z"
 }
