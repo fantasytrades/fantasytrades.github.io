@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { initializeApp } from "firebase/app";
 import {
   getFirestore,
@@ -74,6 +74,20 @@ function normStatusKey(s) {
   return "AVAILABLE";
 }
 
+
+const TEAM_STATUS_OPTIONS = ["Contendiente", "En Reconstrucción", "Indefinido"];
+
+function normTeamStatus(s) {
+  const v = String(s || "").trim();
+  if (!v) return "Indefinido";
+  const low = v.toLowerCase();
+  if (low.includes("contend")) return "Contendiente";
+  if (low.includes("recon")) return "En Reconstrucción";
+  if (low.includes("tank") || low.includes("tanque")) return "En Reconstrucción";
+  if (low.includes("re-tool") || low.includes("retool") || low.includes("re tool")) return "Indefinido";
+  if (TEAM_STATUS_OPTIONS.includes(v)) return v;
+  return "Indefinido";
+}
 const INTEREST_LABEL = { NONE: "—", LOW: "Bajo", MEDIUM: "Medio", HIGH: "Alto" };
 
 // ---- Helpers ----
@@ -356,7 +370,35 @@ function Styles() {
       }
       input::placeholder{ color:#94A3B8; font-weight:800; }
 
-      /* Buttons */
+      
+
+/* Custom select (rounded dropdown) */
+.selectWrap{ position:relative; width:100%; }
+button.selectBtn{
+  width:100%; display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding:12px 12px; border-radius:14px; border:1px solid var(--border);
+  background:#fff; color:var(--text); font-weight:900; cursor:pointer;
+  box-shadow:0 1px 0 rgba(15,23,42,0.02);
+}
+.selectCaret{
+  width:0; height:0;
+  border-left:6px solid transparent; border-right:6px solid transparent;
+  border-top:7px solid #94A3B8;
+}
+.selectMenu{
+  position:absolute; left:0; right:0; top:calc(100% + 8px);
+  background:#fff; border:1px solid var(--border); border-radius:14px;
+  box-shadow:var(--shadow-sm); padding:6px; z-index:80;
+}
+button.selectOpt{
+  width:100%; text-align:left;
+  padding:10px 10px; border-radius:12px;
+  border:0; background:transparent; color:var(--text);
+  font-weight:900; cursor:pointer;
+}
+button.selectOpt:hover{ background:rgba(47,125,246,0.10); }
+button.selectOpt.active{ background:rgba(47,125,246,0.14); }
+/* Buttons */
       button{
         padding:12px 14px; border-radius:14px; border:1px solid transparent;
         background:var(--blue); color:#fff; font-weight:950; cursor:pointer;
@@ -1373,7 +1415,59 @@ function InterestsView({ teamsByUser, myOutgoing, myIncoming, metaById }) {
   );
 }
 
-// ---- App ----
+// ---- A
+
+function FancySelect({ value, onChange, options }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    function onDown(e) {
+      if (!ref.current) return;
+      if (!ref.current.contains(e.target)) setOpen(false);
+    }
+    document.addEventListener("pointerdown", onDown);
+    return () => document.removeEventListener("pointerdown", onDown);
+  }, []);
+
+  const current = options.includes(value) ? value : options[0];
+
+  function choose(opt) {
+    onChange?.(opt);
+    setOpen(false);
+  }
+
+  return (
+    <div className="selectWrap" ref={ref}>
+      <button
+        type="button"
+        className="selectBtn"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+      >
+        <span>{current}</span>
+        <span className="selectCaret" aria-hidden="true" />
+      </button>
+
+      {open && (
+        <div className="selectMenu" role="listbox">
+          {options.map((opt) => (
+            <button
+              key={opt}
+              type="button"
+              className={"selectOpt" + (opt === current ? " active" : "")}
+              onClick={() => choose(opt)}
+            >
+              {opt}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+pp ----
 export default function App() {
   const [me, setMe] = useState(() => {
     const s = localStorage.getItem("ft_session");
@@ -1397,7 +1491,7 @@ export default function App() {
 
   const [myDisplayName, setMyDisplayName] = useState("");
   const [myTeamName,    setMyTeamName]    = useState("");
-  const [myTeamStatus,  setMyTeamStatus]  = useState("Contendiendo");
+  const [myTeamStatus,  setMyTeamStatus]  = useState("Indefinido");
 
   const [saveInfo, setSaveInfo] = useState("");
   const [saving,   setSaving]   = useState(false);
@@ -1443,11 +1537,11 @@ export default function App() {
     if (row) {
       setMyDisplayName(row.display_name || "");
       setMyTeamName(row.team_name || "");
-      setMyTeamStatus(row.team_status || "Contendiendo");
+      setMyTeamStatus(normTeamStatus(row.team_status));
     } else {
       setMyDisplayName(me.email?.split("@")?.[0] || "");
       setMyTeamName("");
-      setMyTeamStatus("Contendiendo");
+      setMyTeamStatus("Indefinido");
     }
   }, [me, teamsByUser]);
 
@@ -1523,7 +1617,7 @@ export default function App() {
         user_id: userId,
         display_name: em.split("@")[0],
         team_name: "",
-        team_status: "Contendiendo",
+        team_status: "Indefinido",
         roster: [],
         picks: [],
       }));
@@ -1557,7 +1651,7 @@ export default function App() {
           user_id: u.id,
           display_name: em.split("@")[0],
           team_name: "",
-          team_status: "Contendiendo",
+          team_status: "Indefinido",
           roster: [],
           picks: [],
         }));
@@ -1622,7 +1716,7 @@ export default function App() {
           user_id: me.id,
           display_name: "",
           team_name: "",
-          team_status: "Contendiendo",
+          team_status: "Indefinido",
           roster: [],
           picks: [],
         }
@@ -1727,12 +1821,7 @@ export default function App() {
                   <div className="row profileRow">
                     <input value={myDisplayName} onChange={(e) => setMyDisplayName(e.target.value)} placeholder="Tu nombre" />
                     <input value={myTeamName}    onChange={(e) => setMyTeamName(e.target.value)}    placeholder="Nombre del equipo" />
-                    <select value={myTeamStatus} onChange={(e) => setMyTeamStatus(e.target.value)}>
-                      <option>Contendiendo</option>
-                      <option>Reconstrucción</option>
-                      <option>Re-tool</option>
-                      <option>Tanqueando</option>
-                    </select>
+                    <FancySelect value={myTeamStatus} onChange={setMyTeamStatus} options={TEAM_STATUS_OPTIONS} />
                   </div>
                   <div className="row profileActions">
                     {saveInfo ? <div className="muted" style={{ fontWeight: 900 }}>{saveInfo}</div> : null}
