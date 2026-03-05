@@ -4,5 +4,11 @@
     "email": "nicolasverdasco@gmail.com",
     "pass_sha256": "bc9732cbc7f9d21dc3178f5f95328cdb14da5bf6fcc07f07bc3f67ded63c42c4",
     "created_at": "2026-03-04T23:13:19.033Z"
+  },
+  {
+    "id": "user_yoy3eamemmcxx7oo",
+    "email": "nicolasverdasco@gmail.com",
+    "pass_hash": "bc9732cbc7f9d21dc3178f5f95328cdb14da5bf6fcc07f07bc3f67ded63c42c4",
+    "created_at": "2026-03-05T04:03:12.555Z"
   }
 ]
