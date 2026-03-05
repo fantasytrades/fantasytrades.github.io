@@ -24,100 +24,6 @@ const PATH_USERS = "data/users.json";
 const PATH_TEAMS = "data/league_teams.json";
 const PATH_INTERESTS = "data/interests.json";
 
-/** ========= domain ========= */
-const ROSTER_SLOTS = [
-  { id: "QB", label: "QB", limit: 1, accepts: ["QB"] },
-  { id: "RB", label: "RB", limit: 2, accepts: ["RB"] },
-  { id: "WR", label: "WR", limit: 1, accepts: ["WR"] },
-  { id: "TE", label: "TE", limit: 1, accepts: ["TE"] },
-  { id: "FLEX", label: "FLEX", limit: 3, accepts: ["RB", "WR", "TE"] },
-  { id: "BN", label: "BN", limit: 21, accepts: ["QB", "RB", "WR", "TE"] },
-];
-
-const PLAYER_STATUSES = ["Disponible", "En escucha", "No disponible"]; // cycle
-const INTEREST_LEVELS = [
-  { id: "LOW", label: "Bajo" },
-  { id: "MED", label: "Medio" },
-  { id: "HIGH", label: "Alto" },
-];
-
-function assetKey(type, id) {
-  return `${type}:${id}`;
-}
-
-function pickId2026(round, slot) {
-  const r = String(round);
-  const s = String(slot).padStart(2, "0");
-  return `2026-${r}.${s}`;
-}
-
-function generatePickCatalog() {
-  const out = [];
-  // 2026: 6 rondas x 10 picks numerados
-  for (let round = 1; round <= 6; round++) {
-    for (let slot = 1; slot <= 10; slot++) {
-      const id = pickId2026(round, slot);
-      out.push({
-        id,
-        type: "PICK",
-        year: 2026,
-        round,
-        slot,
-        label: `${String(round)}.${String(slot).padStart(2, "0")} 2026`,
-      });
-    }
-  }
-  // 2027/2028: por ronda (sin número)
-  for (const year of [2027, 2028]) {
-    for (let round = 1; round <= 6; round++) {
-      out.push({
-        id: `${year}-${round}`,
-        type: "PICK",
-        year,
-        round,
-        slot: null,
-        label: `${round}ra ${year}`,
-      });
-    }
-  }
-  return out;
-}
-
-function normalizePos(p) {
-  const v = String(p || "").toUpperCase().trim();
-  if (v === "QB" || v === "RB" || v === "WR" || v === "TE") return v;
-  return v || "";
-}
-
-function slotForNewPlayer(pos, currentRoster) {
-  const counts = new Map();
-  for (const s of ROSTER_SLOTS) counts.set(s.id, 0);
-  for (const a of currentRoster || []) {
-    if (a.type !== "PLAYER") continue;
-    counts.set(a.slot || "BN", (counts.get(a.slot || "BN") || 0) + 1);
-  }
-  // natural
-  const natural = ROSTER_SLOTS.find((s) => s.id === pos);
-  if (natural && (counts.get(natural.id) || 0) < natural.limit) return natural.id;
-  // flex
-  const flex = ROSTER_SLOTS.find((s) => s.id === "FLEX");
-  if (flex && flex.accepts.includes(pos) && (counts.get("FLEX") || 0) < flex.limit) return "FLEX";
-  return "BN";
-}
-
-const SAMPLE_PLAYERS = [
-  { id: "1111", name: "Ja'Marr Chase", pos: "WR", nfl: "CIN" },
-  { id: "5041", name: "Bijan Robinson", pos: "RB", nfl: "ATL" },
-  { id: "3333", name: "CeeDee Lamb", pos: "WR", nfl: "DAL" },
-  { id: "2222", name: "Justin Jefferson", pos: "WR", nfl: "MIN" },
-  { id: "4444", name: "Jahmyr Gibbs", pos: "RB", nfl: "DET" },
-  { id: "5555", name: "Josh Jacobs", pos: "RB", nfl: "GB" },
-  { id: "6666", name: "A.J. Brown", pos: "WR", nfl: "PHI" },
-  { id: "7777", name: "Tua Tagovailoa", pos: "QB", nfl: "MIA" },
-  { id: "8888", name: "Josh Allen", pos: "QB", nfl: "BUF" },
-  { id: "9999", name: "Amon-Ra St. Brown", pos: "WR", nfl: "DET" },
-];
-
 /** ========= helpers ========= */
 function uid(prefix = "u") {
   return `${prefix}_${Math.random().toString(36).slice(2, 10)}${Date.now().toString(36)}`;
@@ -151,6 +57,18 @@ function ghHeaders() {
   if (GH_TOKEN) h.Authorization = `Bearer ${GH_TOKEN}`;
   return h;
 }
+
+// Cola global de escrituras para evitar 409 por SHA desactualizado (race conditions)
+let __ghWriteChain = Promise.resolve();
+function ghEnqueueWrite(fn) {
+  const run = __ghWriteChain.then(() => fn());
+  // Importante: que la cola NO se "rompa" si un write falla
+  __ghWriteChain = run.catch(() => {});
+  return run;
+}
+function sleep(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
 async function ghGetFile(path) {
   const url = `${GH_API}/repos/${GH_OWNER}/${GH_REPO}/contents/${path}?ref=${encodeURIComponent(GH_BRANCH)}`;
   const res = await fetch(url, { headers: ghHeaders() });
@@ -158,7 +76,7 @@ async function ghGetFile(path) {
   if (!res.ok) throw new Error(await res.text());
   const j = await res.json();
 
-  // GitHub devuelve base64 con \n cada X chars.
+  // OJO: GitHub devuelve base64 con \n cada X chars. NO uses regex multiline.
   const raw = j?.content ? b64decodeUtf8(String(j.content).split("\n").join("")) : "";
   return { exists: true, sha: j.sha, content: raw };
 }
@@ -196,18 +114,29 @@ async function ghPutJson(path, data, sha, message) {
   return ghPutFile(path, `${txt}\n`, sha, message);
 }
 async function ghPutJsonWithRetry(path, mutator, label) {
-  for (let attempt = 0; attempt < 2; attempt++) {
-    const { data, sha } = await ghGetJson(path, []);
-    const arr = Array.isArray(data) ? data : [];
-    const next = mutator(arr);
-    try {
-      await ghPutJson(path, next, sha, label);
-      return next;
-    } catch (e) {
-      if (e?.code === 409 && attempt === 0) continue;
-      throw e;
+  // Serializa todas las escrituras para que 2 acciones seguidas (Agregar / Editar / etc.)
+  // no choquen en GitHub Contents API (409 sha mismatch).
+  return ghEnqueueWrite(async () => {
+    let lastErr = null;
+    for (let attempt = 0; attempt < 4; attempt++) {
+      const { data, sha } = await ghGetJson(path, []);
+      const arr = Array.isArray(data) ? data : [];
+      const next = mutator(arr);
+      try {
+        await ghPutJson(path, next, sha, label);
+        return next;
+      } catch (e) {
+        lastErr = e;
+        if (e?.code === 409) {
+          // backoff leve y reintento con SHA nuevo
+          await sleep(200 * (attempt + 1));
+          continue;
+        }
+        throw e;
+      }
     }
-  }
+    throw lastErr || new Error("No se pudo guardar (reintentos agotados).");
+  });
 }
 
 /** ========= UI ========= */
@@ -309,6 +238,8 @@ function GlobalStyles() {
         gap: 12px;
       }
 
+      .assetRow{ display:grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; }
+      .assetActions{ display:flex; flex-direction: column; gap: 8px; justify-content: space-between; }
       .breakAnywhere{ min-width: 0; overflow-wrap: anywhere; }
 
       @media (max-width: 860px){
@@ -318,6 +249,9 @@ function GlobalStyles() {
         .topbarInner{ flex-wrap: wrap; }
         .grid3{ grid-template-columns: 1fr; }
         .grid2{ grid-template-columns: 1fr; }
+        .assetRow{ grid-template-columns: 1fr; }
+        .assetActions{ flex-direction: row; justify-content: flex-end; }
+        .assetActions > button{ flex: 1; }
       }
     `}</style>
   );
@@ -368,7 +302,11 @@ function Input({ value, onChange, placeholder, type = "text", style, className }
 }
 function Button({ children, onClick, disabled, variant = "primary", style, title, className }) {
   const bg =
-    variant === "primary" ? COLORS.blue : variant === "danger" ? COLORS.danger : "transparent";
+    variant === "primary"
+      ? COLORS.blue
+      : variant === "danger"
+        ? COLORS.danger
+        : "transparent";
   const border = variant === "ghost" ? `1px solid ${COLORS.border}` : "1px solid transparent";
   const color = variant === "ghost" ? COLORS.navy : "#fff";
   return (
@@ -456,13 +394,6 @@ export default function App() {
   const [teams, setTeams] = useState([]);
   const [interests, setInterests] = useState([]);
 
-  // ui tabs
-  const [tab, setTab] = useState("home"); // home | myteam | league | interests
-
-  // players catalog
-  const [playerCatalog, setPlayerCatalog] = useState(SAMPLE_PLAYERS);
-  const pickCatalog = useMemo(() => generatePickCatalog(), []);
-
   // my profile
   const [myDisplayName, setMyDisplayName] = useState("");
   const [myTeamName, setMyTeamName] = useState("");
@@ -514,29 +445,6 @@ export default function App() {
   }, [me?.id]);
 
   useEffect(() => {
-    // levantar /public/adp.json si existe
-    (async () => {
-      try {
-        const res = await fetch("/adp.json", { cache: "no-store" });
-        if (!res.ok) return;
-        const j = await res.json();
-        const arr = Array.isArray(j) ? j : Array.isArray(j?.players) ? j.players : [];
-        const cleaned = arr
-          .map((p) => ({
-            id: String(p.id ?? p.player_id ?? p.pid ?? ""),
-            name: String(p.name ?? p.player_name ?? p.full_name ?? "").trim(),
-            pos: normalizePos(p.pos ?? p.position),
-            nfl: String(p.nfl ?? p.team ?? p.nfl_team ?? "").trim().toUpperCase(),
-          }))
-          .filter((p) => p.id && p.name && ["QB", "RB", "WR", "TE"].includes(p.pos));
-        if (cleaned.length >= 30) setPlayerCatalog(cleaned);
-      } catch {
-        // silent
-      }
-    })();
-  }, []);
-
-  useEffect(() => {
     if (!me) return;
     const row = teams.find((x) => x.user_id === me.id);
     if (row) {
@@ -556,21 +464,8 @@ export default function App() {
     return m;
   }, [teams]);
 
-  const myOutgoing = useMemo(
-    () => (me ? interests.filter((x) => x.from_user_id === me.id) : []),
-    [interests, me?.id]
-  );
-  const myIncoming = useMemo(
-    () => (me ? interests.filter((x) => x.to_user_id === me.id) : []),
-    [interests, me?.id]
-  );
-
-  const myTeamRow = useMemo(() => (me ? teams.find((x) => x.user_id === me.id) : null), [teams, me?.id]);
-  const myRoster = useMemo(() => (Array.isArray(myTeamRow?.roster) ? myTeamRow.roster : []), [myTeamRow?.roster]);
-  const myStatusOverrides = useMemo(
-    () => (myTeamRow?.status_overrides && typeof myTeamRow.status_overrides === "object" ? myTeamRow.status_overrides : {}),
-    [myTeamRow?.status_overrides]
-  );
+  const myOutgoing = useMemo(() => (me ? interests.filter((x) => x.from_user_id === me.id) : []), [interests, me?.id]);
+  const myIncoming = useMemo(() => (me ? interests.filter((x) => x.to_user_id === me.id) : []), [interests, me?.id]);
 
   async function signup() {
     setAuthError("");
@@ -580,16 +475,15 @@ export default function App() {
     setAuthBusy(true);
 
     try {
-      const { data: users, sha } = await ghGetJson(PATH_USERS, []);
-      const list = Array.isArray(users) ? users : [];
-      const exists = list.some((u) => String(u.email).toLowerCase() === String(email).toLowerCase());
-      if (exists) throw new Error("Ese email ya existe.");
-
-      const id = uid("user");
-      const hash = await sha256Hex(pass);
-      const next = [...list, { id, email, pass_sha256: hash, created_at: nowIso() }];
-
-      await ghPutJson(PATH_USERS, next, sha, "signup user");
+      // Guardamos USERS con cola (evita 409 por SHA viejo si hay dos writes seguidos)
+      await ghEnqueueWrite(async () => {
+        const { data: users, sha } = await ghGetJson(PATH_USERS, []);
+        const list = Array.isArray(users) ? users : [];
+        const exists = list.some((u) => String(u.email).toLowerCase() === String(email).toLowerCase());
+        if (exists) throw new Error("Ese email ya existe.");
+        const next = [...list, { id, email, pass_sha256: hash, created_at: nowIso() }];
+        await ghPutJson(PATH_USERS, next, sha, "signup user");
+      });
 
       // crear fila del team si no existe
       await ghPutJsonWithRetry(
@@ -616,7 +510,6 @@ export default function App() {
       setMe({ id, email });
       setPass("");
       setPass2("");
-      setTab("home");
     } catch (e) {
       setAuthError(String(e?.message || e));
     } finally {
@@ -641,7 +534,6 @@ export default function App() {
       setMe({ id: u.id, email: u.email });
       setPass("");
       setPass2("");
-      setTab("home");
     } catch (e) {
       setAuthError(String(e?.message || e));
     } finally {
@@ -746,66 +638,37 @@ export default function App() {
     }
   }
 
-  async function updateMyTeam(mutator, label) {
-    if (!me) return;
-    try {
-      await ghPutJsonWithRetry(
-        PATH_TEAMS,
-        (cur) => {
-          const i = cur.findIndex((x) => x.user_id === me.id);
-          const prev = i === -1 ? null : cur[i];
-          const base = prev || {
-            user_id: me.id,
-            display_name: myDisplayName || me.email?.split("@")[0] || "",
-            team_name: myTeamName || "",
-            team_status: myStatus || "Contendiendo",
-            roster: [],
-            status_overrides: {},
-            asset_values: {},
-            updated_at: nowIso(),
-          };
-          const nextRow = mutator({ ...base });
-          nextRow.updated_at = nowIso();
-          const next = [...cur];
-          if (i === -1) next.push(nextRow);
-          else next[i] = nextRow;
-          return next;
-        },
-        label
-      );
-      await refreshData();
-    } catch (e) {
-      setBootError(`No pude guardar equipo: ${String(e?.message || e)}`);
-    }
-  }
-
-  function cyclePlayerStatus(current) {
-    const i = PLAYER_STATUSES.indexOf(current || "Disponible");
-    return PLAYER_STATUSES[(i + 1 + PLAYER_STATUSES.length) % PLAYER_STATUSES.length];
-  }
+  const picks = useMemo(
+    () => [
+      { id: "2026-1", label: "2026 1st" },
+      { id: "2026-2", label: "2026 2nd" },
+      { id: "2027-1", label: "2027 1st" },
+      { id: "2027-2", label: "2027 2nd" },
+    ],
+    []
+  );
 
   if (bootError) {
     return (
       <div className="ftbPage">
         <GlobalStyles />
         <div className="ftbContainer">
-          <h2 style={{ marginTop: 0 }}>Error</h2>
-          <Card>
-            <div style={{ color: COLORS.danger, fontWeight: 800, marginBottom: 10 }}>{bootError}</div>
-            <div style={{ color: COLORS.gray, lineHeight: 1.5 }}>
-              Checklist:
-              <ul>
-                <li>Definí VITE_GH_OWNER / VITE_GH_REPO / VITE_GH_BRANCH</li>
-                <li>Definí VITE_GH_TOKEN con permisos de lectura/escritura de Contents</li>
-                <li>
-                  Existencia de <code>/data/users.json</code>, <code>/data/league_teams.json</code>,{" "}
-                  <code>/data/interests.json</code>
-                </li>
-              </ul>
-            </div>
-            <Button variant="ghost" onClick={() => setBootError("")}>Cerrar</Button>
-          </Card>
-        </div>
+        <h2 style={{ marginTop: 0 }}>Error</h2>
+        <Card>
+          <div style={{ color: COLORS.danger, fontWeight: 800, marginBottom: 10 }}>{bootError}</div>
+          <div style={{ color: COLORS.gray, lineHeight: 1.5 }}>
+            Checklist:
+            <ul>
+              <li>Definí VITE_GH_OWNER / VITE_GH_REPO / VITE_GH_BRANCH</li>
+              <li>Definí VITE_GH_TOKEN con permisos de lectura/escritura de Contents</li>
+              <li>Existencia de <code>/data/users.json</code>, <code>/data/league_teams.json</code>, <code>/data/interests.json</code></li>
+            </ul>
+          </div>
+          <Button variant="ghost" onClick={() => setBootError("")}>
+            Cerrar
+          </Button>
+        </Card>
+      </div>
       </div>
     );
   }
@@ -820,15 +683,7 @@ export default function App() {
 
         {!me ? (
           <Card className="authCard">
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                gap: 12,
-                flexWrap: "wrap",
-              }}
-            >
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
               <h2 style={{ margin: 0 }}>{authMode === "login" ? "Iniciar sesión" : "Crear cuenta"}</h2>
               <Button
                 variant="ghost"
@@ -847,11 +702,7 @@ export default function App() {
               {authMode === "signup" && (
                 <Input value={pass2} onChange={setPass2} placeholder="Repetir contraseña" type="password" />
               )}
-              <Button
-                disabled={authBusy}
-                onClick={authMode === "login" ? login : signup}
-                style={{ padding: "14px 16px", fontSize: 18 }}
-              >
+              <Button disabled={authBusy} onClick={authMode === "login" ? login : signup} style={{ padding: "14px 16px", fontSize: 18 }}>
                 {authBusy ? "Procesando…" : authMode === "login" ? "Entrar" : "Crear cuenta"}
               </Button>
               {!!authError && <div style={{ color: COLORS.danger, fontWeight: 800 }}>{authError}</div>}
@@ -861,111 +712,84 @@ export default function App() {
             </div>
           </Card>
         ) : (
-          <div style={{ display: "grid", gap: 16, paddingBottom: 74 }}>
-            {tab === "home" ? (
-              <HomeTab
-                me={me}
-                myDisplayName={myDisplayName}
-                myTeamName={myTeamName}
-                myStatus={myStatus}
-                onProfileChange={onProfileChange}
-                onRefresh={refreshData}
-                saveInfo={saveInfo}
-              />
-            ) : tab === "myteam" ? (
-              <MyTeamTab
-                roster={myRoster}
-                statusOverrides={myStatusOverrides}
-                playerCatalog={playerCatalog}
-                pickCatalog={pickCatalog}
-                onAddPlayer={async (p) => {
-                  await updateMyTeam(
-                    (row) => {
-                      const exists = (row.roster || []).some((a) => a.type === "PLAYER" && a.id === p.id);
-                      if (exists) return row;
-                      const nextRoster = Array.isArray(row.roster) ? [...row.roster] : [];
-                      nextRoster.push({
-                        type: "PLAYER",
-                        id: p.id,
-                        name: p.name,
-                        pos: normalizePos(p.pos),
-                        nfl: String(p.nfl || "").toUpperCase(),
-                        slot: slotForNewPlayer(normalizePos(p.pos), nextRoster),
-                        created_at: nowIso(),
-                      });
-                      row.roster = nextRoster;
-                      return row;
-                    },
-                    "add player"
-                  );
-                }}
-                onAddPick={async (pick) => {
-                  await updateMyTeam(
-                    (row) => {
-                      const exists = (row.roster || []).some((a) => a.type === "PICK" && a.id === pick.id);
-                      if (exists) return row;
-                      const nextRoster = Array.isArray(row.roster) ? [...row.roster] : [];
-                      nextRoster.push({
-                        type: "PICK",
-                        id: pick.id,
-                        label: pick.label,
-                        year: pick.year,
-                        round: pick.round,
-                        slot: pick.slot,
-                        created_at: nowIso(),
-                      });
-                      row.roster = nextRoster;
-                      return row;
-                    },
-                    "add pick"
-                  );
-                }}
-                onRemoveAsset={async (type, id) => {
-                  await updateMyTeam(
-                    (row) => {
-                      row.roster = (Array.isArray(row.roster) ? row.roster : []).filter((a) => !(a.type === type && a.id === id));
-                      const k = assetKey(type, id);
-                      if (row.status_overrides && typeof row.status_overrides === "object") {
-                        const so = { ...row.status_overrides };
-                        delete so[k];
-                        row.status_overrides = so;
-                      }
-                      return row;
-                    },
-                    "remove asset"
-                  );
-                }}
-                onTogglePlayerStatus={async (playerId) => {
-                  await updateMyTeam(
-                    (row) => {
-                      const so = row.status_overrides && typeof row.status_overrides === "object" ? { ...row.status_overrides } : {};
-                      const k = assetKey("PLAYER", playerId);
-                      so[k] = cyclePlayerStatus(so[k] || "Disponible");
-                      row.status_overrides = so;
-                      return row;
-                    },
-                    "toggle player status"
-                  );
-                }}
-                onChangePlayerSlot={async (playerId, nextSlot) => {
-                  await updateMyTeam(
-                    (row) => {
-                      row.roster = (Array.isArray(row.roster) ? row.roster : []).map((a) =>
-                        a.type === "PLAYER" && a.id === playerId ? { ...a, slot: nextSlot } : a
-                      );
-                      return row;
-                    },
-                    "move player slot"
-                  );
-                }}
-              />
-            ) : tab === "league" ? (
-              <LeagueTab me={me} teams={teams} interests={interests} byUser={byUser} onSetInterest={setInterest} />
-            ) : (
-              <InterestsTab me={me} byUser={byUser} outgoing={myOutgoing} incoming={myIncoming} teams={teams} />
-            )}
+          <div style={{ display: "grid", gap: 16 }}>
+            <Card>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
+                <div>
+                  <div style={{ fontSize: 14, color: COLORS.gray }}>Conectado como</div>
+                  <div style={{ fontSize: 18, fontWeight: 900 }}>{me.email}</div>
+                </div>
+                <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+                  <Button variant="ghost" onClick={refreshData}>
+                    Refrescar
+                  </Button>
+                  <div style={{ color: COLORS.gray, fontWeight: 700 }}>{saveInfo}</div>
+                </div>
+              </div>
 
-            <BottomNav tab={tab} onTab={setTab} />
+              <div className="grid3" style={{ marginTop: 14 }}>
+                <div>
+                  <div style={{ fontSize: 13, color: COLORS.gray, marginBottom: 6 }}>Display name</div>
+                  <Input value={myDisplayName} onChange={(v) => onProfileChange({ display_name: v })} placeholder="Ej: Nico" />
+                </div>
+                <div>
+                  <div style={{ fontSize: 13, color: COLORS.gray, marginBottom: 6 }}>Team name</div>
+                  <Input value={myTeamName} onChange={(v) => onProfileChange({ team_name: v })} placeholder="Ej: Blue Blitz" />
+                </div>
+                <div>
+                  <div style={{ fontSize: 13, color: COLORS.gray, marginBottom: 6 }}>Estado</div>
+                  <select
+                    value={myStatus}
+                    onChange={(e) => onProfileChange({ team_status: e.target.value })}
+                    style={{
+                      width: "100%",
+                      minWidth: 0,
+                      boxSizing: "border-box",
+                      padding: "14px 14px",
+                      borderRadius: 14,
+                      border: `1px solid ${COLORS.border}`,
+                      background: COLORS.sky,
+                      color: COLORS.navy,
+                      fontSize: 16,
+                      fontWeight: 700,
+                    }}
+                  >
+                    <option>Contendiendo</option>
+                    <option>Reconstrucción</option>
+                    <option>Re-tool</option>
+                    <option>Tanqueando</option>
+                  </select>
+                </div>
+              </div>
+            </Card>
+
+            <LeagueBoard
+              me={me}
+              teams={teams}
+              interests={interests}
+              picks={picks}
+              byUser={byUser}
+              onSetInterest={setInterest}
+            />
+
+            <div className="grid2">
+              <Card>
+                <h3 style={{ marginTop: 0 }}>Incoming (a mí)</h3>
+                {myIncoming.length === 0 ? (
+                  <div style={{ color: COLORS.gray }}>Nadie marcó interés por tus assets (todavía).</div>
+                ) : (
+                  <InterestList rows={myIncoming} byUser={byUser} />
+                )}
+              </Card>
+              <Card>
+                <h3 style={{ marginTop: 0 }}>Outgoing (míos)</h3>
+                {myOutgoing.length === 0 ? (
+                  <div style={{ color: COLORS.gray }}>Todavía no marcaste intereses.</div>
+                ) : (
+                  <InterestList rows={myOutgoing} byUser={byUser} />
+                )}
+              </Card>
+            </div>
           </div>
         )}
       </div>
@@ -990,341 +814,7 @@ function TopBar({ theme, onTheme, me, onLogout }) {
   );
 }
 
-function HomeTab({ me, myDisplayName, myTeamName, myStatus, onProfileChange, onRefresh, saveInfo }) {
-  return (
-    <Card>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: 12,
-          flexWrap: "wrap",
-        }}
-      >
-        <div>
-          <div style={{ fontSize: 14, color: COLORS.gray }}>Conectado como</div>
-          <div style={{ fontSize: 18, fontWeight: 900 }}>{me.email}</div>
-        </div>
-        <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-          <Button variant="ghost" onClick={onRefresh}>
-            Refrescar
-          </Button>
-          <div style={{ color: COLORS.gray, fontWeight: 700 }}>{saveInfo}</div>
-        </div>
-      </div>
-
-      <div className="grid3" style={{ marginTop: 14 }}>
-        <div>
-          <div style={{ fontSize: 13, color: COLORS.gray, marginBottom: 6 }}>Display name</div>
-          <Input value={myDisplayName} onChange={(v) => onProfileChange({ display_name: v })} placeholder="Ej: Nico" />
-        </div>
-        <div>
-          <div style={{ fontSize: 13, color: COLORS.gray, marginBottom: 6 }}>Team name</div>
-          <Input value={myTeamName} onChange={(v) => onProfileChange({ team_name: v })} placeholder="Ej: Mojarrita" />
-        </div>
-        <div>
-          <div style={{ fontSize: 13, color: COLORS.gray, marginBottom: 6 }}>Estado</div>
-          <select
-            value={myStatus}
-            onChange={(e) => onProfileChange({ team_status: e.target.value })}
-            style={{
-              width: "100%",
-              minWidth: 0,
-              boxSizing: "border-box",
-              padding: "14px 14px",
-              borderRadius: 14,
-              border: `1px solid ${COLORS.border}`,
-              background: COLORS.sky,
-              color: COLORS.navy,
-              fontSize: 16,
-              fontWeight: 700,
-            }}
-          >
-            <option>Contendiendo</option>
-            <option>Reconstrucción</option>
-            <option>Re-tool</option>
-            <option>Tanqueando</option>
-          </select>
-        </div>
-      </div>
-    </Card>
-  );
-}
-
-function BottomNav({ tab, onTab }) {
-  const items = [
-    { id: "home", label: "Inicio" },
-    { id: "league", label: "Liga" },
-    { id: "interests", label: "Intereses" },
-    { id: "myteam", label: "Mi equipo" },
-  ];
-  return (
-    <div
-      style={{
-        position: "fixed",
-        left: 0,
-        right: 0,
-        bottom: 0,
-        padding: "10px 14px",
-        background: "rgba(10, 18, 34, 0.65)",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
-        borderTop: `1px solid ${COLORS.border}`,
-        zIndex: 20,
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 1100,
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
-          gap: 10,
-        }}
-      >
-        {items.map((it) => (
-          <Button
-            key={it.id}
-            variant={tab === it.id ? "primary" : "ghost"}
-            onClick={() => onTab(it.id)}
-            style={{ padding: "12px 10px", borderRadius: 999 }}
-          >
-            {it.label}
-          </Button>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function MyTeamTab({
-  roster,
-  statusOverrides,
-  playerCatalog,
-  pickCatalog,
-  onAddPlayer,
-  onAddPick,
-  onRemoveAsset,
-  onTogglePlayerStatus,
-  onChangePlayerSlot,
-}) {
-  const [mode, setMode] = useState("players"); // players | picks
-  const [q, setQ] = useState("");
-  const [posFilter, setPosFilter] = useState("ALL");
-
-  const rosterPlayers = useMemo(() => (roster || []).filter((a) => a.type === "PLAYER"), [roster]);
-  const rosterPicks = useMemo(() => (roster || []).filter((a) => a.type === "PICK"), [roster]);
-
-  const rosterPlayerIds = useMemo(() => new Set(rosterPlayers.map((p) => String(p.id))), [rosterPlayers]);
-  const rosterPickIds = useMemo(() => new Set(rosterPicks.map((p) => String(p.id))), [rosterPicks]);
-
-  const filteredPlayers = useMemo(() => {
-    const qq = q.trim().toLowerCase();
-    return playerCatalog
-      .filter((p) => (posFilter === "ALL" ? true : normalizePos(p.pos) === posFilter))
-      .filter((p) => (qq ? p.name.toLowerCase().includes(qq) : true))
-      .slice(0, 140);
-  }, [playerCatalog, q, posFilter]);
-
-  const filteredPicks = useMemo(() => {
-    const qq = q.trim().toLowerCase();
-    return pickCatalog.filter((p) => (qq ? p.label.toLowerCase().includes(qq) : true)).slice(0, 220);
-  }, [pickCatalog, q]);
-
-  const slotGroups = useMemo(() => {
-    const g = new Map();
-    for (const s of ROSTER_SLOTS) g.set(s.id, []);
-    for (const p of rosterPlayers) {
-      const k = p.slot || "BN";
-      if (!g.has(k)) g.set(k, []);
-      g.get(k).push(p);
-    }
-    for (const [k, arr] of g.entries()) {
-      arr.sort((a, b) => String(a.pos).localeCompare(String(b.pos)) || String(a.name).localeCompare(String(b.name)));
-    }
-    return g;
-  }, [rosterPlayers]);
-
-  const formatLine = "1 QB · 2 RB · 1 WR · 1 TE · 3 FLEX · 21 BN";
-
-  return (
-    <div style={{ display: "grid", gap: 16 }}>
-      <Card style={{ background: COLORS.sky }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 14, flexWrap: "wrap" }}>
-          <div>
-            <div style={{ fontSize: 20, fontWeight: 950 }}>Mi equipo (slots)</div>
-            <div style={{ color: COLORS.gray, marginTop: 6 }}>Tocá el botón de estado: Disponible → En escucha → No disponible</div>
-            <div style={{ color: COLORS.gray, marginTop: 6, fontSize: 13 }}>Formato: {formatLine}</div>
-          </div>
-        </div>
-      </Card>
-
-      <div className="grid2">
-        <Card>
-          <div style={{ display: "flex", gap: 10 }}>
-            <Button variant={mode === "players" ? "primary" : "ghost"} onClick={() => setMode("players")} style={{ flex: 1, borderRadius: 14 }}>
-              Jugadores
-            </Button>
-            <Button variant={mode === "picks" ? "primary" : "ghost"} onClick={() => setMode("picks")} style={{ flex: 1, borderRadius: 14 }}>
-              Picks
-            </Button>
-          </div>
-
-          <div style={{ marginTop: 12, display: "grid", gap: 10 }}>
-            <Input value={q} onChange={setQ} placeholder={mode === "players" ? "Buscar jugador por nombre…" : "Buscar pick…"} />
-            {mode === "players" ? (
-              <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                {[
-                  { id: "ALL", label: "Todos" },
-                  { id: "QB", label: "QB" },
-                  { id: "RB", label: "RB" },
-                  { id: "WR", label: "WR" },
-                  { id: "TE", label: "TE" },
-                ].map((p) => (
-                  <Button key={p.id} variant={posFilter === p.id ? "primary" : "ghost"} onClick={() => setPosFilter(p.id)} style={{ padding: "8px 10px", borderRadius: 999 }}>
-                    {p.label}
-                  </Button>
-                ))}
-              </div>
-            ) : null}
-          </div>
-
-          <div style={{ marginTop: 12, maxHeight: 520, overflow: "auto", paddingRight: 6 }}>
-            <div style={{ display: "grid", gap: 10 }}>
-              {mode === "players"
-                ? filteredPlayers.map((p) => {
-                    const added = rosterPlayerIds.has(String(p.id));
-                    return (
-                      <div key={p.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, padding: 12, borderRadius: 14, border: `1px solid ${COLORS.border}`, background: COLORS.soft }}>
-                        <div className="breakAnywhere">
-                          <div style={{ fontWeight: 900 }}>{p.name}</div>
-                          <div style={{ color: COLORS.gray, fontSize: 13 }}>{normalizePos(p.pos)} · {String(p.nfl || "").toUpperCase()}</div>
-                        </div>
-                        <Button disabled={added} variant={added ? "ghost" : "primary"} onClick={() => onAddPlayer(p)} style={{ padding: "10px 12px", borderRadius: 12 }}>
-                          {added ? "Agregado" : "+ Agregar"}
-                        </Button>
-                      </div>
-                    );
-                  })
-                : filteredPicks.map((p) => {
-                    const added = rosterPickIds.has(String(p.id));
-                    return (
-                      <div key={p.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, padding: 12, borderRadius: 14, border: `1px solid ${COLORS.border}`, background: COLORS.soft }}>
-                        <div className="breakAnywhere">
-                          <div style={{ fontWeight: 900 }}>{p.label}</div>
-                          <div style={{ color: COLORS.gray, fontSize: 13 }}>Pick</div>
-                        </div>
-                        <Button disabled={added} variant={added ? "ghost" : "primary"} onClick={() => onAddPick(p)} style={{ padding: "10px 12px", borderRadius: 12 }}>
-                          {added ? "Agregado" : "+ Agregar"}
-                        </Button>
-                      </div>
-                    );
-                  })}
-            </div>
-          </div>
-        </Card>
-
-        <Card>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12, flexWrap: "wrap" }}>
-            <div style={{ fontSize: 18, fontWeight: 950 }}>Roster</div>
-            <div style={{ color: COLORS.gray, fontSize: 13 }}>{rosterPlayers.length} jugadores · {rosterPicks.length} picks</div>
-          </div>
-
-          <div style={{ marginTop: 12, display: "grid", gap: 16 }}>
-            {ROSTER_SLOTS.map((s) => {
-              const arr = slotGroups.get(s.id) || [];
-              return (
-                <div key={s.id}>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-                    <div style={{ fontWeight: 950 }}>{s.label}</div>
-                    <div style={{ color: COLORS.gray, fontWeight: 800 }}>{arr.length}/{s.limit}</div>
-                  </div>
-                  <div style={{ marginTop: 8, display: "grid", gap: 10 }}>
-                    {arr.length === 0 ? (
-                      <div style={{ color: COLORS.gray, fontSize: 13 }}>—</div>
-                    ) : (
-                      arr.map((p) => {
-                        const k = assetKey("PLAYER", p.id);
-                        const st = statusOverrides?.[k] || "Disponible";
-                        return (
-                          <div key={p.id} style={{ padding: 12, borderRadius: 14, border: `1px solid ${COLORS.border}`, background: COLORS.soft, display: "grid", gap: 10 }}>
-                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
-                              <div className="breakAnywhere">
-                                <div style={{ fontWeight: 950 }}>{p.name}</div>
-                                <div style={{ color: COLORS.gray, fontSize: 13 }}>{normalizePos(p.pos)} · {String(p.nfl || "").toUpperCase()}</div>
-                              </div>
-                              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
-                                <select
-                                  value={p.slot || "BN"}
-                                  onChange={(e) => onChangePlayerSlot(p.id, e.target.value)}
-                                  style={{
-                                    padding: "10px 12px",
-                                    borderRadius: 12,
-                                    border: `1px solid ${COLORS.border}`,
-                                    background: COLORS.sky,
-                                    color: COLORS.navy,
-                                    fontWeight: 900,
-                                  }}
-                                >
-                                  {ROSTER_SLOTS.map((ss) => (
-                                    <option key={ss.id} value={ss.id}>
-                                      {ss.label}
-                                    </option>
-                                  ))}
-                                </select>
-                                <Button
-                                  variant={st === "No disponible" ? "danger" : st === "En escucha" ? "primary" : "ghost"}
-                                  onClick={() => onTogglePlayerStatus(p.id)}
-                                  style={{ padding: "10px 12px", borderRadius: 999 }}
-                                >
-                                  {st}
-                                </Button>
-                                <Button variant="ghost" onClick={() => onRemoveAsset("PLAYER", p.id)} style={{ padding: "10px 12px", borderRadius: 12 }}>
-                                  ✕
-                                </Button>
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-
-            <div style={{ borderTop: `1px solid ${COLORS.border}`, paddingTop: 12 }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-                <div style={{ fontWeight: 950 }}>Picks</div>
-                <div style={{ color: COLORS.gray, fontWeight: 800 }}>{rosterPicks.length}</div>
-              </div>
-              <div style={{ marginTop: 8, display: "grid", gap: 10 }}>
-                {rosterPicks.length === 0 ? (
-                  <div style={{ color: COLORS.gray, fontSize: 13 }}>—</div>
-                ) : (
-                  rosterPicks
-                    .slice()
-                    .sort((a, b) => String(a.id).localeCompare(String(b.id)))
-                    .map((p) => (
-                      <div key={p.id} style={{ padding: 12, borderRadius: 14, border: `1px solid ${COLORS.border}`, background: COLORS.soft, display: "flex", justifyContent: "space-between", gap: 10, alignItems: "center" }}>
-                        <div className="breakAnywhere" style={{ fontWeight: 950 }}>{p.label || p.id}</div>
-                        <Button variant="ghost" onClick={() => onRemoveAsset("PICK", p.id)} style={{ padding: "10px 12px", borderRadius: 12 }}>
-                          ✕
-                        </Button>
-                      </div>
-                    ))
-                )}
-              </div>
-            </div>
-          </div>
-        </Card>
-      </div>
-    </div>
-  );
-}
-
-function LeagueTab({ me, teams, interests, byUser, onSetInterest }) {
+function LeagueBoard({ me, teams, interests, picks, byUser, onSetInterest }) {
   const [selectedUserId, setSelectedUserId] = useState("");
   const otherTeams = useMemo(() => teams.filter((t) => t.user_id !== me.id), [teams, me.id]);
 
@@ -1333,20 +823,6 @@ function LeagueTab({ me, teams, interests, byUser, onSetInterest }) {
   }, [otherTeams.length]);
 
   const selected = byUser.get(selectedUserId);
-  const selectedRoster = useMemo(() => (Array.isArray(selected?.roster) ? selected.roster : []), [selected?.roster]);
-  const selectedStatusOverrides = useMemo(
-    () => (selected?.status_overrides && typeof selected.status_overrides === "object" ? selected.status_overrides : {}),
-    [selected?.status_overrides]
-  );
-
-  const players = useMemo(() => selectedRoster.filter((a) => a.type === "PLAYER"), [selectedRoster]);
-  const picks = useMemo(() => selectedRoster.filter((a) => a.type === "PICK"), [selectedRoster]);
-
-  function currentInterest(assetType, assetId) {
-    return interests.find(
-      (x) => x.from_user_id === me.id && x.to_user_id === selectedUserId && x.asset_type === assetType && x.asset_id === assetId
-    );
-  }
 
   return (
     <Card>
@@ -1364,12 +840,12 @@ function LeagueTab({ me, teams, interests, byUser, onSetInterest }) {
             border: `1px solid ${COLORS.border}`,
             background: COLORS.sky,
             color: COLORS.navy,
-            fontWeight: 900,
+            fontWeight: 800,
           }}
         >
           {otherTeams.map((t) => (
             <option key={t.user_id} value={t.user_id}>
-              {(t.team_name || t.display_name || t.user_id).slice(0, 36)}
+              {(t.display_name || t.user_id).slice(0, 30)} {t.team_name ? `— ${t.team_name}` : ""}
             </option>
           ))}
         </select>
@@ -1378,68 +854,33 @@ function LeagueTab({ me, teams, interests, byUser, onSetInterest }) {
       {!selected ? (
         <div style={{ marginTop: 12, color: COLORS.gray }}>No hay otro equipo seleccionado.</div>
       ) : (
-        <div style={{ marginTop: 14, display: "grid", gap: 14 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 10, flexWrap: "wrap" }}>
-            <div style={{ fontSize: 18, fontWeight: 950 }}>
-              {selected.team_name || "(sin nombre)"} · <span style={{ color: COLORS.gray }}>{selected.display_name || selected.user_id}</span>
-            </div>
+        <div style={{ marginTop: 14, display: "grid", gap: 12 }}>
+          <div style={{ fontSize: 18, fontWeight: 900 }}>
+            {selected.display_name} {selected.team_name ? `— ${selected.team_name}` : ""}
+          </div>
+          <div>
             <Pill tone="neutral">{selected.team_status || "—"}</Pill>
           </div>
 
-          <div className="grid2">
-            <Card style={{ boxShadow: "none" }}>
-              <h3 style={{ marginTop: 0 }}>Roster</h3>
-              {players.length === 0 && picks.length === 0 ? (
-                <div style={{ color: COLORS.gray }}>Este equipo todavía no cargó assets.</div>
-              ) : (
-                <div style={{ display: "grid", gap: 10 }}>
-                  {players
-                    .slice()
-                    .sort((a, b) => String(a.pos).localeCompare(String(b.pos)) || String(a.name).localeCompare(String(b.name)))
-                    .map((p) => {
-                      const st = selectedStatusOverrides?.[assetKey("PLAYER", p.id)] || "Disponible";
-                      const cur = currentInterest("PLAYER", p.id);
-                      return (
-                        <AssetInterestRow
-                          key={`pl-${p.id}`}
-                          title={p.name}
-                          subtitle={`${normalizePos(p.pos)} · ${String(p.nfl || "").toUpperCase()} · ${st}`}
-                          current={cur}
-                          onSet={(lvl) => onSetInterest(selected.user_id, "PLAYER", p.id, lvl, "")}
-                        />
-                      );
-                    })}
+          <div style={{ borderTop: `1px solid ${COLORS.border}`, paddingTop: 12 }}>
+            <h3 style={{ margin: 0 }}>Assets (demo: picks)</h3>
 
-                  {picks
-                    .slice()
-                    .sort((a, b) => String(a.id).localeCompare(String(b.id)))
-                    .map((p) => {
-                      const cur = currentInterest("PICK", p.id);
-                      return (
-                        <AssetInterestRow
-                          key={`pk-${p.id}`}
-                          title={p.label || p.id}
-                          subtitle={`Pick`}
-                          current={cur}
-                          onSet={(lvl) => onSetInterest(selected.user_id, "PICK", p.id, lvl, "")}
-                        />
-                      );
-                    })}
-                </div>
-              )}
-            </Card>
-
-            <Card style={{ boxShadow: "none" }}>
-              <h3 style={{ marginTop: 0 }}>Guía</h3>
-              <div style={{ color: COLORS.gray, lineHeight: 1.5 }}>
-                <div style={{ fontWeight: 900, color: COLORS.navy, marginBottom: 6 }}>Cómo usar esta pestaña</div>
-                <ul style={{ margin: 0, paddingLeft: 18 }}>
-                  <li>Elegís un equipo en el selector.</li>
-                  <li>Marcás interés: Bajo / Medio / Alto.</li>
-                  <li>Lo ves resumido en <b>Intereses</b>.</li>
-                </ul>
-              </div>
-            </Card>
+            <div style={{ marginTop: 10, display: "grid", gap: 10 }}>
+              {picks.map((p) => (
+                <AssetRow
+                  key={p.id}
+                  label={p.label}
+                  current={interests.find(
+                    (x) =>
+                      x.from_user_id === me.id &&
+                      x.to_user_id === selected.user_id &&
+                      x.asset_type === "PICK" &&
+                      x.asset_id === p.id
+                  )}
+                  onSet={(level, note) => onSetInterest(selected.user_id, "PICK", p.id, level, note)}
+                />
+              ))}
+            </div>
           </div>
         </div>
       )}
@@ -1447,134 +888,78 @@ function LeagueTab({ me, teams, interests, byUser, onSetInterest }) {
   );
 }
 
-function AssetInterestRow({ title, subtitle, current, onSet }) {
+function AssetRow({ label, current, onSet }) {
+  const [note, setNote] = useState(current?.note || "");
+  useEffect(() => setNote(current?.note || ""), [current?.key]);
+
   const level = current?.level || "NONE";
   return (
-    <div style={{ padding: 12, borderRadius: 14, border: `1px solid ${COLORS.border}`, background: COLORS.soft, display: "grid", gap: 10 }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
-        <div className="breakAnywhere">
-          <div style={{ fontWeight: 950 }}>{title}</div>
-          <div style={{ color: COLORS.gray, fontSize: 13 }}>{subtitle}</div>
+    <div
+      className="assetRow"
+      style={{
+        padding: 12,
+        borderRadius: 14,
+        border: `1px solid ${COLORS.border}`,
+        background: COLORS.soft,
+      }}
+    >
+      <div style={{ display: "grid", gap: 8 }}>
+        <div className="breakAnywhere" style={{ fontWeight: 900 }}>{label}</div>
+
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+          <Button variant={level === "LOW" ? "primary" : "ghost"} onClick={() => onSet(level === "LOW" ? "NONE" : "LOW", note)} style={{ padding: "8px 10px" }}>
+            LOW
+          </Button>
+          <Button variant={level === "MED" ? "primary" : "ghost"} onClick={() => onSet(level === "MED" ? "NONE" : "MED", note)} style={{ padding: "8px 10px" }}>
+            MED
+          </Button>
+          <Button variant={level === "HIGH" ? "primary" : "ghost"} onClick={() => onSet(level === "HIGH" ? "NONE" : "HIGH", note)} style={{ padding: "8px 10px" }}>
+            HIGH
+          </Button>
+
+          <div style={{ flex: 1 }} />
+          <Pill tone={level === "HIGH" ? "good" : "neutral"}>{level}</Pill>
         </div>
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
-          {INTEREST_LEVELS.map((l) => (
-            <Button
-              key={l.id}
-              variant={level === l.id ? "primary" : "ghost"}
-              onClick={() => onSet(level === l.id ? "NONE" : l.id)}
-              style={{ padding: "8px 10px", borderRadius: 999 }}
-            >
-              {l.label}
-            </Button>
-          ))}
-          <Pill tone={level === "HIGH" ? "good" : "neutral"}>{level === "NONE" ? "—" : level}</Pill>
-        </div>
+
+        <Input value={note} onChange={setNote} placeholder="nota (opcional)" />
+      </div>
+
+      <div className="assetActions">
+        <Button variant="primary" onClick={() => onSet(level, note)} style={{ padding: "10px 12px" }}>
+          Guardar
+        </Button>
+        <Button variant="danger" onClick={() => onSet("NONE", "")} style={{ padding: "10px 12px" }}>
+          Borrar
+        </Button>
       </div>
     </div>
   );
 }
 
-function InterestsTab({ byUser, outgoing, incoming, teams }) {
-  const teamNameById = useMemo(() => {
-    const m = new Map();
-    for (const t of teams) m.set(t.user_id, t.team_name || "");
-    return m;
-  }, [teams]);
-
-  const outgoingSorted = useMemo(
-    () => outgoing.slice().sort((a, b) => String(b.updated_at || "").localeCompare(String(a.updated_at || ""))),
-    [outgoing]
-  );
-  const incomingSorted = useMemo(
-    () => incoming.slice().sort((a, b) => String(b.updated_at || "").localeCompare(String(a.updated_at || ""))),
-    [incoming]
-  );
-
-  const incomingByAsset = useMemo(() => {
-    const m = new Map();
-    for (const r of incomingSorted) {
-      const k = `${r.asset_type}__${r.asset_id}`;
-      if (!m.has(k)) m.set(k, []);
-      m.get(k).push(r);
-    }
-    return m;
-  }, [incomingSorted]);
-
+function InterestList({ rows, byUser }) {
   return (
-    <Card>
-      <h2 style={{ marginTop: 0 }}>Intereses</h2>
-      <div className="grid2">
-        <div>
-          <div style={{ fontSize: 16, fontWeight: 950, marginBottom: 10 }}>Lo que me interesa</div>
-          {outgoingSorted.length === 0 ? (
-            <div style={{ color: COLORS.gray }}>Todavía no marcaste intereses en otros equipos.</div>
-          ) : (
-            <div style={{ display: "grid", gap: 10 }}>
-              {outgoingSorted.map((r) => {
-                const to = byUser.get(r.to_user_id);
-                const owner = `${to?.team_name || teamNameById.get(r.to_user_id) || "(sin nombre)"}`;
-                const who = `${to?.display_name || r.to_user_id}`;
-                const label = r.level === "LOW" ? "Bajo" : r.level === "MED" ? "Medio" : r.level === "HIGH" ? "Alto" : r.level;
-                return (
-                  <div key={r.key} style={{ padding: 12, borderRadius: 14, border: `1px solid ${COLORS.border}`, background: COLORS.soft }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 10, flexWrap: "wrap" }}>
-                      <div className="breakAnywhere" style={{ fontWeight: 950 }}>
-                        {r.asset_type}: {r.asset_id}
-                      </div>
-                      <Pill tone={r.level === "HIGH" ? "good" : "neutral"}>{label}</Pill>
-                    </div>
-                    <div style={{ marginTop: 6, color: COLORS.gray, fontSize: 13 }}>Dueño: {owner} · {who}</div>
-                  </div>
-                );
-              })}
+    <div style={{ display: "grid", gap: 10 }}>
+      {rows
+        .slice()
+        .sort((a, b) => String(b.updated_at || "").localeCompare(String(a.updated_at || "")))
+        .map((r) => {
+          const from = byUser.get(r.from_user_id);
+          const to = byUser.get(r.to_user_id);
+          return (
+            <div key={r.key} style={{ padding: 12, borderRadius: 14, border: `1px solid ${COLORS.border}`, background: COLORS.soft }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 10, flexWrap: "wrap" }}>
+                <div className="breakAnywhere" style={{ fontWeight: 900 }}>
+                  {(from?.display_name || r.from_user_id)} → {(to?.display_name || r.to_user_id)}
+                </div>
+                <Pill tone={r.level === "HIGH" ? "good" : "neutral"}>{r.level}</Pill>
+              </div>
+              <div style={{ marginTop: 6, color: COLORS.gray, fontSize: 13 }}>
+                {r.asset_type}: {r.asset_id} · {r.updated_at ? new Date(r.updated_at).toLocaleString() : ""}
+              </div>
+              {r.note ? <div style={{ marginTop: 8 }}>{r.note}</div> : null}
             </div>
-          )}
-        </div>
-
-        <div>
-          <div style={{ fontSize: 16, fontWeight: 950, marginBottom: 10 }}>Otros interesados en mi equipo</div>
-          {incomingSorted.length === 0 ? (
-            <div style={{ color: COLORS.gray }}>Nadie marcó interés por tus assets (todavía).</div>
-          ) : (
-            <div style={{ display: "grid", gap: 10 }}>
-              {[...incomingByAsset.entries()].map(([k, rows]) => {
-                const first = rows[0];
-                return (
-                  <div key={k} style={{ padding: 12, borderRadius: 14, border: `1px solid ${COLORS.border}`, background: COLORS.soft }}>
-                    <div className="breakAnywhere" style={{ fontWeight: 950 }}>
-                      {first.asset_type}: {first.asset_id}
-                    </div>
-                    <div style={{ marginTop: 8, display: "flex", gap: 8, flexWrap: "wrap" }}>
-                      {rows.map((r) => {
-                        const from = byUser.get(r.from_user_id);
-                        const who = from?.team_name
-                          ? `${from.team_name} (${from.display_name || r.from_user_id})`
-                          : from?.display_name || r.from_user_id;
-                        const label = r.level === "LOW" ? "Bajo" : r.level === "MED" ? "Medio" : r.level === "HIGH" ? "Alto" : r.level;
-                        return (
-                          <span
-                            key={r.key}
-                            style={{
-                              padding: "8px 10px",
-                              borderRadius: 999,
-                              border: `1px solid ${COLORS.border}`,
-                              background: COLORS.sky,
-                              fontWeight: 900,
-                              fontSize: 12,
-                            }}
-                          >
-                            {who}: {label}
-                          </span>
-                        );
-                      })}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      </div>
-    </Card>
+          );
+        })}
+    </div>
   );
 }
