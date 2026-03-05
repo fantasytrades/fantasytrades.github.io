@@ -12,13 +12,6 @@
       "status": "AVAILABLE"
     },
     {
-      "id": "5670",
-      "name": "Bijan Robinson",
-      "pos": "RB",
-      "nfl": "ATL",
-      "status": "AVAILABLE"
-    },
-    {
       "id": "2860",
       "name": "Saquon Barkley",
       "pos": "RB",
@@ -48,5 +41,5 @@
     }
   ],
   "picks": [],
-  "updated_at": "2026-03-05T05:34:28.346Z"
+  "updated_at": "2026-03-05T05:38:13.280Z"
 }
