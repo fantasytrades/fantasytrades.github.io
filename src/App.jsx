@@ -206,7 +206,7 @@ async function ghPutJsonWithRetry(path, mutator, label) {
         return next;
       } catch (e) {
         if (e?.status === 409 || e?.code === 409) {
-          const ms = 140 + attempt * 220;
+          const ms = 500 + attempt * 600;
           await new Promise((r) => setTimeout(r, ms));
           continue;
         }
@@ -262,7 +262,7 @@ async function ghPutTeamWithRetry(userId, mutator, label) {
         return next;
       } catch (e) {
         if (e?.status === 409 || e?.code === 409) {
-          const ms = 140 + attempt * 220;
+          const ms = 500 + attempt * 600;
           await new Promise((r) => setTimeout(r, ms));
           continue;
         }
@@ -806,7 +806,8 @@ export default function App() {
   const [myTeamStatus, setMyTeamStatus] = useState("Contendiendo");
 
   const [saveInfo, setSaveInfo] = useState("");
-  const saving = saveInfo === "Guardando...";
+  const [pendingOps, setPendingOps] = useState(0);
+  const saving = pendingOps > 0;
 
   useEffect(() => {
     if (!GH_OWNER || !GH_REPO) setBootError("Faltan VITE_GH_OWNER / VITE_GH_REPO");
@@ -997,6 +998,7 @@ export default function App() {
 
   async function saveMyProfile() {
     if (!me) return;
+    setPendingOps((n) => n + 1);
     setSaveInfo("Guardando...");
     try {
       const next = await ghPutTeamWithRetry(
@@ -1009,7 +1011,6 @@ export default function App() {
         }),
         "update profile"
       );
-      // Actualizar estado local inmediatamente
       setTeams((prev) => {
         const idx = prev.findIndex((t) => t.user_id === me.id);
         if (idx === -1) return [...prev, next];
@@ -1021,15 +1022,17 @@ export default function App() {
       setTimeout(() => { setSaveInfo(""); refreshData(); }, 1500);
     } catch (e) {
       setSaveInfo(friendlyAuthError(e));
+    } finally {
+      setPendingOps((n) => Math.max(0, n - 1));
     }
   }
 
   async function updateMyTeam(mutator, label) {
     if (!me) return;
+    setPendingOps((n) => n + 1);
     setSaveInfo("Guardando...");
     try {
       const next = await ghPutTeamWithRetry(me.id, mutator, label);
-      // Actualizar estado local inmediatamente sin recargar todos los equipos
       setTeams((prev) => {
         const idx = prev.findIndex((t) => t.user_id === me.id);
         if (idx === -1) return [...prev, next];
@@ -1041,6 +1044,8 @@ export default function App() {
       setTimeout(() => setSaveInfo(""), 650);
     } catch (e) {
       setSaveInfo(friendlyAuthError(e));
+    } finally {
+      setPendingOps((n) => Math.max(0, n - 1));
     }
   }
 
