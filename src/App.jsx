@@ -288,9 +288,12 @@ function Styles() {
 
       /* === Status colors === */
       .statusBtn{ border:1px solid var(--border); }
-      .status-AVAILABLE{ background:rgba(34,197,94,0.20); border-color:rgba(34,197,94,0.40); color:#D7FFE4; }
-      .status-LISTENING{ background:rgba(234,179,8,0.20); border-color:rgba(234,179,8,0.45); color:#FFF2B8; }
-      .status-NOT_AVAILABLE{ background:rgba(239,68,68,0.20); border-color:rgba(239,68,68,0.45); color:#FFD0D0; }
+      /* buttons also use .ghost (button.ghost is more specific),
+         so target button.statusBtn.status-... to override background/border */
+      button.statusBtn.status-AVAILABLE{ background:rgba(34,197,94,0.20); border-color:rgba(34,197,94,0.40); color:#D7FFE4; }
+      button.statusBtn.status-LISTENING{ background:rgba(234,179,8,0.20); border-color:rgba(234,179,8,0.45); color:#FFF2B8; }
+      button.statusBtn.status-NOT_AVAILABLE{ background:rgba(239,68,68,0.20); border-color:rgba(239,68,68,0.45); color:#FFD0D0; }
+
       .pill-AVAILABLE{ background:rgba(34,197,94,0.20); border-color:rgba(34,197,94,0.40); color:#D7FFE4; }
       .pill-LISTENING{ background:rgba(234,179,8,0.20); border-color:rgba(234,179,8,0.45); color:#FFF2B8; }
       .pill-NOT_AVAILABLE{ background:rgba(239,68,68,0.20); border-color:rgba(239,68,68,0.45); color:#FFD0D0; }
