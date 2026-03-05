@@ -51,6 +51,27 @@ const STATUS_LABEL = {
   LISTENING:     "En escucha",
   NOT_AVAILABLE: "No disponible",
 };
+const STATUS_KEY_FROM_LABEL = {
+  "Disponible": "AVAILABLE",
+  "En escucha": "LISTENING",
+  "No disponible": "NOT_AVAILABLE",
+};
+
+function normStatusKey(s) {
+  if (!s) return "AVAILABLE";
+  // already a canonical key
+  if (STATUS_LABEL[s]) return s;
+  // spanish label
+  if (STATUS_KEY_FROM_LABEL[s]) return STATUS_KEY_FROM_LABEL[s];
+  const up = String(s).trim().toUpperCase();
+  const up2 = up.replace(/\s+/g, "_");
+  if (STATUS_LABEL[up2]) return up2;
+  if (up2 === "NO_DISPONIBLE") return "NOT_AVAILABLE";
+  if (up2 === "EN_ESCUCHA") return "LISTENING";
+  if (up2 === "DISPONIBLE") return "AVAILABLE";
+  return "AVAILABLE";
+}
+
 const INTEREST_LABEL = { NONE: "—", LOW: "Bajo", MEDIUM: "Medio", HIGH: "Alto" };
 
 // ---- Helpers ----
@@ -79,7 +100,8 @@ function initials(name) {
   return (a + b).toUpperCase();
 }
 function cycleStatus(curr) {
-  const i = STATUS_CYCLE.indexOf(curr);
+  const key = normStatusKey(curr);
+  const i = STATUS_CYCLE.indexOf(key);
   return STATUS_CYCLE[(i + 1) % STATUS_CYCLE.length];
 }
 
@@ -400,9 +422,14 @@ function MyTeamView({
                               </div>
                             </div>
                             <div className="row" style={{ justifyContent: "flex-end" }}>
-                              <button className={`ghost statusBtn status-${r.status || "AVAILABLE"}`} disabled={saving} onClick={() => onTogglePlayerStatus(r.id)}>
-                                {STATUS_LABEL[r.status] || r.status}
-                              </button>
+                              {(() => {
+                                const stKey = normStatusKey(r.status);
+                                return (
+                                  <button className={`ghost statusBtn status-${stKey}`} disabled={saving} onClick={() => onTogglePlayerStatus(r.id)}>
+                                    {STATUS_LABEL[stKey]}
+                                  </button>
+                                );
+                              })()}
                               <button className="danger" disabled={saving} onClick={() => onRemovePlayer(r.id)}>✕</button>
                             </div>
                           </div>
@@ -425,9 +452,14 @@ function MyTeamView({
                       <div className="muted sub">{p.id}</div>
                     </div>
                     <div className="row" style={{ justifyContent: "flex-end" }}>
-                      <button className={`ghost statusBtn status-${p.status || "AVAILABLE"}`} disabled={saving} onClick={() => onTogglePickStatus(p.id)}>
-                        {STATUS_LABEL[p.status] || p.status}
-                      </button>
+                      {(() => {
+                        const stKey = normStatusKey(p.status);
+                        return (
+                          <button className={`ghost statusBtn status-${stKey}`} disabled={saving} onClick={() => onTogglePickStatus(p.id)}>
+                            {STATUS_LABEL[stKey]}
+                          </button>
+                        );
+                      })()}
                       <button className="danger" disabled={saving} onClick={() => onRemovePick(p.id)}>✕</button>
                     </div>
                   </div>
