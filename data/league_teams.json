@@ -18,8 +18,16 @@
     "display_name": "nicolasverdasco",
     "team_name": "",
     "team_status": "Contendiendo",
-    "roster": [],
+    "roster": [
+      {
+        "id": "5177",
+        "name": "Ja'Marr Chase",
+        "pos": "WR",
+        "nfl": "CIN",
+        "status": "AVAILABLE"
+      }
+    ],
     "picks": [],
-    "updated_at": "2026-03-05T04:03:13.229Z"
+    "updated_at": "2026-03-05T04:04:34.703Z"
   }
 ]
