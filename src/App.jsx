@@ -95,6 +95,42 @@ function cycleStatus(curr) {
   return STATUS_CYCLE[(i + 1) % STATUS_CYCLE.length];
 }
 
+async function ghPutTeamWithRetry(userId, mutator, label) {
+  return ghEnqueueWrite(async () => {
+    const MAX = 8;
+    for (let attempt = 0; attempt < MAX; attempt++) {
+      const { data: curr, sha } = await ghGetTeamFile(userId);
+
+      const base = normalizeTeamRow(
+        curr || {
+          user_id: userId,
+          display_name: "",
+          team_name: "",
+          team_status: "Contendiendo",
+          roster: [],
+          picks: [],
+          updated_at: nowIso(),
+        }
+      );
+
+      const next = normalizeTeamRow(mutator({ ...base, updated_at: nowIso() }));
+
+      try {
+        await ghPutTeamFile(userId, next, sha || null, label);
+        return next;
+      } catch (e) {
+        if (e?.status === 409 || e?.code === 409) {
+          const ms = 140 + attempt * 220;
+          await new Promise((r) => setTimeout(r, ms));
+          continue;
+        }
+        throw e;
+      }
+    }
+    throw new Error(`No se pudo guardar: demasiados conflictos (409) en data/teams/${userId}.json`);
+  });
+}
+
 /** ================= Picks catalog ================= */
 function pickCatalog() {
   const out = [];
@@ -597,20 +633,20 @@ export default function App() {
     setTab("team");
   }
 
-  async function saveMyProfile() {
-    if (!me) return;
-    setSaveInfo("Guardando...");
-    try {
-      const { data: curr, sha } = await ghGetTeamFile(me.id);
-      const base = normalizeTeamRow(curr || { user_id: me.id, roster: [], picks: [] });
+  async function updateMyTeam(mutator, label) {
+  if (!me) return;
+  setSaveInfo("Guardando...");
 
-      const next = {
-        ...base,
-        display_name: myDisplayName.trim(),
-        team_name: myTeamName.trim(),
-        team_status: myTeamStatus,
-        updated_at: nowIso(),
-      };
+  try {
+    await ghPutTeamWithRetry(me.id, mutator, label);
+
+    await refreshData();
+    setSaveInfo("Guardado ✅");
+    setTimeout(() => setSaveInfo(""), 650);
+  } catch (e) {
+    setSaveInfo(friendlyAuthError(e));
+  }
+}
 
       await ghPutTeamFile(me.id, next, sha || null, "update profile");
       await refreshData();
