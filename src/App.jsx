@@ -208,21 +208,33 @@ function normalizeTeamRow(row) {
   }).filter(Boolean);
 
   const picks = Array.isArray(row?.picks) ? row.picks : [];
-  out.picks = picks.map((x) => {
-    if (!x) return null;
-    if (typeof x === "string" || typeof x === "number") {
-      const id = String(x);
-      const base = basePickId(id);
-      return { id, base, label: PICK_LABEL.get(base) || base, status: "AVAILABLE" };
-    }
-    if (typeof x === "object") {
-      const id = String(x.id || x.pick_id || "");
-      if (!id) return null;
-      const base = String(x.base || x.base_id || x.pick_base || "") || basePickId(id);
-      return { id, base, label: x.label || PICK_LABEL.get(base) || base, status: x.status || "AVAILABLE" };
-    }
-    return null;
-  }).filter(Boolean);
+  out.picks = picks
+    .map((x) => {
+      if (!x) return null;
+
+      // Soporta picks duplicados por ronda (2027/2028) guardados como "2027-3#2"
+      const toBase = (id) => String(id || "").split("#")[0];
+
+      if (typeof x === "string" || typeof x === "number") {
+        const id = String(x);
+        const base = toBase(id);
+        return { id, base, label: PICK_LABEL.get(base) || base, status: "AVAILABLE" };
+      }
+
+      if (typeof x === "object") {
+        const id = String(x.id || "");
+        if (!id) return null;
+        const base = String(x.base || toBase(id));
+        return {
+          id,
+          base,
+          label: x.label || PICK_LABEL.get(base) || base,
+          status: x.status || "AVAILABLE",
+        };
+      }
+      return null;
+    })
+    .filter(Boolean);
 
   return out;
 }
@@ -568,19 +580,22 @@ function Styles() {
         color:#94A3B8;
       }
 
-      .itemTight{ padding:12px 12px; border-radius:16px; }
-      .countBadge{
-        margin-left:10px;
+      .countPill{
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        font-weight:950;
         font-size:12px;
-        font-weight:1100;
-        padding:3px 8px;
+        padding:6px 10px;
         border-radius:999px;
-        background:var(--sky);
-        border:1px solid #CFE3FF;
-        color:var(--blue);
+        background:#EEF2FF;
+        border:1px solid #DCE4FF;
+        color:#1E40AF;
+        white-space:nowrap;
       }
-      .pickRow .name{ display:flex; align-items:center; gap:10px; }
 
+
+      .itemTight{ padding:12px 12px; border-radius:16px; }
       .scrollList{ max-height:560px; overflow:auto; padding-right:4px; }
       @media(max-width:980px){ .scrollList{ max-height:none; } }
 
@@ -755,73 +770,61 @@ function MyTeamView({
       .slice(0, 250);
   }, [players, q, posFilter]);
 
-  const filteredPicks = useMemo(() => {
-    const qq = pickQ.trim().toLowerCase();
-    return (PICKS || [])
-      .filter((p) => {
-        if (!qq) return true;
-        const hay = `${p.label || ""} ${p.id || ""}`.toLowerCase();
-        return hay.includes(qq);
-      })
-      .slice(0, 400);
-  }, [pickQ]);
-
-
   const rosterIds = useMemo(() => new Set((myRoster || []).map((r) => String(r.id))), [myRoster]);
+  const pickIds   = useMemo(() => new Set((myPicks  || []).map((p) => String(p.id))), [myPicks]);
 
-  // Picks pueden repetirse (2027/2028 por ronda). Guardamos conteos por "base".
-  const pickCountsByBase = useMemo(() => {
+  // Conteo por "base" (ej: 2027-3) para permitir duplicados 2027/2028
+  const pickCounts = useMemo(() => {
     const m = new Map();
     (myPicks || []).forEach((p) => {
-      const base = String(p?.base || basePickId(p?.id));
+      const base = String(p?.base || String(p?.id || "").split("#")[0]);
       if (!base) return;
       m.set(base, (m.get(base) || 0) + 1);
     });
     return m;
   }, [myPicks]);
 
-  // En 2026 cada pick es único: si ya está, se marca como "Agregado".
-  const pickSelected2026 = useMemo(() => {
-    const s = new Set();
-    for (const base of pickCountsByBase.keys()) {
-      if (String(base).startsWith("2026-")) s.add(String(base));
+  // Catálogo filtrado para el selector (tab Picks)
+  const filteredPickCatalog = useMemo(() => {
+    const qq = String(pickQ || "").trim().toLowerCase();
+    if (!qq) return PICKS;
+    return PICKS.filter((p) => {
+      const id = String(p.id).toLowerCase();
+      const lab = String(p.label || "").toLowerCase();
+      return id.includes(qq) || lab.includes(qq);
+    });
+  }, [pickQ]);
+
+  // Picks agrupados para mostrar debajo del roster (ej: "2x 3era 2027")
+  const groupedPicks = useMemo(() => {
+    const groups = new Map();
+    (myPicks || []).forEach((p) => {
+      const id = String(p?.id || "");
+      if (!id) return;
+      const base = String(p?.base || id.split("#")[0]);
+      const label = p?.label || PICK_LABEL.get(base) || base;
+      const status = normStatusKey(p?.status);
+      if (!groups.has(base)) groups.set(base, { base, label, ids: [], statuses: [] });
+      const g = groups.get(base);
+      g.ids.push(id);
+      g.statuses.push(status);
+    });
+
+    const out = [];
+    for (const g of groups.values()) {
+      const uniq = Array.from(new Set(g.statuses));
+      const status = uniq.length === 1 ? uniq[0] : "MIXED";
+      out.push({ ...g, count: g.ids.length, status });
     }
-    return s;
-  }, [pickCountsByBase]);
+    out.sort((a, b) => String(a.base).localeCompare(String(b.base)));
+    return out;
+  }, [myPicks]);
 
   const metaById = useMemo(() => {
     const m = new Map();
     (players || []).forEach((p) => m.set(String(p.player_id), p));
     return m;
   }, [players]);
-
-
-  const groupedPicks = useMemo(() => {
-    const m = new Map();
-    (myPicks || []).forEach((p) => {
-      const base = String(p?.base || basePickId(p?.id));
-      if (!base) return;
-      if (!m.has(base)) m.set(base, []);
-      m.get(base).push(p);
-    });
-
-    const arr = [];
-    for (const [base, items] of m.entries()) {
-      const label = items[0]?.label || PICK_LABEL.get(base) || base;
-      const st0 = normStatusKey(items[0]?.status);
-      const same = items.every((x) => normStatusKey(x?.status) === st0);
-      arr.push({
-        base,
-        label,
-        count: items.length,
-        status: same ? st0 : "MIXED",
-        ids: items.map((x) => String(x.id)),
-      });
-    }
-    arr.sort((a, b) => pickBaseCompare(a.base, b.base));
-    return arr;
-  }, [myPicks]);
-
 
 
   return (
@@ -880,37 +883,38 @@ function MyTeamView({
                 <input
                   value={pickQ}
                   onChange={(e) => setPickQ(e.target.value)}
-                  placeholder="Buscar pick (ej: 1.01 2026 / 2da 2027)..."
+                  placeholder="Buscar pick (ej: 1.01 2026 / 2da 2027)…"
                 />
+              </div>
 
-                <div className="list scrollList">
-                  {filteredPicks.length === 0 ? <div className="muted">No hay resultados.</div> : null}
-                  {filteredPicks.map((p) => {
-                    const base = String(p.id);
-                    const isFuture = isFuturePickBase(base);
-                    const count = pickCountsByBase.get(base) || 0;
-                    const added = !isFuture && pickSelected2026.has(base);
-                    return (
-                      <div key={base} className="item itemTight">
-                        <div style={{ minWidth: 0 }}>
-                          <div className="name">
-                            {p.label}
-                            {isFuture && count > 0 ? <span className="countBadge">{count}x</span> : null}
-                          </div>
-                          <div className="muted sub">Pick de draft</div>
-                        </div>
+              <div className="list scrollList" style={{ marginTop: 12 }}>
+                {filteredPickCatalog.length === 0 ? <div className="muted">No hay resultados.</div> : null}
+                {filteredPickCatalog.map((p) => {
+                  const base = String(p.id);
+                  const year = base.slice(0, 4);
+                  const count = pickCounts.get(base) || 0;
+                  const locked = year === "2026" && count > 0;
 
+                  return (
+                    <div key={base} className="item itemTight">
+                      <div style={{ minWidth: 0 }}>
+                        <div className="name">{p.label}</div>
+                        <div className="muted sub">Pick de draft</div>
+                      </div>
+
+                      <div className="row" style={{ justifyContent: "flex-end", gap: 10 }}>
+                        {year !== "2026" && count > 0 ? <span className="countPill">x{count}</span> : null}
                         <button
-                          className={added ? "btnAdd added" : "btnAdd"}
-                          disabled={(added && !isFuture) || saving}
+                          className={locked ? "btnAdd added" : "btnAdd"}
+                          disabled={locked || saving}
                           onClick={() => onAddPick(base)}
                         >
-                          {added ? "Agregado" : "+ Agregar"}
+                          {locked ? "Agregado" : "+ Agregar"}
                         </button>
                       </div>
-                    );
-                  })}
-                </div>
+                    </div>
+                  );
+                })}
               </div>
             </>
           )}
@@ -918,7 +922,7 @@ function MyTeamView({
 
         {/* Right: Slots / Picks details */}
         <div className="card">
-          
+                      <>
               <div className="row" style={{ alignItems: "baseline", marginBottom: 6 }}>
                 <h3 style={{ margin: 0 }}>Mi equipo (slots)</h3>
                 <div className="sp" />
@@ -1015,6 +1019,7 @@ function MyTeamView({
                 )}
               </div>
               </div>
+            </>
         </div>
       </div>
     </div>
@@ -1278,7 +1283,7 @@ function LeagueView({ me, teams, interests, onSetInterest, metaById }) {
                     <div style={{ minWidth: 0 }}>
                       <div className="name">{p.label || p.id}</div>
                       <div className="muted sub">
-                        {basePickId(p.id)} · <span className={`pill pill-${normStatusKey(p.status)}`}>{STATUS_LABEL[normStatusKey(p.status)]}</span>
+                        {p.id} · <span className={`pill pill-${p.status || "AVAILABLE"}`}>{STATUS_LABEL[p.status] || p.status}</span>
                       </div>
                     </div>
                     <select value={cur} onChange={(e) => onSetInterest(selected.user_id, "PICK", p.id, e.target.value)} style={{ maxWidth: 160 }}>
@@ -1308,9 +1313,7 @@ function InterestsView({ teamsByUser, myOutgoing, myIncoming, metaById }) {
       const nfl = m.nfl || m.team || "-";
       return `${m.name} (${pos} ${nfl})`;
     }
-    const id = String(x.asset_id);
-    const base = basePickId(id);
-    return PICK_LABEL.get(base) || id;
+    return PICK_LABEL.get(String(x.asset_id)) || String(x.asset_id);
   };
 
   return (
@@ -1759,882 +1762,43 @@ export default function App() {
                   ...t,
                   roster: (t.roster || []).map((r) => String(r.id) !== String(id) ? r : { ...r, status: cycleStatus(r.status || "AVAILABLE") }),
                 }), "toggle status")}
-                onAddPick={(pickBase) => updateMyTeam((t) => {
-                  const base = String(pickBase || "");
+                onAddPick={(baseId) => updateMyTeam((t) => {
+                  const base = String(baseId || "");
                   if (!base) return t;
 
-                  const existing = Array.isArray(t.picks) ? t.picks : [];
-                  const future = isFuturePickBase(base);
+                  const year = base.slice(0, 4);
+                  const is2026 = year === "2026";
+                  const cur = Array.isArray(t.picks) ? t.picks : [];
+                  const toBase = (id) => String(id || "").split("#")[0];
 
-                  if (!future) {
-                    // 2026: único por pick
-                    const exists = existing.some((p) => basePickId(p?.base || p?.id) === base);
-                    if (exists) return t;
-                    return {
-                      ...t,
-                      picks: [...existing, { id: base, base, label: PICK_LABEL.get(base) || base, status: "AVAILABLE" }],
-                    };
-                  }
+                  const sameBase = cur.filter((p) => String(p?.base || toBase(p?.id)) === base).length;
 
-                  // 2027/2028: se permiten repetidos por ronda → id único por instancia
-                  const instanceId = nextPickInstanceId(base, existing);
-                  return {
-                    ...t,
-                    picks: [...existing, { id: instanceId, base, label: PICK_LABEL.get(base) || base, status: "AVAILABLE" }],
-                  };
+                  // 2026: único por pick. 2027/2028: permite duplicados por ronda.
+                  if (is2026 && sameBase > 0) return t;
+
+                  const newId = is2026 ? base : `${base}#${sameBase + 1}`;
+                  const label = PICK_LABEL.get(base) || base;
+
+                  return { ...t, picks: [...cur, { id: newId, base, label, status: "AVAILABLE" }] };
                 }, "add pick")}
-                onRemovePick={(idsOrId) => updateMyTeam((t) => {
-                  const ids = Array.isArray(idsOrId) ? idsOrId.map(String) : [String(idsOrId)];
-                  return {
-                    ...t,
-                    picks: (t.picks || []).filter((p) => !ids.includes(String(p.id))),
-                  };
+                onRemovePick={(pickIdOrIds) => updateMyTeam((t) => {
+                  const cur = Array.isArray(t.picks) ? t.picks : [];
+                  const ids = Array.isArray(pickIdOrIds) ? pickIdOrIds : [pickIdOrIds];
+                  const idSet = new Set(ids.map((x) => String(x)));
+                  return { ...t, picks: cur.filter((p) => !idSet.has(String(p.id))) };
                 }, "remove pick")}
-                onTogglePickStatus={(idsOrId) => updateMyTeam((t) => {
-                  const ids = Array.isArray(idsOrId) ? idsOrId.map(String) : [String(idsOrId)];
-                  const list = Array.isArray(t.picks) ? t.picks : [];
-                  const first = list.find((p) => ids.includes(String(p.id)));
-                  const cur = first?.status || "AVAILABLE";
-                  const next = cycleStatus(cur);
+                onTogglePickStatus={(pickIdOrIds) => updateMyTeam((t) => {
+                  const cur = Array.isArray(t.picks) ? t.picks : [];
+                  const ids = Array.isArray(pickIdOrIds) ? pickIdOrIds : [pickIdOrIds];
+                  const idSet = new Set(ids.map((x) => String(x)));
+
+                  // Elegimos status base del primero que exista
+                  const first = cur.find((p) => idSet.has(String(p.id)));
+                  const next = cycleStatus(first?.status || "AVAILABLE");
 
                   return {
                     ...t,
-                    picks: list.map((p) => ids.includes(String(p.id)) ? { ...p, status: next } : p),
-                  };
-                }, "toggle pick status")}
-                onSetPlayerValue={openValueEditor}
-              />
-            )}
-          </>
-        )}
-      </div>
-
-      <ValueModal
-        open={valueEditor.open}
-        playerName={valuePlayerName}
-        playerPos={valuePlayerPos}
-        initial={valueRow}
-        saving={saving}
-        onClose={closeValueEditor}
-        onSave={(payload) => {
-          const id = valueEditor.id;
-          if (!id) return;
-          updateMyTeam((t) => ({
-            ...t,
-            roster: (t.roster || []).map((r) => (String(r.id) === String(id) ? { ...r, ...payload } : r)),
-          }), "set value modal");
-          closeValueEditor();
-        }}
-        onDelete={() => {
-          const id = valueEditor.id;
-          if (!id) return;
-          updateMyTeam((t) => ({
-            ...t,
-            roster: (t.roster || []).map((r) => (String(r.id) === String(id) ? { ...r, value: "", value_tier: null, value_picks: [], value_custom: "", value_note: "" } : r)),
-          }), "delete value");
-          closeValueEditor();
-        }}
-      />
-
-
-      {me ? (
-        <div className="dock">
-          <div className="dockin">
-            <button className={`dockbtn ${tab === "home"      ? "active" : ""}`} onClick={() => setTab("home")}>Inicio</button>
-            <button className={`dockbtn ${tab === "league"    ? "active" : ""}`} onClick={() => setTab("league")}>Liga</button>
-            <button className={`dockbtn ${tab === "interests" ? "active" : ""}`} onClick={() => setTab("interests")}>Intereses</button>
-            <button className={`dockbtn ${tab === "team"      ? "active" : ""}`} onClick={() => setTab("team")}>Mi equipo</button>
-          </div>
-        </div>
-      ) : null}
-    </>
-  );
-}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ---- Value modal (Asset value editor) ----
-function buildValuePreview({ tier, picks, customText, pos }) {
-  const ct = String(customText || "").trim();
-  if (ct) return ct;
-
-  const parts = [];
-  if (tier) parts.push(`Tier ${tier}`);
-  if (Array.isArray(picks) && picks.length) parts.push(picks.join(" + "));
-  // Si no hay nada, queda vacío
-  return parts.join(" / ");
-}
-
-const PICK_PRESETS = [
-  "2x 2da",
-  "1x 2da",
-  "1x 1era",
-  "Late 1era",
-  "Mid 1era",
-  "Early 1era",
-  "1era + 2da",
-  "2da + 3era",
-  "3x 2da",
-];
-
-function ValueModal({
-  open,
-  playerName,
-  playerPos,
-  initial,
-  saving,
-  onClose,
-  onSave,
-  onDelete,
-}) {
-  const [tier, setTier] = useState(null);
-  const [picks, setPicks] = useState([]);
-  const [customText, setCustomText] = useState("");
-  const [note, setNote] = useState("");
-
-  useEffect(() => {
-    if (!open) return;
-    setTier(initial?.value_tier ?? null);
-    setPicks(Array.isArray(initial?.value_picks) ? initial.value_picks : []);
-    setCustomText(String(initial?.value_custom || ""));
-    setNote(String(initial?.value_note || ""));
-  }, [open, initial?.value_tier, initial?.value_custom, initial?.value_note, JSON.stringify(initial?.value_picks || [])]);
-
-  useEffect(() => {
-    function onKey(e) {
-      if (e.key === "Escape") onClose?.();
-    }
-    if (open) window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [open, onClose]);
-
-  if (!open) return null;
-
-  const preview = buildValuePreview({ tier, picks, customText, pos: playerPos });
-
-  const togglePick = (label) => {
-    setPicks((prev) => {
-      const s = new Set(prev);
-      if (s.has(label)) s.delete(label);
-      else s.add(label);
-      return Array.from(s);
-    });
-  };
-
-  const handleSave = () => {
-    onSave?.({
-      value: preview.trim(),
-      value_tier: tier ?? null,
-      value_picks: picks,
-      value_custom: customText,
-      value_note: note,
-    });
-  };
-
-  const handleDelete = () => {
-    onDelete?.();
-  };
-
-  return (
-    <div className="modalOverlay" onMouseDown={(e) => { if (e.target === e.currentTarget) onClose?.(); }}>
-      <div className="modal" role="dialog" aria-modal="true" onMouseDown={(e) => e.stopPropagation()}>
-        <div className="modalHead">
-          <div className="modalTitle">
-            Valor del asset · <span style={{ fontWeight: 1100 }}>{playerName || "Jugador"}</span>
-          </div>
-          <button className="iconBtn" onClick={onClose} disabled={saving} aria-label="Cerrar">✕</button>
-        </div>
-
-        <div className="modalBody">
-          <div className="modalBlock">
-            <div className="modalLabel">Tier</div>
-            <div className="tierRow">
-              {[1, 2, 3, 4, 5].map((n) => (
-                <button
-                  key={n}
-                  className={`tierDot ${tier === n ? "active" : ""}`}
-                  onClick={() => setTier(n)}
-                  disabled={saving}
-                >
-                  {n}
-                </button>
-              ))}
-              <button className="ghost miniBtn" onClick={() => setTier(null)} disabled={saving}>
-                Limpiar
-              </button>
-            </div>
-          </div>
-
-          <div className="modalBlock">
-            <div className="modalLabel">Picks (presets)</div>
-            <div className="chipGrid">
-              {PICK_PRESETS.map((lab) => (
-                <button
-                  key={lab}
-                  className={`pickChip ${picks.includes(lab) ? "active" : ""}`}
-                  onClick={() => togglePick(lab)}
-                  disabled={saving}
-                >
-                  {lab}
-                </button>
-              ))}
-              <button className="ghost miniBtn" onClick={() => setPicks([])} disabled={saving}>
-                Limpiar picks
-              </button>
-            </div>
-          </div>
-
-          <div className="modalBlock">
-            <div className="modalLabel">Texto custom (opcional)</div>
-            <input
-              value={customText}
-              onChange={(e) => setCustomText(e.target.value)}
-              placeholder='Ej: Late 1era + 2da / RB Tier 2 / 2x2da + 3era...'
-              disabled={saving}
-            />
-            <div className="hint">Si ponés texto custom, pisa el armado automático (Tier/Picks).</div>
-          </div>
-
-          <div className="modalBlock">
-            <div className="modalLabel">Nota (opcional)</div>
-            <textarea
-              className="textarea"
-              value={note}
-              onChange={(e) => setNote(e.target.value)}
-              placeholder="Ej: Solo por upgrade, no vendo por picks. / Busco RB joven."
-              disabled={saving}
-            />
-          </div>
-
-          <div className="modalBlock">
-            <div className="modalLabel">Preview</div>
-            <div className="previewBox">{preview || "—"}</div>
-          </div>
-        </div>
-
-        <div className="modalFoot">
-          <button className="ghost dangerText" onClick={handleDelete} disabled={saving}>
-            Borrar
-          </button>
-          <button onClick={handleSave} disabled={saving}>
-            Guardar
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-
-
-// ---- LeagueView ----
-function LeagueView({ me, teams, interests, onSetInterest, metaById }) {
-  const [selectedId, setSelectedId] = useState("");
-  const others = useMemo(() => teams.filter((t) => t.user_id !== me.id), [teams, me]);
-
-  useEffect(() => {
-    if (!selectedId && others.length) setSelectedId(others[0].user_id);
-  }, [others, selectedId]);
-
-  const selected       = useMemo(() => others.find((t) => t.user_id === selectedId), [others, selectedId]);
-  const selectedRoster = selected?.roster || [];
-  const selectedPicks  = selected?.picks  || [];
-
-  return (
-    <div style={{ marginTop: 12 }}>
-      <div className="card profileCard">
-        <div className="row">
-          <h2 style={{ margin: 0 }}>Liga</h2>
-          <div className="sp" />
-          <select value={selectedId} onChange={(e) => setSelectedId(e.target.value)} style={{ maxWidth: 420 }}>
-            {others.map((t) => (
-              <option key={t.user_id} value={t.user_id}>
-                {(t.display_name || t.user_id).slice(0, 30)} {t.team_name ? `— ${t.team_name}` : ""}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-
-      {!selected ? (
-        <div className="muted" style={{ marginTop: 12 }}>No hay equipo seleccionado.</div>
-      ) : (
-        <div className="grid2" style={{ marginTop: 12 }}>
-          <div className="card">
-            <div style={{ fontWeight: 1000, fontSize: 18 }}>
-              {selected.display_name} {selected.team_name ? `— ${selected.team_name}` : ""}
-            </div>
-            <div className="muted" style={{ fontWeight: 900, marginTop: 4 }}>{selected.team_status || "—"}</div>
-            <h3 style={{ marginTop: 14 }}>Jugadores</h3>
-            <div className="muted sub">Marcá tu interés: Bajo / Medio / Alto</div>
-            <div className="list" style={{ marginTop: 12 }}>
-              {selectedRoster.length === 0 ? <div className="muted">Sin roster cargado.</div> : null}
-              {selectedRoster.map((r) => {
-                const key = `${me.id}::${selected.user_id}::PLAYER::${r.id}`;
-                const cur = interests.find((x) => x.key === key)?.level || "NONE";
-                const meta = metaById?.get(String(r.id));
-                const img = pickImg(meta) || pickImg(r);
-                const stKey = normStatusKey(r.status);
-                return (
-                  <div key={r.id} className="item">
-                    <div className="left">
-                      <div className="av">{img ? <img src={img} alt={r.name} /> : initials(r.name)}</div>
-                      <div style={{ minWidth: 0 }}>
-                        <div className="name">{r.name}</div>
-                        <div className="muted sub">
-                          {normPos(r.pos)} · {r.nfl || "-"} · <span className={`pill pill-${stKey}`}>{STATUS_LABEL[stKey]}</span>
-                        </div>
-                      </div>
-                    </div>
-                    <select value={cur} onChange={(e) => onSetInterest(selected.user_id, "PLAYER", r.id, e.target.value)} style={{ maxWidth: 160 }}>
-                      <option value="NONE">—</option>
-                      <option value="LOW">Bajo</option>
-                      <option value="MEDIUM">Medio</option>
-                      <option value="HIGH">Alto</option>
-                    </select>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="card">
-            <h3 style={{ marginTop: 0 }}>Picks</h3>
-            <div className="list" style={{ marginTop: 12 }}>
-              {selectedPicks.length === 0 ? <div className="muted">Sin picks cargados.</div> : null}
-              {selectedPicks.map((p) => {
-                const key = `${me.id}::${selected.user_id}::PICK::${p.id}`;
-                const cur = interests.find((x) => x.key === key)?.level || "NONE";
-                return (
-                  <div key={p.id} className="item">
-                    <div style={{ minWidth: 0 }}>
-                      <div className="name">{p.label || p.id}</div>
-                      <div className="muted sub">
-                        {basePickId(p.id)} · <span className={`pill pill-${normStatusKey(p.status)}`}>{STATUS_LABEL[normStatusKey(p.status)]}</span>
-                      </div>
-                    </div>
-                    <select value={cur} onChange={(e) => onSetInterest(selected.user_id, "PICK", p.id, e.target.value)} style={{ maxWidth: 160 }}>
-                      <option value="NONE">—</option>
-                      <option value="LOW">Bajo</option>
-                      <option value="MEDIUM">Medio</option>
-                      <option value="HIGH">Alto</option>
-                    </select>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ---- InterestsView ----
-function InterestsView({ teamsByUser, myOutgoing, myIncoming, metaById }) {
-  const fmtAsset = (x) => {
-    if (x.asset_type === "PLAYER") {
-      const m = metaById.get(String(x.asset_id));
-      if (!m) return `Jugador ${x.asset_id}`;
-      const pos = normPos(m.pos || m.position || "?");
-      const nfl = m.nfl || m.team || "-";
-      return `${m.name} (${pos} ${nfl})`;
-    }
-    const id = String(x.asset_id);
-    const base = basePickId(id);
-    return PICK_LABEL.get(base) || id;
-  };
-
-  return (
-    <div className="grid2" style={{ marginTop: 12 }}>
-      <div className="card">
-        <h2 style={{ marginTop: 0 }}>Mis intereses</h2>
-        {myOutgoing.length === 0 ? (
-          <div className="muted">No marcaste intereses todavía.</div>
-        ) : (
-          <div className="list">
-            {myOutgoing.slice().sort((a, b) => String(b.updated_at || "").localeCompare(String(a.updated_at || ""))).map((x) => {
-              const owner = teamsByUser.get(x.to_user_id);
-              return (
-                <div key={x.key} className="item">
-                  <div style={{ minWidth: 0 }}>
-                    <div className="name">{fmtAsset(x)}</div>
-                    <div className="muted sub">
-                      Dueño: {owner?.display_name || x.to_user_id} {owner?.team_name ? `— ${owner.team_name}` : ""}
-                    </div>
-                  </div>
-                  <div className="badge">{INTEREST_LABEL[x.level] || x.level}</div>
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </div>
-
-      <div className="card">
-        <h2 style={{ marginTop: 0 }}>Interesados en mi equipo</h2>
-        {myIncoming.length === 0 ? (
-          <div className="muted">Todavía nadie marcó interés.</div>
-        ) : (
-          <div className="list">
-            {myIncoming.slice().sort((a, b) => String(b.updated_at || "").localeCompare(String(a.updated_at || ""))).map((x) => {
-              const who = teamsByUser.get(x.from_user_id);
-              return (
-                <div key={x.key} className="item">
-                  <div style={{ minWidth: 0 }}>
-                    <div className="name">{fmtAsset(x)}</div>
-                    <div className="muted sub">
-                      Interesado: {who?.display_name || x.from_user_id} {who?.team_name ? `— ${who.team_name}` : ""}
-                    </div>
-                  </div>
-                  <div className="badge">{INTEREST_LABEL[x.level] || x.level}</div>
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-// ---- App ----
-export default function App() {
-  const [me, setMe] = useState(() => {
-    const s = localStorage.getItem("ft_session");
-    return s ? safeJsonParse(s, null) : null;
-  });
-
-  const [authMode, setAuthMode] = useState("login");
-  const [email,    setEmail]    = useState("");
-  const [pass,     setPass]     = useState("");
-  const [pass2,    setPass2]    = useState("");
-  const [authErr,  setAuthErr]  = useState("");
-  const [authBusy, setAuthBusy] = useState(false);
-
-  const [tab, setTab] = useState(() => localStorage.getItem("ft_tab") || "team");
-  useEffect(() => localStorage.setItem("ft_tab", tab), [tab]);
-
-  const [teams,          setTeams]          = useState([]);
-  const [interests,      setInterests]      = useState([]);
-  const [players,        setPlayers]        = useState([]);
-  const [playersLoading, setPlayersLoading] = useState(false);
-
-  const [myDisplayName, setMyDisplayName] = useState("");
-  const [myTeamName,    setMyTeamName]    = useState("");
-  const [myTeamStatus,  setMyTeamStatus]  = useState("Contendiendo");
-
-  const [saveInfo, setSaveInfo] = useState("");
-  const [saving,   setSaving]   = useState(false);
-
-  useEffect(() => {
-    if (me) localStorage.setItem("ft_session", JSON.stringify(me));
-    else localStorage.removeItem("ft_session");
-  }, [me]);
-
-  async function loadPlayers() {
-    setPlayersLoading(true);
-    try {
-      const res = await fetch(`${import.meta.env.BASE_URL || "/"}adp.json`, { cache: "no-store" });
-      const j = await res.json();
-      setPlayers(Array.isArray(j?.players) ? j.players : []);
-    } catch {
-      setPlayers([]);
-    } finally {
-      setPlayersLoading(false);
-    }
-  }
-
-  async function refreshData() {
-    const [allTeams, allInterests] = await Promise.all([
-      fsGetAllTeams(),
-      fsGetAllInterests(),
-    ]);
-    setTeams(allTeams.map(normalizeTeamRow));
-    setInterests(allInterests);
-  }
-
-  useEffect(() => {
-    if (!me) return;
-    Promise.all([loadPlayers(), refreshData()]).catch(console.error);
-  }, [me?.id]);
-
-  const teamsByUser = useMemo(() => new Map(teams.map((t) => [t.user_id, t])), [teams]);
-  const myRow       = useMemo(() => (me ? teamsByUser.get(me.id) : null), [me, teamsByUser]);
-
-  useEffect(() => {
-    if (!me) return;
-    const row = teamsByUser.get(me.id);
-    if (row) {
-      setMyDisplayName(row.display_name || "");
-      setMyTeamName(row.team_name || "");
-      setMyTeamStatus(row.team_status || "Contendiendo");
-    } else {
-      setMyDisplayName(me.email?.split("@")?.[0] || "");
-      setMyTeamName("");
-      setMyTeamStatus("Contendiendo");
-    }
-  }, [me, teamsByUser]);
-
-  const myOutgoing = useMemo(() => (me ? interests.filter((x) => x.from_user_id === me.id) : []), [me, interests]);
-  const myIncoming = useMemo(() => (me ? interests.filter((x) => x.to_user_id   === me.id) : []), [me, interests]);
-  const myRoster   = useMemo(() => (Array.isArray(myRow?.roster) ? myRow.roster : []), [myRow]);
-  const myPicks    = useMemo(() => (Array.isArray(myRow?.picks)  ? myRow.picks  : []), [myRow]);
-
-  // ADP map para ordenar el roster (por player_id)
-  const adpById = useMemo(() => {
-    const m = new Map();
-    (players || []).forEach((p) => m.set(String(p.player_id), p));
-    return m;
-  }, [players]);
-
-  // Slots auto-ordenados por ADP: primero posiciones (QB/RB/WR/TE), luego FLEX, luego BN
-  const slots      = useMemo(() => assignSlots(myRoster, adpById), [myRoster, adpById]);
-
-  const metaById = useMemo(() => {
-    const m = new Map();
-    // Guardamos el objeto completo (incluye headshot/img si existe)
-    for (const p of players) {
-      m.set(String(p.player_id), p);
-    }
-    for (const t of teams) {
-      for (const r of t.roster || []) {
-        const id = String(r.id);
-        if (!m.has(id)) m.set(id, r);
-      }
-    }
-    return m;
-  }, [players, teams]);
-
-  // ---- Value editor modal state ----
-  const [valueEditor, setValueEditor] = useState({ open: false, id: null });
-
-  const openValueEditor = (id) => {
-    const pid = String(id);
-    setValueEditor({ open: true, id: pid });
-  };
-  const closeValueEditor = () => setValueEditor({ open: false, id: null });
-
-  const valueRow = useMemo(() => {
-    if (!valueEditor.open || !valueEditor.id) return null;
-    return (myRoster || []).find((r) => String(r.id) === String(valueEditor.id)) || null;
-  }, [valueEditor.open, valueEditor.id, myRoster]);
-
-  const valueMeta = useMemo(() => {
-    if (!valueEditor.open || !valueEditor.id) return null;
-    return metaById.get(String(valueEditor.id)) || null;
-  }, [valueEditor.open, valueEditor.id, metaById]);
-
-  const valuePlayerName = valueRow?.name || valueMeta?.name || "Jugador";
-  const valuePlayerPos = normPos(valueRow?.pos || valueMeta?.position || valueMeta?.pos || "?");
-
-  // ---- Auth ----
-  async function signup() {
-    setAuthBusy(true);
-    setAuthErr("");
-    try {
-      const em = email.trim().toLowerCase();
-      if (!em.includes("@")) throw new Error("Email inválido");
-      if (pass.length < 4)   throw new Error("Contraseña muy corta");
-      if (pass !== pass2)    throw new Error("No coinciden");
-
-      const existing = await fsGetUser(em);
-      if (existing) throw new Error("Ya existe una cuenta con ese email");
-
-      const pwHash = await sha256Hex(pass);
-      const userId = uid("user");
-      await fsCreateUser(userId, em, pwHash);
-      await fsSetTeam(userId, normalizeTeamRow({
-        user_id: userId,
-        display_name: em.split("@")[0],
-        team_name: "",
-        team_status: "Contendiendo",
-        roster: [],
-        picks: [],
-      }));
-
-      setMe({ id: userId, email: em });
-      setPass(""); setPass2("");
-      await refreshData();
-    } catch (e) {
-      setAuthErr(String(e?.message || e));
-    } finally {
-      setAuthBusy(false);
-    }
-  }
-
-  async function login() {
-    setAuthBusy(true);
-    setAuthErr("");
-    try {
-      const em = email.trim().toLowerCase();
-      if (!em.includes("@")) throw new Error("Email inválido");
-
-      const u = await fsGetUser(em);
-      if (!u) throw new Error("Usuario no encontrado");
-
-      const pwHash = await sha256Hex(pass);
-      if (String(u.pass_hash) !== pwHash) throw new Error("Contraseña incorrecta");
-
-      const existingTeam = await fsGetTeam(u.id);
-      if (!existingTeam) {
-        await fsSetTeam(u.id, normalizeTeamRow({
-          user_id: u.id,
-          display_name: em.split("@")[0],
-          team_name: "",
-          team_status: "Contendiendo",
-          roster: [],
-          picks: [],
-        }));
-      }
-
-      setMe({ id: u.id, email: u.email });
-      setPass(""); setPass2("");
-      await refreshData();
-    } catch (e) {
-      setAuthErr(String(e?.message || e));
-    } finally {
-      setAuthBusy(false);
-    }
-  }
-
-  function logout() {
-    setMe(null);
-    setEmail(""); setPass(""); setPass2("");
-    setTab("team");
-  }
-
-  // ---- Team mutations — instantáneas con Firestore ----
-  async function updateMyTeam(mutator, label) {
-    if (!me) return;
-    setSaving(true);
-    try {
-      const current = normalizeTeamRow(
-        (await fsGetTeam(me.id)) || {
-          user_id: me.id,
-          display_name: myDisplayName,
-          team_name: myTeamName,
-          team_status: myTeamStatus,
-          roster: [],
-          picks: [],
-        }
-      );
-      const next = normalizeTeamRow(mutator({ ...current, updated_at: nowIso() }));
-      await fsSetTeam(me.id, next);
-      // Actualizar estado local sin recargar todos los equipos
-      setTeams((prev) => {
-        const idx = prev.findIndex((t) => t.user_id === me.id);
-        if (idx === -1) return [...prev, next];
-        const copy = [...prev];
-        copy[idx] = next;
-        return copy;
-      });
-    } catch (e) {
-      setSaveInfo(String(e?.message || e));
-      setTimeout(() => setSaveInfo(""), 2500);
-    } finally {
-      setSaving(false);
-    }
-  }
-
-  async function saveMyProfile() {
-    if (!me) return;
-    setSaving(true);
-    setSaveInfo("Guardando...");
-    try {
-      const current = normalizeTeamRow(
-        (await fsGetTeam(me.id)) || {
-          user_id: me.id,
-          display_name: "",
-          team_name: "",
-          team_status: "Contendiendo",
-          roster: [],
-          picks: [],
-        }
-      );
-      const next = normalizeTeamRow({
-        ...current,
-        display_name: myDisplayName.trim(),
-        team_name:    myTeamName.trim(),
-        team_status:  myTeamStatus,
-      });
-      await fsSetTeam(me.id, next);
-      setTeams((prev) => {
-        const idx = prev.findIndex((t) => t.user_id === me.id);
-        if (idx === -1) return [...prev, next];
-        const copy = [...prev];
-        copy[idx] = next;
-        return copy;
-      });
-      setSaveInfo("Guardado ✅");
-      setTimeout(() => setSaveInfo(""), 1500);
-    } catch (e) {
-      setSaveInfo(String(e?.message || e));
-    } finally {
-      setSaving(false);
-    }
-  }
-
-  async function setInterest(toUserId, assetType, assetId, level) {
-    if (!me) return;
-    const key = `${me.id}::${toUserId}::${assetType}::${assetId}`;
-    try {
-      if (level === "NONE") {
-        await fsDeleteInterest(key);
-        setInterests((prev) => prev.filter((x) => x.key !== key));
-      } else {
-        const data = {
-          key,
-          from_user_id: me.id,
-          to_user_id:   toUserId,
-          asset_type:   assetType,
-          asset_id:     assetId,
-          level,
-          updated_at:   nowIso(),
-        };
-        await fsSetInterest(key, data);
-        setInterests((prev) => [...prev.filter((x) => x.key !== key), data]);
-      }
-    } catch (e) {
-      setSaveInfo(String(e?.message || e));
-      setTimeout(() => setSaveInfo(""), 2500);
-    }
-  }
-
-  return (
-    <>
-      <Styles />
-      <div className="top">
-        <div className="topin">
-          <div style={{ fontWeight: 1000 }}>Fantasy Trade Board</div>
-          <div className="sp" />
-          {playersLoading ? <div className="chip" style={{ cursor: "default" }}>ADP…</div> : null}
-          {me ? <div className="chip" style={{ cursor: "default" }}>{me.email}</div> : null}
-          {me ? <button className="chip" onClick={logout}>Salir</button> : null}
-        </div>
-      </div>
-
-      <div className="wrap">
-        
-        {!me ? (
-          <div className="card">
-            <div className="row">
-              <div style={{ fontWeight: 1000, fontSize: 18 }}>{authMode === "login" ? "Iniciar sesión" : "Crear cuenta"}</div>
-              <div className="sp" />
-              <button className="ghost" onClick={() => { setAuthMode(authMode === "login" ? "signup" : "login"); setAuthErr(""); }}>
-                {authMode === "login" ? "Crear cuenta" : "Tengo cuenta"}
-              </button>
-            </div>
-            <div style={{ display: "grid", gap: 10, marginTop: 12 }}>
-              <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email" />
-              <input value={pass}  onChange={(e) => setPass(e.target.value)}  placeholder="contraseña" type="password" />
-              {authMode === "signup" ? (
-                <input value={pass2} onChange={(e) => setPass2(e.target.value)} placeholder="repetir contraseña" type="password" />
-              ) : null}
-              {authErr ? <div style={{ fontWeight: 1000, color: "var(--danger)" }}>{authErr}</div> : null}
-              <button disabled={authBusy} onClick={authMode === "login" ? login : signup}>
-                {authBusy ? "..." : authMode === "login" ? "Entrar" : "Crear"}
-              </button>
-            </div>
-          </div>
-        ) : (
-          <>
-            <div className="card profileCard">
-              <div className="grid2">
-                <div>
-                  <div style={{ fontWeight: 1000, fontSize: 18 }}>{myDisplayName || me.email}</div>
-                  <div className="muted" style={{ fontWeight: 900 }}>{myTeamName || "Sin nombre de equipo"}</div>
-                  <div className="muted" style={{ marginTop: 6, fontSize: 13 }}>
-                    Slots: 1QB 2RB 2WR 1TE 3FLEX 21BN · Picks 2026 (1.01–6.10) + 2027/2028 por ronda
-                  </div>
-                </div>
-                <div style={{ display: "grid", gap: 10 }}>
-                  <div className="row profileRow">
-                    <input value={myDisplayName} onChange={(e) => setMyDisplayName(e.target.value)} placeholder="Tu nombre" />
-                    <input value={myTeamName}    onChange={(e) => setMyTeamName(e.target.value)}    placeholder="Nombre del equipo" />
-                    <select value={myTeamStatus} onChange={(e) => setMyTeamStatus(e.target.value)}>
-                      <option>Contendiendo</option>
-                      <option>Reconstrucción</option>
-                      <option>Re-tool</option>
-                      <option>Tanqueando</option>
-                    </select>
-                  </div>
-                  <div className="row profileActions">
-                    {saveInfo ? <div className="muted" style={{ fontWeight: 900 }}>{saveInfo}</div> : null}
-                    <div className="sp" />
-                    <button disabled={saving} onClick={saveMyProfile}>Guardar perfil</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {tab === "home" || tab === "interests" ? (
-              <InterestsView teamsByUser={teamsByUser} myOutgoing={myOutgoing} myIncoming={myIncoming} metaById={metaById} />
-            ) : tab === "league" ? (
-              <LeagueView me={me} teams={teams} interests={interests} onSetInterest={setInterest} metaById={metaById} />
-            ) : (
-              <MyTeamView
-                players={players}
-                myRoster={myRoster}
-                myPicks={myPicks}
-                slots={slots}
-                saving={saving}
-                onAddPlayer={(p) => updateMyTeam((t) => {
-                  const exists = (t.roster || []).some((r) => String(r.id) === String(p.player_id));
-                  if (exists) return t;
-                  return { ...t, roster: [...(t.roster || []), { id: String(p.player_id), name: p.name, pos: normPos(p.position), nfl: p.team || "", status: "AVAILABLE" }] };
-                }, "add player")}
-                onRemovePlayer={(id) => updateMyTeam((t) => ({
-                  ...t, roster: (t.roster || []).filter((r) => String(r.id) !== String(id)),
-                }), "remove player")}
-                onTogglePlayerStatus={(id) => updateMyTeam((t) => ({
-                  ...t,
-                  roster: (t.roster || []).map((r) => String(r.id) !== String(id) ? r : { ...r, status: cycleStatus(r.status || "AVAILABLE") }),
-                }), "toggle status")}
-                onAddPick={(pickBase) => updateMyTeam((t) => {
-                  const base = String(pickBase || "");
-                  if (!base) return t;
-
-                  const existing = Array.isArray(t.picks) ? t.picks : [];
-                  const future = isFuturePickBase(base);
-
-                  if (!future) {
-                    // 2026: único por pick
-                    const exists = existing.some((p) => basePickId(p?.base || p?.id) === base);
-                    if (exists) return t;
-                    return {
-                      ...t,
-                      picks: [...existing, { id: base, base, label: PICK_LABEL.get(base) || base, status: "AVAILABLE" }],
-                    };
-                  }
-
-                  // 2027/2028: se permiten repetidos por ronda → id único por instancia
-                  const instanceId = nextPickInstanceId(base, existing);
-                  return {
-                    ...t,
-                    picks: [...existing, { id: instanceId, base, label: PICK_LABEL.get(base) || base, status: "AVAILABLE" }],
-                  };
-                }, "add pick")}
-                onRemovePick={(idsOrId) => updateMyTeam((t) => {
-                  const ids = Array.isArray(idsOrId) ? idsOrId.map(String) : [String(idsOrId)];
-                  return {
-                    ...t,
-                    picks: (t.picks || []).filter((p) => !ids.includes(String(p.id))),
-                  };
-                }, "remove pick")}
-                onTogglePickStatus={(idsOrId) => updateMyTeam((t) => {
-                  const ids = Array.isArray(idsOrId) ? idsOrId.map(String) : [String(idsOrId)];
-                  const list = Array.isArray(t.picks) ? t.picks : [];
-                  const first = list.find((p) => ids.includes(String(p.id)));
-                  const cur = first?.status || "AVAILABLE";
-                  const next = cycleStatus(cur);
-
-                  return {
-                    ...t,
-                    picks: list.map((p) => ids.includes(String(p.id)) ? { ...p, status: next } : p),
+                    picks: cur.map((p) => (idSet.has(String(p.id)) ? { ...p, status: next } : p)),
                   };
                 }, "toggle pick status")}
                 onSetPlayerValue={openValueEditor}
