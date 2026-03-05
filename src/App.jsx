@@ -70,6 +70,14 @@ function ghHeaders() {
   return h;
 }
 
+// Cola global para serializar escrituras (evita 409 por SHA stale en GitHub Contents API)
+let ghWriteQueue = Promise.resolve();
+function ghEnqueueWrite(fn) {
+  ghWriteQueue = ghWriteQueue.then(fn, fn);
+  return ghWriteQueue;
+}
+
+
 async function ghError(res) {
   const text = await res.text();
   let msg = text;
@@ -133,6 +141,7 @@ async function ghPutJson(path, data, sha, message) {
   return ghPutFile(path, `${txt}\n`, sha, message);
 }
 async function ghPutJsonWithRetry(path, mutator, label) {
+  return ghEnqueueWrite(async () => {
   for (let attempt = 0; attempt < 2; attempt++) {
     const { data, sha } = await ghGetJson(path, []);
     const arr = Array.isArray(data) ? data : [];
@@ -145,6 +154,7 @@ async function ghPutJsonWithRetry(path, mutator, label) {
       throw e;
     }
   }
+  });
 }
 
 /** ========= UI ========= */
@@ -523,7 +533,7 @@ export default function App() {
     setAuthBusy(true);
 
     try {
-      const { data: users, sha } = await ghGetJson(PATH_USERS, []);
+      const { data: users } = await ghGetJson(PATH_USERS, []);
       const list = Array.isArray(users) ? users : [];
       const exists = list.some(
         (u) => String(u.email).toLowerCase() === String(email).toLowerCase()
@@ -534,7 +544,16 @@ export default function App() {
       const hash = await sha256Hex(pass);
       const next = [...list, { id, email, pass_sha256: hash, created_at: nowIso() }];
 
-      await ghPutJson(PATH_USERS, next, sha, "signup user");
+      await ghPutJsonWithRetry(
+        PATH_USERS,
+        (cur) => {
+          const arr = Array.isArray(cur) ? cur : [];
+          // ya validamos que no exista email, pero lo re-chequeamos por seguridad ante concurrencia
+          if (arr.some((u) => String(u.email).toLowerCase() === String(email).toLowerCase())) return arr;
+          return [...arr, { id, email, pass_sha256: hash, created_at: nowIso() }];
+        },
+        "signup user"
+      );
 
       // crear fila del team si no existe
       await ghPutJsonWithRetry(
