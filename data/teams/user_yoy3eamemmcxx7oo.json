@@ -7,8 +7,15 @@
       "pos": "WR",
       "nfl": "DAL",
       "status": "AVAILABLE"
+    },
+    {
+      "id": "5177",
+      "name": "Ja'Marr Chase",
+      "pos": "WR",
+      "nfl": "CIN",
+      "status": "AVAILABLE"
     }
   ],
   "picks": [],
-  "updated_at": "2026-03-05T04:31:16.391Z"
+  "updated_at": "2026-03-05T04:31:19.268Z"
 }
