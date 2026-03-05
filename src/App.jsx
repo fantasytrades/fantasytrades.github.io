@@ -78,9 +78,6 @@ async function sha256Hex(str) {
   return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
-// IMPORTANT: GitHub acepta esquemas distintos según el tipo de token.
-// - Fine-grained PAT suele ser `Bearer` (prefijo github_pat_)
-// - Classic PAT suele ser `token` (prefijo ghp_)
 function ghAuthHeaderValue(token) {
   if (!token) return null;
   const t = String(token).trim();
@@ -97,7 +94,7 @@ function ghHeaders() {
   return h;
 }
 
-// Cola global para serializar escrituras (evita 409 por SHA stale en GitHub Contents API)
+// Cola global para serializar escrituras (evita 409 por SHA stale)
 let ghWriteQueue = Promise.resolve();
 function ghEnqueueWrite(fn) {
   ghWriteQueue = ghWriteQueue.then(fn, fn);
@@ -110,9 +107,7 @@ async function ghError(res) {
   try {
     const j = JSON.parse(text);
     msg = j?.message ? String(j.message) : text;
-  } catch {
-    // keep raw
-  }
+  } catch {}
   const err = new Error(msg);
   err.status = res.status;
   err.raw = text;
@@ -216,7 +211,17 @@ function buildFuturePickCatalog(year) {
   const out = [];
   for (let rnd = 1; rnd <= 6; rnd++) {
     const suf =
-      rnd === 1 ? "1era" : rnd === 2 ? "2da" : rnd === 3 ? "3era" : rnd === 4 ? "4ta" : rnd === 5 ? "5ta" : "6ta";
+      rnd === 1
+        ? "1era"
+        : rnd === 2
+        ? "2da"
+        : rnd === 3
+        ? "3era"
+        : rnd === 4
+        ? "4ta"
+        : rnd === 5
+        ? "5ta"
+        : "6ta";
     out.push({ id: `${year}-${rnd}`, label: `${suf} ${year}` });
   }
   return out;
@@ -418,14 +423,6 @@ function Pill({ children, tone = "neutral", style }) {
   );
 }
 
-function useDebouncedCallback(cb, ms) {
-  const t = useRef(null);
-  return (...args) => {
-    if (t.current) clearTimeout(t.current);
-    t.current = setTimeout(() => cb(...args), ms);
-  };
-}
-
 /** ========= APP ========= */
 export default function App() {
   const [theme, setTheme] = useState(() => localStorage.getItem("ftb_theme") || "dark");
@@ -466,15 +463,14 @@ export default function App() {
   const applyTheme = (t) => {
     setTheme(t);
     localStorage.setItem("ftb_theme", t);
-    document.documentElement.dataset.theme = t;
     const vars = THEME_VARS[t] || THEME_VARS.dark;
     Object.entries(vars).forEach(([k, v]) => document.documentElement.style.setProperty(k, v));
   };
 
   useEffect(() => {
     applyTheme(theme);
-    if (!GH_OWNER || !GH_REPO) setBootError("Faltan VITE_GH_OWNER / VITE_GH_REPO (o hardcode en App.jsx).");
-    if (!GH_TOKEN) setBootError("Falta VITE_GH_TOKEN. Sin token no podés guardar/leer en GitHub.");
+    if (!GH_OWNER || !GH_REPO) setBootError("Faltan VITE_GH_OWNER / VITE_GH_REPO.");
+    if (!GH_TOKEN) setBootError("Falta VITE_GH_TOKEN.");
   }, []);
 
   useEffect(() => {
@@ -518,6 +514,14 @@ export default function App() {
     })();
   }, [me?.id]);
 
+  const byUser = useMemo(() => {
+    const m = new Map();
+    for (const t of teams) m.set(t.user_id, t);
+    return m;
+  }, [teams]);
+
+  const myRow = useMemo(() => (me ? byUser.get(me.id) : null), [byUser, me?.id]);
+
   useEffect(() => {
     if (!me) return;
     const row = teams.find((x) => x.user_id === me.id);
@@ -532,21 +536,14 @@ export default function App() {
     }
   }, [me?.id, teams]);
 
-  const byUser = useMemo(() => {
-    const m = new Map();
-    for (const t of teams) m.set(t.user_id, t);
-    return m;
-  }, [teams]);
-
-  const myRow = useMemo(() => (me ? byUser.get(me.id) : null), [byUser, me?.id]);
   const myOutgoing = useMemo(() => (me ? interests.filter((x) => x.from_user_id === me.id) : []), [interests, me?.id]);
   const myIncoming = useMemo(() => (me ? interests.filter((x) => x.to_user_id === me.id) : []), [interests, me?.id]);
 
   function friendlyAuthError(e) {
     const status = e?.status;
-    if (status === 401) return "GitHub 401: token inválido o revocado. Revisá VITE_GH_TOKEN.";
-    if (status === 403) return "GitHub 403: sin permisos o rate limit. Chequeá permisos (Contents RW) y repo.";
-    if (status === 404) return "GitHub 404: faltan /data/*.json (users/teams/interests).";
+    if (status === 401) return "GitHub 401: token inválido.";
+    if (status === 403) return "GitHub 403: sin permisos / rate limit.";
+    if (status === 404) return "GitHub 404: faltan /data/*.json.";
     return String(e?.message || e);
   }
 
@@ -565,7 +562,7 @@ export default function App() {
             team_status: "Contendiendo",
             roster: [],
             picks: [],
-            availability: {}, // key: PLAYER:<id> or PICK:<id>
+            availability: {}, // PLAYER:<id> | PICK:<id>
             asset_values: {},
             updated_at: nowIso(),
           },
@@ -581,7 +578,7 @@ export default function App() {
     setAuthError("");
     try {
       if (!email.includes("@")) throw new Error("Email inválido.");
-      if (pass.length < 4) throw new Error("Contraseña muy corta (mínimo 4).");
+      if (pass.length < 4) throw new Error("Contraseña muy corta.");
       if (pass !== pass2) throw new Error("Las contraseñas no coinciden.");
 
       const pwHash = await sha256Hex(pass);
@@ -589,10 +586,7 @@ export default function App() {
 
       await ghPutJsonWithRetry(
         PATH_USERS,
-        (cur) => [
-          ...cur,
-          { id: userId, email: email.trim().toLowerCase(), pass_hash: pwHash, created_at: nowIso() },
-        ],
+        (cur) => [...cur, { id: userId, email: email.trim().toLowerCase(), pass_hash: pwHash, created_at: nowIso() }],
         "create user"
       );
 
@@ -650,13 +644,19 @@ export default function App() {
           cur.map((t) =>
             t.user_id !== me.id
               ? t
-              : { ...t, display_name: myDisplayName.trim(), team_name: myTeamName.trim(), team_status: myStatus, updated_at: nowIso() }
+              : {
+                  ...t,
+                  display_name: myDisplayName.trim(),
+                  team_name: myTeamName.trim(),
+                  team_status: myStatus,
+                  updated_at: nowIso(),
+                }
           ),
         "update profile"
       );
       setTeams(next);
       setSaveInfo("Guardado ✅");
-      setTimeout(() => setSaveInfo(""), 1200);
+      setTimeout(() => setSaveInfo(""), 900);
     } catch (e) {
       setSaveInfo(friendlyAuthError(e));
     }
@@ -673,7 +673,7 @@ export default function App() {
       );
       setTeams(next);
       setSaveInfo("Guardado ✅");
-      setTimeout(() => setSaveInfo(""), 800);
+      setTimeout(() => setSaveInfo(""), 700);
     } catch (e) {
       setSaveInfo(friendlyAuthError(e));
     }
@@ -691,7 +691,16 @@ export default function App() {
         if (level === "NONE") return rest;
         return [
           ...rest,
-          { key, from_user_id: me.id, to_user_id: toUserId, asset_type: assetType, asset_id: assetId, level, note: cleanNote, updated_at: nowIso() },
+          {
+            key,
+            from_user_id: me.id,
+            to_user_id: toUserId,
+            asset_type: assetType,
+            asset_id: assetId,
+            level,
+            note: cleanNote,
+            updated_at: nowIso(),
+          },
         ];
       },
       "set interest"
@@ -702,7 +711,10 @@ export default function App() {
   /** ========= derived data ========= */
   const myRosterIds = useMemo(() => normalizeRosterIds(myRow?.roster), [myRow]);
   const myPicks = useMemo(() => (Array.isArray(myRow?.picks) ? myRow.picks.map(String) : []), [myRow]);
-  const myAvail = useMemo(() => (myRow?.availability && typeof myRow.availability === "object" ? myRow.availability : {}), [myRow]);
+  const myAvail = useMemo(
+    () => (myRow?.availability && typeof myRow.availability === "object" ? myRow.availability : {}),
+    [myRow]
+  );
 
   const rosterPlayers = useMemo(() => {
     return myRosterIds
@@ -743,7 +755,9 @@ export default function App() {
           <h2 style={{ marginTop: 0 }}>Error</h2>
           <Card>
             <div style={{ color: COLORS.danger, fontWeight: 900, marginBottom: 10 }}>{bootError}</div>
-            <Button variant="ghost" onClick={() => setBootError("")}>Cerrar</Button>
+            <Button variant="ghost" onClick={() => setBootError("")}>
+              Cerrar
+            </Button>
           </Card>
         </div>
       </div>
@@ -763,7 +777,13 @@ export default function App() {
             <div className="row">
               <h2 style={{ margin: 0 }}>{authMode === "login" ? "Iniciar sesión" : "Crear cuenta"}</h2>
               <div className="spacer" />
-              <Button variant="ghost" onClick={() => { setAuthMode(authMode === "login" ? "signup" : "login"); setAuthError(""); }}>
+              <Button
+                variant="ghost"
+                onClick={() => {
+                  setAuthMode(authMode === "login" ? "signup" : "login");
+                  setAuthError("");
+                }}
+              >
                 {authMode === "login" ? "Crear cuenta" : "Tengo cuenta"}
               </Button>
             </div>
@@ -771,11 +791,16 @@ export default function App() {
             <div style={{ marginTop: 14, display: "grid", gap: 10 }}>
               <Input value={email} onChange={setEmail} placeholder="email" />
               <Input value={pass} onChange={setPass} placeholder="contraseña" type="password" />
-              {authMode === "signup" ? <Input value={pass2} onChange={setPass2} placeholder="repetir contraseña" type="password" /> : null}
+              {authMode === "signup" ? (
+                <Input value={pass2} onChange={setPass2} placeholder="repetir contraseña" type="password" />
+              ) : null}
               {authError ? <div style={{ color: COLORS.danger, fontWeight: 900 }}>{authError}</div> : null}
               <Button disabled={authBusy} onClick={authMode === "login" ? login : signup}>
                 {authBusy ? "..." : authMode === "login" ? "Entrar" : "Crear"}
               </Button>
+              <div className="muted" style={{ fontSize: 13 }}>
+                Si ves 401/403: token mal o sin permisos.
+              </div>
             </div>
           </Card>
         ) : (
@@ -784,7 +809,9 @@ export default function App() {
               <div className="grid2" style={{ gap: 12, alignItems: "center" }}>
                 <div>
                   <div style={{ fontWeight: 1000, fontSize: 18 }}>{myDisplayName || me.email}</div>
-                  <div className="muted" style={{ fontWeight: 900 }}>{myTeamName || "Sin nombre de equipo"}</div>
+                  <div className="muted" style={{ fontWeight: 900 }}>
+                    {myTeamName || "Sin nombre de equipo"}
+                  </div>
                   <div className="muted" style={{ marginTop: 6, fontSize: 13 }}>
                     Formato: 1 QB · 2 RB · 1 WR · 1 TE · 3 FLEX · 21 BN · Picks 2026 (1.01-6.10) + rondas 2027/2028
                   </div>
@@ -814,8 +841,14 @@ export default function App() {
                     </select>
                   </div>
                   <div className="row">
-                    <Button variant="primary" onClick={saveMyProfile}>Guardar perfil</Button>
-                    {saveInfo ? <div className="muted" style={{ fontWeight: 900 }}>{saveInfo}</div> : null}
+                    <Button variant="primary" onClick={saveMyProfile}>
+                      Guardar perfil
+                    </Button>
+                    {saveInfo ? (
+                      <div className="muted" style={{ fontWeight: 900 }}>
+                        {saveInfo}
+                      </div>
+                    ) : null}
                     <div className="spacer" />
                     {playersLoading ? <Pill>cargando ADP…</Pill> : null}
                   </div>
@@ -823,10 +856,33 @@ export default function App() {
               </div>
             </Card>
 
-            {tab === "league" ? (
-              <div style={{ marginTop: 12 }}><div className="muted">Liga: lo dejamos para el siguiente paso.</div></div>
+            {tab === "home" ? (
+              <HomeView
+                myIncoming={myIncoming}
+                myOutgoing={myOutgoing}
+                byUser={byUser}
+                playersById={playersById}
+                picksCatalog={picksCatalog}
+              />
+            ) : tab === "league" ? (
+              <LeagueView
+                me={me}
+                teams={teams}
+                byUser={byUser}
+                playersById={playersById}
+                picksCatalog={picksCatalog}
+                interests={interests}
+                onSetInterest={setInterest}
+              />
             ) : tab === "interests" ? (
-              <div style={{ marginTop: 12 }}><div className="muted">Intereses: lo dejamos para el siguiente paso.</div></div>
+              <InterestsView
+                me={me}
+                byUser={byUser}
+                myOutgoing={myOutgoing}
+                myIncoming={myIncoming}
+                playersById={playersById}
+                picksCatalog={picksCatalog}
+              />
             ) : (
               <MyTeamView
                 players={players}
@@ -868,9 +924,41 @@ export default function App() {
                     "toggle player availability"
                   )
                 }
-                onAddPick={() => {}}
-                onRemovePick={() => {}}
-                onTogglePickAvail={() => {}}
+                onAddPick={(pickId) =>
+                  updateMyTeam(
+                    (t) => {
+                      const next = Array.isArray(t.picks) ? t.picks.map(String) : [];
+                      if (next.includes(String(pickId))) return t;
+                      return { ...t, picks: [...next, String(pickId)] };
+                    },
+                    "add pick"
+                  )
+                }
+                onRemovePick={(pickId) =>
+                  updateMyTeam(
+                    (t) => {
+                      const next = (Array.isArray(t.picks) ? t.picks : [])
+                        .map(String)
+                        .filter((x) => x !== String(pickId));
+                      const avail = { ...(t.availability || {}) };
+                      delete avail[`PICK:${String(pickId)}`];
+                      return { ...t, picks: next, availability: avail };
+                    },
+                    "remove pick"
+                  )
+                }
+                onTogglePickAvail={(pickId) =>
+                  updateMyTeam(
+                    (t) => {
+                      const avail = { ...(t.availability || {}) };
+                      const k = `PICK:${String(pickId)}`;
+                      const curr = avail[k] || "AVAILABLE";
+                      avail[k] = cycleAvail(curr);
+                      return { ...t, availability: avail };
+                    },
+                    "toggle pick availability"
+                  )
+                }
               />
             )}
           </>
@@ -880,144 +968,605 @@ export default function App() {
       {me ? (
         <div className="dock">
           <div className="dockInner">
-            <button className={`dockBtn ${tab === "home" ? "active" : ""}`} onClick={() => setTab("home")}>Inicio</button>
-            <button className={`dockBtn ${tab === "league" ? "active" : ""}`} onClick={() => setTab("league")}>Liga</button>
-            <button className={`dockBtn ${tab === "interests" ? "active" : ""}`} onClick={() => setTab("interests")}>Intereses</button>
-            <button className={`dockBtn ${tab === "team" ? "active" : ""}`} onClick={() => setTab("team")}>Mi equipo</button>
+            <button className={`dockBtn ${tab === "home" ? "active" : ""}`} onClick={() => setTab("home")}>
+              Inicio
+            </button>
+            <button className={`dockBtn ${tab === "league" ? "active" : ""}`} onClick={() => setTab("league")}>
+              Liga
+            </button>
+            <button className={`dockBtn ${tab === "interests" ? "active" : ""}`} onClick={() => setTab("interests")}>
+              Intereses
+            </button>
+            <button className={`dockBtn ${tab === "team" ? "active" : ""}`} onClick={() => setTab("team")}>
+              Mi equipo
+            </button>
           </div>
         </div>
       ) : null}
     </div>
   );
-}
 
-function MyTeamView({ players, rosterIds, availability, slotAssignments, onAddPlayer, onRemovePlayer, onTogglePlayerAvail }) {
-  const [q, setQ] = useState("");
-  const [posFilter, setPosFilter] = useState("ALL");
+  /** local components in App scope */
+  function HomeView({ myIncoming, myOutgoing, byUser, playersById, picksCatalog }) {
+    const pickLabel = useMemo(() => {
+      const m = new Map();
+      for (const p of picksCatalog) m.set(String(p.id), p.label);
+      return m;
+    }, [picksCatalog]);
 
-  const filteredPlayers = useMemo(() => {
-    const qq = q.trim().toLowerCase();
-    return (players || [])
-      .filter((p) => {
-        const pos = normPos(p.position);
-        if (posFilter !== "ALL" && pos !== posFilter) return false;
-        if (!qq) return true;
-        return String(p.name || "").toLowerCase().includes(qq);
-      })
-      .slice(0, 250);
-  }, [players, q, posFilter]);
+    const fmtAsset = (row) => {
+      if (row.asset_type === "PLAYER") {
+        const p = playersById.get(String(row.asset_id));
+        return p ? `${p.name} (${p.position} ${p.team})` : `Jugador ${row.asset_id}`;
+      }
+      return pickLabel.get(String(row.asset_id)) || `Pick ${row.asset_id}`;
+    };
 
-  const ownedSet = useMemo(() => new Set(rosterIds.map(String)), [rosterIds]);
-
-  return (
-    <div style={{ marginTop: 12 }}>
-      <div className="grid2">
+    return (
+      <div style={{ marginTop: 12 }} className="grid2">
         <Card>
-          <div style={{ display: "grid", gap: 10 }}>
-            <Input value={q} onChange={setQ} placeholder="Buscar jugador por nombre..." />
-            <div className="seg">
-              {["ALL", "QB", "RB", "WR", "TE"].map((p) => (
-                <button key={p} className={`segBtn ${posFilter === p ? "active" : ""}`} onClick={() => setPosFilter(p)}>
-                  {p === "ALL" ? "Todos" : p}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div style={{ marginTop: 12 }} className="list">
-            {filteredPlayers.map((p) => {
-              const pid = String(p.player_id);
-              const added = ownedSet.has(pid);
-              return (
-                <div key={pid} className="playerRow">
-                  <div style={{ display: "flex", gap: 10, alignItems: "center", minWidth: 0 }}>
-                    <div className="avatar">{playerAvatar(p.name)}</div>
-                    <div style={{ minWidth: 0 }}>
-                      <div className="breakAnywhere" style={{ fontWeight: 1000 }}>{p.name}</div>
-                      <div className="muted" style={{ fontSize: 12, fontWeight: 900 }}>
-                        {normPos(p.position)} · {p.team || "-"} · ADP {p.adp_formatted || "-"}
+          <h3 style={{ marginTop: 0 }}>Outgoing (lo que me interesa)</h3>
+          {myOutgoing.length === 0 ? (
+            <div className="muted">Todavía no marcaste intereses.</div>
+          ) : (
+            <div className="list">
+              {myOutgoing
+                .slice()
+                .sort((a, b) => String(b.updated_at || "").localeCompare(String(a.updated_at || "")))
+                .map((r) => {
+                  const to = byUser.get(r.to_user_id);
+                  return (
+                    <div key={r.key} className="playerRow">
+                      <div style={{ display: "grid", gap: 4 }}>
+                        <div style={{ fontWeight: 1000 }}>{fmtAsset(r)}</div>
+                        <div className="muted" style={{ fontSize: 12 }}>
+                          Dueño: {to?.display_name || r.to_user_id} {to?.team_name ? `— ${to.team_name}` : ""}
+                        </div>
                       </div>
+                      <Pill tone={r.level === "HIGH" ? "good" : "neutral"}>{INTEREST_LABEL[r.level] || r.level}</Pill>
                     </div>
-                  </div>
-                  <Button variant={added ? "ghost" : "primary"} onClick={() => (added ? null : onAddPlayer(pid))} disabled={added} style={{ padding: "10px 12px" }}>
-                    {added ? "Agregado" : "+ Agregar"}
-                  </Button>
-                </div>
-              );
-            })}
-          </div>
+                  );
+                })}
+            </div>
+          )}
         </Card>
 
         <Card>
-          <h3 style={{ marginTop: 0 }}>Mi equipo (slots)</h3>
-          <div className="muted" style={{ fontSize: 13, fontWeight: 900 }}>
-            Se asigna automático por posición (QB/RB/WR/TE → FLEX → BN). Tocá el estado.
+          <h3 style={{ marginTop: 0 }}>Incoming (a mí)</h3>
+          {myIncoming.length === 0 ? (
+            <div className="muted">Nadie marcó interés por tus assets (todavía).</div>
+          ) : (
+            <div className="list">
+              {myIncoming
+                .slice()
+                .sort((a, b) => String(b.updated_at || "").localeCompare(String(a.updated_at || "")))
+                .map((r) => {
+                  const from = byUser.get(r.from_user_id);
+                  return (
+                    <div key={r.key} className="playerRow">
+                      <div style={{ display: "grid", gap: 4 }}>
+                        <div style={{ fontWeight: 1000 }}>{fmtAsset(r)}</div>
+                        <div className="muted" style={{ fontSize: 12 }}>
+                          Interesado: {from?.display_name || r.from_user_id} {from?.team_name ? `— ${from.team_name}` : ""}
+                        </div>
+                      </div>
+                      <Pill tone={r.level === "HIGH" ? "good" : "neutral"}>{INTEREST_LABEL[r.level] || r.level}</Pill>
+                    </div>
+                  );
+                })}
+            </div>
+          )}
+        </Card>
+      </div>
+    );
+  }
+
+  function MyTeamView({
+    players,
+    picksCatalog,
+    rosterIds,
+    picksOwned,
+    availability,
+    slotAssignments,
+    onAddPlayer,
+    onRemovePlayer,
+    onTogglePlayerAvail,
+    onAddPick,
+    onRemovePick,
+    onTogglePickAvail,
+  }) {
+    const [mode, setMode] = useState("players"); // players | picks
+    const [q, setQ] = useState("");
+    const [posFilter, setPosFilter] = useState("ALL");
+
+    const pickLabel = useMemo(() => {
+      const m = new Map();
+      for (const p of picksCatalog) m.set(String(p.id), p.label);
+      return m;
+    }, [picksCatalog]);
+
+    const filteredPlayers = useMemo(() => {
+      const qq = q.trim().toLowerCase();
+      return (players || [])
+        .filter((p) => {
+          const pos = normPos(p.position);
+          if (posFilter !== "ALL" && pos !== posFilter) return false;
+          if (!qq) return true;
+          return String(p.name || "").toLowerCase().includes(qq);
+        })
+        .slice(0, 250);
+    }, [players, q, posFilter]);
+
+    const ownedSet = useMemo(() => new Set(rosterIds.map(String)), [rosterIds]);
+    const ownedPicksSet = useMemo(() => new Set(picksOwned.map(String)), [picksOwned]);
+
+    return (
+      <div style={{ marginTop: 12 }}>
+        <Card style={{ marginBottom: 12 }}>
+          <div className="row" style={{ alignItems: "baseline" }}>
+            <h2 style={{ margin: 0 }}>Mi equipo</h2>
+            <div className="muted" style={{ fontWeight: 900 }}>
+              Tocá el botón de estado: Disponible → En escucha → No disponible
+            </div>
+            <div className="spacer" />
+            <div className="tabs">
+              <button className={`tabBtn ${mode === "players" ? "active" : ""}`} onClick={() => setMode("players")}>
+                Jugadores
+              </button>
+              <button className={`tabBtn ${mode === "picks" ? "active" : ""}`} onClick={() => setMode("picks")}>
+                Picks
+              </button>
+            </div>
           </div>
+        </Card>
 
-          <div style={{ marginTop: 12, display: "grid", gap: 12 }}>
-            {SLOT_LIMITS.map((s) => {
-              const list = slotAssignments[s.key] || [];
-              return (
-                <div key={s.key} className="slotGroup">
-                  <div className="slotHead">
-                    <div className="slotTitle">{s.label}</div>
-                    <div className="slotCount">{list.length}/{s.limit}</div>
+        <div className="grid2">
+          <Card>
+            {mode === "players" ? (
+              <>
+                <div style={{ display: "grid", gap: 10 }}>
+                  <Input value={q} onChange={setQ} placeholder="Buscar jugador por nombre..." />
+                  <div className="seg">
+                    {["ALL", "QB", "RB", "WR", "TE"].map((p) => (
+                      <button
+                        key={p}
+                        className={`segBtn ${posFilter === p ? "active" : ""}`}
+                        onClick={() => setPosFilter(p)}
+                      >
+                        {p === "ALL" ? "Todos" : p}
+                      </button>
+                    ))}
                   </div>
+                </div>
 
-                  <div style={{ marginTop: 10, display: "grid", gap: 10 }}>
-                    {list.length === 0 ? <div className="muted">—</div> : null}
-                    {list.map((p) => {
-                      const pid = String(p.player_id);
-                      const k = `PLAYER:${pid}`;
+                <div style={{ marginTop: 12 }} className="list">
+                  {filteredPlayers.map((p) => {
+                    const pid = String(p.player_id);
+                    const added = ownedSet.has(pid);
+                    return (
+                      <div key={pid} className="playerRow">
+                        <div style={{ display: "flex", gap: 10, alignItems: "center", minWidth: 0 }}>
+                          <div className="avatar">{playerAvatar(p.name)}</div>
+                          <div style={{ minWidth: 0 }}>
+                            <div className="breakAnywhere" style={{ fontWeight: 1000 }}>
+                              {p.name}
+                            </div>
+                            <div className="muted" style={{ fontSize: 12, fontWeight: 900 }}>
+                              {normPos(p.position)} · {p.team || "-"} · ADP {p.adp_formatted || "-"}
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <Button
+                            variant={added ? "ghost" : "primary"}
+                            onClick={() => (added ? null : onAddPlayer(pid))}
+                            disabled={added}
+                            style={{ padding: "10px 12px" }}
+                          >
+                            {added ? "Agregado" : "+ Agregar"}
+                          </Button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="muted" style={{ fontWeight: 900, marginBottom: 10 }}>
+                  Agregá tus picks. 2026 está en formato 1.01-6.10. 2027/2028 por rondas (1era…6ta).
+                </div>
+                <div style={{ display: "grid", gap: 10 }}>
+                  <select
+                    defaultValue=""
+                    onChange={(e) => {
+                      const v = e.target.value;
+                      if (v) onAddPick(v);
+                      e.target.value = "";
+                    }}
+                    style={{
+                      padding: "14px 14px",
+                      borderRadius: 14,
+                      border: `1px solid ${COLORS.border}`,
+                      background: COLORS.sky,
+                      color: COLORS.navy,
+                      fontWeight: 900,
+                    }}
+                  >
+                    <option value="">+ Agregar pick…</option>
+                    {picksCatalog
+                      .filter((p) => !ownedPicksSet.has(String(p.id)))
+                      .map((p) => (
+                        <option key={p.id} value={p.id}>
+                          {p.label}
+                        </option>
+                      ))}
+                  </select>
+                </div>
+              </>
+            )}
+          </Card>
+
+          <Card>
+            {mode === "players" ? (
+              <>
+                <h3 style={{ marginTop: 0 }}>Mi equipo (slots)</h3>
+                <div className="muted" style={{ fontSize: 13, fontWeight: 900 }}>
+                  Se asigna automático por posición (QB/RB/WR/TE → FLEX → BN).
+                </div>
+
+                <div style={{ marginTop: 12, display: "grid", gap: 12 }}>
+                  {SLOT_LIMITS.map((s) => {
+                    const list = slotAssignments[s.key] || [];
+                    return (
+                      <div key={s.key} className="slotGroup">
+                        <div className="slotHead">
+                          <div className="slotTitle">{s.label}</div>
+                          <div className="slotCount">
+                            {list.length}/{s.limit}
+                          </div>
+                        </div>
+
+                        <div style={{ marginTop: 10, display: "grid", gap: 10 }}>
+                          {list.length === 0 ? <div className="muted">—</div> : null}
+                          {list.map((p) => {
+                            const pid = String(p.player_id);
+                            const k = `PLAYER:${pid}`;
+                            const avail = availability[k] || "AVAILABLE";
+                            return (
+                              <div key={pid} className="playerRow">
+                                <div style={{ display: "flex", gap: 10, alignItems: "center", minWidth: 0 }}>
+                                  <div className="avatar">{playerAvatar(p.name)}</div>
+                                  <div style={{ minWidth: 0 }}>
+                                    <div className="breakAnywhere" style={{ fontWeight: 1000 }}>
+                                      {p.name}
+                                    </div>
+                                    <div className="muted" style={{ fontSize: 12, fontWeight: 900 }}>
+                                      {normPos(p.position)} · {p.team || "-"}
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                                  <Button
+                                    variant="ghost"
+                                    onClick={() => onTogglePlayerAvail(pid)}
+                                    style={{ padding: "10px 12px" }}
+                                  >
+                                    <Pill tone={AVAIL_TONE[avail] || "neutral"}>{AVAIL_LABEL[avail] || avail}</Pill>
+                                  </Button>
+                                  <Button variant="danger" onClick={() => onRemovePlayer(pid)} style={{ padding: "10px 12px" }}>
+                                    ✕
+                                  </Button>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </>
+            ) : (
+              <>
+                <h3 style={{ marginTop: 0 }}>Mis picks</h3>
+                <div className="list">
+                  {picksOwned.length === 0 ? <div className="muted">No agregaste picks todavía.</div> : null}
+                  {picksOwned
+                    .slice()
+                    .map(String)
+                    .sort()
+                    .map((pid) => {
+                      const k = `PICK:${pid}`;
                       const avail = availability[k] || "AVAILABLE";
                       return (
                         <div key={pid} className="playerRow">
-                          <div style={{ display: "flex", gap: 10, alignItems: "center", minWidth: 0 }}>
-                            <div className="avatar">{playerAvatar(p.name)}</div>
-                            <div style={{ minWidth: 0 }}>
-                              <div className="breakAnywhere" style={{ fontWeight: 1000 }}>{p.name}</div>
-                              <div className="muted" style={{ fontSize: 12, fontWeight: 900 }}>
-                                {normPos(p.position)} · {p.team || "-"}
-                              </div>
+                          <div style={{ display: "grid", gap: 4 }}>
+                            <div style={{ fontWeight: 1000 }}>{pickLabel.get(pid) || pid}</div>
+                            <div className="muted" style={{ fontSize: 12, fontWeight: 900 }}>
+                              {pid}
                             </div>
                           </div>
-
                           <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                            <Button variant="ghost" onClick={() => onTogglePlayerAvail(pid)} style={{ padding: "10px 12px" }}>
+                            <Button
+                              variant="ghost"
+                              onClick={() => onTogglePickAvail(pid)}
+                              style={{ padding: "10px 12px" }}
+                            >
                               <Pill tone={AVAIL_TONE[avail] || "neutral"}>{AVAIL_LABEL[avail] || avail}</Pill>
                             </Button>
-                            <Button variant="danger" onClick={() => onRemovePlayer(pid)} style={{ padding: "10px 12px" }}>✕</Button>
+                            <Button variant="danger" onClick={() => onRemovePick(pid)} style={{ padding: "10px 12px" }}>
+                              ✕
+                            </Button>
                           </div>
                         </div>
                       );
                     })}
-                  </div>
                 </div>
-              );
-            })}
+              </>
+            )}
+          </Card>
+        </div>
+      </div>
+    );
+  }
+
+  function LeagueView({ me, teams, byUser, playersById, picksCatalog, interests, onSetInterest }) {
+    const [selectedUserId, setSelectedUserId] = useState("");
+    const otherTeams = useMemo(() => teams.filter((t) => t.user_id !== me.id), [teams, me.id]);
+
+    useEffect(() => {
+      if (!selectedUserId && otherTeams.length) setSelectedUserId(otherTeams[0].user_id);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [otherTeams.length]);
+
+    const selected = byUser.get(selectedUserId);
+
+    const pickLabel = useMemo(() => {
+      const m = new Map();
+      for (const p of picksCatalog) m.set(String(p.id), p.label);
+      return m;
+    }, [picksCatalog]);
+
+    const selectedRoster = useMemo(() => {
+      const ids = normalizeRosterIds(selected?.roster);
+      return ids.map((id) => playersById.get(id)).filter(Boolean);
+    }, [selected?.roster, playersById]);
+
+    const selectedPicks = useMemo(
+      () => (Array.isArray(selected?.picks) ? selected.picks.map(String) : []),
+      [selected?.picks]
+    );
+
+    return (
+      <div style={{ marginTop: 12 }}>
+        <Card style={{ background: COLORS.sky }}>
+          <div className="row">
+            <h2 style={{ margin: 0 }}>Liga</h2>
+            <div className="spacer" />
+            <select
+              value={selectedUserId}
+              onChange={(e) => setSelectedUserId(e.target.value)}
+              style={{
+                padding: "12px 12px",
+                minWidth: 260,
+                borderRadius: 14,
+                border: `1px solid ${COLORS.border}`,
+                background: COLORS.surface,
+                color: COLORS.navy,
+                fontWeight: 900,
+              }}
+            >
+              {otherTeams.map((t) => (
+                <option key={t.user_id} value={t.user_id}>
+                  {(t.display_name || t.user_id).slice(0, 30)} {t.team_name ? `— ${t.team_name}` : ""}
+                </option>
+              ))}
+            </select>
           </div>
         </Card>
-      </div>
-    </div>
-  );
-}
 
-function TopBar({ theme, onTheme, me, onLogout }) {
-  return (
-    <div className="topbar">
-      <div className="topbarInner">
-        <div style={{ fontWeight: 1000 }}>Fantasy Trade Board</div>
-        <div className="spacer" />
-        <button className="chip" onClick={() => onTheme(theme === "dark" ? "light" : "dark")} title="Cambiar tema">
-          {theme === "dark" ? "🌙 Dark" : "☀️ Light"}
-        </button>
-        {me ? (
-          <>
-            <div className="chip breakAnywhere">{me.email}</div>
-            <button className="chip" onClick={onLogout} title="Cerrar sesión">Salir</button>
-          </>
-        ) : null}
+        {!selected ? (
+          <div style={{ marginTop: 12 }} className="muted">
+            No hay otro equipo seleccionado.
+          </div>
+        ) : (
+          <div style={{ marginTop: 12 }} className="grid2">
+            <Card>
+              <div style={{ display: "grid", gap: 6 }}>
+                <div style={{ fontSize: 18, fontWeight: 1000 }}>
+                  {selected.display_name} {selected.team_name ? `— ${selected.team_name}` : ""}
+                </div>
+                <Pill>{selected.team_status || "—"}</Pill>
+              </div>
+
+              <div style={{ marginTop: 14 }}>
+                <h3 style={{ marginTop: 0 }}>Jugadores</h3>
+                <div className="muted" style={{ fontSize: 13, fontWeight: 900 }}>
+                  Marcá tu interés: Bajo / Medio / Alto (clic para activar, clic otra vez para borrar).
+                </div>
+
+                <div style={{ marginTop: 12 }} className="list">
+                  {selectedRoster.length === 0 ? <div className="muted">Sin roster cargado.</div> : null}
+                  {selectedRoster.map((p) => {
+                    const pid = String(p.player_id);
+                    const current = interests.find(
+                      (x) =>
+                        x.from_user_id === me.id &&
+                        x.to_user_id === selected.user_id &&
+                        x.asset_type === "PLAYER" &&
+                        String(x.asset_id) === pid
+                    );
+                    return (
+                      <InterestAssetRow
+                        key={pid}
+                        title={`${p.name}`}
+                        subtitle={`${normPos(p.position)} · ${p.team || "-"}`}
+                        current={current}
+                        onSet={(level) => onSetInterest(selected.user_id, "PLAYER", pid, level, "")}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            </Card>
+
+            <Card>
+              <h3 style={{ marginTop: 0 }}>Picks</h3>
+              <div style={{ marginTop: 12 }} className="list">
+                {selectedPicks.length === 0 ? <div className="muted">Sin picks cargados.</div> : null}
+                {selectedPicks
+                  .slice()
+                  .sort()
+                  .map((pid) => {
+                    const current = interests.find(
+                      (x) =>
+                        x.from_user_id === me.id &&
+                        x.to_user_id === selected.user_id &&
+                        x.asset_type === "PICK" &&
+                        String(x.asset_id) === String(pid)
+                    );
+                    return (
+                      <InterestAssetRow
+                        key={pid}
+                        title={pickLabel.get(String(pid)) || String(pid)}
+                        subtitle={String(pid)}
+                        current={current}
+                        onSet={(level) => onSetInterest(selected.user_id, "PICK", String(pid), level, "")}
+                      />
+                    );
+                  })}
+              </div>
+            </Card>
+          </div>
+        )}
       </div>
-    </div>
-  );
+    );
+  }
+
+  function InterestsView({ me, byUser, myOutgoing, myIncoming, playersById, picksCatalog }) {
+    const pickLabel = useMemo(() => {
+      const m = new Map();
+      for (const p of picksCatalog) m.set(String(p.id), p.label);
+      return m;
+    }, [picksCatalog]);
+
+    const fmtAsset = (row) => {
+      if (row.asset_type === "PLAYER") {
+        const p = playersById.get(String(row.asset_id));
+        return p ? `${p.name} (${p.position} ${p.team})` : `Jugador ${row.asset_id}`;
+      }
+      return pickLabel.get(String(row.asset_id)) || `Pick ${row.asset_id}`;
+    };
+
+    return (
+      <div style={{ marginTop: 12 }} className="grid2">
+        <Card>
+          <h2 style={{ marginTop: 0 }}>Lo que me interesa</h2>
+          {myOutgoing.length === 0 ? (
+            <div className="muted">No marcaste intereses todavía.</div>
+          ) : (
+            <div className="list">
+              {myOutgoing
+                .slice()
+                .sort((a, b) => String(b.updated_at || "").localeCompare(String(a.updated_at || "")))
+                .map((r) => {
+                  const owner = byUser.get(r.to_user_id);
+                  return (
+                    <div key={r.key} className="playerRow">
+                      <div style={{ display: "grid", gap: 4 }}>
+                        <div style={{ fontWeight: 1000 }}>{fmtAsset(r)}</div>
+                        <div className="muted" style={{ fontSize: 12, fontWeight: 900 }}>
+                          Dueño: {owner?.display_name || r.to_user_id} {owner?.team_name ? `— ${owner.team_name}` : ""}
+                        </div>
+                      </div>
+                      <Pill tone={r.level === "HIGH" ? "good" : "neutral"}>{INTEREST_LABEL[r.level] || r.level}</Pill>
+                    </div>
+                  );
+                })}
+            </div>
+          )}
+        </Card>
+
+        <Card>
+          <h2 style={{ marginTop: 0 }}>Otros interesados en mi equipo</h2>
+          {myIncoming.length === 0 ? (
+            <div className="muted">Todavía nadie marcó interés por tus assets.</div>
+          ) : (
+            <div className="list">
+              {myIncoming
+                .slice()
+                .sort((a, b) => String(b.updated_at || "").localeCompare(String(a.updated_at || "")))
+                .map((r) => {
+                  const who = byUser.get(r.from_user_id);
+                  return (
+                    <div key={r.key} className="playerRow">
+                      <div style={{ display: "grid", gap: 4 }}>
+                        <div style={{ fontWeight: 1000 }}>{fmtAsset(r)}</div>
+                        <div className="muted" style={{ fontSize: 12, fontWeight: 900 }}>
+                          Interesado: {who?.display_name || r.from_user_id} {who?.team_name ? `— ${who.team_name}` : ""}
+                        </div>
+                      </div>
+                      <Pill tone={r.level === "HIGH" ? "good" : "neutral"}>{INTEREST_LABEL[r.level] || r.level}</Pill>
+                    </div>
+                  );
+                })}
+            </div>
+          )}
+        </Card>
+      </div>
+    );
+  }
+
+  function InterestAssetRow({ title, subtitle, current, onSet }) {
+    const level = current?.level || "NONE";
+    return (
+      <div className="playerRow">
+        <div style={{ display: "grid", gap: 4, minWidth: 0 }}>
+          <div className="breakAnywhere" style={{ fontWeight: 1000 }}>
+            {title}
+          </div>
+          <div className="muted" style={{ fontSize: 12, fontWeight: 900 }}>
+            {subtitle}
+          </div>
+        </div>
+
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "flex-end" }}>
+          {INTEREST_LEVELS.map((l) => (
+            <Button
+              key={l}
+              variant={level === l ? "primary" : "ghost"}
+              onClick={() => onSet(level === l ? "NONE" : l)}
+              style={{ padding: "10px 12px" }}
+            >
+              {INTEREST_LABEL[l]}
+            </Button>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  function TopBar({ theme, onTheme, me, onLogout }) {
+    return (
+      <div className="topbar">
+        <div className="topbarInner">
+          <div style={{ fontWeight: 1000 }}>Fantasy Trade Board</div>
+          <div className="spacer" />
+          <button className="chip" onClick={() => onTheme(theme === "dark" ? "light" : "dark")} title="Cambiar tema">
+            {theme === "dark" ? "🌙 Dark" : "☀️ Light"}
+          </button>
+          {me ? (
+            <>
+              <div className="chip breakAnywhere">{me.email}</div>
+              <button className="chip" onClick={onLogout} title="Cerrar sesión">
+                Salir
+              </button>
+            </>
+          ) : null}
+        </div>
+      </div>
+    );
+  }
 }
