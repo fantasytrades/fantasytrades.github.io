@@ -41,7 +41,7 @@ const SLOT_LIMITS = [
   { key: "RB",    label: "RB",   limit: 2,  accepts: ["RB"] },
   { key: "WR",    label: "WR",   limit: 2,  accepts: ["WR"] },
   { key: "TE",    label: "TE",   limit: 1,  accepts: ["TE"] },
-  { key: "FLEX",  label: "FLEX", limit: 3,  accepts: ["RB", "WR", "TE"] },
+  { key: "FLEX",  label: "WRT",  limit: 3,  accepts: ["RB", "WR", "TE"] },
   { key: "BENCH", label: "BN",   limit: 21, accepts: ["QB", "RB", "WR", "TE"] },
 ];
 
@@ -202,226 +202,102 @@ function assignSlots(roster) {
 // ---- Styles ----
 function Styles() {
   return (
-    <style>{`
-      :root{
+    <style>{`      :root{
         --bg:#0B1220; --card:#0F172A; --soft:#0B1324; --sky:#111B2F;
         --text:#E6EEFF; --muted:#A8B3C7; --border:#22304A; --blue:#3B82F6;
         --danger:#EF4444; --shadow:0 10px 30px rgba(0,0,0,0.18);
-      }
 
-      html, body { height: 100%; }
-      body{
-        margin:0;
-        background:var(--bg);
-        color:var(--text);
-        font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-        min-height:100vh;
-        display:block;              /* override Vite boilerplate */
-        overflow-x:hidden;
+        /* Position colors */
+        --pos-qb:#FF2D7D;
+        --pos-rb:#11D3B1;
+        --pos-wr:#59A5FF;
+        --pos-te:#FFB14A;
+        --pos-bn:#A6BED6;
+
+        /* Status colors */
+        --st-available:#22C55E;
+        --st-listening:#FACC15;
+        --st-not:#EF4444;
       }
-      #root{ min-height:100vh; }
+      body{ margin:0; background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; }
       *{ box-sizing:border-box; }
-      a{ color:inherit; text-decoration:none; }
-      a:hover{ opacity:0.92; }
-
-      /* Layout */
-      .wrap{
-        max-width:1180px;
-        margin:0 auto;
-        padding:
-          16px
-          clamp(12px, 2.5vw, 20px)
-          calc(94px + env(safe-area-inset-bottom));
-      }
-
-      .top{
-        position:sticky;
-        top:0;
-        z-index:50;
-        background:rgba(11,18,32,0.92);
-        backdrop-filter: blur(10px);
-        border-bottom:1px solid var(--border);
-      }
-      .topin{
-        max-width:1180px;
-        margin:0 auto;
-        padding:10px clamp(12px, 2.5vw, 20px);
-        display:flex;
-        gap:10px;
-        align-items:center;
-        flex-wrap:wrap;
-      }
-      .sp{ flex:1 1 auto; min-width:12px; }
-
+      .wrap{ max-width:1180px; margin:0 auto; padding:16px 14px 94px; }
+      .top{ position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); }
+      .topin{ max-width:1180px; margin:0 auto; padding:10px 14px; display:flex; gap:10px; align-items:center; }
+      .sp{ flex:1; }
+      .chip{ padding:7px 10px; border-radius:999px; border:1px solid var(--border); background:var(--sky); color:var(--text); font-weight:900; font-size:12px; cursor:pointer; }
       .grid2{ display:grid; grid-template-columns:1fr; gap:12px; align-items:start; }
-      @media(min-width:900px){ .grid2{ grid-template-columns:1fr 1fr; } }
-      @media(min-width:1600px){
-        .wrap, .topin{ max-width:1320px; }
-      }
-
-      .card{
-        background:var(--card);
-        border:1px solid var(--border);
-        border-radius:16px;
-        padding:14px;
-        box-shadow:var(--shadow);
-      }
-      @media(max-width:420px){
-        .card{ padding:12px; border-radius:14px; }
-      }
-
+      @media(min-width:980px){ .grid2{ grid-template-columns:1fr 1fr; } }
+      .card{ background:var(--card); border:1px solid var(--border); border-radius:16px; padding:14px; box-shadow:var(--shadow); }
       .row{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
-      .title{
-        margin:6px 0 14px;
-        letter-spacing:-0.02em;
-        font-size:clamp(28px, 4vw, 44px);
-        line-height:1.05;
-      }
-
-      /* Controls */
-      input,select{
-        padding:12px 12px;
-        border-radius:12px;
-        border:1px solid var(--border);
-        background:var(--sky);
-        color:var(--text);
-        outline:none;
-        font-weight:800;
-        width:100%;
-        min-width:0;
-      }
-      /* In .row, make inputs share the line on desktop and stack on mobile */
-      .row > input, .row > select{
-        flex:1 1 220px;
-        width:auto;
-      }
-      @media(max-width:520px){
-        .row > input, .row > select{ flex-basis:100%; }
-      }
-
-      button{
-        padding:12px 12px;
-        border-radius:12px;
-        border:1px solid transparent;
-        background:var(--blue);
-        color:white;
-        font-weight:900;
-        cursor:pointer;
-        white-space:nowrap;
-      }
+      .title{ margin:6px 0 14px; letter-spacing:-0.02em; }
+      input,select{ padding:12px 12px; border-radius:12px; border:1px solid var(--border); background:var(--sky); color:var(--text); outline:none; font-weight:800; width:100%; }
+      button{ padding:12px 12px; border-radius:12px; border:1px solid transparent; background:var(--blue); color:white; font-weight:900; cursor:pointer; }
       button.ghost{ background:transparent; border:1px solid var(--border); color:var(--text); }
       button.danger{ background:var(--danger); }
       button:disabled{ opacity:0.6; cursor:not-allowed; }
-      @media(max-width:420px){
-        button{ padding:11px 10px; }
-      }
-
-      .chip{
-        padding:7px 10px;
-        border-radius:999px;
-        border:1px solid var(--border);
-        background:var(--sky);
-        color:var(--text);
-        font-weight:900;
-        font-size:12px;
-        cursor:pointer;
-      }
-
       .muted{ color:var(--muted); }
-
-      /* Bottom nav */
-      .dock{
-        position:fixed;
-        left:0; right:0; bottom:0;
-        background:rgba(11,18,32,0.92);
-        backdrop-filter: blur(10px);
-        border-top:1px solid var(--border);
-        z-index:60;
-        padding-bottom: env(safe-area-inset-bottom);
-      }
-      .dockin{
-        max-width:1180px;
-        margin:0 auto;
-        padding:10px clamp(10px, 2.5vw, 16px);
-        display:grid;
-        grid-template-columns:repeat(4,1fr);
-        gap:6px;
-      }
-      @media(max-width:420px){
-        .dockin{ grid-template-columns:repeat(2,1fr); }
-      }
-      .dockbtn{
-        background:transparent;
-        border:1px solid transparent;
-        color:var(--muted);
-        padding:10px 8px;
-        border-radius:12px;
-        font-weight:900;
-        font-size:13px;
-      }
+      .dock{ position:fixed; left:0; right:0; bottom:0; background:var(--bg); border-top:1px solid var(--border); z-index:60; }
+      .dockin{ max-width:1180px; margin:0 auto; padding:10px 12px; display:grid; grid-template-columns:repeat(4,1fr); gap:6px; }
+      .dockbtn{ background:transparent; border:1px solid transparent; color:var(--muted); }
       .dockbtn.active{ background:var(--sky); border:1px solid var(--border); color:var(--text); }
-
-      /* Lists */
       .list{ display:grid; gap:10px; }
-      .item{
-        display:flex;
-        justify-content:space-between;
-        gap:10px;
-        align-items:center;
-        padding:10px 12px;
-        border-radius:14px;
-        border:1px solid var(--border);
-        background:var(--soft);
-        flex-wrap:wrap;
-      }
-      @media(max-width:520px){
-        .item{ align-items:flex-start; }
-        .item > button, .item > select{ width:100%; }
+
+      .item{ display:flex; justify-content:space-between; gap:10px; align-items:center; padding:10px 12px; border-radius:14px; border:1px solid var(--border); background:var(--soft); }
+
+      /* Roster rows (Mi equipo → Slots) */
+      .item.rosterItem{ gap:12px; padding:14px 14px; border-radius:18px; background:linear-gradient(135deg, rgba(17,27,47,0.85), rgba(15,23,42,0.92)); }
+      .item.rosterItem .left{ gap:12px; flex:1; }
+      .item.rosterItem .av{ width:38px; height:38px; }
+      .item.rosterItem .name{ font-size:16px; }
+      .item.rosterItem .sub{ font-size:12px; opacity:0.95; }
+
+      .posTag{ width:58px; height:42px; border-radius:16px; display:flex; align-items:center; justify-content:center; font-weight:1100; font-size:14px; color:#06101f; flex:0 0 auto; user-select:none; }
+      .posTag.pos-QB{ background:var(--pos-qb); }
+      .posTag.pos-RB{ background:var(--pos-rb); }
+      .posTag.pos-WR{ background:var(--pos-wr); }
+      .posTag.pos-TE{ background:var(--pos-te); }
+      .posTag.pos-BENCH{ background:var(--pos-bn); color:#06101f; }
+      .posTag.pos-FLEX{
+        background:linear-gradient(90deg,
+          var(--pos-wr) 0%, var(--pos-wr) 33%,
+          var(--pos-rb) 33%, var(--pos-rb) 66%,
+          var(--pos-te) 66%, var(--pos-te) 100%
+        );
+        letter-spacing:0.14em;
+        padding-left:0.12em;
       }
 
-      .left{ display:flex; gap:10px; align-items:center; min-width:0; flex:1 1 auto; }
-      .av{
-        width:34px; height:34px; border-radius:999px;
-        background:var(--sky);
-        border:1px solid var(--border);
-        display:flex; align-items:center; justify-content:center;
-        font-weight:1000;
-        flex:0 0 auto;
-      }
+      .left{ display:flex; gap:10px; align-items:center; min-width:0; }
+      .av{ width:34px; height:34px; border-radius:999px; background:var(--sky); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-weight:1000; }
       .name{ font-weight:1000; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
       .sub{ font-size:12px; font-weight:900; }
 
-      /* Slots */
-      .slots{ display:grid; gap:12px; }
-      .slot{ border:1px solid var(--border); background:var(--card); border-radius:14px; padding:12px; }
-      .slothead{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
+      .slots{ display:grid; gap:18px; }
+      .slot{ border:0; background:transparent; padding:0; }
+      .slothead{ display:flex; justify-content:space-between; align-items:baseline; padding:6px 2px; }
+      .slothead > div:first-child{ letter-spacing:0.06em; }
 
-      /* Segmented buttons */
       .seg{ display:flex; flex-wrap:wrap; gap:8px; }
       .seg button{ padding:8px 10px; border-radius:999px; }
       .seg button.active{ background:var(--blue); }
-      @media(max-width:420px){
-        .seg button{ padding:7px 9px; font-size:12px; }
-      }
 
-      .pill{
-        display:inline-flex;
-        align-items:center;
-        gap:8px;
-        padding:6px 10px;
-        border-radius:999px;
-        border:1px solid var(--border);
-        background:var(--sky);
-        font-weight:1000;
-        font-size:12px;
-      }
-      .badge{
-        padding:6px 10px;
-        border-radius:999px;
-        border:1px solid var(--border);
-        background:var(--sky);
-        font-weight:1000;
-        font-size:12px;
+      .pill{ display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:var(--sky); font-weight:1000; font-size:12px; }
+      .pill.status-AVAILABLE{ background:rgba(34,197,94,0.16); border-color:rgba(34,197,94,0.5); color:rgb(134,239,172); }
+      .pill.status-LISTENING{ background:rgba(250,204,21,0.16); border-color:rgba(250,204,21,0.5); color:rgb(253,224,71); }
+      .pill.status-NOT_AVAILABLE{ background:rgba(239,68,68,0.16); border-color:rgba(239,68,68,0.5); color:rgb(252,165,165); }
+
+      .statusBtn{ border-radius:999px; padding:9px 12px; font-size:12px; font-weight:1000; line-height:1; }
+      .statusBtn.status-AVAILABLE{ background:rgba(34,197,94,0.18); border-color:rgba(34,197,94,0.55); color:rgb(134,239,172); }
+      .statusBtn.status-LISTENING{ background:rgba(250,204,21,0.18); border-color:rgba(250,204,21,0.55); color:rgb(253,224,71); }
+      .statusBtn.status-NOT_AVAILABLE{ background:rgba(239,68,68,0.18); border-color:rgba(239,68,68,0.55); color:rgb(252,165,165); }
+
+      .badge{ padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:var(--sky); font-weight:1000; font-size:12px; }
+
+      @media(max-width:520px){
+        .posTag{ width:52px; height:38px; border-radius:14px; font-size:13px; }
+        .item.rosterItem{ padding:12px 12px; }
+        .item.rosterItem .av{ width:36px; height:36px; }
       }
     `}</style>
   );
@@ -534,13 +410,14 @@ function MyTeamView({
                   return (
                     <div key={s.key} className="slot">
                       <div className="slothead">
-                        <div style={{ fontWeight: 1000 }}>{s.label}</div>
+                        <div style={{ fontWeight: 1000 }}>{s.key === "BENCH" ? "BENCH" : s.key === "FLEX" ? "FLEX" : s.label}</div>
                         <div className="muted sub">{list.length}/{s.limit}</div>
                       </div>
                       <div className="list" style={{ marginTop: 10 }}>
                         {list.length === 0 ? <div className="muted">—</div> : null}
                         {list.map((r) => (
-                          <div key={r.id} className="item">
+                          <div key={r.id} className="item rosterItem">
+                            <div className={`posTag pos-${s.key}`}>{s.label}</div>
                             <div className="left">
                               <div className="av">{initials(r.name)}</div>
                               <div style={{ minWidth: 0 }}>
@@ -549,7 +426,7 @@ function MyTeamView({
                               </div>
                             </div>
                             <div className="row" style={{ justifyContent: "flex-end" }}>
-                              <button className="ghost" disabled={saving} onClick={() => onTogglePlayerStatus(r.id)}>
+                              <button className={`ghost statusBtn status-${r.status || "AVAILABLE"}`} disabled={saving} onClick={() => onTogglePlayerStatus(r.id)}>
                                 {STATUS_LABEL[r.status] || r.status}
                               </button>
                               <button className="danger" disabled={saving} onClick={() => onRemovePlayer(r.id)}>✕</button>
@@ -574,7 +451,7 @@ function MyTeamView({
                       <div className="muted sub">{p.id}</div>
                     </div>
                     <div className="row" style={{ justifyContent: "flex-end" }}>
-                      <button className="ghost" disabled={saving} onClick={() => onTogglePickStatus(p.id)}>
+                      <button className={`ghost statusBtn status-${p.status || "AVAILABLE"}`} disabled={saving} onClick={() => onTogglePickStatus(p.id)}>
                         {STATUS_LABEL[p.status] || p.status}
                       </button>
                       <button className="danger" disabled={saving} onClick={() => onRemovePick(p.id)}>✕</button>
@@ -642,7 +519,7 @@ function LeagueView({ me, teams, interests, onSetInterest }) {
                       <div style={{ minWidth: 0 }}>
                         <div className="name">{r.name}</div>
                         <div className="muted sub">
-                          {normPos(r.pos)} · {r.nfl || "-"} · <span className="pill">{STATUS_LABEL[r.status] || r.status}</span>
+                          {normPos(r.pos)} · {r.nfl || "-"} · <span className={`pill status-${r.status || "AVAILABLE"}`}>{STATUS_LABEL[r.status] || r.status}</span>
                         </div>
                       </div>
                     </div>
@@ -670,7 +547,7 @@ function LeagueView({ me, teams, interests, onSetInterest }) {
                     <div style={{ minWidth: 0 }}>
                       <div className="name">{p.label || p.id}</div>
                       <div className="muted sub">
-                        {p.id} · <span className="pill">{STATUS_LABEL[p.status] || p.status}</span>
+                        {p.id} · <span className={`pill status-${p.status || "AVAILABLE"}`}>{STATUS_LABEL[p.status] || p.status}</span>
                       </div>
                     </div>
                     <select value={cur} onChange={(e) => onSetInterest(selected.user_id, "PICK", p.id, e.target.value)} style={{ maxWidth: 160 }}>
