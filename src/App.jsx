@@ -37,7 +37,7 @@ const db = getFirestore(fbApp);
 const LEAGUE_SIZE = 10;
 
 
-const ALLOWED_POSITIONS = new Set([\"QB\",\"RB\",\"WR\",\"TE\"]);
+const ALLOWED_POSITIONS = new Set(["QB","RB","WR","TE"]);
 const SLOT_LIMITS = [
   { key: "QB",    label: "QB",   limit: 1,  accepts: ["QB"] },
   { key: "RB",    label: "RB",   limit: 2,  accepts: ["RB"] },
