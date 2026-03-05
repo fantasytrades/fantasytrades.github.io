@@ -186,7 +186,7 @@ function normalizeTeamRow(row) {
     if (!x) return null;
     if (typeof x === "string" || typeof x === "number") {
       const id = String(x);
-      return { id, name: `Jugador ${id}`, pos: "?", nfl: "", status: "AVAILABLE" };
+      return { id, name: `Jugador ${id}`, pos: "?", nfl: "", status: "AVAILABLE", value: "", value_tier: null, value_picks: [], value_custom: "", value_note: "" };
     }
     if (typeof x === "object") {
       const id = x.id != null ? String(x.id) : x.player_id != null ? String(x.player_id) : "";
@@ -197,6 +197,11 @@ function normalizeTeamRow(row) {
         pos: normPos(x.pos || x.position || "?"),
         nfl: x.nfl || x.team || "",
         status: x.status || "AVAILABLE",
+        value: typeof x.value === "string" ? x.value : (typeof x.value_text === "string" ? x.value_text : ""),
+        value_tier: x.value_tier ?? null,
+        value_picks: Array.isArray(x.value_picks) ? x.value_picks : [],
+        value_custom: typeof x.value_custom === "string" ? x.value_custom : "",
+        value_note: typeof x.value_note === "string" ? x.value_note : "",
       };
     }
     return null;
@@ -350,7 +355,7 @@ function Styles() {
         width:fit-content;
       }
       .valueBtn{
-        padding:9px 12px;
+        padding:10px 14px;
         border-radius:12px;
         color:var(--blue);
         border-color:#CFE3FF;
@@ -376,16 +381,16 @@ function Styles() {
       .seg{ display:flex; flex-wrap:wrap; gap:8px; }
       .seg.segTabs{
         background:var(--sky); border:1px solid #CFE3FF;
-        padding:5px; border-radius:16px;
+        padding:6px; border-radius:16px;
       }
       .seg.segTabs button{
         background:transparent; border:1px solid transparent; color:#1E293B;
-        padding:10px 14px; border-radius:12px;
+        padding:10px 16px; border-radius:12px;
         box-shadow:none;
       }
       .seg.segTabs button.active{
         background:var(--blue); color:#fff;
-        box-shadow:none;
+        box-shadow:0 10px 22px rgba(47,125,246,0.22);
       }
 
       .seg.segFilters button{
@@ -395,7 +400,7 @@ function Styles() {
       }
       .seg.segFilters button.active{
         background:var(--blue); border-color:rgba(47,125,246,0.35); color:#fff;
-        box-shadow:none;
+        box-shadow:0 10px 22px rgba(47,125,246,0.18);
       }
 
       /* Pills / badges */
@@ -407,30 +412,10 @@ function Styles() {
       .badge{ padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:#F1F5F9; font-weight:1000; font-size:12px; color:#0F172A; }
 
       /* === Roster slot tags (QB/RB/WR/TE/WRT/BN) === */
-      .rosterItem{
-        display:grid;
-        grid-template-columns: 56px 1fr auto;
-        align-items:center;
-        gap:12px;
-      }
-      .rosterItem .left{ min-width:0; }
-      .actions{
-        display:flex;
-        align-items:center;
-        justify-content:flex-end;
-        gap:10px;
-        flex-wrap:nowrap;
-        white-space:nowrap;
-      }
-      .actions > button{ white-space:nowrap; }
-      .actions .statusBtn{ min-width:118px; text-align:center; }
-      .actions .valueBtn{ min-width:92px; text-align:center; }
-      @media(max-width:720px){
-        .rosterItem{ grid-template-columns: 54px 1fr; }
-        .actions{ grid-column: 1 / -1; justify-content:flex-end; }
-      }
+      .rosterItem{ gap:12px; display:grid; grid-template-columns:54px 1fr auto; align-items:center; }
+      .rosterActions{ display:flex; gap:10px; align-items:center; flex-wrap:nowrap; justify-content:flex-end; }
       .posTag{
-        width:48px; height:40px; border-radius:14px;
+        width:54px; height:44px; border-radius:14px;
         display:flex; align-items:center; justify-content:center;
         font-weight:1100; letter-spacing:0.02em;
         color:#fff;
@@ -481,7 +466,7 @@ function Styles() {
         color:#94A3B8;
       }
 
-      .itemTight{ padding:10px 12px; border-radius:16px; }
+      .itemTight{ padding:12px 12px; border-radius:16px; }
       .scrollList{ max-height:560px; overflow:auto; padding-right:4px; }
       @media(max-width:980px){ .scrollList{ max-height:none; } }
 
@@ -504,7 +489,7 @@ function Styles() {
 
       .statusBtn{
         border-radius:999px;
-        padding:9px 12px;
+        padding:10px 14px;
         box-shadow:none;
         font-weight:1000;
       }
@@ -518,6 +503,110 @@ function Styles() {
         box-shadow:none;
       }
       .dockbtn.active{ background:var(--sky); border-color:#CFE3FF; }
+
+      /* === Modal (Asset value editor) === */
+      .modalOverlay{
+        position:fixed; inset:0;
+        background:rgba(15,23,42,0.35);
+        display:flex; align-items:center; justify-content:center;
+        padding:18px;
+        z-index:120;
+      }
+      .modal{
+        width:min(760px, 100%);
+        background:#fff;
+        border:1px solid var(--border);
+        border-radius:22px;
+        box-shadow:var(--shadow);
+        overflow:hidden;
+      }
+      .modalHead{
+        display:flex; align-items:center; justify-content:space-between;
+        padding:16px 18px;
+        border-bottom:1px solid var(--border);
+      }
+      .modalTitle{ font-weight:1100; font-size:18px; letter-spacing:-0.01em; }
+      .modalBody{
+        padding:16px 18px;
+        display:grid; gap:14px;
+        max-height:70vh;
+        overflow:auto;
+      }
+      .modalFoot{
+        padding:14px 18px;
+        border-top:1px solid var(--border);
+        display:flex; justify-content:flex-end; gap:10px;
+        background:#fff;
+      }
+      .modalBlock{ display:grid; gap:8px; }
+      .modalLabel{ font-weight:1100; color:#0F172A; }
+      .hint{ font-size:12px; color:var(--muted); font-weight:800; }
+      .tierRow{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+      .tierDot{
+        width:42px; height:42px;
+        border-radius:999px;
+        background:#fff;
+        border:1px solid var(--border);
+        color:#0F172A;
+        font-weight:1100;
+        box-shadow:none;
+        padding:0;
+      }
+      .tierDot.active{
+        background:var(--blue);
+        border-color:rgba(47,125,246,0.35);
+        color:#fff;
+        box-shadow:0 10px 22px rgba(47,125,246,0.18);
+      }
+      .miniBtn{
+        padding:10px 12px;
+        border-radius:999px;
+        font-weight:1000;
+        box-shadow:none;
+      }
+      .chipGrid{
+        display:flex; flex-wrap:wrap; gap:10px;
+      }
+      .pickChip{
+        padding:10px 14px;
+        border-radius:999px;
+        background:var(--sky);
+        border:1px solid #CFE3FF;
+        color:var(--blue);
+        box-shadow:none;
+        font-weight:1100;
+      }
+      .pickChip.active{
+        background:var(--blue);
+        color:#fff;
+        border-color:rgba(47,125,246,0.35);
+        box-shadow:0 10px 22px rgba(47,125,246,0.16);
+      }
+      .textarea{
+        width:100%;
+        min-height:90px;
+        resize:vertical;
+        padding:12px 12px;
+        border-radius:14px;
+        border:1px solid var(--border);
+        background:#fff;
+        color:var(--text);
+        outline:none;
+        font-weight:800;
+        box-shadow:0 1px 0 rgba(15,23,42,0.02);
+      }
+      .previewBox{
+        padding:12px 12px;
+        border-radius:14px;
+        border:1px dashed #CFE3FF;
+        background:var(--sky);
+        color:#0F172A;
+        font-weight:1000;
+      }
+      .dangerText{
+        color:#DC2626;
+        border-color:#F3B4B4;
+      }
 \n    `}</style>
   );
 }
@@ -693,7 +782,7 @@ function MyTeamView({
                                 </div>
                               </div>
 
-                              <div className="actions">
+                              <div className="rosterActions">
                                 <button className="ghost valueBtn" disabled={saving} onClick={() => onSetPlayerValue?.(r.id)}>
                                   {r.value ? "Editar valor" : "Valor"}
                                 </button>
@@ -745,9 +834,182 @@ function MyTeamView({
   );
 }
 
+// ---- Value modal (Asset value editor) ----
+function buildValuePreview({ tier, picks, customText, pos }) {
+  const ct = String(customText || "").trim();
+  if (ct) return ct;
+
+  const parts = [];
+  if (tier) parts.push(`Tier ${tier}`);
+  if (Array.isArray(picks) && picks.length) parts.push(picks.join(" + "));
+  // Si no hay nada, queda vacío
+  return parts.join(" / ");
+}
+
+const PICK_PRESETS = [
+  "2x 2da",
+  "1x 2da",
+  "1x 1era",
+  "Late 1era",
+  "Mid 1era",
+  "Early 1era",
+  "1era + 2da",
+  "2da + 3era",
+  "3x 2da",
+];
+
+function ValueModal({
+  open,
+  playerName,
+  playerPos,
+  initial,
+  saving,
+  onClose,
+  onSave,
+  onDelete,
+}) {
+  const [tier, setTier] = useState(null);
+  const [picks, setPicks] = useState([]);
+  const [customText, setCustomText] = useState("");
+  const [note, setNote] = useState("");
+
+  useEffect(() => {
+    if (!open) return;
+    setTier(initial?.value_tier ?? null);
+    setPicks(Array.isArray(initial?.value_picks) ? initial.value_picks : []);
+    setCustomText(String(initial?.value_custom || ""));
+    setNote(String(initial?.value_note || ""));
+  }, [open, initial?.value_tier, initial?.value_custom, initial?.value_note, JSON.stringify(initial?.value_picks || [])]);
+
+  useEffect(() => {
+    function onKey(e) {
+      if (e.key === "Escape") onClose?.();
+    }
+    if (open) window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open, onClose]);
+
+  if (!open) return null;
+
+  const preview = buildValuePreview({ tier, picks, customText, pos: playerPos });
+
+  const togglePick = (label) => {
+    setPicks((prev) => {
+      const s = new Set(prev);
+      if (s.has(label)) s.delete(label);
+      else s.add(label);
+      return Array.from(s);
+    });
+  };
+
+  const handleSave = () => {
+    onSave?.({
+      value: preview.trim(),
+      value_tier: tier ?? null,
+      value_picks: picks,
+      value_custom: customText,
+      value_note: note,
+    });
+  };
+
+  const handleDelete = () => {
+    onDelete?.();
+  };
+
+  return (
+    <div className="modalOverlay" onMouseDown={(e) => { if (e.target === e.currentTarget) onClose?.(); }}>
+      <div className="modal" role="dialog" aria-modal="true" onMouseDown={(e) => e.stopPropagation()}>
+        <div className="modalHead">
+          <div className="modalTitle">
+            Valor del asset · <span style={{ fontWeight: 1100 }}>{playerName || "Jugador"}</span>
+          </div>
+          <button className="iconBtn" onClick={onClose} disabled={saving} aria-label="Cerrar">✕</button>
+        </div>
+
+        <div className="modalBody">
+          <div className="modalBlock">
+            <div className="modalLabel">Tier</div>
+            <div className="tierRow">
+              {[1, 2, 3, 4, 5].map((n) => (
+                <button
+                  key={n}
+                  className={`tierDot ${tier === n ? "active" : ""}`}
+                  onClick={() => setTier(n)}
+                  disabled={saving}
+                >
+                  {n}
+                </button>
+              ))}
+              <button className="ghost miniBtn" onClick={() => setTier(null)} disabled={saving}>
+                Limpiar
+              </button>
+            </div>
+          </div>
+
+          <div className="modalBlock">
+            <div className="modalLabel">Picks (presets)</div>
+            <div className="chipGrid">
+              {PICK_PRESETS.map((lab) => (
+                <button
+                  key={lab}
+                  className={`pickChip ${picks.includes(lab) ? "active" : ""}`}
+                  onClick={() => togglePick(lab)}
+                  disabled={saving}
+                >
+                  {lab}
+                </button>
+              ))}
+              <button className="ghost miniBtn" onClick={() => setPicks([])} disabled={saving}>
+                Limpiar picks
+              </button>
+            </div>
+          </div>
+
+          <div className="modalBlock">
+            <div className="modalLabel">Texto custom (opcional)</div>
+            <input
+              value={customText}
+              onChange={(e) => setCustomText(e.target.value)}
+              placeholder='Ej: Late 1era + 2da / RB Tier 2 / 2x2da + 3era...'
+              disabled={saving}
+            />
+            <div className="hint">Si ponés texto custom, pisa el armado automático (Tier/Picks).</div>
+          </div>
+
+          <div className="modalBlock">
+            <div className="modalLabel">Nota (opcional)</div>
+            <textarea
+              className="textarea"
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+              placeholder="Ej: Solo por upgrade, no vendo por picks. / Busco RB joven."
+              disabled={saving}
+            />
+          </div>
+
+          <div className="modalBlock">
+            <div className="modalLabel">Preview</div>
+            <div className="previewBox">{preview || "—"}</div>
+          </div>
+        </div>
+
+        <div className="modalFoot">
+          <button className="ghost dangerText" onClick={handleDelete} disabled={saving}>
+            Borrar
+          </button>
+          <button onClick={handleSave} disabled={saving}>
+            Guardar
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 
 // ---- LeagueView ----
-function LeagueView({ me, teams, interests, onSetInterest }) {
+function LeagueView({ me, teams, interests, onSetInterest, metaById }) {
   const [selectedId, setSelectedId] = useState("");
   const others = useMemo(() => teams.filter((t) => t.user_id !== me.id), [teams, me]);
 
@@ -791,8 +1053,9 @@ function LeagueView({ me, teams, interests, onSetInterest }) {
               {selectedRoster.map((r) => {
                 const key = `${me.id}::${selected.user_id}::PLAYER::${r.id}`;
                 const cur = interests.find((x) => x.key === key)?.level || "NONE";
+                const meta = metaById?.get(String(r.id));
+                const img = pickImg(meta) || pickImg(r);
                 const stKey = normStatusKey(r.status);
-                const img = pickImg(r);
                 return (
                   <div key={r.id} className="item">
                     <div className="left">
@@ -828,7 +1091,7 @@ function LeagueView({ me, teams, interests, onSetInterest }) {
                     <div style={{ minWidth: 0 }}>
                       <div className="name">{p.label || p.id}</div>
                       <div className="muted sub">
-                        {p.id} · <span className={`pill pill-${normStatusKey(p.status)}`}>{STATUS_LABEL[normStatusKey(p.status)] || p.status}</span>
+                        {p.id} · <span className={`pill pill-${p.status || "AVAILABLE"}`}>{STATUS_LABEL[p.status] || p.status}</span>
                       </div>
                     </div>
                     <select value={cur} onChange={(e) => onSetInterest(selected.user_id, "PICK", p.id, e.target.value)} style={{ maxWidth: 160 }}>
@@ -853,7 +1116,10 @@ function InterestsView({ teamsByUser, myOutgoing, myIncoming, metaById }) {
   const fmtAsset = (x) => {
     if (x.asset_type === "PLAYER") {
       const m = metaById.get(String(x.asset_id));
-      return m ? `${m.name} (${m.pos} ${m.nfl || "-"})` : `Jugador ${x.asset_id}`;
+      if (!m) return `Jugador ${x.asset_id}`;
+      const pos = normPos(m.pos || m.position || "?");
+      const nfl = m.nfl || m.team || "-";
+      return `${m.name} (${pos} ${nfl})`;
     }
     return PICK_LABEL.get(String(x.asset_id)) || String(x.asset_id);
   };
@@ -997,16 +1263,40 @@ export default function App() {
 
   const metaById = useMemo(() => {
     const m = new Map();
+    // Guardamos el objeto completo (incluye headshot/img si existe)
     for (const p of players) {
-      m.set(String(p.player_id), { name: p.name, pos: normPos(p.position), nfl: p.team || "" });
+      m.set(String(p.player_id), p);
     }
     for (const t of teams) {
       for (const r of t.roster || []) {
-        if (!m.has(String(r.id))) m.set(String(r.id), { name: r.name, pos: normPos(r.pos), nfl: r.nfl || "" });
+        const id = String(r.id);
+        if (!m.has(id)) m.set(id, r);
       }
     }
     return m;
   }, [players, teams]);
+
+  // ---- Value editor modal state ----
+  const [valueEditor, setValueEditor] = useState({ open: false, id: null });
+
+  const openValueEditor = (id) => {
+    const pid = String(id);
+    setValueEditor({ open: true, id: pid });
+  };
+  const closeValueEditor = () => setValueEditor({ open: false, id: null });
+
+  const valueRow = useMemo(() => {
+    if (!valueEditor.open || !valueEditor.id) return null;
+    return (myRoster || []).find((r) => String(r.id) === String(valueEditor.id)) || null;
+  }, [valueEditor.open, valueEditor.id, myRoster]);
+
+  const valueMeta = useMemo(() => {
+    if (!valueEditor.open || !valueEditor.id) return null;
+    return metaById.get(String(valueEditor.id)) || null;
+  }, [valueEditor.open, valueEditor.id, metaById]);
+
+  const valuePlayerName = valueRow?.name || valueMeta?.name || "Jugador";
+  const valuePlayerPos = normPos(valueRow?.pos || valueMeta?.position || valueMeta?.pos || "?");
 
   // ---- Auth ----
   async function signup() {
@@ -1250,7 +1540,7 @@ export default function App() {
             {tab === "home" || tab === "interests" ? (
               <InterestsView teamsByUser={teamsByUser} myOutgoing={myOutgoing} myIncoming={myIncoming} metaById={metaById} />
             ) : tab === "league" ? (
-              <LeagueView me={me} teams={teams} interests={interests} onSetInterest={setInterest} />
+              <LeagueView me={me} teams={teams} interests={interests} onSetInterest={setInterest} metaById={metaById} />
             ) : (
               <MyTeamView
                 players={players}
@@ -1282,20 +1572,40 @@ export default function App() {
                   ...t,
                   picks: (t.picks || []).map((p) => String(p.id) !== String(pickId) ? p : { ...p, status: cycleStatus(p.status || "AVAILABLE") }),
                 }), "toggle pick status")}
-                onSetPlayerValue={(id) => {
-                  const curr = (myRoster || []).find((x) => String(x.id) === String(id))?.value || "";
-                  const v = window.prompt("Valor (texto libre)", curr);
-                  if (v === null) return;
-                  updateMyTeam((t) => ({
-                    ...t,
-                    roster: (t.roster || []).map((r) => (String(r.id) === String(id) ? { ...r, value: String(v).trim() } : r)),
-                  }), "set value");
-                }}
+                onSetPlayerValue={openValueEditor}
               />
             )}
           </>
         )}
       </div>
+
+      <ValueModal
+        open={valueEditor.open}
+        playerName={valuePlayerName}
+        playerPos={valuePlayerPos}
+        initial={valueRow}
+        saving={saving}
+        onClose={closeValueEditor}
+        onSave={(payload) => {
+          const id = valueEditor.id;
+          if (!id) return;
+          updateMyTeam((t) => ({
+            ...t,
+            roster: (t.roster || []).map((r) => (String(r.id) === String(id) ? { ...r, ...payload } : r)),
+          }), "set value modal");
+          closeValueEditor();
+        }}
+        onDelete={() => {
+          const id = valueEditor.id;
+          if (!id) return;
+          updateMyTeam((t) => ({
+            ...t,
+            roster: (t.roster || []).map((r) => (String(r.id) === String(id) ? { ...r, value: "", value_tier: null, value_picks: [], value_custom: "", value_note: "" } : r)),
+          }), "delete value");
+          closeValueEditor();
+        }}
+      />
+
 
       {me ? (
         <div className="dock">
