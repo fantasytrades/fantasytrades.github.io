@@ -226,26 +226,74 @@ function normalizeTeamRow(row) {
 }
 
 // ---- Slots ----
-function assignSlots(roster) {
-  const remaining = roster.slice();
+function assignSlots(roster, adpById) {
   const slots = Object.fromEntries(SLOT_LIMITS.map((s) => [s.key, []]));
-  const take = (accepts) => {
-    const idx = remaining.findIndex((p) => accepts.includes(normPos(p.pos)));
-    if (idx === -1) return null;
-    return remaining.splice(idx, 1)[0];
+
+  const getAdp = (r) => {
+    const id = String(r.id);
+    const meta = adpById?.get?.(id) || null;
+    const raw =
+      meta?.adp ??
+      meta?.adp_value ??
+      meta?.adp_rank ??
+      r?.adp ??
+      r?.adp_value ??
+      r?.adp_rank ??
+      null;
+
+    const n = Number(raw);
+    // ADP "mejor" = número más chico. Si no hay ADP, lo mandamos al fondo.
+    return Number.isFinite(n) && n > 0 ? n : 9e9;
   };
-  for (const s of SLOT_LIMITS.filter((x) => x.key !== "BENCH")) {
-    while (slots[s.key].length < s.limit) {
-      const p = take(s.accepts);
-      if (!p) break;
-      slots[s.key].push(p);
+
+  const clone = (r) => ({ ...r });
+  const norm = (r) => normPos(r.pos);
+
+  const pool = (roster || []).map(clone);
+
+  // Separar por posición
+  const qb = pool.filter((r) => norm(r) === "QB").sort((a, b) => getAdp(a) - getAdp(b));
+  const rb = pool.filter((r) => norm(r) === "RB").sort((a, b) => getAdp(a) - getAdp(b));
+  const wr = pool.filter((r) => norm(r) === "WR").sort((a, b) => getAdp(a) - getAdp(b));
+  const te = pool.filter((r) => norm(r) === "TE").sort((a, b) => getAdp(a) - getAdp(b));
+
+  const used = new Set();
+  const takeFrom = (arr, n) => {
+    const out = [];
+    for (const r of arr) {
+      if (out.length >= n) break;
+      const id = String(r.id);
+      if (used.has(id)) continue;
+      used.add(id);
+      out.push(r);
     }
-  }
-  slots.BENCH = remaining.slice(0, SLOT_LIMITS.find((x) => x.key === "BENCH").limit);
+    return out;
+  };
+
+  // Límites (por si cambiás en el futuro)
+  const lim = (k) => SLOT_LIMITS.find((x) => x.key === k)?.limit ?? 0;
+
+  slots.QB = takeFrom(qb, lim("QB"));
+  slots.RB = takeFrom(rb, lim("RB"));
+  slots.WR = takeFrom(wr, lim("WR"));
+  slots.TE = takeFrom(te, lim("TE"));
+
+  // FLEX: mejores ADP de lo que queda entre WR/RB/TE
+  const flexPool = [...rb, ...wr, ...te]
+    .filter((r) => !used.has(String(r.id)))
+    .sort((a, b) => getAdp(a) - getAdp(b));
+  slots.FLEX = takeFrom(flexPool, lim("FLEX"));
+
+  // BENCH: lo que queda (ordenado por ADP)
+  const benchPool = pool
+    .filter((r) => !used.has(String(r.id)))
+    .sort((a, b) => getAdp(a) - getAdp(b));
+  slots.BENCH = benchPool.slice(0, lim("BENCH"));
+
   return slots;
 }
 
-// ---- Styles ----
+ // ---- Styles ----
 function Styles() {
   return (
     <style>{`\n      :root{
@@ -358,6 +406,38 @@ function Styles() {
         overflow:hidden;
         text-overflow:ellipsis;
       }
+
+      /* Picks debajo del roster */
+      .picksWrap{ display:flex; flex-wrap:wrap; gap:10px; }
+      .pickChip{
+        display:flex; align-items:center;
+        border:1px solid var(--border);
+        border-radius:999px;
+        background:#fff;
+        overflow:hidden;
+      }
+      .pickMain{
+        border:0; background:transparent;
+        padding:8px 12px;
+        font-weight:1000;
+        color:var(--text);
+        cursor:pointer;
+        text-align:left;
+      }
+      .pickX{
+        border:0; background:transparent;
+        padding:8px 10px;
+        color:var(--danger);
+        font-weight:1000;
+        cursor:pointer;
+      }
+      .pickChip.pick-AVAILABLE{ background:rgba(22,163,74,0.10); border-color:rgba(22,163,74,0.25); }
+      .pickChip.pick-LISTENING{ background:rgba(245,158,11,0.12); border-color:rgba(245,158,11,0.28); }
+      .pickChip.pick-NOT_AVAILABLE{ background:rgba(239,68,68,0.10); border-color:rgba(239,68,68,0.24); }
+      .pickChip.pick-AVAILABLE .pickMain{ color:#0B3A1A; }
+      .pickChip.pick-LISTENING .pickMain{ color:#4A2B00; }
+      .pickChip.pick-NOT_AVAILABLE .pickMain{ color:#4A0B0B; }
+
       .valueBtn{
         padding:10px 14px;
         border-radius:12px;
@@ -370,6 +450,8 @@ function Styles() {
 
       .profileRow{ flex-wrap:nowrap; }
       .profileRow > input, .profileRow > select{ min-width:0; }
+      .profileActions{ align-items:center; }
+      .profileActions > button{ margin-left:auto; }
       @media(max-width:860px){ .profileRow{ flex-wrap:wrap; } }
 
       .dockbtn{ padding:10px 12px; border-radius:14px; }
@@ -816,6 +898,37 @@ function MyTeamView({
                     </div>
                   );
                 })}
+
+              <div className="picksBelow">
+                <div className="row" style={{ alignItems: "baseline", marginTop: 14 }}>
+                  <h4 style={{ margin: 0 }}>Picks</h4>
+                  <div className="sp" />
+                  <div className="muted sub">{myPicks.length}</div>
+                </div>
+
+                {myPicks.length === 0 ? (
+                  <div className="muted" style={{ marginTop: 8 }}>No agregaste picks todavía.</div>
+                ) : (
+                  <div className="picksWrap" style={{ marginTop: 10 }}>
+                    {myPicks
+                      .slice()
+                      .sort((a, b) => String(a.id).localeCompare(String(b.id)))
+                      .map((p) => {
+                        const stKey = normStatusKey(p.status);
+                        return (
+                          <div key={p.id} className={`pickChip pick-${stKey}`}>
+                            <button className="pickMain" disabled={saving} onClick={() => onTogglePickStatus(p.id)}>
+                              {p.label || p.id}
+                            </button>
+                            <button className="pickX" disabled={saving} onClick={() => onRemovePick(p.id)} aria-label="Eliminar pick">
+                              ✕
+                            </button>
+                          </div>
+                        );
+                      })}
+                  </div>
+                )}
+              </div>
               </div>
             </>
           ) : (
@@ -1277,7 +1390,16 @@ export default function App() {
   const myIncoming = useMemo(() => (me ? interests.filter((x) => x.to_user_id   === me.id) : []), [me, interests]);
   const myRoster   = useMemo(() => (Array.isArray(myRow?.roster) ? myRow.roster : []), [myRow]);
   const myPicks    = useMemo(() => (Array.isArray(myRow?.picks)  ? myRow.picks  : []), [myRow]);
-  const slots      = useMemo(() => assignSlots(myRoster), [myRoster]);
+
+  // ADP map para ordenar el roster (por player_id)
+  const adpById = useMemo(() => {
+    const m = new Map();
+    (players || []).forEach((p) => m.set(String(p.player_id), p));
+    return m;
+  }, [players]);
+
+  // Slots auto-ordenados por ADP: primero posiciones (QB/RB/WR/TE), luego FLEX, luego BN
+  const slots      = useMemo(() => assignSlots(myRoster, adpById), [myRoster, adpById]);
 
   const metaById = useMemo(() => {
     const m = new Map();
@@ -1547,9 +1669,10 @@ export default function App() {
                       <option>Tanqueando</option>
                     </select>
                   </div>
-                  <div className="row">
-                    <button disabled={saving} onClick={saveMyProfile}>Guardar perfil</button>
+                  <div className="row profileActions">
                     {saveInfo ? <div className="muted" style={{ fontWeight: 900 }}>{saveInfo}</div> : null}
+                    <div className="sp" />
+                    <button disabled={saving} onClick={saveMyProfile}>Guardar perfil</button>
                   </div>
                 </div>
               </div>
