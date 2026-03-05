@@ -12,13 +12,6 @@
       "status": "AVAILABLE"
     },
     {
-      "id": "4876",
-      "name": "Justin Jefferson",
-      "pos": "WR",
-      "nfl": "MIN",
-      "status": "AVAILABLE"
-    },
-    {
       "id": "5672",
       "name": "Jahmyr Gibbs",
       "pos": "RB",
@@ -55,5 +48,5 @@
     }
   ],
   "picks": [],
-  "updated_at": "2026-03-05T05:47:22.374Z"
+  "updated_at": "2026-03-05T06:06:20.720Z"
 }
