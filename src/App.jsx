@@ -1,1292 +1,1099 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
 /**
- * Fantasy Trade Board (GitHub Pages friendly)
- * Persistencia: JSON en /data/* dentro del repo, usando GitHub Contents API.
- * Requiere (en la raíz del repo):
+ * Fantasy Trade Board — GitHub-only persistence (SIN Supabase)
+ * - Usuarios y data se guardan como JSON en ESTE repo, usando GitHub Contents API.
+ * - Inseguro por diseño (token en frontend). OK para liga chica de amigos.
+ *
+ * Requiere en el repo (en la raíz /data):
  *   - data/users.json
  *   - data/league_teams.json
  *   - data/interests.json
  *
- * ENV (GitHub Pages / Vite):
- *   - VITE_GH_OWNER
- *   - VITE_GH_REPO
- *   - VITE_GH_BRANCH (ej: main)
- *   - VITE_GH_TOKEN (PAT con Contents: Read/Write)
- *
- * Nota: Esto es “inseguro” (token en frontend). OK para liga chica de amigos.
+ * Recomendado: definir envs en .env (Vite):
+ *   VITE_GH_OWNER, VITE_GH_REPO, VITE_GH_BRANCH, VITE_GH_TOKEN
  */
 
-/** -------------------- UI Theme -------------------- */
+const GH_OWNER = import.meta.env.VITE_GH_OWNER;
+const GH_REPO = import.meta.env.VITE_GH_REPO;
+const GH_BRANCH = import.meta.env.VITE_GH_BRANCH || "main";
+const GH_TOKEN = import.meta.env.VITE_GH_TOKEN;
+const GH_API = "https://api.github.com";
+
+const PATH_USERS = "data/users.json";
+const PATH_TEAMS = "data/league_teams.json";
+const PATH_INTERESTS = "data/interests.json";
+
+/** ========= helpers ========= */
+function uid(prefix = "u") {
+  return `${prefix}_${Math.random().toString(36).slice(2, 10)}${Date.now().toString(36)}`;
+}
+function nowIso() {
+  return new Date().toISOString();
+}
+function safeJsonParse(txt, fallback) {
+  try {
+    return JSON.parse(txt);
+  } catch {
+    return fallback;
+  }
+}
+function b64encodeUtf8(str) {
+  return btoa(unescape(encodeURIComponent(str)));
+}
+function b64decodeUtf8(b64) {
+  return decodeURIComponent(escape(atob(b64)));
+}
+async function sha256Hex(str) {
+  const enc = new TextEncoder().encode(str);
+  const buf = await crypto.subtle.digest("SHA-256", enc);
+  return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+// 🔧 IMPORTANT: GitHub acepta esquemas distintos según el tipo de token.
+// - Fine-grained PAT suele ser `Bearer` (prefijo github_pat_)
+// - Classic PAT suele ser `token`  (prefijo ghp_)
+function ghAuthHeaderValue(token) {
+  if (!token) return null;
+  const t = String(token).trim();
+  if (!t) return null;
+  return t.startsWith("github_pat_") ? `Bearer ${t}` : `token ${t}`;
+}
+
+function ghHeaders() {
+  const h = {
+    Accept: "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28",
+  };
+  const auth = ghAuthHeaderValue(GH_TOKEN);
+  if (auth) h.Authorization = auth;
+  return h;
+}
+
+async function ghError(res) {
+  const text = await res.text();
+  let msg = text;
+  try {
+    const j = JSON.parse(text);
+    msg = j?.message ? String(j.message) : text;
+  } catch {
+    // keep raw text
+  }
+  const err = new Error(msg);
+  err.status = res.status;
+  err.raw = text;
+  return err;
+}
+
+async function ghGetFile(path) {
+  const url = `${GH_API}/repos/${GH_OWNER}/${GH_REPO}/contents/${path}?ref=${encodeURIComponent(
+    GH_BRANCH
+  )}`;
+  const res = await fetch(url, { headers: ghHeaders() });
+  if (res.status === 404) return { exists: false, sha: null, content: "" };
+  if (!res.ok) throw await ghError(res);
+  const j = await res.json();
+
+  // OJO: GitHub devuelve base64 con \n cada X chars. NO uses regex multiline.
+  const raw = j?.content ? b64decodeUtf8(String(j.content).split("\n").join("")) : "";
+  return { exists: true, sha: j.sha, content: raw };
+}
+
+async function ghPutFile(path, content, sha = null, message = null) {
+  const url = `${GH_API}/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`;
+  const body = {
+    message: message || `update ${path}`,
+    content: b64encodeUtf8(content),
+    branch: GH_BRANCH,
+  };
+  if (sha) body.sha = sha;
+
+  const res = await fetch(url, {
+    method: "PUT",
+    headers: { ...ghHeaders(), "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+
+  if (res.status === 409) {
+    const err = await ghError(res);
+    err.code = 409;
+    throw err;
+  }
+  if (!res.ok) throw await ghError(res);
+  return res.json();
+}
+
+async function ghGetJson(path, fallback) {
+  const f = await ghGetFile(path);
+  if (!f.exists) return { data: fallback, sha: null };
+  return { data: safeJsonParse(f.content, fallback), sha: f.sha };
+}
+async function ghPutJson(path, data, sha, message) {
+  const txt = JSON.stringify(data, null, 2);
+  return ghPutFile(path, `${txt}\n`, sha, message);
+}
+async function ghPutJsonWithRetry(path, mutator, label) {
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const { data, sha } = await ghGetJson(path, []);
+    const arr = Array.isArray(data) ? data : [];
+    const next = mutator(arr);
+    try {
+      await ghPutJson(path, next, sha, label);
+      return next;
+    } catch (e) {
+      if (e?.code === 409 && attempt === 0) continue;
+      throw e;
+    }
+  }
+}
+
+/** ========= UI ========= */
 const COLORS = {
-  bg: "#0b1220",
-  card: "rgba(255,255,255,0.06)",
-  card2: "rgba(255,255,255,0.08)",
-  border: "rgba(255,255,255,0.14)",
-  text: "rgba(255,255,255,0.92)",
-  muted: "rgba(255,255,255,0.65)",
-  accent: "#6ee7ff",
-  accent2: "#a78bfa",
-  good: "#34d399",
-  warn: "#fbbf24",
-  bad: "#fb7185",
-  white: "#ffffff",
+  page: "var(--c-page)",
+  surface: "var(--c-surface)",
+  sky: "var(--c-sky)",
+  blue: "var(--c-blue)",
+  navy: "var(--c-navy)",
+  gray: "var(--c-gray)",
+  border: "var(--c-border)",
+  soft: "var(--c-soft)",
+  danger: "var(--c-danger)",
+  success: "var(--c-success)",
+};
+
+const THEME_VARS = {
+  dark: {
+    "--c-page": "#0B1220",
+    "--c-surface": "#0F172A",
+    "--c-sky": "#111B2F",
+    "--c-blue": "#3B82F6",
+    "--c-navy": "#E6EEFF",
+    "--c-gray": "#A8B3C7",
+    "--c-border": "#22304A",
+    "--c-soft": "#0B1324",
+    "--c-danger": "#EF4444",
+    "--c-success": "#22C55E",
+    "--c-shadow": "0 10px 30px rgba(0,0,0,0.18)",
+  },
+  light: {
+    "--c-page": "#FFFFFF",
+    "--c-surface": "#FFFFFF",
+    "--c-sky": "#EAF6FF",
+    "--c-blue": "#2F80ED",
+    "--c-navy": "#0B2D4D",
+    "--c-gray": "#6B7280",
+    "--c-border": "#E5E7EB",
+    "--c-soft": "#F8FAFC",
+    "--c-danger": "#EF4444",
+    "--c-success": "#22C55E",
+    "--c-shadow": "0 10px 24px rgba(15,23,42,0.10)",
+  },
 };
 
 function GlobalStyles() {
   return (
     <style>{`
-      :root { color-scheme: dark; }
-      * { box-sizing: border-box; }
+      /* --- Hard reset para matar el CSS default de Vite (root max-width/padding/body flex/etc) --- */
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body { height: 100%; width: 100%; }
       body {
-        margin: 0;
-        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-        background: radial-gradient(1200px 500px at 30% 0%, rgba(110,231,255,.16), transparent 60%),
-                    radial-gradient(900px 500px at 70% 10%, rgba(167,139,250,.16), transparent 60%),
-                    ${COLORS.bg};
-        color: ${COLORS.text};
+        margin: 0 !important;
+        display: block !important;
+        place-items: initial !important;
+        min-width: 0 !important;
+        min-height: 100% !important;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+          "Apple Color Emoji", "Segoe UI Emoji";
       }
-      a { color: inherit; }
-      .container { max-width: 1200px; margin: 0 auto; padding: 18px 14px 90px; }
-      .row { display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
-      .grid2 { display:grid; gap:14px; grid-template-columns: 1fr; }
-      @media (min-width: 980px) { .grid2 { grid-template-columns: 1fr 1fr; } }
-      .pill { padding: 6px 10px; border-radius: 999px; font-weight: 800; font-size: 12px; border: 1px solid ${COLORS.border}; background:${COLORS.card}; }
-      .btn { border: 1px solid ${COLORS.border}; background:${COLORS.card2}; color:${COLORS.text}; padding:10px 12px; border-radius: 12px; font-weight: 900; cursor:pointer; }
-      .btn:disabled { opacity:.5; cursor:not-allowed; }
-      .btnGhost { border:1px dashed ${COLORS.border}; background: transparent; }
-      .btnPrimary { border-color: rgba(110,231,255,.35); background: rgba(110,231,255,.14); }
-      .btnBad { border-color: rgba(251,113,133,.35); background: rgba(251,113,133,.12); }
-      .btnGood { border-color: rgba(52,211,153,.35); background: rgba(52,211,153,.12); }
-      .input {
-        width:100%;
-        padding: 10px 12px;
-        border-radius: 12px;
-        border: 1px solid ${COLORS.border};
-        background:${COLORS.card};
-        color:${COLORS.text};
-        outline: none;
+      #root{
+        height: 100%;
+        width: 100%;
+        max-width: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        text-align: left !important;
       }
-      .card {
-        border: 1px solid ${COLORS.border};
-        background: ${COLORS.card};
-        border-radius: 18px;
-        padding: 14px;
-        box-shadow: 0 8px 30px rgba(0,0,0,.25);
+      button, input, select { font: inherit; max-width: 100%; }
+      input::placeholder { color: rgba(128, 140, 160, 0.9); }
+      html[data-theme="dark"] { color-scheme: dark; }
+      html[data-theme="light"] { color-scheme: light; }
+
+      .ftbPage{
+        min-height: 100vh;
+        overflow-x: hidden; /* por si algún browser mete overflow raro */
+        padding: clamp(14px, 2.2vw, 22px);
+        color: var(--c-navy);
+        background:
+          radial-gradient(900px circle at 12% -10%, rgba(59,130,246,0.25), transparent 55%),
+          radial-gradient(700px circle at 90% 10%, rgba(34,197,94,0.12), transparent 50%),
+          var(--c-page);
       }
-      .title { font-size: 22px; font-weight: 1000; letter-spacing: .2px; margin: 0; }
-      .subtitle { margin: 2px 0 0; color:${COLORS.muted}; }
-      .hr { height:1px; background:${COLORS.border}; margin: 12px 0; }
-      .tabsBar {
-        position: fixed;
-        left: 0; right: 0; bottom: 0;
-        background: rgba(5,10,20,.85);
+      html[data-theme="light"] .ftbPage{
+        background:
+          radial-gradient(900px circle at 12% -10%, rgba(47,128,237,0.18), transparent 55%),
+          radial-gradient(700px circle at 90% 10%, rgba(34,197,94,0.10), transparent 50%),
+          var(--c-page);
+      }
+
+      .ftbContainer{ max-width: 1100px; margin: 0 auto; }
+      .ftbTitle{ margin: 14px 0 18px; font-size: clamp(28px, 5vw, 46px); letter-spacing:-1px; line-height:1.05; }
+
+      .authCard{ width: 100%; max-width: 560px; margin: 0 auto; }
+
+      .grid3{ display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+      .grid2{ display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+
+      .topbar{
+        position: sticky;
+        top: 0;
+        z-index: 10;
         backdrop-filter: blur(10px);
-        border-top: 1px solid ${COLORS.border};
-        padding: 10px 12px;
-        display:flex; justify-content:center;
+        -webkit-backdrop-filter: blur(10px);
+        padding: 8px 0;
       }
-      .tabsInner { width:min(900px, 100%); display:flex; gap:10px; justify-content:space-between; }
-      .tabBtn { flex:1; text-align:center; padding: 10px 12px; border-radius: 14px; border:1px solid ${COLORS.border}; background:${COLORS.card}; font-weight: 1000; cursor:pointer; }
-      .tabBtnActive { border-color: rgba(110,231,255,.45); background: rgba(110,231,255,.16); }
-      .small { font-size:12px; color:${COLORS.muted}; }
-      .badge {
-        display:inline-flex; align-items:center; gap:6px;
-        padding: 6px 10px; border-radius: 999px; font-weight: 900; font-size: 12px;
-        border: 1px solid ${COLORS.border}; background: ${COLORS.card};
+      .topbarInner{
+        max-width: 1100px;
+        margin: 0 auto;
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
       }
-      .pos {
-        width: 38px; text-align:center; padding: 6px 0; border-radius: 12px;
-        font-weight: 1000; border: 1px solid ${COLORS.border};
+
+      .assetRow{ display:grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; }
+      .assetActions{ display:flex; flex-direction: column; gap: 8px; justify-content: space-between; }
+      .breakAnywhere{ min-width: 0; overflow-wrap: anywhere; }
+
+      @media (max-width: 860px){
+        .grid3{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
       }
-      .break { word-break: break-word; }
+      @media (max-width: 720px){
+        .topbarInner{ flex-wrap: wrap; }
+        .grid3{ grid-template-columns: 1fr; }
+        .grid2{ grid-template-columns: 1fr; }
+        .assetRow{ grid-template-columns: 1fr; }
+        .assetActions{ flex-direction: row; justify-content: flex-end; }
+        .assetActions > button{ flex: 1; }
+      }
     `}</style>
   );
 }
 
-function Card({ children, style }) {
+function Card({ children, style, className }) {
   return (
-    <div className="card" style={style}>
+    <div
+      className={className}
+      style={{
+        background: COLORS.surface,
+        border: `1px solid ${COLORS.border}`,
+        borderRadius: 18,
+        padding: "clamp(14px, 2vw, 18px)",
+        boxShadow: "var(--c-shadow)",
+        overflow: "hidden", // 🔧 clave para que nada “asome” fuera del card
+        maxWidth: "100%",
+        ...style,
+      }}
+    >
       {children}
     </div>
   );
 }
-function Button({ children, variant = "default", ...props }) {
-  const cls =
-    "btn " +
-    (variant === "primary" ? "btnPrimary" : variant === "ghost" ? "btnGhost" : variant === "bad" ? "btnBad" : variant === "good" ? "btnGood" : "");
+
+function Input({ value, onChange, placeholder, type = "text", style, className }) {
   return (
-    <button className={cls} {...props}>
+    <input
+      className={className}
+      type={type}
+      value={value}
+      placeholder={placeholder}
+      onChange={(e) => onChange(e.target.value)}
+      style={{
+        width: "100%",
+        maxWidth: "100%",
+        display: "block",
+        minWidth: 0,
+        boxSizing: "border-box",
+        padding: "14px 14px",
+        borderRadius: 14,
+        border: `1px solid ${COLORS.border}`,
+        background: COLORS.sky,
+        color: COLORS.navy,
+        outline: "none",
+        fontSize: 16,
+        ...style,
+      }}
+    />
+  );
+}
+
+function Button({ children, onClick, disabled, variant = "primary", style, title, className }) {
+  const bg =
+    variant === "primary"
+      ? COLORS.blue
+      : variant === "danger"
+        ? COLORS.danger
+        : "transparent";
+  const border = variant === "ghost" ? `1px solid ${COLORS.border}` : "1px solid transparent";
+  const color = variant === "ghost" ? COLORS.navy : "#fff";
+  return (
+    <button
+      className={className}
+      title={title}
+      onClick={onClick}
+      disabled={disabled}
+      style={{
+        padding: "12px 14px",
+        minWidth: 0,
+        maxWidth: "100%",
+        boxSizing: "border-box",
+        lineHeight: 1.2,
+        borderRadius: 14,
+        border,
+        background: bg,
+        color,
+        fontWeight: 800,
+        cursor: disabled ? "not-allowed" : "pointer",
+        opacity: disabled ? 0.6 : 1,
+        ...style,
+      }}
+    >
       {children}
     </button>
   );
 }
+
 function Pill({ children, tone = "neutral" }) {
   const bg =
-    tone === "good" ? "rgba(52,211,153,.16)" : tone === "bad" ? "rgba(251,113,133,.16)" : tone === "warn" ? "rgba(251,191,36,.16)" : COLORS.card;
-  const bc =
-    tone === "good" ? "rgba(52,211,153,.35)" : tone === "bad" ? "rgba(251,113,133,.35)" : tone === "warn" ? "rgba(251,191,36,.35)" : COLORS.border;
+    tone === "good"
+      ? "rgba(34,197,94,0.15)"
+      : tone === "bad"
+        ? "rgba(239,68,68,0.15)"
+        : "rgba(59,130,246,0.12)";
+  const bd =
+    tone === "good"
+      ? "rgba(34,197,94,0.35)"
+      : tone === "bad"
+        ? "rgba(239,68,68,0.35)"
+        : "rgba(59,130,246,0.25)";
+  const col = tone === "good" ? COLORS.success : tone === "bad" ? COLORS.danger : COLORS.blue;
   return (
-    <span className="pill" style={{ background: bg, borderColor: bc }}>
+    <span
+      style={{
+        padding: "6px 10px",
+        borderRadius: 999,
+        background: bg,
+        border: `1px solid ${bd}`,
+        color: col,
+        fontWeight: 800,
+        fontSize: 12,
+      }}
+    >
       {children}
     </span>
   );
 }
 
-function posColor(pos) {
-  if (pos === "QB") return "rgba(248,113,113,.25)";
-  if (pos === "RB") return "rgba(52,211,153,.22)";
-  if (pos === "WR") return "rgba(96,165,250,.22)";
-  if (pos === "TE") return "rgba(167,139,250,.22)";
-  return "rgba(255,255,255,.10)";
-}
-
-/** -------------------- GitHub Persistence -------------------- */
-const GH_OWNER = import.meta.env.VITE_GH_OWNER || "";
-const GH_REPO = import.meta.env.VITE_GH_REPO || "";
-const GH_BRANCH = import.meta.env.VITE_GH_BRANCH || "main";
-const GH_TOKEN = import.meta.env.VITE_GH_TOKEN || "";
-
-// archivos
-const PATH_USERS = "data/users.json";
-const PATH_TEAMS = "data/league_teams.json";
-const PATH_INTERESTS = "data/interests.json";
-
-// Cola global: 1 escritura a la vez (evita 409 por SHA viejo)
-let ghWriteChain = Promise.resolve();
-function ghEnqueueWrite(fn) {
-  ghWriteChain = ghWriteChain.then(fn, fn);
-  return ghWriteChain;
-}
-
-async function ghApi(path, options = {}) {
-  const headers = {
-    Accept: "application/vnd.github+json",
-    ...(options.headers || {}),
-  };
-  if (GH_TOKEN) headers.Authorization = `Bearer ${GH_TOKEN}`;
-  const res = await fetch(`https://api.github.com${path}`, { ...options, headers });
-  const txt = await res.text();
-  let json;
-  try {
-    json = txt ? JSON.parse(txt) : null;
-  } catch {
-    json = { message: txt };
-  }
-  if (!res.ok) throw { status: res.status, body: json };
-  return json;
-}
-
-async function ghGetFile(path) {
-  const data = await ghApi(`/repos/${GH_OWNER}/${GH_REPO}/contents/${path}?ref=${encodeURIComponent(GH_BRANCH)}`);
-  // data.content base64
-  const content = atob((data.content || "").replace(/\n/g, ""));
-  return { sha: data.sha, json: content ? JSON.parse(content) : null };
-}
-
-async function ghPutJsonWithRetry(path, jsonObj, message, maxRetries = 4) {
-  return ghEnqueueWrite(async () => {
-    let attempt = 0;
-    // siempre refrescar sha adentro de la cola
-    while (attempt <= maxRetries) {
-      try {
-        const current = await ghGetFile(path);
-        const body = {
-          message: message || `update ${path}`,
-          branch: GH_BRANCH,
-          sha: current.sha,
-          content: btoa(unescape(encodeURIComponent(JSON.stringify(jsonObj, null, 2)))),
-        };
-        const out = await ghApi(`/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`, {
-          method: "PUT",
-          body: JSON.stringify(body),
-        });
-        return out;
-      } catch (e) {
-        // 409 = sha mismatch / conflict
-        if (e?.status === 409 && attempt < maxRetries) {
-          await new Promise((r) => setTimeout(r, 250 * Math.pow(2, attempt)));
-          attempt += 1;
-          continue;
-        }
-        throw e;
-      }
-    }
-  });
-}
-
-/** -------------------- Domain models -------------------- */
-const SLOT_ORDER = ["QB", "RB", "WR", "TE", "FLEX", "BN"];
-const SLOT_LIMITS = { QB: 1, RB: 2, WR: 1, TE: 1, FLEX: 3, BN: 21 };
-
-const PLAYER_STATUS = ["AVAILABLE", "LISTENING", "NOT_AVAILABLE"];
-const PLAYER_STATUS_LABEL = {
-  AVAILABLE: "Disponible",
-  LISTENING: "En escucha",
-  NOT_AVAILABLE: "No disponible",
-};
-const PLAYER_STATUS_TONE = { AVAILABLE: "good", LISTENING: "warn", NOT_AVAILABLE: "bad" };
-
-const INTEREST_LEVELS = ["LOW", "MEDIUM", "HIGH"];
-const INTEREST_LABEL = { LOW: "Bajo", MEDIUM: "Medio", HIGH: "Alto" };
-const INTEREST_TONE = { LOW: "neutral", MEDIUM: "warn", HIGH: "good" };
-
-function nowISO() {
-  return new Date().toISOString();
-}
-
-function buildPicks() {
-  const picks = [];
-  // 2026 1.01 .. 6.10
-  for (let r = 1; r <= 6; r++) {
-    for (let i = 1; i <= 10; i++) {
-      const id = `2026-${r}.${String(i).padStart(2, "0")}`;
-      picks.push({ id, label: `${r}.${String(i).padStart(2, "0")} 2026`, year: 2026, round: r, overall: i });
-    }
-  }
-  // 2027/2028 rounds (sin pick number)
-  for (const year of [2027, 2028]) {
-    for (let r = 1; r <= 6; r++) {
-      const id = `${year}-R${r}`;
-      picks.push({ id, label: `${r}ra ${year}`.replace("1ra", "1era"), year, round: r });
-    }
-  }
-  return picks;
-}
-
-function normalizePlayer(p) {
-  // soporta distintos esquemas de /public/adp.json
-  const id = String(p.id ?? p.player_id ?? p.pid ?? p.sleeper_id ?? p.name);
-  const name = p.name ?? p.full_name ?? p.player ?? "Jugador";
-  const pos = (p.pos ?? p.position ?? "").toUpperCase() || "FLEX";
-  const team = (p.nfl ?? p.team ?? p.pro_team ?? "").toUpperCase() || "";
-  return { id, name, pos: ["QB", "RB", "WR", "TE"].includes(pos) ? pos : "FLEX", team };
-}
-
-function findBestSlotForPlayer(team, playerPos) {
-  const roster = team.roster || {};
-  const counts = Object.fromEntries(SLOT_ORDER.map((s) => [s, (roster[s] || []).length]));
-  const trySlot = (slot) => counts[slot] < (SLOT_LIMITS[slot] ?? 0);
-
-  // prefer pos slot
-  if (["QB", "RB", "WR", "TE"].includes(playerPos) && trySlot(playerPos)) return playerPos;
-  // then FLEX
-  if (trySlot("FLEX")) return "FLEX";
-  // then BN
-  if (trySlot("BN")) return "BN";
-  return "BN";
-}
-
-function ensureTeamShape(t, user) {
-  return {
-    user_id: t?.user_id ?? user?.id ?? "",
-    display_name: t?.display_name ?? user?.display_name ?? user?.email ?? "Usuario",
-    team_name: t?.team_name ?? user?.team_name ?? "Mi equipo",
-    team_status: t?.team_status ?? "Contendiente",
-    roster: t?.roster ?? { QB: [], RB: [], WR: [], TE: [], FLEX: [], BN: [] },
-    player_status: t?.player_status ?? {}, // {playerId: AVAILABLE|LISTENING|NOT_AVAILABLE}
-    picks: t?.picks ?? [],
-    updated_at: t?.updated_at ?? nowISO(),
+function useDebouncedCallback(cb, ms) {
+  const t = useRef(null);
+  return (...args) => {
+    if (t.current) clearTimeout(t.current);
+    t.current = setTimeout(() => cb(...args), ms);
   };
 }
 
-/** -------------------- App -------------------- */
+/** ========= APP ========= */
 export default function App() {
+  const [theme, setTheme] = useState(() => localStorage.getItem("ftb_theme") || "dark");
   const [bootError, setBootError] = useState("");
 
-  // auth (simple)
-  const [user, setUser] = useState(() => {
-    try {
-      const raw = localStorage.getItem("ftb_user");
-      return raw ? JSON.parse(raw) : null;
-    } catch {
-      return null;
-    }
-  });
-  const [authEmail, setAuthEmail] = useState("");
-  const [authName, setAuthName] = useState("");
-  const [authTeamName, setAuthTeamName] = useState("");
+  // auth
+  const [authMode, setAuthMode] = useState("login"); // login | signup
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const [pass2, setPass2] = useState("");
+  const [authBusy, setAuthBusy] = useState(false);
+  const [authError, setAuthError] = useState("");
 
-  // data
-  const [users, setUsers] = useState([]);
+  const [me, setMe] = useState(() => {
+    const s = localStorage.getItem("ftb_session");
+    return s ? safeJsonParse(s, null) : null;
+  });
+
+  // league data
   const [teams, setTeams] = useState([]);
   const [interests, setInterests] = useState([]);
-  const [players, setPlayers] = useState([]);
-  const picks = useMemo(() => buildPicks(), []);
 
-  // ui
-  const [tab, setTab] = useState("MY_TEAM"); // MY_TEAM | LEAGUE | INTERESTS
-  const [toast, setToast] = useState("");
-  const toastRef = useRef(null);
+  // my profile
+  const [myDisplayName, setMyDisplayName] = useState("");
+  const [myTeamName, setMyTeamName] = useState("");
+  const [myStatus, setMyStatus] = useState("Contendiendo");
+  const [saveInfo, setSaveInfo] = useState("");
 
-  // selection for league
-  const [selectedLeagueUserId, setSelectedLeagueUserId] = useState("");
+  const applyTheme = (t) => {
+    setTheme(t);
+    localStorage.setItem("ftb_theme", t);
+    document.documentElement.dataset.theme = t;
+    const vars = THEME_VARS[t] || THEME_VARS.dark;
+    Object.entries(vars).forEach(([k, v]) => document.documentElement.style.setProperty(k, v));
+  };
 
   useEffect(() => {
-    if (!toast) return;
-    clearTimeout(toastRef.current);
-    toastRef.current = setTimeout(() => setToast(""), 2400);
-  }, [toast]);
+    applyTheme(theme);
 
-  // boot checks
-  useEffect(() => {
-    const missing = [];
-    if (!GH_OWNER) missing.push("VITE_GH_OWNER");
-    if (!GH_REPO) missing.push("VITE_GH_REPO");
-    if (!GH_BRANCH) missing.push("VITE_GH_BRANCH");
-    if (!GH_TOKEN) missing.push("VITE_GH_TOKEN");
-    if (missing.length) {
-      setBootError(`Faltan ENV: ${missing.join(", ")}`);
-    } else {
-      setBootError("");
+    if (!GH_OWNER || !GH_REPO) {
+      setBootError("Faltan VITE_GH_OWNER / VITE_GH_REPO (o hardcode en App.jsx).");
     }
-  }, []);
-
-  // load players
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      try {
-        const res = await fetch(`${import.meta.env.BASE_URL || "/"}adp.json`, { cache: "no-store" });
-        if (!res.ok) throw new Error("no adp");
-        const json = await res.json();
-        const list = Array.isArray(json) ? json : json?.players || json?.data || [];
-        const norm = (list || []).map(normalizePlayer);
-        if (!cancelled) setPlayers(norm);
-      } catch {
-        if (cancelled) return;
-        // demo fallback
-        setPlayers(
-          [
-            { id: "p1", name: "Ja'Marr Chase", pos: "WR", team: "CIN" },
-            { id: "p2", name: "Bijan Robinson", pos: "RB", team: "ATL" },
-            { id: "p3", name: "Justin Jefferson", pos: "WR", team: "MIN" },
-            { id: "p4", name: "Jahmyr Gibbs", pos: "RB", team: "DET" },
-            { id: "p5", name: "Travis Kelce", pos: "TE", team: "KC" },
-            { id: "p6", name: "Josh Allen", pos: "QB", team: "BUF" },
-          ].map(normalizePlayer)
-        );
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  // load repo data
-  useEffect(() => {
-    if (bootError) return;
-    (async () => {
-      try {
-        const [u, t, i] = await Promise.all([ghGetFile(PATH_USERS), ghGetFile(PATH_TEAMS), ghGetFile(PATH_INTERESTS)]);
-        setUsers(Array.isArray(u.json) ? u.json : []);
-        setTeams(Array.isArray(t.json) ? t.json : []);
-        setInterests(Array.isArray(i.json) ? i.json : []);
-      } catch (e) {
-        setBootError(
-          `No pude leer data del repo: ${e?.body?.message || e?.message || "error"}. Asegurate de que existan /data/users.json, /data/league_teams.json, /data/interests.json`
-        );
-      }
-    })();
-  }, [bootError]);
-
-  // derived maps
-  const usersById = useMemo(() => new Map(users.map((u) => [u.id, u])), [users]);
-  const teamsByUser = useMemo(() => new Map(teams.map((t) => [t.user_id, t])), [teams]);
-  const playerById = useMemo(() => new Map(players.map((p) => [p.id, p])), [players]);
-  const pickById = useMemo(() => new Map(picks.map((p) => [p.id, p])), [picks]);
-
-  // ensure selected league user
-  useEffect(() => {
-    if (!user) return;
-    const others = teams.filter((t) => t.user_id !== user.id);
-    if (!selectedLeagueUserId && others.length) setSelectedLeagueUserId(others[0].user_id);
-    if (selectedLeagueUserId && !others.some((x) => x.user_id === selectedLeagueUserId)) {
-      setSelectedLeagueUserId(others[0]?.user_id || "");
-    }
-  }, [teams, user?.id]);
-
-  function persistLocal() {
-    localStorage.setItem("ftb_cache_users", JSON.stringify(users));
-    localStorage.setItem("ftb_cache_teams", JSON.stringify(teams));
-    localStorage.setItem("ftb_cache_interests", JSON.stringify(interests));
-  }
-
-  async function saveAll(nextUsers, nextTeams, nextInterests, reason = "save") {
-    // optimistic update
-    setUsers(nextUsers);
-    setTeams(nextTeams);
-    setInterests(nextInterests);
-    // local cache
-    try {
-      persistLocal();
-    } catch {}
-    // remote
-    try {
-      await Promise.all([
-        ghPutJsonWithRetry(PATH_USERS, nextUsers, `${reason}: users`),
-        ghPutJsonWithRetry(PATH_TEAMS, nextTeams, `${reason}: teams`),
-        ghPutJsonWithRetry(PATH_INTERESTS, nextInterests, `${reason}: interests`),
-      ]);
-      setToast("Guardado ✅");
-    } catch (e) {
+    if (!GH_TOKEN) {
       setBootError(
-        `No pude guardar: ${JSON.stringify({
-          message: e?.body?.message || e?.message || "error",
-          status: e?.status,
-        })}`
+        "Falta VITE_GH_TOKEN (o hardcode en App.jsx). Sin token no podés guardar/leer en GitHub."
       );
     }
+  }, []);
+
+  useEffect(() => {
+    if (me) localStorage.setItem("ftb_session", JSON.stringify(me));
+    else localStorage.removeItem("ftb_session");
+  }, [me]);
+
+  async function refreshData() {
+    const [{ data: t }, { data: i }] = await Promise.all([
+      ghGetJson(PATH_TEAMS, []),
+      ghGetJson(PATH_INTERESTS, []),
+    ]);
+    setTeams(Array.isArray(t) ? t : []);
+    setInterests(Array.isArray(i) ? i : []);
   }
 
-  async function loginOrSignup() {
-    const email = authEmail.trim().toLowerCase();
-    if (!email) return;
-    const existing = users.find((u) => u.email === email);
-    if (existing) {
-      setUser(existing);
-      localStorage.setItem("ftb_user", JSON.stringify(existing));
-      setToast("Sesión iniciada ✅");
-      return;
+  useEffect(() => {
+    if (!me) return;
+    (async () => {
+      try {
+        await refreshData();
+      } catch (e) {
+        setBootError(String(e?.message || e));
+      }
+    })();
+  }, [me?.id]);
+
+  useEffect(() => {
+    if (!me) return;
+    const row = teams.find((x) => x.user_id === me.id);
+    if (row) {
+      setMyDisplayName(row.display_name || "");
+      setMyTeamName(row.team_name || "");
+      setMyStatus(row.team_status || "Contendiendo");
+    } else {
+      setMyDisplayName(me.email?.split("@")?.[0] || "");
+      setMyTeamName("");
+      setMyStatus("Contendiendo");
     }
-    const id = `u_${Math.random().toString(16).slice(2)}${Date.now().toString(16)}`;
-    const newUser = {
-      id,
-      email,
-      display_name: authName.trim() || email.split("@")[0],
-      team_name: authTeamName.trim() || "Mi equipo",
-      created_at: nowISO(),
-    };
-    const nextUsers = [...users, newUser];
-    const myTeam = ensureTeamShape(null, newUser);
-    const nextTeams = [...teams.filter((t) => t.user_id !== id), myTeam];
-    const nextInterests = [...interests];
-    await saveAll(nextUsers, nextTeams, nextInterests, "signup");
-    setUser(newUser);
-    localStorage.setItem("ftb_user", JSON.stringify(newUser));
-    setToast("Cuenta creada ✅");
+  }, [me?.id, teams]);
+
+  const byUser = useMemo(() => {
+    const m = new Map();
+    for (const t of teams) m.set(t.user_id, t);
+    return m;
+  }, [teams]);
+
+  const myOutgoing = useMemo(
+    () => (me ? interests.filter((x) => x.from_user_id === me.id) : []),
+    [interests, me?.id]
+  );
+  const myIncoming = useMemo(
+    () => (me ? interests.filter((x) => x.to_user_id === me.id) : []),
+    [interests, me?.id]
+  );
+
+  function friendlyAuthError(e) {
+    const status = e?.status;
+    if (status === 401)
+      return "GitHub 401: token inválido o revocado. Revisá VITE_GH_TOKEN (y reiniciá Vite).";
+    if (status === 403)
+      return "GitHub 403: no tenés permisos o llegaste al rate limit. Chequeá permisos (Contents RW) y repo.";
+    if (status === 404)
+      return "GitHub 404: no encuentro el repo o los archivos /data/*.json. Chequeá owner/repo/branch y que existan los JSON.";
+    return String(e?.message || e);
+  }
+
+  async function signup() {
+    setAuthError("");
+    if (!email || !pass) return setAuthError("Completá email y contraseña.");
+    if (pass.length < 6) return setAuthError("La contraseña debe tener al menos 6 caracteres.");
+    if (pass !== pass2) return setAuthError("Las contraseñas no coinciden.");
+    setAuthBusy(true);
+
+    try {
+      const { data: users, sha } = await ghGetJson(PATH_USERS, []);
+      const list = Array.isArray(users) ? users : [];
+      const exists = list.some(
+        (u) => String(u.email).toLowerCase() === String(email).toLowerCase()
+      );
+      if (exists) throw new Error("Ese email ya existe.");
+
+      const id = uid("user");
+      const hash = await sha256Hex(pass);
+      const next = [...list, { id, email, pass_sha256: hash, created_at: nowIso() }];
+
+      await ghPutJson(PATH_USERS, next, sha, "signup user");
+
+      // crear fila del team si no existe
+      await ghPutJsonWithRetry(
+        PATH_TEAMS,
+        (cur) => {
+          if (cur.some((x) => x.user_id === id)) return cur;
+          return [
+            ...cur,
+            {
+              user_id: id,
+              display_name: email.split("@")[0],
+              team_name: "",
+              team_status: "Contendiendo",
+              roster: [],
+              status_overrides: {},
+              asset_values: {},
+              updated_at: nowIso(),
+            },
+          ];
+        },
+        "create team row"
+      );
+
+      setMe({ id, email });
+      setPass("");
+      setPass2("");
+    } catch (e) {
+      setAuthError(friendlyAuthError(e));
+    } finally {
+      setAuthBusy(false);
+    }
+  }
+
+  async function login() {
+    setAuthError("");
+    if (!email || !pass) return setAuthError("Completá email y contraseña.");
+    setAuthBusy(true);
+
+    try {
+      const { data: users } = await ghGetJson(PATH_USERS, []);
+      const list = Array.isArray(users) ? users : [];
+      const u = list.find(
+        (x) => String(x.email).toLowerCase() === String(email).toLowerCase()
+      );
+      if (!u) throw new Error("Usuario inexistente.");
+
+      const hash = await sha256Hex(pass);
+      if (hash !== u.pass_sha256) throw new Error("Contraseña incorrecta.");
+
+      setMe({ id: u.id, email: u.email });
+      setPass("");
+      setPass2("");
+    } catch (e) {
+      setAuthError(friendlyAuthError(e));
+    } finally {
+      setAuthBusy(false);
+    }
   }
 
   function logout() {
-    setUser(null);
-    localStorage.removeItem("ftb_user");
+    setMe(null);
+    setTeams([]);
+    setInterests([]);
   }
 
-  if (!user) {
-    return (
-      <>
-        <GlobalStyles />
-        <div className="container">
-          <Card style={{ maxWidth: 520, margin: "40px auto" }}>
-            <h1 className="title">Fantasy Trade Board</h1>
-            <p className="subtitle">Login simple por email (sin Supabase). Guarda en GitHub.</p>
-            {bootError ? (
-              <div style={{ marginTop: 10, color: COLORS.bad, fontWeight: 900 }}>{bootError}</div>
-            ) : (
-              <div className="small" style={{ marginTop: 10 }}>
-                Repo: {GH_OWNER}/{GH_REPO} · Branch: {GH_BRANCH}
-              </div>
-            )}
-
-            <div className="hr" />
-
-            <div style={{ display: "grid", gap: 10 }}>
-              <input className="input" placeholder="tu@email.com" value={authEmail} onChange={(e) => setAuthEmail(e.target.value)} />
-              <input className="input" placeholder="Nombre (opcional)" value={authName} onChange={(e) => setAuthName(e.target.value)} />
-              <input className="input" placeholder="Nombre del equipo (opcional)" value={authTeamName} onChange={(e) => setAuthTeamName(e.target.value)} />
-              <Button variant="primary" onClick={loginOrSignup} disabled={!!bootError}>
-                Entrar
-              </Button>
-              <div className="small">
-                Tip: si ya existe ese email en <code>data/users.json</code>, hace login; si no, crea usuario y su equipo.
-              </div>
-            </div>
-          </Card>
-        </div>
-      </>
-    );
-  }
-
-  const meTeam = ensureTeamShape(teamsByUser.get(user.id), user);
-  const otherTeams = teams.filter((t) => t.user_id !== user.id);
-
-  // update my team meta
-  async function updateMyTeamMeta(patch) {
-    const next = { ...meTeam, ...patch, updated_at: nowISO() };
-    const nextTeams = [...teams.filter((t) => t.user_id !== user.id), next];
-    await saveAll(users, nextTeams, interests, "team meta");
-  }
-
-  async function addPlayerToMyTeam(playerId) {
-    const p = playerById.get(playerId);
-    if (!p) return;
-    const next = ensureTeamShape(meTeam, user);
-    // avoid duplicates
-    const allIds = SLOT_ORDER.flatMap((s) => next.roster[s] || []);
-    if (allIds.includes(playerId)) return;
-
-    const slot = findBestSlotForPlayer(next, p.pos);
-    next.roster = { ...next.roster, [slot]: [...(next.roster[slot] || []), playerId] };
-    next.player_status = { ...next.player_status, [playerId]: next.player_status[playerId] || "AVAILABLE" };
-    next.updated_at = nowISO();
-
-    const nextTeams = [...teams.filter((t) => t.user_id !== user.id), next];
-    await saveAll(users, nextTeams, interests, "add player");
-  }
-
-  async function movePlayerSlot(playerId, toSlot) {
-    const next = ensureTeamShape(meTeam, user);
-    // remove from all slots
-    const roster = {};
-    for (const s of SLOT_ORDER) roster[s] = (next.roster[s] || []).filter((id) => id !== playerId);
-    // add to target if capacity (soft, allow over but warn? we will cap)
-    const currentCount = roster[toSlot].length;
-    if (currentCount >= (SLOT_LIMITS[toSlot] ?? 999)) {
-      setToast("Ese slot está lleno");
-      return;
+  const debouncedSaveProfile = useDebouncedCallback(async (next) => {
+    if (!me) return;
+    setSaveInfo("Guardando…");
+    try {
+      await ghPutJsonWithRetry(
+        PATH_TEAMS,
+        (cur) => {
+          const i = cur.findIndex((x) => x.user_id === me.id);
+          const row = {
+            user_id: me.id,
+            display_name: next.display_name,
+            team_name: next.team_name,
+            team_status: next.team_status,
+            roster: cur[i]?.roster || [],
+            status_overrides: cur[i]?.status_overrides || {},
+            asset_values: cur[i]?.asset_values || {},
+            updated_at: nowIso(),
+          };
+          if (i === -1) return [...cur, row];
+          const copy = [...cur];
+          copy[i] = row;
+          return copy;
+        },
+        "update profile"
+      );
+      await refreshData();
+      setSaveInfo("Guardado ✓");
+      setTimeout(() => setSaveInfo(""), 1200);
+    } catch (e) {
+      setSaveInfo(`Error al guardar: ${friendlyAuthError(e)}`);
     }
-    roster[toSlot] = [...roster[toSlot], playerId];
-    next.roster = roster;
-    next.updated_at = nowISO();
+  }, 650);
 
-    const nextTeams = [...teams.filter((t) => t.user_id !== user.id), next];
-    await saveAll(users, nextTeams, interests, "move player");
-  }
-
-  async function cyclePlayerStatus(playerId) {
-    const next = ensureTeamShape(meTeam, user);
-    const cur = next.player_status?.[playerId] || "AVAILABLE";
-    const idx = PLAYER_STATUS.indexOf(cur);
-    const nextStatus = PLAYER_STATUS[(idx + 1) % PLAYER_STATUS.length];
-    next.player_status = { ...(next.player_status || {}), [playerId]: nextStatus };
-    next.updated_at = nowISO();
-    const nextTeams = [...teams.filter((t) => t.user_id !== user.id), next];
-    await saveAll(users, nextTeams, interests, "player status");
-  }
-
-  async function removePlayerFromMyTeam(playerId) {
-    const next = ensureTeamShape(meTeam, user);
-    const roster = {};
-    for (const s of SLOT_ORDER) roster[s] = (next.roster[s] || []).filter((id) => id !== playerId);
-    next.roster = roster;
-    const ps = { ...(next.player_status || {}) };
-    delete ps[playerId];
-    next.player_status = ps;
-    next.updated_at = nowISO();
-    const nextTeams = [...teams.filter((t) => t.user_id !== user.id), next];
-    await saveAll(users, nextTeams, interests, "remove player");
-  }
-
-  async function addPickToMyTeam(pickId) {
-    const next = ensureTeamShape(meTeam, user);
-    if ((next.picks || []).includes(pickId)) return;
-    next.picks = [...(next.picks || []), pickId];
-    next.updated_at = nowISO();
-    const nextTeams = [...teams.filter((t) => t.user_id !== user.id), next];
-    await saveAll(users, nextTeams, interests, "add pick");
-  }
-
-  async function removePickFromMyTeam(pickId) {
-    const next = ensureTeamShape(meTeam, user);
-    next.picks = (next.picks || []).filter((x) => x !== pickId);
-    next.updated_at = nowISO();
-    const nextTeams = [...teams.filter((t) => t.user_id !== user.id), next];
-    await saveAll(users, nextTeams, interests, "remove pick");
-  }
-
-  async function setInterest(toUserId, assetType, assetId, level) {
-    const existingIdx = interests.findIndex(
-      (x) => x.from_user_id === user.id && x.to_user_id === toUserId && x.asset_type === assetType && x.asset_id === assetId
-    );
-    const nextInterests = [...interests];
-    const record = {
-      from_user_id: user.id,
-      to_user_id: toUserId,
-      asset_type: assetType,
-      asset_id: assetId,
-      level,
-      updated_at: nowISO(),
+  function onProfileChange(patch) {
+    const next = {
+      display_name: patch.display_name ?? myDisplayName,
+      team_name: patch.team_name ?? myTeamName,
+      team_status: patch.team_status ?? myStatus,
     };
-    if (existingIdx >= 0) nextInterests[existingIdx] = { ...nextInterests[existingIdx], ...record };
-    else nextInterests.push(record);
-    await saveAll(users, teams, nextInterests, "interest");
+    if (patch.display_name != null) setMyDisplayName(patch.display_name);
+    if (patch.team_name != null) setMyTeamName(patch.team_name);
+    if (patch.team_status != null) setMyStatus(patch.team_status);
+    debouncedSaveProfile(next);
   }
 
-  const incomingInterests = useMemo(
-    () => interests.filter((x) => x.to_user_id === user.id),
-    [interests, user.id]
-  );
-  const myInterests = useMemo(
-    () => interests.filter((x) => x.from_user_id === user.id),
-    [interests, user.id]
+  async function setInterest(toUserId, assetType, assetId, level, note = "") {
+    if (!me) return;
+
+    const key = `${me.id}__${toUserId}__${assetType}__${assetId}`;
+    const nextLocal = interests.filter((x) => x.key !== key);
+    if (level && level !== "NONE") {
+      nextLocal.push({
+        key,
+        from_user_id: me.id,
+        to_user_id: toUserId,
+        asset_type: assetType,
+        asset_id: assetId,
+        level,
+        note: note || "",
+        updated_at: nowIso(),
+      });
+    }
+    setInterests(nextLocal);
+
+    try {
+      await ghPutJsonWithRetry(
+        PATH_INTERESTS,
+        (cur) => {
+          const filtered = cur.filter((x) => x.key !== key);
+          if (level && level !== "NONE") {
+            filtered.push({
+              key,
+              from_user_id: me.id,
+              to_user_id: toUserId,
+              asset_type: assetType,
+              asset_id: assetId,
+              level,
+              note: note || "",
+              updated_at: nowIso(),
+            });
+          }
+          return filtered;
+        },
+        "update interest"
+      );
+      await refreshData();
+    } catch (e) {
+      setBootError(`No pude guardar interest: ${friendlyAuthError(e)}`);
+    }
+  }
+
+  const picks = useMemo(
+    () => [
+      { id: "2026-1", label: "2026 1st" },
+      { id: "2026-2", label: "2026 2nd" },
+      { id: "2027-1", label: "2027 1st" },
+      { id: "2027-2", label: "2027 2nd" },
+    ],
+    []
   );
 
-  return (
-    <>
-      <GlobalStyles />
-      <div className="container">
-        <TopBar user={user} onLogout={logout} />
-
-        {bootError ? (
-          <Card style={{ borderColor: "rgba(251,113,133,.45)", background: "rgba(251,113,133,.10)" }}>
-            <div style={{ fontWeight: 1000, color: COLORS.bad }}>Error</div>
-            <div style={{ marginTop: 8 }} className="break">
+  if (bootError) {
+    return (
+      <div className="ftbPage">
+        <GlobalStyles />
+        <div className="ftbContainer">
+          <h2 style={{ marginTop: 0 }}>Error</h2>
+          <Card>
+            <div style={{ color: COLORS.danger, fontWeight: 800, marginBottom: 10 }}>
               {bootError}
             </div>
-            <div className="hr" />
-            <div className="small">Checklist:</div>
-            <ul className="small" style={{ marginTop: 6 }}>
-              <li>Definí VITE_GH_OWNER / VITE_GH_REPO / VITE_GH_BRANCH</li>
-              <li>Definí VITE_GH_TOKEN con permisos de lectura/escritura de Contents</li>
-              <li>Existencia de /data/users.json, /data/league_teams.json, /data/interests.json</li>
-            </ul>
-            <Button onClick={() => setBootError("")}>Cerrar</Button>
-          </Card>
-        ) : null}
-
-        {/* Header info + quick edit */}
-        <Card>
-          <div className="row" style={{ justifyContent: "space-between" }}>
-            <div>
-              <div className="title">{user.display_name || user.email}</div>
-              <div className="subtitle">{meTeam.team_name} · Formato: 1 QB · 2 RB · 1 WR · 1 TE · 3 FLEX · 21 BN</div>
+            <div style={{ color: COLORS.gray, lineHeight: 1.5 }}>
+              Checklist:
+              <ul>
+                <li>Definí VITE_GH_OWNER / VITE_GH_REPO / VITE_GH_BRANCH</li>
+                <li>Definí VITE_GH_TOKEN con permisos de lectura/escritura de Contents</li>
+                <li>
+                  Existencia de <code>/data/users.json</code>,{" "}
+                  <code>/data/league_teams.json</code>, <code>/data/interests.json</code>
+                </li>
+              </ul>
             </div>
-            <div className="row">
-              <input className="input" style={{ width: 240 }} value={meTeam.display_name} onChange={(e) => updateMyTeamMeta({ display_name: e.target.value })} />
-              <input className="input" style={{ width: 240 }} value={meTeam.team_name} onChange={(e) => updateMyTeamMeta({ team_name: e.target.value })} />
-              <select
-                className="input"
-                style={{ width: 190 }}
-                value={meTeam.team_status || "Contendiente"}
-                onChange={(e) => updateMyTeamMeta({ team_status: e.target.value })}
+            <Button variant="ghost" onClick={() => setBootError("")}>
+              Cerrar
+            </Button>
+          </Card>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="ftbPage">
+      <GlobalStyles />
+      <TopBar theme={theme} onTheme={applyTheme} me={me} onLogout={logout} />
+
+      <div className="ftbContainer">
+        <h1 className="ftbTitle">Fantasy Trade Board</h1>
+
+        {!me ? (
+          <Card className="authCard">
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                gap: 12,
+                flexWrap: "wrap",
+              }}
+            >
+              <h2 style={{ margin: 0 }}>{authMode === "login" ? "Iniciar sesión" : "Crear cuenta"}</h2>
+              <Button
+                variant="ghost"
+                onClick={() => {
+                  setAuthMode(authMode === "login" ? "signup" : "login");
+                  setAuthError("");
+                }}
               >
-                <option>Contendiente</option>
-                <option>Reconstrucción</option>
-                <option>Medio</option>
-              </select>
+                {authMode === "login" ? "Crear cuenta" : "Tengo cuenta"}
+              </Button>
+            </div>
+
+            <div style={{ marginTop: 14, display: "grid", gap: 12 }}>
+              <Input value={email} onChange={setEmail} placeholder="Email" />
+              <Input value={pass} onChange={setPass} placeholder="Contraseña" type="password" />
+              {authMode === "signup" && (
+                <Input
+                  value={pass2}
+                  onChange={setPass2}
+                  placeholder="Repetir contraseña"
+                  type="password"
+                />
+              )}
+              <Button
+                disabled={authBusy}
+                onClick={authMode === "login" ? login : signup}
+                style={{ padding: "14px 16px", fontSize: 18 }}
+              >
+                {authBusy ? "Procesando…" : authMode === "login" ? "Entrar" : "Crear cuenta"}
+              </Button>
+              {!!authError && <div style={{ color: COLORS.danger, fontWeight: 800 }}>{authError}</div>}
+              <div style={{ color: COLORS.gray, fontSize: 13, lineHeight: 1.4 }}>
+                Nota: usuarios y data se guardan en JSON dentro del repo (inseguro).
+              </div>
+            </div>
+          </Card>
+        ) : (
+          <div style={{ display: "grid", gap: 16 }}>
+            <Card>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  gap: 12,
+                  flexWrap: "wrap",
+                }}
+              >
+                <div>
+                  <div style={{ fontSize: 14, color: COLORS.gray }}>Conectado como</div>
+                  <div style={{ fontSize: 18, fontWeight: 900 }}>{me.email}</div>
+                </div>
+                <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
+                  <Button variant="ghost" onClick={refreshData}>
+                    Refrescar
+                  </Button>
+                  <div style={{ color: COLORS.gray, fontWeight: 700 }}>{saveInfo}</div>
+                </div>
+              </div>
+
+              <div className="grid3" style={{ marginTop: 14 }}>
+                <div>
+                  <div style={{ fontSize: 13, color: COLORS.gray, marginBottom: 6 }}>Display name</div>
+                  <Input
+                    value={myDisplayName}
+                    onChange={(v) => onProfileChange({ display_name: v })}
+                    placeholder="Ej: Nico"
+                  />
+                </div>
+                <div>
+                  <div style={{ fontSize: 13, color: COLORS.gray, marginBottom: 6 }}>Team name</div>
+                  <Input
+                    value={myTeamName}
+                    onChange={(v) => onProfileChange({ team_name: v })}
+                    placeholder="Ej: Blue Blitz"
+                  />
+                </div>
+                <div>
+                  <div style={{ fontSize: 13, color: COLORS.gray, marginBottom: 6 }}>Estado</div>
+                  <select
+                    value={myStatus}
+                    onChange={(e) => onProfileChange({ team_status: e.target.value })}
+                    style={{
+                      width: "100%",
+                      maxWidth: "100%",
+                      minWidth: 0,
+                      boxSizing: "border-box",
+                      padding: "14px 14px",
+                      borderRadius: 14,
+                      border: `1px solid ${COLORS.border}`,
+                      background: COLORS.sky,
+                      color: COLORS.navy,
+                      fontSize: 16,
+                      fontWeight: 700,
+                    }}
+                  >
+                    <option>Contendiendo</option>
+                    <option>Reconstrucción</option>
+                    <option>Re-tool</option>
+                    <option>Tanqueando</option>
+                  </select>
+                </div>
+              </div>
+            </Card>
+
+            <LeagueBoard
+              me={me}
+              teams={teams}
+              interests={interests}
+              picks={picks}
+              byUser={byUser}
+              onSetInterest={setInterest}
+            />
+
+            <div className="grid2">
+              <Card>
+                <h3 style={{ marginTop: 0 }}>Incoming (a mí)</h3>
+                {myIncoming.length === 0 ? (
+                  <div style={{ color: COLORS.gray }}>
+                    Nadie marcó interés por tus assets (todavía).
+                  </div>
+                ) : (
+                  <InterestList rows={myIncoming} byUser={byUser} />
+                )}
+              </Card>
+              <Card>
+                <h3 style={{ marginTop: 0 }}>Outgoing (míos)</h3>
+                {myOutgoing.length === 0 ? (
+                  <div style={{ color: COLORS.gray }}>Todavía no marcaste intereses.</div>
+                ) : (
+                  <InterestList rows={myOutgoing} byUser={byUser} />
+                )}
+              </Card>
             </div>
           </div>
-        </Card>
-
-        <div style={{ height: 14 }} />
-
-        {tab === "MY_TEAM" ? (
-          <MyTeamTab
-            me={user}
-            team={meTeam}
-            players={players}
-            picks={picks}
-            playerById={playerById}
-            pickById={pickById}
-            onAddPlayer={addPlayerToMyTeam}
-            onMovePlayer={movePlayerSlot}
-            onCycleStatus={cyclePlayerStatus}
-            onRemovePlayer={removePlayerFromMyTeam}
-            onAddPick={addPickToMyTeam}
-            onRemovePick={removePickFromMyTeam}
-          />
-        ) : null}
-
-        {tab === "LEAGUE" ? (
-          <LeagueTab
-            me={user}
-            teams={otherTeams}
-            selectedUserId={selectedLeagueUserId}
-            onSelectUserId={setSelectedLeagueUserId}
-            teamsByUser={teamsByUser}
-            playerById={playerById}
-            pickById={pickById}
-            myInterests={myInterests}
-            onSetInterest={setInterest}
-          />
-        ) : null}
-
-        {tab === "INTERESTS" ? (
-          <InterestsTab
-            me={user}
-            myInterests={myInterests}
-            incomingInterests={incomingInterests}
-            teamsByUser={teamsByUser}
-            usersById={usersById}
-            playerById={playerById}
-            pickById={pickById}
-          />
-        ) : null}
+        )}
       </div>
-
-      {toast ? (
-        <div
-          style={{
-            position: "fixed",
-            right: 14,
-            top: 14,
-            padding: "10px 12px",
-            borderRadius: 14,
-            border: `1px solid ${COLORS.border}`,
-            background: "rgba(0,0,0,.55)",
-            backdropFilter: "blur(10px)",
-            fontWeight: 900,
-          }}
-        >
-          {toast}
-        </div>
-      ) : null}
-
-      <BottomTabs tab={tab} setTab={setTab} />
-    </>
+    </div>
   );
 }
 
-/** -------------------- Top / Tabs -------------------- */
-function TopBar({ user, onLogout }) {
+function TopBar({ theme, onTheme, me, onLogout }) {
   return (
-    <div className="row" style={{ justifyContent: "space-between", marginBottom: 14 }}>
-      <div className="row">
-        <div style={{ fontWeight: 1000, fontSize: 18 }}>Fantasy Trade Board</div>
+    <div className="topbar">
+      <div className="topbarInner">
+        <Button variant="ghost" onClick={() => onTheme(theme === "dark" ? "light" : "dark")}>
+          {theme === "dark" ? "☀️ Light" : "🌙 Dark"}
+        </Button>
+        {me && (
+          <Button variant="danger" onClick={onLogout}>
+            Salir
+          </Button>
+        )}
       </div>
-      <div className="row">
-        <span className="badge">{user.email}</span>
-        <Button variant="ghost" onClick={onLogout}>
-          Salir
+    </div>
+  );
+}
+
+function LeagueBoard({ me, teams, interests, picks, byUser, onSetInterest }) {
+  const [selectedUserId, setSelectedUserId] = useState("");
+  const otherTeams = useMemo(() => teams.filter((t) => t.user_id !== me.id), [teams, me.id]);
+
+  useEffect(() => {
+    if (!selectedUserId && otherTeams.length) setSelectedUserId(otherTeams[0].user_id);
+  }, [otherTeams.length]);
+
+  const selected = byUser.get(selectedUserId);
+
+  return (
+    <Card>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: 12,
+          flexWrap: "wrap",
+        }}
+      >
+        <h2 style={{ margin: 0 }}>Liga</h2>
+        <select
+          value={selectedUserId}
+          onChange={(e) => setSelectedUserId(e.target.value)}
+          style={{
+            padding: "10px 12px",
+            minWidth: 220,
+            flex: "1 1 220px",
+            maxWidth: "100%",
+            boxSizing: "border-box",
+            borderRadius: 12,
+            border: `1px solid ${COLORS.border}`,
+            background: COLORS.sky,
+            color: COLORS.navy,
+            fontWeight: 800,
+          }}
+        >
+          {otherTeams.map((t) => (
+            <option key={t.user_id} value={t.user_id}>
+              {(t.display_name || t.user_id).slice(0, 30)} {t.team_name ? `— ${t.team_name}` : ""}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {!selected ? (
+        <div style={{ marginTop: 12, color: COLORS.gray }}>No hay otro equipo seleccionado.</div>
+      ) : (
+        <div style={{ marginTop: 14, display: "grid", gap: 12 }}>
+          <div style={{ fontSize: 18, fontWeight: 900 }}>
+            {selected.display_name} {selected.team_name ? `— ${selected.team_name}` : ""}
+          </div>
+          <div>
+            <Pill tone="neutral">{selected.team_status || "—"}</Pill>
+          </div>
+
+          <div style={{ borderTop: `1px solid ${COLORS.border}`, paddingTop: 12 }}>
+            <h3 style={{ margin: 0 }}>Assets (demo: picks)</h3>
+
+            <div style={{ marginTop: 10, display: "grid", gap: 10 }}>
+              {picks.map((p) => (
+                <AssetRow
+                  key={p.id}
+                  label={p.label}
+                  current={interests.find(
+                    (x) =>
+                      x.from_user_id === me.id &&
+                      x.to_user_id === selected.user_id &&
+                      x.asset_type === "PICK" &&
+                      x.asset_id === p.id
+                  )}
+                  onSet={(level, note) => onSetInterest(selected.user_id, "PICK", p.id, level, note)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </Card>
+  );
+}
+
+function AssetRow({ label, current, onSet }) {
+  const [note, setNote] = useState(current?.note || "");
+  useEffect(() => setNote(current?.note || ""), [current?.key]);
+
+  const level = current?.level || "NONE";
+  return (
+    <div
+      className="assetRow"
+      style={{
+        padding: 12,
+        borderRadius: 14,
+        border: `1px solid ${COLORS.border}`,
+        background: COLORS.soft,
+      }}
+    >
+      <div style={{ display: "grid", gap: 8 }}>
+        <div className="breakAnywhere" style={{ fontWeight: 900 }}>
+          {label}
+        </div>
+
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+          <Button
+            variant={level === "LOW" ? "primary" : "ghost"}
+            onClick={() => onSet(level === "LOW" ? "NONE" : "LOW", note)}
+            style={{ padding: "8px 10px" }}
+          >
+            LOW
+          </Button>
+          <Button
+            variant={level === "MED" ? "primary" : "ghost"}
+            onClick={() => onSet(level === "MED" ? "NONE" : "MED", note)}
+            style={{ padding: "8px 10px" }}
+          >
+            MED
+          </Button>
+          <Button
+            variant={level === "HIGH" ? "primary" : "ghost"}
+            onClick={() => onSet(level === "HIGH" ? "NONE" : "HIGH", note)}
+            style={{ padding: "8px 10px" }}
+          >
+            HIGH
+          </Button>
+
+          <div style={{ flex: 1 }} />
+          <Pill tone={level === "HIGH" ? "good" : "neutral"}>{level}</Pill>
+        </div>
+
+        <Input value={note} onChange={setNote} placeholder="nota (opcional)" />
+      </div>
+
+      <div className="assetActions">
+        <Button variant="primary" onClick={() => onSet(level, note)} style={{ padding: "10px 12px" }}>
+          Guardar
+        </Button>
+        <Button variant="danger" onClick={() => onSet("NONE", "")} style={{ padding: "10px 12px" }}>
+          Borrar
         </Button>
       </div>
     </div>
   );
 }
 
-function BottomTabs({ tab, setTab }) {
-  const items = [
-    { id: "MY_TEAM", label: "Mi equipo" },
-    { id: "LEAGUE", label: "Liga" },
-    { id: "INTERESTS", label: "Intereses" },
-  ];
+function InterestList({ rows, byUser }) {
   return (
-    <div className="tabsBar">
-      <div className="tabsInner">
-        {items.map((it) => (
-          <button
-            key={it.id}
-            className={"tabBtn " + (tab === it.id ? "tabBtnActive" : "")}
-            onClick={() => setTab(it.id)}
-            type="button"
-          >
-            {it.label}
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/** -------------------- My Team Tab -------------------- */
-function MyTeamTab({
-  team,
-  players,
-  picks,
-  playerById,
-  pickById,
-  onAddPlayer,
-  onMovePlayer,
-  onCycleStatus,
-  onRemovePlayer,
-  onAddPick,
-  onRemovePick,
-}) {
-  const [leftMode, setLeftMode] = useState("PLAYERS"); // PLAYERS | PICKS
-  const [search, setSearch] = useState("");
-  const [posFilter, setPosFilter] = useState("ALL");
-
-  const myPlayerIds = useMemo(() => SLOT_ORDER.flatMap((s) => team.roster?.[s] || []), [team]);
-
-  const filteredPlayers = useMemo(() => {
-    const q = search.trim().toLowerCase();
-    return players
-      .filter((p) => (posFilter === "ALL" ? true : p.pos === posFilter))
-      .filter((p) => (q ? p.name.toLowerCase().includes(q) : true))
-      .slice(0, 200);
-  }, [players, search, posFilter]);
-
-  const myPicks = useMemo(() => (team.picks || []).map((id) => pickById.get(id) || { id, label: id }), [team.picks, pickById]);
-
-  return (
-    <div className="grid2">
-      <Card>
-        <div className="row" style={{ justifyContent: "space-between" }}>
-          <div className="row" style={{ gap: 10 }}>
-            <button className={"btn " + (leftMode === "PLAYERS" ? "btnPrimary" : "")} onClick={() => setLeftMode("PLAYERS")}>
-              Jugadores
-            </button>
-            <button className={"btn " + (leftMode === "PICKS" ? "btnPrimary" : "")} onClick={() => setLeftMode("PICKS")}>
-              Picks
-            </button>
-          </div>
-        </div>
-
-        {leftMode === "PLAYERS" ? (
-          <>
-            <div style={{ marginTop: 12 }} className="row">
-              <input className="input" placeholder="Buscar jugador por nombre..." value={search} onChange={(e) => setSearch(e.target.value)} />
-            </div>
-            <div className="row" style={{ marginTop: 10 }}>
-              {["ALL", "QB", "RB", "WR", "TE", "FLEX"].map((p) => (
-                <button
-                  key={p}
-                  className={"btn " + (posFilter === p ? "btnPrimary" : "")}
-                  onClick={() => setPosFilter(p)}
-                  style={{ padding: "8px 10px", borderRadius: 999 }}
-                >
-                  {p === "ALL" ? "Todos" : p}
-                </button>
-              ))}
-            </div>
-
-            <div style={{ marginTop: 12, display: "grid", gap: 10, maxHeight: 560, overflow: "auto", paddingRight: 4 }}>
-              {filteredPlayers.map((p) => {
-                const already = myPlayerIds.includes(p.id);
-                return (
-                  <div
-                    key={p.id}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      gap: 12,
-                      padding: 12,
-                      borderRadius: 16,
-                      border: `1px solid ${COLORS.border}`,
-                      background: COLORS.card2,
-                    }}
-                  >
-                    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                      <div className="pos" style={{ background: posColor(p.pos) }}>
-                        {p.pos}
-                      </div>
-                      <div>
-                        <div style={{ fontWeight: 1000 }}>{p.name}</div>
-                        <div className="small">
-                          {p.team ? `${p.team}` : ""} {p.team ? "·" : ""} {p.id}
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <Button variant={already ? "ghost" : "primary"} disabled={already} onClick={() => onAddPlayer(p.id)}>
-                        {already ? "Agregado" : "+ Agregar"}
-                      </Button>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </>
-        ) : (
-          <>
-            <div style={{ marginTop: 12 }} className="small">
-              2026: 1.01 a 6.10 (10 picks por ronda). 2027/2028: por ronda.
-            </div>
-            <div style={{ marginTop: 10, display: "grid", gap: 10, maxHeight: 560, overflow: "auto", paddingRight: 4 }}>
-              {picks.map((p) => {
-                const already = (team.picks || []).includes(p.id);
-                return (
-                  <div
-                    key={p.id}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      gap: 12,
-                      padding: 12,
-                      borderRadius: 16,
-                      border: `1px solid ${COLORS.border}`,
-                      background: COLORS.card2,
-                    }}
-                  >
-                    <div className="break" style={{ fontWeight: 900 }}>
-                      {p.label}
-                    </div>
-                    <Button variant={already ? "ghost" : "primary"} disabled={already} onClick={() => onAddPick(p.id)}>
-                      {already ? "Agregado" : "+ Agregar"}
-                    </Button>
-                  </div>
-                );
-              })}
-            </div>
-          </>
-        )}
-      </Card>
-
-      <Card>
-        <div className="row" style={{ justifyContent: "space-between", alignItems: "baseline" }}>
-          <h2 style={{ margin: 0 }}>Mi equipo (slots)</h2>
-          <div className="small">Tocá el botón de estado: Disponible → En escucha → No disponible</div>
-        </div>
-
-        <div style={{ marginTop: 12, display: "grid", gap: 14 }}>
-          {SLOT_ORDER.map((slot) => {
-            const ids = team.roster?.[slot] || [];
-            return (
-              <div key={slot} style={{ borderTop: `1px solid ${COLORS.border}`, paddingTop: 12 }}>
-                <div className="row" style={{ justifyContent: "space-between" }}>
-                  <div style={{ fontWeight: 1000 }}>{slot}</div>
-                  <div className="small">
-                    {ids.length}/{SLOT_LIMITS[slot]}
-                  </div>
-                </div>
-
-                {ids.length === 0 ? <div className="small" style={{ marginTop: 8 }}>Vacío</div> : null}
-
-                <div style={{ marginTop: 10, display: "grid", gap: 10 }}>
-                  {ids.map((playerId) => {
-                    const p = playerById.get(playerId) || { id: playerId, name: `PLAYER ${playerId}`, pos: "FLEX", team: "" };
-                    const status = team.player_status?.[playerId] || "AVAILABLE";
-                    return (
-                      <div
-                        key={playerId}
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          gap: 10,
-                          padding: 12,
-                          borderRadius: 16,
-                          border: `1px solid ${COLORS.border}`,
-                          background: "rgba(0,0,0,.18)",
-                        }}
-                      >
-                        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                          <div className="pos" style={{ background: posColor(p.pos) }}>
-                            {p.pos}
-                          </div>
-                          <div>
-                            <div style={{ fontWeight: 1000 }}>{p.name}</div>
-                            <div className="small">{p.team ? `${p.team} · ` : ""}{p.id}</div>
-                          </div>
-                        </div>
-
-                        <div className="row" style={{ gap: 10 }}>
-                          <select
-                            className="input"
-                            style={{ width: 120 }}
-                            value={slot}
-                            onChange={(e) => onMovePlayer(playerId, e.target.value)}
-                          >
-                            {SLOT_ORDER.map((s) => (
-                              <option key={s} value={s}>
-                                {s}
-                              </option>
-                            ))}
-                          </select>
-
-                          <Button variant="ghost" onClick={() => onCycleStatus(playerId)}>
-                            <Pill tone={PLAYER_STATUS_TONE[status]}>{PLAYER_STATUS_LABEL[status]}</Pill>
-                          </Button>
-
-                          <Button variant="bad" onClick={() => onRemovePlayer(playerId)}>
-                            ✕
-                          </Button>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })}
-
-          <div style={{ borderTop: `1px solid ${COLORS.border}`, paddingTop: 12 }}>
-            <div className="row" style={{ justifyContent: "space-between" }}>
-              <div style={{ fontWeight: 1000 }}>Picks</div>
-              <div className="small">{myPicks.length}</div>
-            </div>
-            <div style={{ marginTop: 10, display: "grid", gap: 10 }}>
-              {myPicks.length === 0 ? <div className="small">No agregaste picks.</div> : null}
-              {myPicks.map((p) => (
-                <div
-                  key={p.id}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    gap: 10,
-                    padding: 12,
-                    borderRadius: 16,
-                    border: `1px solid ${COLORS.border}`,
-                    background: "rgba(0,0,0,.18)",
-                  }}
-                >
-                  <div style={{ fontWeight: 900 }}>{p.label}</div>
-                  <Button variant="bad" onClick={() => onRemovePick(p.id)}>
-                    ✕
-                  </Button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </Card>
-    </div>
-  );
-}
-
-/** -------------------- League Tab -------------------- */
-function LeagueTab({ me, teams, selectedUserId, onSelectUserId, teamsByUser, playerById, pickById, myInterests, onSetInterest }) {
-  const selectedTeam = selectedUserId ? teamsByUser.get(selectedUserId) : null;
-
-  const interestFor = (toUserId, assetType, assetId) =>
-    myInterests.find((x) => x.to_user_id === toUserId && x.asset_type === assetType && x.asset_id === assetId);
-
-  const setLevel = (toUserId, assetType, assetId, level) => onSetInterest(toUserId, assetType, assetId, level);
-
-  return (
-    <div className="grid2">
-      <Card>
-        <h2 style={{ margin: 0 }}>Equipos</h2>
-        <div className="small" style={{ marginTop: 6 }}>
-          Elegí un equipo para ver su roster y marcar tu interés.
-        </div>
-
-        <div style={{ marginTop: 12, display: "grid", gap: 10 }}>
-          {teams.length === 0 ? <div className="small">No hay otros equipos cargados.</div> : null}
-          {teams.map((t) => {
-            const active = t.user_id === selectedUserId;
-            const countPlayers = SLOT_ORDER.reduce((acc, s) => acc + (t.roster?.[s]?.length || 0), 0);
-            return (
-              <button
-                key={t.user_id}
-                className={"btn " + (active ? "btnPrimary" : "")}
-                style={{ textAlign: "left", padding: 12, borderRadius: 16 }}
-                onClick={() => onSelectUserId(t.user_id)}
+    <div style={{ display: "grid", gap: 10 }}>
+      {rows
+        .slice()
+        .sort((a, b) => String(b.updated_at || "").localeCompare(String(a.updated_at || "")))
+        .map((r) => {
+          const from = byUser.get(r.from_user_id);
+          const to = byUser.get(r.to_user_id);
+          return (
+            <div
+              key={r.key}
+              style={{
+                padding: 12,
+                borderRadius: 14,
+                border: `1px solid ${COLORS.border}`,
+                background: COLORS.soft,
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "baseline",
+                  gap: 10,
+                  flexWrap: "wrap",
+                }}
               >
-                <div style={{ display: "flex", justifyContent: "space-between", gap: 10 }}>
-                  <div>
-                    <div style={{ fontWeight: 1000 }}>{t.display_name}</div>
-                    <div className="small">{t.team_name || ""}</div>
-                    <div className="small">
-                      {t.team_status || "—"} · Jugadores: {countPlayers} · Picks: {(t.picks || []).length}
-                    </div>
-                  </div>
-                  <div>{active ? <Pill tone="good">Seleccionado</Pill> : <Pill>Ver</Pill>}</div>
+                <div className="breakAnywhere" style={{ fontWeight: 900 }}>
+                  {(from?.display_name || r.from_user_id)} → {(to?.display_name || r.to_user_id)}
                 </div>
-              </button>
-            );
-          })}
-        </div>
-      </Card>
-
-      <Card>
-        <div className="row" style={{ justifyContent: "space-between", alignItems: "baseline" }}>
-          <h2 style={{ margin: 0 }}>Roster</h2>
-          {selectedTeam ? <Pill>{selectedTeam.team_status || "—"}</Pill> : null}
-        </div>
-
-        {!selectedTeam ? (
-          <div className="small" style={{ marginTop: 10 }}>
-            Elegí un equipo de la izquierda.
-          </div>
-        ) : (
-          <div style={{ marginTop: 12, display: "grid", gap: 12 }}>
-            <div style={{ fontSize: 18, fontWeight: 1000 }}>
-              {selectedTeam.display_name} {selectedTeam.team_name ? `— ${selectedTeam.team_name}` : ""}
-            </div>
-
-            {/* Players */}
-            <div style={{ borderTop: `1px solid ${COLORS.border}`, paddingTop: 12 }}>
-              <h3 style={{ margin: 0 }}>Jugadores</h3>
-              <div className="small" style={{ marginTop: 6 }}>
-                Marcá interés: Bajo / Medio / Alto
+                <Pill tone={r.level === "HIGH" ? "good" : "neutral"}>{r.level}</Pill>
               </div>
-
-              <div style={{ marginTop: 10, display: "grid", gap: 10 }}>
-                {SLOT_ORDER.flatMap((slot) => (selectedTeam.roster?.[slot] || []).map((id) => ({ slot, id }))).map(({ slot, id }) => {
-                  const p = playerById.get(id) || { id, name: `PLAYER ${id}`, pos: "FLEX", team: "" };
-                  const avail = selectedTeam.player_status?.[id] || "AVAILABLE";
-                  const cur = interestFor(selectedTeam.user_id, "PLAYER", id)?.level || "";
-                  return (
-                    <div
-                      key={`${slot}-${id}`}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        gap: 10,
-                        padding: 12,
-                        borderRadius: 16,
-                        border: `1px solid ${COLORS.border}`,
-                        background: "rgba(0,0,0,.18)",
-                      }}
-                    >
-                      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                        <div className="pos" style={{ background: posColor(p.pos) }}>{p.pos}</div>
-                        <div>
-                          <div style={{ fontWeight: 1000 }}>{p.name}</div>
-                          <div className="small">
-                            {p.team ? `${p.team} · ` : ""}{slot} · <Pill tone={PLAYER_STATUS_TONE[avail]}>{PLAYER_STATUS_LABEL[avail]}</Pill>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="row" style={{ gap: 8 }}>
-                        {INTEREST_LEVELS.map((lvl) => (
-                          <button
-                            key={lvl}
-                            className={"btn " + (cur === lvl ? "btnPrimary" : "")}
-                            onClick={() => setLevel(selectedTeam.user_id, "PLAYER", id, lvl)}
-                            style={{ padding: "8px 10px", borderRadius: 999 }}
-                          >
-                            {INTEREST_LABEL[lvl]}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                })}
-                {SLOT_ORDER.every((s) => (selectedTeam.roster?.[s] || []).length === 0) ? (
-                  <div className="small">Este equipo no cargó jugadores.</div>
-                ) : null}
+              <div style={{ marginTop: 6, color: COLORS.gray, fontSize: 13 }}>
+                {r.asset_type}: {r.asset_id} ·{" "}
+                {r.updated_at ? new Date(r.updated_at).toLocaleString() : ""}
               </div>
+              {r.note ? <div style={{ marginTop: 8 }}>{r.note}</div> : null}
             </div>
-
-            {/* Picks */}
-            <div style={{ borderTop: `1px solid ${COLORS.border}`, paddingTop: 12 }}>
-              <h3 style={{ margin: 0 }}>Picks</h3>
-              <div style={{ marginTop: 10, display: "grid", gap: 10 }}>
-                {(selectedTeam.picks || []).map((id) => {
-                  const p = pickById.get(id) || { id, label: id };
-                  const cur = interestFor(selectedTeam.user_id, "PICK", id)?.level || "";
-                  return (
-                    <div
-                      key={id}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "space-between",
-                        gap: 10,
-                        padding: 12,
-                        borderRadius: 16,
-                        border: `1px solid ${COLORS.border}`,
-                        background: "rgba(0,0,0,.18)",
-                      }}
-                    >
-                      <div style={{ fontWeight: 900 }}>{p.label}</div>
-                      <div className="row" style={{ gap: 8 }}>
-                        {INTEREST_LEVELS.map((lvl) => (
-                          <button
-                            key={lvl}
-                            className={"btn " + (cur === lvl ? "btnPrimary" : "")}
-                            onClick={() => setLevel(selectedTeam.user_id, "PICK", id, lvl)}
-                            style={{ padding: "8px 10px", borderRadius: 999 }}
-                          >
-                            {INTEREST_LABEL[lvl]}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                })}
-                {(selectedTeam.picks || []).length === 0 ? <div className="small">Este equipo no cargó picks.</div> : null}
-              </div>
-            </div>
-          </div>
-        )}
-      </Card>
-    </div>
-  );
-}
-
-/** -------------------- Interests Tab -------------------- */
-function InterestsTab({ me, myInterests, incomingInterests, teamsByUser, usersById, playerById, pickById }) {
-  const left = useMemo(() => {
-    // lo que me interesa (yo -> otros)
-    return myInterests
-      .map((r) => {
-        const ownerTeam = teamsByUser.get(r.to_user_id);
-        const ownerName = ownerTeam?.display_name || usersById.get(r.to_user_id)?.display_name || r.to_user_id;
-        const assetLabel =
-          r.asset_type === "PLAYER"
-            ? playerById.get(r.asset_id)?.name || `PLAYER ${r.asset_id}`
-            : pickById.get(r.asset_id)?.label || r.asset_id;
-        return { ...r, ownerName, assetLabel };
-      })
-      .sort((a, b) => INTEREST_LEVELS.indexOf(b.level) - INTEREST_LEVELS.indexOf(a.level));
-  }, [myInterests, teamsByUser, usersById, playerById, pickById]);
-
-  const right = useMemo(() => {
-    // interesados en mi equipo (otros -> yo)
-    return incomingInterests
-      .map((r) => {
-        const from = usersById.get(r.from_user_id);
-        const fromName = from?.display_name || from?.email || r.from_user_id;
-        const assetLabel =
-          r.asset_type === "PLAYER"
-            ? playerById.get(r.asset_id)?.name || `PLAYER ${r.asset_id}`
-            : pickById.get(r.asset_id)?.label || r.asset_id;
-        return { ...r, fromName, assetLabel };
-      })
-      .sort((a, b) => INTEREST_LEVELS.indexOf(b.level) - INTEREST_LEVELS.indexOf(a.level));
-  }, [incomingInterests, usersById, playerById, pickById]);
-
-  return (
-    <div className="grid2">
-      <Card>
-        <h2 style={{ margin: 0 }}>Lo que me interesa</h2>
-        <div className="small" style={{ marginTop: 6 }}>
-          Jugadores/picks que marcaste en Liga.
-        </div>
-        <div style={{ marginTop: 12, display: "grid", gap: 10 }}>
-          {left.length === 0 ? <div className="small">Todavía no marcaste intereses.</div> : null}
-          {left.map((r) => (
-            <div
-              key={`${r.to_user_id}-${r.asset_type}-${r.asset_id}`}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: 10,
-                padding: 12,
-                borderRadius: 16,
-                border: `1px solid ${COLORS.border}`,
-                background: "rgba(0,0,0,.18)",
-              }}
-            >
-              <div>
-                <div style={{ fontWeight: 1000 }}>{r.assetLabel}</div>
-                <div className="small">Dueño: {r.ownerName}</div>
-              </div>
-              <Pill tone={INTEREST_TONE[r.level]}>{INTEREST_LABEL[r.level]}</Pill>
-            </div>
-          ))}
-        </div>
-      </Card>
-
-      <Card>
-        <h2 style={{ margin: 0 }}>Otros interesados en mi equipo</h2>
-        <div className="small" style={{ marginTop: 6 }}>
-          Intereses que otros marcaron sobre tus assets.
-        </div>
-        <div style={{ marginTop: 12, display: "grid", gap: 10 }}>
-          {right.length === 0 ? <div className="small">Nadie marcó intereses sobre tu equipo (todavía).</div> : null}
-          {right.map((r) => (
-            <div
-              key={`${r.from_user_id}-${r.asset_type}-${r.asset_id}`}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: 10,
-                padding: 12,
-                borderRadius: 16,
-                border: `1px solid ${COLORS.border}`,
-                background: "rgba(0,0,0,.18)",
-              }}
-            >
-              <div>
-                <div style={{ fontWeight: 1000 }}>{r.assetLabel}</div>
-                <div className="small">Interesado: {r.fromName}</div>
-              </div>
-              <Pill tone={INTEREST_TONE[r.level]}>{INTEREST_LABEL[r.level]}</Pill>
-            </div>
-          ))}
-        </div>
-      </Card>
+          );
+        })}
     </div>
   );
 }
