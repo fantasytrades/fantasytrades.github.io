@@ -344,7 +344,7 @@ function Styles() {
 
       .valueTag{
         margin-top:6px;
-        display:inline-flex;
+        display:inline-block;
         padding:5px 10px;
         border-radius:999px;
         border:1px solid #CFE3FF;
@@ -352,7 +352,11 @@ function Styles() {
         color:var(--blue);
         font-weight:1000;
         font-size:12px;
-        width:fit-content;
+        line-height:1.1;
+        max-width:min(320px, 100%);
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
       }
       .valueBtn{
         padding:10px 14px;
@@ -412,8 +416,13 @@ function Styles() {
       .badge{ padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:#F1F5F9; font-weight:1000; font-size:12px; color:#0F172A; }
 
       /* === Roster slot tags (QB/RB/WR/TE/WRT/BN) === */
-      .rosterItem{ gap:12px; display:grid; grid-template-columns:54px 1fr auto; align-items:center; }
-      .rosterActions{ display:flex; gap:10px; align-items:center; flex-wrap:nowrap; justify-content:flex-end; }
+      .rosterItem{ gap:12px; display:grid; grid-template-columns:54px minmax(260px, 1fr) auto; align-items:center; }
+      .rosterActions{ display:flex; gap:12px; align-items:center; flex-wrap:nowrap; justify-content:flex-end; }
+      .rosterActions .valueBtn, .rosterActions .statusBtn{ height:40px; padding:0 14px; border-radius:999px; white-space:nowrap; }
+      .rosterActions .valueBtn{ min-width:120px; }
+      .rosterActions .statusBtn{ min-width:140px; }
+      .rosterActions .iconBtn{ width:40px; height:40px; }
+
       .posTag{
         width:54px; height:44px; border-radius:14px;
         display:flex; align-items:center; justify-content:center;
@@ -432,6 +441,15 @@ function Styles() {
       @media(max-width:520px){
         .posTag{ width:48px; height:40px; border-radius:13px; }
         .card{ padding:14px; }
+      }
+
+      @media(max-width:720px){
+        .rosterItem{ grid-template-columns:54px 1fr; align-items:start; }
+        .rosterItem > .posTag{ grid-row:1 / span 2; }
+        .rosterItem > .left{ grid-column:2; }
+        .rosterItem > .rosterActions{ grid-column:2; grid-row:2; justify-content:flex-start; margin-top:8px; }
+        .rosterActions{ justify-content:flex-start; flex-wrap:wrap; }
+        .rosterActions .valueBtn, .rosterActions .statusBtn{ min-width:0; }
       }
 
       /* === Status colors (flat, like the white mock) === */
