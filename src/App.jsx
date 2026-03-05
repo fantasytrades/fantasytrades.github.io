@@ -224,56 +224,134 @@ function assignSlots(roster) {
 // ---- Styles ----
 function Styles() {
   return (
-    <style>{`
-      :root{
-        --bg:#0B1220; --card:#0F172A; --soft:#0B1324; --sky:#111B2F;
-        --text:#E6EEFF; --muted:#A8B3C7; --border:#22304A; --blue:#3B82F6;
-        --danger:#EF4444; --ok:#22C55E; --warn:#EAB308; --pos-qb:#FF2D83; --pos-rb:#11D6C7; --pos-wr:#63A7FF; --pos-te:#FFB04A; --pos-bn:#9FB4C8; --shadow:0 10px 30px rgba(0,0,0,0.18);
+    <style>{`\n      :root{
+        color-scheme: light;
+        --bg:#F3F6FB; --card:#FFFFFF; --soft:#FFFFFF; --sky:#EAF3FF;
+        --text:#0F172A; --muted:#64748B; --border:#E5E7EB; --blue:#2F7DF6;
+        --danger:#EF4444; --ok:#16A34A; --warn:#F59E0B;
+        --pos-qb:#FF2D83; --pos-rb:#11D6C7; --pos-wr:#63A7FF; --pos-te:#FFB04A; --pos-bn:#94A3B8;
+        --shadow:0 14px 34px rgba(15,23,42,0.08);
+        --shadow-sm:0 8px 22px rgba(15,23,42,0.06);
       }
       body{ margin:0; background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; }
       *{ box-sizing:border-box; }
-      .wrap{ max-width:1180px; margin:0 auto; padding:16px 14px 94px; }
-      .top{ position:sticky; top:0; z-index:50; background:var(--bg); border-bottom:1px solid var(--border); }
-      .topin{ max-width:1180px; margin:0 auto; padding:10px 14px; display:flex; gap:10px; align-items:center; }
+      .wrap{ max-width:1180px; margin:0 auto; padding:18px 14px 92px; }
+
+      /* Top bar */
+      .top{ position:sticky; top:0; z-index:50; background:#fff; border-bottom:1px solid var(--border); }
+      .topin{ max-width:1180px; margin:0 auto; padding:12px 14px; display:flex; gap:10px; align-items:center; }
       .sp{ flex:1; }
-      .chip{ padding:7px 10px; border-radius:999px; border:1px solid var(--border); background:var(--sky); color:var(--text); font-weight:900; font-size:12px; cursor:pointer; }
-      .grid2{ display:grid; grid-template-columns:1fr; gap:12px; align-items:start; }
+      .chip{
+        padding:7px 10px; border-radius:999px;
+        border:1px solid var(--border); background:#fff; color:var(--text);
+        font-weight:900; font-size:12px; cursor:pointer;
+        box-shadow:0 1px 0 rgba(15,23,42,0.03);
+      }
+
+      /* Layout */
+      .grid2{ display:grid; grid-template-columns:1fr; gap:14px; align-items:start; }
       @media(min-width:980px){ .grid2{ grid-template-columns:1fr 1fr; } }
-      .card{ background:var(--card); border:1px solid var(--border); border-radius:16px; padding:14px; box-shadow:var(--shadow); }
-      .row{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+
+      /* Cards */
+      .card{
+        background:var(--card); border:1px solid var(--border); border-radius:18px; padding:16px;
+        box-shadow:var(--shadow-sm);
+      }
+      .row{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
       .title{ margin:6px 0 14px; letter-spacing:-0.02em; }
-      input,select{ padding:12px 12px; border-radius:12px; border:1px solid var(--border); background:var(--sky); color:var(--text); outline:none; font-weight:800; width:100%; }
-      button{ padding:12px 12px; border-radius:12px; border:1px solid transparent; background:var(--blue); color:white; font-weight:900; cursor:pointer; }
-      button.ghost{ background:transparent; border:1px solid var(--border); color:var(--text); }
-      button.danger{ background:var(--danger); }
+
+      /* Inputs */
+      input,select{
+        padding:12px 12px; border-radius:14px; border:1px solid var(--border);
+        background:#fff; color:var(--text); outline:none; font-weight:800; width:100%;
+        box-shadow:0 1px 0 rgba(15,23,42,0.02);
+      }
+      input::placeholder{ color:#94A3B8; font-weight:800; }
+
+      /* Buttons */
+      button{
+        padding:12px 14px; border-radius:14px; border:1px solid transparent;
+        background:var(--blue); color:#fff; font-weight:950; cursor:pointer;
+        box-shadow:0 8px 18px rgba(47,125,246,0.18);
+      }
+      button.ghost{
+        background:#fff; border:1px solid var(--border); color:var(--text);
+        box-shadow:0 1px 0 rgba(15,23,42,0.02);
+      }
+      button.danger{ background:var(--danger); box-shadow:0 8px 18px rgba(239,68,68,0.18); }
       button:disabled{ opacity:0.6; cursor:not-allowed; }
+
       .muted{ color:var(--muted); }
-      .dock{ position:fixed; left:0; right:0; bottom:0; background:var(--bg); border-top:1px solid var(--border); z-index:60; }
+
+      /* Bottom dock */
+      .dock{ position:fixed; left:0; right:0; bottom:0; background:#fff; border-top:1px solid var(--border); z-index:60; }
       .dockin{ max-width:1180px; margin:0 auto; padding:10px 12px; display:grid; grid-template-columns:repeat(4,1fr); gap:6px; }
-      .dockbtn{ background:transparent; border:1px solid transparent; color:var(--muted); }
-      .dockbtn.active{ background:var(--sky); border:1px solid var(--border); color:var(--text); }
-      .list{ display:grid; gap:10px; }
-      .item{ display:flex; justify-content:space-between; gap:10px; align-items:center; padding:10px 12px; border-radius:14px; border:1px solid var(--border); background:var(--soft); }
+      .dockbtn{ background:transparent; border:1px solid transparent; color:var(--muted); box-shadow:none; }
+      .dockbtn.active{ background:var(--sky); border:1px solid #CFE3FF; color:var(--text); box-shadow:none; }
+
+      /* Lists */
+      .list{ display:grid; gap:12px; }
+      .item{
+        display:flex; justify-content:space-between; gap:12px; align-items:center;
+        padding:12px 14px; border-radius:18px; border:1px solid var(--border); background:#fff;
+        box-shadow:0 1px 0 rgba(15,23,42,0.02);
+      }
       .left{ display:flex; gap:10px; align-items:center; min-width:0; }
-      .av{ width:34px; height:34px; border-radius:999px; background:var(--sky); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-weight:1000; }
+      .av{
+        width:34px; height:34px; border-radius:999px;
+        background:#F1F5F9; border:1px solid #E2E8F0;
+        display:flex; align-items:center; justify-content:center; font-weight:1000; color:#0F172A;
+      }
       .name{ font-weight:1000; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
       .sub{ font-size:12px; font-weight:900; }
-      .slots{ display:grid; gap:12px; }
-      .slot{ border:1px solid var(--border); background:var(--card); border-radius:14px; padding:12px; }
+
+      /* Slots */
+      .slots{ display:grid; gap:14px; }
+      .slot{ border:1px solid var(--border); background:#fff; border-radius:18px; padding:14px; box-shadow:0 1px 0 rgba(15,23,42,0.02); }
       .slothead{ display:flex; justify-content:space-between; align-items:baseline; }
+
+      /* Segmented controls */
       .seg{ display:flex; flex-wrap:wrap; gap:8px; }
-      .seg button{ padding:8px 10px; border-radius:999px; }
-      .seg button.active{ background:var(--blue); }
-      .pill{ display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:var(--sky); font-weight:1000; font-size:12px; }
-      .badge{ padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:var(--sky); font-weight:1000; font-size:12px; }
+      .seg.segTabs{
+        background:var(--sky); border:1px solid #CFE3FF;
+        padding:6px; border-radius:16px;
+      }
+      .seg.segTabs button{
+        background:transparent; border:1px solid transparent; color:#1E293B;
+        padding:10px 16px; border-radius:12px;
+        box-shadow:none;
+      }
+      .seg.segTabs button.active{
+        background:var(--blue); color:#fff;
+        box-shadow:0 10px 22px rgba(47,125,246,0.22);
+      }
+
+      .seg.segFilters button{
+        padding:8px 12px; border-radius:999px;
+        background:#fff; border:1px solid var(--border); color:#334155;
+        box-shadow:none; font-weight:950;
+      }
+      .seg.segFilters button.active{
+        background:var(--blue); border-color:rgba(47,125,246,0.35); color:#fff;
+        box-shadow:0 10px 22px rgba(47,125,246,0.18);
+      }
+
+      /* Pills / badges */
+      .pill{
+        display:inline-flex; align-items:center; gap:8px;
+        padding:6px 10px; border-radius:999px; border:1px solid var(--border);
+        background:#F1F5F9; font-weight:1000; font-size:12px; color:#0F172A;
+      }
+      .badge{ padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:#F1F5F9; font-weight:1000; font-size:12px; color:#0F172A; }
+
       /* === Roster slot tags (QB/RB/WR/TE/WRT/BN) === */
       .rosterItem{ gap:12px; }
       .posTag{
         width:54px; height:44px; border-radius:14px;
         display:flex; align-items:center; justify-content:center;
         font-weight:1100; letter-spacing:0.02em;
-        color:#07111f;
-        box-shadow:0 6px 16px rgba(0,0,0,0.18);
+        color:#fff;
+        box-shadow:none;
       }
       .pos-QB{ background:var(--pos-qb); }
       .pos-RB{ background:var(--pos-rb); }
@@ -281,27 +359,24 @@ function Styles() {
       .pos-TE{ background:var(--pos-te); }
       .pos-BENCH{ background:var(--pos-bn); }
       .pos-FLEX{ background:linear-gradient(90deg, var(--pos-wr) 0 34%, var(--pos-rb) 34% 67%, var(--pos-te) 67% 100%); }
+      .posTag{ text-shadow:0 1px 0 rgba(0,0,0,0.12); }
 
       @media(max-width:520px){
         .posTag{ width:48px; height:40px; border-radius:13px; }
+        .card{ padding:14px; }
       }
 
-      /* === Status colors === */
-      .statusBtn{ border:1px solid var(--border); }
-      /* buttons also use .ghost (button.ghost is more specific),
-         so target button.statusBtn.status-... to override background/border */
-      button.statusBtn.status-AVAILABLE{ background:rgba(34,197,94,0.20); border-color:rgba(34,197,94,0.40); color:#D7FFE4; }
-      button.statusBtn.status-LISTENING{ background:rgba(234,179,8,0.20); border-color:rgba(234,179,8,0.45); color:#FFF2B8; }
-      button.statusBtn.status-NOT_AVAILABLE{ background:rgba(239,68,68,0.20); border-color:rgba(239,68,68,0.45); color:#FFD0D0; }
+      /* === Status colors (flat, like the white mock) === */
+      .statusBtn{ border:1px solid var(--border); box-shadow:none; }
+      button.statusBtn.status-AVAILABLE{ background:var(--ok); border-color:var(--ok); color:#fff; }
+      button.statusBtn.status-LISTENING{ background:var(--warn); border-color:var(--warn); color:#fff; }
+      button.statusBtn.status-NOT_AVAILABLE{ background:var(--danger); border-color:var(--danger); color:#fff; }
 
-      .pill-AVAILABLE{ background:rgba(34,197,94,0.20); border-color:rgba(34,197,94,0.40); color:#D7FFE4; }
-      .pill-LISTENING{ background:rgba(234,179,8,0.20); border-color:rgba(234,179,8,0.45); color:#FFF2B8; }
-      .pill-NOT_AVAILABLE{ background:rgba(239,68,68,0.20); border-color:rgba(239,68,68,0.45); color:#FFD0D0; }
-
-    `}</style>
+      .pill-AVAILABLE{ background:rgba(22,163,74,0.14); border-color:rgba(22,163,74,0.28); color:#166534; }
+      .pill-LISTENING{ background:rgba(245,158,11,0.16); border-color:rgba(245,158,11,0.30); color:#92400E; }
+      .pill-NOT_AVAILABLE{ background:rgba(239,68,68,0.14); border-color:rgba(239,68,68,0.28); color:#991B1B; }\n    `}</style>
   );
 }
-
 // ---- MyTeamView ----
 function MyTeamView({
   players, myRoster, myPicks, slots,
@@ -337,7 +412,7 @@ function MyTeamView({
             Estado: <span className={`pill pill-AVAILABLE`}>{STATUS_LABEL.AVAILABLE}</span> → <span className={`pill pill-LISTENING`}>{STATUS_LABEL.LISTENING}</span> → <span className={`pill pill-NOT_AVAILABLE`}>{STATUS_LABEL.NOT_AVAILABLE}</span>
           </div>
           <div className="sp" />
-          <div className="seg">
+          <div className="seg segTabs">
             <button className={mode === "players" ? "active" : ""} onClick={() => setMode("players")}>Jugadores</button>
             <button className={mode === "picks"   ? "active" : ""} onClick={() => setMode("picks")}>Picks</button>
           </div>
@@ -350,7 +425,7 @@ function MyTeamView({
             <>
               <div style={{ display: "grid", gap: 10 }}>
                 <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Buscar jugador..." />
-                <div className="seg">
+                <div className="seg segFilters">
                   {["ALL", "QB", "RB", "WR", "TE"].map((p) => (
                     <button key={p} className={posFilter === p ? "active" : ""} onClick={() => setPosFilter(p)}>
                       {p === "ALL" ? "Todos" : p}
