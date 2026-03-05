@@ -152,18 +152,27 @@ function ghEnqueueWrite(fn) {
 
 async function ghPutJsonWithRetry(path, mutator, label) {
   return ghEnqueueWrite(async () => {
-    for (let attempt = 0; attempt < 2; attempt++) {
+    const MAX = 6; // más intentos = menos “sha mismatch”
+    for (let attempt = 0; attempt < MAX; attempt++) {
       const { data, sha } = await ghGetJson(path, []);
       const arr = Array.isArray(data) ? data : [];
       const next = mutator(arr);
+
       try {
         await ghPutJson(path, next, sha, label);
         return next;
       } catch (e) {
-        if (e?.code === 409 && attempt === 0) continue;
+        // 409 = “sha does not match”
+        if (e?.status === 409 || e?.code === 409) {
+          // backoff chiquito para que no choque contra escrituras de otros
+          const ms = 120 + attempt * 180;
+          await new Promise((r) => setTimeout(r, ms));
+          continue;
+        }
         throw e;
       }
     }
+    throw new Error(`No se pudo guardar: demasiados conflictos (409) en ${path}. Cerrá pestañas duplicadas y probá de nuevo.`);
   });
 }
 
