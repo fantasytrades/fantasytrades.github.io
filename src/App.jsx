@@ -187,10 +187,28 @@ async function ghPutJson(path, data, sha, message) {
 }
 
 // serializa escrituras en esta pestaña
-let ghWriteQueue = Promise.resolve();
+// Mutex real: solo 1 write a la vez, los demás esperan en cola
+const _ghQueue = { running: false, queue: [] };
 function ghEnqueueWrite(fn) {
-  ghWriteQueue = ghWriteQueue.then(fn, fn);
-  return ghWriteQueue;
+  return new Promise((resolve, reject) => {
+    _ghQueue.queue.push({ fn, resolve, reject });
+    _ghDrainQueue();
+  });
+}
+async function _ghDrainQueue() {
+  if (_ghQueue.running) return;
+  const next = _ghQueue.queue.shift();
+  if (!next) return;
+  _ghQueue.running = true;
+  try {
+    const result = await next.fn();
+    next.resolve(result);
+  } catch (e) {
+    next.reject(e);
+  } finally {
+    _ghQueue.running = false;
+    _ghDrainQueue();
+  }
 }
 
 // retry para archivos compartidos (users/interests)
@@ -236,11 +254,14 @@ async function ghPutTeamFile(userId, teamObj, sha, message) {
   return ghPutFile(`${TEAMS_DIR}/${userId}.json`, txt, sha, message);
 }
 
-// retry para tu team file (soluciona 409 en tu propio archivo)
+// retry para tu team file
+// El mutex ghEnqueueWrite garantiza que solo 1 write corre a la vez.
+// En cada intento hacemos GET fresco para obtener el SHA actual.
 async function ghPutTeamWithRetry(userId, mutator, label) {
   return ghEnqueueWrite(async () => {
-    const MAX = 10;
+    const MAX = 15;
     for (let attempt = 0; attempt < MAX; attempt++) {
+      // Siempre GET fresco: nunca reutilizar SHA de intento anterior
       const { data: curr, sha } = await ghGetTeamFile(userId);
 
       const base = normalizeTeamRow(
@@ -258,11 +279,15 @@ async function ghPutTeamWithRetry(userId, mutator, label) {
       const next = normalizeTeamRow(mutator({ ...base, updated_at: nowIso() }));
 
       try {
-        await ghPutTeamFile(userId, next, sha || null, label);
+        const putResult = await ghPutTeamFile(userId, next, sha || null, label);
+        // Esperar brevemente para que GitHub consolide el commit
+        // antes de liberar el mutex (la siguiente operación en cola leerá el SHA nuevo)
+        await new Promise((r) => setTimeout(r, 800));
         return next;
       } catch (e) {
         if (e?.status === 409 || e?.code === 409) {
-          const ms = 500 + attempt * 600;
+          // Backoff exponencial: 1s, 2s, 3s, 4s...
+          const ms = 1000 * (attempt + 1);
           await new Promise((r) => setTimeout(r, ms));
           continue;
         }
