@@ -2935,8 +2935,8 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
                 <div className="chatSelected">
                   {(myGivePlayers.length || myGivePicks.length) ? (
                     <div className="chatChipsWrap">
-                      {myGivePlayers.map((id) => renderAssetChip("player", id, () => setMyGivePlayers((a) => toggle(a, id)))}
-                      {myGivePicks.map((id) => renderAssetChip("pick", id, () => setMyGivePicks((a) => toggle(a, id)))}
+                      {myGivePlayers.map((id) => renderAssetChip("player", id, () => setMyGivePlayers((a) => toggle(a, id))))}
+                      {myGivePicks.map((id) => renderAssetChip("pick", id, () => setMyGivePicks((a) => toggle(a, id))))}
                     </div>
                   ) : (
                     <div className="muted" style={{ fontSize: 12 }}>Seleccioná assets desde la lista de abajo.</div>
@@ -2971,8 +2971,8 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
                 <div className="chatSelected">
                   {(myGetPlayers.length || myGetPicks.length) ? (
                     <div className="chatChipsWrap">
-                      {myGetPlayers.map((id) => renderAssetChip("player", id, () => setMyGetPlayers((a) => toggle(a, id)))}
-                      {myGetPicks.map((id) => renderAssetChip("pick", id, () => setMyGetPicks((a) => toggle(a, id)))}
+                      {myGetPlayers.map((id) => renderAssetChip("player", id, () => setMyGetPlayers((a) => toggle(a, id))))}
+                      {myGetPicks.map((id) => renderAssetChip("pick", id, () => setMyGetPicks((a) => toggle(a, id))))}
                     </div>
                   ) : (
                     <div className="muted" style={{ fontSize: 12 }}>Seleccioná assets desde la lista de abajo.</div>
