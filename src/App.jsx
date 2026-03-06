@@ -713,7 +713,151 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
       .dockbtn.active{ background:var(--sky); border-color:#CFE3FF; }
 
 
-      /* === League (match mock) === */
+      
+      /* === Home News === */
+      .newsWrap{ padding:18px; }
+      .newsHeader{ display:flex; justify-content:space-between; gap:16px; align-items:flex-start; flex-wrap:wrap; }
+      .newsH{ font-size:22px; font-weight:1100; letter-spacing:-0.02em; }
+      .newsSub{ display:flex; gap:8px; align-items:center; margin-top:4px; color:var(--muted); font-weight:900; }
+      .newsDot{ width:8px; height:8px; border-radius:999px; background:#94A3B8; }
+      .newsControls{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+      .togglePills{ display:flex; gap:8px; flex-wrap:wrap; }
+      button.togglePill{
+        padding:8px 12px; border-radius:999px;
+        background:#fff; border:1px solid var(--border);
+        color:#334155; font-weight:1100;
+        box-shadow:none;
+      }
+      button.togglePill.on{
+        background:var(--blue);
+        border-color:rgba(47,125,246,0.35);
+        color:#fff;
+      }
+      .newsSearch{ position:relative; }
+      .newsSearch::before{
+        content:"🔎";
+        position:absolute;
+        left:12px; top:50%;
+        transform:translateY(-50%);
+        opacity:0.55;
+        font-size:14px;
+        pointer-events:none;
+      }
+      .newsSearchInput{ width:min(340px, 100%); padding-left:38px; }
+      .newsInfo{
+        margin-top:14px;
+        padding:10px 12px;
+        border-radius:14px;
+        background:var(--sky);
+        border:1px solid #CFE3FF;
+        color:#1E293B;
+        font-weight:900;
+      }
+      .newsInfo.muted{ color:var(--muted); background:#fff; border-color:var(--border); }
+      .newsBody{ margin-top:14px; }
+      .newsList{ display:grid; gap:12px; }
+      .newsCard{
+        border:1px solid var(--border);
+        border-radius:18px;
+        background:#fff;
+        padding:14px;
+        box-shadow:0 1px 0 rgba(15,23,42,0.02);
+      }
+      .newsCard:hover{
+        border-color:#CFE3FF;
+        box-shadow:0 10px 24px rgba(15,23,42,0.06);
+      }
+      .newsCardTop{ display:flex; justify-content:space-between; gap:12px; align-items:center; }
+      .newsSrc{ display:flex; gap:10px; align-items:center; min-width:0; }
+      .newsSrcIcon{
+        width:40px; height:40px;
+        border-radius:14px;
+        display:flex; align-items:center; justify-content:center;
+        font-weight:1100;
+        color:#fff;
+        letter-spacing:-0.02em;
+        flex:0 0 auto;
+      }
+      .newsSrcIcon.espn{ background:#E11D48; }
+      .newsSrcIcon.fp{ background:#0EA5E9; }
+      .newsSrcMeta{ min-width:0; }
+      .newsSrcName{ font-weight:1100; }
+      .newsTime{ font-weight:900; font-size:12px; color:var(--muted); }
+      .newsOpen{
+        display:inline-flex;
+        align-items:center; justify-content:center;
+        padding:9px 12px;
+        border-radius:12px;
+        border:1px solid #CFE3FF;
+        background:var(--sky);
+        color:var(--blue);
+        font-weight:1100;
+        text-decoration:none;
+        white-space:nowrap;
+      }
+      .newsOpen:hover{ background:#DDEBFF; }
+      .newsHeadline{
+        display:block;
+        margin-top:10px;
+        font-size:18px;
+        font-weight:1100;
+        letter-spacing:-0.01em;
+        color:var(--text);
+        text-decoration:none;
+        line-height:1.25;
+      }
+      .newsHeadline:hover{ text-decoration:underline; }
+      .newsDesc{
+        margin-top:6px;
+        color:var(--muted);
+        font-weight:850;
+        line-height:1.35;
+      }
+      .newsMentions{
+        margin-top:10px;
+        display:flex; flex-wrap:wrap; gap:8px;
+      }
+      .mentionChip{
+        display:inline-flex; align-items:center; gap:8px;
+        padding:6px 10px;
+        border-radius:999px;
+        border:1px solid var(--border);
+        background:#F8FAFC;
+        font-weight:1000;
+        color:#0F172A;
+        max-width:320px;
+      }
+      .mentionAv{
+        width:22px; height:22px;
+        border-radius:999px;
+        background:#E2E8F0;
+        border:1px solid #E2E8F0;
+        display:inline-flex; align-items:center; justify-content:center;
+        overflow:hidden;
+        font-size:11px;
+        font-weight:1100;
+        flex:0 0 auto;
+      }
+      .mentionAv img{ width:100%; height:100%; object-fit:cover; display:block; }
+      .mentionTxt{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+      .newsFoot{ margin-top:14px; font-size:12px; font-weight:900; }
+
+      /* Skeleton */
+      .newsSkeleton{ border-style:dashed; }
+      .skLine{
+        height:12px;
+        border-radius:999px;
+        background:linear-gradient(90deg, #F1F5F9 0%, #E2E8F0 50%, #F1F5F9 100%);
+        background-size:200% 100%;
+        animation:sk 1.2s ease-in-out infinite;
+        margin-top:10px;
+      }
+      .skLine:first-child{ margin-top:0; }
+      .skW40{ width:40%; }
+      .skW75{ width:75%; }
+      .skW60{ width:60%; }
+      @keyframes sk{ 0%{background-position:0% 0;} 100%{background-position:200% 0;} }
+/* === League (match mock) === */
       .teamList{ display:grid; gap:10px; }
       .teamRow{
         padding:12px 14px;
@@ -1621,6 +1765,7 @@ function InterestsView({ teamsByUser, myOutgoing, myIncoming, metaById }) {
   );
 }
 
+
 function HomeNewsView({ myRoster, metaById }) {
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
@@ -1628,6 +1773,15 @@ function HomeNewsView({ myRoster, metaById }) {
   const [q, setQ] = useState("");
   const [showAll, setShowAll] = useState(false);
   const [sources, setSources] = useState({ ESPN: true, FantasyPros: true });
+
+  const norm = (s) =>
+    String(s || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/\p{Diacritic}/gu, "")
+      .replace(/[^a-z0-9\s]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
 
   const rosterNames = useMemo(() => {
     const set = new Set();
@@ -1640,17 +1794,19 @@ function HomeNewsView({ myRoster, metaById }) {
     return Array.from(set);
   }, [myRoster, metaById]);
 
-  const norm = (s) =>
-    String(s || "")
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/\p{Diacritic}/gu, "")
-      .replace(/[^a-z0-9\s]/g, " ")
-      .replace(/\s+/g, " ")
-      .trim();
+  // Map name -> { id, name } for showing headshots in mention chips
+  const rosterByName = useMemo(() => {
+    const m = new Map();
+    (myRoster || []).forEach((r) => {
+      const id = String(r?.id ?? "");
+      const n = (metaById?.get?.(id)?.name) || r?.name || "";
+      const key = norm(n);
+      if (key) m.set(key, { id, name: n });
+    });
+    return m;
+  }, [myRoster, metaById]);
 
-    const SUFFIXES = new Set(["jr", "sr", "ii", "iii", "iv", "v"]);
-
+  const SUFFIXES = new Set(["jr", "sr", "ii", "iii", "iv", "v"]);
   const escapeRegExp = (s) => String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
   const aliasesForName = (playerName) => {
@@ -1666,23 +1822,18 @@ function HomeNewsView({ myRoster, metaById }) {
     const last = toks[toks.length - 1];
 
     const out = [];
+    out.push(toks);          // full
+    out.push([first, last]); // first + last
 
-    // Full name (máxima precisión si el feed lo trae completo)
-    out.push(toks);
-
-    // First + Last (base)
-    out.push([first, last]);
-
-    // Caso "St. Brown" (evita matchear por "Brown" solo)
+    // "St. Brown" safe alias (never last-name only)
     if (toks.length >= 3 && toks[toks.length - 2] === "st") out.push(["st", last]);
 
-    // Caso iniciales: "A J Brown" -> permite "aj brown" o "a j brown"
+    // initials: "A J Brown" -> "aj brown" / "a j brown"
     if (toks.length >= 3 && toks[0].length === 1 && toks[1].length === 1) {
       out.push([`${toks[0]}${toks[1]}`, last]);
       out.push([toks[0], toks[1], last]);
     }
 
-    // De-dup
     const uniq = new Map();
     for (const a of out) uniq.set(a.join("|"), a);
     return [...uniq.values()];
@@ -1694,7 +1845,6 @@ function HomeNewsView({ myRoster, metaById }) {
   const matchesPlayer = (playerName, hayNorm) => {
     const aliases = aliasesForName(playerName);
     if (!aliases.length) return false;
-    // Match estricto: alguna combinación de 2+ palabras tiene que estar presente.
     return aliases.some((words) => words.length >= 2 && hasAllWords(hayNorm, words));
   };
 
@@ -1728,7 +1878,6 @@ function HomeNewsView({ myRoster, metaById }) {
 
   const filtered = useMemo(() => {
     let items = Array.isArray(data.items) ? [...data.items] : [];
-
     items = items.filter((it) => sources[it.source] !== false);
 
     if (!showAll && rosterNames.length) {
@@ -1747,129 +1896,148 @@ function HomeNewsView({ myRoster, metaById }) {
     return items.slice(0, 60);
   }, [data.items, rosterNames, showAll, q, sources]);
 
+  const TogglePill = ({ on, label, onClick }) => (
+    <button type="button" className={"togglePill" + (on ? " on" : "")} onClick={onClick}>
+      {label}
+    </button>
+  );
+
+  const updatedText = data.generatedAt ? new Date(data.generatedAt).toLocaleString() : "—";
+
   return (
-    <div className="grid2">
-      <div className="card panel" style={{ gridColumn: "1 / -1" }}>
-        <div className="row" style={{ justifyContent: "space-between", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
+    <div style={{ marginTop: 12 }}>
+      <div className="card newsWrap">
+        <div className="newsHeader">
           <div>
-            <div className="h1">Noticias</div>
-            <div className="muted">
-              {data.generatedAt ? `Actualizado: ${new Date(data.generatedAt).toLocaleString()}` : "Actualizado: —"}
+            <div className="newsH">Noticias</div>
+            <div className="newsSub">
+              <span className="newsDot" aria-hidden="true" />
+              <span>Actualizado: {updatedText}</span>
             </div>
           </div>
 
-          <div className="row" style={{ gap: 10, flexWrap: "wrap", alignItems: "center" }}>
-            <label className="row" style={{ gap: 6, alignItems: "center", fontWeight: 700 }}>
-              <input
-                type="checkbox"
-                checked={sources.ESPN}
-                onChange={(e) => setSources((s) => ({ ...s, ESPN: e.target.checked }))}
+          <div className="newsControls">
+            <div className="togglePills">
+              <TogglePill
+                on={sources.ESPN}
+                label="ESPN"
+                onClick={() => setSources((s) => ({ ...s, ESPN: !s.ESPN }))}
               />
-              ESPN
-            </label>
-            <label className="row" style={{ gap: 6, alignItems: "center", fontWeight: 700 }}>
-              <input
-                type="checkbox"
-                checked={sources.FantasyPros}
-                onChange={(e) => setSources((s) => ({ ...s, FantasyPros: e.target.checked }))}
+              <TogglePill
+                on={sources.FantasyPros}
+                label="FantasyPros"
+                onClick={() => setSources((s) => ({ ...s, FantasyPros: !s.FantasyPros }))}
               />
-              FantasyPros
-            </label>
+              <TogglePill on={showAll} label="Mostrar todo" onClick={() => setShowAll((v) => !v)} />
+            </div>
 
-            <label className="row" style={{ gap: 6, alignItems: "center", fontWeight: 700 }}>
-              <input type="checkbox" checked={showAll} onChange={(e) => setShowAll(e.target.checked)} />
-              Mostrar todo
-            </label>
-
-            <input
-              className="input"
-              style={{ width: 260 }}
-              placeholder="Buscar noticia..."
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-            />
+            <div className="newsSearch">
+              <input
+                className="newsSearchInput"
+                placeholder="Buscar noticia..."
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+              />
+            </div>
           </div>
         </div>
 
         {!showAll && rosterNames.length ? (
-          <div className="muted" style={{ marginTop: 10 }}>
-            Filtrando por tus jugadores ({rosterNames.length}). Activá “Mostrar todo” si querés ver el feed completo.
+          <div className="newsInfo">
+            Filtrando por tus jugadores <b>({rosterNames.length})</b>. Activá <b>“Mostrar todo”</b> si querés ver el feed completo.
           </div>
-        ) : null}
+        ) : (
+          <div className="newsInfo muted">
+            Mostrando feed completo. Tip: desactivá fuentes o buscá por texto para acotar.
+          </div>
+        )}
 
-        <div style={{ marginTop: 14 }}>
+        <div className="newsBody">
           {loading ? (
-            <div className="muted">Cargando noticias…</div>
+            <div className="newsList">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="newsCard newsSkeleton">
+                  <div className="skLine skW40" />
+                  <div className="skLine skW75" />
+                  <div className="skLine skW60" />
+                </div>
+              ))}
+            </div>
           ) : err ? (
-            <div className="muted">{err}</div>
+            <div className="muted" style={{ marginTop: 12 }}>{err}</div>
           ) : filtered.length === 0 ? (
-            <div className="muted">No hay noticias para mostrar con estos filtros.</div>
+            <div className="muted" style={{ marginTop: 12 }}>No hay noticias para mostrar con estos filtros.</div>
           ) : (
-            <div style={{ display: "grid", gap: 12 }}>
+            <div className="newsList">
               {filtered.map((it) => {
                 const hay = norm(`${it.title || ""} ${it.description || ""}`);
-                const mentions = rosterNames.filter((n) => matchesPlayer(n, hay)).slice(0, 4);
+                const mentions = rosterNames.filter((n) => matchesPlayer(n, hay)).slice(0, 5);
+
+                const pubText = it.publishedAt ? new Date(it.publishedAt).toLocaleString() : "—";
+                const src = it.source || "Fuente";
+                const iconText = src === "FantasyPros" ? "FP" : "ESPN";
 
                 return (
-                  <div key={it.id} className="item itemTight" style={{ padding: 14 }}>
-                    <div className="row" style={{ justifyContent: "space-between", gap: 12, alignItems: "flex-start", flexWrap: "wrap" }}>
-                      <div style={{ minWidth: 320, flex: 1 }}>
-                        <div className="row" style={{ gap: 10, alignItems: "center", flexWrap: "wrap" }}>
-                          <span className="chip" style={{ fontWeight: 800 }}>
-                            {it.source}
-                          </span>
-                          <span className="muted">
-                            {it.publishedAt ? new Date(it.publishedAt).toLocaleString() : "—"}
-                          </span>
+                  <article key={it.id} className="newsCard">
+                    <div className="newsCardTop">
+                      <div className="newsSrc">
+                        <div className={"newsSrcIcon " + (src === "FantasyPros" ? "fp" : "espn")} aria-hidden="true">
+                          {iconText}
                         </div>
-
-                        <a
-                          href={it.url}
-                          target="_blank"
-                          rel="noreferrer"
-                          style={{ display: "block", marginTop: 6, fontWeight: 900, fontSize: 18, color: "inherit", textDecoration: "none" }}
-                        >
-                          {it.title}
-                        </a>
-
-                        {it.description ? (
-                          <div className="muted" style={{ marginTop: 6 }}>
-                            {String(it.description).slice(0, 220)}
-                            {String(it.description).length > 220 ? "…" : ""}
-                          </div>
-                        ) : null}
-
-                        {mentions.length ? (
-                          <div className="row" style={{ marginTop: 10, gap: 8, flexWrap: "wrap" }}>
-                            {mentions.map((m) => (
-                              <span key={m} className="pill" style={{ fontWeight: 800 }}>
-                                {m}
-                              </span>
-                            ))}
-                          </div>
-                        ) : null}
+                        <div className="newsSrcMeta">
+                          <div className="newsSrcName">{src}</div>
+                          <div className="newsTime">{pubText}</div>
+                        </div>
                       </div>
 
-                      <div className="row" style={{ gap: 8, alignItems: "center" }}>
-                        <a className="ghost" href={it.url} target="_blank" rel="noreferrer">
-                          Abrir
-                        </a>
-                      </div>
+                      <a className="newsOpen" href={it.url} target="_blank" rel="noreferrer">
+                        Abrir
+                      </a>
                     </div>
-                  </div>
+
+                    <a className="newsHeadline" href={it.url} target="_blank" rel="noreferrer">
+                      {it.title}
+                    </a>
+
+                    {it.description ? (
+                      <div className="newsDesc">
+                        {String(it.description).slice(0, 240)}
+                        {String(it.description).length > 240 ? "…" : ""}
+                      </div>
+                    ) : null}
+
+                    {mentions.length ? (
+                      <div className="newsMentions">
+                        {mentions.map((nm) => {
+                          const entry = rosterByName.get(norm(nm));
+                          const meta = entry ? metaById.get(String(entry.id)) : null;
+                          const img = pickImg(meta);
+                          return (
+                            <span key={nm} className="mentionChip" title={nm}>
+                              <span className="mentionAv">
+                                {img ? <img src={img} alt={nm} /> : initials(nm)}
+                              </span>
+                              <span className="mentionTxt">{nm}</span>
+                            </span>
+                          );
+                        })}
+                      </div>
+                    ) : null}
+                  </article>
                 );
               })}
             </div>
           )}
         </div>
 
-        <div className="muted" style={{ marginTop: 14 }}>
+        <div className="newsFoot muted">
           Contenido provisto por sus respectivas fuentes. Para ESPN, se muestran únicamente títulos/resúmenes del feed RSS y se enlaza al artículo original.
         </div>
       </div>
     </div>
   );
 }
+
 
 // ---- A
 
