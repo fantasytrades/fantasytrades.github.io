@@ -1234,6 +1234,13 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
         cursor:pointer;
         text-align:left;
       }
+/* --- Chats: fix for global button { color:#fff } --- */
+.chatPickRow{ color:var(--text); }
+.chatPickRow .muted{ color:var(--muted); }
+.chatPickName{ color:var(--text); }
+.chatAssetChip{ color:var(--text); }
+.chatCheck{ color:#163B86; }
+.chatSearch{ color:var(--text); }
       .chatPickRow:hover{ background:#F6FAFF; border-color:#CFE0FF; }
       .chatPickRow.active{ background:#EEF6FF; border-color:#8FB7FF; }
       .chatPickLeft{ display:flex; align-items:center; gap:10px; min-width:0; }
