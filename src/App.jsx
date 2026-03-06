@@ -1387,6 +1387,8 @@ function LeagueView({ me, teams, interests, onSetInterest, metaById }) {
   }, [selectedPicks]);
 
   const InterestButtons = ({ toUserId, assetType, assetId }) => {
+    // No mostrar / permitir interés en tu propio equipo
+    if (String(toUserId) === String(me.id)) return null;
     const key = `${me.id}::${toUserId}::${assetType}::${assetId}`;
     const cur = interests.find((x) => x.key === key)?.level || "NONE";
     return (
@@ -1725,8 +1727,8 @@ export default function App() {
     }
   }, [me, teamsByUser]);
 
-  const myOutgoing = useMemo(() => (me ? interests.filter((x) => x.from_user_id === me.id) : []), [me, interests]);
-  const myIncoming = useMemo(() => (me ? interests.filter((x) => x.to_user_id   === me.id) : []), [me, interests]);
+  const myOutgoing = useMemo(() => (me ? interests.filter((x) => x.from_user_id === me.id && x.to_user_id !== me.id) : []), [me, interests]);
+  const myIncoming = useMemo(() => (me ? interests.filter((x) => x.to_user_id   === me.id && x.from_user_id !== me.id) : []), [me, interests]);
   const myRoster   = useMemo(() => (Array.isArray(myRow?.roster) ? myRow.roster : []), [myRow]);
   const myPicks    = useMemo(() => (Array.isArray(myRow?.picks)  ? myRow.picks  : []), [myRow]);
 
@@ -1926,6 +1928,8 @@ export default function App() {
 
   async function setInterest(toUserId, assetType, assetId, level) {
     if (!me) return;
+    // No permitir marcar interés sobre tu propio equipo
+    if (String(toUserId) === String(me.id)) return;
     const key = `${me.id}::${toUserId}::${assetType}::${assetId}`;
     try {
       if (level === "NONE") {
