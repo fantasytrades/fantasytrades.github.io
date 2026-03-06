@@ -2024,18 +2024,26 @@ export default function App() {
                   </div>
                 </div>
                 <div style={{ display: "grid", gap: 10 }}>
-                  <div className="row profileRow">
-                    <input value={myDisplayName} onChange={(e) => setMyDisplayName(e.target.value)} placeholder="Tu nombre" />
-                    {tab === "team" ? (
-                      <input value={myTeamName}    onChange={(e) => setMyTeamName(e.target.value)}    placeholder="Nombre del equipo" />
-                    ) : null}
-                    <FancySelect value={myTeamStatus} onChange={setMyTeamStatus} options={TEAM_STATUS_OPTIONS} />
-                  </div>
-                  <div className="row profileActions">
-                    {saveInfo ? <div className="muted" style={{ fontWeight: 900 }}>{saveInfo}</div> : null}
-                    <div className="sp" />
-                    <button disabled={saving} onClick={saveMyProfile}>Guardar perfil</button>
-                  </div>
+                  {tab === "team" ? (
+                    <>
+                      <div className="row profileRow">
+                        <input value={myDisplayName} onChange={(e) => setMyDisplayName(e.target.value)} placeholder="Tu nombre" />
+                        <input value={myTeamName}    onChange={(e) => setMyTeamName(e.target.value)}    placeholder="Nombre del equipo" />
+                        <FancySelect value={myTeamStatus} onChange={setMyTeamStatus} options={TEAM_STATUS_OPTIONS} />
+                      </div>
+                      <div className="row profileActions">
+                        {saveInfo ? <div className="muted" style={{ fontWeight: 900 }}>{saveInfo}</div> : null}
+                        <div className="sp" />
+                        <button disabled={saving} onClick={saveMyProfile}>Guardar perfil</button>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="row profileActions">
+                      <div className="chip" style={{ cursor: "default" }}>{myTeamStatus || "Indefinido"}</div>
+                      <div className="sp" />
+                      <button className="ghost" onClick={() => setTab("team")}>Editar en Mi equipo</button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
