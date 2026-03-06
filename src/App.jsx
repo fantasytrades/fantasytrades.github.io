@@ -353,7 +353,16 @@ async function fsHideTradeForUser(trade, userId) {
   const hidden = new Set(t.hidden_for || []);
   hidden.add(String(userId));
 
-  if (hidden.size >= Math.max(1, t.participants.length)) {
+  const participants = Array.from(
+    new Set(
+      [t.from_user_id, t.to_user_id, ...(Array.isArray(t.participants) ? t.participants : [])]
+        .map((x) => String(x || "").trim())
+        .filter(Boolean)
+    )
+  );
+
+  const bothDeleted = participants.length >= 2 && participants.every((pid) => hidden.has(pid));
+  if (bothDeleted) {
     await deleteDoc(doc(db, "trade_proposals", t.id));
     return { deleted: true };
   }
@@ -2981,7 +2990,25 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
   async function hideTrade(trade) {
     if (!trade?.id || !me?.id) return;
     try {
-      await fsHideTradeForUser(trade, me.id);
+      const meId = String(me.id);
+      const st = normalizeTradeStatus(trade?.status, trade?.response);
+      const isReceiver = String(trade?.to_user_id) === meId;
+      const needsAutoRobbery = isReceiver && st === "PENDING";
+
+      let tradeForHide = trade;
+      if (needsAutoRobbery) {
+        await fsRespondTrade(trade.id, "ROBBERY");
+        tradeForHide = normalizeTradeRow({
+          ...trade,
+          status: "ROBBERY",
+          response: "ROBBERY",
+          responded_at: nowIso(),
+          robbery_at: nowIso(),
+          hidden_for: [],
+        });
+      }
+
+      await fsHideTradeForUser(tradeForHide, me.id);
       if (editingId === trade.id) clearDraft();
       await refreshTrades();
     } catch (e) {
