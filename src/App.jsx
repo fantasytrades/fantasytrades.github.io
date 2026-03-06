@@ -7,11 +7,8 @@ import {
   setDoc,
   collection,
   getDocs,
-  addDoc,
-  updateDoc,
   query,
   where,
-  orderBy,
   deleteDoc,
 } from "firebase/firestore";
 
@@ -342,10 +339,51 @@ function Styles() {
       *{ box-sizing:border-box; }
       .wrap{ max-width:1180px; margin:0 auto; padding:18px 14px 92px; }
 
+      /* Wide screens: use more width + more breathing room */
+      @media(min-width:1200px){
+        .wrap{ max-width:1400px; padding:22px 20px 96px; }
+        .grid2{ gap:18px; }
+        .list{ gap:14px; }
+        .item{ padding:14px 16px; }
+      }
+      @media(min-width:1500px){
+        .wrap{ max-width:1600px; padding:26px 24px 102px; }
+        .grid2{ gap:22px; }
+        .list{ gap:16px; }
+        .item{ padding:15px 18px; }
+      }
+      @media(min-width:1800px){
+        .wrap{ max-width:1760px; }
+      }
+
+
       /* Top bar */
       .top{ position:sticky; top:0; z-index:50; background:#fff; border-bottom:1px solid var(--border); }
       .topin{ max-width:1180px; margin:0 auto; padding:12px 14px; display:flex; gap:10px; align-items:center; }
-      .sp{ flex:1; }
+      @media(min-width:1200px){ .topin{ max-width:1400px; padding:12px 20px; } }
+      @media(min-width:1500px){ .topin{ max-width:1600px; padding:12px 24px; } }
+      @media(min-width:1800px){ .topin{ max-width:1760px; } }
+
+      
+      .brand{ font-weight:1000; letter-spacing:-0.2px; }
+      @media(max-width:520px){
+        .topin{ padding:10px 12px; }
+        .brand{ font-size:16px; max-width:155px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .chip{ font-size:11px; padding:6px 8px; }
+      }
+
+      .mobileFinderToggle{
+        border:1px solid #cfe3ff !important;
+        background: var(--sky) !important;
+        color: var(--blue) !important;
+        box-shadow:none !important;
+        padding:10px 12px !important;
+        border-radius:14px !important;
+        font-weight:1000 !important;
+      }
+      .mobileFinderToggle:focus{ outline:none; }
+
+.sp{ flex:1; }
       .chip{
         padding:7px 10px; border-radius:999px;
         border:1px solid var(--border); background:#fff; color:var(--text);
@@ -357,13 +395,22 @@ function Styles() {
       .grid2{ display:grid; grid-template-columns:1fr; gap:14px; align-items:start; }
       @media(min-width:980px){ .grid2{ grid-template-columns:1fr 1fr; } }
 
+      .grid2.single{ grid-template-columns:1fr !important; }
+      .mobileOnly{ display:none; }
+      @media(max-width:980px){ .mobileOnly{ display:flex; } }
+
       /* Cards */
       .card{
         background:var(--card); border:1px solid var(--border); border-radius:18px; padding:16px;
         box-shadow:var(--shadow-sm);
       }
+      @media(min-width:1200px){ .card{ border-radius:20px; padding:18px; } }
+      @media(min-width:1500px){ .card{ border-radius:22px; padding:20px; } }
+
       .row{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
       .title{ margin:6px 0 14px; letter-spacing:-0.02em; }
+      @media(min-width:1200px){ .title{ margin:8px 0 18px; } }
+
 
       /* Inputs */
       input,select{
@@ -559,7 +606,12 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
         padding:6px 10px; border-radius:999px; border:1px solid var(--border);
         background:#F1F5F9; font-weight:1000; font-size:12px; color:#0F172A;
       }
-      .badge{ padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:#F1F5F9; font-weight:1000; font-size:12px; color:#0F172A; }
+      .badge{ padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:#F1F5F9; font-weight:1000; font-size:12px; color:#0F172A; display:inline-flex; align-items:center; justify-content:center; min-width:84px; }
+
+      .badge-NONE{ background:#F1F5F9; border-color:var(--border); color:#0F172A; }
+      .badge-LOW{ background:rgba(239,68,68,0.16); border-color:rgba(239,68,68,0.35); color:#991B1B; }
+      .badge-MEDIUM{ background:rgba(245,158,11,0.18); border-color:rgba(245,158,11,0.40); color:#92400E; }
+      .badge-HIGH{ background:rgba(34,197,94,0.18); border-color:rgba(34,197,94,0.35); color:#166534; }
 
       /* === Roster slot tags (QB/RB/WR/TE/WRT/BN) === */
       .rosterItem{ gap:12px; display:grid; grid-template-columns:54px minmax(260px, 1fr) auto; align-items:center; }
@@ -592,13 +644,25 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
       @media(max-width:720px){
         .rosterItem{ grid-template-columns:54px 1fr; align-items:start; }
         .rosterItem > .posTag{ grid-row:1 / span 2; }
-        .rosterItem > .left{ grid-column:2; }
-        .rosterItem > .rosterActions{ grid-column:2; grid-row:2; justify-content:flex-start; margin-top:8px; }
-        .rosterActions{ justify-content:flex-start; flex-wrap:wrap; }
-        .rosterActions .valueBtn, .rosterActions .statusBtn{ min-width:0; }
+        .rosterItem > .left{ grid-column:2; min-width:0; }
+        .rosterItem > .rosterActions{ grid-column:2; grid-row:2; justify-content:flex-start; margin-top:10px; width:100%; }
+        .rosterActions{ width:100%; display:grid; grid-template-columns: 1fr 1fr 44px; gap:10px; align-items:center; justify-content:stretch; }
+        .rosterActions .valueBtn, .rosterActions .statusBtn{ width:100%; min-width:0; }
+        .rosterActions .iconBtn{ width:44px; height:44px; }
+        .valueTag{ max-width:100%; }
       }
 
-      /* === Status colors (flat, like the white mock) === */
+      @media(max-width:420px){
+        .rosterItem{ grid-template-columns:48px 1fr; }
+        .rosterItem > .posTag{ width:48px; height:48px; font-size:14px; }
+        .rosterActions{ grid-template-columns: 1fr 44px; grid-auto-rows:44px; }
+        .rosterActions .valueBtn{ grid-column:1; }
+        .rosterActions .statusBtn{ grid-column:1; }
+        .rosterActions .iconBtn{ grid-column:2; grid-row:1 / span 2; height:100%; }
+        .valueTag{ white-space:normal; }
+      }
+
+            /* === Status colors (flat, like the white mock) === */
       .statusBtn{ border:1px solid var(--border); box-shadow:none; }
       button.statusBtn.status-AVAILABLE{ background:var(--ok); border-color:var(--ok); color:#fff; }
       button.statusBtn.status-LISTENING{ background:var(--warn); border-color:var(--warn); color:#fff; }
@@ -683,54 +747,239 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
       }
       .dockbtn.active{ background:var(--sky); border-color:#CFE3FF; }
 
-      
-/* === Chats === */
-.teamRowBtn{
-  width:100%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  padding:12px 12px;
-  border-radius:16px;
-  border:1px solid var(--border);
-  background:#fff;
-  cursor:pointer;
-  text-align:left;
-}
-.teamRowBtn.active{ outline:3px solid rgba(47,125,246,0.18); border-color:#CFE3FF; background:#F6FAFF; }
-.tradeCard{
-  border:1px solid var(--border);
-  background:#fff;
-  border-radius:18px;
-  padding:14px;
-}
-.tradeCardTop{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-bottom:10px;
-}
-.tradeGrid{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:12px;
-}
-.tradeSideTitle{ font-weight:1100; margin-bottom:6px; }
-.tradeChips{ display:flex; gap:8px; flex-wrap:wrap; }
-.tradeActions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
-.tradeBuilder{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-.tradeBuilderTitle{ font-size:16px; font-weight:1100; margin-bottom:8px; }
-.tradePickList{ border:1px solid var(--border); border-radius:16px; padding:10px; background:#fff; max-height:320px; overflow:auto; }
-.checkRow{ display:flex; align-items:flex-start; gap:10px; padding:8px; border-radius:12px; }
-.checkRow:hover{ background:#F8FAFC; }
-.checkMain{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-weight:900; }
-@media(max-width:900px){
-  .tradeGrid{ grid-template-columns:1fr; }
-  .tradeBuilder{ grid-template-columns:1fr; }
-}
+
+      /* === League (match mock) === */
+      .teamList{ display:grid; gap:10px; }
+      .teamRow{
+        padding:12px 14px;
+        border-radius:16px;
+        border:1px solid var(--border);
+        background:#fff;
+        cursor:pointer;
+      }
+      .teamRow.active{ border-color:rgba(47,125,246,0.65); }
+      .teamRowTop{ display:flex; gap:10px; align-items:flex-start; }
+      .teamName{ font-weight:1100; }
+      .teamOwner{ font-weight:900; color:var(--muted); margin-top:2px; }
+      .teamMeta{ margin-top:6px; font-weight:900; color:var(--muted); font-size:12px; }
+      .teamBadge{
+        margin-left:auto;
+        padding:6px 10px;
+        border-radius:999px;
+        border:1px solid #CFE3FF;
+        background:var(--sky);
+        color:var(--blue);
+        font-weight:1100;
+        font-size:12px;
+        white-space:nowrap;
+      }
+      .teamStatusPill{
+        padding:6px 10px;
+        border-radius:999px;
+        border:1px solid #CFE3FF;
+        background:var(--sky);
+        color:var(--blue);
+        font-weight:1100;
+        font-size:12px;
+        white-space:nowrap;
+      }
+      .leagueAssetRow{ display:grid; grid-template-columns: 1fr auto; align-items:center; gap:12px; }
+      .leagueAssetRight{ display:flex; align-items:center; justify-content:flex-end; gap:10px; flex-wrap:nowrap; min-width:0; }
+      .interestPills{ display:flex; gap:8px; flex-wrap:nowrap; }
+      .interestBtn{
+        padding:8px 12px;
+        border-radius:999px;
+        border:1px solid var(--border);
+        background:var(--sky);
+        color:#1E293B;
+        box-shadow:none;
+        font-weight:1100;
+
+        /* make Bajo/Medio/Alto equal width */
+        min-width:84px;
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        text-align:center;
+      }
+      .interestBtn.active{ /* fallback */ 
+        background:var(--blue);
+        border-color:rgba(47,125,246,0.35);
+        color:#fff;
+      }
+      .interestBtn.active-LOW{
+        background: rgba(239,68,68,0.18);
+        border-color: rgba(239,68,68,0.35);
+        color: #7F1D1D;
+      }
+      .interestBtn.active-MEDIUM{
+        background: rgba(245,158,11,0.18);
+        border-color: rgba(245,158,11,0.40);
+        color: #7C2D12;
+      }
+      .interestBtn.active-HIGH{
+        background: rgba(34,197,94,0.18);
+        border-color: rgba(34,197,94,0.35);
+        color: #14532D;
+      }
+      .valueChip{ padding:7px 10px; border-radius:999px; border:1px solid #CFE3FF; background:var(--sky); color:var(--blue); font-weight:1100; font-size:12px; white-space:nowrap; max-width:180px; overflow:hidden; text-overflow:ellipsis; }
+      @media (max-width: 820px){
+        .leagueAssetRow{ grid-template-columns: 1fr; }
+        .leagueAssetRight{ justify-content:flex-start; flex-wrap:wrap; }
+        .valueChip{ max-width: 100%; }
+        .interestPills{ flex-wrap:wrap; }
+      }
+
+            /* === Home / News === */
+      .newsCard{ padding:18px; }
+      .newsHeader{ display:flex; align-items:flex-start; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+      .newsTitleRow{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+      .newsTitle{ font-size:22px; font-weight:1100; letter-spacing:-0.02em; }
+      .newsUpdated{ color:var(--muted); font-weight:900; font-size:13px; }
+      .newsHint{ margin-top:6px; color:var(--muted); font-weight:850; font-size:13px; }
+      .newsDot{ width:9px; height:9px; border-radius:999px; background:#CBD5E1; display:inline-block; }
+      .newsDot.pulse{ background:var(--blue); animation:pulse 1.2s ease-in-out infinite; }
+      @keyframes pulse{ 0%{ transform:scale(1); opacity:.55; } 50%{ transform:scale(1.35); opacity:1; } 100%{ transform:scale(1); opacity:.55; } }
+
+      .newsControls{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:flex-end; }
+      .newsToggles{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+      .newsToggle{
+        padding:9px 12px;
+        border-radius:999px;
+        border:1px solid #CFE3FF;
+        background:var(--sky);
+        color:#1E293B;
+        font-weight:1000;
+        box-shadow:none;
+      }
+      .newsToggle.active{
+        background:var(--blue);
+        border-color:rgba(47,125,246,0.40);
+        color:#fff;
+      }
+
+      .newsSearch{
+        display:flex; align-items:center; gap:8px;
+        border:1px solid var(--border);
+        background:#fff;
+        border-radius:14px;
+        padding:10px 12px;
+        min-width:260px;
+      }
+      .newsSearchIcon{ color:#94A3B8; font-weight:1100; }
+      .newsSearchInput{
+        border:0; outline:none; padding:0; margin:0; width:100%;
+        font-weight:900; color:var(--text); background:transparent;
+      }
+      .newsSearchInput::placeholder{ color:#94A3B8; font-weight:900; }
+
+      .newsStats{ margin-top:12px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+      .newsStatPill{
+        display:inline-flex; align-items:center; justify-content:center;
+        padding:6px 10px; border-radius:999px;
+        background:#EEF2FF; border:1px solid #DCE4FF;
+        color:#1E40AF; font-weight:1100; font-size:12px;
+      }
+
+      .newsList{ margin-top:14px; display:grid; gap:12px; }
+      .newsItem{
+        border:1px solid var(--border);
+        background:#fff;
+        border-radius:18px;
+        padding:14px 14px 12px;
+        box-shadow:0 1px 0 rgba(15,23,42,0.02);
+      }
+      .newsItem:hover{ border-color:#D9E3F2; }
+      .newsItemTop{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+      .newsItemMeta{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; color:var(--muted); font-weight:900; }
+      .newsSourcePill{
+        padding:6px 10px;
+        border-radius:999px;
+        border:1px solid var(--border);
+        background:#F1F5F9;
+        color:#0F172A;
+        font-weight:1100;
+        font-size:12px;
+      }
+      .src-ESPN{ border-color:rgba(239,68,68,0.28); background:rgba(239,68,68,0.10); color:#991B1B; }
+      .src-FantasyPros{ border-color:rgba(34,197,94,0.28); background:rgba(34,197,94,0.10); color:#166534; }
+      .newsTime{ font-size:12px; }
+      .newsRel{ font-size:12px; padding:3px 8px; border-radius:999px; border:1px solid var(--border); background:#fff; }
+
+      .newsOpenBtn{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        padding:9px 12px;
+        border-radius:12px;
+        border:1px solid #CFE3FF;
+        background:var(--sky);
+        color:var(--blue);
+        font-weight:1100;
+        text-decoration:none;
+        white-space:nowrap;
+      }
+      .newsOpenBtn:hover{ background:#DDEBFF; }
+
+      .newsHeadline{
+        display:block;
+        margin-top:10px;
+        font-size:18px;
+        font-weight:1100;
+        letter-spacing:-0.01em;
+        color:var(--text);
+        text-decoration:none;
+      }
+      .newsHeadline:hover{ text-decoration:underline; text-decoration-thickness:2px; }
+
+      .newsDesc{ margin-top:6px; color:var(--muted); font-weight:850; line-height:1.35; }
+
+      .newsMentions{ margin-top:12px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+      .mentionChip{
+        display:inline-flex; align-items:center; gap:8px;
+        padding:6px 10px 6px 6px;
+        border-radius:999px;
+        border:1px solid var(--border);
+        background:#F8FAFC;
+        font-weight:1000;
+        max-width:260px;
+      }
+      .mentionAv{
+        width:24px; height:24px; border-radius:999px;
+        background:#E2E8F0; border:1px solid #D1D9E6;
+        display:inline-flex; align-items:center; justify-content:center;
+        font-size:11px; font-weight:1100; color:#0F172A;
+        overflow:hidden;
+      }
+      .mentionAv img{ width:100%; height:100%; object-fit:cover; display:block; }
+      .mentionTxt{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:210px; }
+      .mentionMore{ color:var(--muted); font-weight:1000; }
+
+      .newsFoot{ margin-top:14px; color:var(--muted); font-weight:850; font-size:12px; }
+
+      /* skeleton */
+      .skeleton{ position:relative; overflow:hidden; }
+      .skLine{ height:12px; border-radius:8px; background:#EEF2F7; border:1px solid #E7EEF8; }
+      .skLine.w40{ width:40%; }
+      .skLine.w70{ width:70%; }
+      .skLine.w85{ width:85%; margin-top:10px; }
+      .skChips{ display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
+      .skChip{ width:92px; height:28px; border-radius:999px; background:#EEF2F7; border:1px solid #E7EEF8; }
+      .skeleton:after{
+        content:"";
+        position:absolute; inset:0;
+        background:linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
+        transform:translateX(-100%);
+        animation:shimmer 1.2s ease-in-out infinite;
+      }
+      @keyframes shimmer{ 0%{ transform:translateX(-100%);} 100%{ transform:translateX(100%);} }
+
+      @media(max-width:520px){
+        .newsSearch{ min-width:0; width:100%; }
+        .newsControls{ width:100%; justify-content:flex-start; }
+        .newsItem{ padding:12px; }
+        .mentionTxt{ max-width:160px; }
+      }
 
 /* === Modal (Asset value editor) === */
       .modalOverlay{
@@ -851,6 +1100,25 @@ function MyTeamView({
   const [posFilter, setPosFilter] = useState("ALL");
   const [pickQ, setPickQ] = useState("");
 
+  const [showFinder, setShowFinder] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return window.innerWidth >= 980;
+  });
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(min-width: 980px)");
+    const onChange = () => {
+      if (mq.matches) setShowFinder(true);
+    };
+    if (mq.addEventListener) mq.addEventListener("change", onChange);
+    else mq.addListener(onChange);
+    return () => {
+      if (mq.removeEventListener) mq.removeEventListener("change", onChange);
+      else mq.removeListener(onChange);
+    };
+  }, []);
+
   const filtered = useMemo(() => {
     const qq = q.trim().toLowerCase();
     return (players || [])
@@ -866,9 +1134,9 @@ function MyTeamView({
           }
         }
         if (!qq) return true;
-        return String(p.name || "").toLowerCase().includes(qq);
+        return String(p.name || p.player_name || p.full_name || p.player || "").toLowerCase().includes(qq);
       })
-      .slice(0, 250);
+      .slice(0, 1200);
   }, [players, q, posFilter]);
 
   const rosterIds = useMemo(() => new Set((myRoster || []).map((r) => String(r.id))), [myRoster]);
@@ -930,8 +1198,14 @@ function MyTeamView({
 
   return (
     <div style={{ marginTop: 12 }}>
-      <div className="grid2">
+      <div className="row mobileOnly" style={{ marginBottom: 10 }}>
+        <button className="ghost mobileFinderToggle" onClick={() => setShowFinder((v) => !v)}>
+          {showFinder ? "Ocultar buscador" : "Buscar jugadores / picks"}
+        </button>
+      </div>
+      <div className={`grid2 ${showFinder ? "" : "single"}`}>
         {/* Left: Players / Picks list */}
+        {showFinder ? (
         <div className="card">
           <div className="seg segTabs segTabsFull">
             <button className={mode === "players" ? "active" : ""} onClick={() => setMode("players")}>Jugadores</button>
@@ -953,17 +1227,19 @@ function MyTeamView({
 
               <div className="list scrollList" style={{ marginTop: 12 }}>
                 {filtered.map((p) => {
-                  const id = String(p.player_id);
+                  const id = String(p?.player_id ?? p?.id ?? "");
+                  const pname = p?.name || p?.player_name || p?.full_name || p?.player || "";
                   const added = rosterIds.has(id);
-                  const pos = normPos(p.position);
+                  const posRaw = p?.position ?? p?.pos ?? p?.player_position ?? "";
+                  const pos = normPos(posRaw);
                   const img = pickImg(p);
                   return (
                     <div key={id} className="item itemTight">
                       <div className="left">
-                        <div className="av">{img ? <img src={img} alt={p.name} /> : initials(p.name)}</div>
+                        <div className="av">{img ? <img src={img} alt={pname} /> : initials(pname)}</div>
                         <div style={{ minWidth: 0 }}>
-                          <div className="name">{p.name}</div>
-                          <div className="muted sub"><span className={`posMini posMini-${pos}`}>{pos}</span>{p.team || "-"} {p.adp_formatted ? `· ADP ${p.adp_formatted}` : ""}</div>
+                          <div className="name">{pname}</div>
+                          <div className="muted sub"><span className={`posMini posMini-${pos}`}>{pos}</span>{p.team || p.nfl || "-"}</div>
                         </div>
                       </div>
                       <button
@@ -1020,6 +1296,7 @@ function MyTeamView({
             </>
           )}
         </div>
+        ) : null}
 
         {/* Right: Slots / Picks details */}
         <div className="card">
@@ -1303,556 +1580,218 @@ function ValueModal({
 
 // ---- LeagueView ----
 function LeagueView({ me, teams, interests, onSetInterest, metaById }) {
+  const LEAGUE_NAME = "The Royal Dynasty";
+
   const [selectedId, setSelectedId] = useState("");
-  const others = useMemo(() => teams.filter((t) => t.user_id !== me.id), [teams, me]);
+
+  const teamsSorted = useMemo(() => {
+    const mine = teams.filter((t) => t.user_id === me.id);
+    const others = teams.filter((t) => t.user_id !== me.id);
+    // stable-ish sort: by team_name then display_name
+    others.sort((a, b) => {
+      const an = String(a.team_name || "").toLowerCase();
+      const bn = String(b.team_name || "").toLowerCase();
+      if (an !== bn) return an.localeCompare(bn);
+      return String(a.display_name || "").toLowerCase().localeCompare(String(b.display_name || "").toLowerCase());
+    });
+    return [...mine, ...others];
+  }, [teams, me.id]);
 
   useEffect(() => {
-    if (!selectedId && others.length) setSelectedId(others[0].user_id);
-  }, [others, selectedId]);
+    if (selectedId) return;
+    const firstOther = teamsSorted.find((t) => t.user_id !== me.id);
+    setSelectedId(firstOther ? firstOther.user_id : me.id);
+  }, [teamsSorted, selectedId, me.id]);
 
-  const selected       = useMemo(() => others.find((t) => t.user_id === selectedId), [others, selectedId]);
+  const selected = useMemo(
+    () => teamsSorted.find((t) => t.user_id === selectedId) || teamsSorted.find((t) => t.user_id === me.id) || null,
+    [teamsSorted, selectedId, me.id]
+  );
+
   const selectedRoster = selected?.roster || [];
-  const selectedPicks  = selected?.picks  || [];
+  const selectedPicks = selected?.picks || [];
+
+  const countByPos = (roster) => {
+    const c = { QB: 0, RB: 0, WR: 0, TE: 0 };
+    (roster || []).forEach((r) => {
+      const p = normPos(r?.pos || r?.position || "");
+      if (c[p] != null) c[p] += 1;
+    });
+    return c;
+  };
+
+  const getAdp = (id) => {
+    const m = metaById?.get(String(id));
+    const n = Number(m?.adp ?? m?.adp_value ?? m?.adp_rank ?? m?.adp_formatted);
+    return Number.isFinite(n) && n > 0 ? n : 9e9;
+  };
+
+  const rosterView = useMemo(() => {
+    const order = { QB: 0, RB: 1, WR: 2, TE: 3 };
+    return (selectedRoster || [])
+      .filter((r) => ALLOWED_POSITIONS.has(String(r?.pos || r?.position || "").toUpperCase()))
+      .slice()
+      .sort((a, b) => {
+        const pa = normPos(a.pos);
+        const pb = normPos(b.pos);
+        const oa = order[pa] ?? 9;
+        const ob = order[pb] ?? 9;
+        if (oa !== ob) return oa - ob;
+        return getAdp(a.id) - getAdp(b.id);
+      });
+  }, [selectedRoster, metaById]);
+
+  const picksView = useMemo(() => {
+    // keep as-is but stable sort by base/id
+    return (selectedPicks || []).slice().sort((a, b) => String(a.base || a.id).localeCompare(String(b.base || b.id)));
+  }, [selectedPicks]);
+
+  const InterestButtons = ({ toUserId, assetType, assetId }) => {
+    const key = `${me.id}::${toUserId}::${assetType}::${assetId}`;
+    const cur = interests.find((x) => x.key === key)?.level || "NONE";
+    if (String(toUserId) === String(me.id)) return null;
+    return (
+      <div className="interestPills">
+        {["LOW", "MEDIUM", "HIGH"].map((lvl) => (
+          <button
+            key={lvl}
+            className={"interestBtn" + (cur === lvl ? (" active active-" + lvl) : "")}
+            onClick={() => onSetInterest(toUserId, assetType, assetId, cur === lvl ? "NONE" : lvl)}
+            title={INTEREST_LABEL[lvl]}
+          >
+            {INTEREST_LABEL[lvl]}
+          </button>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <div style={{ marginTop: 12 }}>
-      <div className="card profileCard">
-        <div className="row">
-          <h2 style={{ margin: 0 }}>Liga</h2>
-          <div className="sp" />
-          <select value={selectedId} onChange={(e) => setSelectedId(e.target.value)} style={{ maxWidth: 420 }}>
-            {others.map((t) => (
-              <option key={t.user_id} value={t.user_id}>
-                {(t.display_name || t.user_id).slice(0, 30)} {t.team_name ? `— ${t.team_name}` : ""}
-              </option>
-            ))}
-          </select>
-        </div>
+      <div className="card profileCard" style={{ padding: 14 }}>
+        <div style={{ fontWeight: 1100, fontSize: 18 }}>{LEAGUE_NAME}</div>
       </div>
 
-      {!selected ? (
-        <div className="muted" style={{ marginTop: 12 }}>No hay equipo seleccionado.</div>
-      ) : (
-        <div className="grid2" style={{ marginTop: 12 }}>
+      <div className="grid2" style={{ marginTop: 12 }}>
+        {/* Left: teams list */}
+        <div className="card profileCard">
+          <div style={{ fontWeight: 1100, marginBottom: 10 }}>Equipos</div>
+          <div className="teamList">
+            {teamsSorted.map((t) => {
+              const counts = countByPos(t.roster || []);
+              const active = t.user_id === selectedId;
+              const badge = t.user_id === me.id ? "Vos" : "Manager";
+              return (
+                <div
+                  key={t.user_id}
+                  className={"teamRow" + (active ? " active" : "")}
+                  onClick={() => setSelectedId(t.user_id)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") setSelectedId(t.user_id);
+                  }}
+                >
+                  <div className="teamRowTop">
+                    <div style={{ minWidth: 0 }}>
+                      <div className="teamName">{t.team_name || "Sin nombre"}</div>
+                      <div className="teamOwner">{t.display_name || t.user_id}</div>
+                    </div>
+                    {badge ? <span className="teamBadge">{badge}</span> : null}
+                  </div>
+                  <div className="teamMeta">
+                    {normTeamStatus(t.team_status)} · QB: {counts.QB} RB: {counts.RB} WR: {counts.WR} TE: {counts.TE}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Right: selected team details */}
+        {!selected ? (
           <div className="card">
-            <div style={{ fontWeight: 1000, fontSize: 18 }}>
-              {selected.display_name} {selected.team_name ? `— ${selected.team_name}` : ""}
+            <div className="muted">No hay equipo seleccionado.</div>
+          </div>
+        ) : (
+          <div className="card">
+            <div className="row" style={{ alignItems: "baseline" }}>
+              <div style={{ minWidth: 0 }}>
+                <div style={{ fontWeight: 1100, fontSize: 18 }} className="name">
+                  {selected.team_name || "Sin nombre"}
+                </div>
+                <div className="muted" style={{ fontWeight: 900 }}>
+                  {selected.display_name || selected.user_id}
+                </div>
+              </div>
+              <div className="sp" />
+              <span className="teamStatusPill">{normTeamStatus(selected.team_status)}</span>
             </div>
-            <div className="muted" style={{ fontWeight: 900, marginTop: 4 }}>{selected.team_status || "—"}</div>
-            <h3 style={{ marginTop: 14 }}>Jugadores</h3>
-            <div className="muted sub">Marcá tu interés: Bajo / Medio / Alto</div>
+
+            <div style={{ marginTop: 14, fontWeight: 1100 }}>Roster</div>
+
             <div className="list" style={{ marginTop: 12 }}>
-              {selectedRoster.length === 0 ? <div className="muted">Sin roster cargado.</div> : null}
-              {selectedRoster.map((r) => {
-                const key = `${me.id}::${selected.user_id}::PLAYER::${r.id}`;
-                const cur = interests.find((x) => x.key === key)?.level || "NONE";
+              {rosterView.length === 0 ? <div className="muted">Sin roster cargado.</div> : null}
+
+              {rosterView.map((r) => {
+                const stKey = normStatusKey(r.status);
                 const meta = metaById?.get(String(r.id));
                 const img = pickImg(meta) || pickImg(r);
-                const stKey = normStatusKey(r.status);
+                const pos = normPos(r.pos);
+                const valueText = String(r.value || "").trim();
+
                 return (
-                  <div key={r.id} className="item">
+                  <div key={r.id} className="item itemTight leagueAssetRow">
                     <div className="left">
                       <div className="av">{img ? <img src={img} alt={r.name} /> : initials(r.name)}</div>
                       <div style={{ minWidth: 0 }}>
                         <div className="name">{r.name}</div>
                         <div className="muted sub">
-                          {normPos(r.pos)} · {r.nfl || "-"} · <span className={`pill pill-${stKey}`}>{STATUS_LABEL[stKey]}</span>
+                          <span className={`posMini posMini-${pos}`}>{pos}</span>
+                          {r.nfl || meta?.team || "-"}
                         </div>
                       </div>
                     </div>
-                    <select value={cur} onChange={(e) => onSetInterest(selected.user_id, "PLAYER", r.id, e.target.value)} style={{ maxWidth: 160 }}>
-                      <option value="NONE">—</option>
-                      <option value="LOW">Bajo</option>
-                      <option value="MEDIUM">Medio</option>
-                      <option value="HIGH">Alto</option>
-                    </select>
+
+                    <div className="leagueAssetRight">
+                      {valueText ? <span className="valueChip">{valueText}</span> : null}
+                      <span className={`pill pill-${stKey}`}>{STATUS_LABEL[stKey]}</span>
+                      <InterestButtons toUserId={selected.user_id} assetType="PLAYER" assetId={r.id} />
+                    </div>
                   </div>
                 );
               })}
             </div>
-          </div>
 
-          <div className="card">
-            <h3 style={{ marginTop: 0 }}>Picks</h3>
+            <div style={{ marginTop: 18, fontWeight: 1100 }}>Picks</div>
+
             <div className="list" style={{ marginTop: 12 }}>
-              {selectedPicks.length === 0 ? <div className="muted">Sin picks cargados.</div> : null}
-              {selectedPicks.map((p) => {
-                const key = `${me.id}::${selected.user_id}::PICK::${p.id}`;
-                const cur = interests.find((x) => x.key === key)?.level || "NONE";
+              {picksView.length === 0 ? <div className="muted">Sin picks cargados.</div> : null}
+              {picksView.map((p) => {
+                const stKey = normStatusKey(p.status);
                 return (
-                  <div key={p.id} className="item">
+                  <div key={p.id} className="item itemTight leagueAssetRow">
                     <div style={{ minWidth: 0 }}>
                       <div className="name">{p.label || p.id}</div>
-                      <div className="muted sub">
-                        {p.id} · <span className={`pill pill-${p.status || "AVAILABLE"}`}>{STATUS_LABEL[p.status] || p.status}</span>
-                      </div>
+                      <div className="muted sub">{p.id}</div>
                     </div>
-                    <select value={cur} onChange={(e) => onSetInterest(selected.user_id, "PICK", p.id, e.target.value)} style={{ maxWidth: 160 }}>
-                      <option value="NONE">—</option>
-                      <option value="LOW">Bajo</option>
-                      <option value="MEDIUM">Medio</option>
-                      <option value="HIGH">Alto</option>
-                    </select>
+
+                    <div className="leagueAssetRight">
+                      <span className={`pill pill-${stKey}`}>{STATUS_LABEL[stKey]}</span>
+                      <InterestButtons toUserId={selected.user_id} assetType="PICK" assetId={p.id} />
+                    </div>
                   </div>
                 );
               })}
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
 
 // ---- InterestsView ----
-
-function ChatsView({ me, teams, myRoster, myPicks, metaById }) {
-  const myId = String(me?.id || "");
-  const teamsByUser = useMemo(() => {
-    const m = new Map();
-    (teams || []).forEach((t) => m.set(String(t.user_id), t));
-    return m;
-  }, [teams]);
-
-  const otherTeams = useMemo(() => (teams || []).filter((t) => String(t.user_id) !== myId), [teams, myId]);
-
-  const [threads, setThreads] = useState([]);
-  const [activeOtherId, setActiveOtherId] = useState("");
-  const [loadingThreads, setLoadingThreads] = useState(false);
-  const [loadingProps, setLoadingProps] = useState(false);
-  const [proposals, setProposals] = useState([]);
-  const [err, setErr] = useState("");
-
-  const threadId = useMemo(() => {
-    if (!activeOtherId) return "";
-    return [myId, String(activeOtherId)].sort().join("__");
-  }, [myId, activeOtherId]);
-
-  const activeOtherTeam = useMemo(() => teamsByUser.get(String(activeOtherId)) || null, [teamsByUser, activeOtherId]);
-
-  const normalizePlayer = (p) => {
-    const id = String(p?.id ?? p?.player_id ?? p?.playerId ?? "");
-    const meta = metaById?.get?.(id) || null;
-    const name = String(meta?.name || p?.name || p?.player_name || p?.full_name || "").trim();
-    const pos = String(meta?.pos || p?.pos || p?.position || "").trim();
-    const nfl = String(meta?.nfl || p?.nfl || p?.team || "").trim();
-    return { id, name, pos, nfl, img: pickImg(meta) || pickImg(p) || "" };
-  };
-
-  const myPlayers = useMemo(() => (myRoster || []).map(normalizePlayer).filter((x) => x.id && x.name), [myRoster, metaById]);
-  const otherPlayers = useMemo(() => {
-    const r = activeOtherTeam?.roster || [];
-    return r.map(normalizePlayer).filter((x) => x.id && x.name);
-  }, [activeOtherTeam, metaById]);
-
-  const myPicksList = useMemo(
-    () => (myPicks || []).map((p) => ({ id: String(p.id || p), label: String(p.label || p.id || p) })),
-    [myPicks]
-  );
-  const otherPicksList = useMemo(() => {
-    const ps = activeOtherTeam?.picks || [];
-    return ps.map((p) => ({ id: String(p.id || p), label: String(p.label || p.id || p) }));
-  }, [activeOtherTeam]);
-
-  async function ensureThread(otherId) {
-    const tid = [myId, String(otherId)].sort().join("__");
-    const ref = doc(db, "threads", tid);
-    const snap = await getDoc(ref);
-    if (!snap.exists()) {
-      await setDoc(ref, { thread_id: tid, user_ids: [myId, String(otherId)], updated_at: Date.now() });
-    }
-    return tid;
-  }
-
-  async function loadThreads() {
-    if (!myId) return;
-    setLoadingThreads(true);
-    setErr("");
-    try {
-      const qy = query(
-        collection(db, "threads"),
-        where("user_ids", "array-contains", myId),
-        orderBy("updated_at", "desc")
-      );
-      const snap = await getDocs(qy);
-      const rows = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
-      setThreads(rows);
-      if (!activeOtherId && rows.length) {
-        const t = rows[0];
-        const other = (t.user_ids || []).find((x) => String(x) !== myId) || "";
-        if (other) setActiveOtherId(String(other));
-      }
-    } catch (e) {
-      setErr("No pude cargar chats.");
-    } finally {
-      setLoadingThreads(false);
-    }
-  }
-
-  async function loadProposals(tid) {
-    if (!tid) return;
-    setLoadingProps(true);
-    setErr("");
-    try {
-      const qy = query(collection(db, "threads", tid, "proposals"), orderBy("created_at", "desc"));
-      const snap = await getDocs(qy);
-      setProposals(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
-    } catch (e) {
-      setErr("No pude cargar propuestas.");
-      setProposals([]);
-    } finally {
-      setLoadingProps(false);
-    }
-  }
-
-  useEffect(() => { loadThreads(); }, [myId]);
-
-  useEffect(() => {
-    (async () => {
-      if (!threadId) { setProposals([]); return; }
-      await ensureThread(activeOtherId);
-      await loadProposals(threadId);
-    })();
-  }, [threadId]);
-
-  const [composerOpen, setComposerOpen] = useState(false);
-  const [editProposal, setEditProposal] = useState(null);
-
-  const [giveSel, setGiveSel] = useState({ players: new Set(), picks: new Set() });
-  const [getSel, setGetSel] = useState({ players: new Set(), picks: new Set() });
-  const [searchGive, setSearchGive] = useState("");
-  const [searchGet, setSearchGet] = useState("");
-
-  const resetComposer = () => {
-    setGiveSel({ players: new Set(), picks: new Set() });
-    setGetSel({ players: new Set(), picks: new Set() });
-    setSearchGive("");
-    setSearchGet("");
-    setEditProposal(null);
-  };
-
-  const openNew = () => { resetComposer(); setComposerOpen(true); };
-  const openEdit = (p) => {
-    resetComposer();
-    setEditProposal(p);
-    setGiveSel({ players: new Set((p?.give?.players || []).map(String)), picks: new Set((p?.give?.picks || []).map(String)) });
-    setGetSel({ players: new Set((p?.get?.players || []).map(String)),  picks: new Set((p?.get?.picks || []).map(String)) });
-    setComposerOpen(true);
-  };
-
-  const toggleSet = (setObj, key, id) => {
-    const next = new Set(setObj[key]);
-    const sid = String(id);
-    if (next.has(sid)) next.delete(sid); else next.add(sid);
-    return { ...setObj, [key]: next };
-  };
-
-  const canInteract = useMemo(() => !!activeOtherId && !!myId, [activeOtherId, myId]);
-
-  const listFilter = (items, q) => {
-    const qq = String(q || "").toLowerCase().trim();
-    if (!qq) return items;
-    return items.filter((it) => {
-      const hay = `${it.name || ""} ${it.pos || ""} ${it.nfl || ""} ${it.label || ""}`.toLowerCase();
-      return hay.includes(qq);
-    });
-  };
-
-  const fmtAssets = (side) => {
-    const ps = (side?.players || []).map(String);
-    const ks = (side?.picks || []).map(String);
-    const pNames = ps.map((id) => metaById?.get?.(String(id))?.name || id);
-    const kNames = ks;
-    return [...pNames, ...kNames];
-  };
-
-  async function sendOrUpdateProposal() {
-    if (!canInteract) return;
-    const tid = await ensureThread(activeOtherId);
-
-    const give = { players: Array.from(giveSel.players), picks: Array.from(giveSel.picks) };
-    const get  = { players: Array.from(getSel.players),  picks: Array.from(getSel.picks)  };
-
-    if (give.players.length + give.picks.length + get.players.length + get.picks.length === 0) {
-      setErr("Elegí al menos un asset para enviar la propuesta.");
-      return;
-    }
-
-    setErr("");
-    const now = Date.now();
-    try {
-      if (editProposal?.id) {
-        if (String(editProposal.from_user_id) !== myId || String(editProposal.status) !== "PENDING") return;
-        await updateDoc(doc(db, "threads", tid, "proposals", editProposal.id), { give, get, updated_at: now });
-      } else {
-        await addDoc(collection(db, "threads", tid, "proposals"), {
-          thread_id: tid,
-          from_user_id: myId,
-          to_user_id: String(activeOtherId),
-          give,
-          get,
-          status: "PENDING",
-          created_at: now,
-          updated_at: now,
-        });
-      }
-      await setDoc(doc(db, "threads", tid), { updated_at: now }, { merge: true });
-      setComposerOpen(false);
-      resetComposer();
-      await loadProposals(tid);
-    } catch (e) {
-      setErr("No pude guardar la propuesta.");
-    }
-  }
-
-  async function cancelProposal(p) {
-    if (!canInteract) return;
-    if (String(p.from_user_id) !== myId) return;
-    if (String(p.status) !== "PENDING") return;
-    try {
-      const now = Date.now();
-      await updateDoc(doc(db, "threads", threadId, "proposals", p.id), { status: "CANCELLED", updated_at: now });
-      await setDoc(doc(db, "threads", threadId), { updated_at: now }, { merge: true });
-      await loadProposals(threadId);
-    } catch (e) {
-      setErr("No pude cancelar la propuesta.");
-    }
-  }
-
-  async function respondProposal(p, nextStatus) {
-    if (!canInteract) return;
-    if (String(p.to_user_id) !== myId) return;
-    if (String(p.status) !== "PENDING") return;
-    try {
-      const now = Date.now();
-      await updateDoc(doc(db, "threads", threadId, "proposals", p.id), { status: nextStatus, responded_at: now, updated_at: now });
-      await setDoc(doc(db, "threads", threadId), { updated_at: now }, { merge: true });
-      await loadProposals(threadId);
-    } catch (e) {
-      setErr("No pude responder la propuesta.");
-    }
-  }
-
-  const statusLabel = (s) => {
-    if (s === "PENDING") return "Pendiente";
-    if (s === "LIKED") return "Me gusta";
-    if (s === "NOPE") return "No me gusta";
-    if (s === "MAYBE") return "Puede ser";
-    if (s === "CANCELLED") return "Cancelada";
-    return s || "—";
-  };
-
-  return (
-    <div className="grid2" style={{ marginTop: 12 }}>
-      <div className="card">
-        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", gap:10 }}>
-          <div style={{ fontSize:22, fontWeight:1100 }}>Chats</div>
-          <button className="btn" onClick={loadThreads} disabled={loadingThreads}>Actualizar</button>
-        </div>
-
-        <div className="muted" style={{ marginTop: 6, fontWeight: 850 }}>
-          Elegí un equipo para enviar propuestas de trade (1 a 1).
-        </div>
-
-        <div style={{ marginTop: 12, display:"grid", gap:10 }}>
-          {(threads || []).map((t) => {
-            const other = (t.user_ids || []).find((x) => String(x) !== myId) || "";
-            const ot = teamsByUser.get(String(other));
-            const active = String(other) === String(activeOtherId);
-            return (
-              <button
-                key={t.id}
-                className={`teamRowBtn ${active ? "active" : ""}`}
-                onClick={() => setActiveOtherId(String(other))}
-              >
-                <div>
-                  <div style={{ fontWeight: 1100 }}>{ot?.team_name || ot?.display_name || "Equipo"}</div>
-                  <div className="muted" style={{ fontWeight: 850, fontSize: 12 }}>{ot?.display_name || other}</div>
-                </div>
-                <span className="pill pill-AVAILABLE">{active ? "Abierto" : "Abrir"}</span>
-              </button>
-            );
-          })}
-
-          <div style={{ borderTop:"1px solid var(--border)", marginTop:10, paddingTop:10 }}>
-            <div className="muted" style={{ fontWeight: 1000, marginBottom: 8 }}>Iniciar chat con:</div>
-            <select className="select" value={activeOtherId} onChange={(e) => setActiveOtherId(e.target.value)}>
-              <option value="">— Elegir equipo —</option>
-              {otherTeams.map((t) => (
-                <option key={t.user_id} value={t.user_id}>
-                  {t.team_name || t.display_name || t.user_id}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <div className="card">
-        {!activeOtherId ? (
-          <div className="muted" style={{ fontWeight: 1000 }}>Elegí un equipo para ver el chat.</div>
-        ) : (
-          <>
-            <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", gap:10, flexWrap:"wrap" }}>
-              <div>
-                <div style={{ fontSize:22, fontWeight:1100 }}>{activeOtherTeam?.team_name || "Chat"}</div>
-                <div className="muted" style={{ fontWeight:850 }}>{activeOtherTeam?.display_name || activeOtherId}</div>
-              </div>
-              <button className="btn primary" onClick={openNew}>Nueva propuesta</button>
-            </div>
-
-            {err ? <div className="muted" style={{ marginTop:10, fontWeight:1000, color:"#991B1B" }}>{err}</div> : null}
-
-            <div style={{ marginTop: 12, display:"grid", gap:12 }}>
-              {loadingProps ? (
-                <div className="muted" style={{ fontWeight: 1000 }}>Cargando…</div>
-              ) : proposals.length === 0 ? (
-                <div className="muted" style={{ fontWeight: 1000 }}>No hay propuestas todavía.</div>
-              ) : (
-                proposals.map((p) => {
-                  const isMine = String(p.from_user_id) === myId;
-                  const isPending = String(p.status) === "PENDING";
-                  const canEdit = isMine && isPending;
-                  const canCancel = isMine && isPending;
-                  const canRespond = (!isMine) && isPending;
-
-                  const give = fmtAssets(p.give);
-                  const getA = fmtAssets(p.get);
-
-                  return (
-                    <div key={p.id} className="tradeCard">
-                      <div className="tradeCardTop">
-                        <div className="muted" style={{ fontWeight: 1000 }}>
-                          {isMine ? "Enviada" : "Recibida"} • {new Date(p.created_at || Date.now()).toLocaleString()}
-                        </div>
-                        <span className={`pill ${p.status === "PENDING" ? "pill-LISTENING" : p.status === "LIKED" ? "pill-AVAILABLE" : p.status === "NOPE" ? "pill-NOT_AVAILABLE" : p.status === "MAYBE" ? "pill-LISTENING" : "pill"}`}>
-                          {statusLabel(p.status)}
-                        </span>
-                      </div>
-
-                      <div className="tradeGrid">
-                        <div className="tradeSide">
-                          <div className="tradeSideTitle">{isMine ? "Doy yo" : "Da él/ella"}</div>
-                          <div className="tradeChips">
-                            {give.length ? give.map((x, i) => <span key={i} className="valueChip">{x}</span>) : <span className="muted">—</span>}
-                          </div>
-                        </div>
-                        <div className="tradeSide">
-                          <div className="tradeSideTitle">{isMine ? "Recibo" : "Recibe él/ella"}</div>
-                          <div className="tradeChips">
-                            {getA.length ? getA.map((x, i) => <span key={i} className="valueChip">{x}</span>) : <span className="muted">—</span>}
-                          </div>
-                        </div>
-                      </div>
-
-                      {canRespond ? (
-                        <div className="tradeActions">
-                          <button className="interestBtn active-HIGH" onClick={() => respondProposal(p, "LIKED")}>Me gusta</button>
-                          <button className="interestBtn active-MEDIUM" onClick={() => respondProposal(p, "MAYBE")}>Puede ser</button>
-                          <button className="interestBtn active-LOW" onClick={() => respondProposal(p, "NOPE")}>No me gusta</button>
-                        </div>
-                      ) : null}
-
-                      {canEdit || canCancel ? (
-                        <div className="tradeActions" style={{ justifyContent:"flex-end" }}>
-                          {canEdit ? <button className="btn" onClick={() => openEdit(p)}>Editar</button> : null}
-                          {canCancel ? <button className="btn danger" onClick={() => cancelProposal(p)}>Cancelar</button> : null}
-                        </div>
-                      ) : null}
-                    </div>
-                  );
-                })
-              )}
-            </div>
-          </>
-        )}
-      </div>
-
-      {composerOpen ? (
-        <div className="modalOverlay" onMouseDown={() => { setComposerOpen(false); resetComposer(); }}>
-          <div className="modal" onMouseDown={(e) => e.stopPropagation()}>
-            <div className="modalHeader">
-              <div className="modalTitle">{editProposal ? "Editar propuesta" : "Nueva propuesta"}</div>
-              <button className="iconBtn" onClick={() => { setComposerOpen(false); resetComposer(); }}>✕</button>
-            </div>
-
-            <div className="modalBody">
-              <div className="muted" style={{ fontWeight: 900, marginBottom: 10 }}>
-                Armá el trade con assets que vos y el otro equipo ya tienen (jugadores y picks).
-              </div>
-
-              <div className="tradeBuilder">
-                <div className="tradeBuilderCol">
-                  <div className="tradeBuilderTitle">Doy yo</div>
-                  <input className="input" placeholder="Buscar..." value={searchGive} onChange={(e) => setSearchGive(e.target.value)} />
-                  <div className="tradePickList">
-                    <div className="muted" style={{ fontWeight: 1000, marginTop: 8 }}>Jugadores</div>
-                    {listFilter(myPlayers, searchGive).map((p) => (
-                      <label key={p.id} className="checkRow">
-                        <input type="checkbox" checked={giveSel.players.has(p.id)} onChange={() => setGiveSel((s) => toggleSet(s, "players", p.id))} />
-                        <span className="checkMain">
-                          <span className={`posPill pos-${p.pos || "BN"}`}>{p.pos || "—"}</span>
-                          <span style={{ fontWeight: 1100 }}>{p.name}</span>
-                          <span className="muted">{p.nfl ? ` • ${p.nfl}` : ""}</span>
-                        </span>
-                      </label>
-                    ))}
-                    <div className="muted" style={{ fontWeight: 1000, marginTop: 10 }}>Picks</div>
-                    {listFilter(myPicksList, searchGive).map((k) => (
-                      <label key={k.id} className="checkRow">
-                        <input type="checkbox" checked={giveSel.picks.has(k.id)} onChange={() => setGiveSel((s) => toggleSet(s, "picks", k.id))} />
-                        <span className="checkMain"><span style={{ fontWeight: 1000 }}>{k.label}</span></span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="tradeBuilderCol">
-                  <div className="tradeBuilderTitle">Recibo</div>
-                  <input className="input" placeholder="Buscar..." value={searchGet} onChange={(e) => setSearchGet(e.target.value)} />
-                  <div className="tradePickList">
-                    <div className="muted" style={{ fontWeight: 1000, marginTop: 8 }}>Jugadores</div>
-                    {listFilter(otherPlayers, searchGet).map((p) => (
-                      <label key={p.id} className="checkRow">
-                        <input type="checkbox" checked={getSel.players.has(p.id)} onChange={() => setGetSel((s) => toggleSet(s, "players", p.id))} />
-                        <span className="checkMain">
-                          <span className={`posPill pos-${p.pos || "BN"}`}>{p.pos || "—"}</span>
-                          <span style={{ fontWeight: 1100 }}>{p.name}</span>
-                          <span className="muted">{p.nfl ? ` • ${p.nfl}` : ""}</span>
-                        </span>
-                      </label>
-                    ))}
-                    <div className="muted" style={{ fontWeight: 1000, marginTop: 10 }}>Picks</div>
-                    {listFilter(otherPicksList, searchGet).map((k) => (
-                      <label key={k.id} className="checkRow">
-                        <input type="checkbox" checked={getSel.picks.has(k.id)} onChange={() => setGetSel((s) => toggleSet(s, "picks", k.id))} />
-                        <span className="checkMain"><span style={{ fontWeight: 1000 }}>{k.label}</span></span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div style={{ marginTop: 14 }}>
-                <div className="muted" style={{ fontWeight: 1000 }}>Preview:</div>
-                <div style={{ display:"grid", gap:8, marginTop:8 }}>
-                  <div><b>Doy yo:</b> {Array.from(giveSel.players).map((id) => metaById?.get?.(id)?.name || id).concat(Array.from(giveSel.picks)).join(" · ") || "—"}</div>
-                  <div><b>Recibo:</b> {Array.from(getSel.players).map((id) => metaById?.get?.(id)?.name || id).concat(Array.from(getSel.picks)).join(" · ") || "—"}</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="modalFooter">
-              <button className="btn" onClick={() => { setComposerOpen(false); resetComposer(); }}>Cancelar</button>
-              <button className="btn primary" onClick={sendOrUpdateProposal}>{editProposal ? "Actualizar" : "Enviar"}</button>
-            </div>
-          </div>
-        </div>
-      ) : null}
-    </div>
-  );
-}
-
 function InterestsView({ teamsByUser, myOutgoing, myIncoming, metaById }) {
   const fmtAsset = (x) => {
     if (x.asset_type === "PLAYER") {
@@ -1883,7 +1822,7 @@ function InterestsView({ teamsByUser, myOutgoing, myIncoming, metaById }) {
                       Dueño: {owner?.display_name || x.to_user_id} {owner?.team_name ? `— ${owner.team_name}` : ""}
                     </div>
                   </div>
-                  <div className="badge">{INTEREST_LABEL[x.level] || x.level}</div>
+                  <div className={`badge badge-${x.level || "NONE"}`}>{INTEREST_LABEL[x.level] || x.level}</div>
                 </div>
               );
             })}
@@ -1907,12 +1846,404 @@ function InterestsView({ teamsByUser, myOutgoing, myIncoming, metaById }) {
                       Interesado: {who?.display_name || x.from_user_id} {who?.team_name ? `— ${who.team_name}` : ""}
                     </div>
                   </div>
-                  <div className="badge">{INTEREST_LABEL[x.level] || x.level}</div>
+                  <div className={`badge badge-${x.level || "NONE"}`}>{INTEREST_LABEL[x.level] || x.level}</div>
                 </div>
               );
             })}
           </div>
         )}
+      </div>
+    </div>
+  );
+}
+
+function HomeNewsView({ myRoster, metaById }) {
+  const [loading, setLoading] = useState(true);
+  const [err, setErr] = useState("");
+  const [data, setData] = useState({ generatedAt: null, items: [] });
+  const [q, setQ] = useState("");
+  const [showAll, setShowAll] = useState(false);
+
+  // Normalizamos fuentes porque FantasyPros suele venir con variantes ("FantasyPros.com", "FantasyPro", etc.)
+  const SOURCE_KEYS = ["ESPN", "FantasyPros"];
+  const normSourceKey = (raw) => {
+    const s = String(raw || "")
+      .toLowerCase()
+      .replace(/\s+/g, "")
+      .replace(/\./g, "")
+      .replace(/-/g, "");
+
+    if (s.includes("espn")) return "ESPN";
+    if (s.includes("fantasypros") || s.includes("fantasypro")) return "FantasyPros";
+    return raw ? String(raw) : "ESPN";
+  };
+
+  const [sources, setSources] = useState({ ESPN: true, FantasyPros: true });
+
+  const rosterPlayers = useMemo(() => {
+    const out = [];
+    (myRoster || []).forEach((r) => {
+      const id = String(r?.id ?? "");
+      const meta = metaById?.get?.(id) || null;
+      const name = String(meta?.name || r?.name || "").trim();
+      if (!name) return;
+      out.push({
+        id,
+        name,
+        img: pickImg(meta) || pickImg(r) || "",
+      });
+    });
+    // De-dup por nombre (mantiene el primero con imagen si existe)
+    const m = new Map();
+    for (const p of out) {
+      const k = String(p.name).toLowerCase();
+      if (!m.has(k) || (!m.get(k).img && p.img)) m.set(k, p);
+    }
+    return Array.from(m.values());
+  }, [myRoster, metaById]);
+
+  const rosterNames = useMemo(() => rosterPlayers.map((p) => p.name), [rosterPlayers]);
+
+  const norm = (s) =>
+    String(s || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/\p{Diacritic}/gu, "")
+      .replace(/[^a-z0-9\s]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+
+  const SUFFIXES = new Set(["jr", "sr", "ii", "iii", "iv", "v"]);
+  const escapeRegExp = (s) => String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+  const aliasesForName = (playerName) => {
+    const raw = String(playerName || "").trim();
+    const toks = norm(raw)
+      .split(/\s+/)
+      .filter(Boolean)
+      .filter((t) => !SUFFIXES.has(t));
+
+    if (toks.length < 2) return [];
+
+    const first = toks[0];
+    const last = toks[toks.length - 1];
+
+    const out = [];
+    out.push(toks);           // full
+    out.push([first, last]);  // first last
+
+    // "St. Brown" => "st brown"
+    if (toks.length >= 3 && toks[toks.length - 2] === "st") out.push(["st", last]);
+
+    // iniciales: A J Brown => aj brown / a j brown
+    if (toks.length >= 3 && toks[0].length === 1 && toks[1].length === 1) {
+      out.push([`${toks[0]}${toks[1]}`, last]);
+      out.push([toks[0], toks[1], last]);
+    }
+
+    const uniq = new Map();
+    for (const a of out) uniq.set(a.join("|"), a);
+    return [...uniq.values()];
+  };
+
+  const hasAllWords = (hayNorm, words) =>
+    words.every((w) => new RegExp(`\\b${escapeRegExp(w)}\\b`, "i").test(hayNorm));
+
+  const matchesPlayer = (playerName, hayNorm) => {
+    const aliases = aliasesForName(playerName);
+    if (!aliases.length) return false;
+    return aliases.some((words) => words.length >= 2 && hasAllWords(hayNorm, words));
+  };
+
+  // Si el item trae players explícitos (depende del parser), los usamos para filtrar/mostrar
+  const extractExplicitPlayers = (it) => {
+    const cand =
+      it?.players ||
+      it?.playerNames ||
+      it?.matchedPlayers ||
+      it?.mentions ||
+      it?.tags ||
+      null;
+
+    if (!Array.isArray(cand)) return [];
+    return cand
+      .map((x) => (typeof x === "string" ? x : (x?.name || x?.player || "")))
+      .map((x) => String(x || "").trim())
+      .filter(Boolean);
+  };
+
+  const toggleSource = (srcKey) => {
+    setSources((s) => ({ ...s, [srcKey]: !s[srcKey] }));
+  };
+
+  const mentionMeta = (name) => {
+    const key = String(name || "").toLowerCase();
+    const p = rosterPlayers.find((x) => String(x.name).toLowerCase() === key);
+    return p || null;
+  };
+
+  const fmtDate = (ts) => {
+    if (!ts) return "—";
+    try { return new Date(ts).toLocaleString(); } catch { return "—"; }
+  };
+
+  const relTime = (ts) => {
+    const t = Number(ts || 0);
+    if (!t) return "";
+    const diff = Date.now() - t;
+    const min = Math.round(diff / 60000);
+    if (min < 1) return "recién";
+    if (min < 60) return `hace ${min} min`;
+    const hr = Math.round(min / 60);
+    if (hr < 24) return `hace ${hr} h`;
+    const d = Math.round(hr / 24);
+    return `hace ${d} d`;
+  };
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      setLoading(true);
+      setErr("");
+      try {
+        // En GH Pages, usar BASE_URL evita problemas de path
+        const base = import.meta.env.BASE_URL || "/";
+        const res = await fetch(`${base}news.json?ts=${Date.now()}`, { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+        if (cancelled) return;
+        const items = Array.isArray(json?.items) ? json.items : [];
+        setData({ generatedAt: json?.generatedAt || null, items });
+      } catch (e) {
+        if (!cancelled) {
+          setErr("No pude cargar noticias. Generá public/news.json (ej: `node scripts/update-news.mjs` o corriendo el workflow) y recargá.");
+          setData({ generatedAt: null, items: [] });
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, []);
+
+  const filtered = useMemo(() => {
+    let items = Array.isArray(data.items) ? [...data.items] : [];
+
+    // Normalizar fuente, y filtrar por toggle
+    items = items
+      .map((it) => {
+        const srcKey = normSourceKey(it?.source || it?.provider || it?.site);
+        const title = String(it?.title || it?.headline || it?.name || "").trim();
+        const description = String(it?.description || it?.summary || it?.desc || "").trim();
+        const url = String(it?.url || it?.link || it?.href || "").trim();
+        const publishedAt = it?.publishedAt || it?.pubDate || it?.date || it?.published || null;
+        const publishedTs =
+          Number(it?.publishedTs || it?.published_ts) ||
+          (publishedAt ? Date.parse(publishedAt) : 0) ||
+          0;
+
+        return {
+          ...it,
+          sourceKey: srcKey,
+          title,
+          description,
+          url,
+          publishedAt,
+          publishedTs,
+        };
+      })
+      .filter((it) => {
+        const srcKey = it.sourceKey;
+        // si no es una de las dos conocidas, no lo mostramos (para evitar ruido)
+        if (!SOURCE_KEYS.includes(srcKey)) return false;
+        return sources[srcKey] !== false;
+      });
+
+    // Filtrado por roster
+    if (!showAll && rosterNames.length) {
+      items = items.filter((it) => {
+        const explicit = extractExplicitPlayers(it).map(norm);
+        if (explicit.length) {
+          return rosterNames.some((rn) => explicit.includes(norm(rn)));
+        }
+        const hay = norm(`${it.title || ""} ${it.description || ""}`);
+        return rosterNames.some((n) => matchesPlayer(n, hay));
+      });
+    }
+
+    // Search
+    if (q.trim()) {
+      const qn = norm(q);
+      items = items.filter((it) =>
+        norm(`${it.title || ""} ${it.description || ""} ${it.sourceKey || ""}`).includes(qn)
+      );
+    }
+
+    items.sort((a, b) => (b.publishedTs || 0) - (a.publishedTs || 0));
+    return items.slice(0, 80);
+  }, [data.items, rosterNames, showAll, q, sources]);
+
+  const activeCount = filtered.length;
+
+  return (
+    <div style={{ marginTop: 12 }}>
+      <div className="card newsCard">
+        <div className="newsHeader">
+          <div>
+            <div className="newsTitleRow">
+              <div className="newsTitle">Noticias</div>
+              <span className={`newsDot ${loading ? "pulse" : ""}`} aria-hidden="true" />
+              <div className="newsUpdated">
+                {data.generatedAt ? `Actualizado: ${fmtDate(data.generatedAt)}` : "Actualizado: —"}
+              </div>
+            </div>
+            <div className="newsHint">
+              {!showAll && rosterNames.length
+                ? `Filtrando por tus jugadores (${rosterNames.length}). Activá “Mostrar todo” si querés ver el feed completo.`
+                : "Podés activar “Mostrar todo” para ver el feed completo."}
+            </div>
+          </div>
+
+          <div className="newsControls">
+            <div className="newsToggles">
+              <button
+                type="button"
+                className={`newsToggle ${sources.ESPN ? "active" : ""}`}
+                onClick={() => toggleSource("ESPN")}
+                aria-pressed={sources.ESPN}
+              >
+                ESPN
+              </button>
+              <button
+                type="button"
+                className={`newsToggle ${sources.FantasyPros ? "active" : ""}`}
+                onClick={() => toggleSource("FantasyPros")}
+                aria-pressed={sources.FantasyPros}
+              >
+                FantasyPros
+              </button>
+              <button
+                type="button"
+                className={`newsToggle ${showAll ? "active" : ""}`}
+                onClick={() => setShowAll((v) => !v)}
+                aria-pressed={showAll}
+              >
+                Mostrar todo
+              </button>
+            </div>
+
+            <div className="newsSearch">
+              <span className="newsSearchIcon" aria-hidden="true">⌕</span>
+              <input
+                className="newsSearchInput"
+                placeholder="Buscar noticia..."
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="newsStats">
+          <span className="newsStatPill">{loading ? "Cargando…" : `${activeCount} noticias`}</span>
+          <span className="muted" style={{ fontWeight: 800 }}>
+            {showAll ? "Mostrando feed completo" : "Mostrando solo tus jugadores"}
+          </span>
+        </div>
+
+        <div className="newsList">
+          {loading ? (
+            <>
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="newsItem skeleton">
+                  <div className="skLine w40" />
+                  <div className="skLine w85" />
+                  <div className="skLine w70" />
+                  <div className="skChips">
+                    <span className="skChip" />
+                    <span className="skChip" />
+                    <span className="skChip" />
+                  </div>
+                </div>
+              ))}
+            </>
+          ) : err ? (
+            <div className="muted" style={{ fontWeight: 900 }}>{err}</div>
+          ) : filtered.length === 0 ? (
+            <div className="muted" style={{ fontWeight: 900 }}>
+              No hay noticias para mostrar con estos filtros.
+            </div>
+          ) : (
+            filtered.map((it) => {
+              const hay = norm(`${it.title || ""} ${it.description || ""}`);
+
+              // menciones: primero por lista explícita si existe, sino por matching sobre texto
+              const explicit = extractExplicitPlayers(it);
+              const hits = explicit.length
+                ? rosterNames.filter((rn) => explicit.map(norm).includes(norm(rn)))
+                : rosterNames.filter((n) => matchesPlayer(n, hay));
+
+              const mentions = hits.slice(0, 5);
+              const srcKey = it.sourceKey || normSourceKey(it.source);
+
+              return (
+                <article key={String(it.id || it.guid || it.url || `${srcKey}-${it.publishedTs}-${it.title}`)} className="newsItem">
+                  <div className="newsItemTop">
+                    <div className="newsItemMeta">
+                      <span className={`newsSourcePill src-${srcKey}`}>{srcKey}</span>
+                      <span className="newsTime">{it.publishedAt ? fmtDate(it.publishedAt) : "—"}</span>
+                      {it.publishedTs ? <span className="newsRel">{relTime(it.publishedTs)}</span> : null}
+                    </div>
+
+                    {it.url ? (
+                      <a className="newsOpenBtn" href={it.url} target="_blank" rel="noreferrer">
+                        Abrir ↗
+                      </a>
+                    ) : null}
+                  </div>
+
+                  {it.url ? (
+                    <a className="newsHeadline" href={it.url} target="_blank" rel="noreferrer">
+                      {it.title || "Noticia"}
+                    </a>
+                  ) : (
+                    <div className="newsHeadline" style={{ cursor: "default" }}>{it.title || "Noticia"}</div>
+                  )}
+
+                  {it.description ? (
+                    <div className="newsDesc">
+                      {String(it.description).replace(/<[^>]+>/g, "").slice(0, 260)}
+                      {String(it.description).length > 260 ? "…" : ""}
+                    </div>
+                  ) : null}
+
+                  {mentions.length ? (
+                    <div className="newsMentions">
+                      {mentions.map((m) => {
+                        const mm = mentionMeta(m);
+                        return (
+                          <span key={m} className="mentionChip" title={m}>
+                            <span className="mentionAv">
+                              {mm?.img ? <img src={mm.img} alt={m} /> : m.split(" ").slice(0, 2).map((x) => x[0]).join("")}
+                            </span>
+                            <span className="mentionTxt">{m}</span>
+                          </span>
+                        );
+                      })}
+                      {hits.length > mentions.length ? (
+                        <span className="mentionMore">+{hits.length - mentions.length}</span>
+                      ) : null}
+                    </div>
+                  ) : null}
+                </article>
+              );
+            })
+          )}
+        </div>
+
+        <div className="newsFoot">
+          Contenido provisto por sus respectivas fuentes. Se muestra título/resumen del feed y se enlaza al artículo original.
+        </div>
       </div>
     </div>
   );
@@ -2047,8 +2378,8 @@ export default function App() {
     }
   }, [me, teamsByUser]);
 
-  const myOutgoing = useMemo(() => (me ? interests.filter((x) => x.from_user_id === me.id) : []), [me, interests]);
-  const myIncoming = useMemo(() => (me ? interests.filter((x) => x.to_user_id   === me.id) : []), [me, interests]);
+  const myOutgoing = useMemo(() => (me ? interests.filter((x) => x.from_user_id === me.id && x.from_user_id !== x.to_user_id) : []), [me, interests]);
+  const myIncoming = useMemo(() => (me ? interests.filter((x) => x.to_user_id   === me.id && x.from_user_id !== x.to_user_id) : []), [me, interests]);
   const myRoster   = useMemo(() => (Array.isArray(myRow?.roster) ? myRow.roster : []), [myRow]);
   const myPicks    = useMemo(() => (Array.isArray(myRow?.picks)  ? myRow.picks  : []), [myRow]);
 
@@ -2066,7 +2397,7 @@ export default function App() {
     const m = new Map();
     // Guardamos el objeto completo (incluye headshot/img si existe)
     for (const p of players) {
-      m.set(String(p.player_id), p);
+      m.set(String(p?.player_id ?? p?.id ?? ""), p);
     }
     for (const t of teams) {
       for (const r of t.roster || []) {
@@ -2248,6 +2579,7 @@ export default function App() {
 
   async function setInterest(toUserId, assetType, assetId, level) {
     if (!me) return;
+    if (String(toUserId) === String(me.id)) return;
     const key = `${me.id}::${toUserId}::${assetType}::${assetId}`;
     try {
       if (level === "NONE") {
@@ -2277,7 +2609,7 @@ export default function App() {
       <Styles />
       <div className="top">
         <div className="topin">
-          <div style={{ fontWeight: 1000 }}>Fantasy Trade Board</div>
+          <div className="brand">Fantasy Trade Board</div>
           <div className="sp" />
           {playersLoading ? <div className="chip" style={{ cursor: "default" }}>ADP…</div> : null}
           {me ? <div className="chip" style={{ cursor: "default" }}>{me.email}</div> : null}
@@ -2310,6 +2642,7 @@ export default function App() {
           </div>
         ) : (
           <>
+            {tab === "team" ? (
             <div className="card profileCard">
               <div className="grid2">
                 <div>
@@ -2320,26 +2653,37 @@ export default function App() {
                   </div>
                 </div>
                 <div style={{ display: "grid", gap: 10 }}>
-                  <div className="row profileRow">
-                    <input value={myDisplayName} onChange={(e) => setMyDisplayName(e.target.value)} placeholder="Tu nombre" />
-                    <input value={myTeamName}    onChange={(e) => setMyTeamName(e.target.value)}    placeholder="Nombre del equipo" />
-                    <FancySelect value={myTeamStatus} onChange={setMyTeamStatus} options={TEAM_STATUS_OPTIONS} />
-                  </div>
-                  <div className="row profileActions">
-                    {saveInfo ? <div className="muted" style={{ fontWeight: 900 }}>{saveInfo}</div> : null}
-                    <div className="sp" />
-                    <button disabled={saving} onClick={saveMyProfile}>Guardar perfil</button>
-                  </div>
+                  {tab === "team" ? (
+                    <>
+                      <div className="row profileRow">
+                        <input value={myDisplayName} onChange={(e) => setMyDisplayName(e.target.value)} placeholder="Tu nombre" />
+                        <input value={myTeamName}    onChange={(e) => setMyTeamName(e.target.value)}    placeholder="Nombre del equipo" />
+                        <FancySelect value={myTeamStatus} onChange={setMyTeamStatus} options={TEAM_STATUS_OPTIONS} />
+                      </div>
+                      <div className="row profileActions">
+                        {saveInfo ? <div className="muted" style={{ fontWeight: 900 }}>{saveInfo}</div> : null}
+                        <div className="sp" />
+                        <button disabled={saving} onClick={saveMyProfile}>Guardar perfil</button>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="row profileActions">
+                      <div className="chip" style={{ cursor: "default" }}>{myTeamStatus || "Indefinido"}</div>
+                      <div className="sp" />
+                      <button className="ghost" onClick={() => setTab("team")}>Editar en Mi equipo</button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
+            ) : null}
 
-            {tab === "home" || tab === "interests" ? (
+            {tab === "home" ? (
+              <HomeNewsView myRoster={myRoster} metaById={metaById} />
+            ) : tab === "interests" ? (
               <InterestsView teamsByUser={teamsByUser} myOutgoing={myOutgoing} myIncoming={myIncoming} metaById={metaById} />
             ) : tab === "league" ? (
               <LeagueView me={me} teams={teams} interests={interests} onSetInterest={setInterest} metaById={metaById} />
-            ) : tab === "chats" ? (
-              <ChatsView me={me} teams={teams} myRoster={myRoster} myPicks={myPicks} metaById={metaById} />
             ) : (
               <MyTeamView
                 players={players}
@@ -2348,9 +2692,13 @@ export default function App() {
                 slots={slots}
                 saving={saving}
                 onAddPlayer={(p) => updateMyTeam((t) => {
-                  const exists = (t.roster || []).some((r) => String(r.id) === String(p.player_id));
+                  const pid = String(p?.player_id ?? p?.id ?? "");
+                  if (!pid) return t;
+                  const pname = p?.name || p?.player_name || p?.full_name || p?.player || "";
+                  const posRaw = p?.position ?? p?.pos ?? p?.player_position ?? "";
+                  const exists = (t.roster || []).some((r) => String(r.id) === pid);
                   if (exists) return t;
-                  return { ...t, roster: [...(t.roster || []), { id: String(p.player_id), name: p.name, pos: normPos(p.position), nfl: p.team || "", status: "AVAILABLE" }] };
+                  return { ...t, roster: [...(t.roster || []), { id: pid, name: pname || `Jugador ${pid}`, pos: normPos(posRaw), nfl: p?.team || p?.nfl || "", status: "AVAILABLE" }] };
                 }, "add player")}
                 onRemovePlayer={(id) => updateMyTeam((t) => ({
                   ...t, roster: (t.roster || []).filter((r) => String(r.id) !== String(id)),
@@ -2439,7 +2787,6 @@ export default function App() {
             <button className={`dockbtn ${tab === "home"      ? "active" : ""}`} onClick={() => setTab("home")}>Inicio</button>
             <button className={`dockbtn ${tab === "league"    ? "active" : ""}`} onClick={() => setTab("league")}>Liga</button>
             <button className={`dockbtn ${tab === "interests" ? "active" : ""}`} onClick={() => setTab("interests")}>Intereses</button>
-            <button className={`dockbtn ${tab === "chats"     ? "active" : ""}`} onClick={() => setTab("chats")}>Chats</button>
             <button className={`dockbtn ${tab === "team"      ? "active" : ""}`} onClick={() => setTab("team")}>Mi equipo</button>
           </div>
         </div>
