@@ -1444,7 +1444,7 @@ function LeagueView({ me, teams, interests, onSetInterest, metaById }) {
             {teamsSorted.map((t) => {
               const counts = countByPos(t.roster || []);
               const active = t.user_id === selectedId;
-              const badge = t.user_id === me.id ? "Vos" : active ? "Manager" : "";
+              const badge = t.user_id === me.id ? "Vos" : "Manager";
               return (
                 <div
                   key={t.user_id}
