@@ -1467,7 +1467,7 @@ function FancySelect({ value, onChange, options }) {
     </div>
   );
 }
-pp ----
+
 export default function App() {
   const [me, setMe] = useState(() => {
     const s = localStorage.getItem("ft_session");
