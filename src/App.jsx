@@ -397,9 +397,10 @@ button.selectOpt{
   padding:10px 10px; border-radius:12px;
   border:0; background:transparent; color:var(--text);
   font-weight:900; cursor:pointer;
+  box-shadow:none !important;
 }
-button.selectOpt:hover{ background:rgba(47,125,246,0.07); }
-button.selectOpt.active{ background:rgba(47,125,246,0.10); }
+button.selectOpt:hover{ background:rgba(47,125,246,0.07);  box-shadow:none !important; }
+button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !important; }
 /* Buttons */
       button{
         padding:12px 14px; border-radius:14px; border:1px solid transparent;
