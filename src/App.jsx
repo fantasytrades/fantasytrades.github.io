@@ -585,6 +585,11 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
       }
       .badge{ padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:#F1F5F9; font-weight:1000; font-size:12px; color:#0F172A; }
 
+      .badge-NONE{ background:#F1F5F9; border-color:var(--border); color:#0F172A; }
+      .badge-LOW{ background:rgba(239,68,68,0.16); border-color:rgba(239,68,68,0.35); color:#991B1B; }
+      .badge-MEDIUM{ background:rgba(245,158,11,0.18); border-color:rgba(245,158,11,0.40); color:#92400E; }
+      .badge-HIGH{ background:rgba(34,197,94,0.18); border-color:rgba(34,197,94,0.35); color:#166534; }
+
       /* === Roster slot tags (QB/RB/WR/TE/WRT/BN) === */
       .rosterItem{ gap:12px; display:grid; grid-template-columns:54px minmax(260px, 1fr) auto; align-items:center; }
       .rosterActions{ display:flex; gap:12px; align-items:center; flex-wrap:nowrap; justify-content:flex-end; }
@@ -1408,6 +1413,7 @@ function LeagueView({ me, teams, interests, onSetInterest, metaById }) {
   const InterestButtons = ({ toUserId, assetType, assetId }) => {
     const key = `${me.id}::${toUserId}::${assetType}::${assetId}`;
     const cur = interests.find((x) => x.key === key)?.level || "NONE";
+    if (String(toUserId) === String(me.id)) return null;
     return (
       <div className="interestPills">
         {["LOW", "MEDIUM", "HIGH"].map((lvl) => (
@@ -1580,7 +1586,7 @@ function InterestsView({ teamsByUser, myOutgoing, myIncoming, metaById }) {
                       Dueño: {owner?.display_name || x.to_user_id} {owner?.team_name ? `— ${owner.team_name}` : ""}
                     </div>
                   </div>
-                  <div className="badge">{INTEREST_LABEL[x.level] || x.level}</div>
+                  <div className={`badge badge-${x.level || "NONE"}`}>{INTEREST_LABEL[x.level] || x.level}</div>
                 </div>
               );
             })}
@@ -1604,7 +1610,7 @@ function InterestsView({ teamsByUser, myOutgoing, myIncoming, metaById }) {
                       Interesado: {who?.display_name || x.from_user_id} {who?.team_name ? `— ${who.team_name}` : ""}
                     </div>
                   </div>
-                  <div className="badge">{INTEREST_LABEL[x.level] || x.level}</div>
+                  <div className={`badge badge-${x.level || "NONE"}`}>{INTEREST_LABEL[x.level] || x.level}</div>
                 </div>
               );
             })}
@@ -1744,8 +1750,8 @@ export default function App() {
     }
   }, [me, teamsByUser]);
 
-  const myOutgoing = useMemo(() => (me ? interests.filter((x) => x.from_user_id === me.id) : []), [me, interests]);
-  const myIncoming = useMemo(() => (me ? interests.filter((x) => x.to_user_id   === me.id) : []), [me, interests]);
+  const myOutgoing = useMemo(() => (me ? interests.filter((x) => x.from_user_id === me.id && x.from_user_id !== x.to_user_id) : []), [me, interests]);
+  const myIncoming = useMemo(() => (me ? interests.filter((x) => x.to_user_id   === me.id && x.from_user_id !== x.to_user_id) : []), [me, interests]);
   const myRoster   = useMemo(() => (Array.isArray(myRow?.roster) ? myRow.roster : []), [myRow]);
   const myPicks    = useMemo(() => (Array.isArray(myRow?.picks)  ? myRow.picks  : []), [myRow]);
 
@@ -1945,11 +1951,8 @@ export default function App() {
 
   async function setInterest(toUserId, assetType, assetId, level) {
     if (!me) return;
+    if (String(toUserId) === String(me.id)) return;
     const key = `${me.id}::${toUserId}::${assetType}::${assetId}`;
-
-    // Toggle-off: si volvés a elegir el mismo nivel, se borra el interés
-    const existing = interests.find((x) => x.key === key);
-    if (existing?.level === level) level = "NONE";
     try {
       if (level === "NONE") {
         await fsDeleteInterest(key);
@@ -2023,7 +2026,9 @@ export default function App() {
                 <div style={{ display: "grid", gap: 10 }}>
                   <div className="row profileRow">
                     <input value={myDisplayName} onChange={(e) => setMyDisplayName(e.target.value)} placeholder="Tu nombre" />
-                    <input value={myTeamName}    onChange={(e) => setMyTeamName(e.target.value)}    placeholder="Nombre del equipo" />
+                    {tab === "team" ? (
+                      <input value={myTeamName}    onChange={(e) => setMyTeamName(e.target.value)}    placeholder="Nombre del equipo" />
+                    ) : null}
                     <FancySelect value={myTeamStatus} onChange={setMyTeamStatus} options={TEAM_STATUS_OPTIONS} />
                   </div>
                   <div className="row profileActions">
