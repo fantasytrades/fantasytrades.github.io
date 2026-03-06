@@ -1126,27 +1126,179 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
       button.warn:hover{ filter:brightness(0.98); }
 
       /* Chats layout */
-      .chatsWrap{ display:grid; grid-template-columns:320px 1fr; gap:16px; align-items:start; }
-      .chatList{ border:1px solid var(--border); background:#fff; border-radius:18px; padding:12px; }
-      .chatItem{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 12px; border-radius:14px; cursor:pointer; border:1px solid transparent; }
+      .chatsWrap{ display:grid; grid-template-columns:340px 1fr; gap:16px; align-items:start; }
+      .chatList{ border:1px solid var(--border); background:linear-gradient(180deg,#fff,#FBFDFF); border-radius:18px; padding:12px; }
+      .chatItem{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 12px; border-radius:16px; cursor:pointer; border:1px solid transparent; }
       .chatItem:hover{ background:#F6FAFF; }
       .chatItem.active{ background:#EEF6FF; border-color:#A7C7FF; }
+      .chatItemLeft{ display:flex; align-items:center; gap:10px; min-width:0; }
+      .chatItemRight{ display:flex; align-items:center; gap:8px; }
+      .chatTeamAvatar{
+        width:40px; height:40px; border-radius:14px;
+        display:flex; align-items:center; justify-content:center;
+        background:linear-gradient(180deg, rgba(47,125,246,0.16), rgba(47,125,246,0.06));
+        border:1px solid rgba(47,125,246,0.18);
+        color:#163B86; font-weight:1100;
+        flex:0 0 auto;
+      }
+      .chatDot{
+        min-width:22px; height:22px; padding:0 6px;
+        border-radius:999px; background:#2F7DF6; color:#fff;
+        display:flex; align-items:center; justify-content:center;
+        font-weight:1100; font-size:12px;
+      }
+
       .chatMain{ display:grid; gap:14px; }
 
       .tradeCard{ border:1px solid var(--border); background:#fff; border-radius:18px; padding:12px; display:grid; gap:10px; }
-      .tradeTop{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+      .tradeCardNice{ background:linear-gradient(180deg,#fff,#FBFDFF); }
+      .tradeTop{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
       .tradeSides{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
       .tradeSide{ border:1px solid var(--border); background:#fff; border-radius:14px; padding:10px; }
-      .assetChips{ display:flex; flex-wrap:wrap; gap:6px; }
-      .pickList{ border:1px solid var(--border); background:#fff; border-radius:14px; padding:8px; max-height:220px; overflow:auto; }
-      .pickRow{ display:flex; align-items:flex-start; gap:10px; padding:6px 6px; border-radius:10px; cursor:pointer; }
-      .pickRow:hover{ background:#F7FAFF; }
-      .pickRow input{ margin-top:3px; }
+      .chatTradeSide{ border:1px solid var(--border); background:#fff; border-radius:14px; padding:10px; }
+
+      .chatSideTop{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px; }
+      .chatSideTitle{ font-weight:1100; }
+      .chatSideCount{
+        min-width:28px; height:28px; padding:0 10px;
+        border-radius:999px;
+        background:rgba(47,125,246,0.10);
+        border:1px solid rgba(47,125,246,0.16);
+        color:#163B86; font-weight:1100; display:flex; align-items:center; justify-content:center;
+      }
+
+      .chatTabs{ display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+      .chatTab{
+        height:38px; padding:0 14px;
+        border-radius:999px;
+        border:1px solid var(--border);
+        background:#fff;
+        font-weight:1100;
+        color:var(--text);
+        cursor:pointer;
+      }
+      .chatTab:hover{ background:#F7FAFF; }
+      .chatTab.active{ background:#2F7DF6; border-color:#2F7DF6; color:#fff; }
+      .chatSearch{
+        height:38px; padding:0 12px;
+        border-radius:999px;
+        border:1px solid var(--border);
+        background:#fff;
+        min-width:160px;
+        max-width:240px;
+        outline:none;
+        font-weight:900;
+      }
+
+      .chatSelected{
+        border:1px dashed rgba(47,125,246,0.25);
+        background:rgba(47,125,246,0.04);
+        border-radius:14px;
+        padding:10px;
+        margin-bottom:10px;
+      }
+      .chatChipsWrap{ display:flex; flex-wrap:wrap; gap:8px; }
+      .chatAssetChip{
+        display:inline-flex; align-items:center; gap:8px;
+        padding:6px 10px;
+        border-radius:999px;
+        border:1px solid rgba(15,23,42,0.12);
+        background:#fff;
+        cursor:pointer;
+        font-weight:1000;
+      }
+      .chatAssetChip:hover{ background:#F7FAFF; border-color:rgba(47,125,246,0.35); }
+      .chatAssetName{ max-width:180px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+      .chatX{ opacity:0.6; margin-left:2px; font-size:16px; line-height:1; }
+
+      .chatPickList{
+        border:1px solid var(--border);
+        background:#fff;
+        border-radius:14px;
+        padding:8px;
+        max-height:260px;
+        overflow:auto;
+        display:grid;
+        gap:8px;
+      }
+      .chatPickRow{
+        width:100%;
+        border:1px solid var(--border);
+        background:#fff;
+        border-radius:14px;
+        padding:10px;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+        cursor:pointer;
+        text-align:left;
+      }
+      .chatPickRow:hover{ background:#F6FAFF; border-color:#CFE0FF; }
+      .chatPickRow.active{ background:#EEF6FF; border-color:#8FB7FF; }
+      .chatPickLeft{ display:flex; align-items:center; gap:10px; min-width:0; }
+      .chatPickText{ display:grid; gap:2px; min-width:0; }
+      .chatPickName{ font-weight:1100; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+      .chatPickSub{ display:flex; align-items:center; gap:8px; }
+      .chatCheck{
+        width:26px; height:26px; border-radius:999px;
+        display:flex; align-items:center; justify-content:center;
+        border:1px solid rgba(47,125,246,0.18);
+        background:rgba(47,125,246,0.10);
+        color:#163B86;
+        font-weight:1200;
+        flex:0 0 auto;
+      }
+      .chatPickRow.active .chatCheck{ background:#2F7DF6; border-color:#2F7DF6; color:#fff; }
+
+      .chatAv{
+        width:40px; height:40px;
+        border-radius:999px;
+        border:1px solid rgba(15,23,42,0.10);
+        background:#F1F5F9;
+        overflow:hidden;
+        display:flex; align-items:center; justify-content:center;
+        flex:0 0 auto;
+      }
+      .chatAv img{ width:100%; height:100%; object-fit:cover; display:block; }
+      .chatAvSm{
+        width:22px; height:22px;
+        border-radius:999px;
+        border:1px solid rgba(15,23,42,0.10);
+        background:#F1F5F9;
+        overflow:hidden;
+        display:flex; align-items:center; justify-content:center;
+        flex:0 0 auto;
+      }
+      .chatAvSm img{ width:100%; height:100%; object-fit:cover; display:block; }
+      .chatAvFallback{ font-weight:1100; color:#0F172A; font-size:11px; }
+      .chatPickIcon{
+        width:40px; height:40px;
+        border-radius:14px;
+        display:flex; align-items:center; justify-content:center;
+        background:rgba(2,132,199,0.08);
+        border:1px solid rgba(2,132,199,0.16);
+        color:#0F3A55;
+        font-weight:1100;
+        flex:0 0 auto;
+      }
+
+      .chatMiniChip{
+        display:inline-flex; align-items:center; gap:8px;
+        padding:6px 10px;
+        border-radius:999px;
+        border:1px solid rgba(15,23,42,0.10);
+        background:#fff;
+        font-weight:1000;
+      }
+      .chatMiniText{ max-width:180px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 
       @media (max-width: 980px){
         .chatsWrap{ grid-template-columns:1fr; }
         .tradeSides{ grid-template-columns:1fr; }
-        .pickList{ max-height:180px; }
+        .chatTabs{ flex-wrap:wrap; }
+        .chatSearch{ max-width:100%; width:100%; min-width:0; }
+        .chatPickList{ max-height:220px; }
       }
 `}</style>
   );
@@ -2379,13 +2531,17 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
   const [myGetPlayers, setMyGetPlayers] = useState([]);
   const [myGetPicks, setMyGetPicks] = useState([]);
 
+  const [giveTab, setGiveTab] = useState("players"); // players | picks
+  const [getTab, setGetTab] = useState("players");
+  const [giveQ, setGiveQ] = useState("");
+  const [getQ, setGetQ] = useState("");
+
   const [editingId, setEditingId] = useState(null);
   const [savingTrade, setSavingTrade] = useState(false);
   const [info, setInfo] = useState("");
 
   const otherTeams = useMemo(() => {
     const arr = (teams || []).filter((t) => t && t.user_id && t.user_id !== me?.id);
-    // Orden estable por display/team/user_id
     return arr.sort((a, b) => {
       const an = String(a.team_name || a.display_name || a.user_id).toLowerCase();
       const bn = String(b.team_name || b.display_name || b.user_id).toLowerCase();
@@ -2431,41 +2587,45 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
     return Number.isFinite(n) ? n : 999999;
   };
 
-  const sortRosterByAdp = (arr) => {
-    return (arr || []).slice().sort((a, b) => adpNum(a?.id) - adpNum(b?.id));
-  };
-
+  const sortRosterByAdp = (arr) => (arr || []).slice().sort((a, b) => adpNum(a?.id) - adpNum(b?.id));
   const sortedMyRoster = useMemo(() => sortRosterByAdp(myRoster), [myRoster, metaById]);
   const sortedOtherRoster = useMemo(() => sortRosterByAdp(otherRoster), [otherRoster, metaById]);
 
   const pickSortKey = (id) => {
     const base = String(id || "").split("#")[0];
-    // 2026-1.04, 2027-3, 2028-5, etc
     const m1 = base.match(/^(\d{4})-(\d)\.(\d{2})$/);
     if (m1) return `${m1[1]}-${m1[2].padStart(2, "0")}-${m1[3]}`;
     const m2 = base.match(/^(\d{4})-(\d)$/);
     if (m2) return `${m2[1]}-${m2[2].padStart(2, "0")}-99`;
     return base;
   };
+
   const sortedMyPicks = useMemo(() => (myPicks || []).slice().sort((a, b) => pickSortKey(a?.id).localeCompare(pickSortKey(b?.id))), [myPicks]);
   const sortedOtherPicks = useMemo(() => (otherPicks || []).slice().sort((a, b) => pickSortKey(a?.id).localeCompare(pickSortKey(b?.id))), [otherPicks]);
 
-  const playerLabel = (pid) => {
+  const playerMeta = (pid) => {
     const id = String(pid);
     const meta = metaById?.get(id);
     const fallback = (myRoster || []).concat(otherRoster || []).find((x) => String(x?.id) === id);
     const name = meta?.name || meta?.player_name || meta?.full_name || fallback?.name || `Jugador ${id}`;
     const pos = normPos(meta?.position || fallback?.pos || fallback?.position || "");
     const nfl = String(meta?.team || meta?.nfl || fallback?.nfl || "").toUpperCase();
-    return `${name}${pos ? ` (${pos}${nfl ? " " + nfl : ""})` : ""}`;
+    const img = pickImg(meta || fallback);
+    return { id, name, pos, nfl, img };
+  };
+
+  const playerLabel = (pid) => {
+    const m = playerMeta(pid);
+    return `${m.name}${m.pos ? ` (${m.pos}${m.nfl ? " " + m.nfl : ""})` : ""}`;
   };
 
   const pickLabel = (pid) => {
     const id = String(pid || "");
     const base = id.split("#")[0];
-    const label = (myPicks || []).concat(otherPicks || []).find((p) => String(p?.id) === id)?.label
-      || PICK_LABEL.get(base)
-      || base;
+    const label =
+      (myPicks || []).concat(otherPicks || []).find((p) => String(p?.id) === id)?.label ||
+      PICK_LABEL.get(base) ||
+      base;
     return label;
   };
 
@@ -2481,6 +2641,10 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
     setMyGetPicks([]);
     setEditingId(null);
     setInfo("");
+    setGiveTab("players");
+    setGetTab("players");
+    setGiveQ("");
+    setGetQ("");
   };
 
   const threadTrades = useMemo(() => {
@@ -2491,10 +2655,21 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
     });
   }, [trades, me?.id, selectedUserId]);
 
+  const pendingForTeam = (uid) => {
+    if (!me?.id || !uid) return 0;
+    const meId = String(me.id);
+    const otherId = String(uid);
+    return (trades || []).filter((t) => {
+      const parts = Array.isArray(t?.participants) ? t.participants : [];
+      const st = String(t?.status || "PENDING").toUpperCase();
+      return parts.includes(meId) && parts.includes(otherId) && st === "PENDING" && String(t?.to_user_id) === meId;
+    }).length;
+  };
+
   const draftValid = useMemo(() => {
-    const hasGive = (myGivePlayers.length + myGivePicks.length) > 0;
-    const hasGet = (myGetPlayers.length + myGetPicks.length) > 0;
-    return hasGive || hasGet; // permitimos "solo doy" o "solo pido"
+    const hasGive = myGivePlayers.length + myGivePicks.length > 0;
+    const hasGet = myGetPlayers.length + myGetPicks.length > 0;
+    return hasGive || hasGet;
   }, [myGivePlayers, myGivePicks, myGetPlayers, myGetPicks]);
 
   async function submitTrade() {
@@ -2520,7 +2695,6 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
         response: null,
       };
 
-      // Si estoy editando, mantenemos created_at y reseteamos respuesta
       if (editingId) {
         payload.response = null;
         payload.responded_at = null;
@@ -2547,6 +2721,8 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
     setMyGetPlayers((trade?.get?.players || []).map(String));
     setMyGetPicks((trade?.get?.picks || []).map(String));
     setInfo("Editando propuesta… (al guardar, vuelve a Pendiente)");
+    setGiveTab("players");
+    setGetTab("players");
   }
 
   async function cancelTrade(tradeId) {
@@ -2587,13 +2763,103 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
 
   const teamLabel = (row) => String(row?.team_name || row?.display_name || row?.user_id || "Equipo");
 
+  const renderAssetChip = (kind, id, onRemove) => {
+    if (kind === "pick") {
+      return (
+        <button key={`pick-${id}`} type="button" className="chatAssetChip" onClick={onRemove} title="Quitar">
+          <span className="chatPickIcon">P</span>
+          <span className="chatAssetName">{pickLabel(id)}</span>
+          <span className="chatX">×</span>
+        </button>
+      );
+    }
+    const m = playerMeta(id);
+    return (
+      <button key={`p-${id}`} type="button" className="chatAssetChip" onClick={onRemove} title="Quitar">
+        <span className="chatAvSm">
+          {m.img ? <img src={m.img} alt="" /> : <span className="chatAvFallback">{initials(m.name)}</span>}
+        </span>
+        <span className="chatAssetName">{m.name}</span>
+        {m.pos ? <span className={`posMini posMini-${m.pos}`}>{m.pos}</span> : null}
+        <span className="chatX">×</span>
+      </button>
+    );
+  };
+
+  const renderPlayerRow = (p, checked, onToggle) => {
+    const m = playerMeta(p?.id);
+    return (
+      <button
+        key={String(p.id)}
+        type="button"
+        className={`chatPickRow ${checked ? "active" : ""}`}
+        onClick={onToggle}
+      >
+        <div className="chatPickLeft">
+          <span className="chatAv">
+            {m.img ? <img src={m.img} alt="" /> : <span className="chatAvFallback">{initials(m.name)}</span>}
+          </span>
+          <div className="chatPickText">
+            <div className="chatPickName">{m.name}</div>
+            <div className="chatPickSub">
+              {m.pos ? <span className={`posMini posMini-${m.pos}`}>{m.pos}</span> : null}
+              <span className="muted">{m.nfl || "—"}</span>
+            </div>
+          </div>
+        </div>
+        <span className="chatCheck">{checked ? "✓" : ""}</span>
+      </button>
+    );
+  };
+
+  const renderPickRow = (p, checked, onToggle) => {
+    const label = pickLabel(p?.id);
+    const sub = String(p?.id || "").split("#")[0];
+    return (
+      <button
+        key={String(p.id)}
+        type="button"
+        className={`chatPickRow ${checked ? "active" : ""}`}
+        onClick={onToggle}
+      >
+        <div className="chatPickLeft">
+          <span className="chatPickIcon">{String(sub).slice(0, 4)}</span>
+          <div className="chatPickText">
+            <div className="chatPickName">{label}</div>
+            <div className="chatPickSub">
+              <span className="muted">{sub}</span>
+            </div>
+          </div>
+        </div>
+        <span className="chatCheck">{checked ? "✓" : ""}</span>
+      </button>
+    );
+  };
+
+  const filterList = (arr, q, kind) => {
+    const qq = String(q || "").trim().toLowerCase();
+    if (!qq) return arr;
+    if (kind === "players") {
+      return (arr || []).filter((p) => {
+        const m = playerMeta(p?.id);
+        return `${m.name} ${m.pos} ${m.nfl}`.toLowerCase().includes(qq);
+      });
+    }
+    return (arr || []).filter((p) => pickLabel(p?.id).toLowerCase().includes(qq) || String(p?.id || "").toLowerCase().includes(qq));
+  };
+
+  const givePlayersList = useMemo(() => filterList(sortedMyRoster, giveQ, "players"), [sortedMyRoster, giveQ, metaById]);
+  const givePicksList = useMemo(() => filterList(sortedMyPicks, giveQ, "picks"), [sortedMyPicks, giveQ, myPicks]);
+  const getPlayersList = useMemo(() => filterList(sortedOtherRoster, getQ, "players"), [sortedOtherRoster, getQ, metaById]);
+  const getPicksList = useMemo(() => filterList(sortedOtherPicks, getQ, "picks"), [sortedOtherPicks, getQ, otherPicks]);
+
   return (
     <div className="card" style={{ padding: 16 }}>
-      <div className="row" style={{ alignItems: "baseline" }}>
-        <div>
-          <div style={{ fontWeight: 1000, fontSize: 20 }}>Chats</div>
-          <div className="muted" style={{ marginTop: 4 }}>
-            Propuestas 1 a 1 (trade cards). El otro usuario responde con: <b>Me gusta</b> / <b>No me gusta</b> / <b>Puede ser</b>.
+      <div className="row" style={{ alignItems: "center" }}>
+        <div style={{ display: "grid", gap: 4 }}>
+          <div style={{ fontWeight: 1100, fontSize: 20 }}>Chats</div>
+          <div className="muted" style={{ fontSize: 13 }}>
+            Propuestas 1 a 1 en formato <b>trade card</b>. El otro usuario responde con: <b>Me gusta</b> / <b>No me gusta</b> / <b>Puede ser</b>.
           </div>
         </div>
         <div className="sp" />
@@ -2604,86 +2870,129 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
 
       <div className="chatsWrap" style={{ marginTop: 14 }}>
         <div className="chatList">
-          <div className="muted" style={{ fontWeight: 900, marginBottom: 10 }}>Conversaciones</div>
-          {otherTeams.map((t) => (
-            <div
-              key={t.user_id}
-              className={`chatItem ${selectedUserId === t.user_id ? "active" : ""}`}
-              onClick={() => { setSelectedUserId(t.user_id); clearDraft(); }}
-            >
-              <div style={{ display: "grid", gap: 2 }}>
-                <div style={{ fontWeight: 1000 }}>{teamLabel(t)}</div>
-                <div className="muted" style={{ fontSize: 12 }}>{t.display_name || t.user_id}</div>
+          <div className="row" style={{ alignItems: "baseline", marginBottom: 10 }}>
+            <div className="muted" style={{ fontWeight: 1000 }}>Conversaciones</div>
+            <div className="sp" />
+            <span className="muted" style={{ fontSize: 12 }}>{otherTeams.length}</span>
+          </div>
+
+          {otherTeams.map((t) => {
+            const pending = pendingForTeam(t.user_id);
+            return (
+              <div
+                key={t.user_id}
+                className={`chatItem ${selectedUserId === t.user_id ? "active" : ""}`}
+                onClick={() => { setSelectedUserId(t.user_id); clearDraft(); }}
+              >
+                <div className="chatItemLeft">
+                  <div className="chatTeamAvatar">{initials(teamLabel(t))}</div>
+                  <div style={{ display: "grid", gap: 2 }}>
+                    <div style={{ fontWeight: 1100 }}>{teamLabel(t)}</div>
+                    <div className="muted" style={{ fontSize: 12 }}>{t.display_name || t.user_id}</div>
+                  </div>
+                </div>
+
+                <div className="chatItemRight">
+                  <div className="chip" style={{ cursor: "default" }}>{normTeamStatus(t.team_status)}</div>
+                  {pending ? <div className="chatDot" title="Pendientes">{pending}</div> : null}
+                </div>
               </div>
-              <div className="chip" style={{ cursor: "default" }}>{normTeamStatus(t.team_status)}</div>
-            </div>
-          ))}
+            );
+          })}
           {!otherTeams.length ? (
             <div className="muted" style={{ marginTop: 8 }}>No hay otros equipos todavía.</div>
           ) : null}
         </div>
 
         <div className="chatMain">
-          <div className="card" style={{ padding: 14, borderRadius: 18 }}>
-            <div className="row" style={{ alignItems: "baseline" }}>
-              <div style={{ fontWeight: 1000 }}>Nueva propuesta</div>
+          <div className="card chatComposer" style={{ padding: 14, borderRadius: 18 }}>
+            <div className="row" style={{ alignItems: "center" }}>
+              <div style={{ display: "grid", gap: 2 }}>
+                <div style={{ fontWeight: 1100 }}>Nueva propuesta</div>
+                <div className="muted" style={{ fontSize: 12 }}>
+                  Para: <b>{teamLabel(otherRow)}</b>
+                </div>
+              </div>
               <div className="sp" />
               {editingId ? <span className="chip warn">Editando</span> : <span className="chip">Nueva</span>}
             </div>
-            <div className="muted" style={{ marginTop: 6, fontSize: 13 }}>
-              Elegí qué <b>das</b> vos y qué <b>recibís</b> del otro equipo.
-            </div>
 
             <div className="tradeSides" style={{ marginTop: 12 }}>
-              <div className="tradeSide">
-                <div style={{ fontWeight: 900, marginBottom: 8 }}>Vos das</div>
-                <div className="muted" style={{ fontSize: 12, marginBottom: 6 }}>Jugadores</div>
-                <div className="pickList">
-                  {sortedMyRoster.map((p) => (
-                    <label key={String(p.id)} className="pickRow">
-                      <input type="checkbox" checked={myGivePlayers.includes(String(p.id))} onChange={() => setMyGivePlayers((a) => toggle(a, p.id))} />
-                      <span>{playerLabel(p.id)}</span>
-                    </label>
-                  ))}
+              {/* GIVE */}
+              <div className="tradeSide chatSide">
+                <div className="chatSideTop">
+                  <div className="chatSideTitle">Vos das</div>
+                  <div className="chatSideCount">{myGivePlayers.length + myGivePicks.length}</div>
                 </div>
-                <div className="muted" style={{ fontSize: 12, margin: "10px 0 6px" }}>Picks</div>
-                <div className="pickList">
-                  {sortedMyPicks.map((p) => (
-                    <label key={String(p.id)} className="pickRow">
-                      <input type="checkbox" checked={myGivePicks.includes(String(p.id))} onChange={() => setMyGivePicks((a) => toggle(a, p.id))} />
-                      <span>{pickLabel(p.id)}</span>
-                    </label>
-                  ))}
-                  {!sortedMyPicks.length ? <div className="muted">Sin picks</div> : null}
+
+                <div className="chatTabs">
+                  <button type="button" className={`chatTab ${giveTab === "players" ? "active" : ""}`} onClick={() => setGiveTab("players")}>Jugadores</button>
+                  <button type="button" className={`chatTab ${giveTab === "picks" ? "active" : ""}`} onClick={() => setGiveTab("picks")}>Picks</button>
+                  <div className="sp" />
+                  <input className="chatSearch" value={giveQ} onChange={(e) => setGiveQ(e.target.value)} placeholder={`Buscar ${giveTab === "players" ? "jugador" : "pick"}...`} />
+                </div>
+
+                <div className="chatSelected">
+                  {(myGivePlayers.length || myGivePicks.length) ? (
+                    <div className="chatChipsWrap">
+                      {myGivePlayers.map((id) => renderAssetChip("player", id, () => setMyGivePlayers((a) => toggle(a, id)))}
+                      {myGivePicks.map((id) => renderAssetChip("pick", id, () => setMyGivePicks((a) => toggle(a, id)))}
+                    </div>
+                  ) : (
+                    <div className="muted" style={{ fontSize: 12 }}>Seleccioná assets desde la lista de abajo.</div>
+                  )}
+                </div>
+
+                <div className="chatPickList">
+                  {giveTab === "players" ? (
+                    givePlayersList.map((p) => renderPlayerRow(p, myGivePlayers.includes(String(p.id)), () => setMyGivePlayers((a) => toggle(a, p.id))))
+                  ) : (
+                    givePicksList.map((p) => renderPickRow(p, myGivePicks.includes(String(p.id)), () => setMyGivePicks((a) => toggle(a, p.id))))
+                  )}
+                  {giveTab === "players" && !givePlayersList.length ? <div className="muted">Sin jugadores</div> : null}
+                  {giveTab === "picks" && !givePicksList.length ? <div className="muted">Sin picks</div> : null}
                 </div>
               </div>
 
-              <div className="tradeSide">
-                <div style={{ fontWeight: 900, marginBottom: 8 }}>Vos recibís</div>
-                <div className="muted" style={{ fontSize: 12, marginBottom: 6 }}>Jugadores</div>
-                <div className="pickList">
-                  {sortedOtherRoster.map((p) => (
-                    <label key={String(p.id)} className="pickRow">
-                      <input type="checkbox" checked={myGetPlayers.includes(String(p.id))} onChange={() => setMyGetPlayers((a) => toggle(a, p.id))} />
-                      <span>{playerLabel(p.id)}</span>
-                    </label>
-                  ))}
+              {/* GET */}
+              <div className="tradeSide chatSide">
+                <div className="chatSideTop">
+                  <div className="chatSideTitle">Vos recibís</div>
+                  <div className="chatSideCount">{myGetPlayers.length + myGetPicks.length}</div>
                 </div>
-                <div className="muted" style={{ fontSize: 12, margin: "10px 0 6px" }}>Picks</div>
-                <div className="pickList">
-                  {sortedOtherPicks.map((p) => (
-                    <label key={String(p.id)} className="pickRow">
-                      <input type="checkbox" checked={myGetPicks.includes(String(p.id))} onChange={() => setMyGetPicks((a) => toggle(a, p.id))} />
-                      <span>{pickLabel(p.id)}</span>
-                    </label>
-                  ))}
-                  {!sortedOtherPicks.length ? <div className="muted">Sin picks</div> : null}
+
+                <div className="chatTabs">
+                  <button type="button" className={`chatTab ${getTab === "players" ? "active" : ""}`} onClick={() => setGetTab("players")}>Jugadores</button>
+                  <button type="button" className={`chatTab ${getTab === "picks" ? "active" : ""}`} onClick={() => setGetTab("picks")}>Picks</button>
+                  <div className="sp" />
+                  <input className="chatSearch" value={getQ} onChange={(e) => setGetQ(e.target.value)} placeholder={`Buscar ${getTab === "players" ? "jugador" : "pick"}...`} />
+                </div>
+
+                <div className="chatSelected">
+                  {(myGetPlayers.length || myGetPicks.length) ? (
+                    <div className="chatChipsWrap">
+                      {myGetPlayers.map((id) => renderAssetChip("player", id, () => setMyGetPlayers((a) => toggle(a, id)))}
+                      {myGetPicks.map((id) => renderAssetChip("pick", id, () => setMyGetPicks((a) => toggle(a, id)))}
+                    </div>
+                  ) : (
+                    <div className="muted" style={{ fontSize: 12 }}>Seleccioná assets desde la lista de abajo.</div>
+                  )}
+                </div>
+
+                <div className="chatPickList">
+                  {getTab === "players" ? (
+                    getPlayersList.map((p) => renderPlayerRow(p, myGetPlayers.includes(String(p.id)), () => setMyGetPlayers((a) => toggle(a, p.id))))
+                  ) : (
+                    getPicksList.map((p) => renderPickRow(p, myGetPicks.includes(String(p.id)), () => setMyGetPicks((a) => toggle(a, p.id))))
+                  )}
+                  {getTab === "players" && !getPlayersList.length ? <div className="muted">Sin jugadores</div> : null}
+                  {getTab === "picks" && !getPicksList.length ? <div className="muted">Sin picks</div> : null}
                 </div>
               </div>
             </div>
 
-            <div className="row" style={{ marginTop: 12 }}>
-              {info ? <div className="muted" style={{ fontWeight: 900 }}>{info}</div> : null}
+            <div className="row" style={{ marginTop: 12, alignItems: "center" }}>
+              {info ? <div className="muted" style={{ fontWeight: 1000 }}>{info}</div> : <div className="muted" style={{ fontSize: 12 }}>Tip: tocá un asset seleccionado para quitarlo.</div>}
               <div className="sp" />
               {editingId ? (
                 <button className="ghost" onClick={clearDraft}>Cancelar edición</button>
@@ -2698,12 +3007,12 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
 
           <div className="card" style={{ padding: 14, borderRadius: 18 }}>
             <div className="row" style={{ alignItems: "baseline" }}>
-              <div style={{ fontWeight: 1000 }}>Propuestas</div>
+              <div style={{ fontWeight: 1100 }}>Propuestas</div>
               <div className="sp" />
               <span className="muted" style={{ fontSize: 13 }}>{threadTrades.length} total</span>
             </div>
 
-            <div style={{ display: "grid", gap: 10, marginTop: 12 }}>
+            <div style={{ display: "grid", gap: 12, marginTop: 12 }}>
               {threadTrades.map((t) => {
                 const isSender = String(t.from_user_id) === String(me.id);
                 const isReceiver = String(t.to_user_id) === String(me.id);
@@ -2715,61 +3024,89 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
                 const getPicks = (t?.get?.picks || []).map(String);
 
                 return (
-                  <div key={t.id} className="tradeCard">
+                  <div key={t.id} className="tradeCard tradeCardNice">
                     <div className="tradeTop">
-                      <div style={{ display: "grid", gap: 2 }}>
-                        <div style={{ fontWeight: 1000 }}>
+                      <div style={{ display: "grid", gap: 3 }}>
+                        <div style={{ fontWeight: 1100 }}>
                           {isSender ? "Vos propusiste" : "Te propusieron"} · <span className="muted">{new Date(t.created_at || t.updated_at || Date.now()).toLocaleString()}</span>
                         </div>
                         <div className="muted" style={{ fontSize: 12 }}>
                           {isSender ? `Para: ${teamLabel(otherRow)}` : `De: ${teamLabel(otherRow)}`}
                         </div>
                       </div>
-                      <div>{statusBadge(t)}</div>
+
+                      <div className="row" style={{ gap: 8, alignItems: "center" }}>
+                        {statusBadge(t)}
+                        {isSender && st !== "CANCELLED" ? (
+                          <>
+                            <button className="ghost miniBtn" onClick={() => loadForEdit(t)}>Editar</button>
+                            <button className="danger miniBtn" onClick={() => cancelTrade(t.id)}>Cancelar</button>
+                          </>
+                        ) : null}
+                      </div>
                     </div>
 
                     <div className="tradeSides">
-                      <div>
-                        <div className="muted" style={{ fontWeight: 900, marginBottom: 6 }}>{isSender ? "Vos das" : "Te dan"}</div>
-                        <div className="assetChips">
-                          {givePlayers.map((id) => <span key={`gp-${t.id}-${id}`} className="chip">{playerLabel(id)}</span>)}
-                          {givePicks.map((id) => <span key={`gk-${t.id}-${id}`} className="chip">{pickLabel(id)}</span>)}
+                      <div className="chatTradeSide">
+                        <div className="muted" style={{ fontWeight: 1000, marginBottom: 8 }}>{isSender ? "Vos das" : "Te dan"}</div>
+                        <div className="chatChipsWrap">
+                          {givePlayers.map((id) => (
+                            <span key={`gp-${t.id}-${id}`} className="chatMiniChip">
+                              <span className="chatAvSm">
+                                {playerMeta(id).img ? <img src={playerMeta(id).img} alt="" /> : <span className="chatAvFallback">{initials(playerMeta(id).name)}</span>}
+                              </span>
+                              <span className="chatMiniText">{playerMeta(id).name}</span>
+                              {playerMeta(id).pos ? <span className={`posMini posMini-${playerMeta(id).pos}`}>{playerMeta(id).pos}</span> : null}
+                            </span>
+                          ))}
+                          {givePicks.map((id) => (
+                            <span key={`gk-${t.id}-${id}`} className="chatMiniChip">
+                              <span className="chatPickIcon">P</span>
+                              <span className="chatMiniText">{pickLabel(id)}</span>
+                            </span>
+                          ))}
                           {(!givePlayers.length && !givePicks.length) ? <span className="muted">—</span> : null}
                         </div>
                       </div>
-                      <div>
-                        <div className="muted" style={{ fontWeight: 900, marginBottom: 6 }}>{isSender ? "Vos recibís" : "Te piden"}</div>
-                        <div className="assetChips">
-                          {getPlayers.map((id) => <span key={`rp-${t.id}-${id}`} className="chip">{playerLabel(id)}</span>)}
-                          {getPicks.map((id) => <span key={`rk-${t.id}-${id}`} className="chip">{pickLabel(id)}</span>)}
+
+                      <div className="chatTradeSide">
+                        <div className="muted" style={{ fontWeight: 1000, marginBottom: 8 }}>{isSender ? "Vos recibís" : "Te piden"}</div>
+                        <div className="chatChipsWrap">
+                          {getPlayers.map((id) => (
+                            <span key={`rp-${t.id}-${id}`} className="chatMiniChip">
+                              <span className="chatAvSm">
+                                {playerMeta(id).img ? <img src={playerMeta(id).img} alt="" /> : <span className="chatAvFallback">{initials(playerMeta(id).name)}</span>}
+                              </span>
+                              <span className="chatMiniText">{playerMeta(id).name}</span>
+                              {playerMeta(id).pos ? <span className={`posMini posMini-${playerMeta(id).pos}`}>{playerMeta(id).pos}</span> : null}
+                            </span>
+                          ))}
+                          {getPicks.map((id) => (
+                            <span key={`rk-${t.id}-${id}`} className="chatMiniChip">
+                              <span className="chatPickIcon">P</span>
+                              <span className="chatMiniText">{pickLabel(id)}</span>
+                            </span>
+                          ))}
                           {(!getPlayers.length && !getPicks.length) ? <span className="muted">—</span> : null}
                         </div>
                       </div>
                     </div>
 
-                    <div className="row">
+                    {isReceiver && st === "PENDING" ? (
+                      <div className="row" style={{ justifyContent: "flex-end", gap: 10 }}>
+                        <button className="ok" onClick={() => respondTrade(t.id, "LIKE")}>Me gusta</button>
+                        <button className="warn" onClick={() => respondTrade(t.id, "MAYBE")}>Puede ser</button>
+                        <button className="danger" onClick={() => respondTrade(t.id, "NOPE")}>No me gusta</button>
+                      </div>
+                    ) : (
                       <div className="muted" style={{ fontSize: 12 }}>
                         Estado: <b>{st === "PENDING" ? "Pendiente" : st === "RESPONDED" ? "Respondido" : "Cancelado"}</b>
                       </div>
-                      <div className="sp" />
-                      {isSender && st !== "CANCELLED" ? (
-                        <>
-                          <button className="ghost" disabled={st === "CANCELLED"} onClick={() => loadForEdit(t)}>Editar</button>
-                          <button className="danger" onClick={() => cancelTrade(t.id)}>Cancelar</button>
-                        </>
-                      ) : null}
-
-                      {isReceiver && st === "PENDING" ? (
-                        <div className="row" style={{ gap: 8 }}>
-                          <button className="ok" onClick={() => respondTrade(t.id, "LIKE")}>Me gusta</button>
-                          <button className="warn" onClick={() => respondTrade(t.id, "MAYBE")}>Puede ser</button>
-                          <button className="danger" onClick={() => respondTrade(t.id, "NOPE")}>No me gusta</button>
-                        </div>
-                      ) : null}
-                    </div>
+                    )}
                   </div>
                 );
               })}
+
               {!threadTrades.length ? <div className="muted">Todavía no hay propuestas con este equipo.</div> : null}
             </div>
           </div>
@@ -2778,6 +3115,7 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
     </div>
   );
 }
+
 
 
 export default function App() {
