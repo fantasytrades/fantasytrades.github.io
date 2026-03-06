@@ -2014,7 +2014,8 @@ export default function App() {
           </div>
         ) : (
           <>
-            <div className="card profileCard">
+                        {tab === "interests" ? null : (
+<div className="card profileCard">
               <div className="grid2">
                 <div>
                   <div style={{ fontWeight: 1000, fontSize: 18 }}>{myDisplayName || me.email}</div>
@@ -2048,7 +2049,10 @@ export default function App() {
               </div>
             </div>
 
-            {tab === "home" || tab === "interests" ? (
+            
+            )}
+
+{tab === "home" || tab === "interests" ? (
               <InterestsView teamsByUser={teamsByUser} myOutgoing={myOutgoing} myIncoming={myIncoming} metaById={metaById} />
             ) : tab === "league" ? (
               <LeagueView me={me} teams={teams} interests={interests} onSetInterest={setInterest} metaById={metaById} />
