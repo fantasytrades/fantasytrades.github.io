@@ -680,6 +680,75 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
       }
       .dockbtn.active{ background:var(--sky); border-color:#CFE3FF; }
 
+
+      /* === League (match mock) === */
+      .teamList{ display:grid; gap:10px; }
+      .teamRow{
+        padding:12px 14px;
+        border-radius:16px;
+        border:1px solid var(--border);
+        background:#fff;
+        cursor:pointer;
+      }
+      .teamRow.active{ border-color:rgba(47,125,246,0.65); }
+      .teamRowTop{ display:flex; gap:10px; align-items:flex-start; }
+      .teamName{ font-weight:1100; }
+      .teamOwner{ font-weight:900; color:var(--muted); margin-top:2px; }
+      .teamMeta{ margin-top:6px; font-weight:900; color:var(--muted); font-size:12px; }
+      .teamBadge{
+        margin-left:auto;
+        padding:6px 10px;
+        border-radius:999px;
+        border:1px solid #CFE3FF;
+        background:var(--sky);
+        color:var(--blue);
+        font-weight:1100;
+        font-size:12px;
+        white-space:nowrap;
+      }
+      .teamStatusPill{
+        padding:6px 10px;
+        border-radius:999px;
+        border:1px solid #CFE3FF;
+        background:var(--sky);
+        color:var(--blue);
+        font-weight:1100;
+        font-size:12px;
+        white-space:nowrap;
+      }
+      .leagueAssetRow{ align-items:center; }
+      .leagueAssetRight{
+        display:flex;
+        align-items:center;
+        justify-content:flex-end;
+        gap:10px;
+        flex-wrap:wrap;
+      }
+      .interestPills{ display:flex; gap:8px; }
+      .interestBtn{
+        padding:8px 12px;
+        border-radius:999px;
+        border:1px solid var(--border);
+        background:var(--sky);
+        color:#1E293B;
+        box-shadow:none;
+        font-weight:1100;
+      }
+      .interestBtn.active{
+        background:var(--blue);
+        border-color:rgba(47,125,246,0.35);
+        color:#fff;
+      }
+      .valueChip{
+        padding:8px 12px;
+        border-radius:999px;
+        border:1px solid #CFE3FF;
+        background:var(--sky);
+        color:var(--blue);
+        font-weight:1100;
+        font-size:12px;
+        white-space:nowrap;
+      }
       /* === Modal (Asset value editor) === */
       .modalOverlay{
         position:fixed; inset:0;
@@ -1251,103 +1320,212 @@ function ValueModal({
 
 // ---- LeagueView ----
 function LeagueView({ me, teams, interests, onSetInterest, metaById }) {
+  const LEAGUE_NAME = "The Royal Dynasty";
+
   const [selectedId, setSelectedId] = useState("");
-  const others = useMemo(() => teams.filter((t) => t.user_id !== me.id), [teams, me]);
+
+  const teamsSorted = useMemo(() => {
+    const mine = teams.filter((t) => t.user_id === me.id);
+    const others = teams.filter((t) => t.user_id !== me.id);
+    // stable-ish sort: by team_name then display_name
+    others.sort((a, b) => {
+      const an = String(a.team_name || "").toLowerCase();
+      const bn = String(b.team_name || "").toLowerCase();
+      if (an !== bn) return an.localeCompare(bn);
+      return String(a.display_name || "").toLowerCase().localeCompare(String(b.display_name || "").toLowerCase());
+    });
+    return [...mine, ...others];
+  }, [teams, me.id]);
 
   useEffect(() => {
-    if (!selectedId && others.length) setSelectedId(others[0].user_id);
-  }, [others, selectedId]);
+    if (selectedId) return;
+    const firstOther = teamsSorted.find((t) => t.user_id !== me.id);
+    setSelectedId(firstOther ? firstOther.user_id : me.id);
+  }, [teamsSorted, selectedId, me.id]);
 
-  const selected       = useMemo(() => others.find((t) => t.user_id === selectedId), [others, selectedId]);
+  const selected = useMemo(
+    () => teamsSorted.find((t) => t.user_id === selectedId) || teamsSorted.find((t) => t.user_id === me.id) || null,
+    [teamsSorted, selectedId, me.id]
+  );
+
   const selectedRoster = selected?.roster || [];
-  const selectedPicks  = selected?.picks  || [];
+  const selectedPicks = selected?.picks || [];
+
+  const countByPos = (roster) => {
+    const c = { QB: 0, RB: 0, WR: 0, TE: 0 };
+    (roster || []).forEach((r) => {
+      const p = normPos(r?.pos || r?.position || "");
+      if (c[p] != null) c[p] += 1;
+    });
+    return c;
+  };
+
+  const getAdp = (id) => {
+    const m = metaById?.get(String(id));
+    const n = Number(m?.adp ?? m?.adp_value ?? m?.adp_rank ?? m?.adp_formatted);
+    return Number.isFinite(n) && n > 0 ? n : 9e9;
+  };
+
+  const rosterView = useMemo(() => {
+    const order = { QB: 0, RB: 1, WR: 2, TE: 3 };
+    return (selectedRoster || [])
+      .filter((r) => ALLOWED_POSITIONS.has(String(r?.pos || r?.position || "").toUpperCase()))
+      .slice()
+      .sort((a, b) => {
+        const pa = normPos(a.pos);
+        const pb = normPos(b.pos);
+        const oa = order[pa] ?? 9;
+        const ob = order[pb] ?? 9;
+        if (oa !== ob) return oa - ob;
+        return getAdp(a.id) - getAdp(b.id);
+      });
+  }, [selectedRoster, metaById]);
+
+  const picksView = useMemo(() => {
+    // keep as-is but stable sort by base/id
+    return (selectedPicks || []).slice().sort((a, b) => String(a.base || a.id).localeCompare(String(b.base || b.id)));
+  }, [selectedPicks]);
+
+  const InterestButtons = ({ toUserId, assetType, assetId }) => {
+    const key = `${me.id}::${toUserId}::${assetType}::${assetId}`;
+    const cur = interests.find((x) => x.key === key)?.level || "NONE";
+    return (
+      <div className="interestPills">
+        {["LOW", "MEDIUM", "HIGH"].map((lvl) => (
+          <button
+            key={lvl}
+            className={"interestBtn" + (cur === lvl ? " active" : "")}
+            onClick={() => onSetInterest(toUserId, assetType, assetId, lvl)}
+            title={INTEREST_LABEL[lvl]}
+          >
+            {INTEREST_LABEL[lvl]}
+          </button>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <div style={{ marginTop: 12 }}>
-      <div className="card profileCard">
-        <div className="row">
-          <h2 style={{ margin: 0 }}>Liga</h2>
-          <div className="sp" />
-          <select value={selectedId} onChange={(e) => setSelectedId(e.target.value)} style={{ maxWidth: 420 }}>
-            {others.map((t) => (
-              <option key={t.user_id} value={t.user_id}>
-                {(t.display_name || t.user_id).slice(0, 30)} {t.team_name ? `— ${t.team_name}` : ""}
-              </option>
-            ))}
-          </select>
-        </div>
+      <div className="card profileCard" style={{ padding: 14 }}>
+        <div style={{ fontWeight: 1100, fontSize: 18 }}>{LEAGUE_NAME}</div>
       </div>
 
-      {!selected ? (
-        <div className="muted" style={{ marginTop: 12 }}>No hay equipo seleccionado.</div>
-      ) : (
-        <div className="grid2" style={{ marginTop: 12 }}>
+      <div className="grid2" style={{ marginTop: 12 }}>
+        {/* Left: teams list */}
+        <div className="card profileCard">
+          <div style={{ fontWeight: 1100, marginBottom: 10 }}>Equipos</div>
+          <div className="teamList">
+            {teamsSorted.map((t) => {
+              const counts = countByPos(t.roster || []);
+              const active = t.user_id === selectedId;
+              const badge = t.user_id === me.id ? "Vos" : active ? "Manager" : "";
+              return (
+                <div
+                  key={t.user_id}
+                  className={"teamRow" + (active ? " active" : "")}
+                  onClick={() => setSelectedId(t.user_id)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") setSelectedId(t.user_id);
+                  }}
+                >
+                  <div className="teamRowTop">
+                    <div style={{ minWidth: 0 }}>
+                      <div className="teamName">{t.team_name || "Sin nombre"}</div>
+                      <div className="teamOwner">{t.display_name || t.user_id}</div>
+                    </div>
+                    {badge ? <span className="teamBadge">{badge}</span> : null}
+                  </div>
+                  <div className="teamMeta">
+                    {normTeamStatus(t.team_status)} · QB: {counts.QB} RB: {counts.RB} WR: {counts.WR} TE: {counts.TE}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Right: selected team details */}
+        {!selected ? (
           <div className="card">
-            <div style={{ fontWeight: 1000, fontSize: 18 }}>
-              {selected.display_name} {selected.team_name ? `— ${selected.team_name}` : ""}
+            <div className="muted">No hay equipo seleccionado.</div>
+          </div>
+        ) : (
+          <div className="card">
+            <div className="row" style={{ alignItems: "baseline" }}>
+              <div style={{ minWidth: 0 }}>
+                <div style={{ fontWeight: 1100, fontSize: 18 }} className="name">
+                  {selected.team_name || "Sin nombre"}
+                </div>
+                <div className="muted" style={{ fontWeight: 900 }}>
+                  {selected.display_name || selected.user_id}
+                </div>
+              </div>
+              <div className="sp" />
+              <span className="teamStatusPill">{normTeamStatus(selected.team_status)}</span>
             </div>
-            <div className="muted" style={{ fontWeight: 900, marginTop: 4 }}>{selected.team_status || "—"}</div>
-            <h3 style={{ marginTop: 14 }}>Jugadores</h3>
-            <div className="muted sub">Marcá tu interés: Bajo / Medio / Alto</div>
+
+            <div style={{ marginTop: 14, fontWeight: 1100 }}>Roster</div>
+
             <div className="list" style={{ marginTop: 12 }}>
-              {selectedRoster.length === 0 ? <div className="muted">Sin roster cargado.</div> : null}
-              {selectedRoster.map((r) => {
-                const key = `${me.id}::${selected.user_id}::PLAYER::${r.id}`;
-                const cur = interests.find((x) => x.key === key)?.level || "NONE";
+              {rosterView.length === 0 ? <div className="muted">Sin roster cargado.</div> : null}
+
+              {rosterView.map((r) => {
+                const stKey = normStatusKey(r.status);
                 const meta = metaById?.get(String(r.id));
                 const img = pickImg(meta) || pickImg(r);
-                const stKey = normStatusKey(r.status);
+                const pos = normPos(r.pos);
+                const valueText = String(r.value || "").trim();
+
                 return (
-                  <div key={r.id} className="item">
+                  <div key={r.id} className="item itemTight leagueAssetRow">
                     <div className="left">
                       <div className="av">{img ? <img src={img} alt={r.name} /> : initials(r.name)}</div>
                       <div style={{ minWidth: 0 }}>
                         <div className="name">{r.name}</div>
                         <div className="muted sub">
-                          {normPos(r.pos)} · {r.nfl || "-"} · <span className={`pill pill-${stKey}`}>{STATUS_LABEL[stKey]}</span>
+                          <span className={`posMini posMini-${pos}`}>{pos}</span>
+                          {r.nfl || meta?.team || "-"}
                         </div>
                       </div>
                     </div>
-                    <select value={cur} onChange={(e) => onSetInterest(selected.user_id, "PLAYER", r.id, e.target.value)} style={{ maxWidth: 160 }}>
-                      <option value="NONE">—</option>
-                      <option value="LOW">Bajo</option>
-                      <option value="MEDIUM">Medio</option>
-                      <option value="HIGH">Alto</option>
-                    </select>
+
+                    <div className="leagueAssetRight">
+                      <span className={`pill pill-${stKey}`}>{STATUS_LABEL[stKey]}</span>
+                      {valueText ? <span className="valueChip">{valueText}</span> : null}
+                      <InterestButtons toUserId={selected.user_id} assetType="PLAYER" assetId={r.id} />
+                    </div>
                   </div>
                 );
               })}
             </div>
-          </div>
 
-          <div className="card">
-            <h3 style={{ marginTop: 0 }}>Picks</h3>
+            <div style={{ marginTop: 18, fontWeight: 1100 }}>Picks</div>
+
             <div className="list" style={{ marginTop: 12 }}>
-              {selectedPicks.length === 0 ? <div className="muted">Sin picks cargados.</div> : null}
-              {selectedPicks.map((p) => {
-                const key = `${me.id}::${selected.user_id}::PICK::${p.id}`;
-                const cur = interests.find((x) => x.key === key)?.level || "NONE";
+              {picksView.length === 0 ? <div className="muted">Sin picks cargados.</div> : null}
+              {picksView.map((p) => {
+                const stKey = normStatusKey(p.status);
                 return (
-                  <div key={p.id} className="item">
+                  <div key={p.id} className="item itemTight leagueAssetRow">
                     <div style={{ minWidth: 0 }}>
                       <div className="name">{p.label || p.id}</div>
-                      <div className="muted sub">
-                        {p.id} · <span className={`pill pill-${p.status || "AVAILABLE"}`}>{STATUS_LABEL[p.status] || p.status}</span>
-                      </div>
+                      <div className="muted sub">{p.id}</div>
                     </div>
-                    <select value={cur} onChange={(e) => onSetInterest(selected.user_id, "PICK", p.id, e.target.value)} style={{ maxWidth: 160 }}>
-                      <option value="NONE">—</option>
-                      <option value="LOW">Bajo</option>
-                      <option value="MEDIUM">Medio</option>
-                      <option value="HIGH">Alto</option>
-                    </select>
+
+                    <div className="leagueAssetRight">
+                      <span className={`pill pill-${stKey}`}>{STATUS_LABEL[stKey]}</span>
+                      <InterestButtons toUserId={selected.user_id} assetType="PICK" assetId={p.id} />
+                    </div>
                   </div>
                 );
               })}
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
