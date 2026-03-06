@@ -196,35 +196,178 @@ async function fsDeleteInterest(key) {
 }
 
 // ---- Trades (one-to-one proposals) ----
+function normTradeAssetList(arr) {
+  return Array.isArray(arr) ? arr.map((x) => String(x)).filter(Boolean) : [];
+}
+
+function normalizeTradeVersion(v, fallback = {}) {
+  return {
+    version_no: Number(v?.version_no || fallback?.version_no || 1),
+    kind: String(v?.kind || fallback?.kind || "PROPOSAL").toUpperCase(),
+    is_counteroffer: Boolean(v?.is_counteroffer ?? fallback?.is_counteroffer ?? false),
+    from_user_id: String(v?.from_user_id || fallback?.from_user_id || ""),
+    to_user_id: String(v?.to_user_id || fallback?.to_user_id || ""),
+    give: {
+      players: normTradeAssetList(v?.give?.players || fallback?.give?.players),
+      picks: normTradeAssetList(v?.give?.picks || fallback?.give?.picks),
+    },
+    get: {
+      players: normTradeAssetList(v?.get?.players || fallback?.get?.players),
+      picks: normTradeAssetList(v?.get?.picks || fallback?.get?.picks),
+    },
+    sent_at: v?.sent_at || fallback?.sent_at || nowIso(),
+    status: String(v?.status || fallback?.status || "PENDING").toUpperCase(),
+    response: v?.response ?? fallback?.response ?? null,
+  };
+}
+
+function normalizeTradeStatus(rawStatus, rawResponse) {
+  const st = String(rawStatus || "PENDING").toUpperCase();
+  const resp = String(rawResponse || "").toUpperCase();
+
+  if (st === "RESPONDED") {
+    if (resp === "LIKE") return "ACCEPTED";
+    if (resp === "NOPE") return "ROBBERY";
+    if (resp === "MAYBE") return "RESPONDED";
+  }
+  return st;
+}
+
+function normalizeTradeRow(row) {
+  const status = normalizeTradeStatus(row?.status, row?.response);
+  const base = {
+    id: row?.id ? String(row.id) : undefined,
+    participants: Array.isArray(row?.participants) ? row.participants.map((x) => String(x)).filter(Boolean) : [],
+    from_user_id: String(row?.from_user_id || ""),
+    to_user_id: String(row?.to_user_id || ""),
+    give: {
+      players: normTradeAssetList(row?.give?.players),
+      picks: normTradeAssetList(row?.give?.picks),
+    },
+    get: {
+      players: normTradeAssetList(row?.get?.players),
+      picks: normTradeAssetList(row?.get?.picks),
+    },
+    status,
+    response: row?.response ?? null,
+    created_at: row?.created_at || nowIso(),
+    updated_at: row?.updated_at || row?.created_at || nowIso(),
+    current_sent_at: row?.current_sent_at || row?.updated_at || row?.created_at || nowIso(),
+    current_version: Math.max(1, Number(row?.current_version || 1)),
+    is_counteroffer: Boolean(row?.is_counteroffer),
+    history: Array.isArray(row?.history) ? row.history.map((v) => normalizeTradeVersion(v)) : [],
+    hidden_for: Array.isArray(row?.hidden_for) ? row.hidden_for.map((x) => String(x)).filter(Boolean) : [],
+    accepted_at: row?.accepted_at || null,
+    robbery_at: row?.robbery_at || null,
+    responded_at: row?.responded_at || null,
+    cancelled_at: row?.cancelled_at || null,
+  };
+
+  if (!base.participants.length) {
+    base.participants = [base.from_user_id, base.to_user_id].filter(Boolean).sort();
+  }
+
+  return base;
+}
+
+function tradeVersionFromTrade(trade) {
+  const t = normalizeTradeRow(trade);
+  return normalizeTradeVersion({
+    version_no: t.current_version || 1,
+    kind: t.is_counteroffer ? "COUNTEROFFER" : "PROPOSAL",
+    is_counteroffer: t.is_counteroffer,
+    from_user_id: t.from_user_id,
+    to_user_id: t.to_user_id,
+    give: t.give,
+    get: t.get,
+    sent_at: t.current_sent_at || t.updated_at || t.created_at || nowIso(),
+    status: t.status,
+    response: t.response,
+  });
+}
+
+function tradeDocForSave(payload) {
+  const norm = normalizeTradeRow(payload);
+  const { id, ...rest } = norm;
+  return rest;
+}
+
 async function fsGetTradesForUser(userId) {
   const q = query(collection(db, "trade_proposals"), where("participants", "array-contains", userId));
   const snap = await getDocs(q);
-  return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+  return snap.docs.map((d) => normalizeTradeRow({ id: d.id, ...d.data() }));
 }
+
 async function fsUpsertTrade(tradeId, data) {
   const id = tradeId || uid("trade");
-  const payload = { ...data, updated_at: nowIso() };
-  if (!data?.created_at) payload.created_at = nowIso();
-  await setDoc(doc(db, "trade_proposals", id), payload, { merge: true });
+  const ref = doc(db, "trade_proposals", id);
+  const existingSnap = tradeId ? await getDoc(ref) : null;
+  const existing = existingSnap?.exists() ? normalizeTradeRow({ id, ...existingSnap.data() }) : null;
+  const now = nowIso();
+
+  const payload = normalizeTradeRow({
+    ...(existing || {}),
+    ...data,
+    created_at: existing?.created_at || data?.created_at || now,
+    updated_at: now,
+    current_sent_at: data?.current_sent_at || now,
+  });
+
+  await setDoc(ref, tradeDocForSave(payload), { merge: true });
   return id;
 }
+
 async function fsCancelTrade(tradeId) {
   await setDoc(
     doc(db, "trade_proposals", tradeId),
-    { status: "CANCELLED", cancelled_at: nowIso(), updated_at: nowIso() },
-    { merge: true }
-  );
-}
-async function fsRespondTrade(tradeId, response) {
-  await setDoc(
-    doc(db, "trade_proposals", tradeId),
-    { status: "RESPONDED", response, responded_at: nowIso(), updated_at: nowIso() },
+    {
+      status: "CANCELLED",
+      response: null,
+      cancelled_at: nowIso(),
+      updated_at: nowIso(),
+      hidden_for: [],
+    },
     { merge: true }
   );
 }
 
+async function fsRespondTrade(tradeId, response) {
+  const resp = String(response || "").toUpperCase();
+  const status = resp === "LIKE" ? "ACCEPTED" : resp === "ROBBERY" ? "ROBBERY" : "RESPONDED";
+  const stamp = nowIso();
+  const patch = {
+    status,
+    response: resp,
+    responded_at: stamp,
+    updated_at: stamp,
+    hidden_for: [],
+  };
+  if (status === "ACCEPTED") patch.accepted_at = stamp;
+  if (status === "ROBBERY") patch.robbery_at = stamp;
+
+  await setDoc(doc(db, "trade_proposals", tradeId), patch, { merge: true });
+}
+
+async function fsHideTradeForUser(trade, userId) {
+  const t = normalizeTradeRow(trade);
+  const hidden = new Set(t.hidden_for || []);
+  hidden.add(String(userId));
+
+  if (hidden.size >= Math.max(1, t.participants.length)) {
+    await deleteDoc(doc(db, "trade_proposals", t.id));
+    return { deleted: true };
+  }
+
+  await setDoc(
+    doc(db, "trade_proposals", t.id),
+    { hidden_for: Array.from(hidden), updated_at: nowIso() },
+    { merge: true }
+  );
+  return { deleted: false };
+}
 
 // ---- Normalize team ----
+
 function normalizeTeamRow(row) {
   const out = { ...row };
   const roster = Array.isArray(row?.roster) ? row.roster : [];
@@ -2538,14 +2681,16 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
   const [myGetPlayers, setMyGetPlayers] = useState([]);
   const [myGetPicks, setMyGetPicks] = useState([]);
 
-  const [giveTab, setGiveTab] = useState("players"); // players | picks
+  const [giveTab, setGiveTab] = useState("players");
   const [getTab, setGetTab] = useState("players");
   const [giveQ, setGiveQ] = useState("");
   const [getQ, setGetQ] = useState("");
 
   const [editingId, setEditingId] = useState(null);
+  const [draftMode, setDraftMode] = useState("new");
   const [savingTrade, setSavingTrade] = useState(false);
   const [info, setInfo] = useState("");
+  const [historyOpen, setHistoryOpen] = useState({});
 
   const otherTeams = useMemo(() => {
     const arr = (teams || []).filter((t) => t && t.user_id && t.user_id !== me?.id);
@@ -2565,7 +2710,10 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
     setLoading(true);
     try {
       const rows = await fsGetTradesForUser(me.id);
-      const sorted = (rows || []).slice().sort((a, b) => String(b.updated_at || "").localeCompare(String(a.updated_at || "")));
+      const sorted = (rows || [])
+        .filter((t) => !(t.hidden_for || []).includes(String(me.id)))
+        .slice()
+        .sort((a, b) => String(b.updated_at || "").localeCompare(String(a.updated_at || "")));
       setTrades(sorted);
     } catch (e) {
       console.error(e);
@@ -2621,19 +2769,14 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
     return { id, name, pos, nfl, img };
   };
 
-  const playerLabel = (pid) => {
-    const m = playerMeta(pid);
-    return `${m.name}${m.pos ? ` (${m.pos}${m.nfl ? " " + m.nfl : ""})` : ""}`;
-  };
-
   const pickLabel = (pid) => {
     const id = String(pid || "");
     const base = id.split("#")[0];
-    const label =
+    return (
       (myPicks || []).concat(otherPicks || []).find((p) => String(p?.id) === id)?.label ||
       PICK_LABEL.get(base) ||
-      base;
-    return label;
+      base
+    );
   };
 
   const toggle = (arr, id) => {
@@ -2647,6 +2790,7 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
     setMyGetPlayers([]);
     setMyGetPicks([]);
     setEditingId(null);
+    setDraftMode("new");
     setInfo("");
     setGiveTab("players");
     setGetTab("players");
@@ -2658,7 +2802,7 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
     if (!me?.id || !selectedUserId) return [];
     return (trades || []).filter((t) => {
       const parts = Array.isArray(t?.participants) ? t.participants : [];
-      return parts.includes(me.id) && parts.includes(selectedUserId);
+      return parts.includes(String(me.id)) && parts.includes(String(selectedUserId));
     });
   }, [trades, me?.id, selectedUserId]);
 
@@ -2668,8 +2812,14 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
     const otherId = String(uid);
     return (trades || []).filter((t) => {
       const parts = Array.isArray(t?.participants) ? t.participants : [];
-      const st = String(t?.status || "PENDING").toUpperCase();
-      return parts.includes(meId) && parts.includes(otherId) && st === "PENDING" && String(t?.to_user_id) === meId;
+      const st = normalizeTradeStatus(t?.status, t?.response);
+      return (
+        parts.includes(meId) &&
+        parts.includes(otherId) &&
+        st === "PENDING" &&
+        String(t?.to_user_id) === meId &&
+        !(t.hidden_for || []).includes(meId)
+      );
     }).length;
   };
 
@@ -2679,42 +2829,89 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
     return hasGive || hasGet;
   }, [myGivePlayers, myGivePicks, myGetPlayers, myGetPicks]);
 
+  const activeTrade = useMemo(
+    () => (editingId ? trades.find((t) => String(t.id) === String(editingId)) || null : null),
+    [editingId, trades]
+  );
+
   async function submitTrade() {
     if (!me?.id || !selectedUserId) return;
     if (!draftValid) {
       setInfo("Elegí al menos 1 asset para armar una propuesta.");
       return;
     }
+
     setSavingTrade(true);
     setInfo("");
-    try {
-      const a = String(me.id);
-      const b = String(selectedUserId);
-      const participants = [a, b].sort();
 
-      const payload = {
+    try {
+      const meId = String(me.id);
+      const otherId = String(selectedUserId);
+      const participants = [meId, otherId].sort();
+      const now = nowIso();
+
+      if (draftMode === "edit" || draftMode === "counter") {
+        const existing = activeTrade;
+        if (!existing) throw new Error("No encontré la propuesta que querés modificar.");
+
+        const existingStatus = normalizeTradeStatus(existing.status, existing.response);
+        if (existingStatus !== "PENDING") throw new Error("Solo podés modificar propuestas pendientes.");
+
+        if (draftMode === "edit" && String(existing.from_user_id) !== meId) {
+          throw new Error("Solo quien envía la propuesta puede editarla.");
+        }
+        if (draftMode === "counter" && String(existing.to_user_id) !== meId) {
+          throw new Error("Solo quien recibe la propuesta puede mandar una contraoferta.");
+        }
+
+        const prevVersion = tradeVersionFromTrade(existing);
+
+        await fsUpsertTrade(existing.id, {
+          participants,
+          from_user_id: meId,
+          to_user_id: otherId,
+          give: { players: myGivePlayers, picks: myGivePicks },
+          get: { players: myGetPlayers, picks: myGetPicks },
+          status: "PENDING",
+          response: null,
+          current_sent_at: now,
+          current_version: Number(existing.current_version || 1) + 1,
+          is_counteroffer: draftMode === "counter" ? true : Boolean(existing.is_counteroffer),
+          history: [...(existing.history || []), prevVersion],
+          hidden_for: [],
+          accepted_at: null,
+          robbery_at: null,
+          responded_at: null,
+          cancelled_at: null,
+        });
+
+        await refreshTrades();
+        clearDraft();
+        setInfo(draftMode === "counter" ? "Contraoferta enviada." : "Cambios guardados.");
+        return;
+      }
+
+      await fsUpsertTrade(null, {
         participants,
-        from_user_id: a,
-        to_user_id: b,
+        from_user_id: meId,
+        to_user_id: otherId,
         give: { players: myGivePlayers, picks: myGivePicks },
         get: { players: myGetPlayers, picks: myGetPicks },
         status: "PENDING",
         response: null,
-      };
+        history: [],
+        current_version: 1,
+        current_sent_at: now,
+        is_counteroffer: false,
+        hidden_for: [],
+      });
 
-      if (editingId) {
-        payload.response = null;
-        payload.responded_at = null;
-        payload.cancelled_at = null;
-      }
-
-      await fsUpsertTrade(editingId, payload);
       await refreshTrades();
       clearDraft();
       setInfo("Propuesta enviada.");
     } catch (e) {
       console.error(e);
-      setInfo("Error al enviar la propuesta.");
+      setInfo(String(e?.message || "Error al enviar la propuesta."));
     } finally {
       setSavingTrade(false);
     }
@@ -2722,12 +2919,37 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
 
   function loadForEdit(trade) {
     if (!trade) return;
+    const st = normalizeTradeStatus(trade.status, trade.response);
+    if (st !== "PENDING") return;
+    if (String(trade.from_user_id) !== String(me.id)) return;
+
+    setSelectedUserId(trade.to_user_id);
     setEditingId(trade.id);
+    setDraftMode("edit");
     setMyGivePlayers((trade?.give?.players || []).map(String));
     setMyGivePicks((trade?.give?.picks || []).map(String));
     setMyGetPlayers((trade?.get?.players || []).map(String));
     setMyGetPicks((trade?.get?.picks || []).map(String));
-    setInfo("Editando propuesta… (al guardar, vuelve a Pendiente)");
+    setInfo("Editando propuesta…");
+    setGiveTab("players");
+    setGetTab("players");
+  }
+
+  function loadForCounter(trade) {
+    if (!trade) return;
+    const st = normalizeTradeStatus(trade.status, trade.response);
+    if (st !== "PENDING") return;
+    if (String(trade.to_user_id) !== String(me.id)) return;
+
+    const otherId = String(trade.from_user_id);
+    setSelectedUserId(otherId);
+    setEditingId(trade.id);
+    setDraftMode("counter");
+    setMyGivePlayers((trade?.get?.players || []).map(String));
+    setMyGivePicks((trade?.get?.picks || []).map(String));
+    setMyGetPlayers((trade?.give?.players || []).map(String));
+    setMyGetPicks((trade?.give?.picks || []).map(String));
+    setInfo("Armando contraoferta…");
     setGiveTab("players");
     setGetTab("players");
   }
@@ -2756,16 +2978,34 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
     }
   }
 
-  const statusBadge = (t) => {
-    const st = String(t?.status || "PENDING").toUpperCase();
-    if (st === "CANCELLED") return <span className="chip danger">Cancelado</span>;
-    if (st === "RESPONDED") {
-      const r = String(t?.response || "");
-      const txt = r === "LIKE" ? "Me gusta" : r === "NOPE" ? "No me gusta" : r === "MAYBE" ? "Puede ser" : "Respondido";
-      const cls = r === "LIKE" ? "ok" : r === "NOPE" ? "danger" : r === "MAYBE" ? "warn" : "";
-      return <span className={`chip ${cls}`}>{txt}</span>;
+  async function hideTrade(trade) {
+    if (!trade?.id || !me?.id) return;
+    try {
+      await fsHideTradeForUser(trade, me.id);
+      if (editingId === trade.id) clearDraft();
+      await refreshTrades();
+    } catch (e) {
+      console.error(e);
+      alert("No se pudo borrar este trade para vos.");
     }
+  }
+
+  const statusBadge = (t) => {
+    const st = normalizeTradeStatus(t?.status, t?.response);
+    const resp = String(t?.response || "").toUpperCase();
+
+    if (st === "CANCELLED") return <span className="chip danger">Cancelado</span>;
+    if (st === "ACCEPTED" || resp === "LIKE") return <span className="chip ok">Me gusta</span>;
+    if (st === "ROBBERY" || resp === "ROBBERY" || resp === "NOPE") return <span className="chip danger">Me estás robando</span>;
+    if (st === "RESPONDED" && resp === "MAYBE") return <span className="chip warn">Puede ser</span>;
     return <span className="chip">Pendiente</span>;
+  };
+
+  const versionKindLabel = (entry) => {
+    const kind = String(entry?.kind || "").toUpperCase();
+    if (kind === "COUNTEROFFER" || entry?.is_counteroffer) return "Contraoferta";
+    if (kind === "EDIT") return "Edición";
+    return "Propuesta";
   };
 
   const teamLabel = (row) => String(row?.team_name || row?.display_name || row?.user_id || "Equipo");
@@ -2860,13 +3100,83 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
   const getPlayersList = useMemo(() => filterList(sortedOtherRoster, getQ, "players"), [sortedOtherRoster, getQ, metaById]);
   const getPicksList = useMemo(() => filterList(sortedOtherPicks, getQ, "picks"), [sortedOtherPicks, getQ, otherPicks]);
 
+  const toggleHistory = (tradeId) => {
+    setHistoryOpen((prev) => ({ ...prev, [tradeId]: !prev[tradeId] }));
+  };
+
+  const renderVersionSide = (version, isSenderView) => {
+    const givePlayers = (version?.give?.players || []).map(String);
+    const givePicks = (version?.give?.picks || []).map(String);
+    const getPlayers = (version?.get?.players || []).map(String);
+    const getPicks = (version?.get?.picks || []).map(String);
+
+    return (
+      <div className="tradeSides" style={{ marginTop: 10 }}>
+        <div className="chatTradeSide">
+          <div className="muted" style={{ fontWeight: 1000, marginBottom: 8 }}>{isSenderView ? "Vos das" : "Te dan"}</div>
+          <div className="chatChipsWrap">
+            {givePlayers.map((id) => (
+              <span key={`gp-${version.version_no}-${id}`} className="chatMiniChip">
+                <span className="chatAvSm">
+                  {playerMeta(id).img ? <img src={playerMeta(id).img} alt="" /> : <span className="chatAvFallback">{initials(playerMeta(id).name)}</span>}
+                </span>
+                <span className="chatMiniText">{playerMeta(id).name}</span>
+                {playerMeta(id).pos ? <span className={`posMini posMini-${playerMeta(id).pos}`}>{playerMeta(id).pos}</span> : null}
+              </span>
+            ))}
+            {givePicks.map((id) => (
+              <span key={`gk-${version.version_no}-${id}`} className="chatMiniChip">
+                <span className="chatPickIcon">P</span>
+                <span className="chatMiniText">{pickLabel(id)}</span>
+              </span>
+            ))}
+            {(!givePlayers.length && !givePicks.length) ? <span className="muted">—</span> : null}
+          </div>
+        </div>
+
+        <div className="chatTradeSide">
+          <div className="muted" style={{ fontWeight: 1000, marginBottom: 8 }}>{isSenderView ? "Vos recibís" : "Te piden"}</div>
+          <div className="chatChipsWrap">
+            {getPlayers.map((id) => (
+              <span key={`rp-${version.version_no}-${id}`} className="chatMiniChip">
+                <span className="chatAvSm">
+                  {playerMeta(id).img ? <img src={playerMeta(id).img} alt="" /> : <span className="chatAvFallback">{initials(playerMeta(id).name)}</span>}
+                </span>
+                <span className="chatMiniText">{playerMeta(id).name}</span>
+                {playerMeta(id).pos ? <span className={`posMini posMini-${playerMeta(id).pos}`}>{playerMeta(id).pos}</span> : null}
+              </span>
+            ))}
+            {getPicks.map((id) => (
+              <span key={`rk-${version.version_no}-${id}`} className="chatMiniChip">
+                <span className="chatPickIcon">P</span>
+                <span className="chatMiniText">{pickLabel(id)}</span>
+              </span>
+            ))}
+            {(!getPlayers.length && !getPicks.length) ? <span className="muted">—</span> : null}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const composerBadge =
+    draftMode === "counter" ? <span className="chip warn">Contraoferta</span> :
+    draftMode === "edit" ? <span className="chip warn">Editando</span> :
+    <span className="chip">Nueva</span>;
+
+  const composerButtonText =
+    savingTrade ? "Guardando..." :
+    draftMode === "counter" ? "Enviar contraoferta" :
+    draftMode === "edit" ? "Guardar cambios" :
+    "Enviar propuesta";
+
   return (
     <div className="card" style={{ padding: 16 }}>
       <div className="row" style={{ alignItems: "center" }}>
         <div style={{ display: "grid", gap: 4 }}>
           <div style={{ fontWeight: 1100, fontSize: 20 }}>Chats</div>
           <div className="muted" style={{ fontSize: 13 }}>
-            Propuestas 1 a 1 en formato <b>trade card</b>. El otro usuario responde con: <b>Me gusta</b> / <b>No me gusta</b> / <b>Puede ser</b>.
+            Propuestas 1 a 1 en formato <b>trade card</b>. El receptor puede responder con: <b>Me gusta</b>, <b>Me estás robando</b> o <b>Contraoferta</b>.
           </div>
         </div>
         <div className="sp" />
@@ -2921,11 +3231,10 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
                 </div>
               </div>
               <div className="sp" />
-              {editingId ? <span className="chip warn">Editando</span> : <span className="chip">Nueva</span>}
+              {composerBadge}
             </div>
 
             <div className="tradeSides" style={{ marginTop: 12 }}>
-              {/* GIVE */}
               <div className="tradeSide chatSide">
                 <div className="chatSideTop">
                   <div className="chatSideTitle">Vos das</div>
@@ -2961,7 +3270,6 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
                 </div>
               </div>
 
-              {/* GET */}
               <div className="tradeSide chatSide">
                 <div className="chatSideTop">
                   <div className="chatSideTitle">Vos recibís</div>
@@ -3001,13 +3309,11 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
             <div className="row" style={{ marginTop: 12, alignItems: "center" }}>
               {info ? <div className="muted" style={{ fontWeight: 1000 }}>{info}</div> : <div className="muted" style={{ fontSize: 12 }}>Tip: tocá un asset seleccionado para quitarlo.</div>}
               <div className="sp" />
-              {editingId ? (
-                <button className="ghost" onClick={clearDraft}>Cancelar edición</button>
-              ) : (
-                <button className="ghost" onClick={clearDraft}>Limpiar</button>
-              )}
+              <button className="ghost" onClick={clearDraft}>
+                {editingId ? "Cancelar edición" : "Limpiar"}
+              </button>
               <button disabled={savingTrade} onClick={submitTrade}>
-                {savingTrade ? "Guardando..." : editingId ? "Guardar cambios" : "Enviar propuesta"}
+                {composerButtonText}
               </button>
             </div>
           </div>
@@ -3023,28 +3329,42 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
               {threadTrades.map((t) => {
                 const isSender = String(t.from_user_id) === String(me.id);
                 const isReceiver = String(t.to_user_id) === String(me.id);
-                const st = String(t.status || "PENDING").toUpperCase();
+                const st = normalizeTradeStatus(t.status, t.response);
+                const currentVersion = tradeVersionFromTrade(t);
+                const showHistory = Boolean(historyOpen[t.id]);
+                const showCounterBadge = Boolean(t.is_counteroffer);
 
-                const givePlayers = (t?.give?.players || []).map(String);
-                const givePicks = (t?.give?.picks || []).map(String);
-                const getPlayers = (t?.get?.players || []).map(String);
-                const getPicks = (t?.get?.picks || []).map(String);
+                const senderRow = teamsByUser.get(String(t.from_user_id));
+                const receiverRow = teamsByUser.get(String(t.to_user_id));
+                const headerText = isSender
+                  ? (showCounterBadge ? "Vos contraofertaste" : "Vos propusiste")
+                  : (showCounterBadge ? "Te mandaron una contraoferta" : "Te propusieron");
 
                 return (
                   <div key={t.id} className="tradeCard tradeCardNice">
                     <div className="tradeTop">
-                      <div style={{ display: "grid", gap: 3 }}>
+                      <div style={{ display: "grid", gap: 6 }}>
                         <div style={{ fontWeight: 1100 }}>
-                          {isSender ? "Vos propusiste" : "Te propusieron"} · <span className="muted">{new Date(t.created_at || t.updated_at || Date.now()).toLocaleString()}</span>
+                          {headerText} · <span className="muted">{new Date(t.current_sent_at || t.updated_at || t.created_at || Date.now()).toLocaleString()}</span>
+                        </div>
+                        <div className="row" style={{ gap: 8 }}>
+                          <span className="chip" style={{ cursor: "default" }}>Versión {t.current_version || 1}</span>
+                          {showCounterBadge ? <span className="chip warn">Contraoferta</span> : null}
+                          {statusBadge(t)}
                         </div>
                         <div className="muted" style={{ fontSize: 12 }}>
-                          {isSender ? `Para: ${teamLabel(otherRow)}` : `De: ${teamLabel(otherRow)}`}
+                          De: <b>{teamLabel(senderRow)}</b> · Para: <b>{teamLabel(receiverRow)}</b>
                         </div>
                       </div>
 
-                      <div className="row" style={{ gap: 8, alignItems: "center" }}>
-                        {statusBadge(t)}
-                        {isSender && st !== "CANCELLED" ? (
+                      <div className="row" style={{ gap: 8, alignItems: "center", justifyContent: "flex-end" }}>
+                        {t.history?.length ? (
+                          <button className="ghost miniBtn" onClick={() => toggleHistory(t.id)}>
+                            {showHistory ? "Ocultar historial" : `Ver historial (${t.history.length})`}
+                          </button>
+                        ) : null}
+                        <button className="ghost miniBtn" onClick={() => hideTrade(t)}>Borrar</button>
+                        {isSender && st === "PENDING" ? (
                           <>
                             <button className="ghost miniBtn" onClick={() => loadForEdit(t)}>Editar</button>
                             <button className="danger miniBtn" onClick={() => cancelTrade(t.id)}>Cancelar</button>
@@ -3053,61 +3373,72 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
                       </div>
                     </div>
 
-                    <div className="tradeSides">
-                      <div className="chatTradeSide">
-                        <div className="muted" style={{ fontWeight: 1000, marginBottom: 8 }}>{isSender ? "Vos das" : "Te dan"}</div>
-                        <div className="chatChipsWrap">
-                          {givePlayers.map((id) => (
-                            <span key={`gp-${t.id}-${id}`} className="chatMiniChip">
-                              <span className="chatAvSm">
-                                {playerMeta(id).img ? <img src={playerMeta(id).img} alt="" /> : <span className="chatAvFallback">{initials(playerMeta(id).name)}</span>}
-                              </span>
-                              <span className="chatMiniText">{playerMeta(id).name}</span>
-                              {playerMeta(id).pos ? <span className={`posMini posMini-${playerMeta(id).pos}`}>{playerMeta(id).pos}</span> : null}
-                            </span>
-                          ))}
-                          {givePicks.map((id) => (
-                            <span key={`gk-${t.id}-${id}`} className="chatMiniChip">
-                              <span className="chatPickIcon">P</span>
-                              <span className="chatMiniText">{pickLabel(id)}</span>
-                            </span>
-                          ))}
-                          {(!givePlayers.length && !givePicks.length) ? <span className="muted">—</span> : null}
-                        </div>
-                      </div>
+                    {renderVersionSide(currentVersion, isSender)}
 
-                      <div className="chatTradeSide">
-                        <div className="muted" style={{ fontWeight: 1000, marginBottom: 8 }}>{isSender ? "Vos recibís" : "Te piden"}</div>
-                        <div className="chatChipsWrap">
-                          {getPlayers.map((id) => (
-                            <span key={`rp-${t.id}-${id}`} className="chatMiniChip">
-                              <span className="chatAvSm">
-                                {playerMeta(id).img ? <img src={playerMeta(id).img} alt="" /> : <span className="chatAvFallback">{initials(playerMeta(id).name)}</span>}
-                              </span>
-                              <span className="chatMiniText">{playerMeta(id).name}</span>
-                              {playerMeta(id).pos ? <span className={`posMini posMini-${playerMeta(id).pos}`}>{playerMeta(id).pos}</span> : null}
-                            </span>
-                          ))}
-                          {getPicks.map((id) => (
-                            <span key={`rk-${t.id}-${id}`} className="chatMiniChip">
-                              <span className="chatPickIcon">P</span>
-                              <span className="chatMiniText">{pickLabel(id)}</span>
-                            </span>
-                          ))}
-                          {(!getPlayers.length && !getPicks.length) ? <span className="muted">—</span> : null}
-                        </div>
+                    {showHistory ? (
+                      <div
+                        style={{
+                          marginTop: 10,
+                          borderTop: "1px solid var(--border)",
+                          paddingTop: 10,
+                          display: "grid",
+                          gap: 10,
+                        }}
+                      >
+                        {(t.history || []).slice().sort((a, b) => Number(b.version_no || 0) - Number(a.version_no || 0)).map((entry) => {
+                          const entrySenderView = String(entry.from_user_id) === String(me.id);
+                          const entrySenderRow = teamsByUser.get(String(entry.from_user_id));
+                          const entryReceiverRow = teamsByUser.get(String(entry.to_user_id));
+
+                          return (
+                            <div
+                              key={`${t.id}-history-${entry.version_no}-${entry.sent_at}`}
+                              style={{
+                                border: "1px solid var(--border)",
+                                borderRadius: 14,
+                                padding: 10,
+                                background: "#F8FAFC",
+                              }}
+                            >
+                              <div className="row" style={{ gap: 8, alignItems: "center" }}>
+                                <span className="chip" style={{ cursor: "default" }}>Versión {entry.version_no}</span>
+                                <span className={`chip ${entry.is_counteroffer ? "warn" : ""}`} style={{ cursor: "default" }}>
+                                  {versionKindLabel(entry)}
+                                </span>
+                                <span className="muted" style={{ fontSize: 12 }}>
+                                  {new Date(entry.sent_at || Date.now()).toLocaleString()}
+                                </span>
+                              </div>
+                              <div className="muted" style={{ fontSize: 12, marginTop: 6 }}>
+                                De: <b>{teamLabel(entrySenderRow)}</b> · Para: <b>{teamLabel(entryReceiverRow)}</b>
+                              </div>
+                              {renderVersionSide(entry, entrySenderView)}
+                            </div>
+                          );
+                        })}
                       </div>
-                    </div>
+                    ) : null}
 
                     {isReceiver && st === "PENDING" ? (
                       <div className="row" style={{ justifyContent: "flex-end", gap: 10 }}>
                         <button className="ok" onClick={() => respondTrade(t.id, "LIKE")}>Me gusta</button>
-                        <button className="warn" onClick={() => respondTrade(t.id, "MAYBE")}>Puede ser</button>
-                        <button className="danger" onClick={() => respondTrade(t.id, "NOPE")}>No me gusta</button>
+                        <button className="warn" onClick={() => loadForCounter(t)}>Contraoferta</button>
+                        <button className="danger" onClick={() => respondTrade(t.id, "ROBBERY")}>Me estás robando</button>
                       </div>
                     ) : (
                       <div className="muted" style={{ fontSize: 12 }}>
-                        Estado: <b>{st === "PENDING" ? "Pendiente" : st === "RESPONDED" ? "Respondido" : "Cancelado"}</b>
+                        Estado:{" "}
+                        <b>
+                          {st === "PENDING"
+                            ? "Pendiente"
+                            : st === "ACCEPTED"
+                              ? "Aceptado"
+                              : st === "ROBBERY"
+                                ? "Me estás robando"
+                                : st === "CANCELLED"
+                                  ? "Cancelado"
+                                  : "Respondido"}
+                        </b>
                       </div>
                     )}
                   </div>
@@ -3122,7 +3453,6 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
     </div>
   );
 }
-
 
 
 export default function App() {
