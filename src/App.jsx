@@ -19,6 +19,7 @@ import {
  *  - users/{userId}     → { email, pass_hash, created_at }
  *  - teams/{userId}     → { user_id, display_name, team_name, team_status, roster[], picks[], updated_at }
  *  - interests/{key}   → { key, from_user_id, to_user_id, asset_type, asset_id, level, updated_at }
+ *  - trade_proposals/{id} → { participants[], from_user_id, to_user_id, give{players[],picks[]}, get{players[],picks[]}, status, response, created_at, updated_at }
  */
 
 // ---- Firebase init ----
@@ -193,6 +194,35 @@ async function fsSetInterest(key, data) {
 async function fsDeleteInterest(key) {
   await deleteDoc(doc(db, "interests", key));
 }
+
+// ---- Trades (one-to-one proposals) ----
+async function fsGetTradesForUser(userId) {
+  const q = query(collection(db, "trade_proposals"), where("participants", "array-contains", userId));
+  const snap = await getDocs(q);
+  return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+}
+async function fsUpsertTrade(tradeId, data) {
+  const id = tradeId || uid("trade");
+  const payload = { ...data, updated_at: nowIso() };
+  if (!data?.created_at) payload.created_at = nowIso();
+  await setDoc(doc(db, "trade_proposals", id), payload, { merge: true });
+  return id;
+}
+async function fsCancelTrade(tradeId) {
+  await setDoc(
+    doc(db, "trade_proposals", tradeId),
+    { status: "CANCELLED", cancelled_at: nowIso(), updated_at: nowIso() },
+    { merge: true }
+  );
+}
+async function fsRespondTrade(tradeId, response) {
+  await setDoc(
+    doc(db, "trade_proposals", tradeId),
+    { status: "RESPONDED", response, responded_at: nowIso(), updated_at: nowIso() },
+    { merge: true }
+  );
+}
+
 
 // ---- Normalize team ----
 function normalizeTeamRow(row) {
@@ -468,7 +498,7 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
 
       /* Bottom dock */
       .dock{ position:fixed; left:0; right:0; bottom:0; background:#fff; border-top:1px solid var(--border); z-index:60; }
-      .dockin{ max-width:1180px; margin:0 auto; padding:10px 12px; display:grid; grid-template-columns:repeat(4,1fr); gap:6px; }
+      .dockin{ max-width:1180px; margin:0 auto; padding:10px 12px; display:grid; grid-template-columns:repeat(5,1fr); gap:6px; }
       .dockbtn{ background:transparent; border:1px solid transparent; color:var(--muted); box-shadow:none; }
       .dockbtn.active{ background:var(--sky); border:1px solid #CFE3FF; color:var(--text); box-shadow:none; }
 
@@ -1084,7 +1114,41 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
         color:#DC2626;
         border-color:#F3B4B4;
       }
-\n    `}</style>
+\n    
+      /* Chips variants (used in Chats) */
+      .chip.ok{ background:#DCFCE7; border:1px solid #86EFAC; color:#166534; }
+      .chip.warn{ background:#FFEDD5; border:1px solid #FDBA74; color:#9A3412; }
+      .chip.danger{ background:#FEE2E2; border:1px solid #FCA5A5; color:#991B1B; }
+
+      button.ok{ background:#16a34a; box-shadow:0 8px 18px rgba(22,163,74,0.18); }
+      button.warn{ background:#f59e0b; box-shadow:0 8px 18px rgba(245,158,11,0.18); }
+      button.ok:hover{ filter:brightness(0.98); }
+      button.warn:hover{ filter:brightness(0.98); }
+
+      /* Chats layout */
+      .chatsWrap{ display:grid; grid-template-columns:320px 1fr; gap:16px; align-items:start; }
+      .chatList{ border:1px solid var(--border); background:#fff; border-radius:18px; padding:12px; }
+      .chatItem{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 12px; border-radius:14px; cursor:pointer; border:1px solid transparent; }
+      .chatItem:hover{ background:#F6FAFF; }
+      .chatItem.active{ background:#EEF6FF; border-color:#A7C7FF; }
+      .chatMain{ display:grid; gap:14px; }
+
+      .tradeCard{ border:1px solid var(--border); background:#fff; border-radius:18px; padding:12px; display:grid; gap:10px; }
+      .tradeTop{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+      .tradeSides{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+      .tradeSide{ border:1px solid var(--border); background:#fff; border-radius:14px; padding:10px; }
+      .assetChips{ display:flex; flex-wrap:wrap; gap:6px; }
+      .pickList{ border:1px solid var(--border); background:#fff; border-radius:14px; padding:8px; max-height:220px; overflow:auto; }
+      .pickRow{ display:flex; align-items:flex-start; gap:10px; padding:6px 6px; border-radius:10px; cursor:pointer; }
+      .pickRow:hover{ background:#F7FAFF; }
+      .pickRow input{ margin-top:3px; }
+
+      @media (max-width: 980px){
+        .chatsWrap{ grid-template-columns:1fr; }
+        .tradeSides{ grid-template-columns:1fr; }
+        .pickList{ max-height:180px; }
+      }
+`}</style>
   );
 }
 // ---- MyTeamView ----
@@ -2301,6 +2365,421 @@ function FancySelect({ value, onChange, options }) {
     </div>
   );
 }
+
+// ======================
+// Chats (propuestas 1 a 1)
+// ======================
+function ChatsView({ me, teams, teamsByUser, metaById }) {
+  const [selectedUserId, setSelectedUserId] = useState(null);
+  const [trades, setTrades] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const [myGivePlayers, setMyGivePlayers] = useState([]);
+  const [myGivePicks, setMyGivePicks] = useState([]);
+  const [myGetPlayers, setMyGetPlayers] = useState([]);
+  const [myGetPicks, setMyGetPicks] = useState([]);
+
+  const [editingId, setEditingId] = useState(null);
+  const [savingTrade, setSavingTrade] = useState(false);
+  const [info, setInfo] = useState("");
+
+  const otherTeams = useMemo(() => {
+    const arr = (teams || []).filter((t) => t && t.user_id && t.user_id !== me?.id);
+    // Orden estable por display/team/user_id
+    return arr.sort((a, b) => {
+      const an = String(a.team_name || a.display_name || a.user_id).toLowerCase();
+      const bn = String(b.team_name || b.display_name || b.user_id).toLowerCase();
+      return an.localeCompare(bn);
+    });
+  }, [teams, me?.id]);
+
+  useEffect(() => {
+    if (!selectedUserId && otherTeams.length) setSelectedUserId(otherTeams[0].user_id);
+  }, [selectedUserId, otherTeams]);
+
+  async function refreshTrades() {
+    if (!me?.id) return;
+    setLoading(true);
+    try {
+      const rows = await fsGetTradesForUser(me.id);
+      const sorted = (rows || []).slice().sort((a, b) => String(b.updated_at || "").localeCompare(String(a.updated_at || "")));
+      setTrades(sorted);
+    } catch (e) {
+      console.error(e);
+      setTrades([]);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    if (!me?.id) return;
+    refreshTrades().catch(console.error);
+  }, [me?.id]);
+
+  const myRow = useMemo(() => (me ? teamsByUser.get(me.id) : null), [me, teamsByUser]);
+  const otherRow = useMemo(() => (selectedUserId ? teamsByUser.get(selectedUserId) : null), [selectedUserId, teamsByUser]);
+
+  const myRoster = useMemo(() => (Array.isArray(myRow?.roster) ? myRow.roster : []), [myRow]);
+  const myPicks = useMemo(() => (Array.isArray(myRow?.picks) ? myRow.picks : []), [myRow]);
+  const otherRoster = useMemo(() => (Array.isArray(otherRow?.roster) ? otherRow.roster : []), [otherRow]);
+  const otherPicks = useMemo(() => (Array.isArray(otherRow?.picks) ? otherRow.picks : []), [otherRow]);
+
+  const adpNum = (pid) => {
+    const meta = metaById?.get(String(pid));
+    const n = Number(meta?.adp ?? meta?.adp_ppr ?? meta?.ppr_adp ?? meta?.rank ?? meta?.adp_rank ?? NaN);
+    return Number.isFinite(n) ? n : 999999;
+  };
+
+  const sortRosterByAdp = (arr) => {
+    return (arr || []).slice().sort((a, b) => adpNum(a?.id) - adpNum(b?.id));
+  };
+
+  const sortedMyRoster = useMemo(() => sortRosterByAdp(myRoster), [myRoster, metaById]);
+  const sortedOtherRoster = useMemo(() => sortRosterByAdp(otherRoster), [otherRoster, metaById]);
+
+  const pickSortKey = (id) => {
+    const base = String(id || "").split("#")[0];
+    // 2026-1.04, 2027-3, 2028-5, etc
+    const m1 = base.match(/^(\d{4})-(\d)\.(\d{2})$/);
+    if (m1) return `${m1[1]}-${m1[2].padStart(2, "0")}-${m1[3]}`;
+    const m2 = base.match(/^(\d{4})-(\d)$/);
+    if (m2) return `${m2[1]}-${m2[2].padStart(2, "0")}-99`;
+    return base;
+  };
+  const sortedMyPicks = useMemo(() => (myPicks || []).slice().sort((a, b) => pickSortKey(a?.id).localeCompare(pickSortKey(b?.id))), [myPicks]);
+  const sortedOtherPicks = useMemo(() => (otherPicks || []).slice().sort((a, b) => pickSortKey(a?.id).localeCompare(pickSortKey(b?.id))), [otherPicks]);
+
+  const playerLabel = (pid) => {
+    const id = String(pid);
+    const meta = metaById?.get(id);
+    const fallback = (myRoster || []).concat(otherRoster || []).find((x) => String(x?.id) === id);
+    const name = meta?.name || meta?.player_name || meta?.full_name || fallback?.name || `Jugador ${id}`;
+    const pos = normPos(meta?.position || fallback?.pos || fallback?.position || "");
+    const nfl = String(meta?.team || meta?.nfl || fallback?.nfl || "").toUpperCase();
+    return `${name}${pos ? ` (${pos}${nfl ? " " + nfl : ""})` : ""}`;
+  };
+
+  const pickLabel = (pid) => {
+    const id = String(pid || "");
+    const base = id.split("#")[0];
+    const label = (myPicks || []).concat(otherPicks || []).find((p) => String(p?.id) === id)?.label
+      || PICK_LABEL.get(base)
+      || base;
+    return label;
+  };
+
+  const toggle = (arr, id) => {
+    const s = String(id);
+    return arr.includes(s) ? arr.filter((x) => x !== s) : [...arr, s];
+  };
+
+  const clearDraft = () => {
+    setMyGivePlayers([]);
+    setMyGivePicks([]);
+    setMyGetPlayers([]);
+    setMyGetPicks([]);
+    setEditingId(null);
+    setInfo("");
+  };
+
+  const threadTrades = useMemo(() => {
+    if (!me?.id || !selectedUserId) return [];
+    return (trades || []).filter((t) => {
+      const parts = Array.isArray(t?.participants) ? t.participants : [];
+      return parts.includes(me.id) && parts.includes(selectedUserId);
+    });
+  }, [trades, me?.id, selectedUserId]);
+
+  const draftValid = useMemo(() => {
+    const hasGive = (myGivePlayers.length + myGivePicks.length) > 0;
+    const hasGet = (myGetPlayers.length + myGetPicks.length) > 0;
+    return hasGive || hasGet; // permitimos "solo doy" o "solo pido"
+  }, [myGivePlayers, myGivePicks, myGetPlayers, myGetPicks]);
+
+  async function submitTrade() {
+    if (!me?.id || !selectedUserId) return;
+    if (!draftValid) {
+      setInfo("Elegí al menos 1 asset para armar una propuesta.");
+      return;
+    }
+    setSavingTrade(true);
+    setInfo("");
+    try {
+      const a = String(me.id);
+      const b = String(selectedUserId);
+      const participants = [a, b].sort();
+
+      const payload = {
+        participants,
+        from_user_id: a,
+        to_user_id: b,
+        give: { players: myGivePlayers, picks: myGivePicks },
+        get: { players: myGetPlayers, picks: myGetPicks },
+        status: "PENDING",
+        response: null,
+      };
+
+      // Si estoy editando, mantenemos created_at y reseteamos respuesta
+      if (editingId) {
+        payload.response = null;
+        payload.responded_at = null;
+        payload.cancelled_at = null;
+      }
+
+      await fsUpsertTrade(editingId, payload);
+      await refreshTrades();
+      clearDraft();
+      setInfo("Propuesta enviada.");
+    } catch (e) {
+      console.error(e);
+      setInfo("Error al enviar la propuesta.");
+    } finally {
+      setSavingTrade(false);
+    }
+  }
+
+  function loadForEdit(trade) {
+    if (!trade) return;
+    setEditingId(trade.id);
+    setMyGivePlayers((trade?.give?.players || []).map(String));
+    setMyGivePicks((trade?.give?.picks || []).map(String));
+    setMyGetPlayers((trade?.get?.players || []).map(String));
+    setMyGetPicks((trade?.get?.picks || []).map(String));
+    setInfo("Editando propuesta… (al guardar, vuelve a Pendiente)");
+  }
+
+  async function cancelTrade(tradeId) {
+    if (!tradeId) return;
+    if (!confirm("¿Cancelar esta propuesta?")) return;
+    try {
+      await fsCancelTrade(tradeId);
+      await refreshTrades();
+      if (editingId === tradeId) clearDraft();
+    } catch (e) {
+      console.error(e);
+      alert("No se pudo cancelar.");
+    }
+  }
+
+  async function respondTrade(tradeId, response) {
+    if (!tradeId) return;
+    try {
+      await fsRespondTrade(tradeId, response);
+      await refreshTrades();
+    } catch (e) {
+      console.error(e);
+      alert("No se pudo guardar la respuesta.");
+    }
+  }
+
+  const statusBadge = (t) => {
+    const st = String(t?.status || "PENDING").toUpperCase();
+    if (st === "CANCELLED") return <span className="chip danger">Cancelado</span>;
+    if (st === "RESPONDED") {
+      const r = String(t?.response || "");
+      const txt = r === "LIKE" ? "Me gusta" : r === "NOPE" ? "No me gusta" : r === "MAYBE" ? "Puede ser" : "Respondido";
+      const cls = r === "LIKE" ? "ok" : r === "NOPE" ? "danger" : r === "MAYBE" ? "warn" : "";
+      return <span className={`chip ${cls}`}>{txt}</span>;
+    }
+    return <span className="chip">Pendiente</span>;
+  };
+
+  const teamLabel = (row) => String(row?.team_name || row?.display_name || row?.user_id || "Equipo");
+
+  return (
+    <div className="card" style={{ padding: 16 }}>
+      <div className="row" style={{ alignItems: "baseline" }}>
+        <div>
+          <div style={{ fontWeight: 1000, fontSize: 20 }}>Chats</div>
+          <div className="muted" style={{ marginTop: 4 }}>
+            Propuestas 1 a 1 (trade cards). El otro usuario responde con: <b>Me gusta</b> / <b>No me gusta</b> / <b>Puede ser</b>.
+          </div>
+        </div>
+        <div className="sp" />
+        <button className="ghost" onClick={refreshTrades} disabled={loading}>
+          {loading ? "Actualizando..." : "Actualizar"}
+        </button>
+      </div>
+
+      <div className="chatsWrap" style={{ marginTop: 14 }}>
+        <div className="chatList">
+          <div className="muted" style={{ fontWeight: 900, marginBottom: 10 }}>Conversaciones</div>
+          {otherTeams.map((t) => (
+            <div
+              key={t.user_id}
+              className={`chatItem ${selectedUserId === t.user_id ? "active" : ""}`}
+              onClick={() => { setSelectedUserId(t.user_id); clearDraft(); }}
+            >
+              <div style={{ display: "grid", gap: 2 }}>
+                <div style={{ fontWeight: 1000 }}>{teamLabel(t)}</div>
+                <div className="muted" style={{ fontSize: 12 }}>{t.display_name || t.user_id}</div>
+              </div>
+              <div className="chip" style={{ cursor: "default" }}>{normTeamStatus(t.team_status)}</div>
+            </div>
+          ))}
+          {!otherTeams.length ? (
+            <div className="muted" style={{ marginTop: 8 }}>No hay otros equipos todavía.</div>
+          ) : null}
+        </div>
+
+        <div className="chatMain">
+          <div className="card" style={{ padding: 14, borderRadius: 18 }}>
+            <div className="row" style={{ alignItems: "baseline" }}>
+              <div style={{ fontWeight: 1000 }}>Nueva propuesta</div>
+              <div className="sp" />
+              {editingId ? <span className="chip warn">Editando</span> : <span className="chip">Nueva</span>}
+            </div>
+            <div className="muted" style={{ marginTop: 6, fontSize: 13 }}>
+              Elegí qué <b>das</b> vos y qué <b>recibís</b> del otro equipo.
+            </div>
+
+            <div className="tradeSides" style={{ marginTop: 12 }}>
+              <div className="tradeSide">
+                <div style={{ fontWeight: 900, marginBottom: 8 }}>Vos das</div>
+                <div className="muted" style={{ fontSize: 12, marginBottom: 6 }}>Jugadores</div>
+                <div className="pickList">
+                  {sortedMyRoster.map((p) => (
+                    <label key={String(p.id)} className="pickRow">
+                      <input type="checkbox" checked={myGivePlayers.includes(String(p.id))} onChange={() => setMyGivePlayers((a) => toggle(a, p.id))} />
+                      <span>{playerLabel(p.id)}</span>
+                    </label>
+                  ))}
+                </div>
+                <div className="muted" style={{ fontSize: 12, margin: "10px 0 6px" }}>Picks</div>
+                <div className="pickList">
+                  {sortedMyPicks.map((p) => (
+                    <label key={String(p.id)} className="pickRow">
+                      <input type="checkbox" checked={myGivePicks.includes(String(p.id))} onChange={() => setMyGivePicks((a) => toggle(a, p.id))} />
+                      <span>{pickLabel(p.id)}</span>
+                    </label>
+                  ))}
+                  {!sortedMyPicks.length ? <div className="muted">Sin picks</div> : null}
+                </div>
+              </div>
+
+              <div className="tradeSide">
+                <div style={{ fontWeight: 900, marginBottom: 8 }}>Vos recibís</div>
+                <div className="muted" style={{ fontSize: 12, marginBottom: 6 }}>Jugadores</div>
+                <div className="pickList">
+                  {sortedOtherRoster.map((p) => (
+                    <label key={String(p.id)} className="pickRow">
+                      <input type="checkbox" checked={myGetPlayers.includes(String(p.id))} onChange={() => setMyGetPlayers((a) => toggle(a, p.id))} />
+                      <span>{playerLabel(p.id)}</span>
+                    </label>
+                  ))}
+                </div>
+                <div className="muted" style={{ fontSize: 12, margin: "10px 0 6px" }}>Picks</div>
+                <div className="pickList">
+                  {sortedOtherPicks.map((p) => (
+                    <label key={String(p.id)} className="pickRow">
+                      <input type="checkbox" checked={myGetPicks.includes(String(p.id))} onChange={() => setMyGetPicks((a) => toggle(a, p.id))} />
+                      <span>{pickLabel(p.id)}</span>
+                    </label>
+                  ))}
+                  {!sortedOtherPicks.length ? <div className="muted">Sin picks</div> : null}
+                </div>
+              </div>
+            </div>
+
+            <div className="row" style={{ marginTop: 12 }}>
+              {info ? <div className="muted" style={{ fontWeight: 900 }}>{info}</div> : null}
+              <div className="sp" />
+              {editingId ? (
+                <button className="ghost" onClick={clearDraft}>Cancelar edición</button>
+              ) : (
+                <button className="ghost" onClick={clearDraft}>Limpiar</button>
+              )}
+              <button disabled={savingTrade} onClick={submitTrade}>
+                {savingTrade ? "Guardando..." : editingId ? "Guardar cambios" : "Enviar propuesta"}
+              </button>
+            </div>
+          </div>
+
+          <div className="card" style={{ padding: 14, borderRadius: 18 }}>
+            <div className="row" style={{ alignItems: "baseline" }}>
+              <div style={{ fontWeight: 1000 }}>Propuestas</div>
+              <div className="sp" />
+              <span className="muted" style={{ fontSize: 13 }}>{threadTrades.length} total</span>
+            </div>
+
+            <div style={{ display: "grid", gap: 10, marginTop: 12 }}>
+              {threadTrades.map((t) => {
+                const isSender = String(t.from_user_id) === String(me.id);
+                const isReceiver = String(t.to_user_id) === String(me.id);
+                const st = String(t.status || "PENDING").toUpperCase();
+
+                const givePlayers = (t?.give?.players || []).map(String);
+                const givePicks = (t?.give?.picks || []).map(String);
+                const getPlayers = (t?.get?.players || []).map(String);
+                const getPicks = (t?.get?.picks || []).map(String);
+
+                return (
+                  <div key={t.id} className="tradeCard">
+                    <div className="tradeTop">
+                      <div style={{ display: "grid", gap: 2 }}>
+                        <div style={{ fontWeight: 1000 }}>
+                          {isSender ? "Vos propusiste" : "Te propusieron"} · <span className="muted">{new Date(t.created_at || t.updated_at || Date.now()).toLocaleString()}</span>
+                        </div>
+                        <div className="muted" style={{ fontSize: 12 }}>
+                          {isSender ? `Para: ${teamLabel(otherRow)}` : `De: ${teamLabel(otherRow)}`}
+                        </div>
+                      </div>
+                      <div>{statusBadge(t)}</div>
+                    </div>
+
+                    <div className="tradeSides">
+                      <div>
+                        <div className="muted" style={{ fontWeight: 900, marginBottom: 6 }}>{isSender ? "Vos das" : "Te dan"}</div>
+                        <div className="assetChips">
+                          {givePlayers.map((id) => <span key={`gp-${t.id}-${id}`} className="chip">{playerLabel(id)}</span>)}
+                          {givePicks.map((id) => <span key={`gk-${t.id}-${id}`} className="chip">{pickLabel(id)}</span>)}
+                          {(!givePlayers.length && !givePicks.length) ? <span className="muted">—</span> : null}
+                        </div>
+                      </div>
+                      <div>
+                        <div className="muted" style={{ fontWeight: 900, marginBottom: 6 }}>{isSender ? "Vos recibís" : "Te piden"}</div>
+                        <div className="assetChips">
+                          {getPlayers.map((id) => <span key={`rp-${t.id}-${id}`} className="chip">{playerLabel(id)}</span>)}
+                          {getPicks.map((id) => <span key={`rk-${t.id}-${id}`} className="chip">{pickLabel(id)}</span>)}
+                          {(!getPlayers.length && !getPicks.length) ? <span className="muted">—</span> : null}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="row">
+                      <div className="muted" style={{ fontSize: 12 }}>
+                        Estado: <b>{st === "PENDING" ? "Pendiente" : st === "RESPONDED" ? "Respondido" : "Cancelado"}</b>
+                      </div>
+                      <div className="sp" />
+                      {isSender && st !== "CANCELLED" ? (
+                        <>
+                          <button className="ghost" disabled={st === "CANCELLED"} onClick={() => loadForEdit(t)}>Editar</button>
+                          <button className="danger" onClick={() => cancelTrade(t.id)}>Cancelar</button>
+                        </>
+                      ) : null}
+
+                      {isReceiver && st === "PENDING" ? (
+                        <div className="row" style={{ gap: 8 }}>
+                          <button className="ok" onClick={() => respondTrade(t.id, "LIKE")}>Me gusta</button>
+                          <button className="warn" onClick={() => respondTrade(t.id, "MAYBE")}>Puede ser</button>
+                          <button className="danger" onClick={() => respondTrade(t.id, "NOPE")}>No me gusta</button>
+                        </div>
+                      ) : null}
+                    </div>
+                  </div>
+                );
+              })}
+              {!threadTrades.length ? <div className="muted">Todavía no hay propuestas con este equipo.</div> : null}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 export default function App() {
   const [me, setMe] = useState(() => {
     const s = localStorage.getItem("ft_session");
@@ -2678,7 +3157,9 @@ export default function App() {
             </div>
             ) : null}
 
-            {tab === "home" ? (
+            {tab === "chats" ? (
+              <ChatsView me={me} teams={teams} teamsByUser={teamsByUser} metaById={metaById} />
+            ) : tab === "home" ? (
               <HomeNewsView myRoster={myRoster} metaById={metaById} />
             ) : tab === "interests" ? (
               <InterestsView teamsByUser={teamsByUser} myOutgoing={myOutgoing} myIncoming={myIncoming} metaById={metaById} />
@@ -2786,6 +3267,7 @@ export default function App() {
           <div className="dockin">
             <button className={`dockbtn ${tab === "home"      ? "active" : ""}`} onClick={() => setTab("home")}>Inicio</button>
             <button className={`dockbtn ${tab === "league"    ? "active" : ""}`} onClick={() => setTab("league")}>Liga</button>
+            <button className={`dockbtn ${tab === "chats"    ? "active" : ""}`} onClick={() => setTab("chats")}>Chats</button>
             <button className={`dockbtn ${tab === "interests" ? "active" : ""}`} onClick={() => setTab("interests")}>Intereses</button>
             <button className={`dockbtn ${tab === "team"      ? "active" : ""}`} onClick={() => setTab("team")}>Mi equipo</button>
           </div>
