@@ -1621,6 +1621,219 @@ function InterestsView({ teamsByUser, myOutgoing, myIncoming, metaById }) {
   );
 }
 
+function HomeNewsView({ myRoster, metaById }) {
+  const [loading, setLoading] = useState(true);
+  const [err, setErr] = useState("");
+  const [data, setData] = useState({ generatedAt: null, items: [] });
+  const [q, setQ] = useState("");
+  const [showAll, setShowAll] = useState(false);
+  const [sources, setSources] = useState({ ESPN: true, FantasyPros: true });
+
+  const rosterNames = useMemo(() => {
+    const set = new Set();
+    (myRoster || []).forEach((r) => {
+      const id = String(r?.id ?? "");
+      const n = (metaById?.get?.(id)?.name) || r?.name || "";
+      const clean = String(n).trim();
+      if (clean) set.add(clean);
+    });
+    return Array.from(set);
+  }, [myRoster, metaById]);
+
+  const norm = (s) =>
+    String(s || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/\p{Diacritic}/gu, "")
+      .replace(/[^a-z0-9\s]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+
+  const matchesPlayer = (playerName, hayNorm) => {
+    const full = norm(playerName);
+    if (!full) return false;
+    if (hayNorm.includes(full)) return true;
+
+    // fallback: last name w/ word boundary-ish match (avoid very short/common last names)
+    const parts = full.split(" ").filter(Boolean);
+    const last = parts[parts.length - 1] || "";
+    if (last.length < 5) return false;
+    return new RegExp(`(^|\\s)${last}(\\s|$)`, "i").test(hayNorm);
+  };
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      setLoading(true);
+      setErr("");
+      try {
+        const res = await fetch(`/news.json?ts=${Date.now()}`, { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+        if (cancelled) return;
+        const items = Array.isArray(json?.items) ? json.items : [];
+        setData({ generatedAt: json?.generatedAt || null, items });
+      } catch (e) {
+        if (!cancelled) {
+          setErr(
+            "No pude cargar noticias. Si estás en local, corré `node scripts/update-news.mjs` (o `npm run build`) para generar public/news.json."
+          );
+          setData({ generatedAt: null, items: [] });
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const filtered = useMemo(() => {
+    let items = Array.isArray(data.items) ? [...data.items] : [];
+
+    items = items.filter((it) => sources[it.source] !== false);
+
+    if (!showAll && rosterNames.length) {
+      items = items.filter((it) => {
+        const hay = norm(`${it.title || ""} ${it.description || ""}`);
+        return rosterNames.some((n) => matchesPlayer(n, hay));
+      });
+    }
+
+    if (q.trim()) {
+      const qn = norm(q);
+      items = items.filter((it) => norm(`${it.title || ""} ${it.description || ""} ${it.source || ""}`).includes(qn));
+    }
+
+    items.sort((a, b) => (b.publishedTs || 0) - (a.publishedTs || 0));
+    return items.slice(0, 60);
+  }, [data.items, rosterNames, showAll, q, sources]);
+
+  return (
+    <div className="grid2">
+      <div className="card panel" style={{ gridColumn: "1 / -1" }}>
+        <div className="row" style={{ justifyContent: "space-between", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
+          <div>
+            <div className="h1">Noticias</div>
+            <div className="muted">
+              {data.generatedAt ? `Actualizado: ${new Date(data.generatedAt).toLocaleString()}` : "Actualizado: —"}
+            </div>
+          </div>
+
+          <div className="row" style={{ gap: 10, flexWrap: "wrap", alignItems: "center" }}>
+            <label className="row" style={{ gap: 6, alignItems: "center", fontWeight: 700 }}>
+              <input
+                type="checkbox"
+                checked={sources.ESPN}
+                onChange={(e) => setSources((s) => ({ ...s, ESPN: e.target.checked }))}
+              />
+              ESPN
+            </label>
+            <label className="row" style={{ gap: 6, alignItems: "center", fontWeight: 700 }}>
+              <input
+                type="checkbox"
+                checked={sources.FantasyPros}
+                onChange={(e) => setSources((s) => ({ ...s, FantasyPros: e.target.checked }))}
+              />
+              FantasyPros
+            </label>
+
+            <label className="row" style={{ gap: 6, alignItems: "center", fontWeight: 700 }}>
+              <input type="checkbox" checked={showAll} onChange={(e) => setShowAll(e.target.checked)} />
+              Mostrar todo
+            </label>
+
+            <input
+              className="input"
+              style={{ width: 260 }}
+              placeholder="Buscar noticia..."
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+            />
+          </div>
+        </div>
+
+        {!showAll && rosterNames.length ? (
+          <div className="muted" style={{ marginTop: 10 }}>
+            Filtrando por tus jugadores ({rosterNames.length}). Activá “Mostrar todo” si querés ver el feed completo.
+          </div>
+        ) : null}
+
+        <div style={{ marginTop: 14 }}>
+          {loading ? (
+            <div className="muted">Cargando noticias…</div>
+          ) : err ? (
+            <div className="muted">{err}</div>
+          ) : filtered.length === 0 ? (
+            <div className="muted">No hay noticias para mostrar con estos filtros.</div>
+          ) : (
+            <div style={{ display: "grid", gap: 12 }}>
+              {filtered.map((it) => {
+                const hay = norm(`${it.title || ""} ${it.description || ""}`);
+                const mentions = rosterNames.filter((n) => matchesPlayer(n, hay)).slice(0, 4);
+
+                return (
+                  <div key={it.id} className="item itemTight" style={{ padding: 14 }}>
+                    <div className="row" style={{ justifyContent: "space-between", gap: 12, alignItems: "flex-start", flexWrap: "wrap" }}>
+                      <div style={{ minWidth: 320, flex: 1 }}>
+                        <div className="row" style={{ gap: 10, alignItems: "center", flexWrap: "wrap" }}>
+                          <span className="chip" style={{ fontWeight: 800 }}>
+                            {it.source}
+                          </span>
+                          <span className="muted">
+                            {it.publishedAt ? new Date(it.publishedAt).toLocaleString() : "—"}
+                          </span>
+                        </div>
+
+                        <a
+                          href={it.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{ display: "block", marginTop: 6, fontWeight: 900, fontSize: 18, color: "inherit", textDecoration: "none" }}
+                        >
+                          {it.title}
+                        </a>
+
+                        {it.description ? (
+                          <div className="muted" style={{ marginTop: 6 }}>
+                            {String(it.description).slice(0, 220)}
+                            {String(it.description).length > 220 ? "…" : ""}
+                          </div>
+                        ) : null}
+
+                        {mentions.length ? (
+                          <div className="row" style={{ marginTop: 10, gap: 8, flexWrap: "wrap" }}>
+                            {mentions.map((m) => (
+                              <span key={m} className="pill" style={{ fontWeight: 800 }}>
+                                {m}
+                              </span>
+                            ))}
+                          </div>
+                        ) : null}
+                      </div>
+
+                      <div className="row" style={{ gap: 8, alignItems: "center" }}>
+                        <a className="ghost" href={it.url} target="_blank" rel="noreferrer">
+                          Abrir
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+
+        <div className="muted" style={{ marginTop: 14 }}>
+          Contenido provisto por sus respectivas fuentes. Para ESPN, se muestran únicamente títulos/resúmenes del feed RSS y se enlaza al artículo original.
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ---- A
 
 function FancySelect({ value, onChange, options }) {
@@ -2050,7 +2263,9 @@ export default function App() {
             </div>
             ) : null}
 
-            {tab === "home" || tab === "interests" ? (
+            {tab === "home" ? (
+              <HomeNewsView myRoster={myRoster} metaById={metaById} />
+            ) : tab === "interests" ? (
               <InterestsView teamsByUser={teamsByUser} myOutgoing={myOutgoing} myIncoming={myIncoming} metaById={metaById} />
             ) : tab === "league" ? (
               <LeagueView me={me} teams={teams} interests={interests} onSetInterest={setInterest} metaById={metaById} />
