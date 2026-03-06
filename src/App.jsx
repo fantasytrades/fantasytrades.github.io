@@ -339,9 +339,31 @@ function Styles() {
       *{ box-sizing:border-box; }
       .wrap{ max-width:1180px; margin:0 auto; padding:18px 14px 92px; }
 
+      /* Wide screens: use more width + more breathing room */
+      @media(min-width:1200px){
+        .wrap{ max-width:1400px; padding:22px 20px 96px; }
+        .grid2{ gap:18px; }
+        .list{ gap:14px; }
+        .item{ padding:14px 16px; }
+      }
+      @media(min-width:1500px){
+        .wrap{ max-width:1600px; padding:26px 24px 102px; }
+        .grid2{ gap:22px; }
+        .list{ gap:16px; }
+        .item{ padding:15px 18px; }
+      }
+      @media(min-width:1800px){
+        .wrap{ max-width:1760px; }
+      }
+
+
       /* Top bar */
       .top{ position:sticky; top:0; z-index:50; background:#fff; border-bottom:1px solid var(--border); }
       .topin{ max-width:1180px; margin:0 auto; padding:12px 14px; display:flex; gap:10px; align-items:center; }
+      @media(min-width:1200px){ .topin{ max-width:1400px; padding:12px 20px; } }
+      @media(min-width:1500px){ .topin{ max-width:1600px; padding:12px 24px; } }
+      @media(min-width:1800px){ .topin{ max-width:1760px; } }
+
       .sp{ flex:1; }
       .chip{
         padding:7px 10px; border-radius:999px;
@@ -359,8 +381,13 @@ function Styles() {
         background:var(--card); border:1px solid var(--border); border-radius:18px; padding:16px;
         box-shadow:var(--shadow-sm);
       }
+      @media(min-width:1200px){ .card{ border-radius:20px; padding:18px; } }
+      @media(min-width:1500px){ .card{ border-radius:22px; padding:20px; } }
+
       .row{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
       .title{ margin:6px 0 14px; letter-spacing:-0.02em; }
+      @media(min-width:1200px){ .title{ margin:8px 0 18px; } }
+
 
       /* Inputs */
       input,select{
@@ -716,15 +743,9 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
         font-size:12px;
         white-space:nowrap;
       }
-      .leagueAssetRow{ align-items:center; }
-      .leagueAssetRight{
-        display:flex;
-        align-items:center;
-        justify-content:flex-end;
-        gap:10px;
-        flex-wrap:wrap;
-      }
-      .interestPills{ display:flex; gap:8px; }
+      .leagueAssetRow{ display:grid; grid-template-columns: 1fr auto; align-items:center; gap:12px; }
+      .leagueAssetRight{ display:flex; align-items:center; justify-content:flex-end; gap:10px; flex-wrap:nowrap; min-width:0; }
+      .interestPills{ display:flex; gap:8px; flex-wrap:nowrap; }
       .interestBtn{
         padding:8px 12px;
         border-radius:999px;
@@ -739,16 +760,14 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
         border-color:rgba(47,125,246,0.35);
         color:#fff;
       }
-      .valueChip{
-        padding:8px 12px;
-        border-radius:999px;
-        border:1px solid #CFE3FF;
-        background:var(--sky);
-        color:var(--blue);
-        font-weight:1100;
-        font-size:12px;
-        white-space:nowrap;
+      .valueChip{ padding:7px 10px; border-radius:999px; border:1px solid #CFE3FF; background:var(--sky); color:var(--blue); font-weight:1100; font-size:12px; white-space:nowrap; max-width:180px; overflow:hidden; text-overflow:ellipsis; }
+      @media (max-width: 820px){
+        .leagueAssetRow{ grid-template-columns: 1fr; }
+        .leagueAssetRight{ justify-content:flex-start; flex-wrap:wrap; }
+        .valueChip{ max-width: 100%; }
+        .interestPills{ flex-wrap:wrap; }
       }
+
       /* === Modal (Asset value editor) === */
       .modalOverlay{
         position:fixed; inset:0;
@@ -1387,8 +1406,6 @@ function LeagueView({ me, teams, interests, onSetInterest, metaById }) {
   }, [selectedPicks]);
 
   const InterestButtons = ({ toUserId, assetType, assetId }) => {
-    // No mostrar / permitir interés en tu propio equipo
-    if (String(toUserId) === String(me.id)) return null;
     const key = `${me.id}::${toUserId}::${assetType}::${assetId}`;
     const cur = interests.find((x) => x.key === key)?.level || "NONE";
     return (
@@ -1727,8 +1744,8 @@ export default function App() {
     }
   }, [me, teamsByUser]);
 
-  const myOutgoing = useMemo(() => (me ? interests.filter((x) => x.from_user_id === me.id && x.to_user_id !== me.id) : []), [me, interests]);
-  const myIncoming = useMemo(() => (me ? interests.filter((x) => x.to_user_id   === me.id && x.from_user_id !== me.id) : []), [me, interests]);
+  const myOutgoing = useMemo(() => (me ? interests.filter((x) => x.from_user_id === me.id) : []), [me, interests]);
+  const myIncoming = useMemo(() => (me ? interests.filter((x) => x.to_user_id   === me.id) : []), [me, interests]);
   const myRoster   = useMemo(() => (Array.isArray(myRow?.roster) ? myRow.roster : []), [myRow]);
   const myPicks    = useMemo(() => (Array.isArray(myRow?.picks)  ? myRow.picks  : []), [myRow]);
 
@@ -1928,8 +1945,6 @@ export default function App() {
 
   async function setInterest(toUserId, assetType, assetId, level) {
     if (!me) return;
-    // No permitir marcar interés sobre tu propio equipo
-    if (String(toUserId) === String(me.id)) return;
     const key = `${me.id}::${toUserId}::${assetType}::${assetId}`;
     try {
       if (level === "NONE") {
