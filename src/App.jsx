@@ -1414,7 +1414,7 @@ function LeagueView({ me, teams, interests, onSetInterest, metaById }) {
           <button
             key={lvl}
             className={"interestBtn" + (cur === lvl ? " active" : "")}
-            onClick={() => onSetInterest(toUserId, assetType, assetId, lvl)}
+            onClick={() => onSetInterest(toUserId, assetType, assetId, cur === lvl ? "NONE" : lvl)}
             title={INTEREST_LABEL[lvl]}
           >
             {INTEREST_LABEL[lvl]}
@@ -1946,6 +1946,10 @@ export default function App() {
   async function setInterest(toUserId, assetType, assetId, level) {
     if (!me) return;
     const key = `${me.id}::${toUserId}::${assetType}::${assetId}`;
+
+    // Toggle-off: si volvés a elegir el mismo nivel, se borra el interés
+    const existing = interests.find((x) => x.key === key);
+    if (existing?.level === level) level = "NONE";
     try {
       if (level === "NONE") {
         await fsDeleteInterest(key);
