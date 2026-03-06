@@ -1800,6 +1800,21 @@ function HomeNewsView({ myRoster, metaById }) {
   const [data, setData] = useState({ generatedAt: null, items: [] });
   const [q, setQ] = useState("");
   const [showAll, setShowAll] = useState(false);
+
+  // Normalizamos fuentes porque FantasyPros suele venir con variantes ("FantasyPros.com", "FantasyPro", etc.)
+  const SOURCE_KEYS = ["ESPN", "FantasyPros"];
+  const normSourceKey = (raw) => {
+    const s = String(raw || "")
+      .toLowerCase()
+      .replace(/\s+/g, "")
+      .replace(/\./g, "")
+      .replace(/-/g, "");
+
+    if (s.includes("espn")) return "ESPN";
+    if (s.includes("fantasypros") || s.includes("fantasypro")) return "FantasyPros";
+    return raw ? String(raw) : "ESPN";
+  };
+
   const [sources, setSources] = useState({ ESPN: true, FantasyPros: true });
 
   const rosterPlayers = useMemo(() => {
@@ -1877,6 +1892,23 @@ function HomeNewsView({ myRoster, metaById }) {
     return aliases.some((words) => words.length >= 2 && hasAllWords(hayNorm, words));
   };
 
+  // Si el item trae players explícitos (depende del parser), los usamos para filtrar/mostrar
+  const extractExplicitPlayers = (it) => {
+    const cand =
+      it?.players ||
+      it?.playerNames ||
+      it?.matchedPlayers ||
+      it?.mentions ||
+      it?.tags ||
+      null;
+
+    if (!Array.isArray(cand)) return [];
+    return cand
+      .map((x) => (typeof x === "string" ? x : (x?.name || x?.player || "")))
+      .map((x) => String(x || "").trim())
+      .filter(Boolean);
+  };
+
   const toggleSource = (srcKey) => {
     setSources((s) => ({ ...s, [srcKey]: !s[srcKey] }));
   };
@@ -1911,7 +1943,9 @@ function HomeNewsView({ myRoster, metaById }) {
       setLoading(true);
       setErr("");
       try {
-        const res = await fetch(`/news.json?ts=${Date.now()}`, { cache: "no-store" });
+        // En GH Pages, usar BASE_URL evita problemas de path
+        const base = import.meta.env.BASE_URL || "/";
+        const res = await fetch(`${base}news.json?ts=${Date.now()}`, { cache: "no-store" });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
         if (cancelled) return;
@@ -1919,7 +1953,7 @@ function HomeNewsView({ myRoster, metaById }) {
         setData({ generatedAt: json?.generatedAt || null, items });
       } catch (e) {
         if (!cancelled) {
-          setErr("No pude cargar noticias. Si estás en local, corré `node scripts/update-news.mjs` (o `npm run build`) para generar public/news.json.");
+          setErr("No pude cargar noticias. Generá public/news.json (ej: `node scripts/update-news.mjs` o corriendo el workflow) y recargá.");
           setData({ generatedAt: null, items: [] });
         }
       } finally {
@@ -1931,18 +1965,55 @@ function HomeNewsView({ myRoster, metaById }) {
 
   const filtered = useMemo(() => {
     let items = Array.isArray(data.items) ? [...data.items] : [];
-    items = items.filter((it) => sources[it.source] !== false);
 
+    // Normalizar fuente, y filtrar por toggle
+    items = items
+      .map((it) => {
+        const srcKey = normSourceKey(it?.source || it?.provider || it?.site);
+        const title = String(it?.title || it?.headline || it?.name || "").trim();
+        const description = String(it?.description || it?.summary || it?.desc || "").trim();
+        const url = String(it?.url || it?.link || it?.href || "").trim();
+        const publishedAt = it?.publishedAt || it?.pubDate || it?.date || it?.published || null;
+        const publishedTs =
+          Number(it?.publishedTs || it?.published_ts) ||
+          (publishedAt ? Date.parse(publishedAt) : 0) ||
+          0;
+
+        return {
+          ...it,
+          sourceKey: srcKey,
+          title,
+          description,
+          url,
+          publishedAt,
+          publishedTs,
+        };
+      })
+      .filter((it) => {
+        const srcKey = it.sourceKey;
+        // si no es una de las dos conocidas, no lo mostramos (para evitar ruido)
+        if (!SOURCE_KEYS.includes(srcKey)) return false;
+        return sources[srcKey] !== false;
+      });
+
+    // Filtrado por roster
     if (!showAll && rosterNames.length) {
       items = items.filter((it) => {
+        const explicit = extractExplicitPlayers(it).map(norm);
+        if (explicit.length) {
+          return rosterNames.some((rn) => explicit.includes(norm(rn)));
+        }
         const hay = norm(`${it.title || ""} ${it.description || ""}`);
         return rosterNames.some((n) => matchesPlayer(n, hay));
       });
     }
 
+    // Search
     if (q.trim()) {
       const qn = norm(q);
-      items = items.filter((it) => norm(`${it.title || ""} ${it.description || ""} ${it.source || ""}`).includes(qn));
+      items = items.filter((it) =>
+        norm(`${it.title || ""} ${it.description || ""} ${it.sourceKey || ""}`).includes(qn)
+      );
     }
 
     items.sort((a, b) => (b.publishedTs || 0) - (a.publishedTs || 0));
@@ -2042,30 +2113,43 @@ function HomeNewsView({ myRoster, metaById }) {
           ) : (
             filtered.map((it) => {
               const hay = norm(`${it.title || ""} ${it.description || ""}`);
-              const hits = rosterNames.filter((n) => matchesPlayer(n, hay));
+
+              // menciones: primero por lista explícita si existe, sino por matching sobre texto
+              const explicit = extractExplicitPlayers(it);
+              const hits = explicit.length
+                ? rosterNames.filter((rn) => explicit.map(norm).includes(norm(rn)))
+                : rosterNames.filter((n) => matchesPlayer(n, hay));
+
               const mentions = hits.slice(0, 5);
+              const srcKey = it.sourceKey || normSourceKey(it.source);
 
               return (
-                <article key={it.id} className="newsItem">
+                <article key={String(it.id || it.guid || it.url || `${srcKey}-${it.publishedTs}-${it.title}`)} className="newsItem">
                   <div className="newsItemTop">
                     <div className="newsItemMeta">
-                      <span className={`newsSourcePill src-${it.source || "ESPN"}`}>{it.source}</span>
+                      <span className={`newsSourcePill src-${srcKey}`}>{srcKey}</span>
                       <span className="newsTime">{it.publishedAt ? fmtDate(it.publishedAt) : "—"}</span>
                       {it.publishedTs ? <span className="newsRel">{relTime(it.publishedTs)}</span> : null}
                     </div>
 
-                    <a className="newsOpenBtn" href={it.url} target="_blank" rel="noreferrer">
-                      Abrir ↗
-                    </a>
+                    {it.url ? (
+                      <a className="newsOpenBtn" href={it.url} target="_blank" rel="noreferrer">
+                        Abrir ↗
+                      </a>
+                    ) : null}
                   </div>
 
-                  <a className="newsHeadline" href={it.url} target="_blank" rel="noreferrer">
-                    {it.title}
-                  </a>
+                  {it.url ? (
+                    <a className="newsHeadline" href={it.url} target="_blank" rel="noreferrer">
+                      {it.title || "Noticia"}
+                    </a>
+                  ) : (
+                    <div className="newsHeadline" style={{ cursor: "default" }}>{it.title || "Noticia"}</div>
+                  )}
 
                   {it.description ? (
                     <div className="newsDesc">
-                      {String(it.description).slice(0, 260)}
+                      {String(it.description).replace(/<[^>]+>/g, "").slice(0, 260)}
                       {String(it.description).length > 260 ? "…" : ""}
                     </div>
                   ) : null}
@@ -2095,13 +2179,12 @@ function HomeNewsView({ myRoster, metaById }) {
         </div>
 
         <div className="newsFoot">
-          Contenido provisto por sus respectivas fuentes. Para ESPN, se muestran únicamente títulos/resúmenes del feed RSS y se enlaza al artículo original.
+          Contenido provisto por sus respectivas fuentes. Se muestra título/resumen del feed y se enlaza al artículo original.
         </div>
       </div>
     </div>
   );
 }
-
 
 // ---- A
 
