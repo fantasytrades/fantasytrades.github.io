@@ -1,0 +1,20 @@
+{
+  "updatedAt": "2026-03-06T00:00:00Z",
+  "players": [
+    {
+      "id": "4034",
+      "name": "Amon-Ra St. Brown",
+      "value": 52
+    },
+    {
+      "id": "5041",
+      "name": "Bijan Robinson",
+      "value": 78
+    }
+  ],
+  "pickValues": {
+    "2026-1.01": 68,
+    "2026-1.02": 58,
+    "2027-1": 55
+  }
+}
