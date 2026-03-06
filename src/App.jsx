@@ -378,10 +378,10 @@ button.selectBtn{
   width:100%; display:flex; align-items:center; justify-content:space-between; gap:10px;
   padding:12px 12px; border-radius:14px; border:1px solid var(--border);
   background:#fff; color:var(--text); font-weight:900; cursor:pointer;
-  box-shadow:0 1px 0 rgba(15,23,42,0.02);
+  box-shadow:none;
 }
-button.selectBtn:focus{ outline:none; border-color:#CFE3FF; box-shadow:0 0 0 4px rgba(47,125,246,0.10); }
-button.selectBtn:focus-visible{ outline:none; border-color:#CFE3FF; box-shadow:0 0 0 4px rgba(47,125,246,0.10); }
+button.selectBtn:focus{ outline:none; border-color:#CFE3FF; box-shadow:none; }
+button.selectBtn:focus-visible{ outline:none; border-color:#CFE3FF; box-shadow:none; }
 .selectCaret{
   width:0; height:0;
   border-left:6px solid transparent; border-right:6px solid transparent;
@@ -390,7 +390,7 @@ button.selectBtn:focus-visible{ outline:none; border-color:#CFE3FF; box-shadow:0
 .selectMenu{
   position:absolute; left:0; right:0; top:calc(100% + 8px);
   background:#fff; border:1px solid var(--border); border-radius:14px;
-  box-shadow:0 8px 18px rgba(15,23,42,0.10); padding:6px; z-index:80; overflow:hidden;
+  box-shadow:none; padding:6px; z-index:80; overflow:hidden;
 }
 button.selectOpt{
   width:100%; text-align:left;
