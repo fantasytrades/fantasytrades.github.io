@@ -583,7 +583,7 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
         padding:6px 10px; border-radius:999px; border:1px solid var(--border);
         background:#F1F5F9; font-weight:1000; font-size:12px; color:#0F172A;
       }
-      .badge{ padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:#F1F5F9; font-weight:1000; font-size:12px; color:#0F172A; }
+      .badge{ padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:#F1F5F9; font-weight:1000; font-size:12px; color:#0F172A; display:inline-flex; align-items:center; justify-content:center; min-width:84px; }
 
       .badge-NONE{ background:#F1F5F9; border-color:var(--border); color:#0F172A; }
       .badge-LOW{ background:rgba(239,68,68,0.16); border-color:rgba(239,68,68,0.35); color:#991B1B; }
@@ -759,6 +759,13 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
         color:#1E293B;
         box-shadow:none;
         font-weight:1100;
+
+        /* make Bajo/Medio/Alto equal width */
+        min-width:84px;
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        text-align:center;
       }
       .interestBtn.active{ /* fallback */ 
         background:var(--blue);
