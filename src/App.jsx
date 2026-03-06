@@ -364,7 +364,26 @@ function Styles() {
       @media(min-width:1500px){ .topin{ max-width:1600px; padding:12px 24px; } }
       @media(min-width:1800px){ .topin{ max-width:1760px; } }
 
-      .sp{ flex:1; }
+      
+      .brand{ font-weight:1000; letter-spacing:-0.2px; }
+      @media(max-width:520px){
+        .topin{ padding:10px 12px; }
+        .brand{ font-size:16px; max-width:155px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .chip{ font-size:11px; padding:6px 8px; }
+      }
+
+      .mobileFinderToggle{
+        border:1px solid #cfe3ff !important;
+        background: var(--sky) !important;
+        color: var(--blue) !important;
+        box-shadow:none !important;
+        padding:10px 12px !important;
+        border-radius:14px !important;
+        font-weight:1000 !important;
+      }
+      .mobileFinderToggle:focus{ outline:none; }
+
+.sp{ flex:1; }
       .chip{
         padding:7px 10px; border-radius:999px;
         border:1px solid var(--border); background:#fff; color:var(--text);
@@ -625,13 +644,25 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
       @media(max-width:720px){
         .rosterItem{ grid-template-columns:54px 1fr; align-items:start; }
         .rosterItem > .posTag{ grid-row:1 / span 2; }
-        .rosterItem > .left{ grid-column:2; }
-        .rosterItem > .rosterActions{ grid-column:2; grid-row:2; justify-content:flex-start; margin-top:8px; }
-        .rosterActions{ justify-content:flex-start; flex-wrap:wrap; }
-        .rosterActions .valueBtn, .rosterActions .statusBtn{ min-width:0; }
+        .rosterItem > .left{ grid-column:2; min-width:0; }
+        .rosterItem > .rosterActions{ grid-column:2; grid-row:2; justify-content:flex-start; margin-top:10px; width:100%; }
+        .rosterActions{ width:100%; display:grid; grid-template-columns: 1fr 1fr 44px; gap:10px; align-items:center; justify-content:stretch; }
+        .rosterActions .valueBtn, .rosterActions .statusBtn{ width:100%; min-width:0; }
+        .rosterActions .iconBtn{ width:44px; height:44px; }
+        .valueTag{ max-width:100%; }
       }
 
-      /* === Status colors (flat, like the white mock) === */
+      @media(max-width:420px){
+        .rosterItem{ grid-template-columns:48px 1fr; }
+        .rosterItem > .posTag{ width:48px; height:48px; font-size:14px; }
+        .rosterActions{ grid-template-columns: 1fr 44px; grid-auto-rows:44px; }
+        .rosterActions .valueBtn{ grid-column:1; }
+        .rosterActions .statusBtn{ grid-column:1; }
+        .rosterActions .iconBtn{ grid-column:2; grid-row:1 / span 2; height:100%; }
+        .valueTag{ white-space:normal; }
+      }
+
+            /* === Status colors (flat, like the white mock) === */
       .statusBtn{ border:1px solid var(--border); box-shadow:none; }
       button.statusBtn.status-AVAILABLE{ background:var(--ok); border-color:var(--ok); color:#fff; }
       button.statusBtn.status-LISTENING{ background:var(--warn); border-color:var(--warn); color:#fff; }
@@ -1168,7 +1199,7 @@ function MyTeamView({
   return (
     <div style={{ marginTop: 12 }}>
       <div className="row mobileOnly" style={{ marginBottom: 10 }}>
-        <button className="ghost" onClick={() => setShowFinder((v) => !v)}>
+        <button className="ghost mobileFinderToggle" onClick={() => setShowFinder((v) => !v)}>
           {showFinder ? "Ocultar buscador" : "Buscar jugadores / picks"}
         </button>
       </div>
@@ -2578,7 +2609,7 @@ export default function App() {
       <Styles />
       <div className="top">
         <div className="topin">
-          <div style={{ fontWeight: 1000 }}>Fantasy Trade Board</div>
+          <div className="brand">Fantasy Trade Board</div>
           <div className="sp" />
           {playersLoading ? <div className="chip" style={{ cursor: "default" }}>ADP…</div> : null}
           {me ? <div className="chip" style={{ cursor: "default" }}>{me.email}</div> : null}
