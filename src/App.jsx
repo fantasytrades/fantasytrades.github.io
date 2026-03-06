@@ -1649,16 +1649,53 @@ function HomeNewsView({ myRoster, metaById }) {
       .replace(/\s+/g, " ")
       .trim();
 
-  const matchesPlayer = (playerName, hayNorm) => {
-    const full = norm(playerName);
-    if (!full) return false;
-    if (hayNorm.includes(full)) return true;
+    const SUFFIXES = new Set(["jr", "sr", "ii", "iii", "iv", "v"]);
 
-    // fallback: last name w/ word boundary-ish match (avoid very short/common last names)
-    const parts = full.split(" ").filter(Boolean);
-    const last = parts[parts.length - 1] || "";
-    if (last.length < 5) return false;
-    return new RegExp(`(^|\\s)${last}(\\s|$)`, "i").test(hayNorm);
+  const escapeRegExp = (s) => String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+  const aliasesForName = (playerName) => {
+    const raw = String(playerName || "").trim();
+    const toks = norm(raw)
+      .split(/\s+/)
+      .filter(Boolean)
+      .filter((t) => !SUFFIXES.has(t));
+
+    if (toks.length < 2) return [];
+
+    const first = toks[0];
+    const last = toks[toks.length - 1];
+
+    const out = [];
+
+    // Full name (máxima precisión si el feed lo trae completo)
+    out.push(toks);
+
+    // First + Last (base)
+    out.push([first, last]);
+
+    // Caso "St. Brown" (evita matchear por "Brown" solo)
+    if (toks.length >= 3 && toks[toks.length - 2] === "st") out.push(["st", last]);
+
+    // Caso iniciales: "A J Brown" -> permite "aj brown" o "a j brown"
+    if (toks.length >= 3 && toks[0].length === 1 && toks[1].length === 1) {
+      out.push([`${toks[0]}${toks[1]}`, last]);
+      out.push([toks[0], toks[1], last]);
+    }
+
+    // De-dup
+    const uniq = new Map();
+    for (const a of out) uniq.set(a.join("|"), a);
+    return [...uniq.values()];
+  };
+
+  const hasAllWords = (hayNorm, words) =>
+    words.every((w) => new RegExp(`\\b${escapeRegExp(w)}\\b`, "i").test(hayNorm));
+
+  const matchesPlayer = (playerName, hayNorm) => {
+    const aliases = aliasesForName(playerName);
+    if (!aliases.length) return false;
+    // Match estricto: alguna combinación de 2+ palabras tiene que estar presente.
+    return aliases.some((words) => words.length >= 2 && hasAllWords(hayNorm, words));
   };
 
   useEffect(() => {
