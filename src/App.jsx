@@ -376,6 +376,10 @@ function Styles() {
       .grid2{ display:grid; grid-template-columns:1fr; gap:14px; align-items:start; }
       @media(min-width:980px){ .grid2{ grid-template-columns:1fr 1fr; } }
 
+      .grid2.single{ grid-template-columns:1fr !important; }
+      .mobileOnly{ display:none; }
+      @media(max-width:980px){ .mobileOnly{ display:flex; } }
+
       /* Cards */
       .card{
         background:var(--card); border:1px solid var(--border); border-radius:18px; padding:16px;
@@ -1065,6 +1069,25 @@ function MyTeamView({
   const [posFilter, setPosFilter] = useState("ALL");
   const [pickQ, setPickQ] = useState("");
 
+  const [showFinder, setShowFinder] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return window.innerWidth >= 980;
+  });
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(min-width: 980px)");
+    const onChange = () => {
+      if (mq.matches) setShowFinder(true);
+    };
+    if (mq.addEventListener) mq.addEventListener("change", onChange);
+    else mq.addListener(onChange);
+    return () => {
+      if (mq.removeEventListener) mq.removeEventListener("change", onChange);
+      else mq.removeListener(onChange);
+    };
+  }, []);
+
   const filtered = useMemo(() => {
     const qq = q.trim().toLowerCase();
     return (players || [])
@@ -1080,9 +1103,9 @@ function MyTeamView({
           }
         }
         if (!qq) return true;
-        return String(p.name || "").toLowerCase().includes(qq);
+        return String(p.name || p.player_name || p.full_name || p.player || "").toLowerCase().includes(qq);
       })
-      .slice(0, 250);
+      .slice(0, 1200);
   }, [players, q, posFilter]);
 
   const rosterIds = useMemo(() => new Set((myRoster || []).map((r) => String(r.id))), [myRoster]);
@@ -1144,8 +1167,14 @@ function MyTeamView({
 
   return (
     <div style={{ marginTop: 12 }}>
-      <div className="grid2">
+      <div className="row mobileOnly" style={{ marginBottom: 10 }}>
+        <button className="ghost" onClick={() => setShowFinder((v) => !v)}>
+          {showFinder ? "Ocultar buscador" : "Buscar jugadores / picks"}
+        </button>
+      </div>
+      <div className={`grid2 ${showFinder ? "" : "single"}`}>
         {/* Left: Players / Picks list */}
+        {showFinder ? (
         <div className="card">
           <div className="seg segTabs segTabsFull">
             <button className={mode === "players" ? "active" : ""} onClick={() => setMode("players")}>Jugadores</button>
@@ -1167,17 +1196,19 @@ function MyTeamView({
 
               <div className="list scrollList" style={{ marginTop: 12 }}>
                 {filtered.map((p) => {
-                  const id = String(p.player_id);
+                  const id = String(p?.player_id ?? p?.id ?? "");
+                  const pname = p?.name || p?.player_name || p?.full_name || p?.player || "";
                   const added = rosterIds.has(id);
-                  const pos = normPos(p.position);
+                  const posRaw = p?.position ?? p?.pos ?? p?.player_position ?? "";
+                  const pos = normPos(posRaw);
                   const img = pickImg(p);
                   return (
                     <div key={id} className="item itemTight">
                       <div className="left">
-                        <div className="av">{img ? <img src={img} alt={p.name} /> : initials(p.name)}</div>
+                        <div className="av">{img ? <img src={img} alt={pname} /> : initials(pname)}</div>
                         <div style={{ minWidth: 0 }}>
-                          <div className="name">{p.name}</div>
-                          <div className="muted sub"><span className={`posMini posMini-${pos}`}>{pos}</span>{p.team || "-"} {p.adp_formatted ? `· ADP ${p.adp_formatted}` : ""}</div>
+                          <div className="name">{pname}</div>
+                          <div className="muted sub"><span className={`posMini posMini-${pos}`}>{pos}</span>{p.team || p.nfl || "-"}</div>
                         </div>
                       </div>
                       <button
@@ -1234,6 +1265,7 @@ function MyTeamView({
             </>
           )}
         </div>
+        ) : null}
 
         {/* Right: Slots / Picks details */}
         <div className="card">
@@ -2334,7 +2366,7 @@ export default function App() {
     const m = new Map();
     // Guardamos el objeto completo (incluye headshot/img si existe)
     for (const p of players) {
-      m.set(String(p.player_id), p);
+      m.set(String(p?.player_id ?? p?.id ?? ""), p);
     }
     for (const t of teams) {
       for (const r of t.roster || []) {
@@ -2629,9 +2661,13 @@ export default function App() {
                 slots={slots}
                 saving={saving}
                 onAddPlayer={(p) => updateMyTeam((t) => {
-                  const exists = (t.roster || []).some((r) => String(r.id) === String(p.player_id));
+                  const pid = String(p?.player_id ?? p?.id ?? "");
+                  if (!pid) return t;
+                  const pname = p?.name || p?.player_name || p?.full_name || p?.player || "";
+                  const posRaw = p?.position ?? p?.pos ?? p?.player_position ?? "";
+                  const exists = (t.roster || []).some((r) => String(r.id) === pid);
                   if (exists) return t;
-                  return { ...t, roster: [...(t.roster || []), { id: String(p.player_id), name: p.name, pos: normPos(p.position), nfl: p.team || "", status: "AVAILABLE" }] };
+                  return { ...t, roster: [...(t.roster || []), { id: pid, name: pname || `Jugador ${pid}`, pos: normPos(posRaw), nfl: p?.team || p?.nfl || "", status: "AVAILABLE" }] };
                 }, "add player")}
                 onRemovePlayer={(id) => updateMyTeam((t) => ({
                   ...t, roster: (t.roster || []).filter((r) => String(r.id) !== String(id)),
