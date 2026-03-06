@@ -1452,12 +1452,72 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
       }
       .chatMiniText{ max-width:180px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 
+      .mobileChatRail{ display:none; }
+      .mobileChatRailHead{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px; }
+      .mobileChatScroller{ display:flex; gap:10px; overflow-x:auto; padding:2px 2px 8px; scroll-snap-type:x proximity; }
+      .mobileChatScroller::-webkit-scrollbar{ height:6px; }
+      .mobileChatScroller::-webkit-scrollbar-thumb{ background:#D8E4F6; border-radius:999px; }
+      .mobileChatTeamBtn{
+        min-width:220px;
+        padding:12px;
+        border-radius:18px;
+        border:1px solid var(--border);
+        background:#fff;
+        box-shadow:none;
+        color:var(--text);
+        display:grid;
+        gap:10px;
+        text-align:left;
+        scroll-snap-align:start;
+      }
+      .mobileChatTeamBtn.active{ background:#EEF6FF; border-color:#A7C7FF; }
+      .mobileChatTeamTop{ display:flex; align-items:center; gap:10px; min-width:0; }
+      .mobileChatTeamText{ min-width:0; display:grid; gap:2px; }
+      .mobileChatTeamName{ font-weight:1100; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+      .mobileChatTeamMeta{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
+      .mobileChatStatus{ max-width:150px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+      .chatComposerCard{ overflow:hidden; }
+      .tradeActionRow, .tradeRespondRow{ width:100%; }
+
       @media (max-width: 980px){
-        .chatsWrap{ grid-template-columns:1fr; }
+        .mobileChatRail{ display:block; margin-top:14px; }
+        .chatList{ display:none; }
+        .chatsWrap{ grid-template-columns:1fr; margin-top:12px !important; }
         .tradeSides{ grid-template-columns:1fr; }
-        .chatTabs{ flex-wrap:wrap; }
-        .chatSearch{ max-width:100%; width:100%; min-width:0; }
-        .chatPickList{ max-height:220px; }
+        .chatMain{ gap:12px; }
+        .tradeTop{ display:grid; gap:10px; }
+        .chatTabs{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+        .chatTabs .sp{ display:none; }
+        .chatSearch{ grid-column:1 / -1; max-width:100%; width:100%; min-width:0; }
+        .chatPickList{ max-height:240px; }
+        .chatAssetChip, .chatMiniChip{ max-width:100%; }
+        .chatAssetName, .chatMiniText{ flex:1; min-width:0; max-width:none; }
+        .tradeActionRow{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+        .tradeActionRow button{ width:100%; }
+        .tradeRespondRow{ display:grid; grid-template-columns:1fr; gap:8px; }
+        .tradeRespondRow button{ width:100%; }
+      }
+
+      @media (max-width: 640px){
+        .card.chatComposerCard, .chatMain > .card{ padding:12px !important; border-radius:16px; }
+        .mobileChatRailHead{ margin-bottom:8px; }
+        .mobileChatTeamBtn{ min-width:185px; padding:10px; border-radius:16px; }
+        .chatTeamAvatar, .mobileChatTeamBtn .chatTeamAvatar{ width:36px; height:36px; border-radius:12px; }
+        .chatSideTop{ margin-bottom:8px; }
+        .chatSideCount{ min-width:26px; height:26px; padding:0 8px; }
+        .chatTab{ height:36px; padding:0 12px; }
+        .chatSelected{ padding:8px; }
+        .chatChipsWrap{ gap:6px; }
+        .chatAssetChip, .chatMiniChip{ width:100%; justify-content:flex-start; }
+        .chatPickList{ max-height:210px; padding:6px; }
+        .chatPickRow{ padding:9px; gap:10px; }
+        .chatAv, .chatPickIcon{ width:36px; height:36px; }
+        .tradeCard{ padding:12px; border-radius:16px; }
+        .tradeSide, .chatTradeSide{ padding:9px; border-radius:12px; }
+        .tradeActionRow{ grid-template-columns:1fr; }
+        .tradeActionRow .miniBtn{ min-height:40px; }
+        .row.tradeRespondRow{ display:grid; grid-template-columns:1fr; gap:8px; }
+        .row.tradeRespondRow button{ width:100%; margin:0; }
       }
 `}</style>
   );
@@ -2997,13 +3057,15 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
 
       let tradeForHide = trade;
       if (needsAutoRobbery) {
+        const stamp = nowIso();
         await fsRespondTrade(trade.id, "ROBBERY");
         tradeForHide = normalizeTradeRow({
           ...trade,
           status: "ROBBERY",
           response: "ROBBERY",
-          responded_at: nowIso(),
-          robbery_at: nowIso(),
+          responded_at: stamp,
+          robbery_at: stamp,
+          updated_at: stamp,
           hidden_for: [],
         });
       }
@@ -3212,6 +3274,40 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
         </button>
       </div>
 
+      <div className="mobileChatRail">
+        <div className="mobileChatRailHead">
+          <div className="muted" style={{ fontWeight: 1000 }}>Conversaciones</div>
+          <span className="muted" style={{ fontSize: 12 }}>{otherTeams.length}</span>
+        </div>
+
+        <div className="mobileChatScroller">
+          {otherTeams.map((t) => {
+            const pending = pendingForTeam(t.user_id);
+            return (
+              <button
+                key={`mobile-${t.user_id}`}
+                type="button"
+                className={`mobileChatTeamBtn ${selectedUserId === t.user_id ? "active" : ""}`}
+                onClick={() => { setSelectedUserId(t.user_id); clearDraft(); }}
+              >
+                <div className="mobileChatTeamTop">
+                  <div className="chatTeamAvatar">{initials(teamLabel(t))}</div>
+                  <div className="mobileChatTeamText">
+                    <div className="mobileChatTeamName">{teamLabel(t)}</div>
+                    <div className="muted" style={{ fontSize: 12 }}>{t.display_name || t.user_id}</div>
+                  </div>
+                </div>
+
+                <div className="mobileChatTeamMeta">
+                  <div className="chip mobileChatStatus" style={{ cursor: "default" }}>{normTeamStatus(t.team_status)}</div>
+                  {pending ? <div className="chatDot" title="Pendientes">{pending}</div> : <span className="muted" style={{ fontSize: 12 }}>Abrir</span>}
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       <div className="chatsWrap" style={{ marginTop: 14 }}>
         <div className="chatList">
           <div className="row" style={{ alignItems: "baseline", marginBottom: 10 }}>
@@ -3249,7 +3345,7 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
         </div>
 
         <div className="chatMain">
-          <div className="card chatComposer" style={{ padding: 14, borderRadius: 18 }}>
+          <div className="card chatComposer chatComposerCard" style={{ padding: 14, borderRadius: 18 }}>
             <div className="row" style={{ alignItems: "center" }}>
               <div style={{ display: "grid", gap: 2 }}>
                 <div style={{ fontWeight: 1100 }}>Nueva propuesta</div>
@@ -3384,7 +3480,7 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
                         </div>
                       </div>
 
-                      <div className="row" style={{ gap: 8, alignItems: "center", justifyContent: "flex-end" }}>
+                      <div className="row tradeActionRow" style={{ gap: 8, alignItems: "center", justifyContent: "flex-end" }}>
                         {t.history?.length ? (
                           <button className="ghost miniBtn" onClick={() => toggleHistory(t.id)}>
                             {showHistory ? "Ocultar historial" : `Ver historial (${t.history.length})`}
@@ -3447,7 +3543,7 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
                     ) : null}
 
                     {isReceiver && st === "PENDING" ? (
-                      <div className="row" style={{ justifyContent: "flex-end", gap: 10 }}>
+                      <div className="row tradeRespondRow" style={{ justifyContent: "flex-end", gap: 10 }}>
                         <button className="ok" onClick={() => respondTrade(t.id, "LIKE")}>Me gusta</button>
                         <button className="warn" onClick={() => loadForCounter(t)}>Contraoferta</button>
                         <button className="danger" onClick={() => respondTrade(t.id, "ROBBERY")}>Me estás robando</button>
