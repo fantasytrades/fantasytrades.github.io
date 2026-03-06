@@ -163,6 +163,417 @@ function pickCatalog() {
 const PICKS = pickCatalog();
 const PICK_LABEL = new Map(PICKS.map((p) => [String(p.id), p.label]));
 
+
+const FP_PICK_VALUES_1QB = {
+  "2026-1.01": 68, "2026-1.02": 58, "2026-1.03": 56, "2026-1.04": 54, "2026-1.05": 52,
+  "2026-1.06": 50, "2026-1.07": 48, "2026-1.08": 46, "2026-1.09": 44, "2026-1.10": 42,
+};
+
+const FP_METER_SEGMENTS = [
+  { label: "ABURRIDO", color: "#16C784" },
+  { label: "NADA MAL", color: "#A3D632" },
+  { label: "MUY BIEN", color: "#F3D51B" },
+  { label: "FANTÁSTICO", color: "#F7931E" },
+  { label: "ASOMBROSO", color: "#EF4444" },
+];
+
+function clamp(n, min, max) {
+  return Math.max(min, Math.min(max, n));
+}
+
+function normalizeLookupName(name) {
+  return String(name || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .replace(/[^a-z0-9\s]/g, " ")
+    .replace(/\b(jr|sr|ii|iii|iv|v)\b/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function normalizeFantasyProsValuesPayload(raw) {
+  const out = {
+    updatedAt: null,
+    byId: {},
+    byName: {},
+    pickValues: {},
+    hasLocalData: false,
+  };
+
+  if (!raw || typeof raw !== "object") return out;
+
+  out.updatedAt = raw.updatedAt || raw.generatedAt || raw.updated_at || null;
+
+  const putPlayer = (playerId, playerName, value) => {
+    const n = Number(value);
+    if (!Number.isFinite(n)) return;
+    const id = String(playerId || "").trim();
+    const nm = normalizeLookupName(playerName);
+    if (id) out.byId[id] = n;
+    if (nm) out.byName[nm] = n;
+  };
+
+  if (Array.isArray(raw.players)) {
+    raw.players.forEach((p) => {
+      putPlayer(
+        p?.id ?? p?.player_id ?? p?.playerId ?? p?.sleeper_id ?? "",
+        p?.name ?? p?.player_name ?? p?.full_name ?? "",
+        p?.value ?? p?.trade_value ?? p?.dynasty_value ?? p?.fp_value ?? p?.score
+      );
+    });
+  }
+
+  if (raw.byId && typeof raw.byId === "object") {
+    Object.entries(raw.byId).forEach(([key, value]) => {
+      const n = Number(value);
+      if (Number.isFinite(n)) out.byId[String(key)] = n;
+    });
+  }
+
+  if (raw.byName && typeof raw.byName === "object") {
+    Object.entries(raw.byName).forEach(([key, value]) => {
+      const n = Number(value);
+      if (Number.isFinite(n)) out.byName[normalizeLookupName(key)] = n;
+    });
+  }
+
+  if (raw.pickValues && typeof raw.pickValues === "object") {
+    Object.entries(raw.pickValues).forEach(([key, value]) => {
+      const n = Number(value);
+      if (Number.isFinite(n)) out.pickValues[String(key)] = n;
+    });
+  }
+
+  out.hasLocalData = Boolean(
+    Object.keys(out.byId).length ||
+    Object.keys(out.byName).length ||
+    Object.keys(out.pickValues).length
+  );
+
+  return out;
+}
+
+function rankLikeValue(raw, fallback = NaN) {
+  const n = Number(raw);
+  return Number.isFinite(n) && n > 0 ? n : fallback;
+}
+
+function estimateDynastyPlayerValue(meta, fallbackPos = "") {
+  const pos = normPos(meta?.position || meta?.pos || fallbackPos || "");
+  const rank = Math.min(
+    rankLikeValue(meta?.dynasty_rank),
+    rankLikeValue(meta?.ecr),
+    rankLikeValue(meta?.rank),
+    rankLikeValue(meta?.adp),
+    rankLikeValue(meta?.adp_ppr),
+    rankLikeValue(meta?.ppr_adp),
+    rankLikeValue(meta?.adp_rank),
+    rankLikeValue(meta?.adp_value),
+    999999
+  );
+
+  let base;
+  if (Number.isFinite(rank) && rank < 999999) {
+    base = Math.round(110 / Math.pow(rank + 1, 0.48));
+  } else {
+    base = pos === "QB" ? 14 : pos === "RB" ? 18 : pos === "WR" ? 17 : pos === "TE" ? 12 : 10;
+  }
+
+  if (pos === "QB") base = Math.round(base * 0.82); // 1QB
+  if (pos === "TE") base = Math.round(base * 0.94);
+  if (pos === "WR") base = Math.round(base * 1.02);
+
+  return clamp(base, 3, 80);
+}
+
+function fantasyProsPlayerValue(playerId, metaById, fpDynastyValues, fallbackName = "") {
+  const id = String(playerId || "").trim();
+  const meta = metaById?.get?.(id) || null;
+  const exactMetaValue =
+    Number(meta?.dynasty_value ?? meta?.trade_value ?? meta?.fantasypros_value ?? meta?.fp_value);
+
+  if (Number.isFinite(exactMetaValue)) {
+    return { value: exactMetaValue, source: "meta-exact" };
+  }
+
+  if (fpDynastyValues?.byId?.[id] != null) {
+    return { value: Number(fpDynastyValues.byId[id]), source: "local-exact" };
+  }
+
+  const name =
+    meta?.name ||
+    meta?.player_name ||
+    meta?.full_name ||
+    fallbackName ||
+    "";
+  const key = normalizeLookupName(name);
+
+  if (key && fpDynastyValues?.byName?.[key] != null) {
+    return { value: Number(fpDynastyValues.byName[key]), source: "local-exact" };
+  }
+
+  return {
+    value: estimateDynastyPlayerValue(meta, meta?.position || meta?.pos || ""),
+    source: "estimate",
+  };
+}
+
+function fantasyProsPickValue(pickId, fpDynastyValues) {
+  const base = String(pickId || "").split("#")[0];
+
+  if (fpDynastyValues?.pickValues?.[base] != null) {
+    return { value: Number(fpDynastyValues.pickValues[base]), source: "local-exact" };
+  }
+
+  if (FP_PICK_VALUES_1QB[base] != null) {
+    return { value: FP_PICK_VALUES_1QB[base], source: "article-exact" };
+  }
+
+  const m = base.match(/^(\d{4})-(\d)\.(\d{2})$/);
+  if (m) {
+    const year = Number(m[1]);
+    const round = Number(m[2]);
+    const slot = Number(m[3]);
+
+    if (year === 2026) {
+      if (round === 2) {
+        if (slot <= 3) return { value: 35, source: "article-exact" };
+        if (slot <= 7) return { value: 29, source: "article-exact" };
+        return { value: 24, source: "article-exact" };
+      }
+      if (round === 3) {
+        if (slot <= 3) return { value: 20, source: "article-exact" };
+        if (slot <= 7) return { value: 16, source: "article-exact" };
+        return { value: 14, source: "article-exact" };
+      }
+      if (round === 4) {
+        return { value: slot <= 5 ? 10 : 7, source: "article-exact" };
+      }
+      if (round >= 5) return { value: 3, source: "article-exact" };
+    }
+
+    if (year === 2027) {
+      if (round === 1) {
+        if (slot <= 3) return { value: 66, source: "article-exact" };
+        if (slot <= 6) return { value: 55, source: "article-exact" };
+        return { value: 45, source: "article-exact" };
+      }
+      if (round === 2) return { value: slot <= 5 ? 34 : 27, source: "article-exact" };
+      if (round === 3) return { value: slot <= 5 ? 18 : 15, source: "article-exact" };
+      return { value: 8, source: "article-exact" };
+    }
+
+    if (year === 2028) {
+      const prior = fantasyProsPickValue(base.replace(/^2028-/, "2027-"), fpDynastyValues);
+      if (prior?.value != null) {
+        return { value: Math.max(3, Math.round(prior.value * 0.86)), source: "estimate" };
+      }
+    }
+  }
+
+  const generic = base.match(/^(\d{4})-(\d)$/);
+  if (generic) {
+    const year = Number(generic[1]);
+    const round = Number(generic[2]);
+
+    if (year === 2027) {
+      if (round === 1) return { value: 55, source: "article-exact" };
+      if (round === 2) return { value: 30, source: "article-exact" };
+      if (round === 3) return { value: 17, source: "article-exact" };
+      return { value: 8, source: "article-exact" };
+    }
+
+    if (year === 2028) {
+      const base2027 = fantasyProsPickValue(`2027-${round}`, fpDynastyValues);
+      return { value: Math.max(3, Math.round((base2027?.value || 8) * 0.86)), source: "estimate" };
+    }
+  }
+
+  return { value: 8, source: "estimate" };
+}
+
+function fantasyProsMeterLabel(ratio) {
+  if (ratio <= -0.18) return { label: "Aburrido", tone: "bad" };
+  if (ratio <= -0.06) return { label: "Nada mal", tone: "meh" };
+  if (ratio < 0.06) return { label: "Muy bien", tone: "mid" };
+  if (ratio < 0.18) return { label: "Fantástico", tone: "good" };
+  return { label: "Asombroso", tone: "great" };
+}
+
+function summarizeTradeForFantasyPros(version, viewerId, metaById, fpDynastyValues) {
+  const viewerIsSender = String(version?.from_user_id || "") === String(viewerId || "");
+  const yourGive = viewerIsSender ? version?.give : version?.get;
+  const yourGet = viewerIsSender ? version?.get : version?.give;
+
+  const detailForPlayer = (id) => {
+    const meta = metaById?.get?.(String(id)) || null;
+    const label = meta?.name || meta?.player_name || meta?.full_name || `Jugador ${id}`;
+    return {
+      id: String(id),
+      label,
+      ...fantasyProsPlayerValue(id, metaById, fpDynastyValues, label),
+      type: "player",
+    };
+  };
+
+  const detailForPick = (id) => ({
+    id: String(id),
+    label: PICK_LABEL.get(String(id).split("#")[0]) || String(id).split("#")[0],
+    ...fantasyProsPickValue(id, fpDynastyValues),
+    type: "pick",
+  });
+
+  const giveDetails = [
+    ...((yourGive?.players || []).map(detailForPlayer)),
+    ...((yourGive?.picks || []).map(detailForPick)),
+  ];
+  const getDetails = [
+    ...((yourGet?.players || []).map(detailForPlayer)),
+    ...((yourGet?.picks || []).map(detailForPick)),
+  ];
+
+  const giveTotal = giveDetails.reduce((sum, x) => sum + Number(x.value || 0), 0);
+  const getTotal = getDetails.reduce((sum, x) => sum + Number(x.value || 0), 0);
+  const total = Math.max(1, giveTotal + getTotal);
+  const delta = getTotal - giveTotal;
+  const ratio = delta / total;
+  const meterPct = clamp(Math.round(50 + ratio * 180), 2, 98);
+  const verdict = fantasyProsMeterLabel(ratio);
+
+  const allDetails = [...giveDetails, ...getDetails];
+  const exactCount = allDetails.filter((x) => x.source !== "estimate").length;
+  const estimateCount = allDetails.length - exactCount;
+
+  let sourceNote = "Estimado por ranking/ADP";
+  if (fpDynastyValues?.hasLocalData && estimateCount === 0) sourceNote = "FantasyPros local";
+  else if (fpDynastyValues?.hasLocalData && estimateCount > 0) sourceNote = "FantasyPros local + estimación";
+  else if (estimateCount !== allDetails.length) sourceNote = "Picks FantasyPros + estimación";
+
+  return {
+    meterPct,
+    angle: 270 - (meterPct / 100) * 180,
+    delta,
+    ratio,
+    giveTotal,
+    getTotal,
+    verdict,
+    exactCount,
+    estimateCount,
+    itemCount: allDetails.length,
+    sourceNote,
+    updatedAt: fpDynastyValues?.updatedAt || null,
+  };
+}
+
+function polarToCartesian(cx, cy, radius, angleInDegrees) {
+  const angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180.0;
+  return {
+    x: cx + radius * Math.cos(angleInRadians),
+    y: cy + radius * Math.sin(angleInRadians),
+  };
+}
+
+function describeArc(cx, cy, radius, startAngle, endAngle) {
+  const start = polarToCartesian(cx, cy, radius, endAngle);
+  const end = polarToCartesian(cx, cy, radius, startAngle);
+  const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+  return `M ${start.x} ${start.y} A ${radius} ${radius} 0 ${largeArcFlag} 0 ${end.x} ${end.y}`;
+}
+
+function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues }) {
+  const summary = summarizeTradeForFantasyPros(version, viewerId, metaById, fpDynastyValues);
+  const pointerTip = polarToCartesian(180, 188, 120, summary.angle);
+  const labelRadius = 130;
+
+  return (
+    <div className="fpTradeBox">
+      <div className="fpMeterHead">
+        <div style={{ minWidth: 0 }}>
+          <div className="fpMeterTitle">FantasyPros <span className="muted" style={{ fontWeight: 900 }}>(para vos)</span></div>
+          <div className="fpMeterMeta">
+            {summary.sourceNote}
+            {summary.updatedAt ? ` · ${new Date(summary.updatedAt).toLocaleString()}` : ""}
+          </div>
+        </div>
+        <span className={`fpVerdict fpVerdict-${summary.verdict.tone}`}>{summary.verdict.label}</span>
+      </div>
+
+      <div className="fpMeterWrap">
+        <svg className="fpMeterSvg" viewBox="0 0 360 220" role="img" aria-label={`FantasyPros: ${summary.verdict.label}`}>
+          {FP_METER_SEGMENTS.map((seg, idx) => {
+            const startAngle = 270 - idx * 36;
+            const endAngle = 270 - (idx + 1) * 36;
+            const midAngle = (startAngle + endAngle) / 2;
+            const textPoint = polarToCartesian(180, 188, labelRadius, midAngle);
+
+            return (
+              <g key={seg.label}>
+                <path
+                  d={describeArc(180, 188, 138, startAngle, endAngle)}
+                  fill="none"
+                  stroke={seg.color}
+                  strokeWidth="58"
+                  strokeLinecap="butt"
+                />
+                <text
+                  x={textPoint.x}
+                  y={textPoint.y}
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  fontSize="11"
+                  fontWeight="900"
+                  fill="rgba(15,23,42,0.75)"
+                >
+                  {seg.label}
+                </text>
+              </g>
+            );
+          })}
+
+          <line
+            x1="180"
+            y1="188"
+            x2={pointerTip.x}
+            y2={pointerTip.y}
+            stroke="#202631"
+            strokeWidth="10"
+            strokeLinecap="round"
+          />
+          <polygon
+            points={`${pointerTip.x},${pointerTip.y} ${pointerTip.x - 8},${pointerTip.y - 18} ${pointerTip.x + 8},${pointerTip.y - 18}`}
+            fill="#202631"
+            transform={`rotate(${summary.angle - 90} ${pointerTip.x} ${pointerTip.y})`}
+          />
+          <circle cx="180" cy="188" r="50" fill="#151923" />
+          <circle cx="180" cy="188" r="8" fill="#EF4444" />
+          <text x="180" y="176" textAnchor="middle" fontSize="12" fontWeight="900" fill="#FFFFFF">
+            Balance
+          </text>
+          <text x="180" y="196" textAnchor="middle" fontSize="24" fontWeight="1100" fill="#FFFFFF">
+            {summary.delta > 0 ? `+${summary.delta}` : summary.delta}
+          </text>
+        </svg>
+      </div>
+
+      <div className="fpTradeStats">
+        <div className="fpStat">
+          <span className="muted">Recibís</span>
+          <b>{summary.getTotal}</b>
+        </div>
+        <div className="fpStat">
+          <span className="muted">Entregás</span>
+          <b>{summary.giveTotal}</b>
+        </div>
+        <div className="fpStat">
+          <span className="muted">Cobertura</span>
+          <b>{summary.exactCount}/{summary.itemCount}</b>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ---- Firestore helpers ----
 async function fsGetUser(email) {
   const snap = await getDocs(query(collection(db, "users"), where("email", "==", email)));
@@ -1498,6 +1909,51 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
         .tradeRespondRow button{ width:100%; }
       }
 
+
+      /* FantasyPros trade meter */
+      .fpTradeBox{
+        margin-top:12px;
+        border:1px solid var(--border);
+        background:linear-gradient(180deg,#fff,#FBFDFF);
+        border-radius:16px;
+        padding:12px;
+        display:grid;
+        gap:10px;
+      }
+      .fpMeterHead{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+      .fpMeterTitle{ font-weight:1100; }
+      .fpMeterMeta{ color:var(--muted); font-size:12px; font-weight:900; margin-top:2px; }
+      .fpVerdict{
+        display:inline-flex; align-items:center; justify-content:center;
+        padding:7px 11px; border-radius:999px; font-weight:1100; border:1px solid transparent;
+        white-space:nowrap;
+      }
+      .fpVerdict-bad{ background:rgba(22,199,132,0.14); border-color:rgba(22,199,132,0.24); color:#0F766E; }
+      .fpVerdict-meh{ background:rgba(163,214,50,0.18); border-color:rgba(163,214,50,0.30); color:#4D7C0F; }
+      .fpVerdict-mid{ background:rgba(243,213,27,0.20); border-color:rgba(243,213,27,0.35); color:#A16207; }
+      .fpVerdict-good{ background:rgba(247,147,30,0.16); border-color:rgba(247,147,30,0.28); color:#C2410C; }
+      .fpVerdict-great{ background:rgba(239,68,68,0.14); border-color:rgba(239,68,68,0.28); color:#B91C1C; }
+      .fpMeterWrap{ width:100%; display:flex; justify-content:center; }
+      .fpMeterSvg{ width:min(100%, 420px); height:auto; display:block; }
+      .fpTradeStats{
+        display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:8px;
+      }
+      .fpStat{
+        border:1px solid var(--border);
+        border-radius:12px;
+        background:#fff;
+        padding:10px 12px;
+        display:grid;
+        gap:3px;
+      }
+      .fpStat b{ font-size:18px; line-height:1; }
+      @media(max-width:640px){
+        .fpTradeBox{ padding:10px; border-radius:14px; }
+        .fpMeterHead{ display:grid; gap:8px; }
+        .fpVerdict{ justify-self:start; }
+        .fpTradeStats{ grid-template-columns:1fr; }
+      }
+
       @media (max-width: 640px){
         .card.chatComposerCard, .chatMain > .card{ padding:12px !important; border-radius:16px; }
         .mobileChatRailHead{ margin-bottom:8px; }
@@ -2740,7 +3196,7 @@ function FancySelect({ value, onChange, options }) {
 // ======================
 // Chats (propuestas 1 a 1)
 // ======================
-function ChatsView({ me, teams, teamsByUser, metaById }) {
+function ChatsView({ me, teams, teamsByUser, metaById, fpDynastyValues }) {
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [trades, setTrades] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -3498,6 +3954,13 @@ function ChatsView({ me, teams, teamsByUser, metaById }) {
 
                     {renderVersionSide(currentVersion, isSender)}
 
+                    <FantasyProsTradeMeter
+                      version={currentVersion}
+                      viewerId={me?.id}
+                      metaById={metaById}
+                      fpDynastyValues={fpDynastyValues}
+                    />
+
                     {showHistory ? (
                       <div
                         style={{
@@ -3598,6 +4061,7 @@ export default function App() {
   const [interests,      setInterests]      = useState([]);
   const [players,        setPlayers]        = useState([]);
   const [playersLoading, setPlayersLoading] = useState(false);
+  const [fpDynastyValues, setFpDynastyValues] = useState(() => normalizeFantasyProsValuesPayload(null));
 
   const [myDisplayName, setMyDisplayName] = useState("");
   const [myTeamName,    setMyTeamName]    = useState("");
@@ -3623,6 +4087,22 @@ export default function App() {
       setPlayersLoading(false);
     }
   }
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const base = import.meta.env.BASE_URL || "/";
+        const res = await fetch(`${base}fantasypros-dynasty-values.json?ts=${Date.now()}`, { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+        if (!cancelled) setFpDynastyValues(normalizeFantasyProsValuesPayload(json));
+      } catch {
+        if (!cancelled) setFpDynastyValues(normalizeFantasyProsValuesPayload(null));
+      }
+    })();
+    return () => { cancelled = true; };
+  }, []);
 
   async function refreshData() {
     const [allTeams, allInterests] = await Promise.all([
@@ -3956,7 +4436,7 @@ export default function App() {
             ) : null}
 
             {tab === "chats" ? (
-              <ChatsView me={me} teams={teams} teamsByUser={teamsByUser} metaById={metaById} />
+              <ChatsView me={me} teams={teams} teamsByUser={teamsByUser} metaById={metaById} fpDynastyValues={fpDynastyValues} />
             ) : tab === "home" ? (
               <HomeNewsView myRoster={myRoster} metaById={metaById} />
             ) : tab === "interests" ? (
