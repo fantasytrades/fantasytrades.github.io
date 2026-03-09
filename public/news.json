@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-09T23:24:37.304Z",
+  "generatedAt": "2026-03-09T23:28:24.816Z",
   "items": [
     {
       "id": "54e707786c91c1bd6bc59abb0999a2f808cd4d01",
@@ -272,6 +272,33 @@
       "description": "The 2027 Super Bowl will air on ESPN for the first time in network history. Learn more information about Super Bowl LXI festivities now."
     },
     {
+      "id": "adef7b022839c15491375a201e54c7cd53e074fe",
+      "source": "FantasyPros",
+      "title": "Ar'Darius Washington signs one-year deal with Giants",
+      "url": "https://www.fantasypros.com/nfl/news/573039/ardarius-washington-signs-one-year-deal-with-giants.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "f413f509ec49f0fa12cb153a76fb731594daf80e",
+      "source": "FantasyPros",
+      "title": "Quay Walker signs three-year deal with Raiders",
+      "url": "https://www.fantasypros.com/nfl/news/573038/quay-walker-signs-three-year-deal-with-raiders.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "5ca1b56828a54682ff6bf2548b217578d86d94b6",
+      "source": "FantasyPros",
+      "title": "Dane Belton signs one-year deal with Jets",
+      "url": "https://www.fantasypros.com/nfl/news/573037/dane-belton-signs-one-year-deal-with-jets-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
       "id": "39651a85d4bb6e21ace49d0fd181319b576f6a37",
       "source": "FantasyPros",
       "title": "Quincy Williams signs two-year deal with Browns",
@@ -465,24 +492,6 @@
       "source": "FantasyPros",
       "title": "Travis Kelce officially agrees to deal with Chiefs",
       "url": "https://www.fantasypros.com/nfl/news/572963/travis-kelce-officially-agrees-to-deal-with-chiefs.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "e20fc5e220efac1a6a55b37ccb0c42019910bf3a",
-      "source": "FantasyPros",
-      "title": "Kwity Paye signs three-year deal with Raiders",
-      "url": "https://www.fantasypros.com/nfl/news/572949/kwity-paye-signs-three-year-deal-with-raiders.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "ef9042ca5a6d0f9d7809d4d15ecf5daef7db1042",
-      "source": "FantasyPros",
-      "title": "Tua Tagovailoa signs one-year deal with Falcons",
-      "url": "https://www.fantasypros.com/nfl/news/572947/tua-tagovailoa-signs-one-year-deal-with-falcons-.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
