@@ -1017,7 +1017,10 @@ function assignSlots(roster, adpById) {
  // ---- Styles ----
 function Styles() {
   return (
-    <style>{`\n      :root{
+    <style>{`
+      :root{ color-scheme: light; }
+      .theme-shell{ min-height:100vh; background:var(--bg); color:var(--text); }
+      .theme-light{
         color-scheme: light;
         --bg:#F3F6FB; --card:#FFFFFF; --soft:#FFFFFF; --sky:#EAF3FF;
         --text:#0F172A; --muted:#64748B; --border:#E5E7EB; --blue:#2F7DF6;
@@ -1026,7 +1029,16 @@ function Styles() {
         --shadow:0 14px 34px rgba(15,23,42,0.08);
         --shadow-sm:0 8px 22px rgba(15,23,42,0.06);
       }
-      body{ margin:0; background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; }
+      .theme-dark{
+        color-scheme: dark;
+        --bg:#0B1220; --card:#111827; --soft:#0F172A; --sky:#152235;
+        --text:#E5EEF8; --muted:#93A4B8; --border:#243244; --blue:#60A5FA;
+        --danger:#F87171; --ok:#22C55E; --warn:#F59E0B;
+        --pos-qb:#FF4D97; --pos-rb:#19DCCB; --pos-wr:#7BB4FF; --pos-te:#FFBE66; --pos-bn:#94A3B8;
+        --shadow:0 18px 40px rgba(2,6,23,0.38);
+        --shadow-sm:0 10px 24px rgba(2,6,23,0.30);
+      }
+      body{ margin:0; background:#0B1220; color:#E5EEF8; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; }
       *{ box-sizing:border-box; }
       .wrap{ max-width:1180px; margin:0 auto; padding:18px 14px 92px; }
 
@@ -2159,6 +2171,159 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
         .fpBreakGrid{ grid-template-columns:1fr; }
       }
 
+      .themeToggle{ min-width:116px; box-shadow:none !important; }
+      .theme-dark .top,
+      .theme-dark .dock,
+      .theme-dark .modal,
+      .theme-dark .selectMenu,
+      .theme-dark .newsSearch,
+      .theme-dark .chatSelected,
+      .theme-dark .chatList,
+      .theme-dark .mobileChatTeamBtn,
+      .theme-dark .chatPickRow,
+      .theme-dark .fpTradeBox,
+      .theme-dark .fpStat,
+      .theme-dark .fpBreakCol,
+      .theme-dark .fpBreakItem,
+      .theme-dark .tradeCard,
+      .theme-dark .tradeSide,
+      .theme-dark .chatTradeSide,
+      .theme-dark .slot,
+      .theme-dark .teamRow,
+      .theme-dark .newsItem,
+      .theme-dark .item,
+      .theme-dark .card,
+      .theme-dark .pickRow,
+      .theme-dark .chatComposerCard,
+      .theme-dark .chatSide,
+      .theme-dark .tradeCardNice,
+      .theme-dark .profileCard{ background:var(--card); color:var(--text); border-color:var(--border); }
+      .theme-dark .top{ background:rgba(15,23,42,0.95); backdrop-filter:blur(12px); }
+      .theme-dark .dock{ background:rgba(15,23,42,0.97); }
+      .theme-dark input,
+      .theme-dark select,
+      .theme-dark .textarea,
+      .theme-dark .selectBtn,
+      .theme-dark .chatSearch,
+      .theme-dark .newsSearch,
+      .theme-dark .newsSearchInput,
+      .theme-dark .chatPickRow,
+      .theme-dark button.ghost,
+      .theme-dark .chip,
+      .theme-dark .iconBtn,
+      .theme-dark .valueBtn,
+      .theme-dark .pickChip,
+      .theme-dark .chatAssetChip,
+      .theme-dark .chatMiniChip,
+      .theme-dark .previewBox,
+      .theme-dark .newsOpenBtn,
+      .theme-dark .newsToggle,
+      .theme-dark .teamBadge,
+      .theme-dark .teamStatusPill,
+      .theme-dark .countPill,
+      .theme-dark .valueChip,
+      .theme-dark .newsStatPill,
+      .theme-dark .newsSourcePill,
+      .theme-dark .mentionChip,
+      .theme-dark .chatTeamAvatar,
+      .theme-dark .chatPickIcon,
+      .theme-dark .chatCheck,
+      .theme-dark .chatSideCount,
+      .theme-dark .newsRel,
+      .theme-dark .badge,
+      .theme-dark .pill,
+      .theme-dark .modal{ color:var(--text); }
+      .theme-dark input,
+      .theme-dark select,
+      .theme-dark .textarea,
+      .theme-dark .selectBtn,
+      .theme-dark .chatSearch,
+      .theme-dark .newsSearch,
+      .theme-dark .chatPickRow,
+      .theme-dark button.ghost,
+      .theme-dark .chip,
+      .theme-dark .iconBtn,
+      .theme-dark .valueBtn,
+      .theme-dark .pickChip,
+      .theme-dark .chatAssetChip,
+      .theme-dark .chatMiniChip,
+      .theme-dark .previewBox,
+      .theme-dark .newsOpenBtn,
+      .theme-dark .newsToggle,
+      .theme-dark .teamBadge,
+      .theme-dark .teamStatusPill,
+      .theme-dark .countPill,
+      .theme-dark .valueChip,
+      .theme-dark .newsStatPill,
+      .theme-dark .newsSourcePill,
+      .theme-dark .mentionChip,
+      .theme-dark .chatTeamAvatar,
+      .theme-dark .chatPickIcon,
+      .theme-dark .chatCheck,
+      .theme-dark .chatSideCount,
+      .theme-dark .newsRel,
+      .theme-dark .badge,
+      .theme-dark .pill,
+      .theme-dark .previewBox{ background:#0F172A; border-color:var(--border); box-shadow:none; }
+      .theme-dark .newsSearchInput{ background:transparent; color:var(--text); }
+      .theme-dark input::placeholder,
+      .theme-dark .newsSearchInput::placeholder{ color:#7C8EA7; }
+      .theme-dark .seg.segTabs,
+      .theme-dark .btnAdd.added,
+      .theme-dark .mobileChatTeamBtn.active,
+      .theme-dark .chatItem.active,
+      .theme-dark .dockbtn.active,
+      .theme-dark .chatPickRow.active,
+      .theme-dark .newsItem:hover,
+      .theme-dark .pickRow:hover,
+      .theme-dark .chatPickRow:hover,
+      .theme-dark .teamRow.active,
+      .theme-dark .teamRow:hover{ background:#162237; border-color:#36506F; }
+      .theme-dark .muted,
+      .theme-dark .sub,
+      .theme-dark .newsTime,
+      .theme-dark .newsFoot,
+      .theme-dark .newsDesc,
+      .theme-dark .fpMeterMeta,
+      .theme-dark .fpBreakSource{ color:var(--muted); }
+      .theme-dark .brand,
+      .theme-dark .name,
+      .theme-dark .chatPickName,
+      .theme-dark .newsHeadline,
+      .theme-dark .modalTitle,
+      .theme-dark .title,
+      .theme-dark .teamName,
+      .theme-dark .teamOwner,
+      .theme-dark .fpMeterTitle,
+      .theme-dark .chatPickRow .muted{ color:var(--text); }
+      .theme-dark .av,
+      .theme-dark .chatAv,
+      .theme-dark .chatAvSm,
+      .theme-dark .mentionAv{ background:#1E293B; border-color:#334155; color:var(--text); }
+      .theme-dark .seg.segFilters button{ background:#0F172A; border-color:var(--border); color:var(--text); }
+      .theme-dark .seg.segFilters button.active,
+      .theme-dark .seg.segTabs button.active,
+      .theme-dark .newsToggle.active,
+      .theme-dark .chatTab.active,
+      .theme-dark .pickChip.active,
+      .theme-dark .tierDot.active{ background:var(--blue); color:#0B1220; border-color:transparent; }
+      .theme-dark .seg.segTabs button,
+      .theme-dark .chatTab{ color:var(--text); }
+      .theme-dark .seg.segTabs button:not(.active),
+      .theme-dark .chatTab:not(.active),
+      .theme-dark .btnAdd{ background:#162237; border-color:#36506F; color:#9BC2FF; }
+      .theme-dark .valueTag,
+      .theme-dark .newsOpenBtn,
+      .theme-dark .teamBadge,
+      .theme-dark .teamStatusPill,
+      .theme-dark .countPill,
+      .theme-dark .valueChip,
+      .theme-dark .newsStatPill,
+      .theme-dark .chatDot,
+      .theme-dark .chatCheck,
+      .theme-dark .chatSideCount{ background:#162237; border-color:#36506F; color:#9BC2FF; }
+      .theme-dark .mobileFinderToggle{ background:#162237 !important; border-color:#36506F !important; color:#9BC2FF !important; }
+
       @media (max-width: 640px){
         .card.chatComposerCard, .chatMain > .card{ padding:12px !important; border-radius:16px; }
         .mobileChatRailHead{ margin-bottom:8px; }
@@ -2180,217 +2345,7 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
         .row.tradeRespondRow{ display:grid; grid-template-columns:1fr; gap:8px; }
         .row.tradeRespondRow button{ width:100%; margin:0; }
       }
-
-
-      /* === DARK MODE OVERRIDES === */
-      :root{
-        color-scheme: dark;
-        --bg:#0B1220;
-        --card:#111827;
-        --soft:#0F172A;
-        --sky:#162338;
-        --text:#E5EEF9;
-        --muted:#94A3B8;
-        --border:#253246;
-        --blue:#4F8CFF;
-        --danger:#F87171;
-        --ok:#22C55E;
-        --warn:#F59E0B;
-        --shadow:0 18px 44px rgba(0,0,0,0.32);
-        --shadow-sm:0 10px 28px rgba(0,0,0,0.22);
-      }
-      html,body{ background:var(--bg); color:var(--text); }
-      .top,.dock{ background:rgba(11,18,32,0.92); border-color:var(--border); backdrop-filter:blur(10px); }
-      .brand,.title,.teamName,.name,.modalTitle,.newsTitle,.newsHeadline,.chatSideTitle,.fpMeterTitle,.fpBreakName,.teamOwner,.teamMeta,.muted,.sub{ color:inherit; }
-      .muted,.sub,.newsUpdated,.newsHint,.newsFoot,.fpMeterMeta,.fpBreakSource,.newsTime,.newsTime *{ color:var(--muted) !important; }
-
-      .card,
-      .profileCard,
-      .item,
-      .slot,
-      .teamRow,
-      .tradeCard,
-      .tradeSide,
-      .chatTradeSide,
-      .chatList,
-      .newsItem,
-      .fpTradeBox,
-      .fpBreakCol,
-      .fpBreakItem,
-      .fpStat,
-      .chatSelected,
-      .chatPickList,
-      .chatPickRow,
-      .mobileChatTeamBtn,
-      .pickChip,
-      .modal,
-      .selectMenu,
-      .previewBox,
-      .newsSearch,
-      .mentionChip,
-      .teamRow,
-      .teamStatusPill,
-      .teamBadge,
-      .valueChip,
-      .newsSourcePill,
-      .newsRel,
-      .countPill,
-      .newsStatPill,
-      .pill,
-      .badge,
-      .valueTag,
-      .chatItem{
-        background:var(--card) !important;
-        border-color:var(--border) !important;
-        color:var(--text) !important;
-      }
-
-      .profileCard,
-      .seg.segTabs,
-      .mobileFinderToggle,
-      .chatItem.active,
-      .chatItem:hover,
-      .mobileChatTeamBtn.active,
-      .chatPickRow:hover,
-      .chatSelected,
-      .teamRow.active,
-      .dockbtn.active,
-      .valueTag,
-      .valueChip,
-      .countPill,
-      .newsStatPill,
-      .newsOpenBtn,
-      .pickChip,
-      .interestBtn,
-      .newsToggle,
-      .chatCheck,
-      .chatPickIcon,
-      .chatTeamAvatar{
-        background:var(--sky) !important;
-        border-color:#2E4260 !important;
-        color:var(--text) !important;
-      }
-
-      input,
-      select,
-      .selectBtn,
-      .chatSearch,
-      .textarea,
-      .newsSearch,
-      .newsSearchInput,
-      .chatTab,
-      button.ghost,
-      .iconBtn,
-      .valueBtn,
-      .selectOpt,
-      .seg.segFilters button,
-      .chip,
-      .pickMain,
-      .pickX{
-        background:#0D1728 !important;
-        border-color:var(--border) !important;
-        color:var(--text) !important;
-        box-shadow:none !important;
-      }
-
-      input::placeholder,
-      .newsSearchInput::placeholder,
-      .chatSearch::placeholder,
-      textarea::placeholder{ color:#7F91AF !important; }
-
-      .seg.segTabs button{ color:var(--text) !important; }
-      .seg.segTabs button.active,
-      .chatTab.active,
-      .selectOpt.active,
-      .newsToggle.active,
-      .dockbtn.active,
-      .btnAdd,
-      .btnAdd.added,
-      .mobileFinderToggle,
-      .newsOpenBtn:hover{
-        color:#FFFFFF !important;
-      }
-      .seg.segTabs button.active,
-      .chatTab.active,
-      .selectOpt.active,
-      .newsToggle.active,
-      .btnAdd,
-      .mobileFinderToggle{
-        background:var(--blue) !important;
-        border-color:var(--blue) !important;
-      }
-      .btnAdd.added{ background:#1E293B !important; border-color:#334155 !important; color:#94A3B8 !important; }
-
-      .av,
-      .mentionAv,
-      .chatAv,
-      .chatAvSm,
-      .chatTeamAvatar,
-      .chatPickIcon,
-      .chatCheck{ background:#0B1424 !important; border-color:var(--border) !important; }
-      .av,
-      .mentionAv,
-      .chatAv,
-      .chatAvSm,
-      .chatTeamAvatar{ color:var(--text) !important; }
-      .chatAvFallback{ color:var(--text) !important; }
-
-      .top .chip,
-      .top button.chip,
-      .dockbtn{ background:transparent !important; }
-      .dockbtn{ color:var(--muted) !important; }
-      .dockbtn.active{ color:var(--text) !important; }
-
-      .teamRow:hover,
-      .chatPickRow.active,
-      .mobileChatTeamBtn:hover,
-      .newsOpenBtn,
-      .chatAssetChip:hover,
-      .selectOpt:hover{ background:#18263C !important; }
-
-      .newsHeadline,
-      a.newsHeadline,
-      .newsOpenBtn,
-      .chatPickName,
-      .chatAssetChip,
-      .chatMiniChip,
-      .chatMiniText,
-      .chatAssetName,
-      .fpBreakValue,
-      .fpBalanceLabel,
-      .fpBalanceValue,
-      .fpSegmentInsideLabel{ color:var(--text) !important; }
-      .fpBreakPick{ background:#0D1728 !important; border-color:var(--border) !important; color:var(--text) !important; }
-      .fpMeterSvg .fpBalanceLabel,
-      .fpMeterSvg .fpBalanceValue{ fill:#FFFFFF !important; }
-
-      .pill-AVAILABLE{ background:rgba(34,197,94,0.18) !important; border-color:rgba(34,197,94,0.32) !important; color:#86EFAC !important; }
-      .pill-LISTENING{ background:rgba(245,158,11,0.20) !important; border-color:rgba(245,158,11,0.34) !important; color:#FCD34D !important; }
-      .pill-NOT_AVAILABLE{ background:rgba(248,113,113,0.18) !important; border-color:rgba(248,113,113,0.32) !important; color:#FCA5A5 !important; }
-      .chip.ok{ background:rgba(34,197,94,0.18) !important; border-color:rgba(34,197,94,0.32) !important; color:#86EFAC !important; }
-      .chip.warn{ background:rgba(245,158,11,0.20) !important; border-color:rgba(245,158,11,0.34) !important; color:#FCD34D !important; }
-      .chip.danger{ background:rgba(248,113,113,0.18) !important; border-color:rgba(248,113,113,0.32) !important; color:#FCA5A5 !important; }
-      .badge-LOW{ background:rgba(248,113,113,0.18) !important; border-color:rgba(248,113,113,0.32) !important; color:#FCA5A5 !important; }
-      .badge-MEDIUM{ background:rgba(245,158,11,0.20) !important; border-color:rgba(245,158,11,0.34) !important; color:#FCD34D !important; }
-      .badge-HIGH{ background:rgba(34,197,94,0.18) !important; border-color:rgba(34,197,94,0.32) !important; color:#86EFAC !important; }
-
-      .modalOverlay{ background:rgba(2,6,23,0.72) !important; }
-      .pickChip.active,
-      .interestBtn.active,
-      .interestBtn.active-LOW,
-      .interestBtn.active-MEDIUM,
-      .interestBtn.active-HIGH{ color:#FFFFFF !important; }
-      .tierDot{ background:#0D1728 !important; border-color:var(--border) !important; color:var(--text) !important; }
-      .tierDot.active{ background:var(--blue) !important; border-color:var(--blue) !important; color:#FFFFFF !important; }
-
-      .topin,.dockin{ color:var(--text); }
-      .slotheadFlat .muted,
-      .slothead .muted{ color:var(--muted) !important; }
-      .scrollList::-webkit-scrollbar-thumb,
-      .mobileChatScroller::-webkit-scrollbar-thumb{ background:#334155 !important; }
-      .scrollList::-webkit-scrollbar-track,
-      .mobileChatScroller::-webkit-scrollbar-track{ background:transparent !important; }
-      `}</style>
+`}</style>
   );
 }
 // ---- MyTeamView ----
@@ -4581,6 +4536,8 @@ export default function App() {
 
   const [tab, setTab] = useState(() => localStorage.getItem("ft_tab") || "team");
   useEffect(() => localStorage.setItem("ft_tab", tab), [tab]);
+  const [theme, setTheme] = useState(() => localStorage.getItem("ft_theme") === "dark" ? "dark" : "light");
+  useEffect(() => localStorage.setItem("ft_theme", theme), [theme]);
 
   const [teams,          setTeams]          = useState([]);
   const [interests,      setInterests]      = useState([]);
@@ -4887,12 +4844,15 @@ export default function App() {
   }
 
   return (
-    <>
+    <div className={`theme-shell theme-${theme}`}>
       <Styles />
       <div className="top">
         <div className="topin">
           <div className="brand">Fantasy Trade Board</div>
           <div className="sp" />
+          <button className="ghost themeToggle" onClick={() => setTheme((t) => (t === "dark" ? "light" : "dark"))}>
+            {theme === "dark" ? "Modo claro" : "Modo oscuro"}
+          </button>
           {playersLoading ? <div className="chip" style={{ cursor: "default" }}>ADP…</div> : null}
           {me ? <div className="chip" style={{ cursor: "default" }}>{me.email}</div> : null}
           {me ? <button className="chip" onClick={logout}>Salir</button> : null}
@@ -5076,6 +5036,6 @@ export default function App() {
           </div>
         </div>
       ) : null}
-    </>
+    </div>
   );
 }
