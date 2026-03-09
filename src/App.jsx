@@ -2297,6 +2297,8 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
       .theme-dark .teamOwner,
       .theme-dark .fpMeterTitle,
       .theme-dark .chatPickRow .muted{ color:var(--text); }
+      .theme-dark .fpBreakValue{ color:var(--text); }
+      .theme-dark .fpBreakValue{ color:var(--text); }
       .theme-dark .av,
       .theme-dark .chatAv,
       .theme-dark .chatAvSm,
