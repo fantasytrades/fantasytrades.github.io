@@ -170,11 +170,11 @@ const FP_PICK_VALUES_1QB = {
 };
 
 const FP_METER_SEGMENTS = [
-  { label: "ABURRIDO", color: "#16C784" },
-  { label: "NADA MAL", color: "#A3D632" },
-  { label: "MUY BIEN", color: "#F3D51B" },
-  { label: "FANTÁSTICO", color: "#F7931E" },
-  { label: "ASOMBROSO", color: "#EF4444" },
+  { label: "Te están robando", shortLabel: "Robando", color: "#DC2626", min: -100, max: -20, tone: "robbery" },
+  { label: "Le falta algo", shortLabel: "Le falta algo", color: "#F59E0B", min: -20, max: -5, tone: "weak" },
+  { label: "Parejo", shortLabel: "Parejo", color: "#A3E635", min: -5, max: 5, tone: "even" },
+  { label: "Te sirve", shortLabel: "Te sirve", color: "#22C55E", min: 5, max: 20, tone: "good" },
+  { label: "Estás robando", shortLabel: "Estás robando", color: "#166534", min: 20, max: 100, tone: "great" },
 ];
 
 function clamp(n, min, max) {
@@ -393,12 +393,12 @@ function fantasyProsPickValue(pickId, fpDynastyValues) {
   return { value: 8, source: "estimate" };
 }
 
-function fantasyProsMeterLabel(ratio) {
-  if (ratio <= -0.18) return { label: "Aburrido", tone: "bad" };
-  if (ratio <= -0.06) return { label: "Nada mal", tone: "meh" };
-  if (ratio < 0.06) return { label: "Muy bien", tone: "mid" };
-  if (ratio < 0.18) return { label: "Fantástico", tone: "good" };
-  return { label: "Asombroso", tone: "great" };
+function fantasyProsMeterLabel(advantagePct) {
+  if (advantagePct < -20) return { label: "Te están robando", tone: "robbery" };
+  if (advantagePct < -5) return { label: "Le falta algo", tone: "weak" };
+  if (advantagePct <= 5) return { label: "Parejo", tone: "even" };
+  if (advantagePct <= 20) return { label: "Te sirve", tone: "good" };
+  return { label: "Estás robando", tone: "great" };
 }
 
 function summarizeTradeForFantasyPros(version, viewerId, metaById, fpDynastyValues) {
@@ -435,11 +435,11 @@ function summarizeTradeForFantasyPros(version, viewerId, metaById, fpDynastyValu
 
   const giveTotal = giveDetails.reduce((sum, x) => sum + Number(x.value || 0), 0);
   const getTotal = getDetails.reduce((sum, x) => sum + Number(x.value || 0), 0);
-  const total = Math.max(1, giveTotal + getTotal);
   const delta = getTotal - giveTotal;
-  const ratio = delta / total;
-  const meterPct = clamp(Math.round(50 + ratio * 180), 2, 98);
-  const verdict = fantasyProsMeterLabel(ratio);
+  const advantagePct = giveTotal > 0 ? (delta / giveTotal) * 100 : (getTotal > 0 ? 100 : 0);
+  const clampedPct = clamp(advantagePct, -35, 35);
+  const meterPct = ((clampedPct + 35) / 70) * 100;
+  const verdict = fantasyProsMeterLabel(advantagePct);
 
   const allDetails = [...giveDetails, ...getDetails];
   const exactCount = allDetails.filter((x) => x.source !== "estimate").length;
@@ -454,7 +454,7 @@ function summarizeTradeForFantasyPros(version, viewerId, metaById, fpDynastyValu
     meterPct,
     angle: 270 - (meterPct / 100) * 180,
     delta,
-    ratio,
+    advantagePct,
     giveTotal,
     getTotal,
     verdict,
@@ -503,11 +503,11 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
   const summary = summarizeTradeForFantasyPros(version, viewerId, metaById, fpDynastyValues);
 
   const cx = 180;
-  const cy = 178;
-  const outerRadius = 138;
-  const innerRadius = 84;
-  const pointerBaseRadius = 28;
-  const pointerTipRadius = 118;
+  const cy = 176;
+  const outerRadius = 128;
+  const innerRadius = 88;
+  const pointerBaseRadius = 24;
+  const pointerTipRadius = 120;
   const startAngle = -120;
   const endAngle = 120;
   const totalAngle = endAngle - startAngle;
@@ -542,53 +542,48 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
           {FP_METER_SEGMENTS.map((seg, idx) => {
             const segStart = startAngle + idx * segmentAngle;
             const segEnd = segStart + segmentAngle;
-            const midAngle = (segStart + segEnd) / 2;
-            const textPoint = polarToCartesian(cx, cy, 111, midAngle);
-
             return (
               <g key={seg.label}>
                 <path
                   d={describeDonutSegment(cx, cy, outerRadius, innerRadius, segStart, segEnd)}
                   fill={seg.color}
-                  opacity="0.95"
+                  opacity="0.96"
                 />
                 <path
                   d={describeArc(cx, cy, outerRadius, segStart, segEnd)}
                   fill="none"
-                  stroke="rgba(255,255,255,0.26)"
+                  stroke="rgba(255,255,255,0.30)"
                   strokeWidth="2"
                 />
-                <text
-                  x={textPoint.x}
-                  y={textPoint.y}
-                  textAnchor="middle"
-                  dominantBaseline="middle"
-                  className="fpMeterSegmentLabel"
-                  transform={`rotate(${midAngle} ${textPoint.x} ${textPoint.y})`}
-                >
-                  {seg.label}
-                </text>
               </g>
             );
           })}
 
-          <circle cx={cx} cy={cy} r="63" fill="#121827" filter="url(#fpShadow)" />
-          <circle cx={cx} cy={cy} r="8" fill="#FF4D4F" />
           <path
             d={`M ${pointerLeft.x} ${pointerLeft.y} L ${pointerTip.x} ${pointerTip.y} L ${pointerRight.x} ${pointerRight.y} Z`}
             fill="#202631"
             filter="url(#fpShadow)"
           />
-          <circle cx={cx} cy={cy} r="16" fill="#202631" />
+          <circle cx={cx} cy={cy} r="56" fill="#111827" filter="url(#fpShadow)" />
+          <circle cx={cx} cy={cy} r="15" fill="#202631" />
           <circle cx={cx} cy={cy} r="6" fill="#FF4D4F" />
 
-          <text x={cx} y={cy - 12} textAnchor="middle" className="fpBalanceLabel">
+          <text x={cx} y={cy - 14} textAnchor="middle" className="fpBalanceLabel">
             Balance
           </text>
-          <text x={cx} y={cy + 16} textAnchor="middle" className="fpBalanceValue">
-            {summary.delta > 0 ? `+${summary.delta}` : summary.delta}
+          <text x={cx} y={cy + 14} textAnchor="middle" className="fpBalanceValue">
+            {summary.advantagePct > 0 ? "+" : ""}{Math.round(summary.advantagePct)}%
           </text>
         </svg>
+      </div>
+
+      <div className="fpSegmentLegend" aria-hidden="true">
+        {FP_METER_SEGMENTS.map((seg) => (
+          <div key={seg.label} className="fpLegendItem">
+            <span className="fpLegendSwatch" style={{ background: seg.color }} />
+            <span>{seg.label}</span>
+          </div>
+        ))}
       </div>
 
       <div className="fpTradeStats">
@@ -1963,20 +1958,35 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
         padding:7px 11px; border-radius:999px; font-weight:1100; border:1px solid transparent;
         white-space:nowrap;
       }
-      .fpVerdict-bad{ background:rgba(22,199,132,0.14); border-color:rgba(22,199,132,0.24); color:#0F766E; }
-      .fpVerdict-meh{ background:rgba(163,214,50,0.18); border-color:rgba(163,214,50,0.30); color:#4D7C0F; }
-      .fpVerdict-mid{ background:rgba(243,213,27,0.20); border-color:rgba(243,213,27,0.35); color:#A16207; }
-      .fpVerdict-good{ background:rgba(247,147,30,0.16); border-color:rgba(247,147,30,0.28); color:#C2410C; }
-      .fpVerdict-great{ background:rgba(239,68,68,0.14); border-color:rgba(239,68,68,0.28); color:#B91C1C; }
+      .fpVerdict-robbery{ background:rgba(220,38,38,0.12); border-color:rgba(220,38,38,0.24); color:#991B1B; }
+      .fpVerdict-weak{ background:rgba(245,158,11,0.14); border-color:rgba(245,158,11,0.26); color:#9A3412; }
+      .fpVerdict-even{ background:rgba(163,230,53,0.18); border-color:rgba(163,230,53,0.28); color:#3F6212; }
+      .fpVerdict-good{ background:rgba(34,197,94,0.14); border-color:rgba(34,197,94,0.24); color:#166534; }
+      .fpVerdict-great{ background:rgba(22,101,52,0.14); border-color:rgba(22,101,52,0.26); color:#14532D; }
       .fpMeterWrap{ width:100%; display:flex; justify-content:center; }
       .fpMeterSvg{ width:min(100%, 560px); height:auto; display:block; overflow:visible; }
-      .fpMeterSegmentLabel{
-        font-size:10px;
-        font-weight:1000;
-        letter-spacing:0.08em;
-        fill:rgba(255,255,255,0.94);
+      .fpSegmentLegend{
+        display:grid;
+        grid-template-columns:repeat(5, minmax(0,1fr));
+        gap:8px;
+        margin-top:4px;
       }
-      .fpBalanceLabel{
+      .fpLegendItem{
+        display:grid;
+        gap:6px;
+        justify-items:center;
+        text-align:center;
+        font-size:11px;
+        font-weight:1000;
+        color:#334155;
+      }
+      .fpLegendSwatch{
+        width:100%;
+        height:10px;
+        border-radius:999px;
+        display:block;
+      }
+            .fpBalanceLabel{
         font-size:14px;
         font-weight:900;
         fill:#FFFFFF;
@@ -2003,9 +2013,10 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
         .fpMeterHead{ display:grid; gap:8px; }
         .fpVerdict{ justify-self:start; }
         .fpMeterSvg{ width:min(100%, 420px); }
-        .fpMeterSegmentLabel{ font-size:8px; letter-spacing:0.05em; }
         .fpBalanceLabel{ font-size:12px; }
         .fpBalanceValue{ font-size:24px; }
+        .fpSegmentLegend{ grid-template-columns:1fr; }
+        .fpLegendItem{ justify-items:start; text-align:left; }
         .fpTradeStats{ grid-template-columns:1fr; }
       }
 
