@@ -2221,46 +2221,84 @@ function MyTeamView({
 
     const playerName = (p) => String(p?.name || p?.player_name || p?.full_name || p?.player || "").trim();
     const normalizedPlayerName = (p) => normalizeLookupName(playerName(p));
+    const playerWords = (p) => normalizedPlayerName(p).split(" ").filter(Boolean);
+
     const playerAdp = (p) => {
       const raw = p?.adp ?? p?.adp_value ?? p?.adp_ppr ?? p?.ppr_adp ?? p?.adp_rank ?? p?.adp_formatted;
       const n = Number(raw);
       return Number.isFinite(n) && n > 0 ? n : null;
     };
+
     const playerSearchRank = (p) => {
       const n = Number(p?.search_rank);
       return Number.isFinite(n) && n > 0 ? n : Infinity;
     };
-    const playerMatchScore = (p) => {
-      if (!qq) return 0;
+
+    const playerMatchRank = (p) => {
+      if (!qq) return { bucket: 0, startsAt: 0, len: normalizedPlayerName(p).length || 999 };
+
       const name = normalizedPlayerName(p);
-      if (!name) return Infinity;
-      if (name === qq) return 0;
-      if (name.startsWith(qq)) return 1;
-      if (name.split(" ").some((part) => part.startsWith(qq))) return 2;
-      if (qTokens.length && qTokens.every((token) => name.includes(token))) return 3;
-      if (name.includes(qq)) return 4;
-      return Infinity;
+      if (!name) return null;
+
+      const words = playerWords(p);
+      const startsAt = name.indexOf(qq);
+      const exactFull = name === qq;
+      const exactWord = words.includes(qq);
+      const startsFull = name.startsWith(qq);
+      const startsWord = words.some((part) => part.startsWith(qq));
+      const allWordStarts = qTokens.length > 1 && qTokens.every((token) => words.some((part) => part.startsWith(token)));
+      const allIncludes = qTokens.length > 0 && qTokens.every((token) => name.includes(token));
+
+      if (exactFull) return { bucket: 0, startsAt: 0, len: name.length };
+      if (exactWord) return { bucket: 1, startsAt: Math.max(0, startsAt), len: name.length };
+      if (startsFull) return { bucket: 2, startsAt: 0, len: name.length };
+      if (allWordStarts) return { bucket: 3, startsAt: startsAt >= 0 ? startsAt : 999, len: name.length };
+      if (startsWord) return { bucket: 4, startsAt: startsAt >= 0 ? startsAt : 999, len: name.length };
+      if (allIncludes) return { bucket: 5, startsAt: startsAt >= 0 ? startsAt : 999, len: name.length };
+
+      return null;
     };
 
     return (players || [])
       .filter((p) => {
         const posRaw = String(p?.position ?? p?.pos ?? p?.player_position ?? "").toUpperCase();
         if (!ALLOWED_POSITIONS.has(posRaw)) return false;
+
         const pos = normPos(posRaw);
         if (posFilter !== "ALL") {
           if (posFilter === "FLEX") {
             if (!["RB", "WR", "TE"].includes(pos)) return false;
-          } else {
-            if (pos !== posFilter) return false;
+          } else if (pos !== posFilter) {
+            return false;
           }
         }
+
         if (!qq) return true;
-        return Number.isFinite(playerMatchScore(p));
+        return !!playerMatchRank(p);
       })
       .sort((a, b) => {
-        const scoreA = playerMatchScore(a);
-        const scoreB = playerMatchScore(b);
-        if (scoreA !== scoreB) return scoreA - scoreB;
+        const rankA = playerMatchRank(a);
+        const rankB = playerMatchRank(b);
+
+        if (qq) {
+          const bucketA = rankA?.bucket ?? 999;
+          const bucketB = rankB?.bucket ?? 999;
+          if (bucketA !== bucketB) return bucketA - bucketB;
+
+          const startsAtA = rankA?.startsAt ?? 999;
+          const startsAtB = rankB?.startsAt ?? 999;
+          if (startsAtA !== startsAtB) return startsAtA - startsAtB;
+
+          const lenA = rankA?.len ?? 999;
+          const lenB = rankB?.len ?? 999;
+          if (lenA !== lenB) return lenA - lenB;
+
+          const srA = playerSearchRank(a);
+          const srB = playerSearchRank(b);
+          if (srA !== srB) return srA - srB;
+
+          return playerName(a).localeCompare(playerName(b), undefined, { sensitivity: "base" });
+        }
 
         const adpA = playerAdp(a);
         const adpB = playerAdp(b);
