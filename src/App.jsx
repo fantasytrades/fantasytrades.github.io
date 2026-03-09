@@ -195,6 +195,10 @@ function normalizeLookupName(name) {
 function normalizeFantasyProsValuesPayload(raw) {
   const out = {
     updatedAt: null,
+    source: null,
+    generatedFor: null,
+    complete: false,
+    counts: {},
     byId: {},
     byName: {},
     pickValues: {},
@@ -204,6 +208,10 @@ function normalizeFantasyProsValuesPayload(raw) {
   if (!raw || typeof raw !== "object") return out;
 
   out.updatedAt = raw.updatedAt || raw.generatedAt || raw.updated_at || null;
+  out.source = raw.source || raw.provider || "FantasyPros";
+  out.generatedFor = raw.generatedFor || raw.generated_for || raw.scoring || null;
+  out.complete = Boolean(raw.complete ?? raw.isComplete ?? false);
+  out.counts = raw.counts && typeof raw.counts === "object" ? raw.counts : {};
 
   const putPlayer = (playerId, playerName, value) => {
     const n = Number(value);
@@ -294,11 +302,11 @@ function fantasyProsPlayerValue(playerId, metaById, fpDynastyValues, fallbackNam
     Number(meta?.dynasty_value ?? meta?.trade_value ?? meta?.fantasypros_value ?? meta?.fp_value);
 
   if (Number.isFinite(exactMetaValue)) {
-    return { value: exactMetaValue, source: "meta-exact" };
+    return { value: exactMetaValue, source: "fp-meta" };
   }
 
   if (fpDynastyValues?.byId?.[id] != null) {
-    return { value: Number(fpDynastyValues.byId[id]), source: "local-exact" };
+    return { value: Number(fpDynastyValues.byId[id]), source: "fp-local" };
   }
 
   const name =
@@ -310,12 +318,12 @@ function fantasyProsPlayerValue(playerId, metaById, fpDynastyValues, fallbackNam
   const key = normalizeLookupName(name);
 
   if (key && fpDynastyValues?.byName?.[key] != null) {
-    return { value: Number(fpDynastyValues.byName[key]), source: "local-exact" };
+    return { value: Number(fpDynastyValues.byName[key]), source: "fp-local" };
   }
 
   return {
     value: estimateDynastyPlayerValue(meta, meta?.position || meta?.pos || ""),
-    source: "estimate",
+    source: "fallback",
   };
 }
 
@@ -323,11 +331,11 @@ function fantasyProsPickValue(pickId, fpDynastyValues) {
   const base = String(pickId || "").split("#")[0];
 
   if (fpDynastyValues?.pickValues?.[base] != null) {
-    return { value: Number(fpDynastyValues.pickValues[base]), source: "local-exact" };
+    return { value: Number(fpDynastyValues.pickValues[base]), source: "fp-local" };
   }
 
   if (FP_PICK_VALUES_1QB[base] != null) {
-    return { value: FP_PICK_VALUES_1QB[base], source: "article-exact" };
+    return { value: FP_PICK_VALUES_1QB[base], source: "fp-article" };
   }
 
   const m = base.match(/^(\d{4})-(\d)\.(\d{2})$/);
@@ -338,36 +346,36 @@ function fantasyProsPickValue(pickId, fpDynastyValues) {
 
     if (year === 2026) {
       if (round === 2) {
-        if (slot <= 3) return { value: 35, source: "article-exact" };
-        if (slot <= 7) return { value: 29, source: "article-exact" };
-        return { value: 24, source: "article-exact" };
+        if (slot <= 3) return { value: 35, source: "fp-article" };
+        if (slot <= 7) return { value: 29, source: "fp-article" };
+        return { value: 24, source: "fp-article" };
       }
       if (round === 3) {
-        if (slot <= 3) return { value: 20, source: "article-exact" };
-        if (slot <= 7) return { value: 16, source: "article-exact" };
-        return { value: 14, source: "article-exact" };
+        if (slot <= 3) return { value: 20, source: "fp-article" };
+        if (slot <= 7) return { value: 16, source: "fp-article" };
+        return { value: 14, source: "fp-article" };
       }
       if (round === 4) {
-        return { value: slot <= 5 ? 10 : 7, source: "article-exact" };
+        return { value: slot <= 5 ? 10 : 7, source: "fp-article" };
       }
-      if (round >= 5) return { value: 3, source: "article-exact" };
+      if (round >= 5) return { value: 3, source: "fp-article" };
     }
 
     if (year === 2027) {
       if (round === 1) {
-        if (slot <= 3) return { value: 66, source: "article-exact" };
-        if (slot <= 6) return { value: 55, source: "article-exact" };
-        return { value: 45, source: "article-exact" };
+        if (slot <= 3) return { value: 66, source: "fp-article" };
+        if (slot <= 6) return { value: 55, source: "fp-article" };
+        return { value: 45, source: "fp-article" };
       }
-      if (round === 2) return { value: slot <= 5 ? 34 : 27, source: "article-exact" };
-      if (round === 3) return { value: slot <= 5 ? 18 : 15, source: "article-exact" };
-      return { value: 8, source: "article-exact" };
+      if (round === 2) return { value: slot <= 5 ? 34 : 27, source: "fp-article" };
+      if (round === 3) return { value: slot <= 5 ? 18 : 15, source: "fp-article" };
+      return { value: 8, source: "fp-article" };
     }
 
     if (year === 2028) {
       const prior = fantasyProsPickValue(base.replace(/^2028-/, "2027-"), fpDynastyValues);
       if (prior?.value != null) {
-        return { value: Math.max(3, Math.round(prior.value * 0.86)), source: "estimate" };
+        return { value: Math.max(3, Math.round(prior.value * 0.86)), source: "fp-derived" };
       }
     }
   }
@@ -378,19 +386,19 @@ function fantasyProsPickValue(pickId, fpDynastyValues) {
     const round = Number(generic[2]);
 
     if (year === 2027) {
-      if (round === 1) return { value: 55, source: "article-exact" };
-      if (round === 2) return { value: 30, source: "article-exact" };
-      if (round === 3) return { value: 17, source: "article-exact" };
-      return { value: 8, source: "article-exact" };
+      if (round === 1) return { value: 55, source: "fp-article" };
+      if (round === 2) return { value: 30, source: "fp-article" };
+      if (round === 3) return { value: 17, source: "fp-article" };
+      return { value: 8, source: "fp-article" };
     }
 
     if (year === 2028) {
       const base2027 = fantasyProsPickValue(`2027-${round}`, fpDynastyValues);
-      return { value: Math.max(3, Math.round((base2027?.value || 8) * 0.86)), source: "estimate" };
+      return { value: Math.max(3, Math.round((base2027?.value || 8) * 0.86)), source: "fp-derived" };
     }
   }
 
-  return { value: 8, source: "estimate" };
+  return { value: 8, source: "fallback" };
 }
 
 function fantasyProsMeterLabel(advantagePct) {
@@ -442,13 +450,19 @@ function summarizeTradeForFantasyPros(version, viewerId, metaById, fpDynastyValu
   const verdict = fantasyProsMeterLabel(advantagePct);
 
   const allDetails = [...giveDetails, ...getDetails];
-  const exactCount = allDetails.filter((x) => x.source !== "estimate").length;
-  const estimateCount = allDetails.length - exactCount;
+  const resolvedCount = allDetails.filter((x) => Number.isFinite(Number(x.value))).length;
+  const fallbackCount = allDetails.filter((x) => x.source === "fallback").length;
+  const fantasyProsCount = Math.max(0, resolvedCount - fallbackCount);
 
-  let sourceNote = "Estimado por ranking/ADP";
-  if (fpDynastyValues?.hasLocalData && estimateCount === 0) sourceNote = "FantasyPros local";
-  else if (fpDynastyValues?.hasLocalData && estimateCount > 0) sourceNote = "FantasyPros local + estimación";
-  else if (estimateCount !== allDetails.length) sourceNote = "Picks FantasyPros + estimación";
+  const baseLabel = fpDynastyValues?.generatedFor || "FantasyPros dynasty 1QB PPR";
+  const dataFallbackPlayers = Number(fpDynastyValues?.counts?.fallbackPlayers || 0);
+
+  let sourceNote = "Respaldo local";
+  if (fpDynastyValues?.hasLocalData) {
+    sourceNote = dataFallbackPlayers > 0 || fallbackCount > 0
+      ? `${baseLabel} + respaldo local`
+      : baseLabel;
+  }
 
   return {
     meterPct,
@@ -458,8 +472,9 @@ function summarizeTradeForFantasyPros(version, viewerId, metaById, fpDynastyValu
     giveTotal,
     getTotal,
     verdict,
-    exactCount,
-    estimateCount,
+    resolvedCount,
+    fantasyProsCount,
+    fallbackCount,
     itemCount: allDetails.length,
     sourceNote,
     updatedAt: fpDynastyValues?.updatedAt || null,
@@ -602,7 +617,7 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
         </div>
         <div className="fpStat">
           <span className="muted">Cobertura</span>
-          <b>{summary.exactCount}/{summary.itemCount}</b>
+          <b>{summary.resolvedCount}/{summary.itemCount}</b>
         </div>
       </div>
     </div>
