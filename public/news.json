@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-09T23:09:12.187Z",
+  "generatedAt": "2026-03-09T23:15:51.683Z",
   "items": [
     {
       "id": "0406b0b387c05a5e1e6398459c7c84fe8c386955",
@@ -272,6 +272,33 @@
       "description": "The 2027 Super Bowl will air on ESPN for the first time in network history. Learn more information about Super Bowl LXI festivities now."
     },
     {
+      "id": "39651a85d4bb6e21ace49d0fd181319b576f6a37",
+      "source": "FantasyPros",
+      "title": "Quincy Williams signs two-year deal with Browns",
+      "url": "https://www.fantasypros.com/nfl/news/573036/quincy-williams-signs-two-year-deal-with-browns.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "cc7dcb35968ae7d1e488169b73624b58962ebdd9",
+      "source": "FantasyPros",
+      "title": "Joe Cardona signs with Rams",
+      "url": "https://www.fantasypros.com/nfl/news/573035/joe-cardona-signs-with-rams.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "587a4658a32919eedae1846b54e29b1a10f32909",
+      "source": "FantasyPros",
+      "title": "Isaac Seumalo signs three-year deal with Cardinals",
+      "url": "https://www.fantasypros.com/nfl/news/573034/isaac-seumalo-signs-three-year-deal-with-cardinals-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
       "id": "7dea0cbc3cfa673678dd16c108a8fb0fd55821d8",
       "source": "FantasyPros",
       "title": "L.J. Collier re-signs with Cardinals",
@@ -456,33 +483,6 @@
       "source": "FantasyPros",
       "title": "Tua Tagovailoa signs one-year deal with Falcons",
       "url": "https://www.fantasypros.com/nfl/news/572947/tua-tagovailoa-signs-one-year-deal-with-falcons-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "577f388ca4eb841cfd0ade81140a4b6ef45b5fa8",
-      "source": "FantasyPros",
-      "title": "Brian Thomas Jr.: Jaguars 'entertaining' trade offers",
-      "url": "https://www.fantasypros.com/nfl/news/572946/brian-thomas-jr-jaguars-entertaining-trade-offers.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "1da161ee077715da653e9cc2267371d27d525dbb",
-      "source": "FantasyPros",
-      "title": "Case Keenum re-signs with Bears",
-      "url": "https://www.fantasypros.com/nfl/news/572944/case-keenum-re-signs-with-bears.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "1baa7b43f6353f2fb2afa4440fab7928b370b53c",
-      "source": "FantasyPros",
-      "title": "Jalen Thompson agrees to deal with Cowboys",
-      "url": "https://www.fantasypros.com/nfl/news/572943/jalen-thompson-agrees-to-deal-with-cowboys-.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
