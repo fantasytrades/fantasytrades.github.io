@@ -2180,7 +2180,217 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
         .row.tradeRespondRow{ display:grid; grid-template-columns:1fr; gap:8px; }
         .row.tradeRespondRow button{ width:100%; margin:0; }
       }
-`}</style>
+
+
+      /* === DARK MODE OVERRIDES === */
+      :root{
+        color-scheme: dark;
+        --bg:#0B1220;
+        --card:#111827;
+        --soft:#0F172A;
+        --sky:#162338;
+        --text:#E5EEF9;
+        --muted:#94A3B8;
+        --border:#253246;
+        --blue:#4F8CFF;
+        --danger:#F87171;
+        --ok:#22C55E;
+        --warn:#F59E0B;
+        --shadow:0 18px 44px rgba(0,0,0,0.32);
+        --shadow-sm:0 10px 28px rgba(0,0,0,0.22);
+      }
+      html,body{ background:var(--bg); color:var(--text); }
+      .top,.dock{ background:rgba(11,18,32,0.92); border-color:var(--border); backdrop-filter:blur(10px); }
+      .brand,.title,.teamName,.name,.modalTitle,.newsTitle,.newsHeadline,.chatSideTitle,.fpMeterTitle,.fpBreakName,.teamOwner,.teamMeta,.muted,.sub{ color:inherit; }
+      .muted,.sub,.newsUpdated,.newsHint,.newsFoot,.fpMeterMeta,.fpBreakSource,.newsTime,.newsTime *{ color:var(--muted) !important; }
+
+      .card,
+      .profileCard,
+      .item,
+      .slot,
+      .teamRow,
+      .tradeCard,
+      .tradeSide,
+      .chatTradeSide,
+      .chatList,
+      .newsItem,
+      .fpTradeBox,
+      .fpBreakCol,
+      .fpBreakItem,
+      .fpStat,
+      .chatSelected,
+      .chatPickList,
+      .chatPickRow,
+      .mobileChatTeamBtn,
+      .pickChip,
+      .modal,
+      .selectMenu,
+      .previewBox,
+      .newsSearch,
+      .mentionChip,
+      .teamRow,
+      .teamStatusPill,
+      .teamBadge,
+      .valueChip,
+      .newsSourcePill,
+      .newsRel,
+      .countPill,
+      .newsStatPill,
+      .pill,
+      .badge,
+      .valueTag,
+      .chatItem{
+        background:var(--card) !important;
+        border-color:var(--border) !important;
+        color:var(--text) !important;
+      }
+
+      .profileCard,
+      .seg.segTabs,
+      .mobileFinderToggle,
+      .chatItem.active,
+      .chatItem:hover,
+      .mobileChatTeamBtn.active,
+      .chatPickRow:hover,
+      .chatSelected,
+      .teamRow.active,
+      .dockbtn.active,
+      .valueTag,
+      .valueChip,
+      .countPill,
+      .newsStatPill,
+      .newsOpenBtn,
+      .pickChip,
+      .interestBtn,
+      .newsToggle,
+      .chatCheck,
+      .chatPickIcon,
+      .chatTeamAvatar{
+        background:var(--sky) !important;
+        border-color:#2E4260 !important;
+        color:var(--text) !important;
+      }
+
+      input,
+      select,
+      .selectBtn,
+      .chatSearch,
+      .textarea,
+      .newsSearch,
+      .newsSearchInput,
+      .chatTab,
+      button.ghost,
+      .iconBtn,
+      .valueBtn,
+      .selectOpt,
+      .seg.segFilters button,
+      .chip,
+      .pickMain,
+      .pickX{
+        background:#0D1728 !important;
+        border-color:var(--border) !important;
+        color:var(--text) !important;
+        box-shadow:none !important;
+      }
+
+      input::placeholder,
+      .newsSearchInput::placeholder,
+      .chatSearch::placeholder,
+      textarea::placeholder{ color:#7F91AF !important; }
+
+      .seg.segTabs button{ color:var(--text) !important; }
+      .seg.segTabs button.active,
+      .chatTab.active,
+      .selectOpt.active,
+      .newsToggle.active,
+      .dockbtn.active,
+      .btnAdd,
+      .btnAdd.added,
+      .mobileFinderToggle,
+      .newsOpenBtn:hover{
+        color:#FFFFFF !important;
+      }
+      .seg.segTabs button.active,
+      .chatTab.active,
+      .selectOpt.active,
+      .newsToggle.active,
+      .btnAdd,
+      .mobileFinderToggle{
+        background:var(--blue) !important;
+        border-color:var(--blue) !important;
+      }
+      .btnAdd.added{ background:#1E293B !important; border-color:#334155 !important; color:#94A3B8 !important; }
+
+      .av,
+      .mentionAv,
+      .chatAv,
+      .chatAvSm,
+      .chatTeamAvatar,
+      .chatPickIcon,
+      .chatCheck{ background:#0B1424 !important; border-color:var(--border) !important; }
+      .av,
+      .mentionAv,
+      .chatAv,
+      .chatAvSm,
+      .chatTeamAvatar{ color:var(--text) !important; }
+      .chatAvFallback{ color:var(--text) !important; }
+
+      .top .chip,
+      .top button.chip,
+      .dockbtn{ background:transparent !important; }
+      .dockbtn{ color:var(--muted) !important; }
+      .dockbtn.active{ color:var(--text) !important; }
+
+      .teamRow:hover,
+      .chatPickRow.active,
+      .mobileChatTeamBtn:hover,
+      .newsOpenBtn,
+      .chatAssetChip:hover,
+      .selectOpt:hover{ background:#18263C !important; }
+
+      .newsHeadline,
+      a.newsHeadline,
+      .newsOpenBtn,
+      .chatPickName,
+      .chatAssetChip,
+      .chatMiniChip,
+      .chatMiniText,
+      .chatAssetName,
+      .fpBreakValue,
+      .fpBalanceLabel,
+      .fpBalanceValue,
+      .fpSegmentInsideLabel{ color:var(--text) !important; }
+      .fpBreakPick{ background:#0D1728 !important; border-color:var(--border) !important; color:var(--text) !important; }
+      .fpMeterSvg .fpBalanceLabel,
+      .fpMeterSvg .fpBalanceValue{ fill:#FFFFFF !important; }
+
+      .pill-AVAILABLE{ background:rgba(34,197,94,0.18) !important; border-color:rgba(34,197,94,0.32) !important; color:#86EFAC !important; }
+      .pill-LISTENING{ background:rgba(245,158,11,0.20) !important; border-color:rgba(245,158,11,0.34) !important; color:#FCD34D !important; }
+      .pill-NOT_AVAILABLE{ background:rgba(248,113,113,0.18) !important; border-color:rgba(248,113,113,0.32) !important; color:#FCA5A5 !important; }
+      .chip.ok{ background:rgba(34,197,94,0.18) !important; border-color:rgba(34,197,94,0.32) !important; color:#86EFAC !important; }
+      .chip.warn{ background:rgba(245,158,11,0.20) !important; border-color:rgba(245,158,11,0.34) !important; color:#FCD34D !important; }
+      .chip.danger{ background:rgba(248,113,113,0.18) !important; border-color:rgba(248,113,113,0.32) !important; color:#FCA5A5 !important; }
+      .badge-LOW{ background:rgba(248,113,113,0.18) !important; border-color:rgba(248,113,113,0.32) !important; color:#FCA5A5 !important; }
+      .badge-MEDIUM{ background:rgba(245,158,11,0.20) !important; border-color:rgba(245,158,11,0.34) !important; color:#FCD34D !important; }
+      .badge-HIGH{ background:rgba(34,197,94,0.18) !important; border-color:rgba(34,197,94,0.32) !important; color:#86EFAC !important; }
+
+      .modalOverlay{ background:rgba(2,6,23,0.72) !important; }
+      .pickChip.active,
+      .interestBtn.active,
+      .interestBtn.active-LOW,
+      .interestBtn.active-MEDIUM,
+      .interestBtn.active-HIGH{ color:#FFFFFF !important; }
+      .tierDot{ background:#0D1728 !important; border-color:var(--border) !important; color:var(--text) !important; }
+      .tierDot.active{ background:var(--blue) !important; border-color:var(--blue) !important; color:#FFFFFF !important; }
+
+      .topin,.dockin{ color:var(--text); }
+      .slotheadFlat .muted,
+      .slothead .muted{ color:var(--muted) !important; }
+      .scrollList::-webkit-scrollbar-thumb,
+      .mobileChatScroller::-webkit-scrollbar-thumb{ background:#334155 !important; }
+      .scrollList::-webkit-scrollbar-track,
+      .mobileChatScroller::-webkit-scrollbar-track{ background:transparent !important; }
+      `}</style>
   );
 }
 // ---- MyTeamView ----
