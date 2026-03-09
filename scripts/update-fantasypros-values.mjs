@@ -42,7 +42,7 @@ function round1(n) {
 function scaled1qbValue(raw) {
   const n = Number(raw);
   if (!Number.isFinite(n)) return NaN;
-  return round1(n / 100);
+  return round1(n );
 }
 
 async function fetchText(url) {
