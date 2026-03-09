@@ -554,10 +554,9 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
     <div className="fpTradeBox">
       <div className="fpMeterHead">
         <div style={{ minWidth: 0 }}>
-          <div className="fpMeterTitle">DynastyProcess <span className="muted" style={{ fontWeight: 900 }}>(para vos)</span></div>
+          <div className="fpMeterTitle">Análisis de Trade</div>
           <div className="fpMeterMeta">
-            {summary.sourceNote}
-            {summary.updatedAt ? ` · ${new Date(summary.updatedAt).toLocaleString()}` : ""}
+            {summary.updatedAt ? new Date(summary.updatedAt).toLocaleString() : "—"}
           </div>
         </div>
         <span className={`fpVerdict fpVerdict-${summary.verdict.tone}`}>{summary.verdict.label}</span>
