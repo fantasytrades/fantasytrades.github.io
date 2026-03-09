@@ -4128,7 +4128,7 @@ function ChatsView({ me, teams, teamsByUser, metaById, fpDynastyValues }) {
 
                       <div className="row tradeActionRow" style={{ gap: 8, alignItems: "center", justifyContent: "flex-end" }}>
                         {t.history?.length ? (
-                          <button className="ghost miniBtn" onClick={() => toggleHistory(t.id)}>
+                          <button onClick={() => toggleHistory(t.id)}>
                             {showHistory ? "Ocultar historial" : `Ver historial (${t.history.length})`}
                           </button>
                         ) : null}
