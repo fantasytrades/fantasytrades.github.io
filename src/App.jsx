@@ -554,7 +554,6 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
               )}
               <span className="fpBreakName">{item.label}</span>
             </div>
-            <div className="fpBreakSource">{sourceLabel(item.source)}</div>
         </div>
   );
 
