@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "node scripts/update-adp.mjs && node scripts/update-news.mjs",
+    "prebuild": "node scripts/update-adp.mjs && node scripts/update-news.mjs && node scripts/update-fantasypros-values.mjs",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
