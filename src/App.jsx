@@ -2247,60 +2247,69 @@ function MyTeamView({
       const startsWordIndex = words.findIndex((part) => part.startsWith(qq));
       const includesAt = name.indexOf(qq);
       const allWordStarts = qTokens.length > 1 && qTokens.every((token) => words.some((part) => part.startsWith(token)));
+      const allWholeWords = qTokens.length > 1 && qTokens.every((token) => words.includes(token));
       const allIncludes = qTokens.length > 1 && qTokens.every((token) => name.includes(token));
 
       if (exactFull) return { bucket: 0, wordIndex: 0, startsAt: 0, len: name.length };
       if (exactWordIndex >= 0) return { bucket: 1, wordIndex: exactWordIndex, startsAt: includesAt >= 0 ? includesAt : 999, len: name.length };
       if (startsFull) return { bucket: 2, wordIndex: 0, startsAt: 0, len: name.length };
       if (startsWordIndex >= 0) return { bucket: 3, wordIndex: startsWordIndex, startsAt: includesAt >= 0 ? includesAt : 999, len: name.length };
-      if (allWordStarts) return { bucket: 4, wordIndex: 999, startsAt: includesAt >= 0 ? includesAt : 999, len: name.length };
-      if (includesAt >= 0) return { bucket: 5, wordIndex: 999, startsAt: includesAt, len: name.length };
-      if (allIncludes) return { bucket: 6, wordIndex: 999, startsAt: includesAt >= 0 ? includesAt : 999, len: name.length };
+      if (allWholeWords) return { bucket: 4, wordIndex: 999, startsAt: includesAt >= 0 ? includesAt : 999, len: name.length };
+      if (allWordStarts) return { bucket: 5, wordIndex: 999, startsAt: includesAt >= 0 ? includesAt : 999, len: name.length };
+      if (includesAt >= 0) return { bucket: 6, wordIndex: 999, startsAt: includesAt, len: name.length };
+      if (allIncludes) return { bucket: 7, wordIndex: 999, startsAt: includesAt >= 0 ? includesAt : 999, len: name.length };
 
       return null;
     };
 
-    return (players || [])
-      .filter((p) => {
-        const posRaw = String(p?.position ?? p?.pos ?? p?.player_position ?? "").toUpperCase();
-        if (!ALLOWED_POSITIONS.has(posRaw)) return false;
+    const base = (players || []).filter((p) => {
+      const posRaw = String(p?.position ?? p?.pos ?? p?.player_position ?? "").toUpperCase();
+      if (!ALLOWED_POSITIONS.has(posRaw)) return false;
 
-        const pos = normPos(posRaw);
-        if (posFilter !== "ALL") {
-          if (posFilter === "FLEX") {
-            if (!["RB", "WR", "TE"].includes(pos)) return false;
-          } else if (pos !== posFilter) {
-            return false;
-          }
+      const pos = normPos(posRaw);
+      if (posFilter !== "ALL") {
+        if (posFilter === "FLEX") {
+          if (!["RB", "WR", "TE"].includes(pos)) return false;
+        } else if (pos !== posFilter) {
+          return false;
         }
+      }
 
-        if (!qq) return true;
-        return playerQueryScore(p) !== null;
-      })
-      .sort((a, b) => {
-        if (qq) {
-          const scoreA = playerQueryScore(a) || { bucket: 999, wordIndex: 999, startsAt: 999, len: 999 };
-          const scoreB = playerQueryScore(b) || { bucket: 999, wordIndex: 999, startsAt: 999, len: 999 };
+      if (!qq) return true;
+      return playerQueryScore(p) !== null;
+    });
 
-          if (scoreA.bucket !== scoreB.bucket) return scoreA.bucket - scoreB.bucket;
-          if (scoreA.wordIndex !== scoreB.wordIndex) return scoreA.wordIndex - scoreB.wordIndex;
-          if (scoreA.startsAt !== scoreB.startsAt) return scoreA.startsAt - scoreB.startsAt;
-          if (scoreA.len !== scoreB.len) return scoreA.len - scoreB.len;
+    if (qq) {
+      return base
+        .map((p) => ({ p, score: playerQueryScore(p) || { bucket: 999, wordIndex: 999, startsAt: 999, len: 999 } }))
+        .sort((a, b) => {
+          if (a.score.bucket !== b.score.bucket) return a.score.bucket - b.score.bucket;
+          if (a.score.wordIndex !== b.score.wordIndex) return a.score.wordIndex - b.score.wordIndex;
+          if (a.score.startsAt !== b.score.startsAt) return a.score.startsAt - b.score.startsAt;
+          if (a.score.len !== b.score.len) return a.score.len - b.score.len;
 
-          const adpA = playerAdp(a);
-          const adpB = playerAdp(b);
+          const nameCmp = playerName(a.p).localeCompare(playerName(b.p), undefined, { sensitivity: "base" });
+          if (nameCmp !== 0) return nameCmp;
+
+          const srA = playerSearchRank(a.p);
+          const srB = playerSearchRank(b.p);
+          if (srA !== srB) return srA - srB;
+
+          const adpA = playerAdp(a.p);
+          const adpB = playerAdp(b.p);
           const hasAdpA = adpA != null;
           const hasAdpB = adpB != null;
           if (hasAdpA !== hasAdpB) return hasAdpA ? -1 : 1;
           if (hasAdpA && hasAdpB && adpA !== adpB) return adpA - adpB;
 
-          const srA = playerSearchRank(a);
-          const srB = playerSearchRank(b);
-          if (srA !== srB) return srA - srB;
+          return 0;
+        })
+        .map(({ p }) => p)
+        .slice(0, 1200);
+    }
 
-          return playerName(a).localeCompare(playerName(b), undefined, { sensitivity: "base" });
-        }
-
+    return base
+      .sort((a, b) => {
         const adpA = playerAdp(a);
         const adpB = playerAdp(b);
         const hasAdpA = adpA != null;
