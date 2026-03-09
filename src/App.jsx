@@ -2377,6 +2377,64 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
         border-color:rgba(248,113,113,0.42);
         color:#FECACA;
       }
+      .themeToggle{
+  min-width:48px;
+  width:48px;
+  height:48px;
+  padding:0;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:14px;
+  box-shadow:none !important;
+}
+
+.themeToggleIcon{
+  overflow:hidden;
+}
+
+.bulbIcon{
+  width:22px;
+  height:22px;
+  fill:none;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-width:1.8;
+}
+
+.bulbGlass,
+.bulbBase,
+.bulbRay{
+  transition:all .18s ease;
+}
+
+/* Bombilla prendida */
+.bulbIcon.on .bulbGlass{
+  fill:#FACC15;
+  stroke:#F59E0B;
+}
+.bulbIcon.on .bulbBase{
+  fill:#94A3B8;
+  stroke:#94A3B8;
+}
+.bulbIcon.on .bulbRay{
+  stroke:#FACC15;
+  opacity:1;
+}
+
+/* Bombilla apagada */
+.bulbIcon.off .bulbGlass{
+  fill:none;
+  stroke:#94A3B8;
+}
+.bulbIcon.off .bulbBase{
+  fill:#64748B;
+  stroke:#64748B;
+}
+.bulbIcon.off .bulbRay{
+  stroke:#64748B;
+  opacity:.28;
+}
       @media (max-width: 640px){
         .card.chatComposerCard, .chatMain > .card{ padding:12px !important; border-radius:16px; }
         .mobileChatRailHead{ margin-bottom:8px; }
@@ -4903,9 +4961,32 @@ export default function App() {
         <div className="topin">
           <div className="brand">Fantasy Trade Board</div>
           <div className="sp" />
-          <button className="ghost themeToggle" onClick={() => setTheme((t) => (t === "dark" ? "light" : "dark"))}>
-            {theme === "dark" ? "Modo claro" : "Modo oscuro"}
-          </button>
+          <button
+  className="ghost themeToggle themeToggleIcon"
+  onClick={() => setTheme((t) => (t === "dark" ? "light" : "dark"))}
+  aria-label={theme === "dark" ? "Pasar a modo claro" : "Pasar a modo oscuro"}
+  title={theme === "dark" ? "Pasar a modo claro" : "Pasar a modo oscuro"}
+>
+  <svg
+    className={`bulbIcon ${theme === "light" ? "on" : "off"}`}
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path
+      className="bulbGlass"
+      d="M12 3C8.69 3 6 5.69 6 9c0 2.02.99 3.8 2.5 4.89V16c0 .55.45 1 1 1h5c.55 0 1-.45 1-1v-2.11C17.01 12.8 18 11.02 18 9c0-3.31-2.69-6-6-6Z"
+    />
+    <path
+      className="bulbBase"
+      d="M9.5 18h5v1.2c0 .99-.81 1.8-1.8 1.8h-1.4c-.99 0-1.8-.81-1.8-1.8V18Z"
+    />
+    <line className="bulbRay r1" x1="12" y1="1.5" x2="12" y2="4" />
+    <line className="bulbRay r2" x1="4.9" y1="4.9" x2="6.7" y2="6.7" />
+    <line className="bulbRay r3" x1="19.1" y1="4.9" x2="17.3" y2="6.7" />
+    <line className="bulbRay r4" x1="3" y1="12" x2="5.5" y2="12" />
+    <line className="bulbRay r5" x1="21" y1="12" x2="18.5" y2="12" />
+  </svg>
+</button>
           {playersLoading ? <div className="chip" style={{ cursor: "default" }}>ADP…</div> : null}
           {me ? <div className="chip" style={{ cursor: "default" }}>{me.email}</div> : null}
           {me ? <button className="chip" onClick={logout}>Salir</button> : null}
