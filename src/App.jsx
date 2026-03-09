@@ -624,7 +624,6 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
             filter="url(#fpShadow)"
           />
           <circle cx={cx} cy={cy} r="56" fill="#111827" filter="url(#fpShadow)" />
-          <circle cx={cx} cy={cy} r="15" fill="#202631" />
 
           <text x={cx} y={cy - 14} textAnchor="middle" className="fpBalanceLabel">
             Balance
