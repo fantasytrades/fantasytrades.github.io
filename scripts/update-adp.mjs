@@ -24,6 +24,15 @@ async function fetchJson(url) {
 
 const TEAM_MAP = { JAC: "JAX", WAS: "WSH" };
 
+function sleeperHeadshotUrl(sleeperId, team = "", active = true) {
+  const id = String(sleeperId || "").trim();
+  const tm = String(team || "").toUpperCase();
+  if (!id) return "";
+  if (!active) return "";
+  if (!tm || tm === "FA") return "";
+  return `https://sleepercdn.com/content/nfl/players/${id}.jpg`;
+}
+
 const normName = (s = "") =>
   s
     .toLowerCase()
@@ -69,7 +78,7 @@ function buildSleeperPlayerMap(all) {
       age: Number.isFinite(Number(p.age)) ? Number(p.age) : null,
       fantasy_positions: Array.isArray(p.fantasy_positions) ? p.fantasy_positions : [],
       status: p.status || "",
-      headshot: `https://sleepercdn.com/content/nfl/players/${sleeperId}.jpg`,
+      headshot: sleeperHeadshotUrl(sleeperId, p.team || '', Boolean(p.active)),
     };
 
     if (!byKey.has(key)) byKey.set(key, row);
@@ -112,7 +121,7 @@ function canonicalFromFfc(p, sleeperMatch) {
     stdev: Number.isFinite(Number(p?.stdev)) ? Number(p.stdev) : null,
     bye: Number.isFinite(Number(p?.bye)) ? Number(p.bye) : 0,
     search_rank: sleeperMatch?.search_rank ?? 999999,
-    headshot: p?.headshot || (sleeperId ? `https://sleepercdn.com/content/nfl/players/${sleeperId}.jpg` : ""),
+    headshot: p?.headshot || sleeperHeadshotUrl(sleeperId, team, Boolean(sleeperMatch?.active)),
     source: "ffc",
   };
 }
