@@ -542,20 +542,24 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
     return "Respaldo";
   };
 
-  const renderBreakdownItem = (item) => (
-          <div className="fpBreakMain">
-            <div className="fpBreakNameRow">
-              {item.type === "player" ? (
-                <span className={`posMini posMini-${normPos(metaById?.get(String(item.id))?.position || metaById?.get(String(item.id))?.pos || "")}`}>
-                  {normPos(metaById?.get(String(item.id))?.position || metaById?.get(String(item.id))?.pos || "")}
-                </span>
-              ) : (
-                <span className="fpBreakPick">P</span>
-              )}
-              <span className="fpBreakName">{item.label}</span>
-            </div>
-        </div>
-  );
+const renderBreakdownItem = (item) => (
+  <div key={`${item.type}-${item.id}`} className="fpBreakItem">
+    <div className="fpBreakMain">
+      <div className="fpBreakNameRow">
+        {item.type === "player" ? (
+          <span className={`posMini posMini-${normPos(metaById?.get(String(item.id))?.position || metaById?.get(String(item.id))?.pos || "")}`}>
+            {normPos(metaById?.get(String(item.id))?.position || metaById?.get(String(item.id))?.pos || "")}
+          </span>
+        ) : (
+          <span className="fpBreakPick">P</span>
+        )}
+        <span className="fpBreakName">{item.label}</span>
+      </div>
+    </div>
+
+    <div className="fpBreakValue">{Number(item.value || 0)}</div>
+  </div>
+);
 
   return (
     <div className="fpTradeBox">
