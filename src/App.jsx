@@ -172,7 +172,7 @@ const DP_PICK_VALUES_1QB = {
 const FP_METER_SEGMENTS = [
   { label: "Te Están Robando", shortLabel: "Robando", lines: ["Te Están", "Robando"], color: "#DC2626", textColor: "#FFFFFF", min: -100, max: -20, tone: "robbery" },
   { label: "Le Falta Algo", shortLabel: "Le Falta Algo", lines: ["Le Falta", "Algo"], color: "#F59E0B", textColor: "#FFFFFF", min: -20, max: -5, tone: "weak" },
-  { label: "Parejo", shortLabel: "Parejo", lines: ["Parejo"], color: "#A3E635", textColor: "#365314", min: -5, max: 5, tone: "even" },
+  { label: "Parejo", shortLabel: "Parejo", lines: ["Parejo"], color: "#A3E635", textColor: "#FFFFFF", min: -5, max: 5, tone: "even" },
   { label: "Te Sirve", shortLabel: "Te Sirve", lines: ["Te Sirve"], color: "#22C55E", textColor: "#FFFFFF", min: 5, max: 20, tone: "good" },
   { label: "Estás Robando", shortLabel: "Estás Robando", lines: ["Estás", "Robando"], color: "#166534", textColor: "#FFFFFF", min: 20, max: 100, tone: "great" },
 ];
