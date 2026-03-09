@@ -135,6 +135,17 @@ function pickImg(obj) {
   return typeof url === "string" ? url : "";
 }
 
+function SafeImg({ src, alt = "", fallback = null }) {
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    setFailed(false);
+  }, [src]);
+
+  if (!src || failed) return fallback;
+  return <img src={src} alt={alt} onError={() => setFailed(true)} />;
+}
+
 function cycleStatus(curr) {
   const key = normStatusKey(curr);
   const i = STATUS_CYCLE.indexOf(key);
@@ -2206,6 +2217,18 @@ function MyTeamView({
 
   const filtered = useMemo(() => {
     const qq = q.trim().toLowerCase();
+
+    const playerName = (p) => String(p?.name || p?.player_name || p?.full_name || p?.player || "").trim();
+    const playerAdp = (p) => {
+      const raw = p?.adp ?? p?.adp_value ?? p?.adp_ppr ?? p?.ppr_adp ?? p?.adp_rank ?? p?.adp_formatted;
+      const n = Number(raw);
+      return Number.isFinite(n) && n > 0 ? n : null;
+    };
+    const playerSearchRank = (p) => {
+      const n = Number(p?.search_rank);
+      return Number.isFinite(n) && n > 0 ? n : Infinity;
+    };
+
     return (players || [])
       .filter((p) => {
         const posRaw = String(p?.position ?? p?.pos ?? p?.player_position ?? "").toUpperCase();
@@ -2219,7 +2242,22 @@ function MyTeamView({
           }
         }
         if (!qq) return true;
-        return String(p.name || p.player_name || p.full_name || p.player || "").toLowerCase().includes(qq);
+        return playerName(p).toLowerCase().includes(qq);
+      })
+      .sort((a, b) => {
+        const adpA = playerAdp(a);
+        const adpB = playerAdp(b);
+        const hasAdpA = adpA != null;
+        const hasAdpB = adpB != null;
+
+        if (hasAdpA !== hasAdpB) return hasAdpA ? -1 : 1;
+        if (hasAdpA && hasAdpB && adpA !== adpB) return adpA - adpB;
+
+        const srA = playerSearchRank(a);
+        const srB = playerSearchRank(b);
+        if (srA !== srB) return srA - srB;
+
+        return playerName(a).localeCompare(playerName(b), undefined, { sensitivity: "base" });
       })
       .slice(0, 1200);
   }, [players, q, posFilter]);
@@ -2321,7 +2359,7 @@ function MyTeamView({
                   return (
                     <div key={id} className="item itemTight">
                       <div className="left">
-                        <div className="av">{img ? <img src={img} alt={pname} /> : initials(pname)}</div>
+                        <div className="av">{<SafeImg src={img} alt={pname} fallback={initials(pname)} />} </div>
                         <div style={{ minWidth: 0 }}>
                           <div className="name">{pname}</div>
                           <div className="muted sub"><span className={`posMini posMini-${pos}`}>{pos}</span>{p.team || p.nfl || "-"}</div>
@@ -2417,7 +2455,7 @@ function MyTeamView({
                               <div className={`posTag pos-${s.key}`}>{s.key === "FLEX" ? "WRT" : (s.key === "BENCH" ? "BN" : s.label)}</div>
 
                               <div className="left" style={{ minWidth: 0 }}>
-                                <div className="av">{img ? <img src={img} alt={r.name} /> : initials(r.name)}</div>
+                                <div className="av">{<SafeImg src={img} alt={r.name} fallback={initials(r.name)} />} </div>
                                 <div style={{ minWidth: 0 }}>
                                   <div className="name">{r.name}</div>
                                   <div className="muted sub"><span className={`posMini posMini-${pos}`}>{pos}</span>{r.nfl || "-"}</div>
@@ -2828,7 +2866,7 @@ function LeagueView({ me, teams, interests, onSetInterest, metaById }) {
                 return (
                   <div key={r.id} className="item itemTight leagueAssetRow">
                     <div className="left">
-                      <div className="av">{img ? <img src={img} alt={r.name} /> : initials(r.name)}</div>
+                      <div className="av">{<SafeImg src={img} alt={r.name} fallback={initials(r.name)} />} </div>
                       <div style={{ minWidth: 0 }}>
                         <div className="name">{r.name}</div>
                         <div className="muted sub">
@@ -3309,7 +3347,7 @@ function HomeNewsView({ myRoster, metaById }) {
                         return (
                           <span key={m} className="mentionChip" title={m}>
                             <span className="mentionAv">
-                              {mm?.img ? <img src={mm.img} alt={m} /> : m.split(" ").slice(0, 2).map((x) => x[0]).join("")}
+                              {<SafeImg src={mm?.img} alt={m} fallback={m.split(" ").slice(0, 2).map((x) => x[0]).join("")} />} 
                             </span>
                             <span className="mentionTxt">{m}</span>
                           </span>
@@ -3762,7 +3800,7 @@ function ChatsView({ me, teams, teamsByUser, metaById, fpDynastyValues }) {
     return (
       <button key={`p-${id}`} type="button" className="chatAssetChip" onClick={onRemove} title="Quitar">
         <span className="chatAvSm">
-          {m.img ? <img src={m.img} alt="" /> : <span className="chatAvFallback">{initials(m.name)}</span>}
+          {<SafeImg src={m.img} alt="" fallback={<span className="chatAvFallback">{initials(m.name)}</span>} />} 
         </span>
         <span className="chatAssetName">{m.name}</span>
         {m.pos ? <span className={`posMini posMini-${m.pos}`}>{m.pos}</span> : null}
@@ -3782,7 +3820,7 @@ function ChatsView({ me, teams, teamsByUser, metaById, fpDynastyValues }) {
       >
         <div className="chatPickLeft">
           <span className="chatAv">
-            {m.img ? <img src={m.img} alt="" /> : <span className="chatAvFallback">{initials(m.name)}</span>}
+            {<SafeImg src={m.img} alt="" fallback={<span className="chatAvFallback">{initials(m.name)}</span>} />} 
           </span>
           <div className="chatPickText">
             <div className="chatPickName">{m.name}</div>
@@ -3856,7 +3894,7 @@ function ChatsView({ me, teams, teamsByUser, metaById, fpDynastyValues }) {
             {givePlayers.map((id) => (
               <span key={`gp-${version.version_no}-${id}`} className="chatMiniChip">
                 <span className="chatAvSm">
-                  {playerMeta(id).img ? <img src={playerMeta(id).img} alt="" /> : <span className="chatAvFallback">{initials(playerMeta(id).name)}</span>}
+                  {<SafeImg src={playerMeta(id).img} alt="" fallback={<span className="chatAvFallback">{initials(playerMeta(id).name)}</span>} />} 
                 </span>
                 <span className="chatMiniText">{playerMeta(id).name}</span>
                 {playerMeta(id).pos ? <span className={`posMini posMini-${playerMeta(id).pos}`}>{playerMeta(id).pos}</span> : null}
@@ -3878,7 +3916,7 @@ function ChatsView({ me, teams, teamsByUser, metaById, fpDynastyValues }) {
             {getPlayers.map((id) => (
               <span key={`rp-${version.version_no}-${id}`} className="chatMiniChip">
                 <span className="chatAvSm">
-                  {playerMeta(id).img ? <img src={playerMeta(id).img} alt="" /> : <span className="chatAvFallback">{initials(playerMeta(id).name)}</span>}
+                  {<SafeImg src={playerMeta(id).img} alt="" fallback={<span className="chatAvFallback">{initials(playerMeta(id).name)}</span>} />} 
                 </span>
                 <span className="chatMiniText">{playerMeta(id).name}</span>
                 {playerMeta(id).pos ? <span className={`posMini posMini-${playerMeta(id).pos}`}>{playerMeta(id).pos}</span> : null}
