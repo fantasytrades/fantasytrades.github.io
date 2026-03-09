@@ -2234,27 +2234,28 @@ function MyTeamView({
       return Number.isFinite(n) && n > 0 ? n : Infinity;
     };
 
-    const playerMatchRank = (p) => {
-      if (!qq) return { bucket: 0, startsAt: 0, len: normalizedPlayerName(p).length || 999 };
+    const playerQueryScore = (p) => {
+      if (!qq) return null;
 
       const name = normalizedPlayerName(p);
       if (!name) return null;
 
       const words = playerWords(p);
-      const startsAt = name.indexOf(qq);
       const exactFull = name === qq;
-      const exactWord = words.includes(qq);
+      const exactWordIndex = words.findIndex((part) => part === qq);
       const startsFull = name.startsWith(qq);
-      const startsWord = words.some((part) => part.startsWith(qq));
+      const startsWordIndex = words.findIndex((part) => part.startsWith(qq));
+      const includesAt = name.indexOf(qq);
       const allWordStarts = qTokens.length > 1 && qTokens.every((token) => words.some((part) => part.startsWith(token)));
-      const allIncludes = qTokens.length > 0 && qTokens.every((token) => name.includes(token));
+      const allIncludes = qTokens.length > 1 && qTokens.every((token) => name.includes(token));
 
-      if (exactFull) return { bucket: 0, startsAt: 0, len: name.length };
-      if (exactWord) return { bucket: 1, startsAt: Math.max(0, startsAt), len: name.length };
-      if (startsFull) return { bucket: 2, startsAt: 0, len: name.length };
-      if (allWordStarts) return { bucket: 3, startsAt: startsAt >= 0 ? startsAt : 999, len: name.length };
-      if (startsWord) return { bucket: 4, startsAt: startsAt >= 0 ? startsAt : 999, len: name.length };
-      if (allIncludes) return { bucket: 5, startsAt: startsAt >= 0 ? startsAt : 999, len: name.length };
+      if (exactFull) return { bucket: 0, wordIndex: 0, startsAt: 0, len: name.length };
+      if (exactWordIndex >= 0) return { bucket: 1, wordIndex: exactWordIndex, startsAt: includesAt >= 0 ? includesAt : 999, len: name.length };
+      if (startsFull) return { bucket: 2, wordIndex: 0, startsAt: 0, len: name.length };
+      if (startsWordIndex >= 0) return { bucket: 3, wordIndex: startsWordIndex, startsAt: includesAt >= 0 ? includesAt : 999, len: name.length };
+      if (allWordStarts) return { bucket: 4, wordIndex: 999, startsAt: includesAt >= 0 ? includesAt : 999, len: name.length };
+      if (includesAt >= 0) return { bucket: 5, wordIndex: 999, startsAt: includesAt, len: name.length };
+      if (allIncludes) return { bucket: 6, wordIndex: 999, startsAt: includesAt >= 0 ? includesAt : 999, len: name.length };
 
       return null;
     };
@@ -2274,24 +2275,24 @@ function MyTeamView({
         }
 
         if (!qq) return true;
-        return !!playerMatchRank(p);
+        return playerQueryScore(p) !== null;
       })
       .sort((a, b) => {
-        const rankA = playerMatchRank(a);
-        const rankB = playerMatchRank(b);
-
         if (qq) {
-          const bucketA = rankA?.bucket ?? 999;
-          const bucketB = rankB?.bucket ?? 999;
-          if (bucketA !== bucketB) return bucketA - bucketB;
+          const scoreA = playerQueryScore(a) || { bucket: 999, wordIndex: 999, startsAt: 999, len: 999 };
+          const scoreB = playerQueryScore(b) || { bucket: 999, wordIndex: 999, startsAt: 999, len: 999 };
 
-          const startsAtA = rankA?.startsAt ?? 999;
-          const startsAtB = rankB?.startsAt ?? 999;
-          if (startsAtA !== startsAtB) return startsAtA - startsAtB;
+          if (scoreA.bucket !== scoreB.bucket) return scoreA.bucket - scoreB.bucket;
+          if (scoreA.wordIndex !== scoreB.wordIndex) return scoreA.wordIndex - scoreB.wordIndex;
+          if (scoreA.startsAt !== scoreB.startsAt) return scoreA.startsAt - scoreB.startsAt;
+          if (scoreA.len !== scoreB.len) return scoreA.len - scoreB.len;
 
-          const lenA = rankA?.len ?? 999;
-          const lenB = rankB?.len ?? 999;
-          if (lenA !== lenB) return lenA - lenB;
+          const adpA = playerAdp(a);
+          const adpB = playerAdp(b);
+          const hasAdpA = adpA != null;
+          const hasAdpB = adpB != null;
+          if (hasAdpA !== hasAdpB) return hasAdpA ? -1 : 1;
+          if (hasAdpA && hasAdpB && adpA !== adpB) return adpA - adpB;
 
           const srA = playerSearchRank(a);
           const srB = playerSearchRank(b);
