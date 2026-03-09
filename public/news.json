@@ -1,113 +1,140 @@
 {
-  "generatedAt": "2026-03-09T08:39:58.805Z",
+  "generatedAt": "2026-03-09T13:04:35.054Z",
   "items": [
     {
-      "id": "903fb69d95cfdb8c5e695884b02d39fd302529f9",
-      "source": "ESPN",
-      "title": "Sources: Conner reworks deal to stay with Cards",
-      "url": "https://www.espn.com/nfl/story/_/id/48144246/sources-rb-james-conner-reworks-deal-stay-cardinals",
-      "publishedAt": "2026-03-09T05:45:18.000Z",
-      "publishedTs": 1773035118000,
-      "description": "The Cardinals and Pro Bowl running back James Conner have agreed to a revised contract to keep him in Arizona for 2026, according to NFL Network."
-    },
-    {
-      "id": "4ec75e127421960f03dc0e8462559554512807c4",
-      "source": "ESPN",
-      "title": "Source: Wilson sticks with Vikings after big year",
-      "url": "https://www.espn.com/nfl/story/_/id/48149700/source-eric-wilson-stays-vikings-3-year-deal",
-      "publishedAt": "2026-03-09T05:45:18.000Z",
-      "publishedTs": 1773035118000,
-      "description": "Linebacker Eric Wilson is staying with the Minnesota Vikings, as the sides agreed to a three-year, $22.5 million contract Sunday ahead of NFL free agency, according to NFL Network."
-    },
-    {
-      "id": "024bbdc1abda7dab2679d39e6101340eca7e1870",
-      "source": "ESPN",
-      "title": "FB Ingold joins Chargers, reunites with McDaniel",
-      "url": "https://www.espn.com/nfl/story/_/id/48148992/chargers-agree-multiyear-deal-free-agent-alec-ingold",
-      "publishedAt": "2026-03-09T05:45:18.000Z",
-      "publishedTs": 1773035118000,
-      "description": "The Chargers agreed to terms on a contract with fullback Alec Ingold, reuniting him with offensive coordinator Mike McDaniel."
-    },
-    {
-      "id": "d56866f87db516b3ed374546cee28553b54f4a4e",
-      "source": "ESPN",
-      "title": "Pack bring back versatile Rhyan on 3-year deal",
-      "url": "https://www.espn.com/nfl/story/_/id/48142637/packers-bring-back-sean-rhyan-3-year-33-million-deal",
-      "publishedAt": "2026-03-09T05:45:18.000Z",
-      "publishedTs": 1773035118000,
-      "description": "The Packers have agreed to bring back Sean Rhyan on a three-year, $33 million deal, his agents told ESPN."
-    },
-    {
-      "id": "71e3731b4fc78277f4d1c20d2bf4fa8e1138305a",
-      "source": "ESPN",
-      "title": "Broncos to re-sign key LB Strnad, source says",
-      "url": "https://www.espn.com/nfl/story/_/id/48144175/source-broncos-re-sign-key-lb-justin-strnad-3-year-deal",
-      "publishedAt": "2026-03-09T05:45:18.000Z",
-      "publishedTs": 1773035118000,
-      "description": "The Broncos and linebacker Justin Strnad have agreed to a three-year, $18 million contract that includes $10 million guaranteed, a source confirmed to ESPN."
-    },
-    {
-      "id": "862271da12a6ec1dc7d25684632da6749d991fc2",
-      "source": "ESPN",
-      "title": "Sources: Eagles giving DT Davis record extension",
-      "url": "https://www.espn.com/nfl/story/_/id/48134138/sources-eagles-dt-jordan-davis-reach-3-year-extension",
-      "publishedAt": "2026-03-09T05:45:18.000Z",
-      "publishedTs": 1773035118000,
-      "description": "The Eagles and defensive tackle Jordan Davis have reached agreement on a three-year, $78 million extension that includes $65 million guaranteed, sources told ESPN."
-    },
-    {
-      "id": "8a194b211d244975fd28439eb16d7f801bfa4019",
-      "source": "ESPN",
-      "title": "🏈 Offseason grades: Who won the Crosby trade?",
-      "url": "https://www.espn.com/nfl/story/_/id/47911726/2026-nfl-free-agency-grades-signings-trades-latest-best-worst-deals-draft-outlook",
-      "publishedAt": "2026-03-09T05:45:18.000Z",
-      "publishedTs": 1773035118000,
-      "description": "We're handing out report cards on big offseason moves, including the Ravens dealing two first-rounders for Maxx Crosby."
-    },
-    {
-      "id": "bb07b35035b67357992538590f7ead2d04606168",
+      "id": "999f01f11cf39cf70d43f5637112673ec2dc140b",
       "source": "ESPN",
       "title": "Sources: Rams reach record deal with McDuffie",
       "url": "https://www.espn.com/nfl/story/_/id/48148479/sources-trent-mcduffie-rams-reach-4-year-124m-extension",
-      "publishedAt": "2026-03-09T05:45:17.000Z",
-      "publishedTs": 1773035117000,
+      "publishedAt": "2026-03-09T13:49:49.000Z",
+      "publishedTs": 1773064189000,
       "description": "The Los Angeles Rams and All-Pro cornerback Trent McDuffie reached agreement on a record four-year, $124 million extension that includes $100 million guaranteed, sources told ESPN's Adam Schefter on Sunday night."
     },
     {
-      "id": "d912906315c3710884b16cce7c6cf577709ebe14",
+      "id": "a7e98ce1e021deed2fa335c8cc508ec54602c794",
       "source": "ESPN",
       "title": "Raiders trading for Bills CB Johnson, source says",
       "url": "https://www.espn.com/nfl/story/_/id/48149182/las-vegas-raiders-acquiring-taron-johnson-trade-buffalo-bills",
-      "publishedAt": "2026-03-09T05:45:17.000Z",
-      "publishedTs": 1773035117000,
+      "publishedAt": "2026-03-09T13:49:49.000Z",
+      "publishedTs": 1773064189000,
       "description": "The Raiders are sending a sixth-round pick to the Bills in exchange for veteran cornerback Taron Johnson and a seventh-round selection, a source told ESPN."
     },
     {
-      "id": "0b0a6c55258c65ad4bba3d1426cb83d27b79879d",
+      "id": "d59c45a4aa0c5add73dd968373cf3fda6eb0d453",
       "source": "ESPN",
-      "title": "2026 NFL free agency: Biggest needs, predictions for 32 teams",
-      "url": "https://www.espn.com/nfl/story/_/id/48100379/2026-nfl-free-agency-biggest-needs-predictions-32-teams",
-      "publishedAt": "2026-03-08T22:51:08.000Z",
-      "publishedTs": 1773010268000,
-      "description": "Malik Willis, Tyler Linderbaum, Mike Evans and Jaelan Phillips are worth keeping an eye on when free agency opens March 11."
+      "title": "Source: Bengals won't tender backup QB Browning",
+      "url": "https://www.espn.com/nfl/story/_/id/48151774/source-bengals-not-tendering-backup-qb-jake-browning",
+      "publishedAt": "2026-03-09T13:49:49.000Z",
+      "publishedTs": 1773064189000,
+      "description": "The Cincinnati Bengals are not tendering restricted free agent quarterback Jake Browning, who started 10 games over three seasons in relief of Joe Burrow, a source told ESPN's Jeremy Fowler."
     },
     {
-      "id": "30af8c7124f36c83fd19583a77bdf41186abeb81",
+      "id": "4128a07afb23d822a9bad0efb5bf21acee7907b2",
       "source": "ESPN",
-      "title": "Last-minute NFL free agency nuggets: What we're hearing on Eagles plans, top RBs and WRs",
-      "url": "https://www.espn.com/nfl/story/_/id/48111448/nfl-free-agency-news-latest-wrs-rbs-pierce-crosby",
-      "publishedAt": "2026-03-08T22:50:58.000Z",
-      "publishedTs": 1773010258000,
-      "description": "What are we hearing as NFL free agency nears? We give you the latest buzz on top players and teams that could be active."
+      "title": "Sources: Ingram back to Texans on 3-year deal",
+      "url": "https://www.espn.com/nfl/story/_/id/48151253/sources-ed-ingram-stays-texans-3-year-deal",
+      "publishedAt": "2026-03-09T13:49:49.000Z",
+      "publishedTs": 1773064189000,
+      "description": "Texans guard Ed Ingram will not hit free agency after agreeing to return to Houston on a three-year, $37.5 million deal, according to ESPN and NFL Network."
     },
     {
-      "id": "42c9935d8d7b764809d1e94174e55564d3971f88",
+      "id": "a64066b0d6b81f903d16164055b033a1d3c7e470",
+      "source": "ESPN",
+      "title": "Steelers to bring back CB Samuel, sources say",
+      "url": "https://www.espn.com/nfl/story/_/id/48151302/source-steelers-re-sign-asante-samuel-jr-1-yr-4m-deal",
+      "publishedAt": "2026-03-09T13:49:49.000Z",
+      "publishedTs": 1773064189000,
+      "description": "The Steelers are re-signing corner Asante Samuel Jr. to a one-year, $4 million deal, a source told ESPN's Jeremy Fowler."
+    },
+    {
+      "id": "cc9098ea560710c163af3ecde3aa09e0749a5ca1",
+      "source": "ESPN",
+      "title": "Sources: Conner reworks deal to stay with Cards",
+      "url": "https://www.espn.com/nfl/story/_/id/48144246/sources-rb-james-conner-reworks-deal-stay-cardinals",
+      "publishedAt": "2026-03-09T13:49:49.000Z",
+      "publishedTs": 1773064189000,
+      "description": "The Cardinals and Pro Bowl running back James Conner have agreed to a revised contract to keep him in Arizona for 2026, according to NFL Network."
+    },
+    {
+      "id": "9a21774313b140f27621bb032808c6b76c6575c2",
+      "source": "ESPN",
+      "title": "Source: Wilson sticks with Vikings after big year",
+      "url": "https://www.espn.com/nfl/story/_/id/48149700/source-eric-wilson-stays-vikings-3-year-deal",
+      "publishedAt": "2026-03-09T13:49:49.000Z",
+      "publishedTs": 1773064189000,
+      "description": "Linebacker Eric Wilson is staying with the Minnesota Vikings, as the sides agreed to a three-year, $22.5 million contract Sunday ahead of NFL free agency, according to NFL Network."
+    },
+    {
+      "id": "e92840979bb10c063652260d2f608caf431f2e37",
+      "source": "ESPN",
+      "title": "FB Ingold joins Chargers, reunites with McDaniel",
+      "url": "https://www.espn.com/nfl/story/_/id/48148992/chargers-agree-multiyear-deal-free-agent-alec-ingold",
+      "publishedAt": "2026-03-09T13:49:49.000Z",
+      "publishedTs": 1773064189000,
+      "description": "The Chargers agreed to terms on a contract with fullback Alec Ingold, reuniting him with offensive coordinator Mike McDaniel."
+    },
+    {
+      "id": "cd69c5ca21456947a2f70629d4879b3070d43209",
+      "source": "ESPN",
+      "title": "🏈 Offseason grades: Who won the Crosby trade?",
+      "url": "https://www.espn.com/nfl/story/_/id/47911726/2026-nfl-free-agency-grades-signings-trades-latest-best-worst-deals-draft-outlook",
+      "publishedAt": "2026-03-09T13:49:49.000Z",
+      "publishedTs": 1773064189000,
+      "description": "We're handing out report cards on big offseason moves, including the Ravens dealing two first-rounders for Maxx Crosby."
+    },
+    {
+      "id": "0f707081ed33ea25cded3af17c37f2c7fbf7464c",
+      "source": "ESPN",
+      "title": "Dolphins to release Tua, take on record cap hit",
+      "url": "https://www.espn.com/nfl/story/_/id/48151647/dolphins-release-tua-tagovailoa-take-record-cap-hit",
+      "publishedAt": "2026-03-09T13:49:15.000Z",
+      "publishedTs": 1773064155000,
+      "description": "The Dolphins will release quarterback Tua Tagovailoa after the start of the new league year in a move that will leave Miami with an NFL-record $99 million in dead money."
+    },
+    {
+      "id": "f2b0c5e8dce25e81efd39602cdbb888f4606254d",
       "source": "ESPN",
       "title": "Tracking NFL free agency: Updates on re-signings, trades, cuts and rumors",
       "url": "https://www.espn.com/nfl/story/_/id/47899175/2026-nfl-free-agency-tracker-live-updates-signings-trades-cuts-contracts-rumors",
-      "publishedAt": "2026-03-08T22:50:58.000Z",
-      "publishedTs": 1773010258000,
+      "publishedAt": "2026-03-09T13:22:36.000Z",
+      "publishedTs": 1773062556000,
       "description": "NFL free agency opens with the legal negotiating window Monday. Here's the latest intel."
+    },
+    {
+      "id": "02894255fecfad50ab90fa01826a651f6d339afb",
+      "source": "ESPN",
+      "title": "Last-minute free agency nuggets: What we're hearing on Eagles plans, top RBs and WRs",
+      "url": "https://www.espn.com/nfl/story/_/id/48111448/nfl-free-agency-news-latest-wrs-rbs-pierce-crosby",
+      "publishedAt": "2026-03-09T13:22:04.000Z",
+      "publishedTs": 1773062524000,
+      "description": "We give you the latest buzz on top players and teams that could be active."
+    },
+    {
+      "id": "1a94e3bd2346bdce8b392e30acc5563227ac728b",
+      "source": "ESPN",
+      "title": "Free agency: Biggest needs, predictions for 32 teams",
+      "url": "https://www.espn.com/nfl/story/_/id/48100379/2026-nfl-free-agency-biggest-needs-predictions-32-teams",
+      "publishedAt": "2026-03-09T13:21:57.000Z",
+      "publishedTs": 1773062517000,
+      "description": "Keep an eye on Malik Willis, Tyler Linderbaum, Mike Evans and Jaelan Phillips when free agency opens."
+    },
+    {
+      "id": "b145909ed83acde9d934b9ab33c8f04819a41199",
+      "source": "ESPN",
+      "title": "Solak: Why Maxx Crosby fits perfectly with the Ravens' defense -- and their Super Bowl window",
+      "url": "https://www.espn.com/nfl/story/_/id/48129144/2026-nfl-free-agency-trade-maxx-crosby-ravens-raiders-defense-minter-lamar",
+      "publishedAt": "2026-03-09T13:00:55.000Z",
+      "publishedTs": 1773061255000,
+      "description": "Baltimore had to give up two first-round picks to get him, but Maxx Crosby can dominate in the Ravens' defense -- and lift the whole team back to contention."
+    },
+    {
+      "id": "e05403154afdf61ec4532587c83740093c5c831d",
+      "source": "ESPN",
+      "title": "Crosby to the Ravens: What's next for both teams, plus offseason implications",
+      "url": "https://www.espn.com/nfl/story/_/id/48127938/las-vegas-raiders-trade-maxx-crosby-baltimore-ravens-questions-draft-free-agency",
+      "publishedAt": "2026-03-09T13:00:55.000Z",
+      "publishedTs": 1773061255000,
+      "description": "Is Baltimore a contender? What's next for Las Vegas? Answering questions about the Maxx Crosby trade."
     },
     {
       "id": "a20457f66502f7844706c5ac67387a26c8f55a8a",
@@ -144,24 +171,6 @@
       "publishedAt": "2026-03-07T17:06:22.000Z",
       "publishedTs": 1772903182000,
       "description": "Matt Miller is back from the combine and updated his 2026 NFL draft rankings."
-    },
-    {
-      "id": "53517438716958745b27f37a48b97bdefeb0fbd5",
-      "source": "ESPN",
-      "title": "Solak: Why Maxx Crosby fits perfectly with the Ravens' defense -- and their Super Bowl window",
-      "url": "https://www.espn.com/nfl/story/_/id/48129144/2026-nfl-free-agency-trade-maxx-crosby-ravens-raiders-defense-minter-lamar",
-      "publishedAt": "2026-03-07T13:11:19.000Z",
-      "publishedTs": 1772889079000,
-      "description": "Baltimore had to give up two first-round picks to get him, but Maxx Crosby can dominate in the Ravens' defense -- and lift the whole team back to contention."
-    },
-    {
-      "id": "41e1b75ef6d3ed9e33a7fdcac523e85b5a501463",
-      "source": "ESPN",
-      "title": "Crosby to the Ravens: What's next for both teams, plus offseason implications",
-      "url": "https://www.espn.com/nfl/story/_/id/48127938/las-vegas-raiders-trade-maxx-crosby-baltimore-ravens-questions-draft-free-agency",
-      "publishedAt": "2026-03-07T13:11:19.000Z",
-      "publishedTs": 1772889079000,
-      "description": "Is Baltimore a contender? What's next for Las Vegas? Answering questions about the Maxx Crosby trade."
     },
     {
       "id": "5550a29f8868ce566fb4bf6978ec2abbbf1a2a3d",
@@ -207,6 +216,51 @@
       "publishedAt": "2026-02-19T13:05:38.000Z",
       "publishedTs": 1771506338000,
       "description": "The 2027 Super Bowl will air on ESPN for the first time in network history. Learn more information about Super Bowl LXI festivities now."
+    },
+    {
+      "id": "540e301a35010f2eb00ffcb62852a48a3f714393",
+      "source": "FantasyPros",
+      "title": "Montaric Brown re-signs with Jaguars on three-year deal",
+      "url": "https://www.fantasypros.com/nfl/news/572762/montaric-brown-re-signs-with-jaguars-on-three-year-deal.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "524433e299094a0b2c9e88fc76d1fbf05c5a5b25",
+      "source": "FantasyPros",
+      "title": "Jake Browning to become free agent",
+      "url": "https://www.fantasypros.com/nfl/news/572760/jake-browning-to-become-free-agent-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "68cf46a20328ee133602bfeb35d91a4ceecbd102",
+      "source": "FantasyPros",
+      "title": "Chris Manhertz re-signs with Giants on one-year deal",
+      "url": "https://www.fantasypros.com/nfl/news/572757/chris-manhertz-re-signs-with-giants-on-one-year-deal.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "4b563c6d1264fd07a7ea198e73b6e6501e8416d4",
+      "source": "FantasyPros",
+      "title": "Ed Ingram re-signs with Texans on three-year deal",
+      "url": "https://www.fantasypros.com/nfl/news/572756/ed-ingram-re-signs-with-texans-on-three-year-deal.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "0c67149e4f68b82b5c293c1c4071f7e5ee5a26de",
+      "source": "FantasyPros",
+      "title": "Tua Tagovailoa released by Miami Dolphins",
+      "url": "https://www.fantasypros.com/nfl/news/572751/tua-tagovailoa-released-by-miami-dolphins.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
     },
     {
       "id": "4d77bc255ccf69ad00dd7e9f21d51e286e89237a",
@@ -384,51 +438,6 @@
       "source": "FantasyPros",
       "title": "Daniel Hardy re-signs with Bears on two-year deal",
       "url": "https://www.fantasypros.com/nfl/news/572667/daniel-hardy-re-signs-with-bears-on-two-year-deal-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "be389e50a9e2865205483f7e3c8fb3d9a0636945",
-      "source": "FantasyPros",
-      "title": "Chad Ryland re-signs with Cardinals on one-year deal",
-      "url": "https://www.fantasypros.com/nfl/news/572638/chad-ryland-re-signs-with-cardinals-on-one-year-deal.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "fc00306d7902d7a16c3efb6f61a3bb95fe2c7414",
-      "source": "FantasyPros",
-      "title": "Blake Grupe signs one-year deal with Colts",
-      "url": "https://www.fantasypros.com/nfl/news/572624/blake-grupe-signs-one-year-deal-with-colts.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "3e876950ece3b194d01d0660f5763106da65b1df",
-      "source": "FantasyPros",
-      "title": "Aaron Banks restructures contract with Packers",
-      "url": "https://www.fantasypros.com/nfl/news/572590/aaron-banks-restructures-contract-with-packers.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "aa5455afa5eab366d2094a0448dead087bb9a63d",
-      "source": "FantasyPros",
-      "title": "Joe Flacco open to returning to Bengals if he can't find starting job",
-      "url": "https://www.fantasypros.com/nfl/news/572589/joe-flacco-open-to-returning-to-bengals-if-he-cant-find-starting-job.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "ed94193b73f63730a35b568cde7a046ec03d2e57",
-      "source": "FantasyPros",
-      "title": "Sean Murphy-Bunting restructures contract with Cardinals",
-      "url": "https://www.fantasypros.com/nfl/news/572588/sean-murphy-bunting-restructures-contract-with-cardinals-.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
