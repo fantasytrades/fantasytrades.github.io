@@ -478,6 +478,8 @@ function summarizeTradeForFantasyPros(version, viewerId, metaById, fpDynastyValu
     itemCount: allDetails.length,
     sourceNote,
     updatedAt: fpDynastyValues?.updatedAt || null,
+    giveDetails,
+    getDetails,
   };
 }
 
@@ -521,6 +523,7 @@ function meterLabelPosition(cx, cy, startAngle, endAngle, radius) {
 
 function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues }) {
   const summary = summarizeTradeForFantasyPros(version, viewerId, metaById, fpDynastyValues);
+  const [showBreakdown, setShowBreakdown] = useState(false);
 
   const cx = 180;
   const cy = 176;
@@ -537,6 +540,32 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
   const pointerTip = polarToCartesian(cx, cy, pointerTipRadius, pointerAngle);
   const pointerLeft = polarToCartesian(cx, cy, pointerBaseRadius, pointerAngle - 7);
   const pointerRight = polarToCartesian(cx, cy, pointerBaseRadius, pointerAngle + 7);
+
+  const sourceLabel = (source) => {
+    if (source === "fp-local" || source === "fp-meta") return "FantasyPros";
+    if (source === "fp-article") return "FantasyPros pick";
+    if (source === "fp-derived") return "FantasyPros derivado";
+    return "Respaldo";
+  };
+
+  const renderBreakdownItem = (item) => (
+    <div key={`${item.type}-${item.id}`} className="fpBreakItem">
+      <div className="fpBreakMain">
+        <div className="fpBreakNameRow">
+          {item.type === "player" ? (
+            <span className={`posMini posMini-${normPos(metaById?.get(String(item.id))?.position || metaById?.get(String(item.id))?.pos || "")}`}>
+              {normPos(metaById?.get(String(item.id))?.position || metaById?.get(String(item.id))?.pos || "")}
+            </span>
+          ) : (
+            <span className="fpBreakPick">P</span>
+          )}
+          <span className="fpBreakName">{item.label}</span>
+        </div>
+        <div className="fpBreakSource">{sourceLabel(item.source)}</div>
+      </div>
+      <div className="fpBreakValue">{Number(item.value || 0)}</div>
+    </div>
+  );
 
   return (
     <div className="fpTradeBox">
@@ -620,6 +649,36 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
           <b>{summary.resolvedCount}/{summary.itemCount}</b>
         </div>
       </div>
+
+      <div className="fpBreakToggleRow">
+        <button type="button" className="ghost miniBtn fpBreakToggleBtn" onClick={() => setShowBreakdown((v) => !v)}>
+          {showBreakdown ? "Ocultar valores por asset" : "Ver valores por asset"}
+        </button>
+      </div>
+
+      {showBreakdown ? (
+        <div className="fpBreakGrid">
+          <div className="fpBreakCol">
+            <div className="fpBreakColHead">
+              <span>Vos entregás</span>
+              <b>{summary.giveTotal}</b>
+            </div>
+            <div className="fpBreakList">
+              {summary.giveDetails.length ? summary.giveDetails.map(renderBreakdownItem) : <div className="muted">—</div>}
+            </div>
+          </div>
+
+          <div className="fpBreakCol">
+            <div className="fpBreakColHead">
+              <span>Vos recibís</span>
+              <b>{summary.getTotal}</b>
+            </div>
+            <div className="fpBreakList">
+              {summary.getDetails.length ? summary.getDetails.map(renderBreakdownItem) : <div className="muted">—</div>}
+            </div>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -2016,6 +2075,72 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
         gap:3px;
       }
       .fpStat b{ font-size:18px; line-height:1; }
+      .fpBreakToggleRow{ display:flex; justify-content:flex-start; }
+      .fpBreakToggleBtn{ border-radius:12px; }
+      .fpBreakGrid{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+      }
+      .fpBreakCol{
+        border:1px solid var(--border);
+        border-radius:14px;
+        background:#fff;
+        padding:10px;
+        display:grid;
+        gap:10px;
+      }
+      .fpBreakColHead{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:10px;
+        font-weight:1100;
+      }
+      .fpBreakList{ display:grid; gap:8px; }
+      .fpBreakItem{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:10px;
+        padding:9px 10px;
+        border-radius:12px;
+        border:1px solid var(--border);
+        background:#F8FAFC;
+      }
+      .fpBreakMain{ min-width:0; display:grid; gap:4px; }
+      .fpBreakNameRow{ display:flex; align-items:center; gap:8px; min-width:0; }
+      .fpBreakName{
+        font-weight:1000;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+      }
+      .fpBreakSource{
+        color:var(--muted);
+        font-size:11px;
+        font-weight:900;
+      }
+      .fpBreakValue{
+        font-weight:1100;
+        font-size:18px;
+        line-height:1;
+        color:#0F172A;
+        flex:0 0 auto;
+      }
+      .fpBreakPick{
+        width:24px;
+        height:24px;
+        border-radius:999px;
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        background:rgba(2,132,199,0.10);
+        border:1px solid rgba(2,132,199,0.16);
+        color:#0F3A55;
+        font-weight:1100;
+        flex:0 0 auto;
+      }
       @media(max-width:640px){
         .fpTradeBox{ padding:10px; border-radius:14px; }
         .fpMeterHead{ display:grid; gap:8px; }
@@ -2035,6 +2160,7 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
         .fpBalanceLabel{ font-size:12px; }
         .fpBalanceValue{ font-size:24px; }
         .fpTradeStats{ grid-template-columns:1fr; }
+        .fpBreakGrid{ grid-template-columns:1fr; }
       }
 
       @media (max-width: 640px){
