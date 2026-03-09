@@ -1,94 +1,94 @@
 {
-  "generatedAt": "2026-03-09T23:15:51.683Z",
+  "generatedAt": "2026-03-09T23:21:20.715Z",
   "items": [
     {
-      "id": "0406b0b387c05a5e1e6398459c7c84fe8c386955",
+      "id": "54e707786c91c1bd6bc59abb0999a2f808cd4d01",
+      "source": "ESPN",
+      "title": "Source: LT Jones back to Bears on 1-year deal",
+      "url": "https://www.espn.com/nfl/story/_/id/48157407/left-tackle-braxton-jones-chicago-bears-agree-1-year-deal",
+      "publishedAt": "2026-03-10T00:16:50.000Z",
+      "publishedTs": 1773101810000,
+      "description": "Left tackle Jones has agreed to return to the Bears on a one-year deal worth up to $10 million, a source told ESPN's Jeremy Fowler."
+    },
+    {
+      "id": "d927e8d1840b883d65dec68cedf1d16b8b1d0a4d",
       "source": "ESPN",
       "title": "Ravens, Eagles, Steelers awarded 4 comp picks",
       "url": "https://www.espn.com/nfl/story/_/id/48156633/ravens-eagles-steelers-awarded-4-compensatory-picks",
-      "publishedAt": "2026-03-10T00:05:45.000Z",
-      "publishedTs": 1773101145000,
+      "publishedAt": "2026-03-10T00:16:50.000Z",
+      "publishedTs": 1773101810000,
       "description": "Baltimore, Philadelphia and Pittsburgh each were awarded a league-high four compensatory picks in next month's NFL draft based on their losses and signings in last year's free agency."
     },
     {
-      "id": "50a1d6620ab20562b33aaf9c1924e5898a795fdb",
+      "id": "e62ae139ffb5380336f5fc0a6421bc0f8c70a137",
       "source": "ESPN",
       "title": "Packers release OL Jenkins, open up $19.5M",
       "url": "https://www.espn.com/nfl/story/_/id/48156082/source-packers-cut-ol-elgton-jenkins-open-195m",
-      "publishedAt": "2026-03-10T00:05:45.000Z",
-      "publishedTs": 1773101145000,
+      "publishedAt": "2026-03-10T00:16:50.000Z",
+      "publishedTs": 1773101810000,
       "description": "The Green Bay Packers are moving on from offensive lineman Elgton Jenkins, releasing the left guard/center to free up more than $19.5 million in cap space."
     },
     {
-      "id": "67b3e8fe69a1f5dc90d0471f77181100d6ce672a",
+      "id": "dbcd81a6e9bb047bacb8b4d7ee01a43aa6d338e3",
       "source": "ESPN",
       "title": "Source: Panthers, QB Pickett agree to 1-year deal",
       "url": "https://www.espn.com/nfl/story/_/id/48156902/source-panthers-qb-kenny-pickett-agree-1-year-deal",
-      "publishedAt": "2026-03-10T00:05:45.000Z",
-      "publishedTs": 1773101145000,
+      "publishedAt": "2026-03-10T00:16:50.000Z",
+      "publishedTs": 1773101810000,
       "description": "The Panthers and QB Kenny Pickett agreed on a one-year, $7.5 million deal that includes $4 million in guarantees, a source told ESPN."
     },
     {
-      "id": "41b9902961857891917baf9edcf84467056ae00b",
+      "id": "7e36540599ae0fc36e01b75d82656b738e4c7b15",
       "source": "ESPN",
       "title": "Cards reach deals with QB Minshew, WR Bourne",
       "url": "https://www.espn.com/nfl/story/_/id/48156372/source-gardner-minshew-cardinals-agree-1-year-deal",
-      "publishedAt": "2026-03-10T00:05:45.000Z",
-      "publishedTs": 1773101145000,
+      "publishedAt": "2026-03-10T00:16:50.000Z",
+      "publishedTs": 1773101810000,
       "description": "Former Chiefs quarterback Gardner Minshew reached an agreement Monday on a one-year, $8.25 million deal with the Cardinals, a source told ESPN."
     },
     {
-      "id": "fbc4ad52e3213cbe51c388c1b2ef23015049ad84",
+      "id": "9c088b36078de913a89666ed9a975470bca0c5cb",
       "source": "ESPN",
       "title": "Commanders land Oweh on 4-year, $100M deal",
       "url": "https://www.espn.com/nfl/story/_/id/48155924/commanders-land-odafe-oweh-4-year-100m-deal-agents-say",
-      "publishedAt": "2026-03-10T00:05:45.000Z",
-      "publishedTs": 1773101145000,
+      "publishedAt": "2026-03-10T00:16:50.000Z",
+      "publishedTs": 1773101810000,
       "description": "Former Chargers defensive end Odafe Oweh, who has 17.5 sacks since 2024, has agreed with the Commanders on a four-year, $100 million deal, his agents told ESPN."
     },
     {
-      "id": "03119198d93a0320a1af1b71a3f4a25d9b351133",
+      "id": "a1a786b5439076fe54ccc8993ad2824efcc6cfe8",
       "source": "ESPN",
       "title": "Cops responded to 911 calls before Pearce arrest",
       "url": "https://www.espn.com/nfl/story/_/id/48155007/cops-responded-multiple-911-calls-james-pearce-jr-arrest",
-      "publishedAt": "2026-03-10T00:05:45.000Z",
-      "publishedTs": 1773101145000,
+      "publishedAt": "2026-03-10T00:16:50.000Z",
+      "publishedTs": 1773101810000,
       "description": "In the weeks before Falcons linebacker James Pearce Jr. allegedly rammed his vehicle into WNBA player Rickea Jackson's car, at least seven 911 calls indicate heightened fears from his unidentified girlfriend that she was being stalked and harassed."
     },
     {
-      "id": "0f999df2d4d49e4263083ea27f18e341dac6d738",
-      "source": "ESPN",
-      "title": "Source: Alford to sign with Bills on 3-year deal",
-      "url": "https://www.espn.com/nfl/story/_/id/48156468/source-bills-sign-dee-alford-3-year-deal-worth-21m",
-      "publishedAt": "2026-03-10T00:05:45.000Z",
-      "publishedTs": 1773101145000,
-      "description": "Free agent cornerback Dee Alford plans to sign with the Buffalo Bills on a three-year deal worth up to $21 million, a source told ESPN."
-    },
-    {
-      "id": "901caf9e83d2b6e1b7c4fe64905d2073e7b7d19e",
+      "id": "4be805c924acfcaba04bf278a02c5d64410414e9",
       "source": "ESPN",
       "title": "Colts re-sign WR Pierce, trade Pittman to Steelers",
       "url": "https://www.espn.com/nfl/story/_/id/48153529/sources-wr-alec-pierce-returning-colts-4-year-116m-deal",
-      "publishedAt": "2026-03-10T00:05:45.000Z",
-      "publishedTs": 1773101145000,
+      "publishedAt": "2026-03-10T00:16:50.000Z",
+      "publishedTs": 1773101810000,
       "description": "The Indianapolis Colts are re-signing wide receiver Alec Pierce but are trading his running mate Michael Pittman Jr. out of town."
     },
     {
-      "id": "862c6c9d72897566def8c6e547372699e86ab1eb",
+      "id": "aec91d6c18400f3160831911631c8a267f2223b2",
       "source": "ESPN",
       "title": "Sources: Commanders bringing back QB Mariota",
       "url": "https://www.espn.com/nfl/story/_/id/48155650/sources-commanders-re-signing-backup-qb-marcus-mariota",
-      "publishedAt": "2026-03-10T00:05:45.000Z",
-      "publishedTs": 1773101145000,
+      "publishedAt": "2026-03-10T00:16:50.000Z",
+      "publishedTs": 1773101810000,
       "description": "The Washington Commanders are re-signing backup quarterback Marcus Mariota on a one-year, $7 million deal, according to NFL Network."
     },
     {
-      "id": "5f58951ac107d7dec4bbb2a5080d8e9f6396ddca",
+      "id": "02104a3cdd9d989bd82f9f76c2f8f4648179a4c5",
       "source": "ESPN",
       "title": "Sources: QB Willis, Fins reach 3-year, $67.5M deal",
       "url": "https://www.espn.com/nfl/story/_/id/48153882/sources-dolphins-reach-deal-ex-packers-qb-malik-willis",
-      "publishedAt": "2026-03-10T00:05:45.000Z",
-      "publishedTs": 1773101145000,
+      "publishedAt": "2026-03-10T00:16:50.000Z",
+      "publishedTs": 1773101810000,
       "description": "Free agent QB Malik Willis, after reviving his career with the Packers, has agreed to a three-year, $67.5 million deal with the Dolphins, sources told ESPN."
     },
     {
