@@ -2266,6 +2266,30 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
       .theme-dark .badge,
       .theme-dark .pill,
       .theme-dark .previewBox{ background:#0F172A; border-color:var(--border); box-shadow:none; }
+      /* Intereses: badges con color semántico en dark mode */
+.theme-dark .badge-NONE{
+  background:#0F172A;
+  border-color:var(--border);
+  color:var(--text);
+}
+
+.theme-dark .badge-LOW{
+  background:rgba(239,68,68,0.28);
+  border-color:rgba(248,113,113,0.50);
+  color:#FECACA;
+}
+
+.theme-dark .badge-MEDIUM{
+  background:rgba(245,158,11,0.30);
+  border-color:rgba(251,191,36,0.52);
+  color:#FDE68A;
+}
+
+.theme-dark .badge-HIGH{
+  background:rgba(34,197,94,0.26);
+  border-color:rgba(74,222,128,0.46);
+  color:#BBF7D0;
+}
       .theme-dark .newsSearchInput{ background:transparent; color:var(--text); }
       .theme-dark input::placeholder,
       .theme-dark .newsSearchInput::placeholder{ color:#7C8EA7; }
