@@ -170,11 +170,11 @@ const FP_PICK_VALUES_1QB = {
 };
 
 const FP_METER_SEGMENTS = [
-  { label: "Te están robando", shortLabel: "Robando", color: "#DC2626", min: -100, max: -20, tone: "robbery" },
-  { label: "Le falta algo", shortLabel: "Le falta algo", color: "#F59E0B", min: -20, max: -5, tone: "weak" },
-  { label: "Parejo", shortLabel: "Parejo", color: "#A3E635", min: -5, max: 5, tone: "even" },
-  { label: "Te sirve", shortLabel: "Te sirve", color: "#22C55E", min: 5, max: 20, tone: "good" },
-  { label: "Estás robando", shortLabel: "Estás robando", color: "#166534", min: 20, max: 100, tone: "great" },
+  { label: "Te están robando", shortLabel: "Robando", lines: ["Te están", "robando"], color: "#DC2626", textColor: "#FFFFFF", min: -100, max: -20, tone: "robbery" },
+  { label: "Le falta algo", shortLabel: "Le falta algo", lines: ["Le falta", "algo"], color: "#F59E0B", textColor: "#FFFFFF", min: -20, max: -5, tone: "weak" },
+  { label: "Parejo", shortLabel: "Parejo", lines: ["Parejo"], color: "#A3E635", textColor: "#365314", min: -5, max: 5, tone: "even" },
+  { label: "Te sirve", shortLabel: "Te sirve", lines: ["Te sirve"], color: "#22C55E", textColor: "#FFFFFF", min: 5, max: 20, tone: "good" },
+  { label: "Estás robando", shortLabel: "Estás robando", lines: ["Estás", "robando"], color: "#166534", textColor: "#FFFFFF", min: 20, max: 100, tone: "great" },
 ];
 
 function clamp(n, min, max) {
@@ -499,6 +499,11 @@ function describeDonutSegment(cx, cy, outerRadius, innerRadius, startAngle, endA
   ].join(" ");
 }
 
+function meterLabelPosition(cx, cy, startAngle, endAngle, radius) {
+  const midAngle = startAngle + (endAngle - startAngle) / 2;
+  return { ...polarToCartesian(cx, cy, radius, midAngle), midAngle };
+}
+
 function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues }) {
   const summary = summarizeTradeForFantasyPros(version, viewerId, metaById, fpDynastyValues);
 
@@ -531,14 +536,6 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
         <span className={`fpVerdict fpVerdict-${summary.verdict.tone}`}>{summary.verdict.label}</span>
       </div>
 
-      <div className="fpSegmentTopLabels" aria-hidden="true">
-        {FP_METER_SEGMENTS.map((seg) => (
-          <div key={seg.label} className="fpSegmentTopLabel" style={{ color: seg.color }}>
-            {seg.label}
-          </div>
-        ))}
-      </div>
-
       <div className="fpMeterWrap">
         <svg className="fpMeterSvg" viewBox="0 0 360 250" role="img" aria-label={`FantasyPros: ${summary.verdict.label}`}>
           <defs>
@@ -550,19 +547,28 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
           {FP_METER_SEGMENTS.map((seg, idx) => {
             const segStart = startAngle + idx * segmentAngle;
             const segEnd = segStart + segmentAngle;
+            const labelPos = meterLabelPosition(cx, cy, segStart, segEnd, innerRadius + ((outerRadius - innerRadius) * 0.58));
             return (
               <g key={seg.label}>
                 <path
                   d={describeDonutSegment(cx, cy, outerRadius, innerRadius, segStart, segEnd)}
                   fill={seg.color}
-                  opacity="0.96"
+                  opacity="0.98"
                 />
-                <path
-                  d={describeArc(cx, cy, outerRadius, segStart, segEnd)}
-                  fill="none"
-                  stroke="rgba(255,255,255,0.30)"
-                  strokeWidth="2"
-                />
+                <text
+                  x={labelPos.x}
+                  y={labelPos.y}
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  className="fpSegmentInsideLabel"
+                  fill={seg.textColor}
+                >
+                  {seg.lines.map((line, lineIdx) => (
+                    <tspan key={`${seg.label}-${lineIdx}`} x={labelPos.x} dy={lineIdx === 0 ? (seg.lines.length > 1 ? -5 : 0) : 12}>
+                      {line}
+                    </tspan>
+                  ))}
+                </text>
               </g>
             );
           })}
@@ -574,7 +580,6 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
           />
           <circle cx={cx} cy={cy} r="56" fill="#111827" filter="url(#fpShadow)" />
           <circle cx={cx} cy={cy} r="15" fill="#202631" />
-          <circle cx={cx} cy={cy} r="6" fill="#FF4D4F" />
 
           <text x={cx} y={cy - 14} textAnchor="middle" className="fpBalanceLabel">
             Balance
@@ -1962,28 +1967,18 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
       .fpVerdict-even{ background:rgba(163,230,53,0.18); border-color:rgba(163,230,53,0.28); color:#3F6212; }
       .fpVerdict-good{ background:rgba(34,197,94,0.14); border-color:rgba(34,197,94,0.24); color:#166534; }
       .fpVerdict-great{ background:rgba(22,101,52,0.14); border-color:rgba(22,101,52,0.26); color:#14532D; }
-      .fpSegmentTopLabels{
-        width:min(100%, 560px);
-        margin:4px auto 2px;
-        display:grid;
-        grid-template-columns:repeat(5, minmax(0,1fr));
-        gap:8px;
-        align-items:end;
-      }
-      .fpSegmentTopLabel{
-        min-height:32px;
-        display:flex;
-        align-items:flex-end;
-        justify-content:center;
-        text-align:center;
-        font-size:12px;
-        line-height:1.12;
-        font-weight:1100;
-        padding:0 4px;
-      }
       .fpMeterWrap{ width:100%; display:flex; justify-content:center; }
       .fpMeterSvg{ width:min(100%, 560px); height:auto; display:block; overflow:visible; }
-            .fpBalanceLabel{
+      .fpSegmentInsideLabel{
+        font-size:10px;
+        font-weight:1100;
+        letter-spacing:-0.01em;
+        paint-order:stroke fill;
+        stroke:rgba(15,23,42,0.10);
+        stroke-width:0.8px;
+        stroke-linejoin:round;
+      }
+      .fpBalanceLabel{
         font-size:14px;
         font-weight:900;
         fill:#FFFFFF;
