@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const ADP_SCORING = process.env.ADP_SCORING || "ppr"; // "ppr" | "standard" | "half-ppr"
+const ADP_SCORING = process.env.ADP_SCORING || "ppr";
 const ADP_TEAMS = Number(process.env.ADP_TEAMS || 10);
 const ALLOWED_POSITIONS = new Set(["QB", "RB", "WR", "TE"]);
 const USER_AGENT = "fantasytrades-adp-updater";
@@ -15,18 +15,22 @@ function ffcUrl(year) {
 }
 
 async function fetchJson(url) {
-  const res = await fetch(url, {
-    headers: { "User-Agent": USER_AGENT },
-  });
+  const res = await fetch(url, { headers: { "User-Agent": USER_AGENT } });
   if (!res.ok) throw new Error(`Fetch failed ${res.status} for ${url}`);
   return res.json();
 }
 
 const TEAM_MAP = { JAC: "JAX", WAS: "WSH" };
 
+function normalizeTeam(team = "") {
+  const raw = String(team || "").toUpperCase().trim();
+  const mapped = TEAM_MAP[raw] || raw;
+  return mapped || "FA";
+}
+
 function sleeperHeadshotUrl(sleeperId, team = "", active = true) {
   const id = String(sleeperId || "").trim();
-  const tm = String(team || "").toUpperCase();
+  const tm = normalizeTeam(team);
   if (!id) return "";
   if (!active) return "";
   if (!tm || tm === "FA") return "";
@@ -34,7 +38,7 @@ function sleeperHeadshotUrl(sleeperId, team = "", active = true) {
 }
 
 const normName = (s = "") =>
-  s
+  String(s || "")
     .toLowerCase()
     .replace(/[’'.]/g, "")
     .replace(/\b(jr|sr|ii|iii|iv|v)\b/g, "")
@@ -42,18 +46,12 @@ const normName = (s = "") =>
     .replace(/\s+/g, " ")
     .trim();
 
-const normTeam = (t = "") => TEAM_MAP[(t || "").toUpperCase()] || (t || "").toUpperCase();
-
 function makeKey(name, team, pos) {
-  return `${normName(name)}|${normTeam(team)}|${String(pos || "").toUpperCase()}`;
+  return `${normName(name)}|${normalizeTeam(team)}|${String(pos || "").toUpperCase()}`;
 }
 
-async function fetchSleeperPlayers() {
-  const r = await fetch("https://api.sleeper.app/v1/players/nfl", {
-    headers: { "User-Agent": USER_AGENT },
-  });
-  if (!r.ok) throw new Error(`Sleeper players fetch failed ${r.status}`);
-  return await r.json();
+function makeLooseKey(name, pos) {
+  return `${normName(name)}|${String(pos || "").toUpperCase()}`;
 }
 
 function validPositiveNumber(value) {
@@ -66,36 +64,70 @@ function validRank(value) {
   return Number.isFinite(n) && n > 0 ? n : 999999;
 }
 
+function preferSleeperRow(a, b) {
+  if (!a) return b;
+  if (!b) return a;
+
+  const aTeam = normalizeTeam(a.team);
+  const bTeam = normalizeTeam(b.team);
+  const aHasTeam = aTeam !== "FA";
+  const bHasTeam = bTeam !== "FA";
+  if (aHasTeam !== bHasTeam) return aHasTeam ? a : b;
+
+  if (a.active !== b.active) return a.active ? a : b;
+  if (a.search_rank !== b.search_rank) return a.search_rank < b.search_rank ? a : b;
+
+  const aExp = validPositiveNumber(a.years_exp) ?? 0;
+  const bExp = validPositiveNumber(b.years_exp) ?? 0;
+  if (aExp !== bExp) return aExp > bExp ? a : b;
+
+  return String(a.id) < String(b.id) ? a : b;
+}
+
+async function fetchSleeperPlayers() {
+  const r = await fetch("https://api.sleeper.app/v1/players/nfl", {
+    headers: { "User-Agent": USER_AGENT },
+  });
+  if (!r.ok) throw new Error(`Sleeper players fetch failed ${r.status}`);
+  return await r.json();
+}
+
 function buildSleeperPlayerMap(all) {
   const byKey = new Map();
+  const byLooseKey = new Map();
+  const byId = new Map();
   const rows = [];
 
   for (const [id, p] of Object.entries(all || {})) {
     if (!p?.full_name || !p?.position) continue;
-    if (!ALLOWED_POSITIONS.has(String(p.position).toUpperCase())) continue;
+    const position = String(p.position).toUpperCase();
+    if (!ALLOWED_POSITIONS.has(position)) continue;
 
-    const key = makeKey(p.full_name, p.team || "", p.position);
+    const team = normalizeTeam(p.team || "FA");
     const sleeperId = String(id);
     const row = {
       id: sleeperId,
-      key,
+      key: makeKey(p.full_name, team, position),
+      looseKey: makeLooseKey(p.full_name, position),
       full_name: p.full_name,
-      position: String(p.position).toUpperCase(),
-      team: p.team || "FA",
+      position,
+      team,
       search_rank: validRank(p.search_rank),
       active: Boolean(p.active),
-      years_exp: Number.isFinite(Number(p.years_exp)) ? Number(p.years_exp) : null,
-      age: Number.isFinite(Number(p.age)) ? Number(p.age) : null,
+      years_exp: validPositiveNumber(p.years_exp),
+      age: validPositiveNumber(p.age),
       fantasy_positions: Array.isArray(p.fantasy_positions) ? p.fantasy_positions : [],
       status: p.status || "",
-      headshot: sleeperHeadshotUrl(sleeperId, p.team || '', Boolean(p.active)),
+      headshot: sleeperHeadshotUrl(sleeperId, team, Boolean(p.active)),
     };
 
-    if (!byKey.has(key)) byKey.set(key, row);
     rows.push(row);
+    byId.set(sleeperId, row);
+    byKey.set(row.key, preferSleeperRow(byKey.get(row.key), row));
+    byLooseKey.set(row.looseKey, preferSleeperRow(byLooseKey.get(row.looseKey), row));
   }
 
-  return { byKey, rows };
+  return { byKey, byLooseKey, byId, rows };
 }
 
 function readPlayerName(p) {
@@ -111,26 +143,30 @@ function readPlayerPos(p) {
 function canonicalFromFfc(p, sleeperMatch) {
   const name = readPlayerName(p);
   const pos = String(readPlayerPos(p) || "").toUpperCase();
-  const team = readPlayerTeam(p) || sleeperMatch?.team || "FA";
-  const sleeperId = String(p?.sleeper_id || sleeperMatch?.id || "");
-  const adp = Number(p?.adp);
+  const team = normalizeTeam(readPlayerTeam(p) || sleeperMatch?.team || "FA");
+  const rawFfcId = String(p?.player_id ?? p?.id ?? "").trim();
+  const sleeperId = String(p?.sleeper_id || sleeperMatch?.id || "").trim();
+  const adp = validPositiveNumber(p?.adp);
   const adpFormatted = p?.adp_formatted || "";
 
+  const playerId = sleeperId || (rawFfcId ? `ffc:${rawFfcId}` : `ffc:${makeLooseKey(name, pos)}`);
+
   return {
-    player_id: String(p?.player_id ?? sleeperId ?? ""),
+    player_id: playerId,
     sleeper_id: sleeperId || undefined,
+    legacy_player_id: rawFfcId || undefined,
     name,
     full_name: name,
     position: pos,
     team,
-    adp: Number.isFinite(adp) ? adp : null,
+    adp,
     adp_formatted: adpFormatted,
-    times_drafted: Number.isFinite(Number(p?.times_drafted)) ? Number(p.times_drafted) : 0,
-    high: Number.isFinite(Number(p?.high)) ? Number(p.high) : null,
-    low: Number.isFinite(Number(p?.low)) ? Number(p.low) : null,
-    stdev: Number.isFinite(Number(p?.stdev)) ? Number(p.stdev) : null,
-    bye: Number.isFinite(Number(p?.bye)) ? Number(p.bye) : 0,
-    search_rank: validRank(sleeperMatch?.search_rank),
+    times_drafted: validPositiveNumber(p?.times_drafted) ?? 0,
+    high: validPositiveNumber(p?.high),
+    low: validPositiveNumber(p?.low),
+    stdev: validPositiveNumber(p?.stdev),
+    bye: validPositiveNumber(p?.bye) ?? 0,
+    search_rank: sleeperMatch?.search_rank ?? 999999,
     headshot: p?.headshot || sleeperHeadshotUrl(sleeperId, team, Boolean(sleeperMatch?.active)),
     source: "ffc",
   };
@@ -140,6 +176,7 @@ function canonicalFromSleeper(row) {
   return {
     player_id: String(row.id),
     sleeper_id: String(row.id),
+    legacy_player_id: undefined,
     name: row.full_name,
     full_name: row.full_name,
     position: row.position,
@@ -166,24 +203,29 @@ function sortPlayers(a, b) {
   const srB = validRank(b?.search_rank);
   if (srA !== srB) return srA - srB;
 
-  return String(a?.name || "").localeCompare(String(b?.name || ""));
+  return String(a?.name || "").localeCompare(String(b?.name || ""), undefined, { sensitivity: "base" });
 }
 
 function mergePlayers(ffcPlayers, sleeperData) {
   const out = new Map();
-  let matched = 0;
+  let matchedExact = 0;
+  let matchedLoose = 0;
 
   for (const p of ffcPlayers || []) {
     const name = readPlayerName(p);
     const pos = String(readPlayerPos(p) || "").toUpperCase();
     if (!name || !ALLOWED_POSITIONS.has(pos)) continue;
 
-    const key = makeKey(name, readPlayerTeam(p), pos);
-    const sleeperMatch = sleeperData.byKey.get(key);
-    if (sleeperMatch) matched += 1;
+    const exactKey = makeKey(name, readPlayerTeam(p) || "FA", pos);
+    const looseKey = makeLooseKey(name, pos);
+    const sleeperMatch = sleeperData.byKey.get(exactKey) || sleeperData.byLooseKey.get(looseKey);
+    if (sleeperMatch) {
+      if (sleeperData.byKey.get(exactKey)) matchedExact += 1;
+      else matchedLoose += 1;
+    }
 
     const row = canonicalFromFfc(p, sleeperMatch);
-    const storeKey = key || `${row.player_id}|${row.name}|${row.position}`;
+    const storeKey = sleeperMatch?.key || exactKey || `${row.player_id}|${row.name}|${row.position}`;
     out.set(storeKey, row);
   }
 
@@ -196,7 +238,7 @@ function mergePlayers(ffcPlayers, sleeperData) {
   }
 
   const players = Array.from(out.values()).sort(sortPlayers);
-  return { players, matchedFfcToSleeper: matched, addedSleeperOnly };
+  return { players, matchedExact, matchedLoose, addedSleeperOnly };
 }
 
 async function fetchFfcPlayers() {
@@ -244,7 +286,8 @@ async function main() {
       counts: {
         ffc_players: ffc.players.length,
         sleeper_players: sleeperData.rows.length,
-        matched_ffc_to_sleeper: merged.matchedFfcToSleeper,
+        matched_ffc_to_sleeper_exact: merged.matchedExact,
+        matched_ffc_to_sleeper_loose: merged.matchedLoose,
         sleeper_only_added: merged.addedSleeperOnly,
         final_players: merged.players.length,
       },
