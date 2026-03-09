@@ -28,12 +28,9 @@ function normalizeTeam(team = "") {
   return mapped || "FA";
 }
 
-function sleeperHeadshotUrl(sleeperId, team = "", active = true) {
+function sleeperHeadshotUrl(sleeperId) {
   const id = String(sleeperId || "").trim();
-  const tm = normalizeTeam(team);
   if (!id) return "";
-  if (!active) return "";
-  if (!tm || tm === "FA") return "";
   return `https://sleepercdn.com/content/nfl/players/${id}.jpg`;
 }
 
@@ -118,7 +115,7 @@ function buildSleeperPlayerMap(all) {
       age: validPositiveNumber(p.age),
       fantasy_positions: Array.isArray(p.fantasy_positions) ? p.fantasy_positions : [],
       status: p.status || "",
-      headshot: sleeperHeadshotUrl(sleeperId, team, Boolean(p.active)),
+      headshot: sleeperHeadshotUrl(sleeperId),
     };
 
     rows.push(row);
@@ -167,7 +164,7 @@ function canonicalFromFfc(p, sleeperMatch) {
     stdev: validPositiveNumber(p?.stdev),
     bye: validPositiveNumber(p?.bye) ?? 0,
     search_rank: sleeperMatch?.search_rank ?? 999999,
-    headshot: p?.headshot || sleeperHeadshotUrl(sleeperId, team, Boolean(sleeperMatch?.active)),
+    headshot: p?.headshot || sleeperHeadshotUrl(sleeperId),
     source: "ffc",
   };
 }
