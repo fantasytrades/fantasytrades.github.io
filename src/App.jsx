@@ -543,22 +543,18 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
   };
 
   const renderBreakdownItem = (item) => (
-    <div key={`${item.type}-${item.id}`} className="fpBreakItem">
-      <div className="fpBreakMain">
-        <div className="fpBreakNameRow">
-          {item.type === "player" ? (
-            <span className={`posMini posMini-${normPos(metaById?.get(String(item.id))?.position || metaById?.get(String(item.id))?.pos || "")}`}>
-              {normPos(metaById?.get(String(item.id))?.position || metaById?.get(String(item.id))?.pos || "")}
-            </span>
-          ) : (
-            <span className="fpBreakPick">P</span>
-          )}
-          <span className="fpBreakName">{item.label}</span>
-        </div>
-        <div className="fpBreakSource">{sourceLabel(item.source)}</div>
-      </div>
-      <div className="fpBreakValue">{Number(item.value || 0)}</div>
-    </div>
+    <div className="fpBreakMain">
+  <div className="fpBreakNameRow">
+    {item.type === "player" ? (
+      <span className={`posMini posMini-${normPos(metaById?.get(String(item.id))?.position || metaById?.get(String(item.id))?.pos || "")}`}>
+        {normPos(metaById?.get(String(item.id))?.position || metaById?.get(String(item.id))?.pos || "")}
+      </span>
+    ) : (
+      <span className="fpBreakPick">P</span>
+    )}
+    <span className="fpBreakName">{item.label}</span>
+  </div>
+</div>
   );
 
   return (
@@ -567,8 +563,7 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
         <div style={{ minWidth: 0 }}>
           <div className="fpMeterTitle">Análisis de Trade <span className="muted" style={{ fontWeight: 900 }}>(para vos)</span></div>
           <div className="fpMeterMeta">
-            {summary.sourceNote}
-            {summary.updatedAt ? ` · ${new Date(summary.updatedAt).toLocaleString()}` : ""}
+            {summary.updatedAt ? new Date(summary.updatedAt).toLocaleString() : ""}
           </div>
         </div>
         <span className={`fpVerdict fpVerdict-${summary.verdict.tone}`}>{summary.verdict.label}</span>
