@@ -2216,9 +2216,11 @@ function MyTeamView({
   }, []);
 
   const filtered = useMemo(() => {
-    const qq = q.trim().toLowerCase();
+    const qq = normalizeLookupName(q);
+    const qTokens = qq ? qq.split(" ").filter(Boolean) : [];
 
     const playerName = (p) => String(p?.name || p?.player_name || p?.full_name || p?.player || "").trim();
+    const normalizedPlayerName = (p) => normalizeLookupName(playerName(p));
     const playerAdp = (p) => {
       const raw = p?.adp ?? p?.adp_value ?? p?.adp_ppr ?? p?.ppr_adp ?? p?.adp_rank ?? p?.adp_formatted;
       const n = Number(raw);
@@ -2227,6 +2229,17 @@ function MyTeamView({
     const playerSearchRank = (p) => {
       const n = Number(p?.search_rank);
       return Number.isFinite(n) && n > 0 ? n : Infinity;
+    };
+    const playerMatchScore = (p) => {
+      if (!qq) return 0;
+      const name = normalizedPlayerName(p);
+      if (!name) return Infinity;
+      if (name === qq) return 0;
+      if (name.startsWith(qq)) return 1;
+      if (name.split(" ").some((part) => part.startsWith(qq))) return 2;
+      if (qTokens.length && qTokens.every((token) => name.includes(token))) return 3;
+      if (name.includes(qq)) return 4;
+      return Infinity;
     };
 
     return (players || [])
@@ -2242,9 +2255,13 @@ function MyTeamView({
           }
         }
         if (!qq) return true;
-        return playerName(p).toLowerCase().includes(qq);
+        return Number.isFinite(playerMatchScore(p));
       })
       .sort((a, b) => {
+        const scoreA = playerMatchScore(a);
+        const scoreB = playerMatchScore(b);
+        if (scoreA !== scoreB) return scoreA - scoreB;
+
         const adpA = playerAdp(a);
         const adpB = playerAdp(b);
         const hasAdpA = adpA != null;
