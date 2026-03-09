@@ -448,7 +448,7 @@ function summarizeTradeForFantasyPros(version, viewerId, metaById, fpDynastyValu
   const fallbackCount = allDetails.filter((x) => x.source === "fallback").length;
   const fantasyProsCount = Math.max(0, resolvedCount - fallbackCount);
 
-  const baseLabel = fpDynastyValues?.generatedFor || "DynastyProcess dynasty 1QB";
+  const baseLabel = fpDynastyValues?.generatedFor || "";
   const dataFallbackPlayers = Number(fpDynastyValues?.counts?.fallbackPlayers || 0);
 
   let sourceNote = "Respaldo local";
@@ -565,7 +565,7 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
     <div className="fpTradeBox">
       <div className="fpMeterHead">
         <div style={{ minWidth: 0 }}>
-          <div className="fpMeterTitle">DynastyProcess <span className="muted" style={{ fontWeight: 900 }}>(para vos)</span></div>
+          <div className="fpMeterTitle">Análisis de Trade<span className="muted" style={{ fontWeight: 900 }}>(para vos)</span></div>
           <div className="fpMeterMeta">
             {summary.sourceNote}
             {summary.updatedAt ? ` · ${new Date(summary.updatedAt).toLocaleString()}` : ""}
@@ -575,7 +575,7 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
       </div>
 
       <div className="fpMeterWrap">
-        <svg className="fpMeterSvg" viewBox="0 0 360 250" role="img" aria-label={`DynastyProcess: ${summary.verdict.label}`}>
+        <svg className="fpMeterSvg" viewBox="0 0 360 250" role="img" aria-label={`ddddd: ${summary.verdict.label}`}>
           <defs>
             <filter id="fpShadow" x="-30%" y="-30%" width="160%" height="160%">
               <feDropShadow dx="0" dy="10" stdDeviation="10" floodColor="rgba(15,23,42,0.18)" />
