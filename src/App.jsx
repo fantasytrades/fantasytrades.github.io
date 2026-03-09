@@ -504,6 +504,17 @@ function meterLabelPosition(cx, cy, startAngle, endAngle, radius) {
   return { ...polarToCartesian(cx, cy, radius, midAngle), midAngle };
 }
 
+function meterLabelRotation(midAngle) {
+  return clamp(-midAngle * 0.58, -55, 55);
+}
+
+function meterLabelRadius(idx, innerRadius, outerRadius) {
+  const band = outerRadius - innerRadius;
+  if (idx === 0 || idx === FP_METER_SEGMENTS.length - 1) return innerRadius + band * 0.36;
+  if (idx === 1 || idx === FP_METER_SEGMENTS.length - 2) return innerRadius + band * 0.44;
+  return innerRadius + band * 0.50;
+}
+
 function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues }) {
   const summary = summarizeTradeForFantasyPros(version, viewerId, metaById, fpDynastyValues);
 
@@ -547,7 +558,11 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
           {FP_METER_SEGMENTS.map((seg, idx) => {
             const segStart = startAngle + idx * segmentAngle;
             const segEnd = segStart + segmentAngle;
-            const labelPos = meterLabelPosition(cx, cy, segStart, segEnd, innerRadius + ((outerRadius - innerRadius) * 0.58));
+            const labelPos = meterLabelPosition(cx, cy, segStart, segEnd, meterLabelRadius(idx, innerRadius, outerRadius));
+            const labelRotation = meterLabelRotation(labelPos.midAngle);
+            const lineStep = seg.lines.length > 1 ? 12 : 0;
+            const firstLineDy = seg.lines.length > 1 ? -6 : 0;
+
             return (
               <g key={seg.label}>
                 <path
@@ -555,20 +570,22 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
                   fill={seg.color}
                   opacity="0.98"
                 />
-                <text
-                  x={labelPos.x}
-                  y={labelPos.y}
-                  textAnchor="middle"
-                  dominantBaseline="middle"
-                  className="fpSegmentInsideLabel"
-                  fill={seg.textColor}
-                >
-                  {seg.lines.map((line, lineIdx) => (
-                    <tspan key={`${seg.label}-${lineIdx}`} x={labelPos.x} dy={lineIdx === 0 ? (seg.lines.length > 1 ? -5 : 0) : 12}>
-                      {line}
-                    </tspan>
-                  ))}
-                </text>
+                <g transform={`translate(${labelPos.x} ${labelPos.y}) rotate(${labelRotation})`}>
+                  <text
+                    x="0"
+                    y="0"
+                    textAnchor="middle"
+                    dominantBaseline="middle"
+                    className={`fpSegmentInsideLabel ${seg.lines.length > 1 ? "twoLines" : "oneLine"}`}
+                    fill={seg.textColor}
+                  >
+                    {seg.lines.map((line, lineIdx) => (
+                      <tspan key={`${seg.label}-${lineIdx}`} x="0" dy={lineIdx === 0 ? firstLineDy : lineStep}>
+                        {line}
+                      </tspan>
+                    ))}
+                  </text>
+                </g>
               </g>
             );
           })}
@@ -1970,14 +1987,16 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
       .fpMeterWrap{ width:100%; display:flex; justify-content:center; }
       .fpMeterSvg{ width:min(100%, 560px); height:auto; display:block; overflow:visible; }
       .fpSegmentInsideLabel{
-        font-size:10px;
+        font-size:10.5px;
         font-weight:1100;
-        letter-spacing:-0.01em;
+        letter-spacing:-0.015em;
         paint-order:stroke fill;
-        stroke:rgba(15,23,42,0.10);
-        stroke-width:0.8px;
+        stroke:rgba(15,23,42,0.12);
+        stroke-width:0.7px;
         stroke-linejoin:round;
       }
+      .fpSegmentInsideLabel.twoLines{ font-size:9.5px; }
+      .fpSegmentInsideLabel.oneLine{ font-size:10.75px; }
       .fpBalanceLabel{
         font-size:14px;
         font-weight:900;
