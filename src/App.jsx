@@ -531,6 +531,14 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
         <span className={`fpVerdict fpVerdict-${summary.verdict.tone}`}>{summary.verdict.label}</span>
       </div>
 
+      <div className="fpSegmentTopLabels" aria-hidden="true">
+        {FP_METER_SEGMENTS.map((seg) => (
+          <div key={seg.label} className="fpSegmentTopLabel" style={{ color: seg.color }}>
+            {seg.label}
+          </div>
+        ))}
+      </div>
+
       <div className="fpMeterWrap">
         <svg className="fpMeterSvg" viewBox="0 0 360 250" role="img" aria-label={`FantasyPros: ${summary.verdict.label}`}>
           <defs>
@@ -575,15 +583,6 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
             {summary.advantagePct > 0 ? "+" : ""}{Math.round(summary.advantagePct)}%
           </text>
         </svg>
-      </div>
-
-      <div className="fpSegmentLegend" aria-hidden="true">
-        {FP_METER_SEGMENTS.map((seg) => (
-          <div key={seg.label} className="fpLegendItem">
-            <span className="fpLegendSwatch" style={{ background: seg.color }} />
-            <span>{seg.label}</span>
-          </div>
-        ))}
       </div>
 
       <div className="fpTradeStats">
@@ -1963,29 +1962,27 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
       .fpVerdict-even{ background:rgba(163,230,53,0.18); border-color:rgba(163,230,53,0.28); color:#3F6212; }
       .fpVerdict-good{ background:rgba(34,197,94,0.14); border-color:rgba(34,197,94,0.24); color:#166534; }
       .fpVerdict-great{ background:rgba(22,101,52,0.14); border-color:rgba(22,101,52,0.26); color:#14532D; }
-      .fpMeterWrap{ width:100%; display:flex; justify-content:center; }
-      .fpMeterSvg{ width:min(100%, 560px); height:auto; display:block; overflow:visible; }
-      .fpSegmentLegend{
+      .fpSegmentTopLabels{
+        width:min(100%, 560px);
+        margin:4px auto 2px;
         display:grid;
         grid-template-columns:repeat(5, minmax(0,1fr));
         gap:8px;
-        margin-top:4px;
+        align-items:end;
       }
-      .fpLegendItem{
-        display:grid;
-        gap:6px;
-        justify-items:center;
+      .fpSegmentTopLabel{
+        min-height:32px;
+        display:flex;
+        align-items:flex-end;
+        justify-content:center;
         text-align:center;
-        font-size:11px;
-        font-weight:1000;
-        color:#334155;
+        font-size:12px;
+        line-height:1.12;
+        font-weight:1100;
+        padding:0 4px;
       }
-      .fpLegendSwatch{
-        width:100%;
-        height:10px;
-        border-radius:999px;
-        display:block;
-      }
+      .fpMeterWrap{ width:100%; display:flex; justify-content:center; }
+      .fpMeterSvg{ width:min(100%, 560px); height:auto; display:block; overflow:visible; }
             .fpBalanceLabel{
         font-size:14px;
         font-weight:900;
@@ -2012,11 +2009,20 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
         .fpTradeBox{ padding:10px; border-radius:14px; }
         .fpMeterHead{ display:grid; gap:8px; }
         .fpVerdict{ justify-self:start; }
+        .fpSegmentTopLabels{
+          width:min(100%, 420px);
+          gap:6px;
+          margin-bottom:0;
+        }
+        .fpSegmentTopLabel{
+          min-height:34px;
+          font-size:10px;
+          line-height:1.08;
+          padding:0 2px;
+        }
         .fpMeterSvg{ width:min(100%, 420px); }
         .fpBalanceLabel{ font-size:12px; }
         .fpBalanceValue{ font-size:24px; }
-        .fpSegmentLegend{ grid-template-columns:1fr; }
-        .fpLegendItem{ justify-items:start; text-align:left; }
         .fpTradeStats{ grid-template-columns:1fr; }
       }
 
