@@ -562,7 +562,7 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
                   dominantBaseline="middle"
                   className="fpSegmentInsideLabel"
                   fill={seg.textColor}
-                  transform={`rotate(${-labelPos.midAngle} ${labelPos.x} ${labelPos.y})`}
+                  transform={`rotate(${labelPos.midAngle} ${labelPos.x} ${labelPos.y})`}
                 >
                   {seg.lines.map((line, lineIdx) => (
                     <tspan key={`${seg.label}-${lineIdx}`} x={labelPos.x} dy={lineIdx === 0 ? (seg.lines.length > 1 ? -5 : 0) : 12}>
