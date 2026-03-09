@@ -2379,7 +2379,21 @@ function MyTeamView({
 
   const metaById = useMemo(() => {
     const m = new Map();
-    (players || []).forEach((p) => m.set(String(p.player_id), p));
+    (players || []).forEach((p) => {
+      [p?.player_id, p?.id, p?.sleeper_id, p?.playerId].forEach((rawId) => {
+        const id = String(rawId || "").trim();
+        if (id && !m.has(id)) m.set(id, p);
+      });
+    });
+    return m;
+  }, [players]);
+
+  const metaByName = useMemo(() => {
+    const m = new Map();
+    (players || []).forEach((p) => {
+      const key = normalizeLookupName(p?.name || p?.player_name || p?.full_name || p?.player || "");
+      if (key && !m.has(key)) m.set(key, p);
+    });
     return m;
   }, [players]);
 
@@ -2512,8 +2526,11 @@ function MyTeamView({
                         {list.length === 0 ? null : null}
                         {list.map((r) => {
                           const stKey = normStatusKey(r.status);
-                          const meta = metaById.get(String(r.id));
-                          const img = pickImg(meta);
+                          const meta =
+                            metaById.get(String(r.id)) ||
+                            metaByName.get(normalizeLookupName(r.name)) ||
+                            null;
+                          const img = pickImg(meta) || pickImg(r);
                           const pos = normPos(r.pos);
                           return (
                             <div key={r.id} className="item rosterItem itemTight">
