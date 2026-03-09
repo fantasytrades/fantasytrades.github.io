@@ -617,12 +617,12 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
         </svg>
       </div>
 
-      <div className="fpTradeStats">
-        <div className="fpStat">
+      <div className="fpTradeStats fpTradeStatsTwo">
+        <div className="fpStat fpStatCentered">
           <span className="muted">Recibís</span>
           <b>{summary.getTotal}</b>
         </div>
-        <div className="fpStat">
+        <div className="fpStat fpStatCentered">
           <span className="muted">Entregás</span>
           <b>{summary.giveTotal}</b>
         </div>
@@ -2044,6 +2044,9 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
       .fpTradeStats{
         display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:8px;
       }
+      .fpTradeStatsTwo{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+      }
       .fpStat{
         border:1px solid var(--border);
         border-radius:12px;
@@ -2051,6 +2054,10 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
         padding:10px 12px;
         display:grid;
         gap:3px;
+      }
+      .fpStatCentered{
+        justify-items:center;
+        text-align:center;
       }
       .fpStat b{ font-size:18px; line-height:1; }
       .fpBreakToggleRow{ display:flex; justify-content:flex-start; }
@@ -3695,25 +3702,26 @@ function ChatsView({ me, teams, teamsByUser, metaById, fpDynastyValues }) {
     try {
       const meId = String(me.id);
       const st = normalizeTradeStatus(trade?.status, trade?.response);
+      const isSender = String(trade?.from_user_id) === meId;
       const isReceiver = String(trade?.to_user_id) === meId;
-      const needsAutoRobbery = isReceiver && st === "PENDING";
+      const canHide =
+        st === "CANCELLED" ||
+        st === "ACCEPTED" ||
+        st === "ROBBERY" ||
+        st === "RESPONDED" ||
+        (isSender && !!trade?.cancelled_at) ||
+        (isReceiver && !!trade?.responded_at);
 
-      let tradeForHide = trade;
-      if (needsAutoRobbery) {
-        const stamp = nowIso();
-        await fsRespondTrade(trade.id, "ROBBERY");
-        tradeForHide = normalizeTradeRow({
-          ...trade,
-          status: "ROBBERY",
-          response: "ROBBERY",
-          responded_at: stamp,
-          robbery_at: stamp,
-          updated_at: stamp,
-          hidden_for: [],
-        });
+      if (!canHide) {
+        alert(
+          isSender
+            ? "Solo podés borrar este trade cuando el otro usuario responda o si antes lo cancelás."
+            : "Primero respondé el trade. Después lo vas a poder borrar."
+        );
+        return;
       }
 
-      await fsHideTradeForUser(tradeForHide, me.id);
+      await fsHideTradeForUser(trade, me.id);
       if (editingId === trade.id) clearDraft();
       await refreshTrades();
     } catch (e) {
