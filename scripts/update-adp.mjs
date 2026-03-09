@@ -56,6 +56,16 @@ async function fetchSleeperPlayers() {
   return await r.json();
 }
 
+function validPositiveNumber(value) {
+  const n = Number(value);
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+
+function validRank(value) {
+  const n = Number(value);
+  return Number.isFinite(n) && n > 0 ? n : 999999;
+}
+
 function buildSleeperPlayerMap(all) {
   const byKey = new Map();
   const rows = [];
@@ -72,7 +82,7 @@ function buildSleeperPlayerMap(all) {
       full_name: p.full_name,
       position: String(p.position).toUpperCase(),
       team: p.team || "FA",
-      search_rank: Number.isFinite(Number(p.search_rank)) ? Number(p.search_rank) : 999999,
+      search_rank: validRank(p.search_rank),
       active: Boolean(p.active),
       years_exp: Number.isFinite(Number(p.years_exp)) ? Number(p.years_exp) : null,
       age: Number.isFinite(Number(p.age)) ? Number(p.age) : null,
@@ -120,7 +130,7 @@ function canonicalFromFfc(p, sleeperMatch) {
     low: Number.isFinite(Number(p?.low)) ? Number(p.low) : null,
     stdev: Number.isFinite(Number(p?.stdev)) ? Number(p.stdev) : null,
     bye: Number.isFinite(Number(p?.bye)) ? Number(p.bye) : 0,
-    search_rank: sleeperMatch?.search_rank ?? 999999,
+    search_rank: validRank(sleeperMatch?.search_rank),
     headshot: p?.headshot || sleeperHeadshotUrl(sleeperId, team, Boolean(sleeperMatch?.active)),
     source: "ffc",
   };
@@ -148,12 +158,12 @@ function canonicalFromSleeper(row) {
 }
 
 function sortPlayers(a, b) {
-  const adpA = Number.isFinite(Number(a?.adp)) ? Number(a.adp) : Infinity;
-  const adpB = Number.isFinite(Number(b?.adp)) ? Number(b.adp) : Infinity;
+  const adpA = validPositiveNumber(a?.adp) ?? Infinity;
+  const adpB = validPositiveNumber(b?.adp) ?? Infinity;
   if (adpA !== adpB) return adpA - adpB;
 
-  const srA = Number.isFinite(Number(a?.search_rank)) ? Number(a.search_rank) : Infinity;
-  const srB = Number.isFinite(Number(b?.search_rank)) ? Number(b.search_rank) : Infinity;
+  const srA = validRank(a?.search_rank);
+  const srB = validRank(b?.search_rank);
   if (srA !== srB) return srA - srB;
 
   return String(a?.name || "").localeCompare(String(b?.name || ""));
