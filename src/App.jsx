@@ -2205,6 +2205,7 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
       .theme-dark .textarea,
       .theme-dark .selectBtn,
       .theme-dark .chatSearch,
+      .theme-dark .chatPickList{ background:#0F172A; border-color:var(--border); }
       .theme-dark .newsSearch,
       .theme-dark .newsSearchInput,
       .theme-dark .chatPickRow,
