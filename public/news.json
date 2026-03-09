@@ -1,176 +1,185 @@
 {
-  "generatedAt": "2026-03-09T22:09:28.185Z",
+  "generatedAt": "2026-03-09T23:02:32.620Z",
   "items": [
     {
-      "id": "83aa608fe4ed8377aa2fec6f581d87ea28c8b2b1",
+      "id": "546b47fc096b912ea3c977d914791570e7823f9c",
       "source": "ESPN",
-      "title": "Commanders land Oweh on 4-year, $100M deal",
-      "url": "https://www.espn.com/nfl/story/_/id/48155924/commanders-land-odafe-oweh-4-year-100m-deal-agents-say",
-      "publishedAt": "2026-03-09T22:54:12.000Z",
-      "publishedTs": 1773096852000,
-      "description": "Former Chargers defensive end Odafe Oweh, who has 17.5 sacks since 2024, has agreed with the Commanders on a four-year, $100 million deal, his agents told ESPN."
+      "title": "Last-minute free agency nuggets: What we're hearing on Eagles plans, top RBs and WRs",
+      "url": "https://www.espn.com/nfl/story/_/id/48111448/nfl-free-agency-news-latest-wrs-rbs-pierce-crosby",
+      "publishedAt": "2026-03-09T23:49:45.000Z",
+      "publishedTs": 1773100185000,
+      "description": "We give you the latest buzz on top players and teams that could be active."
     },
     {
-      "id": "780fdf05e704cf401d7e677cd2f44eb845c90efe",
-      "source": "ESPN",
-      "title": "Cops responded to 911 calls before Pearce arrest",
-      "url": "https://www.espn.com/nfl/story/_/id/48155007/cops-responded-multiple-911-calls-james-pearce-jr-arrest",
-      "publishedAt": "2026-03-09T22:54:12.000Z",
-      "publishedTs": 1773096852000,
-      "description": "In the weeks before Falcons linebacker James Pearce Jr. allegedly rammed his vehicle into WNBA player Rickea Jackson's car, at least seven 911 calls indicate heightened fears from his unidentified girlfriend that she was being stalked and harassed."
-    },
-    {
-      "id": "1c38838aac5a5bbac77462dcc4f5c5c66c580294",
-      "source": "ESPN",
-      "title": "Giants bring back Eluemunor on 3-year contract",
-      "url": "https://www.espn.com/nfl/story/_/id/48156524/rt-jermaine-eluemunor-re-signing-jermaine-eluemunor",
-      "publishedAt": "2026-03-09T22:54:12.000Z",
-      "publishedTs": 1773096852000,
-      "description": "The New York Giants are re-signing offensive lineman Jermaine Eluemunor to a 3-year, $39 million deal that includes $26M guaranteed."
-    },
-    {
-      "id": "87d10a3af5b595ab1bd45f42df6fb279d88308ab",
-      "source": "ESPN",
-      "title": "Sources: Cowboys reach deal with S Thompson",
-      "url": "https://www.espn.com/nfl/story/_/id/48155915/sources-cowboys-reach-deal-safety-jalen-thompson",
-      "publishedAt": "2026-03-09T22:54:12.000Z",
-      "publishedTs": 1773096852000,
-      "description": "The Dallas Cowboys have made another addition to their defense, agreeing to a three-year, $33 million contract with safety Jalen Thompson, sources told ESPN's Todd Archer."
-    },
-    {
-      "id": "800530009647a97c4f5eb62aefa53c17adfc953d",
-      "source": "ESPN",
-      "title": "Falcons release WR Mooney, free $7.4M in cap",
-      "url": "https://www.espn.com/nfl/story/_/id/48156080/falcons-release-wide-receiver-darnell-mooney",
-      "publishedAt": "2026-03-09T22:54:12.000Z",
-      "publishedTs": 1773096852000,
-      "description": "The Falcons have released wide receiver Darnell Mooney, the team announced Monday."
-    },
-    {
-      "id": "05370f4a3972ae83094a6d3dbd88f96cfd2e2f1d",
-      "source": "ESPN",
-      "title": "Sources: QB Willis, Fins reach 3-year, $67.5M deal",
-      "url": "https://www.espn.com/nfl/story/_/id/48153882/sources-dolphins-reach-deal-ex-packers-qb-malik-willis",
-      "publishedAt": "2026-03-09T22:54:12.000Z",
-      "publishedTs": 1773096852000,
-      "description": "Free agent QB Malik Willis, after reviving his career with the Packers, has agreed to a three-year, $67.5 million deal with the Dolphins, sources told ESPN."
-    },
-    {
-      "id": "8c89a829b3365e178dbd7e86b8c150a2cd8d6a4f",
-      "source": "ESPN",
-      "title": "Source: Alford to sign with Bills on 3-year deal",
-      "url": "https://www.espn.com/nfl/story/_/id/48156468/source-bills-sign-dee-alford-3-year-deal-worth-21m",
-      "publishedAt": "2026-03-09T22:54:11.000Z",
-      "publishedTs": 1773096851000,
-      "description": "Free agent cornerback Dee Alford plans to sign with the Buffalo Bills on a three-year deal worth up to $21 million, a source told ESPN."
-    },
-    {
-      "id": "25d94b685e24f386f8341a1300e5be25b954057a",
-      "source": "ESPN",
-      "title": "Colts re-sign WR Pierce, trade Pittman to Steelers",
-      "url": "https://www.espn.com/nfl/story/_/id/48153529/sources-wr-alec-pierce-returning-colts-4-year-116m-deal",
-      "publishedAt": "2026-03-09T22:54:11.000Z",
-      "publishedTs": 1773096851000,
-      "description": "The Indianapolis Colts are re-signing wide receiver Alec Pierce but are trading his running mate Michael Pittman Jr. out of town."
-    },
-    {
-      "id": "66f7b7f05d90a99089c9c5f2018cee526a609677",
-      "source": "ESPN",
-      "title": "Sources: Raiders give C Linderbaum record deal",
-      "url": "https://www.espn.com/nfl/story/_/id/48154652/sources-raiders-tyler-linderbaum-reach-3-year-81m-deal",
-      "publishedAt": "2026-03-09T22:54:11.000Z",
-      "publishedTs": 1773096851000,
-      "description": "Free agent center Tyler Linderbaum reached agreement Monday on a record deal with the Raiders, sources told ESPN's Adam Schefter."
-    },
-    {
-      "id": "43470a1670e0affa7ab55fbf332bfabaadf458a1",
-      "source": "ESPN",
-      "title": "Sources: Commanders bringing back QB Mariota",
-      "url": "https://www.espn.com/nfl/story/_/id/48155650/sources-commanders-re-signing-backup-qb-marcus-mariota",
-      "publishedAt": "2026-03-09T22:54:11.000Z",
-      "publishedTs": 1773096851000,
-      "description": "The Washington Commanders are re-signing backup quarterback Marcus Mariota on a one-year, $7 million deal, according to NFL Network."
-    },
-    {
-      "id": "72ee93cc751dfa88c2a0fb3f004565bf9d17c2d4",
-      "source": "ESPN",
-      "title": "🏈 Offseason grades: Evaluating all the big moves",
-      "url": "https://www.espn.com/nfl/story/_/id/47911726/2026-nfl-free-agency-grades-signings-trades-latest-best-worst-deals-draft-outlook",
-      "publishedAt": "2026-03-09T22:53:28.000Z",
-      "publishedTs": 1773096808000,
-      "description": "We're handing out report cards on big offseason moves, including the Ravens dealing two first-rounders for Maxx Crosby."
-    },
-    {
-      "id": "327356086f1add9933657a17090f4ba5c10815a3",
-      "source": "ESPN",
-      "title": "Sources: Tua to sign 1-year deal with Falcons",
-      "url": "https://www.espn.com/nfl/story/_/id/48156219/sources-qb-tua-tagovailoa-sign-1-year-deal-falcons",
-      "publishedAt": "2026-03-09T22:53:27.000Z",
-      "publishedTs": 1773096807000,
-      "description": "Former Miami Dolphins quarterback Tua Tagovailoa plans to sign a one-year deal with the Atlanta Falcons, a source told ESPN's Adam Schefter."
-    },
-    {
-      "id": "0183ba91c8560c9df3b4c0dd161acde412cf4669",
-      "source": "ESPN",
-      "title": "Star WR Evans leaving Bucs to sign with 49ers",
-      "url": "https://www.espn.com/nfl/story/_/id/48155046/star-wr-mike-evans-leaving-buccaneers-sign-49ers",
-      "publishedAt": "2026-03-09T22:53:27.000Z",
-      "publishedTs": 1773096807000,
-      "description": "Star wide receiver Mike Evans is leaving the Buccaneers to sign a three-year deal with the 49ers, sources told ESPN's Adam Schefter."
-    },
-    {
-      "id": "0c6c880820980a0899fbebfcafde6f1be06238f5",
-      "source": "ESPN",
-      "title": "Source: Super Bowl MVP Walker to join Chiefs",
-      "url": "https://www.espn.com/nfl/story/_/id/48153654/source-super-bowl-mvp-kenneth-walker-agrees-sign-chiefs",
-      "publishedAt": "2026-03-09T22:53:27.000Z",
-      "publishedTs": 1773096807000,
-      "description": "Super Bowl MVP Kenneth Walker III has agreed to sign with the Kansas City Chiefs, a source told ESPN's Adam Schefter."
-    },
-    {
-      "id": "bf21d7f7f77782c61c3017b2e500d91147c129b3",
-      "source": "ESPN",
-      "title": "Busy Titans add WR Robinson, DL Franklin-Myers",
-      "url": "https://www.espn.com/nfl/story/_/id/48154816/titans-adding-wr-wandale-robinson-qb-mitchell-trubisky",
-      "publishedAt": "2026-03-09T22:53:27.000Z",
-      "publishedTs": 1773096807000,
-      "description": "Wide receiver Wan'Dale Robinson reached agreement Monday with the Tennessee Titans, reuniting him with offensive coordinator Brian Daboll, his former coach with the New York Giants."
-    },
-    {
-      "id": "c65cad922cb712c1f6a88e08dc714376e443e762",
-      "source": "ESPN",
-      "title": "Broncos to re-sign LB Singleton, cut Greenlaw",
-      "url": "https://www.espn.com/nfl/story/_/id/48156566/reports-broncos-re-sign-lb-alex-singleton-2-year-deal",
-      "publishedAt": "2026-03-09T22:53:27.000Z",
-      "publishedTs": 1773096807000,
-      "description": "Alex Singleton is returning to the Broncos on a two-year contract, according to multiple reports, while Dre Greenlaw is being released one year after signing a three-year, $31.5 million contract, according to NFL Network"
-    },
-    {
-      "id": "e11b66f144e19c1299b4112b335da83a32f250a8",
-      "source": "ESPN",
-      "title": "Prosecutors to drop charge against Pats' Barmore",
-      "url": "https://www.espn.com/nfl/story/_/id/48156074/prosecutors-drop-charge-patriots-christian-barmore",
-      "publishedAt": "2026-03-09T22:53:27.000Z",
-      "publishedTs": 1773096807000,
-      "description": "Massachusetts prosecutors said Monday that they will drop a domestic assault and battery charge against New England Patriots defensive lineman Christian Barmore because they do not believe they can prove their case."
-    },
-    {
-      "id": "c706706dcf28d4fc80277aa721247975817c03ef",
+      "id": "e0a9950484cf94dd80d552814d38ea57f19bae6a",
       "source": "ESPN",
       "title": "Packers release OL Jenkins, open up $19.5M",
       "url": "https://www.espn.com/nfl/story/_/id/48156082/source-packers-cut-ol-elgton-jenkins-open-195m",
-      "publishedAt": "2026-03-09T22:53:27.000Z",
-      "publishedTs": 1773096807000,
+      "publishedAt": "2026-03-09T23:34:25.000Z",
+      "publishedTs": 1773099265000,
       "description": "The Green Bay Packers are moving on from offensive lineman Elgton Jenkins, releasing the left guard/center to free up more than $19.5 million in cap space."
     },
     {
-      "id": "853480016accf691d2bdde8c1f457e5ae7046250",
+      "id": "209a208890db7bcd14e15356a4ce64e52061711a",
+      "source": "ESPN",
+      "title": "Source: Panthers, QB Pickett agree to 1-year deal",
+      "url": "https://www.espn.com/nfl/story/_/id/48156902/source-panthers-qb-kenny-pickett-agree-1-year-deal",
+      "publishedAt": "2026-03-09T23:34:25.000Z",
+      "publishedTs": 1773099265000,
+      "description": "The Panthers and QB Kenny Pickett agreed on a one-year, $7.5 million deal that includes $4 million in guarantees, a source told ESPN."
+    },
+    {
+      "id": "a5b5c5bc75e4966cd09c0b616deac1899c6fd2de",
+      "source": "ESPN",
+      "title": "Commanders land Oweh on 4-year, $100M deal",
+      "url": "https://www.espn.com/nfl/story/_/id/48155924/commanders-land-odafe-oweh-4-year-100m-deal-agents-say",
+      "publishedAt": "2026-03-09T23:34:25.000Z",
+      "publishedTs": 1773099265000,
+      "description": "Former Chargers defensive end Odafe Oweh, who has 17.5 sacks since 2024, has agreed with the Commanders on a four-year, $100 million deal, his agents told ESPN."
+    },
+    {
+      "id": "4711713f5f1657673de447b2927ff722d062c578",
+      "source": "ESPN",
+      "title": "Cops responded to 911 calls before Pearce arrest",
+      "url": "https://www.espn.com/nfl/story/_/id/48155007/cops-responded-multiple-911-calls-james-pearce-jr-arrest",
+      "publishedAt": "2026-03-09T23:34:25.000Z",
+      "publishedTs": 1773099265000,
+      "description": "In the weeks before Falcons linebacker James Pearce Jr. allegedly rammed his vehicle into WNBA player Rickea Jackson's car, at least seven 911 calls indicate heightened fears from his unidentified girlfriend that she was being stalked and harassed."
+    },
+    {
+      "id": "f3c1cfbfd3cc5cf11dec9ab1c9bfc5162e2aa6a3",
+      "source": "ESPN",
+      "title": "Colts re-sign WR Pierce, trade Pittman to Steelers",
+      "url": "https://www.espn.com/nfl/story/_/id/48153529/sources-wr-alec-pierce-returning-colts-4-year-116m-deal",
+      "publishedAt": "2026-03-09T23:34:25.000Z",
+      "publishedTs": 1773099265000,
+      "description": "The Indianapolis Colts are re-signing wide receiver Alec Pierce but are trading his running mate Michael Pittman Jr. out of town."
+    },
+    {
+      "id": "92ca84ba6f6cea4240a180e24b76cdc277d1d8c4",
+      "source": "ESPN",
+      "title": "Prosecutors to drop charge against Pats' Barmore",
+      "url": "https://www.espn.com/nfl/story/_/id/48156074/prosecutors-drop-charge-patriots-christian-barmore",
+      "publishedAt": "2026-03-09T23:34:25.000Z",
+      "publishedTs": 1773099265000,
+      "description": "Massachusetts prosecutors said Monday that they will drop a domestic assault and battery charge against New England Patriots defensive lineman Christian Barmore because they do not believe they can prove their case."
+    },
+    {
+      "id": "2e002234826ecc82a6956fd0992c69ea403b31d3",
+      "source": "ESPN",
+      "title": "Sources: Commanders bringing back QB Mariota",
+      "url": "https://www.espn.com/nfl/story/_/id/48155650/sources-commanders-re-signing-backup-qb-marcus-mariota",
+      "publishedAt": "2026-03-09T23:34:25.000Z",
+      "publishedTs": 1773099265000,
+      "description": "The Washington Commanders are re-signing backup quarterback Marcus Mariota on a one-year, $7 million deal, according to NFL Network."
+    },
+    {
+      "id": "ba61782cb12db29c910ea33396bf43e0c19ef81e",
+      "source": "ESPN",
+      "title": "Sources: Cowboys reach deal with S Thompson",
+      "url": "https://www.espn.com/nfl/story/_/id/48155915/sources-cowboys-reach-deal-safety-jalen-thompson",
+      "publishedAt": "2026-03-09T23:34:25.000Z",
+      "publishedTs": 1773099265000,
+      "description": "The Dallas Cowboys have made another addition to their defense, agreeing to a three-year, $33 million contract with safety Jalen Thompson, sources told ESPN's Todd Archer."
+    },
+    {
+      "id": "cefde4f9023c81392da715d533f79f56b1d1c9e3",
+      "source": "ESPN",
+      "title": "Source: Alford to sign with Bills on 3-year deal",
+      "url": "https://www.espn.com/nfl/story/_/id/48156468/source-bills-sign-dee-alford-3-year-deal-worth-21m",
+      "publishedAt": "2026-03-09T23:34:24.000Z",
+      "publishedTs": 1773099264000,
+      "description": "Free agent cornerback Dee Alford plans to sign with the Buffalo Bills on a three-year deal worth up to $21 million, a source told ESPN."
+    },
+    {
+      "id": "1a3925da146cb31ca68f20939d8d53056743b510",
+      "source": "ESPN",
+      "title": "Sources: QB Willis, Fins reach 3-year, $67.5M deal",
+      "url": "https://www.espn.com/nfl/story/_/id/48153882/sources-dolphins-reach-deal-ex-packers-qb-malik-willis",
+      "publishedAt": "2026-03-09T23:34:24.000Z",
+      "publishedTs": 1773099264000,
+      "description": "Free agent QB Malik Willis, after reviving his career with the Packers, has agreed to a three-year, $67.5 million deal with the Dolphins, sources told ESPN."
+    },
+    {
+      "id": "657f0e804b5cdd3f229d0870479b705676febc23",
+      "source": "ESPN",
+      "title": "Sources: Tua to sign 1-year deal with Falcons",
+      "url": "https://www.espn.com/nfl/story/_/id/48156219/sources-qb-tua-tagovailoa-sign-1-year-deal-falcons",
+      "publishedAt": "2026-03-09T23:33:56.000Z",
+      "publishedTs": 1773099236000,
+      "description": "Former Miami Dolphins quarterback Tua Tagovailoa plans to sign a one-year deal with the Atlanta Falcons, a source told ESPN's Adam Schefter."
+    },
+    {
+      "id": "4db6f65d4708aa283a1c9c70e4e338bbc7932280",
+      "source": "ESPN",
+      "title": "Seahawks keep Shaheed in fold with $51M deal",
+      "url": "https://www.espn.com/nfl/story/_/id/48156916/seahawks-re-sign-rashid-shaheed-three-year-51m-deal",
+      "publishedAt": "2026-03-09T23:33:56.000Z",
+      "publishedTs": 1773099236000,
+      "description": "The Seahawks are bringing back wide receiver Rashid Shaheed on a three-year, $51 million deal that includes $34.7 million guaranteed, agents Drew Rosenhaus and Robert Bailey told ESPN's Adam Schefter on Monday."
+    },
+    {
+      "id": "ded4738039672b40456fed16e1e7869af94a1b34",
+      "source": "ESPN",
+      "title": "Star WR Evans leaving Bucs to sign with 49ers",
+      "url": "https://www.espn.com/nfl/story/_/id/48155046/star-wr-mike-evans-leaving-buccaneers-sign-49ers",
+      "publishedAt": "2026-03-09T23:33:56.000Z",
+      "publishedTs": 1773099236000,
+      "description": "Star wide receiver Mike Evans is leaving the Buccaneers to sign a three-year deal with the 49ers, sources told ESPN's Adam Schefter."
+    },
+    {
+      "id": "4badd9669f8d52268ab599ae16f2062c144b6f42",
+      "source": "ESPN",
+      "title": "Source: Super Bowl MVP Walker to join Chiefs",
+      "url": "https://www.espn.com/nfl/story/_/id/48153654/source-super-bowl-mvp-kenneth-walker-agrees-sign-chiefs",
+      "publishedAt": "2026-03-09T23:33:56.000Z",
+      "publishedTs": 1773099236000,
+      "description": "Super Bowl MVP Kenneth Walker III has agreed to sign with the Kansas City Chiefs, a source told ESPN's Adam Schefter."
+    },
+    {
+      "id": "20feb4ed545071a88e1b358cfa5744bf14e1e32f",
+      "source": "ESPN",
+      "title": "Busy Titans add WR Robinson, DL Franklin-Myers",
+      "url": "https://www.espn.com/nfl/story/_/id/48154816/titans-adding-wr-wandale-robinson-qb-mitchell-trubisky",
+      "publishedAt": "2026-03-09T23:33:56.000Z",
+      "publishedTs": 1773099236000,
+      "description": "Wide receiver Wan'Dale Robinson reached agreement Monday with the Tennessee Titans, reuniting him with offensive coordinator Brian Daboll, his former coach with the New York Giants."
+    },
+    {
+      "id": "0bf5004b2797320412152132f847318c3741e1f9",
+      "source": "ESPN",
+      "title": "Big-spending Raiders add Linderbaum, Walker",
+      "url": "https://www.espn.com/nfl/story/_/id/48154652/sources-raiders-tyler-linderbaum-reach-3-year-81m-deal",
+      "publishedAt": "2026-03-09T23:33:56.000Z",
+      "publishedTs": 1773099236000,
+      "description": "Free agent center Tyler Linderbaum reached agreement Monday on a record deal with the Raiders, sources told ESPN's Adam Schefter."
+    },
+    {
+      "id": "44edb4d4074ce7602f4148ae95fcc7f88f5a0ba8",
+      "source": "ESPN",
+      "title": "Broncos to re-sign LB Singleton, cut Greenlaw",
+      "url": "https://www.espn.com/nfl/story/_/id/48156566/reports-broncos-re-sign-lb-alex-singleton-2-year-deal",
+      "publishedAt": "2026-03-09T23:33:56.000Z",
+      "publishedTs": 1773099236000,
+      "description": "Alex Singleton is returning to the Broncos on a two-year contract, according to multiple reports, while Dre Greenlaw is being released one year after signing a three-year, $31.5 million contract, according to NFL Network"
+    },
+    {
+      "id": "83ee9167e16876ba58de78cab90028ba11754366",
       "source": "ESPN",
       "title": "Ravens, Eagles, Steelers awarded 4 comp picks",
       "url": "https://www.espn.com/nfl/story/_/id/48156633/ravens-eagles-steelers-awarded-4-compensatory-picks",
-      "publishedAt": "2026-03-09T22:53:27.000Z",
-      "publishedTs": 1773096807000,
+      "publishedAt": "2026-03-09T23:33:56.000Z",
+      "publishedTs": 1773099236000,
       "description": "Baltimore, Philadelphia and Pittsburgh each were awarded a league-high four compensatory picks in next month's NFL draft based on their losses and signings in last year's free agency."
+    },
+    {
+      "id": "33dd7e4e9f06e7501b6224abbb998358833bf82e",
+      "source": "ESPN",
+      "title": "🏈 Offseason grades: Evaluating all the big moves",
+      "url": "https://www.espn.com/nfl/story/_/id/47911726/2026-nfl-free-agency-grades-signings-trades-latest-best-worst-deals-draft-outlook",
+      "publishedAt": "2026-03-09T23:33:56.000Z",
+      "publishedTs": 1773099236000,
+      "description": "We're handing out report cards on big offseason moves, including the Ravens dealing two first-rounders for Maxx Crosby."
     },
     {
       "id": "0fdd679f104137973e5d510228aa0a6854d90233",
@@ -198,15 +207,6 @@
       "publishedAt": "2026-03-09T22:08:12.000Z",
       "publishedTs": 1773094092000,
       "description": "Evans has agreed to sign a three-year contract with the 49ers, leaving the Tampa Bay Buccaneers after 12 seasons."
-    },
-    {
-      "id": "58e52a6574a89c056c6bd2ec449164842b5f4d5b",
-      "source": "ESPN",
-      "title": "Last-minute free agency nuggets: What we're hearing on Eagles plans, top RBs and WRs",
-      "url": "https://www.espn.com/nfl/story/_/id/48111448/nfl-free-agency-news-latest-wrs-rbs-pierce-crosby",
-      "publishedAt": "2026-03-09T20:22:11.000Z",
-      "publishedTs": 1773087731000,
-      "description": "We give you the latest buzz on top players and teams that could be active."
     },
     {
       "id": "e57be5aee5d05e517ba420190bee4b8325f7b8e7",
@@ -270,6 +270,51 @@
       "publishedAt": "2026-02-19T13:05:38.000Z",
       "publishedTs": 1771506338000,
       "description": "The 2027 Super Bowl will air on ESPN for the first time in network history. Learn more information about Super Bowl LXI festivities now."
+    },
+    {
+      "id": "89b9e9ab6934dac240a326c4180bcbc0647a1d1f",
+      "source": "FantasyPros",
+      "title": "Kendrick Bourne signs two-year deal with Cardinals",
+      "url": "https://www.fantasypros.com/nfl/news/573031/kendrick-bourne-signs-two-year-deal-with-cardinals-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "bfcf4adbe8a5d166b36a55db2153aebad83866ca",
+      "source": "FantasyPros",
+      "title": "Reed Blankenship signs three-year deal with Texans",
+      "url": "https://www.fantasypros.com/nfl/news/573030/reed-blankenship-signs-three-year-deal-with-texans-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "f038acd299cd26bc3ad884c70de377695f6c233a",
+      "source": "FantasyPros",
+      "title": "Rashid Shaheed agrees to three-year deal with Seattle",
+      "url": "https://www.fantasypros.com/nfl/news/573007/rashid-shaheed-agrees-to-three-year-deal-with-seattle.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "f7cbd8d642582210b20f7f5522a55bbcc4a4308c",
+      "source": "FantasyPros",
+      "title": "Kenny Pickett agrees to deal with Carolina Panthers",
+      "url": "https://www.fantasypros.com/nfl/news/573006/kenny-pickett-agrees-to-deal-with-carolina-panthers.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "3587a42761f3c874ca0dd627c202aa5d2cb49f7a",
+      "source": "FantasyPros",
+      "title": "Nakobe Dean signs three-year deal with Raiders",
+      "url": "https://www.fantasypros.com/nfl/news/573001/nakobe-dean-signs-three-year-deal-with-raiders.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
     },
     {
       "id": "60cc92ba0542263a036581cc457b76ea138db2e3",
@@ -438,51 +483,6 @@
       "source": "FantasyPros",
       "title": "Odafe Oweh agrees to four-year deal with Commanders",
       "url": "https://www.fantasypros.com/nfl/news/572941/odafe-oweh-agrees-to-four-year-deal-with-commanders-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "e747c91a11c7ac1a8219a8dc9e8a66a95dfccaeb",
-      "source": "FantasyPros",
-      "title": "Boye Mafe signs three-year deal with Bengals",
-      "url": "https://www.fantasypros.com/nfl/news/572940/boye-mafe-signs-three-year-deal-with-bengals-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "e1dddcb76a661ccedcb8f938ba919d132e039586",
-      "source": "FantasyPros",
-      "title": "Elgton Jenkins released by Packers",
-      "url": "https://www.fantasypros.com/nfl/news/572939/elgton-jenkins-released-by-packers-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "c9bc5e56fff5780438304b96648aaaa5b0d2333f",
-      "source": "FantasyPros",
-      "title": "Larry Borom signs with Lions",
-      "url": "https://www.fantasypros.com/nfl/news/572938/larry-borom-signs-with-lions-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "ab68975c393322f1a0622a0815c842ca469bff3e",
-      "source": "FantasyPros",
-      "title": "Cameron Thomas agrees to deal with Falcons",
-      "url": "https://www.fantasypros.com/nfl/news/572936/cameron-thomas-agrees-to-deal-with-falcons-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "4b07155e1e36e1a3d104a4679fbbf66a67d2ae19",
-      "source": "FantasyPros",
-      "title": "Marcus Mariota re-signs with Commanders",
-      "url": "https://www.fantasypros.com/nfl/news/572935/marcus-mariota-re-signs-with-commanders-.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
