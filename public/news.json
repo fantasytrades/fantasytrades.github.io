@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-09T23:33:31.497Z",
+  "generatedAt": "2026-03-09T23:42:51.707Z",
   "items": [
     {
       "id": "54e707786c91c1bd6bc59abb0999a2f808cd4d01",
@@ -272,6 +272,15 @@
       "description": "The 2027 Super Bowl will air on ESPN for the first time in network history. Learn more information about Super Bowl LXI festivities now."
     },
     {
+      "id": "716f4be09780d144f144a26601ef0369560fd9e1",
+      "source": "FantasyPros",
+      "title": "Rico Dowdle signing with Steelers",
+      "url": "https://www.fantasypros.com/nfl/news/573040/rico-dowdle-signing-with-steelers.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
       "id": "adef7b022839c15491375a201e54c7cd53e074fe",
       "source": "FantasyPros",
       "title": "Ar'Darius Washington signs one-year deal with Giants",
@@ -483,15 +492,6 @@
       "source": "FantasyPros",
       "title": "Alex Singleton re-signs with Broncos",
       "url": "https://www.fantasypros.com/nfl/news/572965/alex-singleton-re-signs-with-broncos-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "22a1cafb2f6d99d9900a8a1f7fca121ccf78d665",
-      "source": "FantasyPros",
-      "title": "Travis Kelce officially agrees to deal with Chiefs",
-      "url": "https://www.fantasypros.com/nfl/news/572963/travis-kelce-officially-agrees-to-deal-with-chiefs.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
