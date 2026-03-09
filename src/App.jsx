@@ -2324,7 +2324,59 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
       .theme-dark .chatCheck,
       .theme-dark .chatSideCount{ background:#162237; border-color:#36506F; color:#9BC2FF; }
       .theme-dark .mobileFinderToggle{ background:#162237 !important; border-color:#36506F !important; color:#9BC2FF !important; }
-
+      .theme-dark .leagueAssetRight .interestBtn{ background:#1A2940;
+        border-color:#36506F;
+        color:#D8E7FF;
+        box-shadow:none;
+      }
+      
+      .theme-dark .leagueAssetRight .interestBtn:hover{
+        background:#223552;
+        border-color:#4B6B94;
+        color:#FFFFFF;
+      }
+      
+      .theme-dark .leagueAssetRight .interestBtn.active{
+        color:#FFFFFF;
+      }
+      
+      /* Intereses activos */
+      .theme-dark .leagueAssetRight .interestBtn.active-LOW{
+        background:rgba(239,68,68,0.28);
+        border-color:rgba(248,113,113,0.50);
+        color:#FECACA;
+      }
+      
+      .theme-dark .leagueAssetRight .interestBtn.active-MEDIUM{
+        background:rgba(245,158,11,0.30);
+        border-color:rgba(251,191,36,0.52);
+        color:#FDE68A;
+      }
+      
+      .theme-dark .leagueAssetRight .interestBtn.active-HIGH{
+        background:rgba(34,197,94,0.26);
+        border-color:rgba(74,222,128,0.46);
+        color:#BBF7D0;
+      }
+      
+      /* Estados del asset en Liga */
+      .theme-dark .leagueAssetRight .pill.pill-AVAILABLE{
+        background:rgba(34,197,94,0.18);
+        border-color:rgba(74,222,128,0.40);
+        color:#BBF7D0;
+      }
+      
+      .theme-dark .leagueAssetRight .pill.pill-LISTENING{
+        background:rgba(245,158,11,0.22);
+        border-color:rgba(251,191,36,0.42);
+        color:#FDE68A;
+      }
+      
+      .theme-dark .leagueAssetRight .pill.pill-NOT_AVAILABLE{
+        background:rgba(239,68,68,0.20);
+        border-color:rgba(248,113,113,0.42);
+        color:#FECACA;
+      }
       @media (max-width: 640px){
         .card.chatComposerCard, .chatMain > .card{ padding:12px !important; border-radius:16px; }
         .mobileChatRailHead{ margin-bottom:8px; }
