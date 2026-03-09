@@ -1,1575 +1,444 @@
-{
-  "source": "FantasyPros",
-  "generatedFor": "FantasyPros dynasty 1QB PPR",
-  "updatedAt": "2026-03-09T06:16:52.488Z",
-  "tradeChartUrl": "https://www.fantasypros.com/2026/03/fantasy-football-rankings-dynasty-trade-value-chart-march-2026-update/",
-  "rankingsUrl": "https://www.fantasypros.com/nfl/rankings/?type=dynasty",
-  "rookieRankingsUrl": "https://www.fantasypros.com/nfl/rankings/dynasty-rookies-overall.php",
-  "complete": false,
-  "counts": {
-    "adpPlayers": 171,
-    "fantasyProsNames": 171,
-    "byId": 171,
-    "picks": 183,
-    "fallbackPlayers": 166
-  },
-  "players": [
-    {
-      "id": "5177",
-      "name": "Ja'Marr Chase",
-      "value": 100,
-      "source": "fantasypros-overall-rank"
-    },
-    {
-      "id": "5670",
-      "name": "Bijan Robinson",
-      "value": 93,
-      "source": "fantasypros-overall-rank"
-    },
-    {
-      "id": "2860",
-      "name": "Saquon Barkley",
-      "value": 97,
-      "source": "local-fallback"
-    },
-    {
-      "id": "4876",
-      "name": "Justin Jefferson",
-      "value": 92,
-      "source": "local-fallback"
-    },
-    {
-      "id": "4869",
-      "name": "CeeDee Lamb",
-      "value": 90,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5672",
-      "name": "Jahmyr Gibbs",
-      "value": 90,
-      "source": "fantasypros-overall-rank"
-    },
-    {
-      "id": "6183",
-      "name": "Malik Nabers",
-      "value": 86,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2434",
-      "name": "Christian McCaffrey",
-      "value": 84,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5207",
-      "name": "Nico Collins",
-      "value": 80,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5182",
-      "name": "Amon-Ra St. Brown",
-      "value": 79,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5714",
-      "name": "Puka Nacua",
-      "value": 98,
-      "source": "fantasypros-overall-rank"
-    },
-    {
-      "id": "2350",
-      "name": "Derrick Henry",
-      "value": 78,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6500",
-      "name": "Ashton Jeanty",
-      "value": 77,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5683",
-      "name": "De'Von Achane",
-      "value": 74,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5574",
-      "name": "Drake London",
-      "value": 73,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6175",
-      "name": "Brian Thomas Jr.",
-      "value": 73,
-      "source": "local-fallback"
-    },
-    {
-      "id": "3255",
-      "name": "Josh Jacobs",
-      "value": 71,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6190",
-      "name": "Bucky Irving",
-      "value": 69,
-      "source": "local-fallback"
-    },
-    {
-      "id": "3247",
-      "name": "A.J. Brown",
-      "value": 69,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5706",
-      "name": "Chase Brown",
-      "value": 67,
-      "source": "local-fallback"
-    },
-    {
-      "id": "4864",
-      "name": "Jonathan Taylor",
-      "value": 66,
-      "source": "local-fallback"
-    },
-    {
-      "id": "4870",
-      "name": "Tee Higgins",
-      "value": 64,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2888",
-      "name": "Lamar Jackson",
-      "value": 50,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2885",
-      "name": "Josh Allen",
-      "value": 50,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6281",
-      "name": "Ladd McConkey",
-      "value": 62,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5623",
-      "name": "Kyren Williams",
-      "value": 62,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6178",
-      "name": "Brock Bowers",
-      "value": 56,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2125",
-      "name": "Davante Adams",
-      "value": 59,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2390",
-      "name": "Tyreek Hill",
-      "value": 59,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2439",
-      "name": "Alvin Kamara",
-      "value": 58,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2111",
-      "name": "Mike Evans",
-      "value": 57,
-      "source": "local-fallback"
-    },
-    {
-      "id": "4882",
-      "name": "Joe Burrow",
-      "value": 44,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5854",
-      "name": "Jayden Daniels",
-      "value": 44,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5671",
-      "name": "Jaxon Smith-Njigba",
-      "value": 95,
-      "source": "fantasypros-overall-rank"
-    },
-    {
-      "id": "5656",
-      "name": "Trey McBride",
-      "value": 51,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5652",
-      "name": "James Cook",
-      "value": 52,
-      "source": "local-fallback"
-    },
-    {
-      "id": "3449",
-      "name": "Terry McLaurin",
-      "value": 51,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5025",
-      "name": "Jalen Hurts",
-      "value": 40,
-      "source": "local-fallback"
-    },
-    {
-      "id": "3239",
-      "name": "DK Metcalf",
-      "value": 50,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6193",
-      "name": "Marvin Harrison Jr.",
-      "value": 50,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2470",
-      "name": "James Conner",
-      "value": 48,
-      "source": "local-fallback"
-    },
-    {
-      "id": "4873",
-      "name": "Chuba Hubbard",
-      "value": 48,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6538",
-      "name": "Omarion Hampton",
-      "value": 48,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5548",
-      "name": "Garrett Wilson",
-      "value": 47,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2499",
-      "name": "George Kittle",
-      "value": 43,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2876",
-      "name": "DJ Moore",
-      "value": 45,
-      "source": "local-fallback"
-    },
-    {
-      "id": "4883",
-      "name": "DeVonta Smith",
-      "value": 44,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5625",
-      "name": "Kenneth Walker III",
-      "value": 43,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6561",
-      "name": "Tetairoa McMillan",
-      "value": 43,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2862",
-      "name": "Courtland Sutton",
-      "value": 42,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5503",
-      "name": "Breece Hall",
-      "value": 42,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6172",
-      "name": "Xavier Worthy",
-      "value": 42,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6490",
-      "name": "TreVeyon Henderson",
-      "value": 40,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2462",
-      "name": "Patrick Mahomes",
-      "value": 32,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2886",
-      "name": "Baker Mayfield",
-      "value": 32,
-      "source": "local-fallback"
-    },
-    {
-      "id": "4861",
-      "name": "Jerry Jeudy",
-      "value": 38,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5675",
-      "name": "Zay Flowers",
-      "value": 38,
-      "source": "local-fallback"
-    },
-    {
-      "id": "3435",
-      "name": "Tony Pollard",
-      "value": 38,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2866",
-      "name": "Calvin Ridley",
-      "value": 38,
-      "source": "local-fallback"
-    },
-    {
-      "id": "4862",
-      "name": "D'Andre Swift",
-      "value": 37,
-      "source": "local-fallback"
-    },
-    {
-      "id": "3238",
-      "name": "David Montgomery",
-      "value": 37,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5576",
-      "name": "George Pickens",
-      "value": 37,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5643",
-      "name": "Jameson Williams",
-      "value": 36,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6530",
-      "name": "RJ Harvey",
-      "value": 35,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5564",
-      "name": "Sam LaPorta",
-      "value": 33,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2507",
-      "name": "Aaron Jones Sr.",
-      "value": 34,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5178",
-      "name": "Jaylen Waddle",
-      "value": 34,
-      "source": "local-fallback"
-    },
-    {
-      "id": "1989",
-      "name": "Travis Kelce",
-      "value": 32,
-      "source": "local-fallback"
-    },
-    {
-      "id": "3246",
-      "name": "Deebo Samuel Sr.",
-      "value": 33,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5337",
-      "name": "Isiah Pacheco",
-      "value": 33,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6253",
-      "name": "Bo Nix",
-      "value": 26,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5648",
-      "name": "Brock Purdy",
-      "value": 26,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6563",
-      "name": "Travis Hunter",
-      "value": 32,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5544",
-      "name": "Chris Olave",
-      "value": 32,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6276",
-      "name": "Tyrone Tracy Jr.",
-      "value": 31,
-      "source": "local-fallback"
-    },
-    {
-      "id": "3496",
-      "name": "Jakobi Meyers",
-      "value": 31,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2448",
-      "name": "David Njoku",
-      "value": 29,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6523",
-      "name": "Matthew Golden",
-      "value": 30,
-      "source": "local-fallback"
-    },
-    {
-      "id": "3307",
-      "name": "T.J. Hockenson",
-      "value": 28,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5443",
-      "name": "Jaylen Warren",
-      "value": 30,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6558",
-      "name": "Kaleb Johnson",
-      "value": 30,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6199",
-      "name": "Ricky Pearsall",
-      "value": 29,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6194",
-      "name": "Rome Odunze",
-      "value": 29,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2316",
-      "name": "Stefon Diggs",
-      "value": 28,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5020",
-      "name": "Jauan Jennings",
-      "value": 28,
-      "source": "local-fallback"
-    },
-    {
-      "id": "3299",
-      "name": "Kyler Murray",
-      "value": 22,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6576",
-      "name": "Emeka Egbuka",
-      "value": 27,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2625",
-      "name": "Austin Ekeler",
-      "value": 27,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5636",
-      "name": "Khalil Shakir",
-      "value": 27,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2377",
-      "name": "Dak Prescott",
-      "value": 21,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2872",
-      "name": "Mark Andrews",
-      "value": 24,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2451",
-      "name": "Evan Engram",
-      "value": 23,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2449",
-      "name": "Cooper Kupp",
-      "value": 24,
-      "source": "local-fallback"
-    },
-    {
-      "id": "4888",
-      "name": "J.K. Dobbins",
-      "value": 24,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5696",
-      "name": "Rashee Rice",
-      "value": 24,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5119",
-      "name": "Darnell Mooney",
-      "value": 24,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2351",
-      "name": "Jared Goff",
-      "value": 19,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6504",
-      "name": "Tyler Warren",
-      "value": 21,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6173",
-      "name": "Caleb Williams",
-      "value": 18,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6189",
-      "name": "Keon Coleman",
-      "value": 22,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5677",
-      "name": "Zach Charbonnet",
-      "value": 22,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5673",
-      "name": "Jordan Addison",
-      "value": 22,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5185",
-      "name": "Javonte Williams",
-      "value": 22,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2465",
-      "name": "Chris Godwin Jr.",
-      "value": 22,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5896",
-      "name": "Rashid Shaheed",
-      "value": 22,
-      "source": "local-fallback"
-    },
-    {
-      "id": "1309",
-      "name": "Denver Defense",
-      "value": 22,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6185",
-      "name": "J.J. McCarthy",
-      "value": 17,
-      "source": "local-fallback"
-    },
-    {
-      "id": "4863",
-      "name": "Travis Etienne Jr.",
-      "value": 21,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5330",
-      "name": "Jordan Mason",
-      "value": 21,
-      "source": "local-fallback"
-    },
-    {
-      "id": "1323",
-      "name": "Philadelphia Defense",
-      "value": 21,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6187",
-      "name": "Drake Maye",
-      "value": 17,
-      "source": "local-fallback"
-    },
-    {
-      "id": "4887",
-      "name": "Justin Herbert",
-      "value": 16,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6595",
-      "name": "Jacory Croskey-Merritt",
-      "value": 20,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5191",
-      "name": "Justin Fields",
-      "value": 16,
-      "source": "local-fallback"
-    },
-    {
-      "id": "1324",
-      "name": "Pittsburgh Defense",
-      "value": 20,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5707",
-      "name": "Jayden Reed",
-      "value": 20,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5588",
-      "name": "Wan'Dale Robinson",
-      "value": 20,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2870",
-      "name": "Christian Kirk",
-      "value": 20,
-      "source": "local-fallback"
-    },
-    {
-      "id": "1992",
-      "name": "Keenan Allen",
-      "value": 20,
-      "source": "local-fallback"
-    },
-    {
-      "id": "1332",
-      "name": "Baltimore Defense",
-      "value": 20,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5718",
-      "name": "Tucker Kraft",
-      "value": 18,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5561",
-      "name": "Jake Ferguson",
-      "value": 18,
-      "source": "local-fallback"
-    },
-    {
-      "id": "4892",
-      "name": "Jordan Love",
-      "value": 15,
-      "source": "local-fallback"
-    },
-    {
-      "id": "3249",
-      "name": "Marquise Brown",
-      "value": 19,
-      "source": "local-fallback"
-    },
-    {
-      "id": "1311",
-      "name": "Green Bay Defense",
-      "value": 19,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5210",
-      "name": "Rhamondre Stevenson",
-      "value": 18,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6531",
-      "name": "Quinshon Judkins",
-      "value": 18,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5186",
-      "name": "Trevor Lawrence",
-      "value": 14,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5685",
-      "name": "Marvin Mims Jr.",
-      "value": 18,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5617",
-      "name": "Jerome Ford",
-      "value": 18,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5180",
-      "name": "Rashod Bateman",
-      "value": 17,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5676",
-      "name": "C.J. Stroud",
-      "value": 14,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2896",
-      "name": "Dallas Goedert",
-      "value": 16,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6577",
-      "name": "Jayden Higgins",
-      "value": 17,
-      "source": "local-fallback"
-    },
-    {
-      "id": "1303",
-      "name": "Buffalo Defense",
-      "value": 17,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6509",
-      "name": "Cam Skattebo",
-      "value": 17,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2863",
-      "name": "Nick Chubb",
-      "value": 17,
-      "source": "local-fallback"
-    },
-    {
-      "id": "1312",
-      "name": "Houston Defense",
-      "value": 16,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5691",
-      "name": "Tank Bigsby",
-      "value": 16,
-      "source": "local-fallback"
-    },
-    {
-      "id": "4890",
-      "name": "Tua Tagovailoa",
-      "value": 13,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5990",
-      "name": "Trey Benson",
-      "value": 16,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6162",
-      "name": "Brandon Aubrey",
-      "value": 16,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5688",
-      "name": "Dalton Kincaid",
-      "value": 15,
-      "source": "local-fallback"
-    },
-    {
-      "id": "1326",
-      "name": "San Francisco Defense",
-      "value": 16,
-      "source": "local-fallback"
-    },
-    {
-      "id": "1317",
-      "name": "Minnesota Defense",
-      "value": 15,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5678",
-      "name": "Bryce Young",
-      "value": 12,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5978",
-      "name": "DeMario Douglas",
-      "value": 15,
-      "source": "local-fallback"
-    },
-    {
-      "id": "1310",
-      "name": "Detroit Defense",
-      "value": 15,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2438",
-      "name": "Joe Mixon",
-      "value": 15,
-      "source": "local-fallback"
-    },
-    {
-      "id": "4891",
-      "name": "Brandon Aiyuk",
-      "value": 15,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6188",
-      "name": "Cam Little",
-      "value": 15,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2431",
-      "name": "Adam Thielen",
-      "value": 15,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6055",
-      "name": "Jake Bates",
-      "value": 15,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5181",
-      "name": "Kyle Pitts Sr.",
-      "value": 14,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5538",
-      "name": "Cameron Dicker",
-      "value": 15,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6501",
-      "name": "Colston Loveland",
-      "value": 14,
-      "source": "local-fallback"
-    },
-    {
-      "id": "1980",
-      "name": "Geno Smith",
-      "value": 11,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6557",
-      "name": "Jaydon Blue",
-      "value": 14,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6559",
-      "name": "Luther Burden III",
-      "value": 14,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6513",
-      "name": "Bhayshul Tuten",
-      "value": 14,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5669",
-      "name": "Evan McPherson",
-      "value": 14,
-      "source": "local-fallback"
-    },
-    {
-      "id": "1978",
-      "name": "Zach Ertz",
-      "value": 13,
-      "source": "local-fallback"
-    },
-    {
-      "id": "1328",
-      "name": "LA Rams Defense",
-      "value": 14,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5655",
-      "name": "Tyler Allgeier",
-      "value": 14,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6176",
-      "name": "Braelon Allen",
-      "value": 13,
-      "source": "local-fallback"
-    },
-    {
-      "id": "5692",
-      "name": "Tyjae Spears",
-      "value": 13,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6535",
-      "name": "Ollie Gordon II",
-      "value": 13,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2531",
-      "name": "Ka'imi Fairbairn",
-      "value": 13,
-      "source": "local-fallback"
-    },
-    {
-      "id": "6581",
-      "name": "Dont'e Thornton Jr.",
-      "value": 13,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2277",
-      "name": "Amari Cooper",
-      "value": 12,
-      "source": "local-fallback"
-    },
-    {
-      "id": "2988",
-      "name": "Daniel Carlson",
-      "value": 12,
-      "source": "local-fallback"
+#!/usr/bin/env node
+import fs from 'node:fs/promises';
+import path from 'node:path';
+
+const ROOT = process.cwd();
+const PUBLIC_DIR = path.join(ROOT, 'public');
+const OUT_PATH = path.join(PUBLIC_DIR, 'fantasypros-dynasty-values.json');
+const ADP_PATH = path.join(PUBLIC_DIR, 'adp.json');
+
+const URLS = {
+  tradeChartIndex: 'https://www.fantasypros.com/content/nfl/dynasty-nfl/nfl-trade-value-chart/',
+  tradeChartFallback: 'https://www.fantasypros.com/2026/03/fantasy-football-rankings-dynasty-trade-value-chart-march-2026-update/',
+};
+
+const USER_AGENT =
+  'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
+
+function log(message) {
+  console.log(`🟦 FantasyPros: ${message}`);
+}
+
+function nowIso() {
+  return new Date().toISOString();
+}
+
+function clamp(n, min, max) {
+  return Math.max(min, Math.min(max, n));
+}
+
+function normalizeName(name) {
+  return String(name || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\b(jr|sr|ii|iii|iv|v)\b/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function decodeEntities(str) {
+  return String(str || '')
+    .replace(/&#(\d+);/g, (_, d) => String.fromCharCode(Number(d)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCharCode(parseInt(h, 16)))
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&apos;/g, "'")
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&ndash;/g, '-')
+    .replace(/&mdash;/g, '-')
+    .replace(/&minus;/g, '-')
+    .replace(/&rsquo;/g, "'")
+    .replace(/&lsquo;/g, "'")
+    .replace(/&ldquo;/g, '"')
+    .replace(/&rdquo;/g, '"')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>');
+}
+
+function stripHtmlToText(html) {
+  return decodeEntities(
+    String(html || '')
+      .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+      .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+      .replace(/<noscript[\s\S]*?<\/noscript>/gi, ' ')
+      .replace(/<svg[\s\S]*?<\/svg>/gi, ' ')
+      .replace(/<\/(p|div|section|article|li|tr|table|h\d|br)>/gi, '\n')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/\u00a0/g, ' ')
+      .replace(/[ \t]+\n/g, '\n')
+      .replace(/\n{2,}/g, '\n')
+      .replace(/[ \t]{2,}/g, ' ')
+      .trim()
+  );
+}
+
+function cleanCell(html) {
+  return decodeEntities(
+    String(html || '')
+      .replace(/<br\s*\/?\s*>/gi, '\n')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/\u00a0/g, ' ')
+      .replace(/[ \t]{2,}/g, ' ')
+      .replace(/\n{2,}/g, '\n')
+      .trim()
+  );
+}
+
+async function fetchText(url) {
+  const res = await fetch(url, {
+    headers: {
+      'user-agent': USER_AGENT,
+      'accept-language': 'en-US,en;q=0.9',
+      accept: 'text/html,application/json;q=0.9,*/*;q=0.8',
+      referer: 'https://www.fantasypros.com/',
+    },
+  });
+  if (!res.ok) {
+    throw new Error(`Fetch failed ${res.status} for ${url}`);
+  }
+  return await res.text();
+}
+
+function extractTradeChartUrl(indexHtml) {
+  const absMatches = [...indexHtml.matchAll(/https:\/\/www\.fantasypros\.com\/\d{4}\/\d{2}\/fantasy-football-rankings-dynasty-trade-value-chart[^"'\s<)]+/g)].map((m) => m[0]);
+  if (absMatches.length) return absMatches[0];
+
+  const relMatches = [...indexHtml.matchAll(/href=["'](\/\d{4}\/\d{2}\/fantasy-football-rankings-dynasty-trade-value-chart[^"']+)["']/g)].map((m) => `https://www.fantasypros.com${m[1]}`);
+  if (relMatches.length) return relMatches[0];
+
+  return URLS.tradeChartFallback;
+}
+
+function parseHtmlTables(html) {
+  const tables = [];
+  const tableRegex = /<table\b[^>]*>([\s\S]*?)<\/table>/gi;
+  let match;
+  while ((match = tableRegex.exec(html))) {
+    const fullTable = match[0];
+    const rows = [];
+    const rowRegex = /<tr\b[^>]*>([\s\S]*?)<\/tr>/gi;
+    let rowMatch;
+    while ((rowMatch = rowRegex.exec(fullTable))) {
+      const cells = [];
+      const cellRegex = /<(td|th)\b[^>]*>([\s\S]*?)<\/\1>/gi;
+      let cellMatch;
+      while ((cellMatch = cellRegex.exec(rowMatch[0]))) {
+        cells.push(cleanCell(cellMatch[2]));
+      }
+      if (cells.length) rows.push(cells);
     }
-  ],
-  "byId": {
-    "1303": 17,
-    "1309": 22,
-    "1310": 15,
-    "1311": 19,
-    "1312": 16,
-    "1317": 15,
-    "1323": 21,
-    "1324": 20,
-    "1326": 16,
-    "1328": 14,
-    "1332": 20,
-    "1978": 13,
-    "1980": 11,
-    "1989": 32,
-    "1992": 20,
-    "2111": 57,
-    "2125": 59,
-    "2277": 12,
-    "2316": 28,
-    "2350": 78,
-    "2351": 19,
-    "2377": 21,
-    "2390": 59,
-    "2431": 15,
-    "2434": 84,
-    "2438": 15,
-    "2439": 58,
-    "2448": 29,
-    "2449": 24,
-    "2451": 23,
-    "2462": 32,
-    "2465": 22,
-    "2470": 48,
-    "2499": 43,
-    "2507": 34,
-    "2531": 13,
-    "2625": 27,
-    "2860": 97,
-    "2862": 42,
-    "2863": 17,
-    "2866": 38,
-    "2870": 20,
-    "2872": 24,
-    "2876": 45,
-    "2885": 50,
-    "2886": 32,
-    "2888": 50,
-    "2896": 16,
-    "2988": 12,
-    "3238": 37,
-    "3239": 50,
-    "3246": 33,
-    "3247": 69,
-    "3249": 19,
-    "3255": 71,
-    "3299": 22,
-    "3307": 28,
-    "3435": 38,
-    "3449": 51,
-    "3496": 31,
-    "4861": 38,
-    "4862": 37,
-    "4863": 21,
-    "4864": 66,
-    "4869": 90,
-    "4870": 64,
-    "4873": 48,
-    "4876": 92,
-    "4882": 44,
-    "4883": 44,
-    "4887": 16,
-    "4888": 24,
-    "4890": 13,
-    "4891": 15,
-    "4892": 15,
-    "5020": 28,
-    "5025": 40,
-    "5119": 24,
-    "5177": 100,
-    "5178": 34,
-    "5180": 17,
-    "5181": 14,
-    "5182": 79,
-    "5185": 22,
-    "5186": 14,
-    "5191": 16,
-    "5207": 80,
-    "5210": 18,
-    "5330": 21,
-    "5337": 33,
-    "5443": 30,
-    "5503": 42,
-    "5538": 15,
-    "5544": 32,
-    "5548": 47,
-    "5561": 18,
-    "5564": 33,
-    "5574": 73,
-    "5576": 37,
-    "5588": 20,
-    "5617": 18,
-    "5623": 62,
-    "5625": 43,
-    "5636": 27,
-    "5643": 36,
-    "5648": 26,
-    "5652": 52,
-    "5655": 14,
-    "5656": 51,
-    "5669": 14,
-    "5670": 93,
-    "5671": 95,
-    "5672": 90,
-    "5673": 22,
-    "5675": 38,
-    "5676": 14,
-    "5677": 22,
-    "5678": 12,
-    "5683": 74,
-    "5685": 18,
-    "5688": 15,
-    "5691": 16,
-    "5692": 13,
-    "5696": 24,
-    "5706": 67,
-    "5707": 20,
-    "5714": 98,
-    "5718": 18,
-    "5854": 44,
-    "5896": 22,
-    "5978": 15,
-    "5990": 16,
-    "6055": 15,
-    "6162": 16,
-    "6172": 42,
-    "6173": 18,
-    "6175": 73,
-    "6176": 13,
-    "6178": 56,
-    "6183": 86,
-    "6185": 17,
-    "6187": 17,
-    "6188": 15,
-    "6189": 22,
-    "6190": 69,
-    "6193": 50,
-    "6194": 29,
-    "6199": 29,
-    "6253": 26,
-    "6276": 31,
-    "6281": 62,
-    "6490": 40,
-    "6500": 77,
-    "6501": 14,
-    "6504": 21,
-    "6509": 17,
-    "6513": 14,
-    "6523": 30,
-    "6530": 35,
-    "6531": 18,
-    "6535": 13,
-    "6538": 48,
-    "6557": 14,
-    "6558": 30,
-    "6559": 14,
-    "6561": 43,
-    "6563": 32,
-    "6576": 27,
-    "6577": 17,
-    "6581": 13,
-    "6595": 20
-  },
-  "byName": {
-    "ja marr chase": 100,
-    "puka nacua": 98,
-    "jaxon smith njigba": 95,
-    "bijan robinson": 93,
-    "jahmyr gibbs": 90,
-    "saquon barkley": 97,
-    "justin jefferson": 92,
-    "ceedee lamb": 90,
-    "malik nabers": 86,
-    "christian mccaffrey": 84,
-    "nico collins": 80,
-    "amon ra st brown": 79,
-    "derrick henry": 78,
-    "ashton jeanty": 77,
-    "de von achane": 74,
-    "drake london": 73,
-    "brian thomas": 73,
-    "josh jacobs": 71,
-    "bucky irving": 69,
-    "a j brown": 69,
-    "chase brown": 67,
-    "jonathan taylor": 66,
-    "tee higgins": 64,
-    "lamar jackson": 50,
-    "josh allen": 50,
-    "ladd mcconkey": 62,
-    "kyren williams": 62,
-    "brock bowers": 56,
-    "davante adams": 59,
-    "tyreek hill": 59,
-    "alvin kamara": 58,
-    "mike evans": 57,
-    "joe burrow": 44,
-    "jayden daniels": 44,
-    "trey mcbride": 51,
-    "james cook": 52,
-    "terry mclaurin": 51,
-    "jalen hurts": 40,
-    "dk metcalf": 50,
-    "marvin harrison": 50,
-    "james conner": 48,
-    "chuba hubbard": 48,
-    "omarion hampton": 48,
-    "garrett wilson": 47,
-    "george kittle": 43,
-    "dj moore": 45,
-    "devonta smith": 44,
-    "kenneth walker": 43,
-    "tetairoa mcmillan": 43,
-    "courtland sutton": 42,
-    "breece hall": 42,
-    "xavier worthy": 42,
-    "treveyon henderson": 40,
-    "patrick mahomes": 32,
-    "baker mayfield": 32,
-    "jerry jeudy": 38,
-    "zay flowers": 38,
-    "tony pollard": 38,
-    "calvin ridley": 38,
-    "d andre swift": 37,
-    "david montgomery": 37,
-    "george pickens": 37,
-    "jameson williams": 36,
-    "rj harvey": 35,
-    "sam laporta": 33,
-    "aaron jones": 34,
-    "jaylen waddle": 34,
-    "travis kelce": 32,
-    "deebo samuel": 33,
-    "isiah pacheco": 33,
-    "bo nix": 26,
-    "brock purdy": 26,
-    "travis hunter": 32,
-    "chris olave": 32,
-    "tyrone tracy": 31,
-    "jakobi meyers": 31,
-    "david njoku": 29,
-    "matthew golden": 30,
-    "t j hockenson": 28,
-    "jaylen warren": 30,
-    "kaleb johnson": 30,
-    "ricky pearsall": 29,
-    "rome odunze": 29,
-    "stefon diggs": 28,
-    "jauan jennings": 28,
-    "kyler murray": 22,
-    "emeka egbuka": 27,
-    "austin ekeler": 27,
-    "khalil shakir": 27,
-    "dak prescott": 21,
-    "mark andrews": 24,
-    "evan engram": 23,
-    "cooper kupp": 24,
-    "j k dobbins": 24,
-    "rashee rice": 24,
-    "darnell mooney": 24,
-    "jared goff": 19,
-    "tyler warren": 21,
-    "caleb williams": 18,
-    "keon coleman": 22,
-    "zach charbonnet": 22,
-    "jordan addison": 22,
-    "javonte williams": 22,
-    "chris godwin": 22,
-    "rashid shaheed": 22,
-    "denver defense": 22,
-    "j j mccarthy": 17,
-    "travis etienne": 21,
-    "jordan mason": 21,
-    "philadelphia defense": 21,
-    "drake maye": 17,
-    "justin herbert": 16,
-    "jacory croskey merritt": 20,
-    "justin fields": 16,
-    "pittsburgh defense": 20,
-    "jayden reed": 20,
-    "wan dale robinson": 20,
-    "christian kirk": 20,
-    "keenan allen": 20,
-    "baltimore defense": 20,
-    "tucker kraft": 18,
-    "jake ferguson": 18,
-    "jordan love": 15,
-    "marquise brown": 19,
-    "green bay defense": 19,
-    "rhamondre stevenson": 18,
-    "quinshon judkins": 18,
-    "trevor lawrence": 14,
-    "marvin mims": 18,
-    "jerome ford": 18,
-    "rashod bateman": 17,
-    "c j stroud": 14,
-    "dallas goedert": 16,
-    "jayden higgins": 17,
-    "buffalo defense": 17,
-    "cam skattebo": 17,
-    "nick chubb": 17,
-    "houston defense": 16,
-    "tank bigsby": 16,
-    "tua tagovailoa": 13,
-    "trey benson": 16,
-    "brandon aubrey": 16,
-    "dalton kincaid": 15,
-    "san francisco defense": 16,
-    "minnesota defense": 15,
-    "bryce young": 12,
-    "demario douglas": 15,
-    "detroit defense": 15,
-    "joe mixon": 15,
-    "brandon aiyuk": 15,
-    "cam little": 15,
-    "adam thielen": 15,
-    "jake bates": 15,
-    "kyle pitts": 14,
-    "cameron dicker": 15,
-    "colston loveland": 14,
-    "geno smith": 11,
-    "jaydon blue": 14,
-    "luther burden": 14,
-    "bhayshul tuten": 14,
-    "evan mcpherson": 14,
-    "zach ertz": 13,
-    "la rams defense": 14,
-    "tyler allgeier": 14,
-    "braelon allen": 13,
-    "tyjae spears": 13,
-    "ollie gordon": 13,
-    "ka imi fairbairn": 13,
-    "dont e thornton": 13,
-    "amari cooper": 12,
-    "daniel carlson": 12
-  },
-  "pickValues": {
-    "2026-1.01": 42,
-    "2026-2.01": 35,
-    "2026-3.01": 20,
-    "2026-4.01": 10,
-    "2026-5.01": 3,
-    "2026-6.01": 3,
-    "2026-2.02": 35,
-    "2026-3.02": 20,
-    "2026-4.02": 10,
-    "2026-5.02": 3,
-    "2026-6.02": 3,
-    "2026-2.03": 35,
-    "2026-3.03": 20,
-    "2026-4.03": 10,
-    "2026-5.03": 3,
-    "2026-6.03": 3,
-    "2026-2.04": 29,
-    "2026-3.04": 16,
-    "2026-4.04": 10,
-    "2026-5.04": 3,
-    "2026-6.04": 3,
-    "2026-2.05": 29,
-    "2026-3.05": 16,
-    "2026-4.05": 10,
-    "2026-5.05": 3,
-    "2026-6.05": 3,
-    "2026-2.06": 29,
-    "2026-3.06": 16,
-    "2026-4.06": 7,
-    "2026-5.06": 3,
-    "2026-6.06": 3,
-    "2026-2.07": 29,
-    "2026-3.07": 16,
-    "2026-4.07": 7,
-    "2026-5.07": 3,
-    "2026-6.07": 3,
-    "2026-2.08": 24,
-    "2026-3.08": 14,
-    "2026-4.08": 7,
-    "2026-5.08": 3,
-    "2026-6.08": 3,
-    "2026-2.09": 24,
-    "2026-3.09": 14,
-    "2026-4.09": 7,
-    "2026-5.09": 3,
-    "2026-6.09": 3,
-    "2026-2.10": 24,
-    "2026-3.10": 14,
-    "2026-4.10": 7,
-    "2026-5.10": 3,
-    "2026-6.10": 3,
-    "2027-1": 55,
-    "2027-2": 30,
-    "2027-3": 17,
-    "2027-4": 8,
-    "2027-5": 8,
-    "2027-6": 8,
-    "2027-1.01": 66,
-    "2027-2.01": 35,
-    "2027-3.01": 20,
-    "2027-4.01": 8,
-    "2027-5.01": 8,
-    "2027-6.01": 8,
-    "2027-1.02": 66,
-    "2027-2.02": 35,
-    "2027-3.02": 20,
-    "2027-4.02": 8,
-    "2027-5.02": 8,
-    "2027-6.02": 8,
-    "2027-1.03": 66,
-    "2027-2.03": 35,
-    "2027-3.03": 20,
-    "2027-4.03": 8,
-    "2027-5.03": 8,
-    "2027-6.03": 8,
-    "2027-1.04": 55,
-    "2027-2.04": 35,
-    "2027-3.04": 20,
-    "2027-4.04": 8,
-    "2027-5.04": 8,
-    "2027-6.04": 8,
-    "2027-1.05": 55,
-    "2027-2.05": 35,
-    "2027-3.05": 20,
-    "2027-4.05": 8,
-    "2027-5.05": 8,
-    "2027-6.05": 8,
-    "2027-1.06": 55,
-    "2027-2.06": 24,
-    "2027-3.06": 14,
-    "2027-4.06": 8,
-    "2027-5.06": 8,
-    "2027-6.06": 8,
-    "2027-1.07": 45,
-    "2027-2.07": 24,
-    "2027-3.07": 14,
-    "2027-4.07": 8,
-    "2027-5.07": 8,
-    "2027-6.07": 8,
-    "2027-1.08": 45,
-    "2027-2.08": 24,
-    "2027-3.08": 14,
-    "2027-4.08": 8,
-    "2027-5.08": 8,
-    "2027-6.08": 8,
-    "2027-1.09": 45,
-    "2027-2.09": 24,
-    "2027-3.09": 14,
-    "2027-4.09": 8,
-    "2027-5.09": 8,
-    "2027-6.09": 8,
-    "2027-1.10": 45,
-    "2027-2.10": 24,
-    "2027-3.10": 14,
-    "2027-4.10": 8,
-    "2027-5.10": 8,
-    "2027-6.10": 8,
-    "2028-1": 47,
-    "2028-1.01": 57,
-    "2028-1.02": 57,
-    "2028-1.03": 57,
-    "2028-1.04": 47,
-    "2028-1.05": 47,
-    "2028-1.06": 47,
-    "2028-1.07": 39,
-    "2028-1.08": 39,
-    "2028-1.09": 39,
-    "2028-1.10": 39,
-    "2028-2": 26,
-    "2028-2.01": 30,
-    "2028-2.02": 30,
-    "2028-2.03": 30,
-    "2028-2.04": 30,
-    "2028-2.05": 30,
-    "2028-2.06": 21,
-    "2028-2.07": 21,
-    "2028-2.08": 21,
-    "2028-2.09": 21,
-    "2028-2.10": 21,
-    "2028-3": 15,
-    "2028-3.01": 17,
-    "2028-3.02": 17,
-    "2028-3.03": 17,
-    "2028-3.04": 17,
-    "2028-3.05": 17,
-    "2028-3.06": 12,
-    "2028-3.07": 12,
-    "2028-3.08": 12,
-    "2028-3.09": 12,
-    "2028-3.10": 12,
-    "2028-4": 7,
-    "2028-4.01": 7,
-    "2028-4.02": 7,
-    "2028-4.03": 7,
-    "2028-4.04": 7,
-    "2028-4.05": 7,
-    "2028-4.06": 7,
-    "2028-4.07": 7,
-    "2028-4.08": 7,
-    "2028-4.09": 7,
-    "2028-4.10": 7,
-    "2028-5": 7,
-    "2028-5.01": 7,
-    "2028-5.02": 7,
-    "2028-5.03": 7,
-    "2028-5.04": 7,
-    "2028-5.05": 7,
-    "2028-5.06": 7,
-    "2028-5.07": 7,
-    "2028-5.08": 7,
-    "2028-5.09": 7,
-    "2028-5.10": 7,
-    "2028-6": 7,
-    "2028-6.01": 7,
-    "2028-6.02": 7,
-    "2028-6.03": 7,
-    "2028-6.04": 7,
-    "2028-6.05": 7,
-    "2028-6.06": 7,
-    "2028-6.07": 7,
-    "2028-6.08": 7,
-    "2028-6.09": 7,
-    "2028-6.10": 7
+    if (!rows.length) continue;
+
+    const prefix = html.slice(Math.max(0, match.index - 3000), match.index);
+    const headingMatches = [...prefix.matchAll(/<h[1-6][^>]*>([\s\S]*?)<\/h[1-6]>/gi)];
+    const heading = headingMatches.length ? cleanCell(headingMatches[headingMatches.length - 1][1]) : '';
+    tables.push({ heading, rows });
+  }
+  return tables;
+}
+
+function normalizeHeaderValue(v) {
+  return normalizeName(String(v || '').replace(/\n/g, ' '));
+}
+
+function guessPosFromHeading(heading) {
+  const h = normalizeHeaderValue(heading);
+  if (h.includes('quarterback')) return 'QB';
+  if (h.includes('running back')) return 'RB';
+  if (h.includes('wide receiver')) return 'WR';
+  if (h.includes('tight end')) return 'TE';
+  return '';
+}
+
+function findColumnIndex(headers, patterns) {
+  return headers.findIndex((h) => patterns.some((p) => p.test(h)));
+}
+
+function parsePlayerTablesFromHtml(html) {
+  const tables = parseHtmlTables(html);
+  const players = [];
+
+  for (const table of tables) {
+    const headers = (table.rows[0] || []).map(normalizeHeaderValue);
+    const pos = guessPosFromHeading(table.heading);
+    if (!pos) continue;
+
+    const playerIdx = findColumnIndex(headers, [/^player$/, /player name/, /^name$/]);
+    const valueIdx = findColumnIndex(headers, [/(^|\b)1qb(\b| value)/, /trade value/]);
+    const sfIdx = findColumnIndex(headers, [/(^|\b)sf(\b| value)/, /superflex/]);
+    const teamIdx = findColumnIndex(headers, [/^team$/, /^tm$/, /nfl team/]);
+
+    if (playerIdx < 0 || valueIdx < 0) continue;
+    if (sfIdx === valueIdx) continue;
+
+    for (const row of table.rows.slice(1)) {
+      const name = String(row[playerIdx] || '').replace(/\n/g, ' ').trim();
+      const team = String(row[teamIdx] || '').replace(/\n/g, ' ').trim().toUpperCase();
+      const valueText = String(row[valueIdx] || '').replace(/,/g, '').trim();
+      const value = Number(valueText.match(/-?\d+(?:\.\d+)?/)?.[0]);
+      if (!name || !Number.isFinite(value)) continue;
+      players.push({ name, team, pos, value: Math.round(value) });
+    }
+  }
+
+  return players;
+}
+
+function extractSection(text, startLabel, endLabels) {
+  const start = text.search(startLabel);
+  if (start < 0) return '';
+  let end = text.length;
+  for (const re of endLabels) {
+    const m = re.exec(text.slice(start + 1));
+    if (m) end = Math.min(end, start + 1 + m.index);
+  }
+  return text.slice(start, end);
+}
+
+function parsePlayerSection(sectionText, pos) {
+  const rows = [];
+  const lineRegex = /(?:^|\n)\s*(\d{1,3})\s+([A-Za-z0-9.'’\- ]+?),\s*([A-Z]{1,4}|FA),\s*(\d{1,3})(?:\s*,\s*[-+−\d.\/ ]+)?/g;
+  let match;
+  while ((match = lineRegex.exec(sectionText))) {
+    rows.push({
+      rank: Number(match[1]),
+      name: match[2].trim(),
+      team: match[3].trim().toUpperCase(),
+      pos,
+      value: Number(match[4]),
+    });
+  }
+  return rows;
+}
+
+function parsePlayersFromText(html) {
+  const text = stripHtmlToText(html);
+  const endLabels = [
+    /Dynasty Trade Values: Quarterbacks/i,
+    /Dynasty Trade Values: Running Backs/i,
+    /Dynasty Trade Values: Wide Receivers/i,
+    /Dynasty Trade Value Chart: Tight Ends/i,
+    /Subscribe:/i,
+    /Articles\s+Dynasty/i,
+  ];
+
+  const sections = [
+    { pos: 'QB', start: /Dynasty Trade Values: Quarterbacks/i },
+    { pos: 'RB', start: /Dynasty Trade Values: Running Backs/i },
+    { pos: 'WR', start: /Dynasty Trade Values: Wide Receivers/i },
+    { pos: 'TE', start: /Dynasty Trade Value Chart: Tight Ends/i },
+  ];
+
+  const out = [];
+  for (const sec of sections) {
+    const sectionText = extractSection(text, sec.start, endLabels.filter((x) => String(x) !== String(sec.start)));
+    out.push(...parsePlayerSection(sectionText, sec.pos));
+  }
+  return out;
+}
+
+function uniquePlayers(rows) {
+  const byName = new Map();
+  for (const row of rows || []) {
+    const key = normalizeName(row?.name);
+    if (!key) continue;
+    const current = byName.get(key);
+    if (!current) {
+      byName.set(key, row);
+      continue;
+    }
+    const currentRank = Number(current.rank || 999999);
+    const nextRank = Number(row.rank || 999999);
+    if (nextRank < currentRank) byName.set(key, row);
+  }
+  return [...byName.values()];
+}
+
+function parsePlayersFromTradeChart(html) {
+  const fromTables = parsePlayerTablesFromHtml(html);
+  if (fromTables.length >= 40) return uniquePlayers(fromTables);
+
+  const fromText = parsePlayersFromText(html);
+  if (fromText.length >= fromTables.length) return uniquePlayers(fromText);
+  return uniquePlayers(fromTables);
+}
+
+function lineValue(text, re) {
+  const match = text.match(re);
+  return match ? Number(match[1]) : NaN;
+}
+
+function expandPickValuesFromTradeText(text) {
+  const pickValues = {};
+
+  for (let slot = 1; slot <= 12; slot += 1) {
+    const key = `2026-1.${String(slot).padStart(2, '0')}`;
+    const exact = lineValue(text, new RegExp(`1\\.${slot}\\s+(\\d+)`, 'i'));
+    if (Number.isFinite(exact)) pickValues[key] = exact;
+  }
+
+  const early2 = lineValue(text, /Early\s+2nd\s+(\d+)/i);
+  const mid2 = lineValue(text, /Mid\s+2nd\s+(\d+)/i);
+  const late2 = lineValue(text, /Late\s+2nd\s+(\d+)/i);
+  const early3 = lineValue(text, /Early\s+3rd\s+(\d+)/i);
+  const mid3 = lineValue(text, /Middle\s+3rd\s+(\d+)/i);
+  const late3 = lineValue(text, /Late\s+3rd\s+(\d+)/i);
+  const early4 = lineValue(text, /Early\s+4th\s+(\d+)/i);
+  const late4 = lineValue(text, /Late\s+4th\s+(\d+)/i);
+  const round5Plus = lineValue(text, /All\s+Picks\s+(\d+)/i);
+
+  for (let slot = 1; slot <= 10; slot += 1) {
+    const s = String(slot).padStart(2, '0');
+    pickValues[`2026-2.${s}`] = slot <= 3 ? early2 : slot <= 7 ? mid2 : late2;
+    pickValues[`2026-3.${s}`] = slot <= 3 ? early3 : slot <= 7 ? mid3 : late3;
+    pickValues[`2026-4.${s}`] = slot <= 5 ? early4 : late4;
+    pickValues[`2026-5.${s}`] = round5Plus;
+    pickValues[`2026-6.${s}`] = round5Plus;
+  }
+
+  const r27Top = lineValue(text, /1\.01\s*[–-]\s*1\.03\s+(\d+)/i);
+  const r27Mid = lineValue(text, /1\.04\s*[–-]\s*1\.06\s+(\d+)/i);
+  const r27Late = lineValue(text, /1\.07\s*[–-]\s*1\.12\s+(\d+)/i);
+  const r27Early2 = lineValue(text, /Early\s+2nd\s+(\d+)/i);
+  const r27Late2 = lineValue(text, /Late\s+2nd\s+(\d+)/i);
+  const r27Early3 = lineValue(text, /Early\s+3rd\s+(\d+)/i);
+  const r27Late3 = lineValue(text, /Late\s+3rd\s+(\d+)/i);
+  const r27Other = lineValue(text, /All\s+others\s+(\d+)/i);
+
+  pickValues['2027-1'] = r27Mid || r27Top || 55;
+  pickValues['2027-2'] = Number.isFinite(r27Early2) && Number.isFinite(r27Late2)
+    ? Math.round((r27Early2 + r27Late2) / 2)
+    : 30;
+  pickValues['2027-3'] = Number.isFinite(r27Early3) && Number.isFinite(r27Late3)
+    ? Math.round((r27Early3 + r27Late3) / 2)
+    : 17;
+  pickValues['2027-4'] = r27Other || 8;
+  pickValues['2027-5'] = r27Other || 8;
+  pickValues['2027-6'] = r27Other || 8;
+
+  for (let slot = 1; slot <= 10; slot += 1) {
+    const s = String(slot).padStart(2, '0');
+    pickValues[`2027-1.${s}`] = slot <= 3 ? r27Top : slot <= 6 ? r27Mid : r27Late;
+    pickValues[`2027-2.${s}`] = slot <= 5 ? r27Early2 : r27Late2;
+    pickValues[`2027-3.${s}`] = slot <= 5 ? r27Early3 : r27Late3;
+    pickValues[`2027-4.${s}`] = r27Other;
+    pickValues[`2027-5.${s}`] = r27Other;
+    pickValues[`2027-6.${s}`] = r27Other;
+  }
+
+  for (const round of [1, 2, 3, 4, 5, 6]) {
+    const base2027 = pickValues[`2027-${round}`] || 8;
+    pickValues[`2028-${round}`] = Math.max(3, Math.round(base2027 * 0.86));
+    for (let slot = 1; slot <= 10; slot += 1) {
+      const s = String(slot).padStart(2, '0');
+      const p27 = pickValues[`2027-${round}.${s}`] || base2027;
+      pickValues[`2028-${round}.${s}`] = Math.max(3, Math.round(p27 * 0.86));
+    }
+  }
+
+  for (const [key, value] of Object.entries(pickValues)) {
+    if (!Number.isFinite(Number(value))) delete pickValues[key];
+  }
+
+  return pickValues;
+}
+
+async function readAdpPlayers() {
+  try {
+    const raw = JSON.parse(await fs.readFile(ADP_PATH, 'utf8'));
+    return Array.isArray(raw?.players) ? raw.players : [];
+  } catch {
+    return [];
   }
 }
+
+function buildArticleExactValues(playersFromChart, adpPlayers) {
+  const chartByName = new Map();
+  for (const row of playersFromChart) {
+    const key = normalizeName(row.name);
+    if (!key || !Number.isFinite(Number(row.value))) continue;
+    chartByName.set(key, {
+      name: row.name,
+      team: row.team || '',
+      pos: row.pos || '',
+      value: Math.round(Number(row.value)),
+      source: 'fantasypros-trade-chart-1qb',
+    });
+  }
+
+  const byName = {};
+  for (const [key, row] of chartByName.entries()) byName[key] = row.value;
+
+  const byId = {};
+  const players = [];
+  let unmatchedAdp = 0;
+
+  for (const p of adpPlayers) {
+    const id = String(p?.player_id ?? p?.id ?? '').trim();
+    const name = String(p?.name || p?.player_name || p?.full_name || '').trim();
+    if (!id || !name) continue;
+    const key = normalizeName(name);
+    const exact = chartByName.get(key);
+    if (!exact) {
+      unmatchedAdp += 1;
+      continue;
+    }
+    byId[id] = exact.value;
+    players.push({ id, name, value: exact.value, source: exact.source });
+  }
+
+  return { byName, byId, players, unmatchedAdp, chartPlayers: chartByName.size };
+}
+
+async function main() {
+  await fs.mkdir(PUBLIC_DIR, { recursive: true });
+
+  log('fetching latest trade chart index');
+  const tradeIndexHtml = await fetchText(URLS.tradeChartIndex).catch(() => '');
+  const tradeChartUrl = extractTradeChartUrl(tradeIndexHtml || '');
+  log(`trade chart: ${tradeChartUrl}`);
+
+  const tradeHtml = await fetchText(tradeChartUrl);
+  const tradeText = stripHtmlToText(tradeHtml);
+
+  const playersFromChart = parsePlayersFromTradeChart(tradeHtml);
+  if (!playersFromChart.length) {
+    throw new Error('Could not parse player values from the latest FantasyPros trade value chart.');
+  }
+  log(`parsed player values from chart: ${playersFromChart.length}`);
+
+  const adpPlayers = await readAdpPlayers();
+  const exact = buildArticleExactValues(playersFromChart, adpPlayers);
+  const pickValues = expandPickValuesFromTradeText(tradeText);
+
+  const payload = {
+    source: 'FantasyPros Trade Value Chart',
+    generatedFor: 'FantasyPros dynasty 1QB / Trade Value only',
+    updatedAt: nowIso(),
+    tradeChartUrl,
+    complete: exact.unmatchedAdp === 0,
+    counts: {
+      adpPlayers: adpPlayers.length,
+      chartPlayers: exact.chartPlayers,
+      byId: Object.keys(exact.byId).length,
+      byName: Object.keys(exact.byName).length,
+      picks: Object.keys(pickValues).length,
+      unmatchedAdpPlayers: exact.unmatchedAdp,
+    },
+    players: exact.players,
+    byId: exact.byId,
+    byName: exact.byName,
+    pickValues,
+  };
+
+  await fs.writeFile(OUT_PATH, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
+  log(`wrote ${OUT_PATH} (players=${payload.players.length}, picks=${Object.keys(pickValues).length}, unmatchedAdpPlayers=${exact.unmatchedAdp})`);
+}
+
+main().catch((err) => {
+  console.error(`❌ FantasyPros update failed: ${err?.message || err}`);
+  process.exit(1);
+});
