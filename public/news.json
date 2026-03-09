@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-09T21:27:53.727Z",
+  "generatedAt": "2026-03-09T21:32:10.860Z",
   "items": [
     {
       "id": "b920d2edbdac14dc5d67e141e50d81aaa18b76af",
@@ -272,15 +272,6 @@
       "description": "The 2027 Super Bowl will air on ESPN for the first time in network history. Learn more information about Super Bowl LXI festivities now."
     },
     {
-      "id": "3c7e711be798494243c2926ba0ea64095912678a",
-      "source": "FantasyPros",
-      "title": "Gardner Minshew II expected to serve as backup QB for Cardinals in 2026",
-      "url": "https://www.fantasypros.com/nfl/news/572967/gardner-minshew-ii-expected-to-serve-backup-qb-cardinals-2026.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
       "id": "991cc2d928e24521ef934da2d4a8393a88f12a36",
       "source": "FantasyPros",
       "title": "Jacoby Brissett expected to remain Cardinals starting QB in 2026",
@@ -303,6 +294,15 @@
       "source": "FantasyPros",
       "title": "Travis Kelce officially agrees to deal with Chiefs",
       "url": "https://www.fantasypros.com/nfl/news/572963/travis-kelce-officially-agrees-to-deal-with-chiefs.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "d0bf8c7af614e25f5c1aab4aa40ce33a4285e23d",
+      "source": "FantasyPros",
+      "title": "Gardner Minshew II signs one-year deal with Cardinals",
+      "url": "https://www.fantasypros.com/nfl/news/572958/gardner-minshew-ii-signs-one-year-deal-with-cardinals-.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
@@ -483,6 +483,15 @@
       "source": "FantasyPros",
       "title": "John Franklin-Myers signs with Titans",
       "url": "https://www.fantasypros.com/nfl/news/572927/john-franklin-myers-signs-with-titans.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "29cea72e60af6eb9277d3f6814bf5a134c2b30b8",
+      "source": "FantasyPros",
+      "title": "J.K. Dobbins re-signs with Broncos",
+      "url": "https://www.fantasypros.com/nfl/news/572926/jk-dobbins-re-signs-with-broncos-.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
