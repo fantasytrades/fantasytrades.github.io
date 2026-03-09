@@ -164,17 +164,17 @@ const PICKS = pickCatalog();
 const PICK_LABEL = new Map(PICKS.map((p) => [String(p.id), p.label]));
 
 
-const DP_PICK_VALUES_1QB = {
-  "2026-1.01": 41.6, "2026-1.02": 37.7, "2026-1.03": 34.2, "2026-1.04": 31.0, "2026-1.05": 28.3,
-  "2026-1.06": 25.9, "2026-1.07": 23.7, "2026-1.08": 21.7, "2026-1.09": 20.0, "2026-1.10": 18.5,
+const FP_PICK_VALUES_1QB = {
+  "2026-1.01": 68, "2026-1.02": 58, "2026-1.03": 56, "2026-1.04": 54, "2026-1.05": 52,
+  "2026-1.06": 50, "2026-1.07": 48, "2026-1.08": 46, "2026-1.09": 44, "2026-1.10": 42,
 };
 
 const FP_METER_SEGMENTS = [
-  { label: "Te Están Robando", shortLabel: "Robando", lines: ["Te Están", "Robando"], color: "#DC2626", textColor: "#FFFFFF", min: -100, max: -20, tone: "robbery" },
-  { label: "Le Falta Algo", shortLabel: "Le Falta Algo", lines: ["Le Falta", "Algo"], color: "#F59E0B", textColor: "#FFFFFF", min: -20, max: -5, tone: "weak" },
-  { label: "Parejo", shortLabel: "Parejo", lines: ["Parejo"], color: "#A3E635", textColor: "#365314", min: -5, max: 5, tone: "even" },
-  { label: "Te Sirve", shortLabel: "Te Sirve", lines: ["Te Sirve"], color: "#22C55E", textColor: "#FFFFFF", min: 5, max: 20, tone: "good" },
-  { label: "Estás Robando", shortLabel: "Estás Robando", lines: ["Estás", "Robando"], color: "#166534", textColor: "#FFFFFF", min: 20, max: 100, tone: "great" },
+  { label: "ABURRIDO", color: "#16C784" },
+  { label: "NADA MAL", color: "#A3D632" },
+  { label: "MUY BIEN", color: "#F3D51B" },
+  { label: "FANTÁSTICO", color: "#F7931E" },
+  { label: "ASOMBROSO", color: "#EF4444" },
 ];
 
 function clamp(n, min, max) {
@@ -195,10 +195,6 @@ function normalizeLookupName(name) {
 function normalizeFantasyProsValuesPayload(raw) {
   const out = {
     updatedAt: null,
-    source: null,
-    generatedFor: null,
-    complete: false,
-    counts: {},
     byId: {},
     byName: {},
     pickValues: {},
@@ -208,10 +204,6 @@ function normalizeFantasyProsValuesPayload(raw) {
   if (!raw || typeof raw !== "object") return out;
 
   out.updatedAt = raw.updatedAt || raw.generatedAt || raw.updated_at || null;
-  out.source = raw.source || raw.provider || "DynastyProcess";
-  out.generatedFor = raw.generatedFor || raw.generated_for || raw.scoring || null;
-  out.complete = Boolean(raw.complete ?? raw.isComplete ?? false);
-  out.counts = raw.counts && typeof raw.counts === "object" ? raw.counts : {};
 
   const putPlayer = (playerId, playerName, value) => {
     const n = Number(value);
@@ -302,11 +294,11 @@ function fantasyProsPlayerValue(playerId, metaById, fpDynastyValues, fallbackNam
     Number(meta?.dynasty_value ?? meta?.trade_value ?? meta?.fantasypros_value ?? meta?.fp_value);
 
   if (Number.isFinite(exactMetaValue)) {
-    return { value: exactMetaValue, source: "dp-meta" };
+    return { value: exactMetaValue, source: "meta-exact" };
   }
 
   if (fpDynastyValues?.byId?.[id] != null) {
-    return { value: Number(fpDynastyValues.byId[id]), source: "dp-local" };
+    return { value: Number(fpDynastyValues.byId[id]), source: "local-exact" };
   }
 
   const name =
@@ -318,12 +310,12 @@ function fantasyProsPlayerValue(playerId, metaById, fpDynastyValues, fallbackNam
   const key = normalizeLookupName(name);
 
   if (key && fpDynastyValues?.byName?.[key] != null) {
-    return { value: Number(fpDynastyValues.byName[key]), source: "dp-local" };
+    return { value: Number(fpDynastyValues.byName[key]), source: "local-exact" };
   }
 
   return {
     value: estimateDynastyPlayerValue(meta, meta?.position || meta?.pos || ""),
-    source: "fallback",
+    source: "estimate",
   };
 }
 
@@ -331,31 +323,51 @@ function fantasyProsPickValue(pickId, fpDynastyValues) {
   const base = String(pickId || "").split("#")[0];
 
   if (fpDynastyValues?.pickValues?.[base] != null) {
-    return { value: Number(fpDynastyValues.pickValues[base]), source: "dp-local" };
+    return { value: Number(fpDynastyValues.pickValues[base]), source: "local-exact" };
   }
 
-  if (DP_PICK_VALUES_1QB[base] != null) {
-    return { value: DP_PICK_VALUES_1QB[base], source: "dp-default" };
+  if (FP_PICK_VALUES_1QB[base] != null) {
+    return { value: FP_PICK_VALUES_1QB[base], source: "article-exact" };
   }
 
-  const detailed = base.match(/^(\d{4})-(\d)\.(\d{2})$/);
-  if (detailed) {
-    const year = Number(detailed[1]);
-    const round = Number(detailed[2]);
-    const slot = Number(detailed[3]);
+  const m = base.match(/^(\d{4})-(\d)\.(\d{2})$/);
+  if (m) {
+    const year = Number(m[1]);
+    const round = Number(m[2]);
+    const slot = Number(m[3]);
 
-    if (year === 2026 && round >= 2 && round <= 6) {
-      const prev = fantasyProsPickValue(`${year}-${round - 1}.${String(slot).padStart(2, "0")}`, fpDynastyValues);
-      if (Number.isFinite(prev?.value)) {
-        const factor = round === 6 ? 0.8 : 0.82;
-        return { value: Math.max(0.8, Math.round(prev.value * factor * 10) / 10), source: "dp-derived" };
+    if (year === 2026) {
+      if (round === 2) {
+        if (slot <= 3) return { value: 35, source: "article-exact" };
+        if (slot <= 7) return { value: 29, source: "article-exact" };
+        return { value: 24, source: "article-exact" };
       }
+      if (round === 3) {
+        if (slot <= 3) return { value: 20, source: "article-exact" };
+        if (slot <= 7) return { value: 16, source: "article-exact" };
+        return { value: 14, source: "article-exact" };
+      }
+      if (round === 4) {
+        return { value: slot <= 5 ? 10 : 7, source: "article-exact" };
+      }
+      if (round >= 5) return { value: 3, source: "article-exact" };
     }
 
-    if ((year === 2027 || year === 2028) && round >= 1 && round <= 6) {
-      const generic = fantasyProsPickValue(`${year}-${round}`, fpDynastyValues);
-      if (Number.isFinite(generic?.value)) {
-        return { value: generic.value, source: generic.source || "dp-derived" };
+    if (year === 2027) {
+      if (round === 1) {
+        if (slot <= 3) return { value: 66, source: "article-exact" };
+        if (slot <= 6) return { value: 55, source: "article-exact" };
+        return { value: 45, source: "article-exact" };
+      }
+      if (round === 2) return { value: slot <= 5 ? 34 : 27, source: "article-exact" };
+      if (round === 3) return { value: slot <= 5 ? 18 : 15, source: "article-exact" };
+      return { value: 8, source: "article-exact" };
+    }
+
+    if (year === 2028) {
+      const prior = fantasyProsPickValue(base.replace(/^2028-/, "2027-"), fpDynastyValues);
+      if (prior?.value != null) {
+        return { value: Math.max(3, Math.round(prior.value * 0.86)), source: "estimate" };
       }
     }
   }
@@ -365,31 +377,28 @@ function fantasyProsPickValue(pickId, fpDynastyValues) {
     const year = Number(generic[1]);
     const round = Number(generic[2]);
 
-    if (year === 2027 && round >= 1 && round <= 6) {
-      const prev = round === 1 ? 18.0 : fantasyProsPickValue(`2027-${round - 1}`, fpDynastyValues);
-      if (round === 1) return { value: 18.0, source: "dp-derived" };
-      if (Number.isFinite(prev?.value)) {
-        return { value: Math.max(0.8, Math.round(prev.value * 0.62 * 10) / 10), source: "dp-derived" };
-      }
+    if (year === 2027) {
+      if (round === 1) return { value: 55, source: "article-exact" };
+      if (round === 2) return { value: 30, source: "article-exact" };
+      if (round === 3) return { value: 17, source: "article-exact" };
+      return { value: 8, source: "article-exact" };
     }
 
-    if (year === 2028 && round >= 1 && round <= 6) {
-      const prevYear = fantasyProsPickValue(`2027-${round}`, fpDynastyValues);
-      if (Number.isFinite(prevYear?.value)) {
-        return { value: Math.max(0.8, Math.round(prevYear.value * 0.8 * 10) / 10), source: "dp-derived" };
-      }
+    if (year === 2028) {
+      const base2027 = fantasyProsPickValue(`2027-${round}`, fpDynastyValues);
+      return { value: Math.max(3, Math.round((base2027?.value || 8) * 0.86)), source: "estimate" };
     }
   }
 
-  return { value: 1.0, source: "fallback" };
+  return { value: 8, source: "estimate" };
 }
 
-function fantasyProsMeterLabel(advantagePct) {
-  if (advantagePct < -20) return { label: "Te están robando", tone: "robbery" };
-  if (advantagePct < -5) return { label: "Le falta algo", tone: "weak" };
-  if (advantagePct <= 5) return { label: "Parejo", tone: "even" };
-  if (advantagePct <= 20) return { label: "Te Sirve", tone: "good" };
-  return { label: "Estás robando", tone: "great" };
+function fantasyProsMeterLabel(ratio) {
+  if (ratio <= -0.18) return { label: "Aburrido", tone: "bad" };
+  if (ratio <= -0.06) return { label: "Nada mal", tone: "meh" };
+  if (ratio < 0.06) return { label: "Muy bien", tone: "mid" };
+  if (ratio < 0.18) return { label: "Fantástico", tone: "good" };
+  return { label: "Asombroso", tone: "great" };
 }
 
 function summarizeTradeForFantasyPros(version, viewerId, metaById, fpDynastyValues) {
@@ -426,43 +435,34 @@ function summarizeTradeForFantasyPros(version, viewerId, metaById, fpDynastyValu
 
   const giveTotal = giveDetails.reduce((sum, x) => sum + Number(x.value || 0), 0);
   const getTotal = getDetails.reduce((sum, x) => sum + Number(x.value || 0), 0);
+  const total = Math.max(1, giveTotal + getTotal);
   const delta = getTotal - giveTotal;
-  const advantagePct = giveTotal > 0 ? (delta / giveTotal) * 100 : (getTotal > 0 ? 100 : 0);
-  const clampedPct = clamp(advantagePct, -35, 35);
-  const meterPct = ((clampedPct + 35) / 70) * 100;
-  const verdict = fantasyProsMeterLabel(advantagePct);
+  const ratio = delta / total;
+  const meterPct = clamp(Math.round(50 + ratio * 180), 2, 98);
+  const verdict = fantasyProsMeterLabel(ratio);
 
   const allDetails = [...giveDetails, ...getDetails];
-  const resolvedCount = allDetails.filter((x) => Number.isFinite(Number(x.value))).length;
-  const fallbackCount = allDetails.filter((x) => x.source === "fallback").length;
-  const fantasyProsCount = Math.max(0, resolvedCount - fallbackCount);
+  const exactCount = allDetails.filter((x) => x.source !== "estimate").length;
+  const estimateCount = allDetails.length - exactCount;
 
-  const baseLabel = fpDynastyValues?.generatedFor || "DynastyProcess dynasty 1QB";
-  const dataFallbackPlayers = Number(fpDynastyValues?.counts?.fallbackPlayers || 0);
-
-  let sourceNote = "Respaldo local";
-  if (fpDynastyValues?.hasLocalData) {
-    sourceNote = dataFallbackPlayers > 0 || fallbackCount > 0
-      ? `${baseLabel} + respaldo local`
-      : baseLabel;
-  }
+  let sourceNote = "Estimado por ranking/ADP";
+  if (fpDynastyValues?.hasLocalData && estimateCount === 0) sourceNote = "FantasyPros local";
+  else if (fpDynastyValues?.hasLocalData && estimateCount > 0) sourceNote = "FantasyPros local + estimación";
+  else if (estimateCount !== allDetails.length) sourceNote = "Picks FantasyPros + estimación";
 
   return {
     meterPct,
     angle: 270 - (meterPct / 100) * 180,
     delta,
-    advantagePct,
+    ratio,
     giveTotal,
     getTotal,
     verdict,
-    resolvedCount,
-    fantasyProsCount,
-    fallbackCount,
+    exactCount,
+    estimateCount,
     itemCount: allDetails.length,
     sourceNote,
     updatedAt: fpDynastyValues?.updatedAt || null,
-    giveDetails,
-    getDetails,
   };
 }
 
@@ -499,21 +499,15 @@ function describeDonutSegment(cx, cy, outerRadius, innerRadius, startAngle, endA
   ].join(" ");
 }
 
-function meterLabelPosition(cx, cy, startAngle, endAngle, radius) {
-  const midAngle = startAngle + (endAngle - startAngle) / 2;
-  return { ...polarToCartesian(cx, cy, radius, midAngle), midAngle };
-}
-
 function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues }) {
   const summary = summarizeTradeForFantasyPros(version, viewerId, metaById, fpDynastyValues);
-  const [showBreakdown, setShowBreakdown] = useState(false);
 
   const cx = 180;
-  const cy = 176;
-  const outerRadius = 128;
-  const innerRadius = 88;
-  const pointerBaseRadius = 24;
-  const pointerTipRadius = 120;
+  const cy = 178;
+  const outerRadius = 138;
+  const innerRadius = 84;
+  const pointerBaseRadius = 28;
+  const pointerTipRadius = 118;
   const startAngle = -120;
   const endAngle = 120;
   const totalAngle = endAngle - startAngle;
@@ -524,37 +518,11 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
   const pointerLeft = polarToCartesian(cx, cy, pointerBaseRadius, pointerAngle - 7);
   const pointerRight = polarToCartesian(cx, cy, pointerBaseRadius, pointerAngle + 7);
 
-  const sourceLabel = (source) => {
-    if (source === "dp-local" || source === "dp-meta") return "DynastyProcess";
-    if (source === "dp-default") return "DynastyProcess";
-    if (source === "dp-derived") return "DynastyProcess derivado";
-    return "Respaldo";
-  };
-
-  const renderBreakdownItem = (item) => (
-    <div key={`${item.type}-${item.id}`} className="fpBreakItem">
-      <div className="fpBreakMain">
-        <div className="fpBreakNameRow">
-          {item.type === "player" ? (
-            <span className={`posMini posMini-${normPos(metaById?.get(String(item.id))?.position || metaById?.get(String(item.id))?.pos || "")}`}>
-              {normPos(metaById?.get(String(item.id))?.position || metaById?.get(String(item.id))?.pos || "")}
-            </span>
-          ) : (
-            <span className="fpBreakPick">P</span>
-          )}
-          <span className="fpBreakName">{item.label}</span>
-        </div>
-        <div className="fpBreakSource">{sourceLabel(item.source)}</div>
-      </div>
-      <div className="fpBreakValue">{Number(item.value || 0)}</div>
-    </div>
-  );
-
   return (
     <div className="fpTradeBox">
       <div className="fpMeterHead">
         <div style={{ minWidth: 0 }}>
-          <div className="fpMeterTitle">DynastyProcess <span className="muted" style={{ fontWeight: 900 }}>(para vos)</span></div>
+          <div className="fpMeterTitle">FantasyPros <span className="muted" style={{ fontWeight: 900 }}>(para vos)</span></div>
           <div className="fpMeterMeta">
             {summary.sourceNote}
             {summary.updatedAt ? ` · ${new Date(summary.updatedAt).toLocaleString()}` : ""}
@@ -564,7 +532,7 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
       </div>
 
       <div className="fpMeterWrap">
-        <svg className="fpMeterSvg" viewBox="0 0 360 250" role="img" aria-label={`DynastyProcess: ${summary.verdict.label}`}>
+        <svg className="fpMeterSvg" viewBox="0 0 360 250" role="img" aria-label={`FantasyPros: ${summary.verdict.label}`}>
           <defs>
             <filter id="fpShadow" x="-30%" y="-30%" width="160%" height="160%">
               <feDropShadow dx="0" dy="10" stdDeviation="10" floodColor="rgba(15,23,42,0.18)" />
@@ -574,89 +542,69 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
           {FP_METER_SEGMENTS.map((seg, idx) => {
             const segStart = startAngle + idx * segmentAngle;
             const segEnd = segStart + segmentAngle;
-            const labelPos = meterLabelPosition(cx, cy, segStart, segEnd, innerRadius + ((outerRadius - innerRadius) * 0.58));
+            const midAngle = (segStart + segEnd) / 2;
+            const textPoint = polarToCartesian(cx, cy, 111, midAngle);
+
             return (
               <g key={seg.label}>
                 <path
                   d={describeDonutSegment(cx, cy, outerRadius, innerRadius, segStart, segEnd)}
                   fill={seg.color}
-                  opacity="0.98"
+                  opacity="0.95"
+                />
+                <path
+                  d={describeArc(cx, cy, outerRadius, segStart, segEnd)}
+                  fill="none"
+                  stroke="rgba(255,255,255,0.26)"
+                  strokeWidth="2"
                 />
                 <text
-                  x={labelPos.x}
-                  y={labelPos.y}
+                  x={textPoint.x}
+                  y={textPoint.y}
                   textAnchor="middle"
                   dominantBaseline="middle"
-                  className="fpSegmentInsideLabel"
-                  fill={seg.textColor}
-                  transform={`rotate(${labelPos.midAngle} ${labelPos.x} ${labelPos.y})`}
+                  className="fpMeterSegmentLabel"
+                  transform={`rotate(${midAngle} ${textPoint.x} ${textPoint.y})`}
                 >
-                  {seg.lines.map((line, lineIdx) => (
-                    <tspan key={`${seg.label}-${lineIdx}`} x={labelPos.x} dy={lineIdx === 0 ? (seg.lines.length > 1 ? -5 : 0) : 12}>
-                      {line}
-                    </tspan>
-                  ))}
+                  {seg.label}
                 </text>
               </g>
             );
           })}
 
+          <circle cx={cx} cy={cy} r="63" fill="#121827" filter="url(#fpShadow)" />
+          <circle cx={cx} cy={cy} r="8" fill="#FF4D4F" />
           <path
             d={`M ${pointerLeft.x} ${pointerLeft.y} L ${pointerTip.x} ${pointerTip.y} L ${pointerRight.x} ${pointerRight.y} Z`}
             fill="#202631"
             filter="url(#fpShadow)"
           />
-          <circle cx={cx} cy={cy} r="56" fill="#111827" filter="url(#fpShadow)" />
+          <circle cx={cx} cy={cy} r="16" fill="#202631" />
+          <circle cx={cx} cy={cy} r="6" fill="#FF4D4F" />
 
-          <text x={cx} y={cy - 14} textAnchor="middle" className="fpBalanceLabel">
+          <text x={cx} y={cy - 12} textAnchor="middle" className="fpBalanceLabel">
             Balance
           </text>
-          <text x={cx} y={cy + 14} textAnchor="middle" className="fpBalanceValue">
-            {summary.advantagePct > 0 ? "+" : ""}{Math.round(summary.advantagePct)}%
+          <text x={cx} y={cy + 16} textAnchor="middle" className="fpBalanceValue">
+            {summary.delta > 0 ? `+${summary.delta}` : summary.delta}
           </text>
         </svg>
       </div>
 
-      <div className="fpTradeStats fpTradeStatsTwo">
-        <div className="fpStat fpStatCentered">
+      <div className="fpTradeStats">
+        <div className="fpStat">
           <span className="muted">Recibís</span>
           <b>{summary.getTotal}</b>
         </div>
-        <div className="fpStat fpStatCentered">
+        <div className="fpStat">
           <span className="muted">Entregás</span>
           <b>{summary.giveTotal}</b>
         </div>
-      </div>
-
-      <div className="fpBreakToggleRow">
-        <button type="button" className="ghost miniBtn fpBreakToggleBtn" onClick={() => setShowBreakdown((v) => !v)}>
-          {showBreakdown ? "Ocultar valores por asset" : "Ver valores por asset"}
-        </button>
-      </div>
-
-      {showBreakdown ? (
-        <div className="fpBreakGrid">
-          <div className="fpBreakCol">
-            <div className="fpBreakColHead">
-              <span>Vos entregás</span>
-              <b>{summary.giveTotal}</b>
-            </div>
-            <div className="fpBreakList">
-              {summary.giveDetails.length ? summary.giveDetails.map(renderBreakdownItem) : <div className="muted">—</div>}
-            </div>
-          </div>
-
-          <div className="fpBreakCol">
-            <div className="fpBreakColHead">
-              <span>Vos recibís</span>
-              <b>{summary.getTotal}</b>
-            </div>
-            <div className="fpBreakList">
-              {summary.getDetails.length ? summary.getDetails.map(renderBreakdownItem) : <div className="muted">—</div>}
-            </div>
-          </div>
+        <div className="fpStat">
+          <span className="muted">Cobertura</span>
+          <b>{summary.exactCount}/{summary.itemCount}</b>
         </div>
-      ) : null}
+      </div>
     </div>
   );
 }
@@ -2015,21 +1963,18 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
         padding:7px 11px; border-radius:999px; font-weight:1100; border:1px solid transparent;
         white-space:nowrap;
       }
-      .fpVerdict-robbery{ background:rgba(220,38,38,0.12); border-color:rgba(220,38,38,0.24); color:#991B1B; }
-      .fpVerdict-weak{ background:rgba(245,158,11,0.14); border-color:rgba(245,158,11,0.26); color:#9A3412; }
-      .fpVerdict-even{ background:rgba(163,230,53,0.18); border-color:rgba(163,230,53,0.28); color:#3F6212; }
-      .fpVerdict-good{ background:rgba(34,197,94,0.14); border-color:rgba(34,197,94,0.24); color:#166534; }
-      .fpVerdict-great{ background:rgba(22,101,52,0.14); border-color:rgba(22,101,52,0.26); color:#14532D; }
+      .fpVerdict-bad{ background:rgba(22,199,132,0.14); border-color:rgba(22,199,132,0.24); color:#0F766E; }
+      .fpVerdict-meh{ background:rgba(163,214,50,0.18); border-color:rgba(163,214,50,0.30); color:#4D7C0F; }
+      .fpVerdict-mid{ background:rgba(243,213,27,0.20); border-color:rgba(243,213,27,0.35); color:#A16207; }
+      .fpVerdict-good{ background:rgba(247,147,30,0.16); border-color:rgba(247,147,30,0.28); color:#C2410C; }
+      .fpVerdict-great{ background:rgba(239,68,68,0.14); border-color:rgba(239,68,68,0.28); color:#B91C1C; }
       .fpMeterWrap{ width:100%; display:flex; justify-content:center; }
       .fpMeterSvg{ width:min(100%, 560px); height:auto; display:block; overflow:visible; }
-      .fpSegmentInsideLabel{
+      .fpMeterSegmentLabel{
         font-size:10px;
-        font-weight:1100;
-        letter-spacing:-0.01em;
-        paint-order:stroke fill;
-        stroke:rgba(15,23,42,0.10);
-        stroke-width:0.8px;
-        stroke-linejoin:round;
+        font-weight:1000;
+        letter-spacing:0.08em;
+        fill:rgba(255,255,255,0.94);
       }
       .fpBalanceLabel{
         font-size:14px;
@@ -2044,9 +1989,6 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
       .fpTradeStats{
         display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:8px;
       }
-      .fpTradeStatsTwo{
-        grid-template-columns:repeat(2, minmax(0, 1fr));
-      }
       .fpStat{
         border:1px solid var(--border);
         border-radius:12px;
@@ -2055,97 +1997,16 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
         display:grid;
         gap:3px;
       }
-      .fpStatCentered{
-        justify-items:center;
-        text-align:center;
-      }
       .fpStat b{ font-size:18px; line-height:1; }
-      .fpBreakToggleRow{ display:flex; justify-content:flex-start; }
-      .fpBreakToggleBtn{ border-radius:12px; }
-      .fpBreakGrid{
-        display:grid;
-        grid-template-columns:1fr 1fr;
-        gap:10px;
-      }
-      .fpBreakCol{
-        border:1px solid var(--border);
-        border-radius:14px;
-        background:#fff;
-        padding:10px;
-        display:grid;
-        gap:10px;
-      }
-      .fpBreakColHead{
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        gap:10px;
-        font-weight:1100;
-      }
-      .fpBreakList{ display:grid; gap:8px; }
-      .fpBreakItem{
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        gap:10px;
-        padding:9px 10px;
-        border-radius:12px;
-        border:1px solid var(--border);
-        background:#F8FAFC;
-      }
-      .fpBreakMain{ min-width:0; display:grid; gap:4px; }
-      .fpBreakNameRow{ display:flex; align-items:center; gap:8px; min-width:0; }
-      .fpBreakName{
-        font-weight:1000;
-        overflow:hidden;
-        text-overflow:ellipsis;
-        white-space:nowrap;
-      }
-      .fpBreakSource{
-        color:var(--muted);
-        font-size:11px;
-        font-weight:900;
-      }
-      .fpBreakValue{
-        font-weight:1100;
-        font-size:18px;
-        line-height:1;
-        color:#0F172A;
-        flex:0 0 auto;
-      }
-      .fpBreakPick{
-        width:24px;
-        height:24px;
-        border-radius:999px;
-        display:inline-flex;
-        align-items:center;
-        justify-content:center;
-        background:rgba(2,132,199,0.10);
-        border:1px solid rgba(2,132,199,0.16);
-        color:#0F3A55;
-        font-weight:1100;
-        flex:0 0 auto;
-      }
       @media(max-width:640px){
         .fpTradeBox{ padding:10px; border-radius:14px; }
         .fpMeterHead{ display:grid; gap:8px; }
         .fpVerdict{ justify-self:start; }
-        .fpSegmentTopLabels{
-          width:min(100%, 420px);
-          gap:6px;
-          margin-bottom:0;
-        }
-        .fpSegmentTopLabel{
-          min-height:34px;
-          font-size:10px;
-          line-height:1.08;
-          padding:0 2px;
-        }
         .fpMeterSvg{ width:min(100%, 420px); }
+        .fpMeterSegmentLabel{ font-size:8px; letter-spacing:0.05em; }
         .fpBalanceLabel{ font-size:12px; }
         .fpBalanceValue{ font-size:24px; }
         .fpTradeStats{ grid-template-columns:1fr; }
-        .fpBreakGrid{ grid-template-columns:1fr; }
       }
 
       @media (max-width: 640px){
@@ -2206,6 +2067,20 @@ function MyTeamView({
 
   const filtered = useMemo(() => {
     const qq = q.trim().toLowerCase();
+    const readName = (p) => String(p?.name || p?.player_name || p?.full_name || p?.player || "").trim();
+    const readAdp = (p) => {
+      const n = Number(
+        p?.adp ??
+        p?.adp_formatted ??
+        p?.adp_ppr ??
+        p?.ppr_adp ??
+        p?.adp_value ??
+        p?.adp_rank ??
+        p?.rank
+      );
+      return Number.isFinite(n) && n > 0 ? n : Number.POSITIVE_INFINITY;
+    };
+
     return (players || [])
       .filter((p) => {
         const posRaw = String(p?.position ?? p?.pos ?? p?.player_position ?? "").toUpperCase();
@@ -2214,12 +2089,17 @@ function MyTeamView({
         if (posFilter !== "ALL") {
           if (posFilter === "FLEX") {
             if (!["RB", "WR", "TE"].includes(pos)) return false;
-          } else {
-            if (pos !== posFilter) return false;
+          } else if (pos !== posFilter) {
+            return false;
           }
         }
         if (!qq) return true;
-        return String(p.name || p.player_name || p.full_name || p.player || "").toLowerCase().includes(qq);
+        return readName(p).toLowerCase().includes(qq);
+      })
+      .sort((a, b) => {
+        const adpDiff = readAdp(a) - readAdp(b);
+        if (Number.isFinite(adpDiff) && adpDiff !== 0) return adpDiff;
+        return readName(a).localeCompare(readName(b), "es", { sensitivity: "base" });
       })
       .slice(0, 1200);
   }, [players, q, posFilter]);
@@ -3697,29 +3577,30 @@ function ChatsView({ me, teams, teamsByUser, metaById, fpDynastyValues }) {
     }
   }
 
-  function canHideTrade(trade) {
-    if (!trade?.id || !me?.id) return false;
-    const meId = String(me.id);
-    const st = normalizeTradeStatus(trade?.status, trade?.response);
-    const isSender = String(trade?.from_user_id) === meId;
-    const isReceiver = String(trade?.to_user_id) === meId;
-
-    return (
-      st === "CANCELLED" ||
-      st === "ACCEPTED" ||
-      st === "ROBBERY" ||
-      st === "RESPONDED" ||
-      (isSender && !!trade?.cancelled_at) ||
-      (isReceiver && !!trade?.responded_at)
-    );
-  }
-
   async function hideTrade(trade) {
     if (!trade?.id || !me?.id) return;
     try {
-      if (!canHideTrade(trade)) return;
+      const meId = String(me.id);
+      const st = normalizeTradeStatus(trade?.status, trade?.response);
+      const isReceiver = String(trade?.to_user_id) === meId;
+      const needsAutoRobbery = isReceiver && st === "PENDING";
 
-      await fsHideTradeForUser(trade, me.id);
+      let tradeForHide = trade;
+      if (needsAutoRobbery) {
+        const stamp = nowIso();
+        await fsRespondTrade(trade.id, "ROBBERY");
+        tradeForHide = normalizeTradeRow({
+          ...trade,
+          status: "ROBBERY",
+          response: "ROBBERY",
+          responded_at: stamp,
+          robbery_at: stamp,
+          updated_at: stamp,
+          hidden_for: [],
+        });
+      }
+
+      await fsHideTradeForUser(tradeForHide, me.id);
       if (editingId === trade.id) clearDraft();
       await refreshTrades();
     } catch (e) {
@@ -4135,9 +4016,7 @@ function ChatsView({ me, teams, teamsByUser, metaById, fpDynastyValues }) {
                             {showHistory ? "Ocultar historial" : `Ver historial (${t.history.length})`}
                           </button>
                         ) : null}
-                        {canHideTrade(t) ? (
-                          <button className="danger miniBtn" onClick={() => hideTrade(t)}>Borrar</button>
-                        ) : null}
+                        <button className="ghost miniBtn" onClick={() => hideTrade(t)}>Borrar</button>
                         {isSender && st === "PENDING" ? (
                           <>
                             <button className="ghost miniBtn" onClick={() => loadForEdit(t)}>Editar</button>
