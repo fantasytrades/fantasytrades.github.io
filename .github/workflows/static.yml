@@ -4,7 +4,9 @@ on:
   push:
     branches: [main]
     paths-ignore:
-      - "public/adp.json"   # evita que el commit automático del ADP dispare otro deploy
+      - "public/adp.json"
+      - "public/news.json"
+      - "public/fantasypros-dynasty-values.json"
   schedule:
     - cron: "0 12 * * *"    # todos los días 12:00 UTC (cambialo si querés)
 permissions:
@@ -39,23 +41,23 @@ jobs:
           VITE_FIREBASE_PROJECT_ID=fantasy-trades-d992a
           VITE_FIREBASE_APP_ID=1:111630512150:web:9c379e792b0d40e1fb8537
           EOF
-      # --- 1) Actualiza ADP (tu prebuild) ---
-      - name: Update ADP
+      # --- 1) Actualiza JSON generados (ADP + News + FantasyPros) ---
+      - name: Update generated data
         run: npm run prebuild
-      # --- 2) Commit del ADP si cambió ---
-      - name: Commit updated ADP (if changed)
+      # --- 2) Commit de JSON generados si cambiaron ---
+      - name: Commit generated JSON (if changed)
         continue-on-error: true
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add public/adp.json
+          git add public/adp.json public/news.json public/fantasypros-dynasty-values.json
           if git diff --cached --quiet; then
-            echo "No ADP changes"
+            echo "No generated JSON changes"
             exit 0
           fi
 
-          git commit -m "chore: update ADP [skip ci]" || true
+          git commit -m "chore: update generated data [skip ci]" || true
 
           # trae cambios remotos y rebasea tu commit encima
           git pull --rebase origin main || (git rebase --abort || true)
@@ -65,7 +67,7 @@ jobs:
     
       # --- 3) Build ---
       - name: Build
-        run: npm run build
+        run: npx vite build
       # --- 4) Upload artifact para Pages ---
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
