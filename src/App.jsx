@@ -543,18 +543,19 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
   };
 
   const renderBreakdownItem = (item) => (
-    <div className="fpBreakMain">
-  <div className="fpBreakNameRow">
-    {item.type === "player" ? (
-      <span className={`posMini posMini-${normPos(metaById?.get(String(item.id))?.position || metaById?.get(String(item.id))?.pos || "")}`}>
-        {normPos(metaById?.get(String(item.id))?.position || metaById?.get(String(item.id))?.pos || "")}
-      </span>
-    ) : (
-      <span className="fpBreakPick">P</span>
-    )}
-    <span className="fpBreakName">{item.label}</span>
-  </div>
-</div>
+          <div className="fpBreakMain">
+            <div className="fpBreakNameRow">
+              {item.type === "player" ? (
+                <span className={`posMini posMini-${normPos(metaById?.get(String(item.id))?.position || metaById?.get(String(item.id))?.pos || "")}`}>
+                  {normPos(metaById?.get(String(item.id))?.position || metaById?.get(String(item.id))?.pos || "")}
+                </span>
+              ) : (
+                <span className="fpBreakPick">P</span>
+              )}
+              <span className="fpBreakName">{item.label}</span>
+            </div>
+            <div className="fpBreakSource">{sourceLabel(item.source)}</div>
+        </div>
   );
 
   return (
