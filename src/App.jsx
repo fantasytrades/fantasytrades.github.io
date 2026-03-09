@@ -3697,29 +3697,27 @@ function ChatsView({ me, teams, teamsByUser, metaById, fpDynastyValues }) {
     }
   }
 
+  function canHideTrade(trade) {
+    if (!trade?.id || !me?.id) return false;
+    const meId = String(me.id);
+    const st = normalizeTradeStatus(trade?.status, trade?.response);
+    const isSender = String(trade?.from_user_id) === meId;
+    const isReceiver = String(trade?.to_user_id) === meId;
+
+    return (
+      st === "CANCELLED" ||
+      st === "ACCEPTED" ||
+      st === "ROBBERY" ||
+      st === "RESPONDED" ||
+      (isSender && !!trade?.cancelled_at) ||
+      (isReceiver && !!trade?.responded_at)
+    );
+  }
+
   async function hideTrade(trade) {
     if (!trade?.id || !me?.id) return;
     try {
-      const meId = String(me.id);
-      const st = normalizeTradeStatus(trade?.status, trade?.response);
-      const isSender = String(trade?.from_user_id) === meId;
-      const isReceiver = String(trade?.to_user_id) === meId;
-      const canHide =
-        st === "CANCELLED" ||
-        st === "ACCEPTED" ||
-        st === "ROBBERY" ||
-        st === "RESPONDED" ||
-        (isSender && !!trade?.cancelled_at) ||
-        (isReceiver && !!trade?.responded_at);
-
-      if (!canHide) {
-        alert(
-          isSender
-            ? "Solo podés borrar este trade cuando el otro usuario responda o si antes lo cancelás."
-            : "Primero respondé el trade. Después lo vas a poder borrar."
-        );
-        return;
-      }
+      if (!canHideTrade(trade)) return;
 
       await fsHideTradeForUser(trade, me.id);
       if (editingId === trade.id) clearDraft();
@@ -4137,7 +4135,9 @@ function ChatsView({ me, teams, teamsByUser, metaById, fpDynastyValues }) {
                             {showHistory ? "Ocultar historial" : `Ver historial (${t.history.length})`}
                           </button>
                         ) : null}
-                        <button className="ghost miniBtn" onClick={() => hideTrade(t)}>Borrar</button>
+                        {canHideTrade(t) ? (
+                          <button className="danger miniBtn" onClick={() => hideTrade(t)}>Borrar</button>
+                        ) : null}
                         {isSender && st === "PENDING" ? (
                           <>
                             <button className="ghost miniBtn" onClick={() => loadForEdit(t)}>Editar</button>
