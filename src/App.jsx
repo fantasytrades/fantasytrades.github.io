@@ -164,9 +164,9 @@ const PICKS = pickCatalog();
 const PICK_LABEL = new Map(PICKS.map((p) => [String(p.id), p.label]));
 
 
-const FP_PICK_VALUES_1QB = {
-  "2026-1.01": 68, "2026-1.02": 58, "2026-1.03": 56, "2026-1.04": 54, "2026-1.05": 52,
-  "2026-1.06": 50, "2026-1.07": 48, "2026-1.08": 46, "2026-1.09": 44, "2026-1.10": 42,
+const DP_PICK_VALUES_1QB = {
+  "2026-1.01": 41.6, "2026-1.02": 37.7, "2026-1.03": 34.2, "2026-1.04": 31.0, "2026-1.05": 28.3,
+  "2026-1.06": 25.9, "2026-1.07": 23.7, "2026-1.08": 21.7, "2026-1.09": 20.0, "2026-1.10": 18.5,
 };
 
 const FP_METER_SEGMENTS = [
@@ -208,7 +208,7 @@ function normalizeFantasyProsValuesPayload(raw) {
   if (!raw || typeof raw !== "object") return out;
 
   out.updatedAt = raw.updatedAt || raw.generatedAt || raw.updated_at || null;
-  out.source = raw.source || raw.provider || "FantasyPros";
+  out.source = raw.source || raw.provider || "DynastyProcess";
   out.generatedFor = raw.generatedFor || raw.generated_for || raw.scoring || null;
   out.complete = Boolean(raw.complete ?? raw.isComplete ?? false);
   out.counts = raw.counts && typeof raw.counts === "object" ? raw.counts : {};
@@ -302,11 +302,11 @@ function fantasyProsPlayerValue(playerId, metaById, fpDynastyValues, fallbackNam
     Number(meta?.dynasty_value ?? meta?.trade_value ?? meta?.fantasypros_value ?? meta?.fp_value);
 
   if (Number.isFinite(exactMetaValue)) {
-    return { value: exactMetaValue, source: "fp-meta" };
+    return { value: exactMetaValue, source: "dp-meta" };
   }
 
   if (fpDynastyValues?.byId?.[id] != null) {
-    return { value: Number(fpDynastyValues.byId[id]), source: "fp-local" };
+    return { value: Number(fpDynastyValues.byId[id]), source: "dp-local" };
   }
 
   const name =
@@ -318,7 +318,7 @@ function fantasyProsPlayerValue(playerId, metaById, fpDynastyValues, fallbackNam
   const key = normalizeLookupName(name);
 
   if (key && fpDynastyValues?.byName?.[key] != null) {
-    return { value: Number(fpDynastyValues.byName[key]), source: "fp-local" };
+    return { value: Number(fpDynastyValues.byName[key]), source: "dp-local" };
   }
 
   return {
@@ -331,51 +331,31 @@ function fantasyProsPickValue(pickId, fpDynastyValues) {
   const base = String(pickId || "").split("#")[0];
 
   if (fpDynastyValues?.pickValues?.[base] != null) {
-    return { value: Number(fpDynastyValues.pickValues[base]), source: "fp-local" };
+    return { value: Number(fpDynastyValues.pickValues[base]), source: "dp-local" };
   }
 
-  if (FP_PICK_VALUES_1QB[base] != null) {
-    return { value: FP_PICK_VALUES_1QB[base], source: "fp-article" };
+  if (DP_PICK_VALUES_1QB[base] != null) {
+    return { value: DP_PICK_VALUES_1QB[base], source: "dp-default" };
   }
 
-  const m = base.match(/^(\d{4})-(\d)\.(\d{2})$/);
-  if (m) {
-    const year = Number(m[1]);
-    const round = Number(m[2]);
-    const slot = Number(m[3]);
+  const detailed = base.match(/^(\d{4})-(\d)\.(\d{2})$/);
+  if (detailed) {
+    const year = Number(detailed[1]);
+    const round = Number(detailed[2]);
+    const slot = Number(detailed[3]);
 
-    if (year === 2026) {
-      if (round === 2) {
-        if (slot <= 3) return { value: 35, source: "fp-article" };
-        if (slot <= 7) return { value: 29, source: "fp-article" };
-        return { value: 24, source: "fp-article" };
+    if (year === 2026 && round >= 2 && round <= 6) {
+      const prev = fantasyProsPickValue(`${year}-${round - 1}.${String(slot).padStart(2, "0")}`, fpDynastyValues);
+      if (Number.isFinite(prev?.value)) {
+        const factor = round === 6 ? 0.8 : 0.82;
+        return { value: Math.max(0.8, Math.round(prev.value * factor * 10) / 10), source: "dp-derived" };
       }
-      if (round === 3) {
-        if (slot <= 3) return { value: 20, source: "fp-article" };
-        if (slot <= 7) return { value: 16, source: "fp-article" };
-        return { value: 14, source: "fp-article" };
-      }
-      if (round === 4) {
-        return { value: slot <= 5 ? 10 : 7, source: "fp-article" };
-      }
-      if (round >= 5) return { value: 3, source: "fp-article" };
     }
 
-    if (year === 2027) {
-      if (round === 1) {
-        if (slot <= 3) return { value: 66, source: "fp-article" };
-        if (slot <= 6) return { value: 55, source: "fp-article" };
-        return { value: 45, source: "fp-article" };
-      }
-      if (round === 2) return { value: slot <= 5 ? 34 : 27, source: "fp-article" };
-      if (round === 3) return { value: slot <= 5 ? 18 : 15, source: "fp-article" };
-      return { value: 8, source: "fp-article" };
-    }
-
-    if (year === 2028) {
-      const prior = fantasyProsPickValue(base.replace(/^2028-/, "2027-"), fpDynastyValues);
-      if (prior?.value != null) {
-        return { value: Math.max(3, Math.round(prior.value * 0.86)), source: "fp-derived" };
+    if ((year === 2027 || year === 2028) && round >= 1 && round <= 6) {
+      const generic = fantasyProsPickValue(`${year}-${round}`, fpDynastyValues);
+      if (Number.isFinite(generic?.value)) {
+        return { value: generic.value, source: generic.source || "dp-derived" };
       }
     }
   }
@@ -385,20 +365,23 @@ function fantasyProsPickValue(pickId, fpDynastyValues) {
     const year = Number(generic[1]);
     const round = Number(generic[2]);
 
-    if (year === 2027) {
-      if (round === 1) return { value: 55, source: "fp-article" };
-      if (round === 2) return { value: 30, source: "fp-article" };
-      if (round === 3) return { value: 17, source: "fp-article" };
-      return { value: 8, source: "fp-article" };
+    if (year === 2027 && round >= 1 && round <= 6) {
+      const prev = round === 1 ? 18.0 : fantasyProsPickValue(`2027-${round - 1}`, fpDynastyValues);
+      if (round === 1) return { value: 18.0, source: "dp-derived" };
+      if (Number.isFinite(prev?.value)) {
+        return { value: Math.max(0.8, Math.round(prev.value * 0.62 * 10) / 10), source: "dp-derived" };
+      }
     }
 
-    if (year === 2028) {
-      const base2027 = fantasyProsPickValue(`2027-${round}`, fpDynastyValues);
-      return { value: Math.max(3, Math.round((base2027?.value || 8) * 0.86)), source: "fp-derived" };
+    if (year === 2028 && round >= 1 && round <= 6) {
+      const prevYear = fantasyProsPickValue(`2027-${round}`, fpDynastyValues);
+      if (Number.isFinite(prevYear?.value)) {
+        return { value: Math.max(0.8, Math.round(prevYear.value * 0.8 * 10) / 10), source: "dp-derived" };
+      }
     }
   }
 
-  return { value: 8, source: "fallback" };
+  return { value: 1.0, source: "fallback" };
 }
 
 function fantasyProsMeterLabel(advantagePct) {
@@ -454,7 +437,7 @@ function summarizeTradeForFantasyPros(version, viewerId, metaById, fpDynastyValu
   const fallbackCount = allDetails.filter((x) => x.source === "fallback").length;
   const fantasyProsCount = Math.max(0, resolvedCount - fallbackCount);
 
-  const baseLabel = fpDynastyValues?.generatedFor || "FantasyPros dynasty 1QB PPR";
+  const baseLabel = fpDynastyValues?.generatedFor || "DynastyProcess dynasty 1QB";
   const dataFallbackPlayers = Number(fpDynastyValues?.counts?.fallbackPlayers || 0);
 
   let sourceNote = "Respaldo local";
@@ -542,9 +525,9 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
   const pointerRight = polarToCartesian(cx, cy, pointerBaseRadius, pointerAngle + 7);
 
   const sourceLabel = (source) => {
-    if (source === "fp-local" || source === "fp-meta") return "FantasyPros";
-    if (source === "fp-article") return "FantasyPros pick";
-    if (source === "fp-derived") return "FantasyPros derivado";
+    if (source === "dp-local" || source === "dp-meta") return "DynastyProcess";
+    if (source === "dp-default") return "DynastyProcess";
+    if (source === "dp-derived") return "DynastyProcess derivado";
     return "Respaldo";
   };
 
@@ -571,7 +554,7 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
     <div className="fpTradeBox">
       <div className="fpMeterHead">
         <div style={{ minWidth: 0 }}>
-          <div className="fpMeterTitle">FantasyPros <span className="muted" style={{ fontWeight: 900 }}>(para vos)</span></div>
+          <div className="fpMeterTitle">DynastyProcess <span className="muted" style={{ fontWeight: 900 }}>(para vos)</span></div>
           <div className="fpMeterMeta">
             {summary.sourceNote}
             {summary.updatedAt ? ` · ${new Date(summary.updatedAt).toLocaleString()}` : ""}
@@ -581,7 +564,7 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
       </div>
 
       <div className="fpMeterWrap">
-        <svg className="fpMeterSvg" viewBox="0 0 360 250" role="img" aria-label={`FantasyPros: ${summary.verdict.label}`}>
+        <svg className="fpMeterSvg" viewBox="0 0 360 250" role="img" aria-label={`DynastyProcess: ${summary.verdict.label}`}>
           <defs>
             <filter id="fpShadow" x="-30%" y="-30%" width="160%" height="160%">
               <feDropShadow dx="0" dy="10" stdDeviation="10" floodColor="rgba(15,23,42,0.18)" />
