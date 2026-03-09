@@ -170,11 +170,11 @@ const FP_PICK_VALUES_1QB = {
 };
 
 const FP_METER_SEGMENTS = [
-  { label: "Te están robando", shortLabel: "Robando", lines: ["Te están", "robando"], color: "#DC2626", textColor: "#FFFFFF", min: -100, max: -20, tone: "robbery" },
-  { label: "Le falta algo", shortLabel: "Le falta algo", lines: ["Le falta", "algo"], color: "#F59E0B", textColor: "#FFFFFF", min: -20, max: -5, tone: "weak" },
+  { label: "Te Están Robando", shortLabel: "Robando", lines: ["Te Están", "Robando"], color: "#DC2626", textColor: "#FFFFFF", min: -100, max: -20, tone: "robbery" },
+  { label: "Le Falta Algo", shortLabel: "Le Falta Algo", lines: ["Le Falta", "Algo"], color: "#F59E0B", textColor: "#FFFFFF", min: -20, max: -5, tone: "weak" },
   { label: "Parejo", shortLabel: "Parejo", lines: ["Parejo"], color: "#A3E635", textColor: "#365314", min: -5, max: 5, tone: "even" },
-  { label: "Te sirve", shortLabel: "Te sirve", lines: ["Te sirve"], color: "#22C55E", textColor: "#FFFFFF", min: 5, max: 20, tone: "good" },
-  { label: "Estás robando", shortLabel: "Estás robando", lines: ["Estás", "robando"], color: "#166534", textColor: "#FFFFFF", min: 20, max: 100, tone: "great" },
+  { label: "Te Sirve", shortLabel: "Te Sirve", lines: ["Te Sirve"], color: "#22C55E", textColor: "#FFFFFF", min: 5, max: 20, tone: "good" },
+  { label: "Estás Robando", shortLabel: "Estás Robando", lines: ["Estás", "Robando"], color: "#166534", textColor: "#FFFFFF", min: 20, max: 100, tone: "great" },
 ];
 
 function clamp(n, min, max) {
@@ -397,7 +397,7 @@ function fantasyProsMeterLabel(advantagePct) {
   if (advantagePct < -20) return { label: "Te están robando", tone: "robbery" };
   if (advantagePct < -5) return { label: "Le falta algo", tone: "weak" };
   if (advantagePct <= 5) return { label: "Parejo", tone: "even" };
-  if (advantagePct <= 20) return { label: "Te sirve", tone: "good" };
+  if (advantagePct <= 20) return { label: "Te Sirve", tone: "good" };
   return { label: "Estás robando", tone: "great" };
 }
 
