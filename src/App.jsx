@@ -172,7 +172,7 @@ const DP_PICK_VALUES_1QB = {
 const FP_METER_SEGMENTS = [
   { label: "Te Están Robando", shortLabel: "Robando", lines: ["Te Están", "Robando"], color: "#DC2626", textColor: "#FFFFFF", min: -100, max: -20, tone: "robbery" },
   { label: "Le Falta Algo", shortLabel: "Le Falta Algo", lines: ["Le Falta", "Algo"], color: "#F59E0B", textColor: "#FFFFFF", min: -20, max: -5, tone: "weak" },
-  { label: "Parejo", shortLabel: "Parejo", lines: ["Parejo"], color: "#A3E635", textColor: "#FFFFFF", min: -5, max: 5, tone: "even" },
+  { label: "Parejo", shortLabel: "Parejo", lines: ["Parejo"], color: "#A3E635", textColor: "#365314", min: -5, max: 5, tone: "even" },
   { label: "Te Sirve", shortLabel: "Te Sirve", lines: ["Te Sirve"], color: "#22C55E", textColor: "#FFFFFF", min: 5, max: 20, tone: "good" },
   { label: "Estás Robando", shortLabel: "Estás Robando", lines: ["Estás", "Robando"], color: "#166534", textColor: "#FFFFFF", min: 20, max: 100, tone: "great" },
 ];
@@ -554,9 +554,10 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
     <div className="fpTradeBox">
       <div className="fpMeterHead">
         <div style={{ minWidth: 0 }}>
-          <div className="fpMeterTitle">Análisis de Trade</div>
+          <div className="fpMeterTitle">DynastyProcess <span className="muted" style={{ fontWeight: 900 }}>(para vos)</span></div>
           <div className="fpMeterMeta">
-            {summary.updatedAt ? new Date(summary.updatedAt).toLocaleString() : "—"}
+            {summary.sourceNote}
+            {summary.updatedAt ? ` · ${new Date(summary.updatedAt).toLocaleString()}` : ""}
           </div>
         </div>
         <span className={`fpVerdict fpVerdict-${summary.verdict.tone}`}>{summary.verdict.label}</span>
@@ -624,10 +625,6 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
         <div className="fpStat">
           <span className="muted">Entregás</span>
           <b>{summary.giveTotal}</b>
-        </div>
-        <div className="fpStat">
-          <span className="muted">Cobertura</span>
-          <b>{summary.resolvedCount}/{summary.itemCount}</b>
         </div>
       </div>
 
@@ -4128,7 +4125,7 @@ function ChatsView({ me, teams, teamsByUser, metaById, fpDynastyValues }) {
 
                       <div className="row tradeActionRow" style={{ gap: 8, alignItems: "center", justifyContent: "flex-end" }}>
                         {t.history?.length ? (
-                          <button onClick={() => toggleHistory(t.id)}>
+                          <button className="ghost miniBtn" onClick={() => toggleHistory(t.id)}>
                             {showHistory ? "Ocultar historial" : `Ver historial (${t.history.length})`}
                           </button>
                         ) : null}
