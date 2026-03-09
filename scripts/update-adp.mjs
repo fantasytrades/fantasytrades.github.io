@@ -34,21 +34,30 @@ function sleeperHeadshotUrl(sleeperId) {
   return `https://sleepercdn.com/content/nfl/players/${id}.jpg`;
 }
 
-const normName = (s = "") =>
+const baseNormName = (s = "") =>
   String(s || "")
     .toLowerCase()
     .replace(/[’'.]/g, "")
-    .replace(/\b(jr|sr|ii|iii|iv|v)\b/g, "")
     .replace(/[^a-z0-9 ]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 
-function makeKey(name, team, pos) {
-  return `${normName(name)}|${normalizeTeam(team)}|${String(pos || "").toUpperCase()}`;
+const looseNormName = (s = "") =>
+  baseNormName(s)
+    .replace(/\b(jr|sr|ii|iii|iv|v)\b/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+function makeStrictKey(name, team, pos) {
+  return `${baseNormName(name)}|${normalizeTeam(team)}|${String(pos || "").toUpperCase()}`;
 }
 
-function makeLooseKey(name, pos) {
-  return `${normName(name)}|${String(pos || "").toUpperCase()}`;
+function makeStrictNamePosKey(name, pos) {
+  return `${baseNormName(name)}|${String(pos || "").toUpperCase()}`;
+}
+
+function makeLooseNamePosKey(name, pos) {
+  return `${looseNormName(name)}|${String(pos || "").toUpperCase()}`;
 }
 
 function validPositiveNumber(value) {
@@ -81,6 +90,13 @@ function preferSleeperRow(a, b) {
   return String(a.id) < String(b.id) ? a : b;
 }
 
+function upsertPreferredArrayIndex(map, key, row) {
+  if (!key) return;
+  const arr = map.get(key) || [];
+  arr.push(row);
+  map.set(key, arr);
+}
+
 async function fetchSleeperPlayers() {
   const r = await fetch("https://api.sleeper.app/v1/players/nfl", {
     headers: { "User-Agent": USER_AGENT },
@@ -90,8 +106,9 @@ async function fetchSleeperPlayers() {
 }
 
 function buildSleeperPlayerMap(all) {
-  const byKey = new Map();
-  const byLooseKey = new Map();
+  const byExactKey = new Map();
+  const byStrictNamePos = new Map();
+  const byLooseNamePos = new Map();
   const byId = new Map();
   const rows = [];
 
@@ -104,8 +121,9 @@ function buildSleeperPlayerMap(all) {
     const sleeperId = String(id);
     const row = {
       id: sleeperId,
-      key: makeKey(p.full_name, team, position),
-      looseKey: makeLooseKey(p.full_name, position),
+      exactKey: makeStrictKey(p.full_name, team, position),
+      strictNamePosKey: makeStrictNamePosKey(p.full_name, position),
+      looseNamePosKey: makeLooseNamePosKey(p.full_name, position),
       full_name: p.full_name,
       position,
       team,
@@ -120,11 +138,12 @@ function buildSleeperPlayerMap(all) {
 
     rows.push(row);
     byId.set(sleeperId, row);
-    byKey.set(row.key, preferSleeperRow(byKey.get(row.key), row));
-    byLooseKey.set(row.looseKey, preferSleeperRow(byLooseKey.get(row.looseKey), row));
+    byExactKey.set(row.exactKey, preferSleeperRow(byExactKey.get(row.exactKey), row));
+    upsertPreferredArrayIndex(byStrictNamePos, row.strictNamePosKey, row);
+    upsertPreferredArrayIndex(byLooseNamePos, row.looseNamePosKey, row);
   }
 
-  return { byKey, byLooseKey, byId, rows };
+  return { byExactKey, byStrictNamePos, byLooseNamePos, byId, rows };
 }
 
 function readPlayerName(p) {
@@ -142,11 +161,12 @@ function canonicalFromFfc(p, sleeperMatch) {
   const pos = String(readPlayerPos(p) || "").toUpperCase();
   const team = normalizeTeam(readPlayerTeam(p) || sleeperMatch?.team || "FA");
   const rawFfcId = String(p?.player_id ?? p?.id ?? "").trim();
-  const sleeperId = String(p?.sleeper_id || sleeperMatch?.id || "").trim();
+  const sleeperId = String(sleeperMatch?.id || "").trim();
   const adp = validPositiveNumber(p?.adp);
   const adpFormatted = p?.adp_formatted || "";
 
-  const playerId = sleeperId || (rawFfcId ? `ffc:${rawFfcId}` : `ffc:${makeLooseKey(name, pos)}`);
+  const fallbackIdCore = rawFfcId || makeLooseNamePosKey(name, pos) || baseNormName(name) || "unknown";
+  const playerId = sleeperId || `ffc:${fallbackIdCore}`;
 
   return {
     player_id: playerId,
@@ -164,7 +184,7 @@ function canonicalFromFfc(p, sleeperMatch) {
     stdev: validPositiveNumber(p?.stdev),
     bye: validPositiveNumber(p?.bye) ?? 0,
     search_rank: sleeperMatch?.search_rank ?? 999999,
-    headshot: p?.headshot || sleeperHeadshotUrl(sleeperId),
+    headshot: sleeperMatch?.headshot || "",
     source: "ffc",
   };
 }
@@ -203,39 +223,79 @@ function sortPlayers(a, b) {
   return String(a?.name || "").localeCompare(String(b?.name || ""), undefined, { sensitivity: "base" });
 }
 
+function chooseBestUnused(candidates, usedSleeperIds) {
+  const unused = (candidates || []).filter((row) => row && !usedSleeperIds.has(String(row.id)));
+  if (!unused.length) return null;
+  return unused.reduce((best, row) => preferSleeperRow(best, row), null);
+}
+
+function findSleeperMatch(p, sleeperData, usedSleeperIds) {
+  const name = readPlayerName(p);
+  const pos = String(readPlayerPos(p) || "").toUpperCase();
+  const team = readPlayerTeam(p) || "FA";
+
+  const exactKey = makeStrictKey(name, team, pos);
+  const exact = sleeperData.byExactKey.get(exactKey);
+  if (exact && !usedSleeperIds.has(String(exact.id))) {
+    return { row: exact, matchType: "exact" };
+  }
+
+  const strictCandidates = (sleeperData.byStrictNamePos.get(makeStrictNamePosKey(name, pos)) || [])
+    .filter((row) => !usedSleeperIds.has(String(row.id)));
+  if (strictCandidates.length === 1) {
+    return { row: strictCandidates[0], matchType: "strict" };
+  }
+
+  const looseCandidates = (sleeperData.byLooseNamePos.get(makeLooseNamePosKey(name, pos)) || [])
+    .filter((row) => !usedSleeperIds.has(String(row.id)));
+  if (looseCandidates.length === 1) {
+    return { row: looseCandidates[0], matchType: "loose" };
+  }
+
+  return { row: null, matchType: null, ambiguous: strictCandidates.length > 1 || looseCandidates.length > 1 };
+}
+
 function mergePlayers(ffcPlayers, sleeperData) {
   const out = new Map();
+  const usedSleeperIds = new Set();
   let matchedExact = 0;
+  let matchedStrict = 0;
   let matchedLoose = 0;
+  let ambiguousSkipped = 0;
 
   for (const p of ffcPlayers || []) {
     const name = readPlayerName(p);
     const pos = String(readPlayerPos(p) || "").toUpperCase();
     if (!name || !ALLOWED_POSITIONS.has(pos)) continue;
 
-    const exactKey = makeKey(name, readPlayerTeam(p) || "FA", pos);
-    const looseKey = makeLooseKey(name, pos);
-    const sleeperMatch = sleeperData.byKey.get(exactKey) || sleeperData.byLooseKey.get(looseKey);
+    const { row: sleeperMatch, matchType, ambiguous } = findSleeperMatch(p, sleeperData, usedSleeperIds);
     if (sleeperMatch) {
-      if (sleeperData.byKey.get(exactKey)) matchedExact += 1;
-      else matchedLoose += 1;
+      usedSleeperIds.add(String(sleeperMatch.id));
+      if (matchType === "exact") matchedExact += 1;
+      else if (matchType === "strict") matchedStrict += 1;
+      else if (matchType === "loose") matchedLoose += 1;
+    } else if (ambiguous) {
+      ambiguousSkipped += 1;
     }
 
     const row = canonicalFromFfc(p, sleeperMatch);
-    const storeKey = sleeperMatch?.key || exactKey || `${row.player_id}|${row.name}|${row.position}`;
+    const storeKey = String(row.player_id);
     out.set(storeKey, row);
   }
 
   let addedSleeperOnly = 0;
   for (const row of sleeperData.rows) {
-    if (!out.has(row.key)) {
-      out.set(row.key, canonicalFromSleeper(row));
+    if (usedSleeperIds.has(String(row.id))) continue;
+    const sleeperOnly = canonicalFromSleeper(row);
+    const storeKey = String(sleeperOnly.player_id);
+    if (!out.has(storeKey)) {
+      out.set(storeKey, sleeperOnly);
       addedSleeperOnly += 1;
     }
   }
 
   const players = Array.from(out.values()).sort(sortPlayers);
-  return { players, matchedExact, matchedLoose, addedSleeperOnly };
+  return { players, matchedExact, matchedStrict, matchedLoose, ambiguousSkipped, addedSleeperOnly };
 }
 
 async function fetchFfcPlayers() {
@@ -284,7 +344,9 @@ async function main() {
         ffc_players: ffc.players.length,
         sleeper_players: sleeperData.rows.length,
         matched_ffc_to_sleeper_exact: merged.matchedExact,
+        matched_ffc_to_sleeper_strict: merged.matchedStrict,
         matched_ffc_to_sleeper_loose: merged.matchedLoose,
+        ambiguous_ffc_matches_skipped: merged.ambiguousSkipped,
         sleeper_only_added: merged.addedSleeperOnly,
         final_players: merged.players.length,
       },
@@ -298,7 +360,7 @@ async function main() {
   fs.writeFileSync(outPath, JSON.stringify(payload), "utf8");
 
   console.log(
-    `✅ Wrote ${outPath} (final=${merged.players.length}, ffc=${ffc.players.length}, sleeperOnly=${merged.addedSleeperOnly})`
+    `✅ Wrote ${outPath} (final=${merged.players.length}, ffc=${ffc.players.length}, sleeperOnly=${merged.addedSleeperOnly}, exact=${merged.matchedExact}, strict=${merged.matchedStrict}, loose=${merged.matchedLoose}, ambiguousSkipped=${merged.ambiguousSkipped})`
   );
 }
 
