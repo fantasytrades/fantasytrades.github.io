@@ -477,14 +477,46 @@ function polarToCartesian(cx, cy, radius, angleInDegrees) {
 function describeArc(cx, cy, radius, startAngle, endAngle) {
   const start = polarToCartesian(cx, cy, radius, endAngle);
   const end = polarToCartesian(cx, cy, radius, startAngle);
-  const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
-  return `M ${start.x} ${start.y} A ${radius} ${radius} 0 ${largeArcFlag} 0 ${end.x} ${end.y}`;
+  const largeArcFlag = Math.abs(endAngle - startAngle) <= 180 ? "0" : "1";
+  const sweepFlag = endAngle > startAngle ? "1" : "0";
+  return `M ${start.x} ${start.y} A ${radius} ${radius} 0 ${largeArcFlag} ${sweepFlag} ${end.x} ${end.y}`;
+}
+
+function describeDonutSegment(cx, cy, outerRadius, innerRadius, startAngle, endAngle) {
+  const outerStart = polarToCartesian(cx, cy, outerRadius, startAngle);
+  const outerEnd = polarToCartesian(cx, cy, outerRadius, endAngle);
+  const innerEnd = polarToCartesian(cx, cy, innerRadius, endAngle);
+  const innerStart = polarToCartesian(cx, cy, innerRadius, startAngle);
+  const largeArcFlag = Math.abs(endAngle - startAngle) <= 180 ? "0" : "1";
+  const sweepFlag = endAngle > startAngle ? "1" : "0";
+  const reverseSweepFlag = sweepFlag === "1" ? "0" : "1";
+  return [
+    `M ${outerStart.x} ${outerStart.y}`,
+    `A ${outerRadius} ${outerRadius} 0 ${largeArcFlag} ${sweepFlag} ${outerEnd.x} ${outerEnd.y}`,
+    `L ${innerEnd.x} ${innerEnd.y}`,
+    `A ${innerRadius} ${innerRadius} 0 ${largeArcFlag} ${reverseSweepFlag} ${innerStart.x} ${innerStart.y}`,
+    "Z",
+  ].join(" ");
 }
 
 function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues }) {
   const summary = summarizeTradeForFantasyPros(version, viewerId, metaById, fpDynastyValues);
-  const pointerTip = polarToCartesian(180, 188, 120, summary.angle);
-  const labelRadius = 130;
+
+  const cx = 180;
+  const cy = 178;
+  const outerRadius = 138;
+  const innerRadius = 84;
+  const pointerBaseRadius = 28;
+  const pointerTipRadius = 118;
+  const startAngle = -120;
+  const endAngle = 120;
+  const totalAngle = endAngle - startAngle;
+  const pointerAngle = startAngle + (summary.meterPct / 100) * totalAngle;
+
+  const segmentAngle = totalAngle / FP_METER_SEGMENTS.length;
+  const pointerTip = polarToCartesian(cx, cy, pointerTipRadius, pointerAngle);
+  const pointerLeft = polarToCartesian(cx, cy, pointerBaseRadius, pointerAngle - 7);
+  const pointerRight = polarToCartesian(cx, cy, pointerBaseRadius, pointerAngle + 7);
 
   return (
     <div className="fpTradeBox">
@@ -500,30 +532,39 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
       </div>
 
       <div className="fpMeterWrap">
-        <svg className="fpMeterSvg" viewBox="0 0 360 220" role="img" aria-label={`FantasyPros: ${summary.verdict.label}`}>
+        <svg className="fpMeterSvg" viewBox="0 0 360 250" role="img" aria-label={`FantasyPros: ${summary.verdict.label}`}>
+          <defs>
+            <filter id="fpShadow" x="-30%" y="-30%" width="160%" height="160%">
+              <feDropShadow dx="0" dy="10" stdDeviation="10" floodColor="rgba(15,23,42,0.18)" />
+            </filter>
+          </defs>
+
           {FP_METER_SEGMENTS.map((seg, idx) => {
-            const startAngle = 270 - idx * 36;
-            const endAngle = 270 - (idx + 1) * 36;
-            const midAngle = (startAngle + endAngle) / 2;
-            const textPoint = polarToCartesian(180, 188, labelRadius, midAngle);
+            const segStart = startAngle + idx * segmentAngle;
+            const segEnd = segStart + segmentAngle;
+            const midAngle = (segStart + segEnd) / 2;
+            const textPoint = polarToCartesian(cx, cy, 111, midAngle);
 
             return (
               <g key={seg.label}>
                 <path
-                  d={describeArc(180, 188, 138, startAngle, endAngle)}
+                  d={describeDonutSegment(cx, cy, outerRadius, innerRadius, segStart, segEnd)}
+                  fill={seg.color}
+                  opacity="0.95"
+                />
+                <path
+                  d={describeArc(cx, cy, outerRadius, segStart, segEnd)}
                   fill="none"
-                  stroke={seg.color}
-                  strokeWidth="58"
-                  strokeLinecap="butt"
+                  stroke="rgba(255,255,255,0.26)"
+                  strokeWidth="2"
                 />
                 <text
                   x={textPoint.x}
                   y={textPoint.y}
                   textAnchor="middle"
                   dominantBaseline="middle"
-                  fontSize="11"
-                  fontWeight="900"
-                  fill="rgba(15,23,42,0.75)"
+                  className="fpMeterSegmentLabel"
+                  transform={`rotate(${midAngle} ${textPoint.x} ${textPoint.y})`}
                 >
                   {seg.label}
                 </text>
@@ -531,26 +572,20 @@ function FantasyProsTradeMeter({ version, viewerId, metaById, fpDynastyValues })
             );
           })}
 
-          <line
-            x1="180"
-            y1="188"
-            x2={pointerTip.x}
-            y2={pointerTip.y}
-            stroke="#202631"
-            strokeWidth="10"
-            strokeLinecap="round"
-          />
-          <polygon
-            points={`${pointerTip.x},${pointerTip.y} ${pointerTip.x - 8},${pointerTip.y - 18} ${pointerTip.x + 8},${pointerTip.y - 18}`}
+          <circle cx={cx} cy={cy} r="63" fill="#121827" filter="url(#fpShadow)" />
+          <circle cx={cx} cy={cy} r="8" fill="#FF4D4F" />
+          <path
+            d={`M ${pointerLeft.x} ${pointerLeft.y} L ${pointerTip.x} ${pointerTip.y} L ${pointerRight.x} ${pointerRight.y} Z`}
             fill="#202631"
-            transform={`rotate(${summary.angle - 90} ${pointerTip.x} ${pointerTip.y})`}
+            filter="url(#fpShadow)"
           />
-          <circle cx="180" cy="188" r="50" fill="#151923" />
-          <circle cx="180" cy="188" r="8" fill="#EF4444" />
-          <text x="180" y="176" textAnchor="middle" fontSize="12" fontWeight="900" fill="#FFFFFF">
+          <circle cx={cx} cy={cy} r="16" fill="#202631" />
+          <circle cx={cx} cy={cy} r="6" fill="#FF4D4F" />
+
+          <text x={cx} y={cy - 12} textAnchor="middle" className="fpBalanceLabel">
             Balance
           </text>
-          <text x="180" y="196" textAnchor="middle" fontSize="24" fontWeight="1100" fill="#FFFFFF">
+          <text x={cx} y={cy + 16} textAnchor="middle" className="fpBalanceValue">
             {summary.delta > 0 ? `+${summary.delta}` : summary.delta}
           </text>
         </svg>
@@ -1934,7 +1969,23 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
       .fpVerdict-good{ background:rgba(247,147,30,0.16); border-color:rgba(247,147,30,0.28); color:#C2410C; }
       .fpVerdict-great{ background:rgba(239,68,68,0.14); border-color:rgba(239,68,68,0.28); color:#B91C1C; }
       .fpMeterWrap{ width:100%; display:flex; justify-content:center; }
-      .fpMeterSvg{ width:min(100%, 420px); height:auto; display:block; }
+      .fpMeterSvg{ width:min(100%, 560px); height:auto; display:block; overflow:visible; }
+      .fpMeterSegmentLabel{
+        font-size:10px;
+        font-weight:1000;
+        letter-spacing:0.08em;
+        fill:rgba(255,255,255,0.94);
+      }
+      .fpBalanceLabel{
+        font-size:14px;
+        font-weight:900;
+        fill:#FFFFFF;
+      }
+      .fpBalanceValue{
+        font-size:30px;
+        font-weight:1100;
+        fill:#FFFFFF;
+      }
       .fpTradeStats{
         display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:8px;
       }
@@ -1951,6 +2002,10 @@ button.selectOpt.active{ background:rgba(47,125,246,0.10);  box-shadow:none !imp
         .fpTradeBox{ padding:10px; border-radius:14px; }
         .fpMeterHead{ display:grid; gap:8px; }
         .fpVerdict{ justify-self:start; }
+        .fpMeterSvg{ width:min(100%, 420px); }
+        .fpMeterSegmentLabel{ font-size:8px; letter-spacing:0.05em; }
+        .fpBalanceLabel{ font-size:12px; }
+        .fpBalanceValue{ font-size:24px; }
         .fpTradeStats{ grid-template-columns:1fr; }
       }
 
