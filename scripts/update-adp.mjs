@@ -1,11 +1,11 @@
-// scripts/update-adp.mjs
 import fs from "node:fs";
 import path from "node:path";
 
 const ADP_SCORING = process.env.ADP_SCORING || "ppr"; // "ppr" | "standard" | "half-ppr"
 const ADP_TEAMS = Number(process.env.ADP_TEAMS || 10);
+const ALLOWED_POSITIONS = new Set(["QB", "RB", "WR", "TE"]);
+const USER_AGENT = "fantasytrades-adp-updater";
 
-// Formato va en el PATH: /api/v1/adp/{scoring}?teams=...&year=...
 function ffcUrl(year) {
   return `https://fantasyfootballcalculator.com/api/v1/adp/${encodeURIComponent(
     ADP_SCORING
@@ -16,23 +16,18 @@ function ffcUrl(year) {
 
 async function fetchJson(url) {
   const res = await fetch(url, {
-    headers: { "User-Agent": "fantasytrades-adp-updater" },
+    headers: { "User-Agent": USER_AGENT },
   });
   if (!res.ok) throw new Error(`Fetch failed ${res.status} for ${url}`);
   return res.json();
 }
 
-/** =======================
- * Sleeper headshots enrich
- * ======================= */
-
-// Normalizaciones simples para matchear FFC vs Sleeper
 const TEAM_MAP = { JAC: "JAX", WAS: "WSH" };
 
 const normName = (s = "") =>
   s
     .toLowerCase()
-    .replace(/['’.]/g, "")
+    .replace(/[’'.]/g, "")
     .replace(/\b(jr|sr|ii|iii|iv|v)\b/g, "")
     .replace(/[^a-z0-9 ]/g, " ")
     .replace(/\s+/g, " ")
@@ -41,28 +36,47 @@ const normName = (s = "") =>
 const normTeam = (t = "") => TEAM_MAP[(t || "").toUpperCase()] || (t || "").toUpperCase();
 
 function makeKey(name, team, pos) {
-  return `${normName(name)}|${normTeam(team)}|${(pos || "").toUpperCase()}`;
+  return `${normName(name)}|${normTeam(team)}|${String(pos || "").toUpperCase()}`;
 }
 
-async function buildSleeperIndex() {
-  // OJO: endpoint grande (pero sirve para todos los jugadores)
+async function fetchSleeperPlayers() {
   const r = await fetch("https://api.sleeper.app/v1/players/nfl", {
-    headers: { "User-Agent": "fantasytrades-adp-updater" },
+    headers: { "User-Agent": USER_AGENT },
   });
   if (!r.ok) throw new Error(`Sleeper players fetch failed ${r.status}`);
-  const all = await r.json(); // { "id": {...}, ... }
+  return await r.json();
+}
 
-  const idx = new Map();
-  for (const [id, p] of Object.entries(all)) {
+function buildSleeperPlayerMap(all) {
+  const byKey = new Map();
+  const rows = [];
+
+  for (const [id, p] of Object.entries(all || {})) {
     if (!p?.full_name || !p?.position) continue;
-
-    // Si querés ignorar K/DEF, descomentá:
-    // if (p.position === "K" || p.position === "DEF") continue;
+    if (!ALLOWED_POSITIONS.has(String(p.position).toUpperCase())) continue;
 
     const key = makeKey(p.full_name, p.team || "", p.position);
-    if (!idx.has(key)) idx.set(key, id);
+    const sleeperId = String(id);
+    const row = {
+      id: sleeperId,
+      key,
+      full_name: p.full_name,
+      position: String(p.position).toUpperCase(),
+      team: p.team || "FA",
+      search_rank: Number.isFinite(Number(p.search_rank)) ? Number(p.search_rank) : 999999,
+      active: Boolean(p.active),
+      years_exp: Number.isFinite(Number(p.years_exp)) ? Number(p.years_exp) : null,
+      age: Number.isFinite(Number(p.age)) ? Number(p.age) : null,
+      fantasy_positions: Array.isArray(p.fantasy_positions) ? p.fantasy_positions : [],
+      status: p.status || "",
+      headshot: `https://sleepercdn.com/content/nfl/players/${sleeperId}.jpg`,
+    };
+
+    if (!byKey.has(key)) byKey.set(key, row);
+    rows.push(row);
   }
-  return idx;
+
+  return { byKey, rows };
 }
 
 function readPlayerName(p) {
@@ -75,42 +89,100 @@ function readPlayerPos(p) {
   return p?.pos || p?.position || "";
 }
 
-async function enrichWithHeadshots(players) {
-  try {
-    const sleeperIdx = await buildSleeperIndex();
+function canonicalFromFfc(p, sleeperMatch) {
+  const name = readPlayerName(p);
+  const pos = String(readPlayerPos(p) || "").toUpperCase();
+  const team = readPlayerTeam(p) || sleeperMatch?.team || "FA";
+  const sleeperId = String(p?.sleeper_id || sleeperMatch?.id || "");
+  const adp = Number(p?.adp);
+  const adpFormatted = p?.adp_formatted || "";
 
-    let added = 0;
-    for (const p of players) {
-      const name = readPlayerName(p);
-      const team = readPlayerTeam(p);
-      const pos = readPlayerPos(p);
-
-      if (!name || !pos) continue;
-
-      const key = makeKey(name, team, pos);
-      const sleeperId = sleeperIdx.get(key);
-
-      if (sleeperId) {
-        p.sleeper_id = sleeperId;
-        p.headshot = `https://sleepercdn.com/content/nfl/players/${sleeperId}.jpg`;
-        added++;
-      }
-    }
-
-    console.log(`🖼️ Headshots: matched ${added}/${players.length}`);
-    return { ok: true, matched: added };
-  } catch (e) {
-    console.warn(`⚠️ Headshots skipped: ${e?.message || e}`);
-    return { ok: false, matched: 0, error: e?.message || String(e) };
-  }
+  return {
+    player_id: String(p?.player_id ?? sleeperId ?? ""),
+    sleeper_id: sleeperId || undefined,
+    name,
+    full_name: name,
+    position: pos,
+    team,
+    adp: Number.isFinite(adp) ? adp : null,
+    adp_formatted: adpFormatted,
+    times_drafted: Number.isFinite(Number(p?.times_drafted)) ? Number(p.times_drafted) : 0,
+    high: Number.isFinite(Number(p?.high)) ? Number(p.high) : null,
+    low: Number.isFinite(Number(p?.low)) ? Number(p.low) : null,
+    stdev: Number.isFinite(Number(p?.stdev)) ? Number(p.stdev) : null,
+    bye: Number.isFinite(Number(p?.bye)) ? Number(p.bye) : 0,
+    search_rank: sleeperMatch?.search_rank ?? 999999,
+    headshot: p?.headshot || (sleeperId ? `https://sleepercdn.com/content/nfl/players/${sleeperId}.jpg` : ""),
+    source: "ffc",
+  };
 }
 
-async function main() {
+function canonicalFromSleeper(row) {
+  return {
+    player_id: String(row.id),
+    sleeper_id: String(row.id),
+    name: row.full_name,
+    full_name: row.full_name,
+    position: row.position,
+    team: row.team || "FA",
+    adp: null,
+    adp_formatted: "",
+    times_drafted: 0,
+    high: null,
+    low: null,
+    stdev: null,
+    bye: 0,
+    search_rank: row.search_rank,
+    headshot: row.headshot,
+    source: "sleeper",
+  };
+}
+
+function sortPlayers(a, b) {
+  const adpA = Number.isFinite(Number(a?.adp)) ? Number(a.adp) : Infinity;
+  const adpB = Number.isFinite(Number(b?.adp)) ? Number(b.adp) : Infinity;
+  if (adpA !== adpB) return adpA - adpB;
+
+  const srA = Number.isFinite(Number(a?.search_rank)) ? Number(a.search_rank) : Infinity;
+  const srB = Number.isFinite(Number(b?.search_rank)) ? Number(b.search_rank) : Infinity;
+  if (srA !== srB) return srA - srB;
+
+  return String(a?.name || "").localeCompare(String(b?.name || ""));
+}
+
+function mergePlayers(ffcPlayers, sleeperData) {
+  const out = new Map();
+  let matched = 0;
+
+  for (const p of ffcPlayers || []) {
+    const name = readPlayerName(p);
+    const pos = String(readPlayerPos(p) || "").toUpperCase();
+    if (!name || !ALLOWED_POSITIONS.has(pos)) continue;
+
+    const key = makeKey(name, readPlayerTeam(p), pos);
+    const sleeperMatch = sleeperData.byKey.get(key);
+    if (sleeperMatch) matched += 1;
+
+    const row = canonicalFromFfc(p, sleeperMatch);
+    const storeKey = key || `${row.player_id}|${row.name}|${row.position}`;
+    out.set(storeKey, row);
+  }
+
+  let addedSleeperOnly = 0;
+  for (const row of sleeperData.rows) {
+    if (!out.has(row.key)) {
+      out.set(row.key, canonicalFromSleeper(row));
+      addedSleeperOnly += 1;
+    }
+  }
+
+  const players = Array.from(out.values()).sort(sortPlayers);
+  return { players, matchedFfcToSleeper: matched, addedSleeperOnly };
+}
+
+async function fetchFfcPlayers() {
   const yearNow = new Date().getFullYear();
-
-  // Probá varios por las dudas (a veces el “año de season” cambia)
   const yearsToTry = [yearNow, yearNow + 1, yearNow - 1];
-
   let lastErr = null;
 
   for (const y of yearsToTry) {
@@ -119,51 +191,59 @@ async function main() {
       if (!data?.players || !Array.isArray(data.players) || data.players.length === 0) {
         throw new Error(`Invalid payload for year=${y}`);
       }
-
-      // Enriquecer con headshots (si falla, no rompe nada)
-      const headshotInfo = await enrichWithHeadshots(data.players);
-
-      const payload = {
-        meta: {
-          source: "fantasyfootballcalculator.com",
-          scoring: ADP_SCORING,
-          teams: ADP_TEAMS,
-          year: y,
-          updatedAt: new Date().toISOString(),
-          headshots: {
-            source: "sleeper",
-            ok: headshotInfo.ok,
-            matched: headshotInfo.matched,
-          },
-        },
-        players: data.players,
-      };
-
-      const outDir = path.resolve("public");
-      const outPath = path.join(outDir, "adp.json");
-
-      fs.mkdirSync(outDir, { recursive: true });
-      fs.writeFileSync(outPath, JSON.stringify(payload), "utf8");
-
-      console.log(`✅ Wrote ${outPath} (year=${y}, players=${data.players.length})`);
-      return; // éxito
+      return { year: y, players: data.players, error: null };
     } catch (e) {
       lastErr = e;
       console.warn(`⚠️ year=${y} failed: ${e?.message || e}`);
     }
   }
 
-  // ✅ CLAVE: no romper el build si no se pudo actualizar
-  console.warn(
-    `⚠️ ADP update skipped (all years failed).\nKeeping existing public/adp.json. Last error: ${
-      lastErr?.message || lastErr
-    }`
+  return { year: null, players: [], error: lastErr };
+}
+
+async function main() {
+  const sleeperAll = await fetchSleeperPlayers();
+  const sleeperData = buildSleeperPlayerMap(sleeperAll);
+  console.log(`🧩 Sleeper player pool: ${sleeperData.rows.length}`);
+
+  const ffc = await fetchFfcPlayers();
+  if (ffc.players.length) {
+    console.log(`📈 FFC ADP pool: ${ffc.players.length} (year=${ffc.year})`);
+  } else {
+    console.warn(`⚠️ FFC unavailable. Building adp.json from Sleeper only. Last error: ${ffc.error?.message || ffc.error}`);
+  }
+
+  const merged = mergePlayers(ffc.players, sleeperData);
+
+  const payload = {
+    meta: {
+      source: ffc.players.length ? "fantasyfootballcalculator.com + sleeper" : "sleeper",
+      scoring: ADP_SCORING,
+      teams: ADP_TEAMS,
+      year: ffc.year,
+      updatedAt: new Date().toISOString(),
+      counts: {
+        ffc_players: ffc.players.length,
+        sleeper_players: sleeperData.rows.length,
+        matched_ffc_to_sleeper: merged.matchedFfcToSleeper,
+        sleeper_only_added: merged.addedSleeperOnly,
+        final_players: merged.players.length,
+      },
+    },
+    players: merged.players,
+  };
+
+  const outDir = path.resolve("public");
+  const outPath = path.join(outDir, "adp.json");
+  fs.mkdirSync(outDir, { recursive: true });
+  fs.writeFileSync(outPath, JSON.stringify(payload), "utf8");
+
+  console.log(
+    `✅ Wrote ${outPath} (final=${merged.players.length}, ffc=${ffc.players.length}, sleeperOnly=${merged.addedSleeperOnly})`
   );
-  process.exit(0);
 }
 
 main().catch((e) => {
-  // También “no romper” por si algo raro explota
   console.warn(`⚠️ ADP script error (skipping update): ${e?.message || e}`);
   process.exit(0);
 });
