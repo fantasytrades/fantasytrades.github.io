@@ -1,158 +1,185 @@
 {
-  "generatedAt": "2026-03-13T12:59:32.831Z",
+  "generatedAt": "2026-03-14T12:52:59.787Z",
   "items": [
     {
-      "id": "5137e1cf649b3708efcc52f0bd373c37ae5d6381",
+      "id": "5cc978c33ae8a7b1d74760eed9d14487e9998974",
+      "source": "ESPN",
+      "title": "Saints ushering in a new, younger era under Kellen Moore",
+      "url": "https://www.espn.com/nfl/story/_/id/48199861/new-orleans-saints-ushering-new-younger-era-coach-kellen-moore-free-agency-2026",
+      "publishedAt": "2026-03-14T12:14:03.000Z",
+      "publishedTs": 1773490443000,
+      "description": "Free agency has impacted some of New Orleans' longtime players, but the second-year coach has a plan."
+    },
+    {
+      "id": "35a36f7b84a0a2460113e67f946a1847344b8f97",
+      "source": "ESPN",
+      "title": "Which NFL teams have improved the most in free agency? Five rosters that made the best moves",
+      "url": "https://www.espn.com/nfl/story/_/id/48196399/2026-nfl-free-agency-best-signings-trades-moves-most-improved-teams",
+      "publishedAt": "2026-03-14T12:13:42.000Z",
+      "publishedTs": 1773490422000,
+      "description": "We picked out the teams that took the biggest steps forward this week through their signings and other moves -- including the 49ers."
+    },
+    {
+      "id": "754005579a5264a02202123e6355b1d52391a6f7",
       "source": "ESPN",
       "title": "NFL free agency grades: Sizing up 55-plus big signings and trades",
       "url": "https://www.espn.com/nfl/story/_/id/47911726/2026-nfl-free-agency-grades-signings-trades-latest-best-worst-deals-draft-outlook",
-      "publishedAt": "2026-03-13T12:40:24.000Z",
-      "publishedTs": 1773405624000,
-      "description": "We're handing out report cards on big moves, including the Jonathan Allen signing and Osa Odighizuwa trade."
+      "publishedAt": "2026-03-14T12:13:42.000Z",
+      "publishedTs": 1773490422000,
+      "description": "We're handing out report cards on big moves, including the Rasheed Walker and Kyler Murray signings."
     },
     {
-      "id": "7ecd2e3ada8beda60298007c991a4b7e61306479",
+      "id": "7848c6bcf1a645c9ae1a994da94d9c6fd307cf63",
       "source": "ESPN",
-      "title": "Daniel Jones, Trey Hendrickson and the Colts' bumpy free agency",
-      "url": "https://www.espn.com/nfl/story/_/id/48186351/daniel-jones-trey-hendrickson-indianapolis-colts-bumpy-2026-nfl-free-agency",
-      "publishedAt": "2026-03-13T12:40:23.000Z",
-      "publishedTs": 1773405623000,
-      "description": "They kept Daniel Jones, Alec Pierce but lost in bid for Trey Hendrickson, so did Indy win or lose free agency?"
+      "title": "New and improved Baltimore Giants? How Isaiah Likely reshapes New York's offense",
+      "url": "https://www.espn.com/nfl/story/_/id/48173860/new-york-giants-free-agency-acquisition-isaiah-likely-reshapes-offense-baltimore-ravens-john-harbaugh",
+      "publishedAt": "2026-03-14T12:11:03.000Z",
+      "publishedTs": 1773490263000,
+      "description": "Signing four former-Ravens kick-starts the transformation of the Baltimore Giants, commanded by John Harbaugh."
     },
     {
-      "id": "dba260073dad1247f6d5a0ee69c24d5f5ed0e06a",
-      "source": "ESPN",
-      "title": "Reid's updated NFL draft QB Hot Board: Strengths and weaknesses for the top passers",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/46532548/2026-nfl-draft-ranking-top-quarterbacks-hot-board-team-fits-strengths-weaknesses",
-      "publishedAt": "2026-03-13T12:38:11.000Z",
-      "publishedTs": 1773405491000,
-      "description": "Who are the best quarterbacks in the 2026 class? We sized up the top 12, starting with Fernando Mendoza."
-    },
-    {
-      "id": "50365d1b2d7b9538809b908e26d2f6e32d6ec7fa",
-      "source": "ESPN",
-      "title": "Best team fits for top remaining NFL free agents: Barnwell finds nine perfect matches",
-      "url": "https://www.espn.com/nfl/story/_/id/48185973/2026-nfl-free-agency-best-team-fits-top-players-available-barnwell",
-      "publishedAt": "2026-03-13T12:36:12.000Z",
-      "publishedTs": 1773405372000,
-      "description": "Where should Jauan Jennings, Joey Bosa and Rasheed Walker sign? Which roster needs Kirk Cousins? Let's find new homes for nine players still looking for one."
-    },
-    {
-      "id": "fce0cea323fbbc7aeadcae247314460715e2f228",
-      "source": "ESPN",
-      "title": "Live tracking NFL free agency: Updates on signings, trades, cuts",
-      "url": "https://www.espn.com/nfl/story/_/id/47899175/2026-nfl-free-agency-tracker-live-updates-signings-trades-cuts-contracts-rumors",
-      "publishedAt": "2026-03-13T12:36:12.000Z",
-      "publishedTs": 1773405372000,
-      "description": "We're following NFL free agency signings, trades, cuts, contract restructures and other moves as they happen."
-    },
-    {
-      "id": "69f35aba642c003063bb6ed5a32ec116f47d7293",
-      "source": "ESPN",
-      "title": "Murray joins Vikings, 'elevating' their QB room",
-      "url": "https://www.espn.com/nfl/story/_/id/48188052/kyler-murray-signs-one-year-deal-vikings",
-      "publishedAt": "2026-03-13T12:35:17.000Z",
-      "publishedTs": 1773405317000,
-      "description": "A day after the Cardinals officially released him, Kyler Murray signed a one-year contract with the Vikings and will join former first-round pick J.J. McCarthy in the QB room in Minnesota."
-    },
-    {
-      "id": "3121b9f23a9734421c3f86aa44116fc927780367",
-      "source": "ESPN",
-      "title": "State charges Falcons' Pearce with 3 felonies",
-      "url": "https://www.espn.com/nfl/story/_/id/48188048/falcons-james-pearce-jr-charged-3-felonies-misdemeanor",
-      "publishedAt": "2026-03-13T12:35:17.000Z",
-      "publishedTs": 1773405317000,
-      "description": "Falcons defender James Pearce Jr. has been charged with three felonies and a misdemeanor in relation to an incident involving WNBA player Rickea Jackson."
-    },
-    {
-      "id": "fdb9ff9981eeff8550929fe62fe254593bac78ae",
-      "source": "ESPN",
-      "title": "Cowboys' Durant agrees to 1-year, $5.5M deal",
-      "url": "https://www.espn.com/nfl/story/_/id/48191596/cb-cobie-durant-agrees-1-year-deal-cowboys-sources-say",
-      "publishedAt": "2026-03-13T12:35:17.000Z",
-      "publishedTs": 1773405317000,
-      "description": "The Cowboys and cornerback Cobie Durant have reached an agreement on a one-year, $5.5 million deal, his agent told ESPN."
-    },
-    {
-      "id": "6614edd35fb07051a697527070f5c7177098593f",
-      "source": "ESPN",
-      "title": "LB Greenlaw returns to 49ers as DE Huff retires",
-      "url": "https://www.espn.com/nfl/story/_/id/48187169/sources-dre-greenlaw-back-49ers-year-broncos",
-      "publishedAt": "2026-03-13T12:35:17.000Z",
-      "publishedTs": 1773405317000,
-      "description": "Linebacker Dre Greenlaw is returning to the 49ers, agreeing to terms on a one-year, $7.5 million contract, a source told ESPN. Defensive end Bryce Huff, however, is retiring from the NFL, he announced."
-    },
-    {
-      "id": "1f6fda121964634058f2fecb18bcb9280bd71961",
-      "source": "ESPN",
-      "title": "Geno: Jets getting 'better player' than when I left",
-      "url": "https://www.espn.com/nfl/story/_/id/48188054/geno-smith-jets-better-player-one-left",
-      "publishedAt": "2026-03-13T12:35:17.000Z",
-      "publishedTs": 1773405317000,
-      "description": "Saying he's confident, but not arrogant, New York Jets quarterback Geno Smith vowed to be better than ever in his second stint with the team."
-    },
-    {
-      "id": "5110eed3c26aa36654499a94a9a535fef435ffb8",
-      "source": "ESPN",
-      "title": "WR Austin leaving Steelers to sign with Giants",
-      "url": "https://www.espn.com/nfl/story/_/id/48187908/wr-calvin-austin-iii-leaving-steelers-sign-giants",
-      "publishedAt": "2026-03-13T12:35:17.000Z",
-      "publishedTs": 1773405317000,
-      "description": "Free agent wide receiver Calvin Austin III is signing a one-year deal worth up to $4.5 million with the Giants, agents Drew Rosenhaus and Kyle Lincoln told ESPN's Adam Schefter."
-    },
-    {
-      "id": "91b41aabcba9364372e6141e03893bf2968db5ce",
-      "source": "ESPN",
-      "title": "Eagles add Ebiketie to pass rush on 1-year deal",
-      "url": "https://www.espn.com/nfl/story/_/id/48190557/free-agent-arnold-ebiketie-reaches-1-year-deal-eagles",
-      "publishedAt": "2026-03-13T12:35:17.000Z",
-      "publishedTs": 1773405317000,
-      "description": "Free agent linebacker Arnold Ebiketie is signing a one-year, $7.3 million max deal with the Eagles."
-    },
-    {
-      "id": "cddb5f9e9de6ab9db9351725037807c567eec5da",
-      "source": "ESPN",
-      "title": "Pass rusher Muhammad (11 sacks in '25) to Bucs",
-      "url": "https://www.espn.com/nfl/story/_/id/48187673/source-al-quadin-muhammad-reaches-deal-buccaneers",
-      "publishedAt": "2026-03-13T12:35:17.000Z",
-      "publishedTs": 1773405317000,
-      "description": "Free agent defensive end Al-Quadin Muhammad has agreed to a one-year deal with the Buccaneers that's worth up to $6 million, according to NFL Network."
-    },
-    {
-      "id": "45aca540e73d64f456a7b9494b43b3286d25a025",
-      "source": "ESPN",
-      "title": "🏈 Our mid-free agency NFL mini-mock draft",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48151878/2026-nfl-free-agency-mock-draft-field-yates-first-round-predictions-signings",
-      "publishedAt": "2026-03-13T12:35:17.000Z",
-      "publishedTs": 1773405317000,
-      "description": "How has NFL free agency affected 2026 draft plans? Here are Field Yates' updated predictions for picks Nos. 1-10 after the first wave of deals."
-    },
-    {
-      "id": "838c23aeb6d7370442a41922da5cc4c554381f2b",
+      "id": "4b33480a1ef56bebc7bca6a5e0f97ab520f3496f",
       "source": "ESPN",
       "title": "What Kyler Murray signing means for Vikings, J.J. McCarthy -- and Justin Jefferson's fantasy value",
       "url": "https://www.espn.com/nfl/story/_/id/48163697/nfl-minnesota-vikings-arizona-cardinals-free-agency-kyler-murray-jj-mccarthy",
-      "publishedAt": "2026-03-13T01:54:03.000Z",
-      "publishedTs": 1773366843000,
+      "publishedAt": "2026-03-14T12:11:02.000Z",
+      "publishedTs": 1773490262000,
       "description": "Will Murray resurrect his career and boost the Vikings' offense after being released by the Cardinals?"
     },
     {
-      "id": "62d63caee8e9ecd73ae8b1722a041a369ad548d6",
+      "id": "988ee26510cebe91ffd312040a4cb16ffc71057b",
+      "source": "ESPN",
+      "title": "Seahawks GM: State tax law could impact club",
+      "url": "https://www.espn.com/nfl/story/_/id/48198045/new-washington-tax-law-effect-seahawks-schneider-says",
+      "publishedAt": "2026-03-14T00:07:27.000Z",
+      "publishedTs": 1773446847000,
+      "description": "Seattle Seahawks general manager John Schneider said he believed Washington state's new income tax on high earners would eventually have a negative impact on the team's ability to sign free agents."
+    },
+    {
+      "id": "a604029619933bb5483d6f3d4d1177c7b0ba6740",
+      "source": "ESPN",
+      "title": "Falcons GM: Tua to compete with Penix for QB job",
+      "url": "https://www.espn.com/nfl/story/_/id/48196077/tagovailoa-compete-penix-starting-job",
+      "publishedAt": "2026-03-14T00:07:27.000Z",
+      "publishedTs": 1773446847000,
+      "description": "Falcons general manager Ian Cunningham said definitively Friday that the team is bringing in Tua Tagovailoa to compete with Michael Penix Jr. for the starting quarterback job."
+    },
+    {
+      "id": "6d61235f92749dca113b59d4fe6e6bb2da1d8aa8",
+      "source": "ESPN",
+      "title": "Saints' Etienne corrects how to say his name",
+      "url": "https://www.espn.com/nfl/story/_/id/48196375/saints-travis-etienne-updates-how-say-name",
+      "publishedAt": "2026-03-14T00:07:27.000Z",
+      "publishedTs": 1773446847000,
+      "description": "Travis Etienne says we've been pronouncing his name wrong."
+    },
+    {
+      "id": "82650580b9019874086513902c9e283872c7cc92",
+      "source": "ESPN",
+      "title": "Sources: Jets, Cisco agree to 1-year, $5.25M deal",
+      "url": "https://www.espn.com/nfl/story/_/id/48199158/jets-re-sign-safety-cisco-1-year-525m-deal",
+      "publishedAt": "2026-03-14T00:07:27.000Z",
+      "publishedTs": 1773446847000,
+      "description": "The New York Jets have agreed to a deal with safety Andre Cisco on a 1-year deal worth up to $5.25M, sources told ESPN."
+    },
+    {
+      "id": "f2d041f1bd0f410f37b971496f2bdd4d526af390",
+      "source": "ESPN",
+      "title": "Source: Ex-Packers LT Walker headed to Panthers",
+      "url": "https://www.espn.com/nfl/story/_/id/48198222/source-ex-packers-lt-rasheed-walker-agrees-join-panthers",
+      "publishedAt": "2026-03-14T00:07:27.000Z",
+      "publishedTs": 1773446847000,
+      "description": "The Carolina Panthers have agreed to a deal with free agent left tackle Rasheed Walker, a source told ESPN's Adam Schefter on Friday."
+    },
+    {
+      "id": "a4b3908260dea31a8f3d8c4ab283a56711450fd7",
+      "source": "ESPN",
+      "title": "Bills' Gardner-Johnson unbothered by perception",
+      "url": "https://www.espn.com/nfl/story/_/id/48198759/new-bills-safety-gardner-johnson-not-worried-perception",
+      "publishedAt": "2026-03-14T00:07:27.000Z",
+      "publishedTs": 1773446847000,
+      "description": "New Bills safety C.J. Gardner-Johnson said Friday that he's not worried about negative perceptions about him as a teammate."
+    },
+    {
+      "id": "9337371084c64e35fc7fd39134ee29f3f5428288",
+      "source": "ESPN",
+      "title": "Source: Lions add CB McCreary on 1-year deal",
+      "url": "https://www.espn.com/nfl/story/_/id/48199022/lions-agree-cb-roger-mccreary-1-year-deal",
+      "publishedAt": "2026-03-14T00:07:27.000Z",
+      "publishedTs": 1773446847000,
+      "description": "The Lions added free agent cornerback Roger McCreary on a one-year deal, a source told ESPN."
+    },
+    {
+      "id": "8138eb9790a83643c1538a548dff7ad02654797b",
+      "source": "ESPN",
+      "title": "🏈 Our mid-free agency NFL mini-mock draft",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48151878/2026-nfl-free-agency-mock-draft-field-yates-first-round-predictions-signings",
+      "publishedAt": "2026-03-14T00:07:27.000Z",
+      "publishedTs": 1773446847000,
+      "description": "How has NFL free agency affected 2026 draft plans? Here are Field Yates' updated predictions for picks Nos. 1-10 after the first wave of deals."
+    },
+    {
+      "id": "d432422d6a6b1f169b99b9bed267bb9c096b2241",
+      "source": "ESPN",
+      "title": "Source: Bills, S Stone agree to one-year deal",
+      "url": "https://www.espn.com/nfl/story/_/id/48198949/source-bills-agree-terms-s-geno-stone-one-year-deal",
+      "publishedAt": "2026-03-14T00:07:26.000Z",
+      "publishedTs": 1773446846000,
+      "description": "The Bills and free agent safety Geno Stone agreed to terms on a one-year deal, a source confirmed to ESPN on Friday."
+    },
+    {
+      "id": "576285aab8482b9ab2812956c4030441a442270d",
       "source": "ESPN",
       "title": "Guide to NFL offseason signings: Will Walker see heavier workload in KC?",
       "url": "https://www.espn.com/fantasy/football/story/_/id/47899702/nfl-free-agency-2026-fantasy-football-impact-signings-trades-grades",
-      "publishedAt": "2026-03-13T01:22:31.000Z",
-      "publishedTs": 1773364951000,
+      "publishedAt": "2026-03-13T23:18:12.000Z",
+      "publishedTs": 1773443892000,
       "description": "Your one-stop shop for fantasy football reaction to all the key player movement via free agency and trades."
     },
     {
-      "id": "a5035798aa38b733535214ebe03fc80849635548",
+      "id": "98efb507a9a565899e47a161fa309269fbbaa2e9",
       "source": "ESPN",
-      "title": "Will Kyler Murray be a top-10 fantasy option? What does the move to Minnesota mean for him?",
+      "title": "Will Kyler Murray be a top-10 fantasy option? What does the move to Minnesota mean?",
       "url": "https://www.espn.com/fantasy/football/story/_/id/48188145/nfl-free-agency-fantasy-football-rankings-kyler-murray-signs-contract-minnesota-vikings",
-      "publishedAt": "2026-03-13T01:22:31.000Z",
-      "publishedTs": 1773364951000,
+      "publishedAt": "2026-03-13T23:18:12.000Z",
+      "publishedTs": 1773443892000,
       "description": "Murray gets a fresh opportunity in Minnesota. What will it mean for the QB and Justin Jefferson, his new top target?"
+    },
+    {
+      "id": "729f96678c9b51926c594f8e39f6593a60c63a88",
+      "source": "ESPN",
+      "title": "Saint, meet the Saints: Travis Etienne Jr.'s signing is full circle for family roots",
+      "url": "https://www.espn.com/nfl/story/_/id/48197395/travis-etienne-new-orleans-saints-son-name-jersey-family-roots",
+      "publishedAt": "2026-03-13T21:40:35.000Z",
+      "publishedTs": 1773438035000,
+      "description": "The newest New Orleans Saints running back opened up on naming his son after his current team, his family ties to the team and what it means to be home."
+    },
+    {
+      "id": "9602cc1020411b107b51547ede1d69cd97a7830f",
+      "source": "ESPN",
+      "title": "Where nine of the best remaining NFL free agents should sign: We found perfect landing spots",
+      "url": "https://www.espn.com/nfl/story/_/id/48185973/2026-nfl-free-agency-best-team-fits-top-players-available-barnwell",
+      "publishedAt": "2026-03-13T21:14:01.000Z",
+      "publishedTs": 1773436441000,
+      "description": "Where should Jauan Jennings, Joey Bosa and Rasheed Walker sign? Which roster needs Kirk Cousins? Let's find new homes for nine players still looking for one."
+    },
+    {
+      "id": "2f5a76994601e76656aaac834a94b8ef79ba6a24",
+      "source": "ESPN",
+      "title": "Live tracking NFL free agency: Updates on signings, trades, cuts",
+      "url": "https://www.espn.com/nfl/story/_/id/47899175/2026-nfl-free-agency-tracker-live-updates-signings-trades-cuts-contracts-rumors",
+      "publishedAt": "2026-03-13T21:14:01.000Z",
+      "publishedTs": 1773436441000,
+      "description": "We're following NFL free agency signings, trades, cuts, contract restructures and other moves as they happen."
+    },
+    {
+      "id": "4143646f61985d32b6f94579c19b13fd73b40e5a",
+      "source": "ESPN",
+      "title": "Reid's updated NFL draft QB Hot Board: Strengths and weaknesses for the top passers",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/46532548/2026-nfl-draft-ranking-top-quarterbacks-hot-board-team-fits-strengths-weaknesses",
+      "publishedAt": "2026-03-13T20:56:36.000Z",
+      "publishedTs": 1773435396000,
+      "description": "Who are the best quarterbacks in the 2026 class? We sized up the top 12, starting with Fernando Mendoza."
     },
     {
       "id": "88a987e75a662396a1573e8bf163c1372c9eda15",
@@ -162,51 +189,6 @@
       "publishedAt": "2026-03-12T20:39:52.000Z",
       "publishedTs": 1773347992000,
       "description": "NFL Players Association representatives are set to vote on a successor to disgraced former leader Lloyd Howell."
-    },
-    {
-      "id": "49a8d809e72e618ca367f23fa77aa2843d423792",
-      "source": "ESPN",
-      "title": "New and improved Baltimore Giants? How Isaiah Likely reshapes New York's offense",
-      "url": "https://www.espn.com/nfl/story/_/id/48173860/new-york-giants-free-agency-acquisition-isaiah-likely-reshapes-offense-baltimore-ravens-john-harbaugh",
-      "publishedAt": "2026-03-12T13:11:10.000Z",
-      "publishedTs": 1773321070000,
-      "description": "Signing four former-Ravens kick-starts the transformation of the Baltimore Giants, commanded by John Harbaugh."
-    },
-    {
-      "id": "7e2ffb7a35cd96ac146ed1b8d602ba48498da81e",
-      "source": "ESPN",
-      "title": "'He is by far a Hall of Famer': A look at what Mike Evans' exit means for the Bucs",
-      "url": "https://www.espn.com/nfl/story/_/id/48167333/tampa-bay-buccaneers-mike-evans-legacy-free-agency",
-      "publishedAt": "2026-03-12T13:11:10.000Z",
-      "publishedTs": 1773321070000,
-      "description": "Evans exits Tampa Bay in free agency as the Bucs' all-time leader in most statistical categories."
-    },
-    {
-      "id": "533415fbef819fd9d4a9c561cca25eeb64efa617",
-      "source": "ESPN",
-      "title": "How the Browns have succeeded in their first offseason priority",
-      "url": "https://www.espn.com/nfl/story/_/id/48179206/how-cleveland-browns-succeeded-their-first-offseason-priority-2026-nfl-free-agency",
-      "publishedAt": "2026-03-12T13:11:10.000Z",
-      "publishedTs": 1773321070000,
-      "description": "Cleveland has attacked its offensive line issues head-on during the early window of NFL free agency."
-    },
-    {
-      "id": "0c3891e633767c45cb3d5eb6e380b860146982f5",
-      "source": "ESPN",
-      "title": "The best (and worst) of NFL free agency: The Dominoes Award, Classic Overpay Award and more",
-      "url": "https://www.espn.com/nfl/story/_/id/48147334/2026-nfl-free-agency-awards-superlatives-best-worst-surprising-moves-contracts",
-      "publishedAt": "2026-03-12T13:07:25.000Z",
-      "publishedTs": 1773320845000,
-      "description": "The edge rush market exploded, the Titans called on old friends, Mike Evans landed in a new place, and two players were very particular about their contract numbers."
-    },
-    {
-      "id": "97986d2a43b0182c48bd37ab51d2463d184ee421",
-      "source": "ESPN",
-      "title": "Barnwell: Sorting out the winners, losers from NFL free agency's wild opening day",
-      "url": "https://www.espn.com/nfl/story/_/id/48147298/2026-nfl-free-agency-winners-losers-best-worst-signings-trades-contracts",
-      "publishedAt": "2026-03-12T13:07:25.000Z",
-      "publishedTs": 1773320845000,
-      "description": "Tua Tagovailoa in a great spot? Houston has a problem? A wildly player-friendly deal for Tyler Linderbaum?"
     },
     {
       "id": "b14bcec074e1ddc3b3a00c8970e60d1bc432b15c",
@@ -227,6 +209,213 @@
       "description": "The 2027 Super Bowl will air on ESPN for the first time in network history. Learn more information about Super Bowl LXI festivities now."
     },
     {
+      "id": "afea502b689ad73859effc477659286627b315cc",
+      "source": "FantasyPros",
+      "title": "Roger McCreary inks one-year contract with Lions",
+      "url": "https://www.fantasypros.com/nfl/news/573947/roger-mccreary-inks-one-year-contract-with-lions.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "11a4c1b6053823c44ead9d82d5d30a9a0298a1fe",
+      "source": "FantasyPros",
+      "title": "Geno Stone heads to Buffalo on one-year deal",
+      "url": "https://www.fantasypros.com/nfl/news/573943/geno-stone-heads-to-buffalo-on-one-year-deal.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "d5ee2f0fb0b27567039667f2f657f67c0b197a21",
+      "source": "FantasyPros",
+      "title": "Andre Cisco signs one-year deal to remain with Jets",
+      "url": "https://www.fantasypros.com/nfl/news/573934/andre-cisco-signs-one-year-deal-to-remain-with-jets.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "815d6d1c0d8b0066c425348b228b6149dff7db96",
+      "source": "FantasyPros",
+      "title": "Kalia Davis signs one-year deal with Browns",
+      "url": "https://www.fantasypros.com/nfl/news/573933/kalia-davis-signs-one-year-deal-with-browns.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "ba80892009088f29cfeb650c9a05f562b26eb278",
+      "source": "FantasyPros",
+      "title": "Sebastian Joseph-Day signs two-year deal with Steelers",
+      "url": "https://www.fantasypros.com/nfl/news/573932/sebastian-joseph-day-signs-two-year-deal-with-steelers.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "1117ef90f8d979cdaca568a53d66d065c1cddcd6",
+      "source": "FantasyPros",
+      "title": "Tyler Conklin signs one-year deal with Lions",
+      "url": "https://www.fantasypros.com/nfl/news/573921/tyler-conklin-signs-one-year-deal-with-lions.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "54ff633752a146607ec100d2074665b9d118c3c8",
+      "source": "FantasyPros",
+      "title": "Dalvin Tomlinson signs with Chargers",
+      "url": "https://www.fantasypros.com/nfl/news/573908/dalvin-tomlinson-signs-with-chargers-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "04115bc1260b3bca4f82a68f9088ee4631cbdb43",
+      "source": "FantasyPros",
+      "title": "Ko Kieft signs with Bucs",
+      "url": "https://www.fantasypros.com/nfl/news/573907/ko-kieft-signs-with-bucs-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "9dc80e3534717316543c8ff72e35edd9e1743d0a",
+      "source": "FantasyPros",
+      "title": "Ja'Quan McMillian signs one-year tender with Broncos",
+      "url": "https://www.fantasypros.com/nfl/news/573906/jaquan-mcmillian-signs-one-year-tender-with-broncos-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "2437b6469bf67ab413e0df2e213331cbff61520b",
+      "source": "FantasyPros",
+      "title": "Claudin Cherelus re-signs with Panthers",
+      "url": "https://www.fantasypros.com/nfl/news/573905/claudin-cherelus-re-signs-with-panthers-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "a399e24ea87a0e5ca7e4326825d0039b2b9a0271",
+      "source": "FantasyPros",
+      "title": "Juanyeh Thomas signs with Colts",
+      "url": "https://www.fantasypros.com/nfl/news/573904/juanyeh-thomas-signs-with-colts-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "2cc0fca5a2a56774d5ed6f4753aa45576e68f50b",
+      "source": "FantasyPros",
+      "title": "Dyami Brown signs with Commanders",
+      "url": "https://www.fantasypros.com/nfl/news/573903/dyami-brown-signs-with-commanders-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "8b3c98ef4dc9a34ec0b8980658067134df18334e",
+      "source": "FantasyPros",
+      "title": "Van Jefferson signs with Commanders",
+      "url": "https://www.fantasypros.com/nfl/news/573902/van-jefferson-signs-with-commanders-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "dcf611ac0dfee997036de2ae1432fd7c0366362b",
+      "source": "FantasyPros",
+      "title": "Rasheed Walker signs with Panthers",
+      "url": "https://www.fantasypros.com/nfl/news/573901/rasheed-walker-signs-with-panthers.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "05b58243c0af32e09f8d28f2b4b1db13f82e83e4",
+      "source": "FantasyPros",
+      "title": "Jalen Tolbert signs with Dolphins",
+      "url": "https://www.fantasypros.com/nfl/news/573848/jalen-tolbert-signs-with-dolphins-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "cf1fd00381affe259d0c675c369fe49f2ac88a58",
+      "source": "FantasyPros",
+      "title": "L'Jarius Sneed released by Titans",
+      "url": "https://www.fantasypros.com/nfl/news/573847/ljarius-sneed-released-by-titans-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "8c19398b3b47f6e1431e0fa4eb13740b35d601a7",
+      "source": "FantasyPros",
+      "title": "Luke Gifford re-signs with 49ers",
+      "url": "https://www.fantasypros.com/nfl/news/573843/luke-gifford-re-signs-with-49ers-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "e01ad3733b58b99169fa3355af01f1796293b4e1",
+      "source": "FantasyPros",
+      "title": "Jaleel McLaughlin re-signs with Broncos",
+      "url": "https://www.fantasypros.com/nfl/news/573842/jaleel-mclaughlin-re-signs-with-broncos-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "a7086ab24eac9aabf41f390a4f4be2dc60adc1c1",
+      "source": "FantasyPros",
+      "title": "Jonathon Cooper restructures contract with Broncos",
+      "url": "https://www.fantasypros.com/nfl/news/573840/jonathon-cooper-restructures-contract-with-broncos-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "55855fb165a836acd1037b9b1b9c4f4dcae298f4",
+      "source": "FantasyPros",
+      "title": "Ethan Bonner re-signs with Dolphins",
+      "url": "https://www.fantasypros.com/nfl/news/573838/ethan-bonner-re-signs-with-dolphins-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "6774ece45e327b2aaa259486dfaf5fad964a3a47",
+      "source": "FantasyPros",
+      "title": "Jamaree Salyer signs with Dolphins",
+      "url": "https://www.fantasypros.com/nfl/news/573837/jamaree-salyer-signs-with-dolphins-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "9d5c1facc81b0a5d9449acf97919772260187cf9",
+      "source": "FantasyPros",
+      "title": "Logan Cooke restructures contract with Jaguars",
+      "url": "https://www.fantasypros.com/nfl/news/573836/logan-cooke-restructures-contract-with-jaguars-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "20e5337a91bfba2b270c3d28eb1152df4fc0d195",
+      "source": "FantasyPros",
+      "title": "Jason Pinnock signs with Giants",
+      "url": "https://www.fantasypros.com/nfl/news/573835/jason-pinnock-signs-with-giants.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
       "id": "8d280a1f86d5b1b523102e151237f67f00a5da96",
       "source": "FantasyPros",
       "title": "Jonathan Jones signs with Eagles",
@@ -240,213 +429,6 @@
       "source": "FantasyPros",
       "title": "Cobie Durant signs with Cowboys",
       "url": "https://www.fantasypros.com/nfl/news/573801/cobie-durant-signs-with-cowboys-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "59c5e265f90e71b2e910cdcda6f5f29557cbed85",
-      "source": "FantasyPros",
-      "title": "Nate Hobbs to sign one-year deal with 49ers",
-      "url": "https://www.fantasypros.com/nfl/news/573796/nate-hobbs-to-sign-one-year-deal-with-49ers.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "ded9f92b6d1d615c01d562b7bbec347a0975d827",
-      "source": "FantasyPros",
-      "title": "Zach Charbonnet (knee) 'surgery went very well'",
-      "url": "https://www.fantasypros.com/nfl/news/573795/zach-charbonnet-knee-surgery-went-very-well.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "4a9caa71ca7edc12185ae03187bf6202973b7111",
-      "source": "FantasyPros",
-      "title": "Dareke Young signs with Raiders",
-      "url": "https://www.fantasypros.com/nfl/news/573793/dareke-young-signs-with-raiders.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "d68fabad48eb2181a219d71f03fec6b7365a314e",
-      "source": "FantasyPros",
-      "title": "Drue Tranquill restructures contract with Chiefs",
-      "url": "https://www.fantasypros.com/nfl/news/573792/drue-tranquill-restructures-contract-with-chiefs-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "f5981f9cddffba3bca72574b96bc4f2f33b59f01",
-      "source": "FantasyPros",
-      "title": "Matt Hennessy signs with Cowboys",
-      "url": "https://www.fantasypros.com/nfl/news/573791/matt-hennessy-signs-with-cowboys-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "38788cdf4a1b6449632fbd6f596083852ff493ca",
-      "source": "FantasyPros",
-      "title": "Arnold Ebiketie signs with Eagles",
-      "url": "https://www.fantasypros.com/nfl/news/573790/arnold-ebiketie-signs-with-eagles-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "879c07b61f23239ae1713bca88256c3f9994cf48",
-      "source": "FantasyPros",
-      "title": "Denzel Perryman returns to Chargers on one-year deal",
-      "url": "https://www.fantasypros.com/nfl/news/573775/denzel-perryman-returns-to-chargers-on-one-year-deal.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "9f8472962316d89148ecb2df77c2fa29d14661bb",
-      "source": "FantasyPros",
-      "title": "Emari Demercado signs with Chiefs",
-      "url": "https://www.fantasypros.com/nfl/news/573774/emari-demercado-signs-with-chiefs-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "1a3dc1e85a76122f166228094cdd5dc23682357c",
-      "source": "FantasyPros",
-      "title": "Danny Pinter visits Ravens Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/573738/danny-pinter-visits-ravens-thursday-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "3676d4f4b951e038a389101ece131dfe945012eb",
-      "source": "FantasyPros",
-      "title": "Connor Heyward signs two-year deal with Raiders",
-      "url": "https://www.fantasypros.com/nfl/news/573734/connor-heyward-signs-two-year-deal-with-raiders-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "0e5752a6d221fc2d4cd76eb1b1f16bdc037f8a90",
-      "source": "FantasyPros",
-      "title": "Jonah Williams signs with Cardinals",
-      "url": "https://www.fantasypros.com/nfl/news/573733/jonah-williams-signs-with-cardinals-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "dd3e57a4ca10e69a06614fb5e1ca02e10810a941",
-      "source": "FantasyPros",
-      "title": "Jaquan Brisker signs with Steelers",
-      "url": "https://www.fantasypros.com/nfl/news/573732/jaquan-brisker-signs-with-steelers-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "6ce62d16723404a506e45e511fd765596f1a095e",
-      "source": "FantasyPros",
-      "title": "Kylen Granson agrees to deal with Titans",
-      "url": "https://www.fantasypros.com/nfl/news/573723/kylen-granson-agrees-to-deal-with-titans.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "dcee4719a5e7b13710ba1f0da3de1cf88c15492e",
-      "source": "FantasyPros",
-      "title": "D'Anthony Bell signs one-year deal with Seahawks",
-      "url": "https://www.fantasypros.com/nfl/news/573722/danthony-bell-signs-one-year-deal-with-seahawks-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "253cb3a600cc1f8164b680210a854f3b8868d09a",
-      "source": "FantasyPros",
-      "title": "Tyler Hall released by Seahawks",
-      "url": "https://www.fantasypros.com/nfl/news/573721/tyler-hall-released-by-seahawks-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "0ce2ff139fffe0f45393bc237680b1185df022bb",
-      "source": "FantasyPros",
-      "title": "Will Grier released by Cowboys",
-      "url": "https://www.fantasypros.com/nfl/news/573720/will-grier-released-by-cowboys-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "aac6445f709c7261c0b62edaf63e433d7b0a7314",
-      "source": "FantasyPros",
-      "title": "C.J. Gardner-Johnson signs one-year deal with Bills",
-      "url": "https://www.fantasypros.com/nfl/news/573719/cj-gardner-johnson-signs-one-year-deal-with-bills-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "c240d338b85b4c98276f0cc4e92449c769c635da",
-      "source": "FantasyPros",
-      "title": "Kyler Murray signs one-year deal with Vikings",
-      "url": "https://www.fantasypros.com/nfl/news/573713/kyler-murray-signs-one-year-deal-with-vikings-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "bfec35ae71d8d6f783bedd9f53aa3b8c6d872103",
-      "source": "FantasyPros",
-      "title": "Dillon Radunz re-signs with Saints",
-      "url": "https://www.fantasypros.com/nfl/news/573707/dillon-radunz-re-signs-with-saints.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "471b29f5152017855f2a97add05d22362cbce0b7",
-      "source": "FantasyPros",
-      "title": "Grant Stuard signs two-year deal with Rams",
-      "url": "https://www.fantasypros.com/nfl/news/573706/grant-stuard-signs-two-year-deal-with-rams.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "10ed6f7ca2fb01c6ca2dc8e60cdb583b8729d9f2",
-      "source": "FantasyPros",
-      "title": "Tony Adams signs with Titans",
-      "url": "https://www.fantasypros.com/nfl/news/573705/tony-adams-signs-with-titans.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "d6077aa6b2b234cbff663b17f5f1df93e2840389",
-      "source": "FantasyPros",
-      "title": "Calvin Austin III signs one-year deal with Giants",
-      "url": "https://www.fantasypros.com/nfl/news/573704/calvin-austin-iii-signs-one-year-deal-with-giants-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "289ff332153476003c3123533f9e3d46b1b33e48",
-      "source": "FantasyPros",
-      "title": "Al-Quadin Muhammad agrees to deal with Bucs",
-      "url": "https://www.fantasypros.com/nfl/news/573687/al-quadin-muhammad-agrees-to-deal-with-bucs.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
