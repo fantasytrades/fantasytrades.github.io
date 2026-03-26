@@ -1,140 +1,167 @@
 {
-  "generatedAt": "2026-03-25T13:11:50.751Z",
+  "generatedAt": "2026-03-26T13:17:19.526Z",
   "items": [
     {
-      "id": "b6590c22462ecc969e9e4e20f34808a0558c7db8",
+      "id": "609d48e38706681ba8879957a8ca9cb678e3ad84",
       "source": "ESPN",
-      "title": "How changes to Matt LaFleur's coaching staff will impact the Packers",
-      "url": "https://www.espn.com/nfl/story/_/id/48297335/green-bay-packers-coaching-staff-changes",
-      "publishedAt": "2026-03-25T13:49:53.000Z",
-      "publishedTs": 1774446593000,
-      "description": "The offense brings back a familiar face in Luke Getsy, while Jonathan Gannon appears set to bring a 3-4 base."
+      "title": "Analyzing what the Vikings have said about their crowded QB room ahead of league meetings",
+      "url": "https://www.espn.com/nfl/story/_/id/48305418/minnesota-vikings-quarterback-room-kyler-murray-jj-mccarthy",
+      "publishedAt": "2026-03-26T13:44:53.000Z",
+      "publishedTs": 1774532693000,
+      "description": "Minnesota coach Kevin O'Connell has given varied answers over the offseason on his four-man QB room."
     },
     {
-      "id": "117f18d7fb4adf28e4dc082f2c2717496443932a",
-      "source": "ESPN",
-      "title": "Ranking every NFL free agency class: Solak on what he liked -- and didn't like -- for all 32 teams",
-      "url": "https://www.espn.com/nfl/story/_/id/48259765/2026-nfl-free-agency-class-rankings-teams-improved-better-worse-32-signings-deals",
-      "publishedAt": "2026-03-25T13:43:04.000Z",
-      "publishedTs": 1774446184000,
-      "description": "How did all 32 NFL teams fare in March, taking into account free agent signings, trades, extensions and departures? We stacked each class."
-    },
-    {
-      "id": "2bb84d0d75c25f6be9f6f88c3dfbab58ec88eb1d",
-      "source": "ESPN",
-      "title": "Barnwell on a surprising NFL free agency trend going back to 2013",
-      "url": "https://www.espn.com/nfl/story/_/id/48259731/nfl-free-agency-barnwell-splash-signings-contract-pay-2013-2022",
-      "publishedAt": "2026-03-25T13:43:03.000Z",
-      "publishedTs": 1774446183000,
-      "description": "Let's look at the largest contracts from 2013 to 2022 to see how often megadeals meet expectations."
-    },
-    {
-      "id": "b2fe29f07ddfb4703804f5d5bb7b28cff74bb893",
-      "source": "ESPN",
-      "title": "Predicting Rounds 1-2 of the NFL draft: Yates finds landing spots for 64 top prospects",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48259253/2026-nfl-mock-draft-two-rounds-64-picks-field-yates",
-      "publishedAt": "2026-03-25T12:12:19.000Z",
-      "publishedTs": 1774440739000,
-      "description": "Field Yates unveils his latest NFL mock draft, projecting two full rounds. Which top prospects could go in the opening 64 picks?"
-    },
-    {
-      "id": "510d5108d71ede56f892e4409b1d284f543232fd",
+      "id": "b7e582b0a59b31786ce6bd67dcef44cdcd9a7bd9",
       "source": "ESPN",
       "title": "Ranking Ohio State's first-round receivers since 2022: How does Carnell Tate stack up?",
       "url": "https://www.espn.com/nfl/draft2026/story/_/id/48290224/ranking-ohio-state-receivers-first-round-nfl-draft-tate-harrison-smith-njigba",
-      "publishedAt": "2026-03-25T12:12:19.000Z",
-      "publishedTs": 1774440739000,
+      "publishedAt": "2026-03-26T13:37:34.000Z",
+      "publishedTs": 1774532254000,
       "description": "Tate could be the WR1 of the 2026 draft. But how does he compare to the stars that came before him?"
     },
     {
-      "id": "f5d768069e8de19c201188fe5a138ae91357528a",
+      "id": "10c61b9287f01400ff7cea00382f9ed4b47315d5",
       "source": "ESPN",
-      "title": "Elite longevity: Flacco, 41, agrees to Cincy deal",
-      "url": "https://www.espn.com/nfl/story/_/id/48298896/bengals-41-year-old-qb-joe-flacco-agree-1-year-deal",
-      "publishedAt": "2026-03-25T03:22:43.000Z",
-      "publishedTs": 1774408963000,
-      "description": "Quarterback Joe Flacco is coming back for a 19th NFL season, agreeing to a one-year, $6 million deal with the Bengals, sources told ESPN's Jeremy Fowler."
+      "title": "Nacua sued over alleged antisemitic remark, bite",
+      "url": "https://www.espn.com/nfl/story/_/id/48306031/rams-puka-nacua-sued-alleged-antisemitic-remark-bite",
+      "publishedAt": "2026-03-26T13:32:45.000Z",
+      "publishedTs": 1774531965000,
+      "description": "A woman in Los Angeles has filed a civil lawsuit against Puka Nacua alleging the Rams wide receiver made an \"unprovoked antisemitic statement\" and later bit her on the shoulder."
     },
     {
-      "id": "0d8aaa0424f2656dcad4cf499c6727e93ee6ee89",
+      "id": "d03c718ead84235f75b39b482007d67fcd7c1adf",
       "source": "ESPN",
-      "title": "NFL to consider rule tweaks for replacement refs",
-      "url": "https://www.espn.com/nfl/story/_/id/48298693/nfl-consider-rule-proposals-case-ref-work-stoppage",
-      "publishedAt": "2026-03-25T03:22:43.000Z",
-      "publishedTs": 1774408963000,
-      "description": "The NFL competition committee has finalized a series of wide-ranging rule change proposals to account for the growing possibility of a work stoppage amid tense collective bargaining negotiations with the NFL Referees Association."
+      "title": "Flacco: Teams 'dumb' for not signing me to start",
+      "url": "https://www.espn.com/nfl/story/_/id/48304474/bengals-joe-flacco-says-teams-dumb-not-signing-start",
+      "publishedAt": "2026-03-26T13:32:45.000Z",
+      "publishedTs": 1774531965000,
+      "description": "Joe Flacco is back with the Bengals as Joe Burrow's backup, but he isn't shy about voicing his belief that teams made a mistake by passing on him to be their starting quarterback."
     },
     {
-      "id": "3abceeb51eb1d47c733bde8047b24c4e5b9a8b3c",
+      "id": "212bc8687a9db9c35bd87d8ba97d057b2ce150be",
       "source": "ESPN",
-      "title": "LB David retires as one of Bucs' all-time greats",
-      "url": "https://www.espn.com/nfl/story/_/id/48296137/buccaneers-lb-lavonte-david-12-captain-retires-nfl",
-      "publishedAt": "2026-03-25T03:22:43.000Z",
-      "publishedTs": 1774408963000,
-      "description": "Linebacker Lavonte David announced his retirement Tuesday after a 14-year career with the Tampa Bay Buccaneers in which he was a 12-time captain and has led the league in tackles since he entered the NFL."
+      "title": "Macdonald: JSN deal rewards 'foundational' player",
+      "url": "https://www.espn.com/nfl/story/_/id/48307473/seahawks-tout-smith-njigba-record-deal-foundational-player",
+      "publishedAt": "2026-03-26T13:32:45.000Z",
+      "publishedTs": 1774531965000,
+      "description": "Seahawks GM John Schneider and coach Mike Macdonald said they felt comfortable giving Jaxon Smith-Njigba his record-setting extension because of his \"unique combination\" of excellence on and off the field."
     },
     {
-      "id": "9969c9238d9a3a1777f4b4cd4ba2da961aebd07e",
+      "id": "258b5b6a94b9d7b65e8b6efdd68d8c58261d24c0",
       "source": "ESPN",
-      "title": "Tua: 'Got to play better' to become Falcons' QB1",
-      "url": "https://www.espn.com/nfl/story/_/id/48297130/tagovailoa-got-play-better-challenge-falcons-qb1",
-      "publishedAt": "2026-03-25T03:22:43.000Z",
-      "publishedTs": 1774408963000,
-      "description": "Former Dolphin Tua Tagovailoa said Tuesday he has \"got to play better football\" if he wants a chance to become the Atlanta Falcons' starting quarterback."
+      "title": "Seahawks to open on Wed. due to Australia game",
+      "url": "https://www.espn.com/nfl/story/_/id/48305104/seahawks-open-wednesday-week-1-australia-game-thursday",
+      "publishedAt": "2026-03-26T13:32:44.000Z",
+      "publishedTs": 1774531964000,
+      "description": "The Super Bowl LX champion Seahawks will open the season on the Wednesday of Week 1 instead of hosting the usual Thursday night opener."
     },
     {
-      "id": "b26a1d3b0cdd0790ea90e8f769bb106c99c58d60",
+      "id": "cdef25f73414d7894d7d475bf1a4cd58f042a8f8",
       "source": "ESPN",
-      "title": "Sources: Saints fill out QB room, add Z. Wilson",
-      "url": "https://www.espn.com/nfl/story/_/id/48300593/sources-free-agent-zach-wilson-agrees-deal-saints",
-      "publishedAt": "2026-03-25T03:22:43.000Z",
-      "publishedTs": 1774408963000,
-      "description": "The Saints have agreed to a one-year deal with QB Zach Wilson, sources confirmed to ESPN's Adam Schefter."
+      "title": "QB Simpson says he's 'absolutely' 1st-round pick",
+      "url": "https://www.espn.com/nfl/story/_/id/48311228/alabama-qb-ty-simpson-says-absolutely-1st-round-pick",
+      "publishedAt": "2026-03-26T13:32:44.000Z",
+      "publishedTs": 1774531964000,
+      "description": "Ty Simpson felt like he made a final impression at Alabama's pro day in front of NFL scouts. He believes he's 'absolutely' a lock to be a first-round pick."
     },
     {
-      "id": "444ed279aade3d67c2193374cbc415234ab6265d",
+      "id": "49ab7a39c70ebf9f842c22c3201617c8fecb00f7",
       "source": "ESPN",
-      "title": "Gambling addiction suit targets NFL, sportsbooks",
-      "url": "https://www.espn.com/espn/betting/story/_/id/48297871/nfl-sportsbooks-defendants-gambling-addiction-lawsuit",
-      "publishedAt": "2026-03-25T03:22:43.000Z",
-      "publishedTs": 1774408963000,
-      "description": "The NFL, its data partner Genius Sports, and sportsbooks FanDuel and DraftKings have been named as defendants in a gambling addiction lawsuit filed Tuesday in a Pennsylvania state court."
+      "title": "Sources: Browns, Garrett modify deal language",
+      "url": "https://www.espn.com/nfl/story/_/id/48306607/sources-browns-myles-garrett-modify-language-contract",
+      "publishedAt": "2026-03-26T13:32:44.000Z",
+      "publishedTs": 1774531964000,
+      "description": "The Browns and reigning NFL Defensive Player of the Year Myles Garrett have agreed to modified language on his contract that became official on Tuesday, per league sources."
     },
     {
-      "id": "ccb827f9a7640626b9b621f6aae49270dbc53c5a",
+      "id": "7ce4287618f1d13e9752376acc05a7d2820798c0",
       "source": "ESPN",
-      "title": "McCarthy: Rodgers reunion would be 'great story'",
-      "url": "https://www.espn.com/nfl/story/_/id/48295822/mike-mccarthy-aaron-rodgers-reunion-steelers-great-story",
-      "publishedAt": "2026-03-25T03:22:43.000Z",
-      "publishedTs": 1774408963000,
-      "description": "Mike McCarthy said reuniting with Aaron Rodgers in Pittsburgh would \"be a great story.\""
+      "title": "Mahomes shows progress, posts video throwing",
+      "url": "https://www.espn.com/nfl/story/_/id/48306071/patrick-mahomes-shows-rehab-progress-throws-new-video",
+      "publishedAt": "2026-03-26T13:32:44.000Z",
+      "publishedTs": 1774531964000,
+      "description": "Patrick Mahomes posted a short video clip Wednesday of himself in a training session where he dropped back and threw the ball, the first public footage of him doing so since he had knee surgery in December."
     },
     {
-      "id": "e3ace8096294edeb02eb09b4b4158f0907fb7b2e",
+      "id": "086076b435c3e873126cc8e08a2177f1cec22ecc",
       "source": "ESPN",
-      "title": "Source: Falcons improve RB depth, add Robinson",
-      "url": "https://www.espn.com/nfl/story/_/id/48297501/falcons-agree-one-year-deal-rb-brian-robinson",
-      "publishedAt": "2026-03-25T03:22:43.000Z",
-      "publishedTs": 1774408963000,
-      "description": "The Falcons have reached a one-year, $2.5 million deal with running back Brian Robinson, according to NFL Network."
+      "title": "Sources: Labor talks stop amid NFL-ref impasse",
+      "url": "https://www.espn.com/nfl/story/_/id/48306490/sources-nfl-referees-break-labor-talks-amid-impasse",
+      "publishedAt": "2026-03-26T13:32:44.000Z",
+      "publishedTs": 1774531964000,
+      "description": "Labor negotiations between the NFL and NFL Referees Association broke off earlier than scheduled this week as the sides were unable to make progress toward a new collective bargaining agreement, sources told ESPN."
     },
     {
-      "id": "399d362b0d50d9cc76d9f67dc99af9683339a3f5",
+      "id": "1ba859409f530ce5da61bfb22326e7efc871b0bc",
       "source": "ESPN",
       "title": "📈 Ranking the 16 best deals of the offseason",
       "url": "https://www.espn.com/nfl/story/_/id/48226368/2026-nfl-free-agency-signings-ranking-best-deals-contracts-fits-values",
-      "publishedAt": "2026-03-25T03:22:43.000Z",
-      "publishedTs": 1774408963000,
+      "publishedAt": "2026-03-26T13:32:44.000Z",
+      "publishedTs": 1774531964000,
       "description": "We've graded more than 60 signings and trades over the past few weeks. But only 16 moves received top marks. We ranked those deals."
     },
     {
-      "id": "e7055356c21230d6a9cf7d8055663e769c5370c7",
+      "id": "90d81127de21be0fd738136e7ce81bf24f5ce1e8",
       "source": "ESPN",
-      "title": "Bills' massive bison statues anchor Highmark Stadium's Family Circle in new renderings",
-      "url": "https://www.espn.com/nfl/story/_/id/48291577/buffalo-bills-new-highmark-stadium-bison-statues-family-circle",
-      "publishedAt": "2026-03-24T20:14:10.000Z",
-      "publishedTs": 1774383250000,
-      "description": "The three stainless steel bison will anchor a new year-round plaza outside Highmark Stadium."
+      "title": "An early look at 2027 free agency: Which playmakers could be available next March?",
+      "url": "https://www.espn.com/nfl/story/_/id/48287895/2027-nfl-free-agency-early-look-top-players-quarterbacks-available",
+      "publishedAt": "2026-03-26T13:27:57.000Z",
+      "publishedTs": 1774531677000,
+      "description": "Which top players might be available in next year's NFL free agency? We picked out 50 stars to keep an eye on."
+    },
+    {
+      "id": "f1e74c2f01b1d4e34e931fedde57a0c753768310",
+      "source": "ESPN",
+      "title": "Ranking all 32 NFL free agency classes: Which teams most improved their rosters?",
+      "url": "https://www.espn.com/nfl/story/_/id/48259765/2026-nfl-free-agency-class-rankings-teams-improved-better-worse-32-signings-deals",
+      "publishedAt": "2026-03-26T13:27:57.000Z",
+      "publishedTs": 1774531677000,
+      "description": "How did every team fare in March, taking into account free agent signings, trades, extensions and departures."
+    },
+    {
+      "id": "dba286057daf42a101deb9d2e1d5e3e19d035de6",
+      "source": "ESPN",
+      "title": "A closer look at every UFL team's new uniforms for 2026",
+      "url": "https://www.espn.com/united-football-league/story/_/id/48289661/ufl-2026-uniform-breakdown-new-teams-redesigns",
+      "publishedAt": "2026-03-26T13:23:01.000Z",
+      "publishedTs": 1774531381000,
+      "description": "All eight UFL teams will debut updated uniforms, including three relocated franchises."
+    },
+    {
+      "id": "bab8e0d86eb3ef54a7d387af897d72c2cde5daa4",
+      "source": "ESPN",
+      "title": "'What I'm thinking is arena football but outdoors': How Mike Repole is remaking the UFL",
+      "url": "https://www.espn.com/united-football-league/story/_/id/48299147/ufl-2026-mike-repole-takes-over",
+      "publishedAt": "2026-03-26T13:23:00.000Z",
+      "publishedTs": 1774531380000,
+      "description": "Repole is the man behind many of the UFL's changes, including smaller venues and the four-point field goal."
+    },
+    {
+      "id": "15c6d1bd5256d5752b4aceea1ce6d60464a735ea",
+      "source": "ESPN",
+      "title": "25 trends to know before draft season begins",
+      "url": "https://www.espn.com/fantasy/football/story/_/id/48276085/2026-fantasy-football-projections-draft-rankings-trends-carry-target-shares",
+      "publishedAt": "2026-03-26T13:22:01.000Z",
+      "publishedTs": 1774531321000,
+      "description": "Mike Clay shares his favorite notes from the research that informed his fantasy projections for 2026."
+    },
+    {
+      "id": "cf7841c605cfc96761bbd79a5d1422279b8cbf9d",
+      "source": "ESPN",
+      "title": "Top draft needs for all 32 NFL teams: We picked the biggest holes and prospects to target",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48303738/2026-nfl-draft-team-needs-depth-chart-holes-prospect-fits",
+      "publishedAt": "2026-03-26T13:20:39.000Z",
+      "publishedTs": 1774531239000,
+      "description": "Our NFL reporters listed the top three positional needs for all 32 teams at April's draft, and our draft experts found non-Round 1 fits to fill them."
+    },
+    {
+      "id": "8b07a3567af8b7933e4f20fdf0fc73e36a993e21",
+      "source": "ESPN",
+      "title": "Predicting Rounds 1-2 of the NFL draft: Yates' landing spots for 64 top prospects",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48259253/2026-nfl-mock-draft-two-rounds-64-picks-field-yates",
+      "publishedAt": "2026-03-26T13:20:38.000Z",
+      "publishedTs": 1774531238000,
+      "description": "Field Yates unveils his latest NFL mock draft. Which top prospects could go in the opening 64 picks?"
     },
     {
       "id": "7d034bd1c7fcc6372a7e7698332656eb4f818d2a",
@@ -155,60 +182,6 @@
       "description": "After learning how to kick on YouTube and teaching himself English, Kansei Matsuzawa's dream of playing in the NFL is nearing reality."
     },
     {
-      "id": "076155bf0574e25551fc21a22decca60799a80e3",
-      "source": "ESPN",
-      "title": "How Jaxon Smith-Njigba's contract extension impacts Seahawks, Rams' Puka Nacua",
-      "url": "https://www.espn.com/nfl/story/_/id/48288997/how-jaxon-smith-njigba-contract-extension-impacts-seattle-seahawks-los-angeles-rams-puka-nacua",
-      "publishedAt": "2026-03-24T13:22:00.000Z",
-      "publishedTs": 1774358520000,
-      "description": "Answering five questions about the record-breaking contract extension for the NFL's top receiver in 2025."
-    },
-    {
-      "id": "d539528dcd27908ccadf0066c1e353c2f07eb019",
-      "source": "ESPN",
-      "title": "Takeaways from opening week of free agency: Biggest signings, losses for all 32 teams",
-      "url": "https://www.espn.com/nfl/story/_/id/48227150/2026-nfl-free-agency-key-roster-additions-subtractions-goals-buzz-questions",
-      "publishedAt": "2026-03-23T12:41:04.000Z",
-      "publishedTs": 1774269664000,
-      "description": "Let's break down the main free agency signings, latest buzz on moves and biggest remaining questions."
-    },
-    {
-      "id": "e3678fff570ac89cba39154f975affc38922eb67",
-      "source": "ESPN",
-      "title": "New teams, logos, coaches, stadiums and key players for every team",
-      "url": "https://www.espn.com/united-football-league/story/_/id/48185365/ufl-2026-coaches-logos-key-players",
-      "publishedAt": "2026-03-19T13:12:53.000Z",
-      "publishedTs": 1773925973000,
-      "description": "Here are the teams, coaches and key players who will take the field this month as the UFL begins Season 3."
-    },
-    {
-      "id": "f8f1a4a45cf4b774faaf9cb45e001d7dde96eb9b",
-      "source": "ESPN",
-      "title": "How to watch every 2026 UFL game: Dates, networks, complete team-by-team schedules",
-      "url": "https://www.espn.com/united-football-league/story/_/id/48090123/ufl-2026-team-schedules",
-      "publishedAt": "2026-03-19T13:12:53.000Z",
-      "publishedTs": 1773925973000,
-      "description": "Here's a team-by-team list of schedules for every UFL team prior to the season kickoff on March 27."
-    },
-    {
-      "id": "e1f3f2729c3845c0d1d87960080aaebb98b2f105",
-      "source": "ESPN",
-      "title": "Fantasy guide to NFL offseason signings: Broncos acquire Waddle from Dolphins",
-      "url": "https://www.espn.com/fantasy/football/story/_/id/47899702/nfl-free-agency-2026-fantasy-football-impact-signings-trades-grades",
-      "publishedAt": "2026-03-18T15:56:08.000Z",
-      "publishedTs": 1773849368000,
-      "description": "Your one-stop shop for fantasy football reaction to all the key player movement via free agency and trades."
-    },
-    {
-      "id": "154bb4ece5ef1690d54af83fa43e40f717d887bc",
-      "source": "ESPN",
-      "title": "Will Kyler Murray be a top-10 fantasy option? What does the move to Minnesota mean?",
-      "url": "https://www.espn.com/fantasy/football/story/_/id/48188145/nfl-free-agency-fantasy-football-rankings-kyler-murray-signs-contract-minnesota-vikings",
-      "publishedAt": "2026-03-18T15:56:08.000Z",
-      "publishedTs": 1773849368000,
-      "description": "Murray gets a fresh opportunity in Minnesota. What will it mean for the QB and Justin Jefferson, his new top target?"
-    },
-    {
       "id": "bb523209f66181ab0b6e894c97f00b9c516cfb21",
       "source": "ESPN",
       "title": "Super Bowl 2027 on ESPN: Date, location, venue, more details",
@@ -216,6 +189,15 @@
       "publishedAt": "2026-02-19T13:05:38.000Z",
       "publishedTs": 1771506338000,
       "description": "The 2027 Super Bowl will air on ESPN for the first time in network history. Learn more information about Super Bowl LXI festivities now."
+    },
+    {
+      "id": "6b8a8ee8f76efa47545964246c47277ace9631ea",
+      "source": "FantasyPros",
+      "title": "Najee Harris visits Seahawks Wednesday",
+      "url": "https://www.fantasypros.com/nfl/news/576347/najee-harris-visits-seahawks-wednesday-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
     },
     {
       "id": "8d05c1982664bfd4eaf0ad16ed645ac8bebc495b",
@@ -420,15 +402,6 @@
       "source": "FantasyPros",
       "title": "Brandon Aubrey says he wants to sign extension with Cowboys",
       "url": "https://www.fantasypros.com/nfl/news/575229/brandon-aubrey-says-he-wants-to-sign-extension-with-cowboys-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "8d8006941078d47fc17a61f5f6bc62779f66fe01",
-      "source": "FantasyPros",
-      "title": "Trent Williams: 49ers will not exercise 2026 option bonus",
-      "url": "https://www.fantasypros.com/nfl/news/575228/trent-williams-49ers-will-not-exercise-2026-option-bonus-.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
