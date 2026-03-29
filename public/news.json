@@ -1,23 +1,122 @@
 {
-  "generatedAt": "2026-03-28T12:56:24.528Z",
+  "generatedAt": "2026-03-29T12:57:07.696Z",
   "items": [
     {
-      "id": "d1f4d91558a6427b3de78c1a234f0c171b90c03a",
+      "id": "e3851c051804db72185eee022254f6073da4c9b4",
       "source": "ESPN",
-      "title": "How much difference will the Giants' focus on special teams make?",
-      "url": "https://www.espn.com/nfl/story/_/id/48323578/how-much-difference-new-york-giants-john-harbaugh-focus-special-teams-make",
-      "publishedAt": "2026-03-28T12:16:12.000Z",
-      "publishedTs": 1774700172000,
-      "description": "There's an emphasis on improving special teams under John Harbaugh, but the runway to winning is to be determined."
+      "title": "Predicting top wide receiver prospects' NFL stats: Who ranks No. 1 in the 2026 draft class?",
+      "url": "https://www.espn.com/nfl/story/_/id/48304971/2026-nfl-draft-wide-receiver-projections-stats-historical-comps-prospects",
+      "publishedAt": "2026-03-29T12:39:08.000Z",
+      "publishedTs": 1774787948000,
+      "description": "Which receivers in the 2026 draft class will have the most success in the pros? We have projections for the top prospects."
     },
     {
-      "id": "52a23705d089224734ec7c54b401104541401d13",
+      "id": "bf700eea5186bc2487b11ed2df81e5fc54cfaf67",
+      "source": "ESPN",
+      "title": "Jets brass showing interest in Ty Simpson, but is it enough to draft him?",
+      "url": "https://www.espn.com/nfl/story/_/id/48313486/new-york-jets-quarterback-2026-draft-ty-simpson-interest",
+      "publishedAt": "2026-03-29T12:35:05.000Z",
+      "publishedTs": 1774787705000,
+      "description": "New York's brass went to Tuscaloosa to meet face-to-face with the No. 2 quarterback prospect in the 2026 draft."
+    },
+    {
+      "id": "28a50e3705b6c13fde1fde7882af22cc966bd573",
+      "source": "ESPN",
+      "title": "Former Raiders center Robbins dies at age 52",
+      "url": "https://www.espn.com/nfl/story/_/id/48322447/former-raiders-center-barret-robbins-dies-age-52",
+      "publishedAt": "2026-03-29T02:15:03.000Z",
+      "publishedTs": 1774750503000,
+      "description": "Former Raiders center Barret Robbins has died at age 52."
+    },
+    {
+      "id": "160bd78cfdb43cc05f07c4e763010676b0acc199",
+      "source": "ESPN",
+      "title": "Commanders confident in LB core if Wagner gone",
+      "url": "https://www.espn.com/nfl/story/_/id/48335134/commanders-confident-lb-core-vet-bobby-wagner-leaves",
+      "publishedAt": "2026-03-29T02:15:02.000Z",
+      "publishedTs": 1774750502000,
+      "description": "The Commanders noted the value of veteran free agent LB Bobby Wagner's leadership but said they are confident in the players they've added at his position."
+    },
+    {
+      "id": "6cdf14dfd4fc0a31049ed266dcef66bbbb06cc48",
+      "source": "ESPN",
+      "title": "Florida AG challenges NFL to abolish Rooney Rule",
+      "url": "https://www.espn.com/nfl/story/_/id/48322280/florida-attorney-general-says-nfl-get-rid-rooney-rule",
+      "publishedAt": "2026-03-29T02:15:02.000Z",
+      "publishedTs": 1774750502000,
+      "description": "Florida's attorney general has sent a letter to NFL commissioner Roger Goodell to express concern that the Rooney Rule is \"blatant race and sex discrimination\" and that hiring decisions should be based on merit only."
+    },
+    {
+      "id": "fc1acc45deb77cb3cc2fa4df15a777331e384a83",
       "source": "ESPN",
       "title": "Gervin irked QB Williams filed 'Iceman' trademark",
       "url": "https://www.espn.com/nfl/story/_/id/48317467/gervin-irked-bears-williams-filed-trademark-iceman",
-      "publishedAt": "2026-03-28T05:34:41.000Z",
-      "publishedTs": 1774676081000,
+      "publishedAt": "2026-03-29T02:15:02.000Z",
+      "publishedTs": 1774750502000,
       "description": "Former NBA star George Gervin said he was \"caught off guard\" when he learned Bears quarterback Caleb Williams had attempted to trademark \"Iceman,\" a nickname Gervin has used since his playing days."
+    },
+    {
+      "id": "7eb5de75aeb5cd8e1facac28c80852e322728c6c",
+      "source": "ESPN",
+      "title": "Brady on comeback: NFL didn't 'like that idea'",
+      "url": "https://www.espn.com/nfl/story/_/id/48312447/tom-brady-says-asked-nfl-possible-comeback",
+      "publishedAt": "2026-03-29T02:15:02.000Z",
+      "publishedTs": 1774750502000,
+      "description": "Tom Brady says he explored the possibility of coming out of retirement and returning to the NFL, adding that the league did not \"like that idea very much.\""
+    },
+    {
+      "id": "442da32cbce6d0083d3c96ef070aa738bd9cb8a0",
+      "source": "ESPN",
+      "title": "Bills bring back Hamlin on one-year contract",
+      "url": "https://www.espn.com/nfl/story/_/id/48321867/bills-re-sign-damar-hamlin-one-year-contract",
+      "publishedAt": "2026-03-29T02:15:02.000Z",
+      "publishedTs": 1774750502000,
+      "description": "The Bills have re-signed safety Damar Hamlin to a one-year contract after his 2025 season was cut short by injury."
+    },
+    {
+      "id": "26fc60aff755caf3de94bc76442be8b3f739aadc",
+      "source": "ESPN",
+      "title": "RG III invited to try out for Team USA flag team",
+      "url": "https://www.espn.com/nfl/story/_/id/48314017/robert-griffin-iii-invited-try-team-usa-flag-football",
+      "publishedAt": "2026-03-29T02:15:02.000Z",
+      "publishedTs": 1774750502000,
+      "description": "Former NFL quarterback Robert Griffin III received an invitation from USA Football to two training camps starting next month in Chula Vista, California."
+    },
+    {
+      "id": "5fc7ab77d2028ab7d8eeb6a4d277450dd36c7ab4",
+      "source": "ESPN",
+      "title": "Panthers' Walker: Gun charge will be dismissed",
+      "url": "https://www.espn.com/nfl/story/_/id/48314566/panthers-rasheed-walker-says-gun-charge-dismissed",
+      "publishedAt": "2026-03-29T02:15:02.000Z",
+      "publishedTs": 1774750502000,
+      "description": "Panthers LT Rasheed Walker said Thursday that a January gun charge stemming from an arrest at LaGuardia Airport is getting dismissed."
+    },
+    {
+      "id": "0d463059f62cbd467a72484fee3c5baa17189a6c",
+      "source": "ESPN",
+      "title": "🏈 Yates' mock draft: Predicting Rounds 1 & 2",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48259253/2026-nfl-mock-draft-two-rounds-64-picks-field-yates",
+      "publishedAt": "2026-03-29T02:15:02.000Z",
+      "publishedTs": 1774750502000,
+      "description": "Field Yates unveils his latest NFL mock draft, projecting two full rounds. Which top prospects could go in the opening 64 picks?"
+    },
+    {
+      "id": "6791d910973b26003f6961b06301a55fce712f0b",
+      "source": "ESPN",
+      "title": "A former NFL GM's must-draft board for 2026: Tannenbaum pounds the table for 14 prospects",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48305662/2026-nfl-draft-tannenbaum-board-prospects-targets-seven-rounds-gm",
+      "publishedAt": "2026-03-28T20:28:30.000Z",
+      "publishedTs": 1774729710000,
+      "description": "From Dillon Thieneman on Day 1 to Jaffer Murphy late on Day 3, Mike Tannenbaum picks the draft prospects he'd want to target across all seven rounds."
+    },
+    {
+      "id": "5f19457c850279bee3d1258db8bc65315e0d446e",
+      "source": "ESPN",
+      "title": "Latest NFL draft buzz: Ty Simpson's pro day, Jeremiyah Love's ceiling and more",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48311668/2026-nfl-draft-latest-buzz-rumors-news-mocks-sleepers-simpson-love",
+      "publishedAt": "2026-03-28T20:28:30.000Z",
+      "publishedTs": 1774729710000,
+      "description": "Is Jeremiyah Love really a possibility for the Titans at No. 4? Our draft experts weigh in with new intel."
     },
     {
       "id": "486888d0a79f598d3e7006963523c07464d85ae3",
@@ -54,96 +153,6 @@
       "publishedAt": "2026-03-28T02:22:31.000Z",
       "publishedTs": 1774664551000,
       "description": "Repole is the man behind many of the UFL's changes, including smaller venues and the four-point field goal."
-    },
-    {
-      "id": "ca79e1cf4880fc6df8b169cf906be04105d0edb2",
-      "source": "ESPN",
-      "title": "Former Raiders center Robbins dies at age 52",
-      "url": "https://www.espn.com/nfl/story/_/id/48322447/former-raiders-center-barret-robbins-dies-age-52",
-      "publishedAt": "2026-03-28T02:01:31.000Z",
-      "publishedTs": 1774663291000,
-      "description": "Former Raiders center Barret Robbins has died at age 52."
-    },
-    {
-      "id": "971560a7badb0252ea753946f91e31faa6e150d6",
-      "source": "ESPN",
-      "title": "Florida AG challenges NFL to abolish Rooney Rule",
-      "url": "https://www.espn.com/nfl/story/_/id/48322280/florida-attorney-general-says-nfl-get-rid-rooney-rule",
-      "publishedAt": "2026-03-28T02:01:31.000Z",
-      "publishedTs": 1774663291000,
-      "description": "Florida's attorney general has sent a letter to NFL commissioner Roger Goodell to express concern that the Rooney Rule is \"blatant race and sex discrimination\" and that hiring decisions should be based on merit only."
-    },
-    {
-      "id": "f138bfdd791e0ec490717cac80499889e0d0a0a2",
-      "source": "ESPN",
-      "title": "Brady on comeback: NFL didn't 'like that idea'",
-      "url": "https://www.espn.com/nfl/story/_/id/48312447/tom-brady-says-asked-nfl-possible-comeback",
-      "publishedAt": "2026-03-28T02:01:31.000Z",
-      "publishedTs": 1774663291000,
-      "description": "Tom Brady says he explored the possibility of coming out of retirement and returning to the NFL, adding that the league did not \"like that idea very much.\""
-    },
-    {
-      "id": "1fe7f0d84accd43e82316046458b9256bd873afe",
-      "source": "ESPN",
-      "title": "Bills bring back Hamlin on one-year contract",
-      "url": "https://www.espn.com/nfl/story/_/id/48321867/bills-re-sign-damar-hamlin-one-year-contract",
-      "publishedAt": "2026-03-28T02:01:31.000Z",
-      "publishedTs": 1774663291000,
-      "description": "The Bills have re-signed safety Damar Hamlin to a one-year contract after his 2025 season was cut short by injury."
-    },
-    {
-      "id": "c8cd69fed3062e5627d1b1031be448c72ab0e9f6",
-      "source": "ESPN",
-      "title": "RG III invited to try out for Team USA flag team",
-      "url": "https://www.espn.com/nfl/story/_/id/48314017/robert-griffin-iii-invited-try-team-usa-flag-football",
-      "publishedAt": "2026-03-28T02:01:31.000Z",
-      "publishedTs": 1774663291000,
-      "description": "Former NFL quarterback Robert Griffin III received an invitation from USA Football to two training camps starting next month in Chula Vista, California."
-    },
-    {
-      "id": "ec8138def8c9b4e0a6029e83948779e7e8393513",
-      "source": "ESPN",
-      "title": "Panthers' Walker: Gun charge will be dismissed",
-      "url": "https://www.espn.com/nfl/story/_/id/48314566/panthers-rasheed-walker-says-gun-charge-dismissed",
-      "publishedAt": "2026-03-28T02:01:31.000Z",
-      "publishedTs": 1774663291000,
-      "description": "Panthers LT Rasheed Walker said Thursday that a January gun charge stemming from an arrest at LaGuardia Airport is getting dismissed."
-    },
-    {
-      "id": "fbadc761fe595806021950130128d757aed585dd",
-      "source": "ESPN",
-      "title": "QB Simpson says he's 'absolutely' 1st-round pick",
-      "url": "https://www.espn.com/nfl/story/_/id/48311228/alabama-qb-ty-simpson-says-absolutely-1st-round-pick",
-      "publishedAt": "2026-03-28T02:01:31.000Z",
-      "publishedTs": 1774663291000,
-      "description": "Ty Simpson felt like he made a final impression at Alabama's pro day in front of NFL scouts. He believes he's 'absolutely' a lock to be a first-round pick."
-    },
-    {
-      "id": "1d82ac1eea686728145f8fe5b30c1ef833b59dd5",
-      "source": "ESPN",
-      "title": "🏈 Yates' mock draft: Predicting Rounds 1 & 2",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48259253/2026-nfl-mock-draft-two-rounds-64-picks-field-yates",
-      "publishedAt": "2026-03-28T02:01:31.000Z",
-      "publishedTs": 1774663291000,
-      "description": "Field Yates unveils his latest NFL mock draft, projecting two full rounds. Which top prospects could go in the opening 64 picks?"
-    },
-    {
-      "id": "ec1057738127c58846182fcb4f0912776478cef3",
-      "source": "ESPN",
-      "title": "A former NFL GM's must-draft board for 2026: Tannenbaum pounds the table for 14 prospects",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48305662/2026-nfl-draft-tannenbaum-board-prospects-targets-seven-rounds-gm",
-      "publishedAt": "2026-03-28T02:01:22.000Z",
-      "publishedTs": 1774663282000,
-      "description": "From Dillon Thieneman on Day 1 to Jaffer Murphy late on Day 3, Mike Tannenbaum picks the draft prospects he'd want to target across all seven rounds."
-    },
-    {
-      "id": "71b170509017f926566075124d7cd0c8cde7c431",
-      "source": "ESPN",
-      "title": "Latest NFL draft buzz: Ty Simpson's pro day, Jeremiyah Love's ceiling and more",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48311668/2026-nfl-draft-latest-buzz-rumors-news-mocks-sleepers-simpson-love",
-      "publishedAt": "2026-03-28T02:01:22.000Z",
-      "publishedTs": 1774663282000,
-      "description": "Is Jeremiyah Love really a possibility for the Titans at No. 4? Our draft experts weigh in with new intel."
     },
     {
       "id": "4fb22bcd716e3941e60c71bbb306011123cd19e6",
@@ -198,6 +207,15 @@
       "publishedAt": "2026-02-19T13:05:38.000Z",
       "publishedTs": 1771506338000,
       "description": "The 2027 Super Bowl will air on ESPN for the first time in network history. Learn more information about Super Bowl LXI festivities now."
+    },
+    {
+      "id": "68ea30c800d38d21fccc54c77d18ee3d8b7995f4",
+      "source": "FantasyPros",
+      "title": "Jonathan Bullard inks one-year deal with Cowboys",
+      "url": "https://www.fantasypros.com/nfl/news/576882/jonathan-bullard-inks-one-year-deal-with-cowboys.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
     },
     {
       "id": "bd18d1fa0c37f8a4a1ce0d505a3fa63bde57f508",
@@ -402,15 +420,6 @@
       "source": "FantasyPros",
       "title": "Mohamoud Diabate agrees to terms with Titans",
       "url": "https://www.fantasypros.com/nfl/news/575504/mohamoud-diabate-agrees-to-terms-with-titans.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "529dc5bd5a1c09b932f3f456ba2acfd7e84951c8",
-      "source": "FantasyPros",
-      "title": "Devon Witherspoon has fifth-year team option exercised by Seahawks",
-      "url": "https://www.fantasypros.com/nfl/news/575240/devon-witherspoon-has-fifth-year-team-option-exercised-by-seahawks.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
