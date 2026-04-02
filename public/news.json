@@ -1,50 +1,167 @@
 {
-  "generatedAt": "2026-04-01T13:23:17.896Z",
+  "generatedAt": "2026-04-02T13:14:51.236Z",
   "items": [
     {
-      "id": "11a296a1828243a4661b8242f43f31b6b6bd8b32",
+      "id": "18307f1cfc5a6241a4fe75377f4c097524adcba4",
       "source": "ESPN",
-      "title": "Saleh: 'You can never add enough' on possibility of Titans to draft pass rusher",
-      "url": "https://www.espn.com/nfl/story/_/id/48359202/tennessee-titans-pass-rusher-no-4-pick-nfl-draft-2026",
-      "publishedAt": "2026-04-01T13:11:49.000Z",
-      "publishedTs": 1775049109000,
-      "description": "Tennessee's newest coach said \"you could always use more edge\" when asked about drafting a pass rusher at No. 4."
+      "title": "Latest on Vikings' next GM, Kyler Murray and J.J. McCarthy",
+      "url": "https://www.espn.com/nfl/story/_/id/48370270/nfl-minnesota-vikings-kyler-murray-jj-mccarthy-gm-christian-darrisaw",
+      "publishedAt": "2026-04-02T12:44:15.000Z",
+      "publishedTs": 1775133855000,
+      "description": "Here's what we learned during the NFL's annual league meeting in Phoenix this week."
     },
     {
-      "id": "b1e967897bb7c0ee8e95844b672b622a7959ab1e",
+      "id": "f4983038fc5bd24491145e3c06ea61cfc49083ed",
+      "source": "ESPN",
+      "title": "An early look at 2027 free agency: Which playmakers could be available next March?",
+      "url": "https://www.espn.com/nfl/story/_/id/48287895/2027-nfl-free-agency-early-look-top-players-quarterbacks-available",
+      "publishedAt": "2026-04-02T12:34:49.000Z",
+      "publishedTs": 1775133289000,
+      "description": "Which top players might be available in next year's NFL free agency? We picked out 50 stars to keep an eye on."
+    },
+    {
+      "id": "7379ac67b1ac1511fb86190857ebd5526c352165",
+      "source": "ESPN",
+      "title": "Ranking all 32 NFL free agency classes: Which teams most improved their rosters?",
+      "url": "https://www.espn.com/nfl/story/_/id/48259765/2026-nfl-free-agency-class-rankings-teams-improved-better-worse-32-signings-deals",
+      "publishedAt": "2026-04-02T12:34:49.000Z",
+      "publishedTs": 1775133289000,
+      "description": "How did every team fare in March, taking into account free agent signings, trades, extensions and departures."
+    },
+    {
+      "id": "3a20c09ab15c4b1aa7055c562af784d7536bb80e",
+      "source": "ESPN",
+      "title": "Rams receiver Nacua is in rehab, attorney says",
+      "url": "https://www.espn.com/nfl/story/_/id/48373078/los-angeles-rams-wide-receiver-puka-nacua-rehab-attorney-says",
+      "publishedAt": "2026-04-02T12:33:49.000Z",
+      "publishedTs": 1775133229000,
+      "description": "Rams wide receiver Puka Nacua has checked in to rehab, his attorney told The California Post. Last month, a woman in Los Angeles filed a lawsuit against Nacua alleging he made an \"unprovoked antisemitic statement\" and later bit her on the shoulder."
+    },
+    {
+      "id": "bacd177fc3fe9899d88a92749a61902a3b1f97d3",
+      "source": "ESPN",
+      "title": "Bears' stadium choice 'late spring, early summer'",
+      "url": "https://www.espn.com/nfl/story/_/id/48371358/bears-ceo-stadium-decision-likely-late-spring-early-summer",
+      "publishedAt": "2026-04-02T12:33:49.000Z",
+      "publishedTs": 1775133229000,
+      "description": "Kevin Warren, president and CEO of the Chicago Bears, says the team is targeting \"late spring, early summer\" for a decision on where the team's new stadium will be built."
+    },
+    {
+      "id": "e1b2aa212c8c498f4cd85246b6aa5ccd19d7a65c",
+      "source": "ESPN",
+      "title": "NFLPA: Player safety requires trained, pro refs",
+      "url": "https://www.espn.com/nfl/story/_/id/48370278/nflpa-supports-referees-cba-negotiations-nfl",
+      "publishedAt": "2026-04-02T12:33:49.000Z",
+      "publishedTs": 1775133229000,
+      "description": "Player safety requires \"trained, professional officials on the field,\" NFLPA executive director JC Tretter said in a statement amid ongoing contract negotiations between the NFL and the NFL Referees Association."
+    },
+    {
+      "id": "0db70425a79db7b6dd4bb1db9dab2878e04b6fac",
+      "source": "ESPN",
+      "title": "QB Mendoza puts on show at Indiana pro day",
+      "url": "https://www.espn.com/nfl/story/_/id/48372927/expected-no-1-fernando-mendoza-puts-show-indiana-pro-day",
+      "publishedAt": "2026-04-02T12:33:49.000Z",
+      "publishedTs": 1775133229000,
+      "description": "Expected No. 1 pick Fernando Mendoza threw roughly 56 passes in front of scouts from all 32 NFL teams and more than 100 members of the media Wednesday."
+    },
+    {
+      "id": "3b0837801c3dd9cf4327133cef33c792c172c086",
+      "source": "ESPN",
+      "title": "Goodell backs Rooney Rule amid litigation threat",
+      "url": "https://www.espn.com/nfl/story/_/id/48362846/goodell-backs-rooney-rule-says-diversity-benefit-nfl",
+      "publishedAt": "2026-04-02T12:33:49.000Z",
+      "publishedTs": 1775133229000,
+      "description": "NFL commissioner Roger Goodell says he believes the Rooney Rule is \"consistent\" with hiring laws after recently being threatened by Florida's attorney general with potential civil litigation if the rule was not eliminated."
+    },
+    {
+      "id": "b33463ede19b81ebd4ee6ffd0b7fc5c409ee6c7e",
+      "source": "ESPN",
+      "title": "Rooney: Rodgers to make decision before draft",
+      "url": "https://www.espn.com/nfl/story/_/id/48361976/steelers-expect-decision-rodgers-draft-rooney-says",
+      "publishedAt": "2026-04-02T12:33:49.000Z",
+      "publishedTs": 1775133229000,
+      "description": "Steelers owner and team president Art Rooney II said Tuesday he anticipates a decision from four-time NFL MVP Aaron Rodgers about his future by next month's NFL draft."
+    },
+    {
+      "id": "104e5516b1710f27a0dea8c9d3969fe6e43f56f0",
+      "source": "ESPN",
+      "title": "Pats' Vrabel doesn't dismiss Brown trade chatter",
+      "url": "https://www.espn.com/nfl/story/_/id/48358277/patriots-mike-vrabel-dismiss-aj-brown-trade-talk",
+      "publishedAt": "2026-04-02T12:33:49.000Z",
+      "publishedTs": 1775133229000,
+      "description": "As speculation swirls, coach Mike Vrabel didn't rule out the possibility of the Patriots acquiring receiver A.J. Brown in a trade with the Eagles."
+    },
+    {
+      "id": "467b8ddecdccacd72214b32695885ae84548c68a",
+      "source": "ESPN",
+      "title": "NFL owners OK Davis' Raiders succession plan",
+      "url": "https://www.espn.com/nfl/story/_/id/48362454/nfl-owners-approve-mark-davis-raiders-succession-plan",
+      "publishedAt": "2026-04-02T12:33:49.000Z",
+      "publishedTs": 1775133229000,
+      "description": "NFL owners on Tuesday approved a Las Vegas Raiders succession plan that will give Silver Lake co-chief executive officer Egon Durban the option to purchase a majority stake in the team from owner Mark Davis, commissioner Roger Goodell said."
+    },
+    {
+      "id": "7022bf64eb6a64bb7cc879559e51cfb91ce20968",
+      "source": "ESPN",
+      "title": "🐝 Buzz from the NFL league meeting",
+      "url": "https://www.espn.com/nfl/story/_/id/48358306/nfl-owners-meetings-2026-buzz-annual-league-draft-phoenix",
+      "publishedAt": "2026-04-02T12:33:49.000Z",
+      "publishedTs": 1775133229000,
+      "description": "The NFL's annual league meeting wrapped up Tuesday, and 30 of our reporters shared all the buzz from Phoenix."
+    },
+    {
+      "id": "11cd6cf929393822a1d28750ad1f271c10049408",
+      "source": "ESPN",
+      "title": "These flaws could hold back the NFL draft's top QBs",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48369237/nfl-draft-2026-flaws-top-quarterbacks-fernando-mendoza-ty-simpson",
+      "publishedAt": "2026-04-02T12:33:44.000Z",
+      "publishedTs": 1775133224000,
+      "description": "We've seen a lot during the college careers of the draft's top QBs. Each has something that could set them back."
+    },
+    {
+      "id": "fb870c03c88a474789c7e65eac3356724cef1c3d",
+      "source": "ESPN",
+      "title": "Three-round NFL mock draft: Kiper, Miller, Reid and Yates' top 100 picks",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48357214/2026-nfl-mock-draft-three-rounds-kiper-miller-reid-yates-predictions",
+      "publishedAt": "2026-04-02T12:33:44.000Z",
+      "publishedTs": 1775133224000,
+      "description": "We asked four NFL draft analysts to make picks in the first three rounds. Where do the top prospects land?"
+    },
+    {
+      "id": "cfcaa3d7317309429367cbbf3b093edd7489ca38",
       "source": "ESPN",
       "title": "Solak's favorite NFL draft prospects to watch at every position: The best tape in the class",
       "url": "https://www.espn.com/nfl/draft2026/story/_/id/48357403/2026-nfl-draft-all-tape-team-best-prospects-every-position-nussmeier-bernard-barham",
-      "publishedAt": "2026-04-01T12:25:53.000Z",
-      "publishedTs": 1775046353000,
+      "publishedAt": "2026-04-02T00:38:33.000Z",
+      "publishedTs": 1775090313000,
       "description": "NFL scouts are watching a lot of tape as we get ready for the 2026 draft. Which underrated players jump off the screen? Ben Solak fills out his All-Film team."
     },
     {
-      "id": "662c0268b4a2082f8d2f262c7a6b6575554598db",
+      "id": "e31c2d840b8fd0ca38aaa51ccd9ead2feff89f85",
       "source": "ESPN",
       "title": "Best team fits for 20 draft prospects: We found matches for Delane, Downs, Boston",
       "url": "https://www.espn.com/nfl/draft2026/story/_/id/48346957/2026-nfl-draft-favorite-team-fits-20-top-prospects-reese-love-simpson",
-      "publishedAt": "2026-04-01T12:25:53.000Z",
-      "publishedTs": 1775046353000,
+      "publishedAt": "2026-04-02T00:38:33.000Z",
+      "publishedTs": 1775090313000,
       "description": "We found ideal scheme matches based on what these 20 players do best."
     },
     {
-      "id": "44d71c37e298773aaf68fc20bc0613501c71924d",
+      "id": "64de7ea788d693bfe4ae39e2e572641f1bb1e63a",
       "source": "ESPN",
-      "title": "Miller’s mock draft: Seven full rounds of projections, from first overall to Mr. Irrelevant",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48299038/2026-nfl-mock-draft-seven-rounds-257-picks-projections-matt-miller",
-      "publishedAt": "2026-04-01T12:25:29.000Z",
-      "publishedTs": 1775046329000,
-      "description": "Matt Miller predicted every pick in the 2026 draft, from the Raiders' selection at No. 1 to Mr. Irrelevant."
+      "title": "Inside Eagles' 2025 friction as Jalen Hurts stands at crossroads",
+      "url": "https://www.espn.com/nfl/story/_/id/48224913/the-crossroad-awaits-quarterback-jalen-hurts-philadelphia-eagles-offense-aj-brown-2026",
+      "publishedAt": "2026-04-01T16:05:11.000Z",
+      "publishedTs": 1775059511000,
+      "description": "ESPN pulls back the curtain on what's ailing a star-studded Eagles offense, one in which its QB must evolve."
     },
     {
-      "id": "7403ce978f20d3a94c444eecda9c096501da18fd",
+      "id": "ec47ff000e1045e4bfbcde71d334515c43d5ed02",
       "source": "ESPN",
-      "title": "Do CFB starts matter when evaluating QBs? Ty Simpson is the latest test case",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48349533/nfl-draft-quarterback-starts-threshold-lack-success-ty-simpson",
-      "publishedAt": "2026-04-01T12:25:29.000Z",
-      "publishedTs": 1775046329000,
-      "description": "Simpson is regarded as this draft's QB2 despite having far fewer starts than most first-round signal-callers."
+      "title": "18-game regular season? Mixed reaction by NFL owners, coaches",
+      "url": "https://www.espn.com/nfl/story/_/id/48352133/18-game-regular-season-cba-nfl-owners-coaches-weigh-league-meetings-phoenix",
+      "publishedAt": "2026-04-01T15:31:40.000Z",
+      "publishedTs": 1775057500000,
+      "description": "Colts, Chiefs, Browns and Patriots owners among those talking about the feasibility of expanding the schedule."
     },
     {
       "id": "72ac5842bfa927201ca637b4c7812c34312e3a58",
@@ -54,114 +171,6 @@
       "publishedAt": "2026-04-01T12:21:09.000Z",
       "publishedTs": 1775046069000,
       "description": "The first UFL Power Rankings feature familiar teams at the top and include each team's Week 1 MVP."
-    },
-    {
-      "id": "83827131730eca0324d8b8e1ba355bcef89aebf6",
-      "source": "ESPN",
-      "title": "Inside Eagles' 2025 friction as Jalen Hurts stands at crossroads",
-      "url": "https://www.espn.com/nfl/story/_/id/48224913/the-crossroad-awaits-quarterback-jalen-hurts-philadelphia-eagles-offense-aj-brown-2026",
-      "publishedAt": "2026-04-01T11:12:11.000Z",
-      "publishedTs": 1775041931000,
-      "description": "ESPN pulls back the curtain on what's ailing a star-studded Eagles offense, one in which their QB must evolve."
-    },
-    {
-      "id": "62f2e5f8dd9208d274051fbb30cbcb58c7ce8f12",
-      "source": "ESPN",
-      "title": "Rooney: Rodgers to make decision before draft",
-      "url": "https://www.espn.com/nfl/story/_/id/48361976/steelers-expect-decision-rodgers-draft-rooney-says",
-      "publishedAt": "2026-04-01T02:18:01.000Z",
-      "publishedTs": 1775009881000,
-      "description": "Steelers owner and team president Art Rooney II said Tuesday he anticipates a decision from four-time NFL MVP Aaron Rodgers about his future by next month's NFL draft."
-    },
-    {
-      "id": "0c137d12bf1ca296717eabed8f72e6b3cb20c2eb",
-      "source": "ESPN",
-      "title": "NFL owners OK Davis' Raiders succession plan",
-      "url": "https://www.espn.com/nfl/story/_/id/48362454/nfl-owners-approve-mark-davis-raiders-succession-plan",
-      "publishedAt": "2026-04-01T02:18:01.000Z",
-      "publishedTs": 1775009881000,
-      "description": "NFL owners on Tuesday approved a Las Vegas Raiders succession plan that will give Silver Lake co-chief executive officer Egon Durban the option to purchase a majority stake in the team from owner Mark Davis, commissioner Roger Goodell said."
-    },
-    {
-      "id": "d934d09e36cb23f0649df093dbd4f4a3cb4ee92c",
-      "source": "ESPN",
-      "title": "Sources: OBJ meets with Giants at NFL meetings",
-      "url": "https://www.espn.com/nfl/story/_/id/48360179/sources-beckham-jr-meets-harbaugh-giants-nfl-meetings",
-      "publishedAt": "2026-04-01T02:18:01.000Z",
-      "publishedTs": 1775009881000,
-      "description": "Odell Beckham Jr. came to the Arizona Biltmore during the NFL's annual meetings and met with Giants coach John Harbaugh on Monday about potentially joining the team, sources told ESPN."
-    },
-    {
-      "id": "86885a4010ab219ed291c6ae6de6765983d58e25",
-      "source": "ESPN",
-      "title": "Glenn: QB Smith will lead Jets to 'promised land'",
-      "url": "https://www.espn.com/nfl/story/_/id/48358334/aaron-glenn-says-qb-geno-smith-lead-jets-promised-land",
-      "publishedAt": "2026-04-01T02:18:01.000Z",
-      "publishedTs": 1775009881000,
-      "description": "Jets coach Aaron Glenn declared Tuesday that quarterback Geno Smith is \"the guy that's going to lead us to the promised land.\""
-    },
-    {
-      "id": "3a810a108d8a486b447cd50efa41db937b6a7a72",
-      "source": "ESPN",
-      "title": "Goodell backs Rooney Rule amid litigation threat",
-      "url": "https://www.espn.com/nfl/story/_/id/48362846/goodell-backs-rooney-rule-says-diversity-benefit-nfl",
-      "publishedAt": "2026-04-01T02:18:00.000Z",
-      "publishedTs": 1775009880000,
-      "description": "NFL commissioner Roger Goodell says he believes the Rooney Rule is \"consistent\" with hiring laws after recently being threatened by Florida's attorney general with potential civil litigation if the rule was not eliminated."
-    },
-    {
-      "id": "2ef647b6dfc02ff473d62420b5265ec32db3c1b6",
-      "source": "ESPN",
-      "title": "NFL owners approve 2 significant replay changes",
-      "url": "https://www.espn.com/nfl/story/_/id/48358865/plan-assist-replacement-refs-five-approved-nfl-rules",
-      "publishedAt": "2026-04-01T02:18:00.000Z",
-      "publishedTs": 1775009880000,
-      "description": "NFL owners approved a contingency plan Tuesday to centralize officiating in the event of a work stoppage as negotiations continue on a CBA with the NFL Referees Association."
-    },
-    {
-      "id": "c9e853bee491f9509ac2e6a0437fc82ce1c70594",
-      "source": "ESPN",
-      "title": "Pats' Vrabel doesn't dismiss Brown trade chatter",
-      "url": "https://www.espn.com/nfl/story/_/id/48358277/patriots-mike-vrabel-dismiss-aj-brown-trade-talk",
-      "publishedAt": "2026-04-01T02:18:00.000Z",
-      "publishedTs": 1775009880000,
-      "description": "As speculation swirls, coach Mike Vrabel didn't rule out the possibility of the Patriots acquiring receiver A.J. Brown in a trade with the Eagles."
-    },
-    {
-      "id": "f7bbd105c7aee1b674d9f175514f7e38575f0a83",
-      "source": "ESPN",
-      "title": "Jags OK'd to play 2027 home games in Orlando",
-      "url": "https://www.espn.com/nfl/story/_/id/48360475/jaguars-okd-play-27-home-games-orlando-renovations",
-      "publishedAt": "2026-04-01T02:18:00.000Z",
-      "publishedTs": 1775009880000,
-      "description": "The Jaguars' proposal to play their home games in the 2027 season in Orlando, Florida, during the final year of the $1.4 billion renovation of EverBank Stadium was unanimously approved by the NFL's owners Tuesday."
-    },
-    {
-      "id": "3567a9dcaae2e41632dae3650d5652687653b3ba",
-      "source": "ESPN",
-      "title": "🏈 Early look at 2027 free agency: The top players",
-      "url": "https://www.espn.com/nfl/story/_/id/48287895/2027-nfl-free-agency-early-look-top-players-quarterbacks-available",
-      "publishedAt": "2026-04-01T02:18:00.000Z",
-      "publishedTs": 1775009880000,
-      "description": "Which top players might be available in next year's NFL free agency? We picked out 49 stars to keep an eye on."
-    },
-    {
-      "id": "86d497f0a9634f022f6cdd3c480381e880971074",
-      "source": "ESPN",
-      "title": "What we heard at the 2026 annual league meeting: Last-minute buzz from more than 25 NFL teams",
-      "url": "https://www.espn.com/nfl/story/_/id/48358306/nfl-owners-meetings-2026-buzz-annual-league-draft-phoenix",
-      "publishedAt": "2026-04-01T01:41:20.000Z",
-      "publishedTs": 1775007680000,
-      "description": "Annual NFL owners meeting wrapped up Tuesday, and 30 of our reporters shared all the buzz from Phoenix."
-    },
-    {
-      "id": "cfb25daad3888f2e58855d7ba7515f13b255ef33",
-      "source": "ESPN",
-      "title": "18-game regular season? Mixed reaction by NFL owners, coaches",
-      "url": "https://www.espn.com/nfl/story/_/id/48352133/18-game-regular-season-cba-nfl-owners-coaches-weigh-league-meetings-phoenix",
-      "publishedAt": "2026-04-01T01:41:19.000Z",
-      "publishedTs": 1775007679000,
-      "description": "Colts, Chiefs, Browns and Patriots owners among those talking about the feasibility of expanding the schedule."
     },
     {
       "id": "ee08ea209c4d6086a006e913271e2655b5d162c2",
@@ -182,24 +191,6 @@
       "description": "Mike Clay shares his favorite notes from the research that informed his fantasy projections for 2026."
     },
     {
-      "id": "5f0ff18f32aef514fa18a788cac61e2093864c8d",
-      "source": "ESPN",
-      "title": "Keeping Colts in the family: Why the Irsay sisters are shunning private equity (for now)",
-      "url": "https://www.espn.com/nfl/story/_/id/48342632/colts-carlie-irsay-gordon-open-private-equity-help-not-now",
-      "publishedAt": "2026-03-30T19:23:00.000Z",
-      "publishedTs": 1774898580000,
-      "description": "Renovations to Lucas Oil Stadium will be costly, and Irsay-Gordon acknowledged diversified funding could help."
-    },
-    {
-      "id": "bdc800642c7e7f5e61b3697dd3556fbe750a3354",
-      "source": "ESPN",
-      "title": "Ranking all 32 NFL free agency classes: Which teams most improved their rosters?",
-      "url": "https://www.espn.com/nfl/story/_/id/48259765/2026-nfl-free-agency-class-rankings-teams-improved-better-worse-32-signings-deals",
-      "publishedAt": "2026-03-28T02:22:41.000Z",
-      "publishedTs": 1774664561000,
-      "description": "How did every team fare in March, taking into account free agent signings, trades, extensions and departures."
-    },
-    {
       "id": "bb523209f66181ab0b6e894c97f00b9c516cfb21",
       "source": "ESPN",
       "title": "Super Bowl 2027 on ESPN: Date, location, venue, more details",
@@ -207,6 +198,15 @@
       "publishedAt": "2026-02-19T13:05:38.000Z",
       "publishedTs": 1771506338000,
       "description": "The 2027 Super Bowl will air on ESPN for the first time in network history. Learn more information about Super Bowl LXI festivities now."
+    },
+    {
+      "id": "07ba2401bd60a30c3bc87b4df078bb75fea0576c",
+      "source": "FantasyPros",
+      "title": "Puka Nacua checks into rehab",
+      "url": "https://www.fantasypros.com/nfl/news/577810/puka-nacua-reportedly-checks-into-rehab-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
     },
     {
       "id": "4ef8e68adf83dca73babd49369f4d631533ac825",
@@ -420,15 +420,6 @@
       "source": "FantasyPros",
       "title": "A.J. Epenesa deal with Browns falls through",
       "url": "https://www.fantasypros.com/nfl/news/577382/aj-epenesa-deal-with-browns-falls-through.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "38d3922c6860662307cde372aa210c1a6d005a63",
-      "source": "FantasyPros",
-      "title": "Chandler Martin signs two-year deal with Eagles",
-      "url": "https://www.fantasypros.com/nfl/news/577370/chandler-martin-signs-two-year-deal-with-eagles.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
