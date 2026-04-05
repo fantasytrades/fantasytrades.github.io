@@ -1,140 +1,158 @@
 {
-  "generatedAt": "2026-04-04T12:56:29.948Z",
+  "generatedAt": "2026-04-05T12:58:27.916Z",
   "items": [
     {
-      "id": "fb112d98cde390d6e7f1d194660db83906653eab",
+      "id": "a3c8d6a29391a7e81db8b205a1654fb974c5477d",
       "source": "ESPN",
-      "title": "NFL probe finds no reason to discipline Chiefs' Rice",
-      "url": "https://www.espn.com/nfl/story/_/id/48389126/chiefs-wr-rashee-rice-faces-no-nfl-discipline-abuse-allegations",
-      "publishedAt": "2026-04-04T12:32:41.000Z",
-      "publishedTs": 1775305961000,
-      "description": "The NFL announced Friday that it concluded its own investigation into Chiefs receiver Rashee Rice, stating that he \"has not engaged in conduct that violates the personal conduct policy.\""
+      "title": "NFL draft QB Hot Board: Reid on strengths and weaknesses for the top 12 passers",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/46532548/2026-nfl-draft-ranking-top-quarterbacks-hot-board-team-fits-strengths-weaknesses",
+      "publishedAt": "2026-04-05T12:47:08.000Z",
+      "publishedTs": 1775393228000,
+      "description": "Who are the best quarterbacks in the 2026 class? We sized up the top 12, starting with Fernando Mendoza and Ty Simpson."
     },
     {
-      "id": "b47c5be63b1722fa638c4b45b47dc428b77d2245",
+      "id": "fa3a3c0c299cf2252b54c4ae5255bd16f3c67744",
       "source": "ESPN",
-      "title": "Jags sign DE Walker to 4-year, $110M extension",
-      "url": "https://www.espn.com/nfl/story/_/id/48388833/jaguars-sign-travon-walker-4-year-110-million-extension",
-      "publishedAt": "2026-04-04T12:32:41.000Z",
-      "publishedTs": 1775305961000,
-      "description": "The Jaguars signed defensive end Travon Walker to a four-year, $110 million contract extension, his agency announced Friday."
+      "title": "What does the SackSEER model say about the top edge rushers in the 2026 NFL draft?",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48359548/2026-nfl-draft-edge-rusher-projections-rankings-historical-comps-prospects",
+      "publishedAt": "2026-04-05T12:47:08.000Z",
+      "publishedTs": 1775393228000,
+      "description": "Which prospects will have the most sacks through five NFL seasons? We projected the top edge rushers."
     },
     {
-      "id": "f3ad56c0a0c44b9df85f2c6d003f799afc7529c4",
+      "id": "e6ed01a4c1fe9a670f4c1f03cce774ad55d1e622",
       "source": "ESPN",
-      "title": "Source: Nunez-Roches rejoins TB on 1-year deal",
-      "url": "https://www.espn.com/nfl/story/_/id/48390461/buccaneers-re-signing-dt-rakeem-nunez-roches-source-says",
-      "publishedAt": "2026-04-04T12:32:41.000Z",
-      "publishedTs": 1775305961000,
-      "description": "The Buccaneers are re-signing defensive tackle Rakeem Nunez-Roches on a one-year deal, a source confirmed Friday."
+      "title": "Cowboys visit with Emmitt's son, Texas A&M RB E.J. Smith",
+      "url": "https://www.espn.com/nfl/story/_/id/48394075/nfl-dallas-cowboys-emmitt-smith-ej-smith-rio-de-janeiro-brazil",
+      "publishedAt": "2026-04-05T12:38:10.000Z",
+      "publishedTs": 1775392690000,
+      "description": "Plus, a look at Donovan Ezeiruaku's recovery, the backup QB battle and travel plans for Rio."
     },
     {
-      "id": "58e81694dab738c4c5bdb1cfd8d788f9056ccfb4",
-      "source": "ESPN",
-      "title": "Two-time All-Pro, 2019 DPOY Gilmore retiring",
-      "url": "https://www.espn.com/nfl/story/_/id/48380010/two-all-pro-2019-dpoy-stephon-gilmore-retires-nfl",
-      "publishedAt": "2026-04-04T12:32:41.000Z",
-      "publishedTs": 1775305961000,
-      "description": "Two-time All-Pro cornerback Stephon Gilmore announced his retirement from the NFL."
-    },
-    {
-      "id": "17ad0e23fab26cce254ee3692ca49ef62b2938c8",
-      "source": "ESPN",
-      "title": "Raiders add Cousins as possible Mendoza mentor",
-      "url": "https://www.espn.com/nfl/story/_/id/48376719/kirk-cousins-agrees-sign-contract-raiders-agent-says",
-      "publishedAt": "2026-04-04T12:32:41.000Z",
-      "publishedTs": 1775305961000,
-      "description": "Kirk Cousins has agreed to a contract with the Raiders, the veteran quarterback's agent announced."
-    },
-    {
-      "id": "a45eec8775e7b04be42e30dd319bbfc3ea542d6a",
-      "source": "ESPN",
-      "title": "Ex-Steelers safety Dugger signs with Bengals",
-      "url": "https://www.espn.com/nfl/story/_/id/48378378/ex-steelers-safety-kyle-dugger-signing-bengals-agent-says",
-      "publishedAt": "2026-04-04T12:32:41.000Z",
-      "publishedTs": 1775305961000,
-      "description": "Safety Kyle Dugger will remain in the AFC North in 2026, signing a one-year contract with the Bengals."
-    },
-    {
-      "id": "b2b9ef89dc77e4d109a882b9db8ba9bc7b217f86",
-      "source": "ESPN",
-      "title": "Rams receiver Nacua is in rehab, attorney says",
-      "url": "https://www.espn.com/nfl/story/_/id/48373078/los-angeles-rams-wide-receiver-puka-nacua-rehab-attorney-says",
-      "publishedAt": "2026-04-04T12:32:41.000Z",
-      "publishedTs": 1775305961000,
-      "description": "Rams wide receiver Puka Nacua has checked in to rehab, his attorney told The California Post. Last month, a woman in Los Angeles filed a lawsuit against Nacua alleging he made an \"unprovoked antisemitic statement\" and later bit her on the shoulder."
-    },
-    {
-      "id": "46be3e71ca6cc036f78bfe35c37be2467f3cd28e",
-      "source": "ESPN",
-      "title": "'Thank you football': LB Walker retires from NFL",
-      "url": "https://www.espn.com/nfl/story/_/id/48378935/lb-anthony-walker-retires-nfl-nine-seasons",
-      "publishedAt": "2026-04-04T12:32:41.000Z",
-      "publishedTs": 1775305961000,
-      "description": "Linebacker Anthony Walker Jr. announced his retirement from the NFL on Thursday."
-    },
-    {
-      "id": "35b3f0ad6af94a47c5b9eceaa6d4b5a7665681c7",
-      "source": "ESPN",
-      "title": "🏈 Inside the friction between Hurts, Eagles",
-      "url": "https://www.espn.com/nfl/story/_/id/48224913/the-crossroad-awaits-quarterback-jalen-hurts-philadelphia-eagles-offense-aj-brown-2026",
-      "publishedAt": "2026-04-04T12:32:41.000Z",
-      "publishedTs": 1775305961000,
-      "description": "ESPN pulls back the curtain on what's ailing a star-studded Eagles offense, one in which its QB must evolve."
-    },
-    {
-      "id": "a80290619ca732c236b9cb06d9a7e2773f5a9e3d",
-      "source": "ESPN",
-      "title": "Who will be the best RBs in the NFL draft class? We gave projections and comps for top prospects",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48357267/2026-nfl-draft-running-back-projections-rankings-historical-comps-prospects",
-      "publishedAt": "2026-04-04T12:18:38.000Z",
-      "publishedTs": 1775305118000,
-      "description": "We have stat projections for the top running back prospects in the 2026 NFL draft class, from Jeremiyah Love to late-round sleepers."
-    },
-    {
-      "id": "d97e2b1a0c137c3fb7d56f99f67dc89a5c517bc0",
-      "source": "ESPN",
-      "title": "Solak's favorite draft prospects to watch at every position",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48357403/2026-nfl-draft-all-tape-team-best-prospects-every-position-nussmeier-bernard-barham",
-      "publishedAt": "2026-04-04T12:18:38.000Z",
-      "publishedTs": 1775305118000,
-      "description": "Which underrated players jump off the screen? Ben Solak fills out his All-Film team."
-    },
-    {
-      "id": "7ff2ed9185254a418ca80932ab3306d69fe7025c",
-      "source": "ESPN",
-      "title": "Texans coach DeMeco Ryans 'excited' to see C.J. Stroud's growth next season",
-      "url": "https://www.espn.com/nfl/story/_/id/48379945/houston-texans-demeco-ryans-excited-cj-stroud-growth-offseason",
-      "publishedAt": "2026-04-04T12:13:15.000Z",
-      "publishedTs": 1775304795000,
-      "description": "After a rough end to the 2025 season, Houston's coach is happy with where his QB is at heading into Year 4."
-    },
-    {
-      "id": "0181b941eae87017dfd659c42f3fd10f697672fa",
-      "source": "ESPN",
-      "title": "Did Malik Willis feel 'tricked' by Dolphins after Jaylen Waddle trade?",
-      "url": "https://www.espn.com/nfl/story/_/id/48387205/miami-dolphins-notebook-2026-owners-meetings-nfl-free-agency-malik-willis",
-      "publishedAt": "2026-04-04T12:12:48.000Z",
-      "publishedTs": 1775304768000,
-      "description": "Top takeaways from what the Dolphins said in Arizona, including Willis' fit and plans for Chop Robinson."
-    },
-    {
-      "id": "aa3a4341d2e74b2e2e28ae385b40a3c044509958",
+      "id": "6df19f3437e2e44d3e50c9288cd529b8b8bd5a19",
       "source": "ESPN",
       "title": "End of the feature back? What the rise of running back tandems means for the NFL draft",
       "url": "https://www.espn.com/nfl/draft2026/story/_/id/48349028/nfl-draft-2026-running-backs-sharing-carries",
-      "publishedAt": "2026-04-04T12:12:33.000Z",
-      "publishedTs": 1775304753000,
+      "publishedAt": "2026-04-05T12:27:10.000Z",
+      "publishedTs": 1775392030000,
       "description": "Splitting time used to be a mark against rushers. With top NFL draft prospects coming from the same backfield, that might be changing."
     },
     {
-      "id": "437e4bc844beecf84e88c52552e4b94fb18f6189",
+      "id": "beedc94335e2ad8599e405bf0c2be067bd08bcbf",
       "source": "ESPN",
-      "title": "Latest NFL draft buzz: What we're hearing on Jermod McCoy's pro day, the QB3 debate",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48377191/2026-nfl-draft-latest-buzz-rumors-news-mocks-sleepers-mccoy-nussmeier-beck",
-      "publishedAt": "2026-04-04T12:12:33.000Z",
-      "publishedTs": 1775304753000,
-      "description": "How did Jermod McCoy perform at his pro day? Our NFL draft experts weigh in with new intel three weeks out."
+      "title": "Tracking fifth-year options for 2023 first-rounders",
+      "url": "https://www.espn.com/nfl/story/_/id/48358999/fifth-year-option-tracker-nfl-players-2023-first-round-draft-class",
+      "publishedAt": "2026-04-05T12:27:10.000Z",
+      "publishedTs": 1775392030000,
+      "description": "The deadline for teams to pick up the fifth-year option on rookie contracts is May 1."
+    },
+    {
+      "id": "9c30549b74dd4729acd8bb03880bdc1d8946aff5",
+      "source": "ESPN",
+      "title": "NFL probe finds no reason to discipline Chiefs' Rice",
+      "url": "https://www.espn.com/nfl/story/_/id/48389126/chiefs-wr-rashee-rice-faces-no-nfl-discipline-abuse-allegations",
+      "publishedAt": "2026-04-05T12:25:43.000Z",
+      "publishedTs": 1775391943000,
+      "description": "The NFL announced Friday that it concluded its own investigation into Chiefs receiver Rashee Rice, stating that he \"has not engaged in conduct that violates the personal conduct policy.\""
+    },
+    {
+      "id": "0d6e72299c80162f5db599b2a83bcb951654d184",
+      "source": "ESPN",
+      "title": "'Thank you football': LB Walker retires from NFL",
+      "url": "https://www.espn.com/nfl/story/_/id/48378935/lb-anthony-walker-retires-nfl-nine-seasons",
+      "publishedAt": "2026-04-05T12:25:43.000Z",
+      "publishedTs": 1775391943000,
+      "description": "Linebacker Anthony Walker Jr. announced his retirement from the NFL on Thursday."
+    },
+    {
+      "id": "2cbf97b8ae993cfbac29b49bc639a5965ac187b2",
+      "source": "ESPN",
+      "title": "Walker used Donald comparison to hit next level",
+      "url": "https://www.espn.com/nfl/story/_/id/48396224/jaguars-walker-used-donald-comparison-reach-next-level",
+      "publishedAt": "2026-04-05T12:25:42.000Z",
+      "publishedTs": 1775391942000,
+      "description": "Jaguars defensive end Travon Walker instantly got the message when head coach Liam Coen used an Aaron Donald comparison during their end-of-season meeting."
+    },
+    {
+      "id": "56d8eebf1bad6c8aac2dc298a72e2f9888d517a8",
+      "source": "ESPN",
+      "title": "Source: Nunez-Roches rejoins TB on 1-year deal",
+      "url": "https://www.espn.com/nfl/story/_/id/48390461/buccaneers-re-signing-dt-rakeem-nunez-roches-source-says",
+      "publishedAt": "2026-04-05T12:25:42.000Z",
+      "publishedTs": 1775391942000,
+      "description": "The Buccaneers are re-signing defensive tackle Rakeem Nunez-Roches on a one-year deal, a source confirmed."
+    },
+    {
+      "id": "5f39fb41d923e7787f909cc9d55487b6db4fa021",
+      "source": "ESPN",
+      "title": "Two-time All-Pro, 2019 DPOY Gilmore retiring",
+      "url": "https://www.espn.com/nfl/story/_/id/48380010/two-all-pro-2019-dpoy-stephon-gilmore-retires-nfl",
+      "publishedAt": "2026-04-05T12:25:42.000Z",
+      "publishedTs": 1775391942000,
+      "description": "Two-time All-Pro cornerback Stephon Gilmore announced his retirement from the NFL."
+    },
+    {
+      "id": "14a2f87e06ddafcf00396de93078bad0fafb6332",
+      "source": "ESPN",
+      "title": "Raiders add Cousins as possible Mendoza mentor",
+      "url": "https://www.espn.com/nfl/story/_/id/48376719/kirk-cousins-agrees-sign-contract-raiders-agent-says",
+      "publishedAt": "2026-04-05T12:25:42.000Z",
+      "publishedTs": 1775391942000,
+      "description": "Kirk Cousins has agreed to a contract with the Raiders, the veteran quarterback's agent announced."
+    },
+    {
+      "id": "0c6f78a827e891d386a169e1ff3187c65a8438c6",
+      "source": "ESPN",
+      "title": "Ex-Steelers safety Dugger signs with Bengals",
+      "url": "https://www.espn.com/nfl/story/_/id/48378378/ex-steelers-safety-kyle-dugger-signing-bengals-agent-says",
+      "publishedAt": "2026-04-05T12:25:42.000Z",
+      "publishedTs": 1775391942000,
+      "description": "Safety Kyle Dugger will remain in the AFC North in 2026, signing a one-year contract with the Bengals."
+    },
+    {
+      "id": "b1eed0bfb392509a7df96990b24f9212846c0148",
+      "source": "ESPN",
+      "title": "Rams receiver Nacua is in rehab, attorney says",
+      "url": "https://www.espn.com/nfl/story/_/id/48373078/los-angeles-rams-wide-receiver-puka-nacua-rehab-attorney-says",
+      "publishedAt": "2026-04-05T12:25:42.000Z",
+      "publishedTs": 1775391942000,
+      "description": "Rams wide receiver Puka Nacua has checked in to rehab, his attorney told The California Post. Last month, a woman in Los Angeles filed a lawsuit against Nacua alleging he made an \"unprovoked antisemitic statement\" and later bit her on the shoulder."
+    },
+    {
+      "id": "c52f99b505628f1c555e8e3c466b35ded134fe3d",
+      "source": "ESPN",
+      "title": "🏈 Inside the friction between Hurts, Eagles",
+      "url": "https://www.espn.com/nfl/story/_/id/48224913/the-crossroad-awaits-quarterback-jalen-hurts-philadelphia-eagles-offense-aj-brown-2026",
+      "publishedAt": "2026-04-05T12:25:42.000Z",
+      "publishedTs": 1775391942000,
+      "description": "ESPN pulls back the curtain on what's ailing a star-studded Eagles offense, one in which its QB must evolve."
+    },
+    {
+      "id": "ca544fe93d4149e6bf5f2083381f52fd468db6db",
+      "source": "ESPN",
+      "title": "With the Sabres' playoff berth, Jets stand alone with longest active playoff drought in North America",
+      "url": "https://www.espn.com/nfl/story/_/id/48359171/new-york-jets-playoff-drought-15-years-buffalo-sabres",
+      "publishedAt": "2026-04-04T20:28:53.000Z",
+      "publishedTs": 1775334533000,
+      "description": "New York owns the longest playoff drought in major North American sports after Buffalo ended its streak at 14 seasons."
+    },
+    {
+      "id": "0edbeb32be59c6244cc30b0d9268e01fecf45897",
+      "source": "ESPN",
+      "title": "Who will be the best RBs in the NFL draft class? We gave projections and comps for top prospects",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48357267/2026-nfl-draft-running-back-projections-rankings-historical-comps-prospects",
+      "publishedAt": "2026-04-04T18:26:07.000Z",
+      "publishedTs": 1775327167000,
+      "description": "We have stat projections for the top running back prospects in the 2026 NFL draft class, from Jeremiyah Love to late-round sleepers."
+    },
+    {
+      "id": "8688c1cc55483d0cabcdbb1dcef94f1313bc79f0",
+      "source": "ESPN",
+      "title": "Solak's favorite draft prospects to watch at every position",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48357403/2026-nfl-draft-all-tape-team-best-prospects-every-position-nussmeier-bernard-barham",
+      "publishedAt": "2026-04-04T18:26:07.000Z",
+      "publishedTs": 1775327167000,
+      "description": "Which underrated players jump off the screen? Ben Solak fills out his All-Film team."
     },
     {
       "id": "676440332111c26b433b9090267ce477bb513836",
@@ -153,24 +171,6 @@
       "publishedAt": "2026-04-03T22:15:49.000Z",
       "publishedTs": 1775254549000,
       "description": "The Bills quarterback and the \"Sinners\" actress did not share the date of birth or the name of their daughter."
-    },
-    {
-      "id": "c48e785bc019930ede80da3b32c4565948599b76",
-      "source": "ESPN",
-      "title": "Tracking fifth-year options for 2023 first-rounders: Who will return in 2027?",
-      "url": "https://www.espn.com/nfl/story/_/id/48358999/fifth-year-option-tracker-nfl-players-2023-first-round-draft-class",
-      "publishedAt": "2026-04-03T20:02:10.000Z",
-      "publishedTs": 1775246530000,
-      "description": "The deadline for teams to pick up the fifth-year option on rookie contracts is May 1. Which players have had their options picked up?"
-    },
-    {
-      "id": "e6df13f5ef9430d3e4b5d9de456c02b4b20a076e",
-      "source": "ESPN",
-      "title": "2026 NFL offseason OTA, minicamp dates for all 32 teams",
-      "url": "https://www.espn.com/nfl/story/_/id/48387060/nfl-offseason-2026-every-32-team-otas-minicamp-key-dates",
-      "publishedAt": "2026-04-03T20:02:10.000Z",
-      "publishedTs": 1775246530000,
-      "description": "Here are dates for the NFL's offseason workout programs in 2026, with mandatory minicamps starting in June."
     },
     {
       "id": "36bb5658e6ac1720d1246b303fc55fda8e1260df",
