@@ -1,176 +1,158 @@
 {
-  "generatedAt": "2026-04-09T13:28:12.220Z",
+  "generatedAt": "2026-04-10T13:11:29.636Z",
   "items": [
     {
-      "id": "0e6dafbd4d4ba2359d1a3a822f389281d9db6fd4",
+      "id": "269b4d4382532d48198d4c76cf9e52757e7e69f6",
       "source": "ESPN",
-      "title": "The latest NFL draft intel for all 32 teams: What we're hearing on how the picks could play out",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48378778/2026-nfl-draft-latest-buzz-rumors-news-answering-questions-all-32-teams-picks",
-      "publishedAt": "2026-04-09T13:54:01.000Z",
-      "publishedTs": 1775742841000,
-      "description": "Our NFL reporters answer questions for every team two weeks out from the draft, and our analysts weigh in with some new intel on picks and moves."
+      "title": "For the first time in a long time, Vikings need WR, RB depth",
+      "url": "https://www.espn.com/nfl/story/_/id/48439859/nfl-draft-minnesota-vikings-justin-jefferson-aaron-jones-sr",
+      "publishedAt": "2026-04-10T13:13:03.000Z",
+      "publishedTs": 1775826783000,
+      "description": "Will Minnesota dip its toes into the wide receiver and running back pool during the 2026 draft?"
     },
     {
-      "id": "b78740ff80b24a6f5a0a053f240e63fe94959980",
+      "id": "019a6b3e7fcdf9f2897f8825404925c32485ca97",
+      "source": "ESPN",
+      "title": "'This is everything to me': Gabe Taylor set for debut in D.C., where brother Sean starred",
+      "url": "https://www.espn.com/united-football-league/story/_/id/48379274/ufl-dc-defenders-gabe-taylor-sean-taylor",
+      "publishedAt": "2026-04-10T13:09:07.000Z",
+      "publishedTs": 1775826547000,
+      "description": "Gabe Taylor, who will don No. 21, understands the legacy brother Sean built in Washington in a short time."
+    },
+    {
+      "id": "5564bc29b6fb760b1af0621578a40b8a56908d4f",
+      "source": "ESPN",
+      "title": "Why the UFL plans to expand in 2028 and believes Oklahoma City is a great fit",
+      "url": "https://www.espn.com/united-football-league/story/_/id/48432829/ufl-announces-2028-expansion",
+      "publishedAt": "2026-04-10T13:09:07.000Z",
+      "publishedTs": 1775826547000,
+      "description": "UFL co-owner Mike Repole promised expansion; the other city to join with OKC is still to be determined."
+    },
+    {
+      "id": "a8f38c677184f10e011a1552e946101bd1130046",
       "source": "ESPN",
       "title": "Projecting NFL draft quarterback landing spots, from No. 1 to No. 215",
       "url": "https://www.espn.com/nfl/draft2026/story/_/id/48421239/2026-nfl-mock-draft-quarterback-team-fits-mendoza-simpson-nussmeier-allar-beck2026-nfl-mock-draft-quarterback-team-fits-mendoza-simpson-nussmeier-allar-beck",
-      "publishedAt": "2026-04-09T12:52:25.000Z",
-      "publishedTs": 1775739145000,
+      "publishedAt": "2026-04-10T13:06:29.000Z",
+      "publishedTs": 1775826389000,
       "description": "Projecting landing spots for the nine QBs he considers draftable in the 2026 class (and one trade)."
     },
     {
-      "id": "4d34ac584f18a6a07050aa442a23b64d78449a06",
+      "id": "620f14aa7ccfc988cf6a1a57a4289435a1f57bbf",
       "source": "ESPN",
       "title": "Our draft experts picked 10-man rosters from 2026 class: Who has the best superteam?",
       "url": "https://www.espn.com/nfl/draft2026/story/_/id/48420486/2026-nfl-draft-experts-pick-superteams-top-prospects-positions-kiper-miller-reid-yates",
-      "publishedAt": "2026-04-09T12:52:24.000Z",
-      "publishedTs": 1775739144000,
+      "publishedAt": "2026-04-10T13:06:29.000Z",
+      "publishedTs": 1775826389000,
       "description": "Mel Kiper Jr., Matt Miller, Jordan Reid and Field Yates drafted their own rosters of 2026 draft prospects."
     },
     {
-      "id": "b177a1758dd79baa0ba7fcfd108719d0c77a48e2",
+      "id": "31c996e3fa47e2baf46b447d2d89beff73cf7fd1",
       "source": "ESPN",
-      "title": "No first-rounder, no problem? Broncos out of Round 1 for the third time in five drafts",
-      "url": "https://www.espn.com/nfl/story/_/id/48432975/denver-broncos-no-first-round-pick-third-2022-nik-bonitto",
-      "publishedAt": "2026-04-09T12:44:41.000Z",
-      "publishedTs": 1775738681000,
-      "description": "The Jaylen Waddle trade leaves the Broncos in a familiar position, but the past two drafts without a Round 1 pick didn't go so bad."
+      "title": "Miller's final 2026 NFL draft rankings: Let's stack the 482 best prospects",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/47190881/2026-nfl-draft-rankings-matt-miller-top-prospects-players-positions",
+      "publishedAt": "2026-04-10T12:58:35.000Z",
+      "publishedTs": 1775825915000,
+      "description": "Matt Miller has finalized his rankings for the 2026 draft, listing his top 482 players and providing grades for each prospect."
     },
     {
-      "id": "99d8bf9855b76d2636b6b85e6ec43448ead81583",
+      "id": "42331aee666c624454017f205385459553677c9d",
+      "source": "ESPN",
+      "title": "Latest NFL draft buzz: What we're hearing on the Jets' early pick",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48428742/2026-nfl-draft-latest-buzz-rumors-news-mocks-predictions-jets-lions-chargers-panthers",
+      "publishedAt": "2026-04-10T12:58:35.000Z",
+      "publishedTs": 1775825915000,
+      "description": "Could Jacob Rodriguez sneak into Round 1? Our NFL draft experts weigh in with their newest intel."
+    },
+    {
+      "id": "694f48f1b2061259ba63604c49f9cffadc0f38a6",
       "source": "ESPN",
       "title": "What the Raiders can learn from last time they paired a first-time head coach with a No. 1 overall pick QB",
       "url": "https://www.espn.com/nfl/draft2026/story/_/id/48412918/las-vegas-raiders-coach-klint-kubiak-quarterback-fernando-mendoza",
-      "publishedAt": "2026-04-09T12:27:48.000Z",
-      "publishedTs": 1775737668000,
+      "publishedAt": "2026-04-10T02:30:43.000Z",
+      "publishedTs": 1775788243000,
       "description": "The Raiders last paired a new coach with a rookie QB in 2007. Will it be different with Klint Kubiak and Fernando Mendoza?"
     },
     {
-      "id": "28bcf96898c88d7def4b00c4b9b0289261409a3e",
+      "id": "ce293a7d4d09e673b004f79679d886001d5b0f71",
+      "source": "ESPN",
+      "title": "5 Buckeyes, Simpson among 16 draft attendees",
+      "url": "https://www.espn.com/nfl/story/_/id/48443052/5-ohio-st-players-ty-simpson-16-attend-nfl-draft",
+      "publishedAt": "2026-04-10T01:15:19.000Z",
+      "publishedTs": 1775783719000,
+      "description": "Five Ohio State players are among the 16 planning to attend the first round of the NFL draft on April 23 in Pittsburgh, a group that doesn't include Fernando Mendoza but does include fellow QB Ty Simpson."
+    },
+    {
+      "id": "025f2a3e30f70fb99105f9f1a1173a6d2ea98103",
+      "source": "ESPN",
+      "title": "Source: 49ers, ex-Bengals DE Sample reach deal",
+      "url": "https://www.espn.com/nfl/story/_/id/48442188/source-49ers-ex-bengals-de-cam-sample-reach-one-year-deal",
+      "publishedAt": "2026-04-10T01:15:19.000Z",
+      "publishedTs": 1775783719000,
+      "description": "The 49ers agreed to a one-year contract with free agent defensive end Cam Sample, a source told NFL Network on Thursday."
+    },
+    {
+      "id": "056f544c4c161dcdd95e01d1de11d19592713a28",
       "source": "ESPN",
       "title": "Falcons pivot after RT McGary retires, add Taylor",
       "url": "https://www.espn.com/nfl/story/_/id/48431526/falcons-starting-rt-kaleb-mcgary-retiring-age-31-agent-says",
-      "publishedAt": "2026-04-08T23:07:47.000Z",
-      "publishedTs": 1775689667000,
+      "publishedAt": "2026-04-10T01:15:19.000Z",
+      "publishedTs": 1775783719000,
       "description": "Falcons right tackle Kaleb McGary is retiring, agent Collin Roberts announced."
     },
     {
-      "id": "d55a7898371a504044566391c491aa4806ebef4c",
+      "id": "0c382a4b2b92b85bc37057537ff69c4735bb38b1",
       "source": "ESPN",
       "title": "Cousins: I shouldn't play if not Raiders' best QB",
       "url": "https://www.espn.com/nfl/story/_/id/48432916/kirk-cousins-raiders-need-play-best-qb-even-not-me",
-      "publishedAt": "2026-04-08T23:07:47.000Z",
-      "publishedTs": 1775689667000,
+      "publishedAt": "2026-04-10T01:15:19.000Z",
+      "publishedTs": 1775783719000,
       "description": "Raiders quarterback Kirk Cousins is aware that Las Vegas is expected to draft Fernando Mendoza and says he only wants to play if it's determined he's the best option."
     },
     {
-      "id": "d1593a0f161231bb96d5ec630cf64da1cdd0654b",
+      "id": "a9bb065f31e29d3f2897a49ead2c18870e6215f6",
       "source": "ESPN",
       "title": "Falcons' Pearce, facing 3 felonies, not at workouts",
       "url": "https://www.espn.com/nfl/story/_/id/48429078/kevin-stefanski-falcons-james-pearce-not-offseason-workouts",
-      "publishedAt": "2026-04-08T23:07:47.000Z",
-      "publishedTs": 1775689667000,
+      "publishedAt": "2026-04-10T01:15:19.000Z",
+      "publishedTs": 1775783719000,
       "description": "Falcons pass rusher James Pearce Jr. is not at the team's offseason workout program amid his legal problems, coach Kevin Stefanski told reporters Wednesday."
     },
     {
-      "id": "9a27aa095a99897e15a37ab63035c20cb392fd6b",
+      "id": "7a3130d68d6a7764d1989b33fdc7077293552cd3",
       "source": "ESPN",
       "title": "Source: Texans pick up Stroud, Anderson options",
       "url": "https://www.espn.com/nfl/story/_/id/48430114/source-texans-pick-stroud-anderson-fifth-year-optionssource-texans-pick-stroud-anderson-fifth-year-options",
-      "publishedAt": "2026-04-08T23:07:47.000Z",
-      "publishedTs": 1775689667000,
+      "publishedAt": "2026-04-10T01:15:19.000Z",
+      "publishedTs": 1775783719000,
       "description": "The Texans have exercised the 2027 fifth-year options for quarterback C.J. Stroud and All-Pro defensive end Will Anderson Jr., a source told ESPN's Field Yates."
     },
     {
-      "id": "3002e868c9a72e143e6af48f88a30101806d62b0",
-      "source": "ESPN",
-      "title": "Sources: Giants, ex-Ravens G Faalele reach deal",
-      "url": "https://www.espn.com/nfl/story/_/id/48430717/sources-faalele-latest-ex-raven-follow-harbaugh-giants",
-      "publishedAt": "2026-04-08T23:07:47.000Z",
-      "publishedTs": 1775689667000,
-      "description": "The Giants made an offensive line addition Wednesday, agreeing to a one-year deal with former Ravens guard Daniel Faalele, according to NFL Network."
-    },
-    {
-      "id": "5454edec753eaf32e25104d45505cf63a67dba1f",
+      "id": "9da5945262ad1013fe11a438699ac7b12d5ff7e4",
       "source": "ESPN",
       "title": "Ravens say Lamar excited to work with new staff",
       "url": "https://www.espn.com/nfl/story/_/id/48431404/ravens-say-jackson-excited-work-new-coaching-staff",
-      "publishedAt": "2026-04-08T23:07:47.000Z",
-      "publishedTs": 1775689667000,
+      "publishedAt": "2026-04-10T01:15:19.000Z",
+      "publishedTs": 1775783719000,
       "description": "The Baltimore Ravens noticed a difference in quarterback Lamar Jackson when the two-time NFL Most Valuable Player reported for the start of offseason workouts this week."
     },
     {
-      "id": "7a666cf37c8469f3ad93913322b78a378ac47947",
-      "source": "ESPN",
-      "title": "Lawrence not with Giants; Harbaugh optimistic",
-      "url": "https://www.espn.com/nfl/story/_/id/48422457/lawrence-absent-giants-workouts-harbaugh-optimistic",
-      "publishedAt": "2026-04-08T23:07:47.000Z",
-      "publishedTs": 1775689667000,
-      "description": "Giants coach John Harbaugh expressed optimism during a video call with reporters Tuesday that defensive lineman Dexter Lawrence II will remain with the team next season."
-    },
-    {
-      "id": "03dd880e4dcf7444faeae6ad9e65589f263080be",
-      "source": "ESPN",
-      "title": "Sources: Mendoza not planning to attend draft",
-      "url": "https://www.espn.com/nfl/story/_/id/48421461/sources-fernando-mendoza-not-planning-attend-nfl-draft",
-      "publishedAt": "2026-04-08T23:07:47.000Z",
-      "publishedTs": 1775689667000,
-      "description": "Fernando Mendoza has informed the NFL that he is not planning to attend the draft, sources told ESPN."
-    },
-    {
-      "id": "e9043f108dc8e75cc9becf6ac37f94b48c04de07",
+      "id": "ebd3e19897804fc0fcc55ef4807bd2f2cb22dfcc",
       "source": "ESPN",
       "title": "💍 Seahawks QB Sam Darnold adds another ring",
       "url": "https://www.espn.com/nfl/story/_/id/48423360/seattle-seahawks-sam-darnold-wedding-married-katie-hoofnagle",
-      "publishedAt": "2026-04-08T23:07:47.000Z",
-      "publishedTs": 1775689667000,
+      "publishedAt": "2026-04-10T01:15:19.000Z",
+      "publishedTs": 1775783719000,
       "description": "The Seahawks quarterback married his fiancée only months after winning Super Bowl LX."
     },
     {
-      "id": "8fdd6a34e5a44b1c88435fcb1d833485458428cf",
+      "id": "ecfbc42cac4ab1b1f9b09380dd04dbb3d6202dd0",
       "source": "ESPN",
-      "title": "What we're hearing on the Browns' draft plans: Concepcion in Cleveland for visit",
-      "url": "https://www.espn.com/nfl/story/_/id/48431322/2026-nfl-draft-cleveland-browns-updates-buzz-intel-picks-positions",
-      "publishedAt": "2026-04-08T21:55:13.000Z",
-      "publishedTs": 1775685313000,
-      "description": "The Browns have two first-round picks and nine total selections in the 2026 draft. Here's the latest on what Cleveland might do."
-    },
-    {
-      "id": "c9e7f397c5e9e439db4c34f86fe3cbec7222975c",
-      "source": "ESPN",
-      "title": "Trade offers for every first-round NFL draft pick: We made deals for J.J. McCarthy, Maxx Crosby",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48373315/2026-nfl-mock-draft-all-trades-barnwell-deals-32-round-1-picks-players-mccarthy-crosby",
-      "publishedAt": "2026-04-08T21:21:56.000Z",
-      "publishedTs": 1775683316000,
-      "description": "We proposed 32 trades to shake up Round 1 -- one at every slot -- including deals that involve McCarthy and Crosby."
-    },
-    {
-      "id": "c9483f30c27996d873e93cc555a321198d966e66",
-      "source": "ESPN",
-      "title": "Tracking fifth-year options for 2023 first-rounders",
-      "url": "https://www.espn.com/nfl/story/_/id/48358999/fifth-year-option-tracker-nfl-players-2023-first-round-draft-class",
-      "publishedAt": "2026-04-08T21:21:56.000Z",
-      "publishedTs": 1775683316000,
-      "description": "The deadline for teams to pick up the fifth-year option on rookie contracts is May 1."
-    },
-    {
-      "id": "ac5957b7410e1bde0bcae4327cbac3edabcdd1ab",
-      "source": "ESPN",
-      "title": "What we're hearing on the Giants' draft plans: Dexter Lawrence trade would change Giants draft",
-      "url": "https://www.espn.com/nfl/story/_/id/48429757/2026-nfl-draft-new-york-giants-updates-buzz-intel-picks-positions",
-      "publishedAt": "2026-04-08T18:44:07.000Z",
-      "publishedTs": 1775673847000,
-      "description": "The Giants pick early in Round 1 and have seven total selections in the 2026 draft. Here's the latest on what New York might do."
-    },
-    {
-      "id": "5b1de423722568eb46505d067395329a1c7dd0b2",
-      "source": "ESPN",
-      "title": "Why the Giants can't afford to trade Dexter Lawrence",
-      "url": "https://www.espn.com/nfl/story/_/id/48413987/new-york-giants-cannot-afford-trade-dexter-lawrence",
-      "publishedAt": "2026-04-08T18:36:32.000Z",
-      "publishedTs": 1775673392000,
-      "description": "Honoring Lawrence's request is unlikely at this stage of the NFL calendar."
+      "title": "Sources: DOJ opens probe of NFL over TV deals",
+      "url": "https://www.espn.com/nfl/story/_/id/48440303/sources-doj-opens-antitrust-investigation-nfl-tv-deals",
+      "publishedAt": "2026-04-10T01:15:18.000Z",
+      "publishedTs": 1775783718000,
+      "description": "The Justice Department has begun an investigation into whether the NFL has violated anticompetitive practices with their television contracts that require consumers to pay subscription costs to watch some games, sources confirmed to ABC News."
     },
     {
       "id": "8a1c45590000748fc46ca73abef14c14b128a461",
@@ -207,6 +189,141 @@
       "publishedAt": "2026-02-19T13:05:38.000Z",
       "publishedTs": 1771506338000,
       "description": "The 2027 Super Bowl will air on ESPN for the first time in network history. Learn more information about Super Bowl LXI festivities now."
+    },
+    {
+      "id": "76e3fcb09bde8fb6d0d07711721deb66a29fe7b1",
+      "source": "FantasyPros",
+      "title": "Travis Hunter (knee) hopeful to be full-go in training camp",
+      "url": "https://www.fantasypros.com/nfl/news/579511/travis-hunter-knee-hopeful-to-be-full-go-training-camp.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "941c8294780ead86ab54be068e9fd80feaad5ea8",
+      "source": "FantasyPros",
+      "title": "Will Anderson Jr. has fifth-year option exercised by Texans",
+      "url": "https://www.fantasypros.com/nfl/news/579510/will-anderson-jr-has-fifth-year-option-exercised-by-texans-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "3457bad84da12ad0ee358a9cd06a9df6704956a2",
+      "source": "FantasyPros",
+      "title": "C.J. Stroud has fifth-year option exercised by Texans",
+      "url": "https://www.fantasypros.com/nfl/news/579509/cj-stroud-has-fifth-year-option-exercised-by-texans-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "38974f5ff945f32576c2c08668ae77812b18b03e",
+      "source": "FantasyPros",
+      "title": "Zion Young visits Texans Wednesday",
+      "url": "https://www.fantasypros.com/nfl/news/579508/zion-young-visits-texans-wednesday-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "57dd8f66ba08947c658ab87e19057943cd4c4618",
+      "source": "FantasyPros",
+      "title": "Makai Lemon visits Giants",
+      "url": "https://www.fantasypros.com/nfl/news/579507/makai-lemon-visits-giants-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "cbb22a923e17444fd02ba584f1a4a1126981c013",
+      "source": "FantasyPros",
+      "title": "K.C. Concepcion visiting Browns",
+      "url": "https://www.fantasypros.com/nfl/news/579506/kc-concepcion-visiting-browns-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "059e096bc9a3407104a9eda6d506ac3ebb4988fd",
+      "source": "FantasyPros",
+      "title": "Kenyon Sadiq visits Browns",
+      "url": "https://www.fantasypros.com/nfl/news/579505/kenyon-sadiq-visits-browns.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "4c36c2c0f8959b994a022560d10160bd37626580",
+      "source": "FantasyPros",
+      "title": "Jermod McCoy to visit Panthers Friday",
+      "url": "https://www.fantasypros.com/nfl/news/579504/jermod-mccoy-to-visit-panthers-friday.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "405a5582a83655170028ccbee92d453b1a8a089f",
+      "source": "FantasyPros",
+      "title": "Emmanuel McNeil-Warren visiting Dolphins",
+      "url": "https://www.fantasypros.com/nfl/news/579503/emmanuel-mcneil-warren-visiting-dolphins-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "af33c414d3d22b132c08b6b297d1e686009889d3",
+      "source": "FantasyPros",
+      "title": "Malachi Lawrence visiting three teams this week",
+      "url": "https://www.fantasypros.com/nfl/news/579502/malachi-lawrence-visiting-three-teams-this-week.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "de95b5fb4edba1c43a2d9a9cf8bb52c45f0d6041",
+      "source": "FantasyPros",
+      "title": "Avieon Terrell visits Cowboys Wednesday",
+      "url": "https://www.fantasypros.com/nfl/news/579501/avieon-terrell-visits-cowboys-wednesday-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "0661143d922d0c73fb8e61dc33e40a37831e639c",
+      "source": "FantasyPros",
+      "title": "Denzel Boston to visit Panthers Thursday",
+      "url": "https://www.fantasypros.com/nfl/news/579500/denzel-boston-to-visit-panthers-thursday-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "ac6813c586554b25c504e00b034323458d969009",
+      "source": "FantasyPros",
+      "title": "Treydan Stukes to visit Panthers Thursday",
+      "url": "https://www.fantasypros.com/nfl/news/579499/treydan-stukes-to-visit-panthers-thursday-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "e8baffd2667e73fccce1c6b8c4bbc6ffd3d2df5e",
+      "source": "FantasyPros",
+      "title": "Jordyn Tyson to hold individual workout day April 17",
+      "url": "https://www.fantasypros.com/nfl/news/579497/jordyn-tyson-to-hold-individual-workout-day-april-17.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "bd13bea434657cf5004dc3297c13d294709c5c29",
+      "source": "FantasyPros",
+      "title": "Rueben Bain Jr. visits Chiefs Thursday",
+      "url": "https://www.fantasypros.com/nfl/news/579496/rueben-bain-jr-visits-chiefs-thursday.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
     },
     {
       "id": "912c362ee3324c498e3e8d467926e690e55775df",
@@ -294,141 +411,6 @@
       "source": "FantasyPros",
       "title": "Isaiah World visits Eagles Tuesday",
       "url": "https://www.fantasypros.com/nfl/news/579269/isaiah-world-visits-eagles-tuesday-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "d94552d8dbf633e5466caf6eaae00c3556af2713",
-      "source": "FantasyPros",
-      "title": "Brandon Cisse has top-30 visit with Seahawks this week",
-      "url": "https://www.fantasypros.com/nfl/news/579268/brandon-cisse-has-top-30-visit-with-seahawks-this-week.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "271b2e3fdf6ee91eb7d235718dc7d8fcb08db1a5",
-      "source": "FantasyPros",
-      "title": "James Conner reports to Cardinals voluntary workouts Tuesday",
-      "url": "https://www.fantasypros.com/nfl/news/579179/james-conner-reports-to-cardinals-voluntary-workouts-tuesday-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "690f0ffc2c50034a0bc0a485130cad6e41d8da83",
-      "source": "FantasyPros",
-      "title": "Deshaun Watson (Achilles) medically cleared",
-      "url": "https://www.fantasypros.com/nfl/news/579178/deshaun-watson-achilles-medically-cleared.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "da8a43f8727b8e92d4b1f1f2982c8c7f76ea015d",
-      "source": "FantasyPros",
-      "title": "David Sills V signs with Bucs",
-      "url": "https://www.fantasypros.com/nfl/news/579177/david-sills-v-signs-with-bucs-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "0b368fafb58dfdb903485bf0319b98fb7c76cd59",
-      "source": "FantasyPros",
-      "title": "Marte Mapu traded to Texans",
-      "url": "https://www.fantasypros.com/nfl/news/579176/marte-mapu-traded-to-texans.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "92c42a2e3988a3ae79f529fd778fb3b9a8c8b50b",
-      "source": "FantasyPros",
-      "title": "Jay Tufele visits Lions Tuesday",
-      "url": "https://www.fantasypros.com/nfl/news/579175/jay-tufele-visits-lions-tuesday-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "b948a6a2ec14c9c3e49d344e5f28531d45920780",
-      "source": "FantasyPros",
-      "title": "Charles Snowden re-signs with Raiders",
-      "url": "https://www.fantasypros.com/nfl/news/579174/charles-snowden-re-signs-with-raiders.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "82fdd54a8858581ba0c9984435dd5fe6410b18b1",
-      "source": "FantasyPros",
-      "title": "Jamon Meredith re-signs with Raiders",
-      "url": "https://www.fantasypros.com/nfl/news/579173/jamon-meredith-re-signs-with-raiders.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "6741c124f9248ff8c2642caa16b75e99d2dff97b",
-      "source": "FantasyPros",
-      "title": "PJ Mustipher signs one-year tender with Cardinals",
-      "url": "https://www.fantasypros.com/nfl/news/579172/pj-mustipher-signs-one-year-tender-with-cardinals-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "04ee519c3c5b14fe884c615e310fdb1cc060e65f",
-      "source": "FantasyPros",
-      "title": "Joshua Karty signs one-year tender with Cardinals",
-      "url": "https://www.fantasypros.com/nfl/news/579171/joshua-karty-signs-one-year-tender-with-cardinals-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "457e51a763abb04538f0c820efd896dda61e4239",
-      "source": "FantasyPros",
-      "title": "Ian Thomas re-signs with Raiders",
-      "url": "https://www.fantasypros.com/nfl/news/579170/ian-thomas-re-signs-with-raiders.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "89bf41c5d7e7bd13002f1bf535d905eb20b7fd05",
-      "source": "FantasyPros",
-      "title": "Cam Skattebo (ankle) may see action this spring",
-      "url": "https://www.fantasypros.com/nfl/news/579036/cam-skattebo-ankle-may-see-action-this-spring.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "c1c303fd88bcff0d790586671cb3e26bd160cecc",
-      "source": "FantasyPros",
-      "title": "Malik Nabers (knee) will return 'closer to the season'",
-      "url": "https://www.fantasypros.com/nfl/news/579032/malik-nabers-knee-will-return-closer-to-season.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "215df6fe7e1b930c22eeb184ca0d8c0b4d7710d3",
-      "source": "FantasyPros",
-      "title": "De'Von Achane does not report to first day of voluntary workouts",
-      "url": "https://www.fantasypros.com/nfl/news/579030/devon-achane-does-not-report-to-first-day-voluntary-workouts.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "99248ccc11fd6c903b4fa3155b8b2b05351badc0",
-      "source": "FantasyPros",
-      "title": "Eli Stowers visiting Broncos next week",
-      "url": "https://www.fantasypros.com/nfl/news/579010/eli-stowers-visiting-broncos-next-week.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
