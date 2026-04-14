@@ -1,122 +1,149 @@
 {
-  "generatedAt": "2026-04-13T13:26:51.920Z",
+  "generatedAt": "2026-04-14T13:27:01.254Z",
   "items": [
     {
-      "id": "c61a3bb2e5d5d6d4f6a3e66b114de8d6ddd53ed3",
+      "id": "aac3d316f1176028c041ed3e002de0c2a0ca59ce",
       "source": "ESPN",
-      "title": "Our annual NFL draft prospect skill superlative list: The one player who excels at each trait",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48428711/2026-nfl-draft-best-prospects-skills-traits-standouts-positions-superlatives-best",
-      "publishedAt": "2026-04-13T13:55:12.000Z",
-      "publishedTs": 1776088512000,
-      "description": "Strongest arm? Fastest offensive and defensive playmakers? Quickest first step? Let's hand out superlatives for this draft class."
+      "title": "Reid's final draft rankings: Stacking the top 500 players in the 2026 class",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/47027232/2026-nfl-draft-rankings-jordan-reid-top-prospects-players-positions",
+      "publishedAt": "2026-04-14T14:09:58.000Z",
+      "publishedTs": 1776175798000,
+      "description": "Jordan Reid ranked every draftable player in the '26 class and graded them by round. Here's his final list."
     },
     {
-      "id": "f096b15c2193e9000cf78059d47675c9f35353ee",
+      "id": "64f14b7ac2de0ab7bd3800a45025120e3a98ac15",
       "source": "ESPN",
-      "title": "College coaches pick 2026 NFL draft sleepers",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48380198/2026-nfl-draft-college-football-coaches-sleeper-picks",
-      "publishedAt": "2026-04-13T13:55:12.000Z",
-      "publishedTs": 1776088512000,
-      "description": "We know the top talent in the draft, but who could surprise in the pros? We asked their college coaches."
+      "title": "Trade up for a star prospect or trade down for more draft picks? Let's make the call for 10 NFL teams",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48470863/2026-nfl-draft-round-1-trades-barnwell-teams-moves-picks",
+      "publishedAt": "2026-04-14T14:09:57.000Z",
+      "publishedTs": 1776175797000,
+      "description": "Would it make sense for the Eagles, Bears and Chiefs to trade up in Round 1? Should the Cowboys and Lions try to move down the board? Here's our advice for 10 teams."
     },
     {
-      "id": "9b3e116cfc5735d702ec01762972a3df002270b8",
+      "id": "1de3aa154495ecdbe87925d37efe1d24258e45e2",
       "source": "ESPN",
-      "title": "'Every detail is a big detail': Cardinals in tune with Mike LaFleur's expectations",
-      "url": "https://www.espn.com/nfl/story/_/id/48442028/arizona-cardinals-mike-lafleur-first-team-meeting",
-      "publishedAt": "2026-04-13T12:51:57.000Z",
-      "publishedTs": 1776084717000,
-      "description": "Players said the new Cardinals coach struck the right tone in his first meeting with the team."
+      "title": "49ers' WR makeover: Why they're looking at adding another pass catcher in NFL draft",
+      "url": "https://www.espn.com/nfl/story/_/id/48476241/san-francisco-49ers-nfl-draft-visit-receivers-27th-overall-pick",
+      "publishedAt": "2026-04-14T13:26:47.000Z",
+      "publishedTs": 1776173207000,
+      "description": "San Francisco added two veteran receivers in free agency and now want to add youth at the NFL draft."
     },
     {
-      "id": "ee8462ad7e6d183fa9d67ead9cf6dd9c72ed34ac",
+      "id": "5cfe2c6739719b283f3b8de392921726cd119006",
       "source": "ESPN",
-      "title": "Eagles, A.J. Brown intrigue increases as NFL draft nears",
-      "url": "https://www.espn.com/nfl/story/_/id/48447304/philadelphia-eagles-aj-brown-intrigue-increases-2026-nfl-draft-nears",
-      "publishedAt": "2026-04-13T12:51:56.000Z",
-      "publishedTs": 1776084716000,
-      "description": "The Eagles haven't been highly incentivized to move Brown to this point, in large part due to the financials."
+      "title": "Why Lions GM Brad Holmes is willing to move up or down in the first round of the draft",
+      "url": "https://www.espn.com/nfl/story/_/id/48478424/detroit-lions-brad-holmes-2026-draft-outlook",
+      "publishedAt": "2026-04-14T13:26:47.000Z",
+      "publishedTs": 1776173207000,
+      "description": "Holmes has shown a willingness to make bold moves during the draft, and they have often paid off."
     },
     {
-      "id": "47938d51d9559389419cd14b5906462b9e1fcd64",
+      "id": "835bbdd2f6f353b02ab8191104113c429e139aab",
+      "source": "ESPN",
+      "title": "From Culver's, with love: Meet Gennings Dunker, the NFL draft's viral star",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48455868/nfl-draft-2026-gennings-dunker-iowa-hawkeyes-viral-star",
+      "publishedAt": "2026-04-14T11:19:01.000Z",
+      "publishedTs": 1776165541000,
+      "description": "He was 'one of five' on Iowa's offensive line. That was before the mullet and personality took over the NFL combine."
+    },
+    {
+      "id": "fd39dc58408c12c289dbaa57c6e46954d247883b",
+      "source": "ESPN",
+      "title": "Ex-Cardinals coach, Titans assistant McGinnis dies",
+      "url": "https://www.espn.com/nfl/story/_/id/48479231/former-tennessee-titans-assistant-dave-mcginnis-dies-74",
+      "publishedAt": "2026-04-14T01:59:47.000Z",
+      "publishedTs": 1776131987000,
+      "description": "Former Tennessee assistant Dave McGinnis, who also served as head coach for the Arizona Cardinals in a decorated career on the NFL sidelines, died at 74 on Monday with his family by his side at Ascension St. Thomas Midtown Hospital, the Titans announced."
+    },
+    {
+      "id": "97785bc0c59fdc9d8ca9c50387e97c08a0567787",
       "source": "ESPN",
       "title": "Report: Ex-Canes DE Bain drove in fatal car crash",
       "url": "https://www.espn.com/college-football/story/_/id/48471125/ex-miami-de-rueben-bain-involved-2024-car-accident-which-1-person-later-died-report-says",
-      "publishedAt": "2026-04-13T12:30:39.000Z",
-      "publishedTs": 1776083439000,
+      "publishedAt": "2026-04-14T01:59:47.000Z",
+      "publishedTs": 1776131987000,
       "description": "Former Miami defensive end and 2026 NFL draft prospect Rueben Bain Jr. was involved in an auto accident in 2024 in which a passenger later died because of injuries sustained in the crash, according to a report published on Sunday."
     },
     {
-      "id": "9534585af7af0dfafb7957b689aa140f1215735e",
+      "id": "24053211f33407b4208ac7eb63f817378736f910",
       "source": "ESPN",
       "title": "Panel rules NFL teams didn't collude on QB deals",
       "url": "https://www.espn.com/nfl/story/_/id/48456898/panel-rules-nflpa-says-not-enough-proof-collusion",
-      "publishedAt": "2026-04-13T12:30:39.000Z",
-      "publishedTs": 1776083439000,
+      "publishedAt": "2026-04-14T01:59:47.000Z",
+      "publishedTs": 1776131987000,
       "description": "An appeals panel upheld a decision that there wasn't sufficient evidence of collusion by teams when negotiating the contracts of Kyler Murray, Lamar Jackson and Russell Wilson in 2022, according to a copy of the ruling obtained by multiple outlets."
     },
     {
-      "id": "7bdb59a45ee8f1d9c4a98729d5b0b2ccc2ed2aec",
+      "id": "3ffac0c3947067b8d36b81df68e086684fca338a",
       "source": "ESPN",
       "title": "Cowboys safety Bell arrested, faces drug charges",
       "url": "https://www.espn.com/nfl/story/_/id/48456688/cowboys-markquese-bell-facing-felony-misdemeanor-drug-charges",
-      "publishedAt": "2026-04-13T12:30:39.000Z",
-      "publishedTs": 1776083439000,
+      "publishedAt": "2026-04-14T01:59:47.000Z",
+      "publishedTs": 1776131987000,
       "description": "Cowboys safety Markquese Bell has been arrested and charged with possession of a controlled substance and marijuana, according to Collin County jail records."
     },
     {
-      "id": "7d6fe51fa1695158044b7355cf0af9d57868d89c",
+      "id": "20ac67298fb4be8c3fb938322193e664ffb4185c",
       "source": "ESPN",
       "title": "Former NFL WR Ginn charged with DWI in Texas",
       "url": "https://www.espn.com/united-football-league/story/_/id/48465811/ex-nfl-wr-ted-ginn-jr-charged-dwi-texas",
-      "publishedAt": "2026-04-13T12:30:39.000Z",
-      "publishedTs": 1776083439000,
+      "publishedAt": "2026-04-14T01:59:47.000Z",
+      "publishedTs": 1776131987000,
       "description": "Former NFL wide receiver and current Aviators coach Ted Ginn Jr. was charged with driving while intoxicated in Tarrant County, Texas, on Saturday."
     },
     {
-      "id": "3b03ee4d97150f752122c717a7dd6eae35f56ad7",
+      "id": "17e63c1bd3040acfdd95268b7685b656fe6d6eec",
       "source": "ESPN",
       "title": "Eagles get Packers WR Wicks for picks in trade",
       "url": "https://www.espn.com/nfl/story/_/id/48451181/eagles-get-wr-dontayvion-wick-packers-sources-say",
-      "publishedAt": "2026-04-13T12:30:39.000Z",
-      "publishedTs": 1776083439000,
+      "publishedAt": "2026-04-14T01:59:47.000Z",
+      "publishedTs": 1776131987000,
       "description": "The Eagles have acquired wide receiver Dontayvion Wicks from the Packers for two draft picks."
     },
     {
-      "id": "67d677f96f8f238eaec4cb087a546be41d245963",
+      "id": "b71ead8c22b6008c7540bbd969930a1baa407b8c",
       "source": "ESPN",
       "title": "Sources: NYT investigating reporter's Vrabel ties",
       "url": "https://www.espn.com/nfl/story/_/id/48452785/nyt-scrutinizing-reporter-russini-vrabel-coverage-amid-photo-fallout",
-      "publishedAt": "2026-04-13T12:30:39.000Z",
-      "publishedTs": 1776083439000,
+      "publishedAt": "2026-04-14T01:59:47.000Z",
+      "publishedTs": 1776131987000,
       "description": "The Athletic is reinvestigating the coverage of NFL reporter Dianna Russini and the nature of her relationship with Patriots coach Mike Vrabel amid questions raised about the two this week, sources told ESPN."
     },
     {
-      "id": "8aaa94fc800ffb8b355d4bf9811b82f12a332aa8",
+      "id": "39480adce697cabb3e7d0cb6bc4d4afe9e074c4d",
       "source": "ESPN",
       "title": "Sources: Colts seeking to trade away CB Moore",
       "url": "https://www.espn.com/nfl/story/_/id/48447175/sources-colts-agree-seek-new-team-cb-kenny-moore-ii",
-      "publishedAt": "2026-04-13T12:30:39.000Z",
-      "publishedTs": 1776083439000,
+      "publishedAt": "2026-04-14T01:59:47.000Z",
+      "publishedTs": 1776131987000,
       "description": "The Colts and Kenny Moore II have agreed to seek a trade to find the veteran cornerback a new team, sources told ESPN."
     },
     {
-      "id": "b643ebdacb89694374ae720c92b454797ed59069",
-      "source": "ESPN",
-      "title": "Former Jets, Louisvile QB Nagle dies at age 57",
-      "url": "https://www.espn.com/nfl/story/_/id/48450123/former-jets-quarterback-browning-nagle-dies-age-57",
-      "publishedAt": "2026-04-13T12:30:39.000Z",
-      "publishedTs": 1776083439000,
-      "description": "Former Jets and Louisville quarterback Browning Nagle has died at age 57."
-    },
-    {
-      "id": "f53fcc95140802dfb1674bd370b7cb1d7f62d0e8",
+      "id": "e32ff64b2bcb14eb0bb11381b3f413686877e47f",
       "source": "ESPN",
       "title": "🤖 How AI is pushing NFL draft preparations",
       "url": "https://www.espn.com/nfl/story/_/id/48446759/nfl-draft-combine-artificial-intelligence-caleb-downs-arvell-reese-david-bailey",
-      "publishedAt": "2026-04-13T12:30:39.000Z",
-      "publishedTs": 1776083439000,
+      "publishedAt": "2026-04-14T01:59:47.000Z",
+      "publishedTs": 1776131987000,
       "description": "When a prospect skips NFL combine workouts, teams can use artificial intelligence to project his measurables."
+    },
+    {
+      "id": "8dc3df14ead4a2518ee276be24a144e6462e0c48",
+      "source": "ESPN",
+      "title": "'This is everything to me': Gabe Taylor set for debut in D.C., where brother Sean starred",
+      "url": "https://www.espn.com/united-football-league/story/_/id/48379274/ufl-dc-defenders-gabe-taylor-sean-taylor",
+      "publishedAt": "2026-04-13T16:37:10.000Z",
+      "publishedTs": 1776098230000,
+      "description": "Gabe Taylor, who will don No. 21, understands the legacy brother Sean built in Washington in a short time."
+    },
+    {
+      "id": "71dbab7b2f6a67fa0a084b3c640fb50fd42dc5d3",
+      "source": "ESPN",
+      "title": "Why the UFL plans to expand in 2028 and believes Oklahoma City is a great fit",
+      "url": "https://www.espn.com/united-football-league/story/_/id/48432829/ufl-announces-2028-expansion",
+      "publishedAt": "2026-04-13T16:37:10.000Z",
+      "publishedTs": 1776098230000,
+      "description": "UFL co-owner Mike Repole promised expansion; the other city to join with OKC is still to be determined."
     },
     {
       "id": "122fc6a9996e5c94597ce2e7c1deacc80f3acc5d",
@@ -135,24 +162,6 @@
       "publishedAt": "2026-04-13T12:30:23.000Z",
       "publishedTs": 1776083423000,
       "description": "Aaron Schatz uses his QBASE 2.0 model to project NFL career ceilings and floors for the 2026 draft class."
-    },
-    {
-      "id": "6b29c38c953309be62dbf84c6cc3bb5ac08f26a5",
-      "source": "ESPN",
-      "title": "'This is everything to me': Gabe Taylor set for debut in D.C., where brother Sean starred",
-      "url": "https://www.espn.com/united-football-league/story/_/id/48379274/ufl-dc-defenders-gabe-taylor-sean-taylor",
-      "publishedAt": "2026-04-12T12:45:24.000Z",
-      "publishedTs": 1775997924000,
-      "description": "Gabe Taylor, who will don No. 21, understands the legacy brother Sean built in Washington in a short time."
-    },
-    {
-      "id": "c8d440dac00f690cbe08720ac35bb6e03c85b380",
-      "source": "ESPN",
-      "title": "Why the UFL plans to expand in 2028 and believes Oklahoma City is a great fit",
-      "url": "https://www.espn.com/united-football-league/story/_/id/48432829/ufl-announces-2028-expansion",
-      "publishedAt": "2026-04-12T12:45:24.000Z",
-      "publishedTs": 1775997924000,
-      "description": "UFL co-owner Mike Repole promised expansion; the other city to join with OKC is still to be determined."
     },
     {
       "id": "299da2406968d86058ba60f5b644ecc774d10621",
@@ -180,15 +189,6 @@
       "publishedAt": "2026-04-10T18:10:19.000Z",
       "publishedTs": 1775844619000,
       "description": "Mike Clay provides breakdowns of the top tight ends in fantasy football for the 2026 season."
-    },
-    {
-      "id": "8a1c45590000748fc46ca73abef14c14b128a461",
-      "source": "ESPN",
-      "title": "Divine intervention? How Dallas landed Dak Prescott at No. 135 in the 2016 NFL draft",
-      "url": "https://www.espn.com/nfl/story/_/id/48419390/nfl-dallas-cowboys-dak-prescott-draft-jerry-jones",
-      "publishedAt": "2026-04-08T14:16:13.000Z",
-      "publishedTs": 1775657773000,
-      "description": "As the moment neared, OC Scott Linehan was holding his breath, thinking, \"Someone else is going to take him.\""
     },
     {
       "id": "bb523209f66181ab0b6e894c97f00b9c516cfb21",
