@@ -1,23 +1,149 @@
 {
-  "generatedAt": "2026-04-15T13:25:25.136Z",
+  "generatedAt": "2026-04-16T13:45:23.025Z",
   "items": [
     {
-      "id": "7add6e287ced2c7391b298d3e3daf0653feb2308",
+      "id": "d62aed1758f4c777f367bf18bb8a47a1124dbb46",
       "source": "ESPN",
-      "title": "Remembering 'Coach Mac': Jeff Legwold shares his best Dave McGinnis memories",
-      "url": "https://www.espn.com/nfl/story/_/id/48485921/remembering-dave-mcginnis-nfl-head-coach-assistant-color-commentator-tribute",
-      "publishedAt": "2026-04-15T13:17:35.000Z",
-      "publishedTs": 1776259055000,
-      "description": "Legwold and the late McGinnis formed a bond over combine breakfasts, large trucks, makeshift wallets and bobbleheads."
+      "title": "How all 32 teams can crush the NFL draft: We have prospects and positions to target",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48494162/2026-nfl-draft-32-teams-positions-picks-grades-predictions-needs-solak",
+      "publishedAt": "2026-04-16T14:25:36.000Z",
+      "publishedTs": 1776349536000,
+      "description": "A week before the NFL draft, Ben Solak hits the top priorities for every single team -- and the prospects who can meet those needs."
     },
     {
-      "id": "ae2881dff3a24c74e502242ccf2c2ec83bfa0f22",
+      "id": "21f8fe8ae8e6c9f37c2b893da12cdcc6e6a13ccc",
       "source": "ESPN",
-      "title": "Packers clear the way for Matthew Golden to emerge in Year 2",
-      "url": "https://www.espn.com/nfl/story/_/id/48482985/nfl-green-bay-packers-matthew-golden-dontayvion-wicks-trade",
-      "publishedAt": "2026-04-15T12:55:38.000Z",
-      "publishedTs": 1776257738000,
-      "description": "After trading Dontayvion Wicks and letting Romeo Doubs walk, Green Bay is counting on Golden, the 2025 first-round WR, to step up."
+      "title": "Yates' final rankings for the NFL draft: Sizing up the top 150 prospects",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/47590505/2026-nfl-draft-rankings-board-top-prospects-best-positional-field-yates",
+      "publishedAt": "2026-04-16T14:25:36.000Z",
+      "publishedTs": 1776349536000,
+      "description": "Field Yates stacks his top 150 prospects, including scouting reports on the first 50."
+    },
+    {
+      "id": "b27bce835320a11a5f0ffb4e68be83a9933d788f",
+      "source": "ESPN",
+      "title": "How music kept NFL dream alive for Panthers' Jaelan Phillips",
+      "url": "https://www.espn.com/nfl/story/_/id/48475698/nfl-carolina-panthers-jaelan-phillips-music-production",
+      "publishedAt": "2026-04-16T13:16:19.000Z",
+      "publishedTs": 1776345379000,
+      "description": "Music was a bridge for Phillips, who medically retired from football in college before working his way to the NFL."
+    },
+    {
+      "id": "757ef5ccb4d811f61b83c745969226bce40387cb",
+      "source": "ESPN",
+      "title": "How a 'big argument' and lucky draft moves led to the Chiefs selecting Chris Jones",
+      "url": "https://www.espn.com/nfl/story/_/id/48496049/nfl-2026-draft-chris-jones-kansas-city-chiefs",
+      "publishedAt": "2026-04-16T11:52:50.000Z",
+      "publishedTs": 1776340370000,
+      "description": "A look back 10 years later at the selection of Jones, one of the most important picks in franchise history."
+    },
+    {
+      "id": "436de14053814b0160797f689b005aaf247e60b9",
+      "source": "ESPN",
+      "title": "Memo: NFL onboarding replacement officials",
+      "url": "https://www.espn.com/nfl/story/_/id/48497778/memo-nfl-begins-onboarding-potential-replacement-officials",
+      "publishedAt": "2026-04-15T23:48:05.000Z",
+      "publishedTs": 1776296885000,
+      "description": "The NFL has started onboarding potential replacement officials as the expiration of its CBA with the NFL Referees Association approaches."
+    },
+    {
+      "id": "370ff571b7952b826128f9954f0b382a60e56eb5",
+      "source": "ESPN",
+      "title": "Dolphins GM: RB Achane 'not available' for trade",
+      "url": "https://www.espn.com/nfl/story/_/id/48496148/devon-achane-not-available-trade-dolphins-gm-says",
+      "publishedAt": "2026-04-15T23:48:05.000Z",
+      "publishedTs": 1776296885000,
+      "description": "Dolphins running back De'Von Achane is \"not available\" for a trade, general manager Jon-Eric Sullivan said Wednesday, as the team looks to extend its homegrown star."
+    },
+    {
+      "id": "e8a89bb1ea28ebc0be417ba6b6ffff76ef4ef488",
+      "source": "ESPN",
+      "title": "Sources: Giants' talks with Lawrence hit impasse",
+      "url": "https://www.espn.com/nfl/story/_/id/48490309/sources-giants-contract-talks-lawrence-reach-impasse",
+      "publishedAt": "2026-04-15T23:48:05.000Z",
+      "publishedTs": 1776296885000,
+      "description": "The Giants and star defensive tackle Dexter Lawrence II have reached an impasse on talks over a new contract extension, sources told NFL Network on Tuesday night."
+    },
+    {
+      "id": "8b384b50bd1ee1f1018d93e02edca5a1b75e78a6",
+      "source": "ESPN",
+      "title": "Russini resigns from Athletic following Vrabel pics",
+      "url": "https://www.espn.com/nfl/story/_/id/48486392/dianna-russini-resigns-athletic-following-mike-vrabel-photos",
+      "publishedAt": "2026-04-15T23:48:05.000Z",
+      "publishedTs": 1776296885000,
+      "description": "NFL reporter Dianna Russini has resigned from The Athletic less than a week after published photos of her and Patriots coach Mike Vrabel at an Arizona resort prompted an internal investigation at the New York Times-owned sports outlet."
+    },
+    {
+      "id": "9b1fe9c1c4367cfddbd6441105ddf29b47b4d629",
+      "source": "ESPN",
+      "title": "Raiders getting calls inquiring about No. 1 pick",
+      "url": "https://www.espn.com/nfl/story/_/id/48488757/raiders-spytek-says-teams-inquired-no-1-draft-pick",
+      "publishedAt": "2026-04-15T23:48:05.000Z",
+      "publishedTs": 1776296885000,
+      "description": "Raiders GM John Spytek said teams have called to inquire about the possibility of trading for the No. 1 pick but added, \"Those teams know where they stand.\""
+    },
+    {
+      "id": "ef2477fb47c83b854444248c80951bd91a18342e",
+      "source": "ESPN",
+      "title": "Eagles GM reiterates Brown stance despite moves",
+      "url": "https://www.espn.com/nfl/story/_/id/48485453/eagles-gm-howie-roseman-says-stance-aj-brown-unchanged-wake-dontayvion-wicks-trade",
+      "publishedAt": "2026-04-15T23:48:05.000Z",
+      "publishedTs": 1776296885000,
+      "description": "Eagles general manager Howie Roseman on Tuesday kept the same public stance regarding wide receiver A.J. Brown despite the team's recent trade for Dontayvion Wicks."
+    },
+    {
+      "id": "8deece393ea9c8f31c526da42b43738566189b2d",
+      "source": "ESPN",
+      "title": "Adderley joins Colts, ending 3-year retirement",
+      "url": "https://www.espn.com/nfl/story/_/id/48485763/safety-nasir-adderley-signs-colts-ending-retirement",
+      "publishedAt": "2026-04-15T23:48:05.000Z",
+      "publishedTs": 1776296885000,
+      "description": "Safety Nasir Adderley signed with the Colts on Tuesday, two months after he announced he was ready to return to the NFL after retiring following the 2022 season."
+    },
+    {
+      "id": "c2d44098b516dda04d068f462473ee1bea9ebb43",
+      "source": "ESPN",
+      "title": "Ex-Cardinals coach, Titans assistant McGinnis dies",
+      "url": "https://www.espn.com/nfl/story/_/id/48479231/former-tennessee-titans-assistant-dave-mcginnis-dies-74",
+      "publishedAt": "2026-04-15T23:48:05.000Z",
+      "publishedTs": 1776296885000,
+      "description": "Former Tennessee assistant Dave McGinnis, who also served as head coach for the Arizona Cardinals in a decorated career on the NFL sidelines, died at 74 on Monday with his family by his side at Ascension St. Thomas Midtown Hospital, the Titans announced."
+    },
+    {
+      "id": "99d1695d056dc331ebc68a392b34c7cbbb0f6247",
+      "source": "ESPN",
+      "title": "⬆ Players who have boosted their draft stock",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48443025/2026-nfl-draft-risers-prospects-freeling-thieneman-iheanachor",
+      "publishedAt": "2026-04-15T23:48:05.000Z",
+      "publishedTs": 1776296885000,
+      "description": "Dillon Thieneman and Monroe Freeling have drastically boosted their stock since the start of last season. Who else has climbed the board?"
+    },
+    {
+      "id": "c1d223c11489132a6899d7ba509d55a166723708",
+      "source": "ESPN",
+      "title": "Akheem Mesidor's long, long road to the NFL",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48465658/nfl-draft-2026-akheem-mesidor-miami-hurricanes",
+      "publishedAt": "2026-04-15T19:41:13.000Z",
+      "publishedTs": 1776282073000,
+      "description": "The Miami defensive end once struggled to make an impact in youth football. Now, he's a potential first-round pick."
+    },
+    {
+      "id": "8600d71d0e7d3866ab9af8d335e8538fd873a3f1",
+      "source": "ESPN",
+      "title": "More than a mullet and mustache, Gennings Dunker has taken over the NFL draft",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48455868/nfl-draft-2026-gennings-dunker-iowa-hawkeyes-viral-star",
+      "publishedAt": "2026-04-15T19:41:13.000Z",
+      "publishedTs": 1776282073000,
+      "description": "He was \"one of five\" on Iowa's OL. That was before the mullet and personality took over the NFL combine."
+    },
+    {
+      "id": "acd3b9d98e0a9ac54cf20b9955e6553056bd5b79",
+      "source": "ESPN",
+      "title": "Hail Raiser: Commanders roll out fresh uniforms with new alternate logo",
+      "url": "https://www.espn.com/nfl/story/_/id/48489288/washington-commanders-new-uniforms-2026",
+      "publishedAt": "2026-04-15T17:05:01.000Z",
+      "publishedTs": 1776272701000,
+      "description": "Washington's updated three-uniform set is headlined by the black \"Hail Raiser\" look with a new alternate logo."
     },
     {
       "id": "09cc7d240b623daea478e81546298f8cc86e5fe4",
@@ -27,132 +153,6 @@
       "publishedAt": "2026-04-15T12:51:20.000Z",
       "publishedTs": 1776257480000,
       "description": "The Dallas Renegades are scoring at a high rate; the DC Defenders have bounced back after losing the opener."
-    },
-    {
-      "id": "b7547787b10daad183b94631b83eb25de2970c4d",
-      "source": "ESPN",
-      "title": "Akheem Mesidor's long, long road to the NFL",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48465658/nfl-draft-2026-akheem-mesidor-miami-hurricanes",
-      "publishedAt": "2026-04-15T12:49:39.000Z",
-      "publishedTs": 1776257379000,
-      "description": "The Miami defensive end once struggled to make an impact in youth football. Now, he's a potential first-round pick."
-    },
-    {
-      "id": "54f8f6d4070b31648717bdc42b3c6211ef07c987",
-      "source": "ESPN",
-      "title": "More than a mullet and mustache, Gennings Dunker has taken over the NFL draft",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48455868/nfl-draft-2026-gennings-dunker-iowa-hawkeyes-viral-star",
-      "publishedAt": "2026-04-15T12:49:39.000Z",
-      "publishedTs": 1776257379000,
-      "description": "He was \"one of five\" on Iowa's OL. That was before the mullet and personality took over the NFL combine."
-    },
-    {
-      "id": "e35f0feaee4e4d6500247001a6c7ffeabcfc1b37",
-      "source": "ESPN",
-      "title": "Kiper's two-round NFL mock draft: Projecting 64 picks -- and two possible trades",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48478995/2026-nfl-mock-draft-mel-kiper-two-rounds-64-picks-final-predictions",
-      "publishedAt": "2026-04-15T12:47:24.000Z",
-      "publishedTs": 1776257244000,
-      "description": "Mel Kiper Jr. predicts 64 picks across the first two rounds of the NFL draft, including two potential trades, a few QB landing spots and plenty of impact additions."
-    },
-    {
-      "id": "7fd657a68c66a526a3df5773f52099f21dd220ee",
-      "source": "ESPN",
-      "title": "The college football fan's guide to this year's NFL draft: Top schools, trends, more",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48475095/nfl-draft-2026-college-football-fan-guide-teams-picks-trends-more",
-      "publishedAt": "2026-04-15T12:47:24.000Z",
-      "publishedTs": 1776257244000,
-      "description": "Attention college football fans: The NFL draft is coming. Here's everything you need to know."
-    },
-    {
-      "id": "53f4eaac5ecc38c517c4afbd3267e84782cff81a",
-      "source": "ESPN",
-      "title": "Sources: Giants' talks with Lawrence hit impasse",
-      "url": "https://www.espn.com/nfl/story/_/id/48490309/sources-giants-contract-talks-lawrence-reach-impasse",
-      "publishedAt": "2026-04-15T04:14:54.000Z",
-      "publishedTs": 1776226494000,
-      "description": "The Giants and star defensive tackle Dexter Lawrence II have reached an impasse on talks over a new contract extension, sources told NFL Network on Tuesday night."
-    },
-    {
-      "id": "1e700aa98d17920143795a7c93ee68b36d68e089",
-      "source": "ESPN",
-      "title": "Russini resigns from Athletic following Vrabel pics",
-      "url": "https://www.espn.com/nfl/story/_/id/48486392/dianna-russini-resigns-athletic-following-mike-vrabel-photos",
-      "publishedAt": "2026-04-15T04:14:54.000Z",
-      "publishedTs": 1776226494000,
-      "description": "NFL reporter Dianna Russini has resigned from The Athletic less than a week after published photos of her and Patriots coach Mike Vrabel at an Arizona resort prompted an internal investigation at the New York Times-owned sports outlet."
-    },
-    {
-      "id": "6355bce8b2c16c31e2fd3db425e1b7060ef98df5",
-      "source": "ESPN",
-      "title": "Raiders getting calls inquiring about No. 1 pick",
-      "url": "https://www.espn.com/nfl/story/_/id/48488757/raiders-spytek-says-teams-inquired-no-1-draft-pick",
-      "publishedAt": "2026-04-15T04:14:54.000Z",
-      "publishedTs": 1776226494000,
-      "description": "Raiders GM John Spytek said teams have called to inquire about the possibility of trading for the No. 1 pick but added, \"Those teams know where they stand.\""
-    },
-    {
-      "id": "31d088f51d8f2d8113521fceb9968b91e5a22bdf",
-      "source": "ESPN",
-      "title": "Eagles GM reiterates Brown stance despite moves",
-      "url": "https://www.espn.com/nfl/story/_/id/48485453/eagles-gm-howie-roseman-says-stance-aj-brown-unchanged-wake-dontayvion-wicks-trade",
-      "publishedAt": "2026-04-15T04:14:54.000Z",
-      "publishedTs": 1776226494000,
-      "description": "Eagles general manager Howie Roseman on Tuesday kept the same public stance regarding wide receiver A.J. Brown despite the team's recent trade for Dontayvion Wicks."
-    },
-    {
-      "id": "1f723750efa83b90da5dd0079be296a24e772f06",
-      "source": "ESPN",
-      "title": "Adderley joins Colts, ending 3-year retirement",
-      "url": "https://www.espn.com/nfl/story/_/id/48485763/safety-nasir-adderley-signs-colts-ending-retirement",
-      "publishedAt": "2026-04-15T04:14:54.000Z",
-      "publishedTs": 1776226494000,
-      "description": "Safety Nasir Adderley signed with the Colts on Tuesday, two months after he announced he was ready to return to the NFL after retiring following the 2022 season."
-    },
-    {
-      "id": "82bb512052cca4417cffe07849c5263478b83c8b",
-      "source": "ESPN",
-      "title": "Ex-Cardinals coach, Titans assistant McGinnis dies",
-      "url": "https://www.espn.com/nfl/story/_/id/48479231/former-tennessee-titans-assistant-dave-mcginnis-dies-74",
-      "publishedAt": "2026-04-15T04:14:54.000Z",
-      "publishedTs": 1776226494000,
-      "description": "Former Tennessee assistant Dave McGinnis, who also served as head coach for the Arizona Cardinals in a decorated career on the NFL sidelines, died at 74 on Monday with his family by his side at Ascension St. Thomas Midtown Hospital, the Titans announced."
-    },
-    {
-      "id": "1c03981c2204f0b7c52c8c4c3b4cce36a5d49729",
-      "source": "ESPN",
-      "title": "Report: Ex-Canes DE Bain drove in fatal car crash",
-      "url": "https://www.espn.com/college-football/story/_/id/48471125/ex-miami-de-rueben-bain-involved-2024-car-accident-which-1-person-later-died-report-says",
-      "publishedAt": "2026-04-15T04:14:54.000Z",
-      "publishedTs": 1776226494000,
-      "description": "Former Miami defensive end and 2026 NFL draft prospect Rueben Bain Jr. was involved in an auto accident in 2024 in which a passenger later died because of injuries sustained in the crash, according to a report published on Sunday."
-    },
-    {
-      "id": "553599386f422ae9e193ef5a42c6784c8c1216ba",
-      "source": "ESPN",
-      "title": "NFL hires Flinn as senior VP of global flag football",
-      "url": "https://www.espn.com/nfl/story/_/id/48487345/nfl-hires-brian-flinn-senior-vp-global-flag-football",
-      "publishedAt": "2026-04-15T04:14:53.000Z",
-      "publishedTs": 1776226493000,
-      "description": "Brian Flinn has been named the NFL's senior vice president of global flag football."
-    },
-    {
-      "id": "8308c1f033c229af2f05414d953793157ade1488",
-      "source": "ESPN",
-      "title": "⬆ Players who have boosted their draft stock",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48443025/2026-nfl-draft-risers-prospects-freeling-thieneman-iheanachor",
-      "publishedAt": "2026-04-15T04:14:53.000Z",
-      "publishedTs": 1776226493000,
-      "description": "Dillon Thieneman and Monroe Freeling have drastically boosted their stock since the start of last season. Who else has climbed the board?"
-    },
-    {
-      "id": "62cb7e336307d671f7416463ce24db3224ca51d9",
-      "source": "ESPN",
-      "title": "Which of the NFL draft's quarterbacks will be elite? Average? Busts?",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48446727/2026-nfl-draft-quarterback-projections-stats-rankings-comps-prospects",
-      "publishedAt": "2026-04-13T12:30:23.000Z",
-      "publishedTs": 1776083423000,
-      "description": "Aaron Schatz uses his QBASE 2.0 model to project NFL career ceilings and floors for the 2026 draft class."
     },
     {
       "id": "e53505a9d7921a796126e0bf86ca87837cf878d9",
