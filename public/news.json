@@ -1,104 +1,158 @@
 {
-  "generatedAt": "2026-04-20T13:43:41.947Z",
+  "generatedAt": "2026-04-21T13:27:43.125Z",
   "items": [
     {
-      "id": "975e5b92277bdaca9189a6ee83a1ac979aad4d71",
+      "id": "76b68268aad40bc1de0e4ba323ef790039edda71",
       "source": "ESPN",
-      "title": "49ers, LT Williams reach 2-year, $50M extension",
+      "title": "The NFL's highest-paid players at every position: Here's who makes the most money, from QB to punter",
+      "url": "https://www.espn.com/nfl/story/_/id/34096853/highest-paid-nfl-players-tracking-most-money-guaranteed-per-year-every-position",
+      "publishedAt": "2026-04-21T13:27:04.000Z",
+      "publishedTs": 1776778024000,
+      "description": "We have seen a fair share of massive contracts in the NFL. So who tops the highest-paid list at every position as of today?"
+    },
+    {
+      "id": "39973c9401d86230a5640ee639ab9d505bd6c434",
+      "source": "ESPN",
+      "title": "Tracking fifth-year options for 2023 first-rounders: Who will return in 2027?",
+      "url": "https://www.espn.com/nfl/story/_/id/48358999/fifth-year-option-tracker-nfl-players-2023-first-round-draft-class",
+      "publishedAt": "2026-04-21T13:27:04.000Z",
+      "publishedTs": 1776778024000,
+      "description": "The deadline for teams to pick up the fifth-year option on rookie contracts is May 1."
+    },
+    {
+      "id": "a9fc740fcddab85b4315430d730fdac16aa55170",
+      "source": "ESPN",
+      "title": "The Draft Day Predictor settles big Round 1 debates: Could Ty Simpson slide? Should Dallas trade up?",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48542553/2026-nfl-draft-day-predictor-forecasts-picks-trades-slides-simpson-love-cowboys",
+      "publishedAt": "2026-04-21T12:54:11.000Z",
+      "publishedTs": 1776776051000,
+      "description": "Our analytics model crunches the numbers on Ty Simpson, Jeremiyah Love and how four NFL teams should approach their first-round picks."
+    },
+    {
+      "id": "7e9197408840cf2bd31d14ed8796384d204b7a41",
+      "source": "ESPN",
+      "title": "Meet Prospect X, who could be the 2026 NFL draft's brightest diamond in the rough",
+      "url": "https://www.espn.com/nfl/story/_/id/48543478/2026-prospect-x-nfl-draft",
+      "publishedAt": "2026-04-21T12:54:11.000Z",
+      "publishedTs": 1776776051000,
+      "description": "After months of searching, we've found the prospect we believe is the 2026 NFL draft's best-kept secret."
+    },
+    {
+      "id": "4d89e5237d9b20ad8d5513c46d83b181af9e9933",
+      "source": "ESPN",
+      "title": "Bears' Caleb Williams ready to build off big year",
+      "url": "https://www.espn.com/nfl/story/_/id/48545622/bears-caleb-williams-ready-build-big-year",
+      "publishedAt": "2026-04-21T12:53:21.000Z",
+      "publishedTs": 1776776001000,
+      "description": "He has enjoyed some downtime, including going to Coachella, but Williams is itching to play football again."
+    },
+    {
+      "id": "0a14f9b441dbdd3403130adcc363f2ee0fa4d202",
+      "source": "ESPN",
+      "title": "Garoppolo considering retirement, sources say",
+      "url": "https://www.espn.com/nfl/story/_/id/48542726/sources-free-agent-qb-jimmy-garoppolo-considering-retirement",
+      "publishedAt": "2026-04-21T12:33:25.000Z",
+      "publishedTs": 1776774805000,
+      "description": "Free agent quarterback Jimmy Garoppolo is considering retirement, sources told NFL Network on Monday."
+    },
+    {
+      "id": "67657c649667f5f6a5aad5bd40db7a6dbfb9d225",
+      "source": "ESPN",
+      "title": "Sources: OBJ works out for Giants, takes physical",
+      "url": "https://www.espn.com/nfl/story/_/id/48542988/source-odell-beckham-jr-works-giants-takes-physical",
+      "publishedAt": "2026-04-21T12:33:25.000Z",
+      "publishedTs": 1776774805000,
+      "description": "The Giants had free agent wide receiver Odell Beckham Jr. in for a workout and physical with the team Monday, sources told ESPN."
+    },
+    {
+      "id": "13d1bc7313bbace1d18732f19d85f921c23ab51d",
+      "source": "ESPN",
+      "title": "Jefferson blunt on McCarthy with Kyler a Viking",
+      "url": "https://www.espn.com/nfl/story/_/id/48543398/jefferson-blunt-mccarthy-future-murray-viking",
+      "publishedAt": "2026-04-21T12:33:25.000Z",
+      "publishedTs": 1776774805000,
+      "description": "Speaking publicly Monday for the first time about the Vikings' new quarterback room, Justin Jefferson said he is looking forward to Kyler Murray's playmaking skills and was blunt about J.J. McCarthy's future."
+    },
+    {
+      "id": "9466acb51275df0b6536a00e98a7055b4e35faed",
+      "source": "ESPN",
+      "title": "Seahawks keen to trade down, even within division",
+      "url": "https://www.espn.com/nfl/story/_/id/48545207/seattle-seahawks-looking-trade-2026-nfl-draft-willing-deal-nfc-west",
+      "publishedAt": "2026-04-21T12:33:25.000Z",
+      "publishedTs": 1776774805000,
+      "description": "The Super Bowl champion Seahawks are looking to trade down in this year's NFL draft -- \"it's no secret with us,\" general manager John Schneider said Monday -- and are not opposed to making deals within their division."
+    },
+    {
+      "id": "04bbd3da1c63687d4902dfeec6e20dbb126665b2",
+      "source": "ESPN",
+      "title": "Niners' Warner full go after season-ending injury",
+      "url": "https://www.espn.com/nfl/story/_/id/48544620/niners-fred-warner-fully-healthy-season-ending-injury",
+      "publishedAt": "2026-04-21T12:33:25.000Z",
+      "publishedTs": 1776774805000,
+      "description": "Fred Warner is \"feeling great and no restrictions\" for the start of Niners' offseason program after suffering a season-ending ankle injury last October."
+    },
+    {
+      "id": "feca768099a4cfae969e9a5b9ee6995fb4e99075",
+      "source": "ESPN",
+      "title": "Cowboys make Aubrey NFL's highest-paid kicker",
+      "url": "https://www.espn.com/nfl/story/_/id/48542115/cowboys-give-brandon-aubrey-4-year-deal-averaging-7m-per-season",
+      "publishedAt": "2026-04-21T12:33:25.000Z",
+      "publishedTs": 1776774805000,
+      "description": "Brandon Aubrey and the Cowboys reached an agreement Monday on a deal that will make him the highest-paid kicker in NFL history, his agents told ESPN's Adam Schefter."
+    },
+    {
+      "id": "65aadfe6c58b53256a49f51c083238060b6a1ca4",
+      "source": "ESPN",
+      "title": "49ers, Williams settle deal drama with $50M pact",
       "url": "https://www.espn.com/nfl/story/_/id/48540724/agency-49ers-trent-williams-agree-two-year-50m-extension",
-      "publishedAt": "2026-04-20T14:35:06.000Z",
-      "publishedTs": 1776695706000,
+      "publishedAt": "2026-04-21T12:33:25.000Z",
+      "publishedTs": 1776774805000,
       "description": "The San Francisco 49ers and left tackle Trent Williams agreed to a two-year, $50 million extension, his agency announced Monday."
     },
     {
-      "id": "ef3d27173a951bf44f14c10db313dac8f4dd071e",
+      "id": "9a617aca2894f8f01cd947d921c0ed0bcac6e271",
       "source": "ESPN",
-      "title": "NFL draft prospect Branch arrested in Georgia",
-      "url": "https://www.espn.com/nfl/story/_/id/48532665/nfl-draft-prospect-zachariah-branch-arrested-georgia",
-      "publishedAt": "2026-04-20T14:35:06.000Z",
-      "publishedTs": 1776695706000,
-      "description": "Wide receiver Zachariah Branch, who is widely expected to be a Day 2 NFL draft pick, was arrested early Sunday morning in Athens, Georgia, on two possible misdemeanor charges."
+      "title": "Colts' Pierce to miss workouts after ankle surgery",
+      "url": "https://www.espn.com/nfl/story/_/id/48542922/colts-alec-pierce-missing-offseason-workouts-ankle-surgery",
+      "publishedAt": "2026-04-21T12:33:25.000Z",
+      "publishedTs": 1776774805000,
+      "description": "Colts WR Alec Pierce recently underwent surgery after playing through nagging ankle pain for much of last season and will be sidelined during offseason workouts."
     },
     {
-      "id": "14e33bdef9bb904811c34231fa5152f56325d4da",
+      "id": "32d8e4d1ea452ac0e18a7ce20cd33d1a93f5630a",
       "source": "ESPN",
-      "title": "Source: Titans using 5th-year option on Skoronski",
-      "url": "https://www.espn.com/nfl/story/_/id/48525392/titans-exercise-fifth-year-option-peter-skoronski-rookie-deal",
-      "publishedAt": "2026-04-20T14:35:06.000Z",
-      "publishedTs": 1776695706000,
-      "description": "The Tennessee Titans are exercising the fifth-year option for right guard Peter Skoronski, a source told ESPN's Jeremy Fowler on Saturday."
-    },
-    {
-      "id": "e622181500995162d440598916c3c44a34707daa",
-      "source": "ESPN",
-      "title": "Source: Texans, Anderson agree to $150M deal",
-      "url": "https://www.espn.com/nfl/story/_/id/48514053/texans-anderson-agree-3-year-150-million-extension",
-      "publishedAt": "2026-04-20T14:35:06.000Z",
-      "publishedTs": 1776695706000,
-      "description": "Texans and All-Pro defensive end Will Anderson Jr. have agreed to a historic three-year, $150 million extension to make him the highest-paid non-quarterback, a source told ESPN's Adam Schefter."
-    },
-    {
-      "id": "c84188c6785b4e64eba632e2821e8fa21008335f",
-      "source": "ESPN",
-      "title": "Sources: Brissett not at Cards' offseason program",
-      "url": "https://www.espn.com/nfl/story/_/id/48514446/cardinals-jacoby-brissett-not-offseason-program",
-      "publishedAt": "2026-04-20T14:35:06.000Z",
-      "publishedTs": 1776695706000,
-      "description": "Cardinals incumbent starting quarterback Jacoby Brissett has not been in attendance for the start of the team's offseason program as he waits for a new deal, sources told NFL Network."
-    },
-    {
-      "id": "f92d4eb1181a29e08fc09a1e254e0d1b49a3e5a6",
-      "source": "ESPN",
-      "title": "WR Flowers: Harbaugh's practices led to injuries",
-      "url": "https://www.espn.com/nfl/story/_/id/48512386/harbaugh-practices-why-ravens-had-lot-injuries",
-      "publishedAt": "2026-04-20T14:35:06.000Z",
-      "publishedTs": 1776695706000,
-      "description": "Ravens wideout Zay Flowers says \"heavy\" practices under former coach John Harbaugh were the reason Baltimore \"had a lot of injuries\" last season."
-    },
-    {
-      "id": "7f20480bc45cc9451767e8d85b73d6317643d83f",
-      "source": "ESPN",
-      "title": "Falcons trade DT Orhorhoro for Jags DT Smith",
-      "url": "https://www.espn.com/nfl/story/_/id/48514836/sources-falcons-trading-dt-orhorhoro-jaguars-dt-smith",
-      "publishedAt": "2026-04-20T14:35:06.000Z",
-      "publishedTs": 1776695706000,
-      "description": "The Falcons have traded DT Ruke Orhorhoro to the Jaguars for DT Maason Smith. Both players were selected in the second round of the 2024 draft."
-    },
-    {
-      "id": "8895a9ef6f7b9c08e739abc9daac668829320b9e",
-      "source": "ESPN",
-      "title": "Bengals extend Lawrence after blockbuster trade",
-      "url": "https://www.espn.com/nfl/story/_/id/48532001/bengals-sign-dt-dexter-lawrence-one-year-28m-extension",
-      "publishedAt": "2026-04-20T14:35:05.000Z",
-      "publishedTs": 1776695705000,
-      "description": "Defensive tackle Dexter Lawrence II passed his physical with the Bengals and signed a one-year, $28 million extension, the Win Sports Group told ESPN's Adam Schefter."
-    },
-    {
-      "id": "08a6d26a50a24600f46f315f4f7f5c3e535c7690",
-      "source": "ESPN",
-      "title": "⬆ Players who have boosted their draft stock",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48443025/2026-nfl-draft-risers-prospects-freeling-thieneman-iheanachor",
-      "publishedAt": "2026-04-20T14:35:05.000Z",
-      "publishedTs": 1776695705000,
-      "description": "Dillon Thieneman and Monroe Freeling have drastically boosted their stock since the start of last season. Who else has climbed the board?"
-    },
-    {
-      "id": "de57119756b2fccd887e139cba1b93ab21ba48f7",
-      "source": "ESPN",
-      "title": "Kiper's favorites from the 2026 class: 15 players who will outperform their draft slot",
+      "title": "📈 15 players who will outperform their draft slot",
       "url": "https://www.espn.com/nfl/draft2026/story/_/id/48521984/2026-nfl-draft-mel-kiper-favorite-prospects-every-position-class-sleepers",
-      "publishedAt": "2026-04-20T14:22:21.000Z",
-      "publishedTs": 1776694941000,
-      "description": "Mel Kiper Jr.'s list includes two speedy receivers, three undersized corners and some gritty linemen."
+      "publishedAt": "2026-04-21T12:33:25.000Z",
+      "publishedTs": 1776774805000,
+      "description": "Mel Kiper Jr.'s annual list of NFL draft favorites includes two speedy receivers, three undersized cornerbacks and some gritty linemen."
     },
     {
-      "id": "94b170fdd008ffe60a66c3378cec219e112a87fb",
+      "id": "38ceb34e68734a271df096b5c130ceebd63ba5f4",
       "source": "ESPN",
-      "title": "Schefter’s NFL draft week intel: Nuggets on top picks, intriguing prospects, QBs and trade candidates",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48507444/2026-nfl-draft-notes-intel-buzz-adam-schefter-first-round-picks-teams-trades",
-      "publishedAt": "2026-04-20T14:21:36.000Z",
-      "publishedTs": 1776694896000,
-      "description": "How early could Jeremiyah Love be drafted? Will Ty Simpson go in Round 1? Could we still see A.J. Brown traded? Adam Schefter has the latest."
+      "title": "The unprecedented rise of Fernando Mendoza",
+      "url": "https://www.espn.com/nfl/story/_/id/48530106/fernando-mendoza-consensus-no-1-2026-nfl-draft-pick-indiana-hoosiers-las-vegas-raiders",
+      "publishedAt": "2026-04-21T12:30:31.000Z",
+      "publishedTs": 1776774631000,
+      "description": "The consensus top pick is bringing his unique mix of curiosity, quirk and command to the NFL."
+    },
+    {
+      "id": "8d1ec0b3d00f1ef2c85fe97c4e9ff5239ab406a2",
+      "source": "ESPN",
+      "title": "Kiper's final 2026 Big Board: Ranking the top 150 NFL draft prospects, plus position reports",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/46573669/2026-nfl-draft-rankings-mel-kiper-big-board-top-prospects-players-positions",
+      "publishedAt": "2026-04-21T12:28:11.000Z",
+      "publishedTs": 1776774491000,
+      "description": "Mel Kiper Jr. updated his NFL draft rankings one last time. His Big Board stacks 150 prospects -- starting with Fernando Mendoza -- and goes deep at every position."
+    },
+    {
+      "id": "7fde7875d7942758a5fdbe4f76acbd654b0d6019",
+      "source": "ESPN",
+      "title": "Reid's final NFL mock draft: We projected fits for all 32 teams across seven rounds",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48480079/2026-nfl-mock-draft-seven-rounds-257-picks-predictions-jordan-reid-fits",
+      "publishedAt": "2026-04-21T12:28:11.000Z",
+      "publishedTs": 1776774491000,
+      "description": "Jordan Reid projected every single pick from the Raiders' selection at No. 1 to Mr. Irrelevant."
     },
     {
       "id": "db6838b9c88a1b34805bdeeb31f031081b7fb527",
@@ -108,33 +162,6 @@
       "publishedAt": "2026-04-20T14:10:23.000Z",
       "publishedTs": 1776694223000,
       "description": "Jeff Legwold reveals his list of top NFL draft prospects for 2026, which is based purely on talent."
-    },
-    {
-      "id": "8eecbb4dba53571f8272d1e0f6404a3656f9b5f7",
-      "source": "ESPN",
-      "title": "'It's his superpower': Inside Fernando Mendoza's extraordinary rise to No. 1",
-      "url": "https://www.espn.com/nfl/story/_/id/48530106/fernando-mendoza-consensus-no-1-2026-nfl-draft-pick-indiana-hoosiers-las-vegas-raiders",
-      "publishedAt": "2026-04-20T13:53:11.000Z",
-      "publishedTs": 1776693191000,
-      "description": "The consensus top pick is bringing his unique mix of curiosity, quirk and command to the NFL."
-    },
-    {
-      "id": "63ca7ddc404ea7969ddc79133987a9fe3c7d5e32",
-      "source": "ESPN",
-      "title": "Why Jimmy Johnson cautions Jets that making right picks more valuable than stockpiling them",
-      "url": "https://www.espn.com/nfl/story/_/id/48514923/new-york-jets-first-round-picks-jimmy-johnson-advice",
-      "publishedAt": "2026-04-20T13:41:40.000Z",
-      "publishedTs": 1776692500000,
-      "description": "With eight picks in the first and second rounds, New York sits where the former Cowboys coach was 35 years ago."
-    },
-    {
-      "id": "ec05578caa374e0988eff3fba377462949199da4",
-      "source": "ESPN",
-      "title": "Reid's seven-round NFL mock draft: A forecast of every pick from No. 1 to No. 257",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48480079/2026-nfl-mock-draft-seven-rounds-257-picks-predictions-jordan-reid-fits",
-      "publishedAt": "2026-04-20T13:25:49.000Z",
-      "publishedTs": 1776691549000,
-      "description": "Jordan Reid projected every single pick for this week's NFL draft, from the Raiders' selection at No. 1 to Mr. Irrelevant."
     },
     {
       "id": "f357a7ee58ae247bdb8ef69d34367cf875516d4a",
@@ -155,15 +182,6 @@
       "description": "What does that say about the NFL's trade market, this draft class and the state of the Bengals?"
     },
     {
-      "id": "53967e033aebe163e999a1d6833274be952611eb",
-      "source": "ESPN",
-      "title": "Who won the Jaguars-Browns draft-day trade for Travis Hunter?",
-      "url": "https://www.espn.com/nfl/story/_/id/48504635/nfl-draft-trade-jacksonville-jaguars-travis-hunter-cleveland-browns-mason-graham",
-      "publishedAt": "2026-04-19T12:18:43.000Z",
-      "publishedTs": 1776601123000,
-      "description": "The Browns and Jags swapped picks in 2025 so Jacksonville could draft Hunter. Now, Cleveland has an extra first-rounder in 2026."
-    },
-    {
       "id": "cf0d3c5dc970eadaa81ce1ae73941cfa479f8ebf",
       "source": "ESPN",
       "title": "Inside the fallout of the Dianna Russini and Mike Vrabel photos",
@@ -171,15 +189,6 @@
       "publishedAt": "2026-04-19T02:32:41.000Z",
       "publishedTs": 1776565961000,
       "description": "How Dianna Russini and New England Patriots coach Mike Vrabel scrambled to respond to photos published in the New York Post."
-    },
-    {
-      "id": "91c12e511bfb9207452b10d157e747da53d09ccc",
-      "source": "ESPN",
-      "title": "How a 'big argument' and lucky draft moves led to the Chiefs selecting Chris Jones",
-      "url": "https://www.espn.com/nfl/story/_/id/48496049/nfl-2026-draft-chris-jones-kansas-city-chiefs",
-      "publishedAt": "2026-04-16T18:34:54.000Z",
-      "publishedTs": 1776364494000,
-      "description": "A look back 10 years later at the selection of Jones, one of the most important picks in franchise history."
     },
     {
       "id": "bb523209f66181ab0b6e894c97f00b9c516cfb21",
@@ -191,217 +200,217 @@
       "description": "The 2027 Super Bowl will air on ESPN for the first time in network history. Learn more information about Super Bowl LXI festivities now."
     },
     {
-      "id": "e2d5438952b6c96470989f7051182abeada3f6e8",
+      "id": "cd3e474bd7fc8266117bfa67eef04237b1d7bb4e",
       "source": "FantasyPros",
-      "title": "A.J. Brown likely to become Patriot after June 1",
-      "url": "https://www.fantasypros.com/nfl/news/581571/aj-brown-likely-to-become-patriot-after-june-1.php",
+      "title": "Devon Witherspoon reports to first day of Seahawks offseason program",
+      "url": "https://www.fantasypros.com/nfl/news/581753/devon-witherspoon-reports-to-first-day-seahawks-offseason-program.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "c5d7cfa26dfee85f32ef38d280ff3075b7b5312d",
+      "id": "b278b4231e3e9d5458ee11357e75bdb1ed4844f5",
       "source": "FantasyPros",
-      "title": "Joe Alt (ankle) to be involved at start of Chargers first workout",
-      "url": "https://www.fantasypros.com/nfl/news/581517/joe-alt-ankle-to-be-involved-start-chargers-first-workout.php",
+      "title": "Josh Allen (foot) enters offseason program without any limitations",
+      "url": "https://www.fantasypros.com/nfl/news/581752/josh-allen-foot-enters-offseason-program-without-any-limitations.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "1aace30133a9a8b3675ba6fb99c0f3936f4bf6b7",
+      "id": "fc35187d8fe64c95396983917bd271e1777324c1",
       "source": "FantasyPros",
-      "title": "Rashawn Slater (knee) to be involved at start of Chargers first workout",
-      "url": "https://www.fantasypros.com/nfl/news/581516/rashawn-slater-knee-to-be-involved-start-chargers-first-workout.php",
+      "title": "Xavier Guillory signs with Ravens",
+      "url": "https://www.fantasypros.com/nfl/news/581751/xavier-guillory-signs-with-ravens-.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "57d3da0a4e9d88a7f89b80f1047a6f17d731cda6",
+      "id": "a1c905a2271f31319a8806e6736f1de288d44e3e",
       "source": "FantasyPros",
-      "title": "Tyron Herring waived by Packers",
-      "url": "https://www.fantasypros.com/nfl/news/581515/tyron-herring-waived-by-packers-.php",
+      "title": "A.J. Brown does not attend start of Eagles offseason program",
+      "url": "https://www.fantasypros.com/nfl/news/581750/aj-brown-does-not-attend-start-eagles-offseason-program-.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "47bf5fb65d9da1c2c8c1e5bc9ba31f74d74cf386",
+      "id": "c06f5c8e79083cab17ba530c9218e4a795b72c56",
       "source": "FantasyPros",
-      "title": "McCallan Castles waived by Packers",
-      "url": "https://www.fantasypros.com/nfl/news/581514/mccallan-castles-waived-by-packers.php",
+      "title": "Kenny Moore II could be released",
+      "url": "https://www.fantasypros.com/nfl/news/581749/kenny-moore-ii-could-be-released-.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "d3c65fe72487e213da5898a95095313de788e627",
+      "id": "fd791d612629614460643ade894b1e116ec7cdfe",
       "source": "FantasyPros",
-      "title": "Jamon Johnson waived by Packers",
-      "url": "https://www.fantasypros.com/nfl/news/581513/jamon-johnson-waived-by-packers-.php",
+      "title": "Garrett Nussmeier underwent tests that revealed a cyst on spine",
+      "url": "https://www.fantasypros.com/nfl/news/581748/garrett-nussmeier-underwent-tests-revealed-cyst-on-spine.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "0a5d4a3470b550c580556fa40d517cefd0930318",
+      "id": "0094120ee8c172b0fdae29d312a357281b279672",
       "source": "FantasyPros",
-      "title": "Max Klare makes five top-30 visits",
-      "url": "https://www.fantasypros.com/nfl/news/581512/max-klare-makes-five-top-30-visits.php",
+      "title": "Eric McAlister breaks bone in foot at Pro Day",
+      "url": "https://www.fantasypros.com/nfl/news/581747/eric-mcalister-breaks-bone-foot-pro-day.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "ab637d0aba75232d78aa0e2a64790903c7803b4a",
+      "id": "4d033a863df33c126601889c560930d40ab51a61",
       "source": "FantasyPros",
-      "title": "Peter Skoronski to have fifth-year option exercised by Titans",
-      "url": "https://www.fantasypros.com/nfl/news/581510/peter-skoronski-to-have-fifth-year-option-exercised-by-titans.php",
+      "title": "Anton Harrison has fifth-year option exercised by Jaguars",
+      "url": "https://www.fantasypros.com/nfl/news/581746/anton-harrison-has-fifth-year-option-exercised-by-jaguars-.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "9c1e96ce7cf62c563fd81c5aa791ac0576c69fbf",
+      "id": "5a36c70350000223251479109e09f3d9dbbf7c41",
       "source": "FantasyPros",
-      "title": "Renardo Green could be on trade block",
-      "url": "https://www.fantasypros.com/nfl/news/581509/renardo-green-could-be-on-trade-block.php",
+      "title": "Ty Okada inks tender to remain with Seahawks in 2026",
+      "url": "https://www.fantasypros.com/nfl/news/581739/ty-okada-inks-tender-to-remain-with-seahawks-2026.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "3f3fdeb2f1f1b7fdf4ec539007021bc71afc1c33",
+      "id": "fc08d4cb60465a49eae8088ed7c452af3a4309a5",
       "source": "FantasyPros",
-      "title": "Carson Beck linked to Steelers",
-      "url": "https://www.fantasypros.com/nfl/news/581507/carson-beck-linked-to-steelers-.php",
+      "title": "Austen Pleasants to remain with 49ers in 2026",
+      "url": "https://www.fantasypros.com/nfl/news/581738/austen-pleasants-to-remain-with-49ers-2026.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "058ede169dcd62a98569f5b329504289830dc7d6",
+      "id": "70ebd4a82426596700098e9bb0673a1786bdcad5",
       "source": "FantasyPros",
-      "title": "Dexter Lawrence II signs one-year extension with Bengals",
-      "url": "https://www.fantasypros.com/nfl/news/581506/dexter-lawrence-ii-signs-one-year-extension-with-bengals.php",
+      "title": "Xavier Smith signs exclusive rights tender Monday",
+      "url": "https://www.fantasypros.com/nfl/news/581736/xavier-smith-signs-exclusive-rights-tender-monday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "f5b1d8b641ce4d400ccd94942828d4f5d009eda9",
+      "id": "6e5a1c9dfd99cf318dbd53e20de6eb7a3513654a",
       "source": "FantasyPros",
-      "title": "Oscar Delp meets with Texans, Browns",
-      "url": "https://www.fantasypros.com/nfl/news/581505/oscar-delp-meets-with-texans-browns.php",
+      "title": "Nikko Remigio signs exclusive rights tender to remain with Chiefs",
+      "url": "https://www.fantasypros.com/nfl/news/581731/nikko-remigio-signs-exclusive-rights-tender-to-remain-with-chiefs.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "0a13993f7b8dd356afc577229f531e25b21228de",
+      "id": "4a0fe018e73f903b92684ad031e3604b2e99ceb2",
       "source": "FantasyPros",
-      "title": "David Bailey visits Titans, Commanders",
-      "url": "https://www.fantasypros.com/nfl/news/581503/david-bailey-visits-titans-commanders-.php",
+      "title": "Jalen Coker signs exclusive rights tender with Panthers",
+      "url": "https://www.fantasypros.com/nfl/news/581728/jalen-coker-signs-exclusive-rights-tender-with-panthers.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "1bc3810f28c64bd347a5cdeba1e8b791f394baaa",
+      "id": "65dc42038fe64557d3462ba2a9d08574930a892a",
       "source": "FantasyPros",
-      "title": "Aaron Rodgers: Steelers unlikely to use No. 21 pick on QB",
-      "url": "https://www.fantasypros.com/nfl/news/581174/aaron-rodgers-steelers-unlikely-to-use-no-21-pick-on-qb.php",
+      "title": "Fred Warner (ankle) says he is full-go to begin offseason program",
+      "url": "https://www.fantasypros.com/nfl/news/581670/fred-warner-ankle-says-he-is-full-go-to-begin-offseason-program.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "779b8311fd35dbaee93f59ff50011a2d3b8a0e78",
+      "id": "5b74b45dd60f44cb69cca24aff5cc845db3f62ad",
       "source": "FantasyPros",
-      "title": "Ty Simpson continues to be linked to Cardinals",
-      "url": "https://www.fantasypros.com/nfl/news/581173/ty-simpson-continues-to-be-linked-to-cardinals-.php",
+      "title": "Brandon Aiyuk, 49ers have discussed trade with other teams",
+      "url": "https://www.fantasypros.com/nfl/news/581669/brandon-aiyuk-49ers-have-discussed-trade-with-other-teams.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "e93ffd6f13c46a01ae61e24879bd9556b53045cf",
+      "id": "c7c3635c6552ab4c6fc2d6c2755d6e6bbdcc9cdf",
       "source": "FantasyPros",
-      "title": "Evan Engram could take on bigger role next season per Broncos GM",
-      "url": "https://www.fantasypros.com/nfl/news/581172/evan-engram-could-have-on-bigger-role-next-season-per-broncos-gm.php",
+      "title": "Daniel Jones (Achilles) 'progressing well' in recovery",
+      "url": "https://www.fantasypros.com/nfl/news/581668/daniel-jones-achilles-progressing-well-recovery-.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "2b4a8f8255af3aebb5b38b20c92b4abde76ea052",
+      "id": "9b8861bbc11022ec8494538a3b0a3398db3cccea",
       "source": "FantasyPros",
-      "title": "Zach Ertz (knee) 'ahead in recovery'",
-      "url": "https://www.fantasypros.com/nfl/news/581171/zach-ertz-knee-ahead-recovery.php",
+      "title": "Matthew Stafford, Rams making 'significant progress' on new extension",
+      "url": "https://www.fantasypros.com/nfl/news/581646/matthew-stafford-rams-making-significant-progress-on-new-extension-.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "9fe388432682272a3ccbe8b1ce6bcac042cb5c82",
+      "id": "2f0eab09dec41005cb44187414122a27fbe664e6",
       "source": "FantasyPros",
-      "title": "Joel Bitonio status for 2026 season remains uncertain",
-      "url": "https://www.fantasypros.com/nfl/news/581170/joel-bitonio-status-2026-season-remains-uncertain.php",
+      "title": "Odell Beckham Jr. works out for Giants Monday",
+      "url": "https://www.fantasypros.com/nfl/news/581645/odell-beckham-jr-works-out-giants-monday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "d9982a88523e6a94ed96b3d12ab325703ce4c80a",
+      "id": "abe963539ade6cff975ea4595d1a7d065d6d90c5",
       "source": "FantasyPros",
-      "title": "Jessie Bates III has not had extension talks with Falcons",
-      "url": "https://www.fantasypros.com/nfl/news/581169/jessie-bates-iii-has-not-had-extension-talks-with-falcons-.php",
+      "title": "Puka Nacua present for first day of offseason program",
+      "url": "https://www.fantasypros.com/nfl/news/581644/puka-nacua-present-first-day-offseason-program-.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "3a2e4bc40d5a22632da0bfc91f2d6abd48aaf41d",
+      "id": "8cec7abfe77d4bb857c5aeb7bb4ff288fe1f837b",
       "source": "FantasyPros",
-      "title": "Kenny Moore II linked to Cowboys, Vikings",
-      "url": "https://www.fantasypros.com/nfl/news/581168/kenny-moore-ii-linked-to-cowboys-vikings-.php",
+      "title": "Darnell Wright has fifth-year option exercised by Bears",
+      "url": "https://www.fantasypros.com/nfl/news/581642/darnell-wright-has-fifth-year-option-exercised-by-bears.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "c17201fb6526c413aa9bbb631ee41855585b7fb8",
+      "id": "d7f4988fd0b12ce4cbd8f30c58bd0777d952088e",
       "source": "FantasyPros",
-      "title": "Maason Smith traded to Falcons",
-      "url": "https://www.fantasypros.com/nfl/news/581137/maason-smith-traded-to-falcons.php",
+      "title": "Jimmy Garoppolo considering retirement",
+      "url": "https://www.fantasypros.com/nfl/news/581641/jimmy-garoppolo-considering-retirement-.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "458c273728bac8b22830e3b2695c6adc9cc4e334",
+      "id": "3172301a241ef4d127da79225d3bfbfa367f1f20",
       "source": "FantasyPros",
-      "title": "Ruke Orhorhoro traded to Jaguars",
-      "url": "https://www.fantasypros.com/nfl/news/581136/ruke-orhorhoro-traded-to-jaguars.php",
+      "title": "Anthony Richardson Sr. will not report to Colts offseason workouts",
+      "url": "https://www.fantasypros.com/nfl/news/581639/anthony-richardson-sr-will-not-report-to-colts-offseason-workouts-.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "accbabf7ae6a3c067efa1f41a954d76fb9137a63",
+      "id": "c2495a77c829d40ce643a5d1ee6b21f57c3c2448",
       "source": "FantasyPros",
-      "title": "Jacoby Brissett not attending Phase 1 of offseason program",
-      "url": "https://www.fantasypros.com/nfl/news/581129/jacoby-brissett-not-attending-phase-1-offseason-program.php",
+      "title": "Kayshon Boutte's name 'has come up in trade talks'",
+      "url": "https://www.fantasypros.com/nfl/news/581638/kayshon-bouttes-name-has-come-up-trade-talks.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "d3bd318ebd0fc1fb30de300dbf39d3990b15baae",
+      "id": "44f5a51905f1fc221505eb03ba01790c0f253843",
       "source": "FantasyPros",
-      "title": "Will Anderson Jr. signs three-year extension with Texans",
-      "url": "https://www.fantasypros.com/nfl/news/581128/will-anderson-jr-signs-three-year-extension-with-texans.php",
+      "title": "Matt Araiza re-signs with Chiefs on one-year deal",
+      "url": "https://www.fantasypros.com/nfl/news/581637/matt-araiza-re-signs-with-chiefs-on-one-year-deal-.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
