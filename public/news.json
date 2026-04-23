@@ -1,185 +1,167 @@
 {
-  "generatedAt": "2026-04-22T13:28:01.649Z",
+  "generatedAt": "2026-04-23T13:43:02.049Z",
   "items": [
     {
-      "id": "9623d851f2aefe83c563065c6177a73214e7f5ce",
+      "id": "84286634c6850ec8509381cf8e64ed66fe9f1efa",
       "source": "ESPN",
-      "title": "Caleb Downs tops annual most likely Giants draft pick list",
-      "url": "https://www.espn.com/nfl/story/_/id/48552003/new-york-giants-most-likely-2026-nfl-draft-caleb-downs",
-      "publishedAt": "2026-04-22T13:37:10.000Z",
-      "publishedTs": 1776865030000,
-      "description": "We ranked the most likely Giants draft picks for their two first-round selections in 2026."
+      "title": "Why the Cardinals might draft QB Ty Simpson and then bring him along slowly",
+      "url": "https://www.espn.com/nfl/story/_/id/48562753/arizona-cardinals-2026-draft-ty-simpson",
+      "publishedAt": "2026-04-23T13:59:39.000Z",
+      "publishedTs": 1776952779000,
+      "description": "The Alabama prospect is on Arizona's radar, but he has a small body of work for a college quarterback."
     },
     {
-      "id": "31cf5dc29ef8f836b513bdab65b876e2fb89cb20",
-      "source": "ESPN",
-      "title": "Mendoza ... then who? What might the Raiders do with their remaining nine picks in the draft",
-      "url": "https://www.espn.com/nfl/story/_/id/48552582/las-vegas-raiders-2026-nfl-draft-picks-kubiak-spytek",
-      "publishedAt": "2026-04-22T13:37:10.000Z",
-      "publishedTs": 1776865030000,
-      "description": "Breaking down positional needs that the Raiders might address in the upcoming draft."
-    },
-    {
-      "id": "ced8a15c1bdfdab4d48be3bd440b8a4d75fcdf65",
-      "source": "ESPN",
-      "title": "NFL draft faces a new insider betting risk",
-      "url": "https://www.espn.com/nfl/story/_/id/48496515/nfl-draft-picks",
-      "publishedAt": "2026-04-22T12:29:42.000Z",
-      "publishedTs": 1776860982000,
-      "description": "Former NFL execs say it's only a matter of time until someone parlays inside information on the draft."
-    },
-    {
-      "id": "7e4da415bb4e140b0ac6236504ff6923931f377c",
-      "source": "ESPN",
-      "title": "Graziano's last-minute intel on the NFL draft: The latest on top-10 picks, Ohio State prospects, more",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48552000/2026-nfl-draft-news-intel-buzz-top-picks-prospects-sleepers-trades",
-      "publishedAt": "2026-04-22T12:16:12.000Z",
-      "publishedTs": 1776860172000,
-      "description": "Where are the Jets, Cardinals, Titans and Giants leaning with top-five picks? Will the Rams be a wild card? And who could be in play for the Browns?"
-    },
-    {
-      "id": "58a2f32050ab356e1ac5974a72bfc3667e64d6e5",
-      "source": "ESPN",
-      "title": "Kiper's final 2026 Big Board: Ranking the top 150 NFL draft prospects, plus position reports",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/46573669/2026-nfl-draft-rankings-mel-kiper-big-board-top-prospects-players-positions",
-      "publishedAt": "2026-04-22T12:16:12.000Z",
-      "publishedTs": 1776860172000,
-      "description": "Mel Kiper Jr. updated his NFL draft rankings one last time. His Big Board stacks 150 prospects."
-    },
-    {
-      "id": "7ed08a4919d962ca2fe68a48c9d3673c05a1fef1",
-      "source": "ESPN",
-      "title": "Schrager projects all 32 first-round picks: Four huge trades dominate his final NFL mock draft",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48550650/2026-nfl-mock-draft-peter-schrager-insider-intel-final-first-round-picks-predictions",
-      "publishedAt": "2026-04-22T12:16:07.000Z",
-      "publishedTs": 1776860167000,
-      "description": "Could teams jump all around Round 1 and shake things up? Will Jeremiyah Love and Sonny Styles go in the top five? Here's what Peter Schrager is hearing and predicting."
-    },
-    {
-      "id": "c367c712032aa656359f67d5c3bb331290abdad5",
-      "source": "ESPN",
-      "title": "NFL Nation mock draft: Our team reporters predict landing spots in the first round",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48494104/mock-draft-2026-nfl-nation-first-round-predictions",
-      "publishedAt": "2026-04-22T12:16:06.000Z",
-      "publishedTs": 1776860166000,
-      "description": "Is Fernando Mendoza the only first-round quarterback? Our reporters make their picks."
-    },
-    {
-      "id": "6caf5d682a729ba398b1c05f27d8914507f8b1f6",
-      "source": "ESPN",
-      "title": "Our cheat sheet to the 2026 NFL draft: The prospects, team needs and sleepers you need to know",
-      "url": "https://www.espn.com/nfl/story/_/id/48503427/2026-nfl-draft-cheat-sheet-top-prospect-sleepers-fits-picks-rankings-stats-mocks",
-      "publishedAt": "2026-04-22T11:31:27.000Z",
-      "publishedTs": 1776857487000,
-      "description": "Who are the biggest sleepers and top QBs? Who is set to get picked early? Here's the ultimate guide to this year's NFL draft, including predictions and buzz."
-    },
-    {
-      "id": "0dc739a4b6c9b72fdb88fb0322daf9baf7db9f17",
-      "source": "ESPN",
-      "title": "Ice melts: Drake seemingly trolls Caleb Williams during 'Iceman' rollout",
-      "url": "https://www.espn.com/nfl/story/_/id/48554162/drake-iceman-album-caleb-williams-bears-packers-jacket-troll",
-      "publishedAt": "2026-04-21T23:57:15.000Z",
-      "publishedTs": 1776815835000,
-      "description": "The Canadian rapper posed in front of blocks of ice while wearing a Green Bay Packers jacket during his \"Iceman\" album rollout."
-    },
-    {
-      "id": "3edc1a35c8fce9112f9894f91fcfe04e5e9ed2b1",
-      "source": "ESPN",
-      "title": "📈 15 players who will outperform their draft slot",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48521984/2026-nfl-draft-mel-kiper-favorite-prospects-every-position-class-sleepers",
-      "publishedAt": "2026-04-21T21:56:13.000Z",
-      "publishedTs": 1776808573000,
-      "description": "Mel Kiper Jr.'s annual list of NFL draft favorites includes two speedy receivers, three undersized cornerbacks and some gritty linemen."
-    },
-    {
-      "id": "47084aa33faca00d7959b21d6dcf23ca6a41cf08",
-      "source": "ESPN",
-      "title": "Vrabel: I had 'difficult' talks over Russini photos",
-      "url": "https://www.espn.com/nfl/story/_/id/48552151/mike-vrabel-says-had-difficult-conversations-dianna-russini-photos",
-      "publishedAt": "2026-04-21T21:56:12.000Z",
-      "publishedTs": 1776808572000,
-      "description": "Mike Vrabel said the Patriots and their fans will get \"the best version of me going forward\" after the New York Post published photos that appeared to show the coach embracing and holding hands with former Athletic reporter Dianna Russini."
-    },
-    {
-      "id": "8ccd2af1185ca807f5348256d8e8aff95e467562",
-      "source": "ESPN",
-      "title": "Sanders touts 'new vibe' under Browns' Monken",
-      "url": "https://www.espn.com/nfl/story/_/id/48553310/shedeur-sanders-says-todd-monken-brings-new-vibe-browns",
-      "publishedAt": "2026-04-21T21:56:12.000Z",
-      "publishedTs": 1776808572000,
-      "description": "Shedeur Sanders said there is a \"new vibe\" and \"new energy\" with the Browns under first-year coach Todd Monken and his staff."
-    },
-    {
-      "id": "a2e00a2a3279e3eaf723536d79220f92d6f1cbef",
-      "source": "ESPN",
-      "title": "Sources: Tomlin joining NBC as studio analyst",
-      "url": "https://www.espn.com/nfl/story/_/id/48551327/mike-tomlin-joins-nbc-nfl-studio-analyst-sources-confirm",
-      "publishedAt": "2026-04-21T21:56:12.000Z",
-      "publishedTs": 1776808572000,
-      "description": "Former Steelers coach Mike Tomlin is joining NBC's Sunday night pregame show, \"Football Night in America,\" as a studio analyst, sources confirmed to ESPN."
-    },
-    {
-      "id": "d6d37a741039fa7364547860db3b6aef2bf8e24c",
-      "source": "ESPN",
-      "title": "McVay says Nacua a full go for offseason program",
-      "url": "https://www.espn.com/nfl/story/_/id/48553704/rams-sean-mcvay-puka-nacua-doing-really-well-otas",
-      "publishedAt": "2026-04-21T21:56:12.000Z",
-      "publishedTs": 1776808572000,
-      "description": "Puka Nacua, who spent part of the offseason in rehab, will be a \"full participant\" in the team's offseason program, with coach Sean McVay saying Tuesday that the star WR \"looks great and is doing really well.\""
-    },
-    {
-      "id": "9c259cf3900402db14fd65390dbba2faa67036a1",
-      "source": "ESPN",
-      "title": "Colts QB Jones (Achilles) back to throwing again",
-      "url": "https://www.espn.com/nfl/story/_/id/48552837/colts-qb-daniel-jones-achilles-back-throwing-again",
-      "publishedAt": "2026-04-21T21:56:12.000Z",
-      "publishedTs": 1776808572000,
-      "description": "Colts QB Daniel Jones, recovering from a ruptured Achilles tendon sustained just over four months ago, has begun dropping back and throwing again."
-    },
-    {
-      "id": "8b007a76dd5a2813ca7f117a51dd322789b1366d",
-      "source": "ESPN",
-      "title": "Fields: Wanted to join KC to learn from Mahomes",
-      "url": "https://www.espn.com/nfl/story/_/id/48553270/justin-fields-wanted-join-chiefs-learn-patrick-mahomes",
-      "publishedAt": "2026-04-21T21:56:12.000Z",
-      "publishedTs": 1776808572000,
-      "description": "Justin Fields said he wanted to join the Chiefs in part to learn from Patrick Mahomes."
-    },
-    {
-      "id": "94c19ca60c4d6fefea4d3264f3ece3c98a7ba05a",
-      "source": "ESPN",
-      "title": "Jets GM: Don't misread nixed visit with DE Bailey",
-      "url": "https://www.espn.com/nfl/story/_/id/48551302/jets-gm-read-cancelled-visit-de-prospect-bailey",
-      "publishedAt": "2026-04-21T21:56:12.000Z",
-      "publishedTs": 1776808572000,
-      "description": "Jets GM Darren Mougey said Tuesday that fans should not \"look too much\" into the cancellation of last week's predraft visit with DE prospect David Bailey, who could be their selection with the No. 2 pick."
-    },
-    {
-      "id": "eb85fae23e8d6e75845956433dfa80d2acf0aced",
-      "source": "ESPN",
-      "title": "Steelers still giving Rodgers space as draft looms",
-      "url": "https://www.espn.com/nfl/story/_/id/48552762/steelers-giving-rodgers-space-mull-future-draft-looms",
-      "publishedAt": "2026-04-21T21:56:12.000Z",
-      "publishedTs": 1776808572000,
-      "description": "Steelers general manager Omar Khan and coach Mike McCarthy indicated this week there isn't a timeline or a deadline to hear from Aaron Rodgers on whether he'll return or retire this season."
-    },
-    {
-      "id": "c960499b8552bbc6660ebf4203bf74735861a44f",
+      "id": "a31e3d3c86f01a6e4388d782b8298dc993b516c3",
       "source": "ESPN",
       "title": "The Draft Day Predictor settles big Round 1 debates: Could Ty Simpson slide? Should Dallas trade up?",
       "url": "https://www.espn.com/nfl/draft2026/story/_/id/48542553/2026-nfl-draft-day-predictor-forecasts-picks-trades-slides-simpson-love-cowboys",
-      "publishedAt": "2026-04-21T18:02:10.000Z",
-      "publishedTs": 1776794530000,
+      "publishedAt": "2026-04-23T13:51:48.000Z",
+      "publishedTs": 1776952308000,
       "description": "Our analytics model crunches the numbers on Ty Simpson, Jeremiyah Love and how four NFL teams should approach their first-round picks."
     },
     {
-      "id": "aa1297b63776b1044bcd8b38d6470ddf7c848b1c",
+      "id": "8efccf5fd13f1627e2e57324f9bc0f93dd47061e",
       "source": "ESPN",
       "title": "Meet Prospect X, who could be the 2026 NFL draft's brightest diamond in the rough",
       "url": "https://www.espn.com/nfl/story/_/id/48543478/2026-prospect-x-nfl-draft",
-      "publishedAt": "2026-04-21T18:02:10.000Z",
-      "publishedTs": 1776794530000,
+      "publishedAt": "2026-04-23T13:51:48.000Z",
+      "publishedTs": 1776952308000,
       "description": "After months of searching, we've found the prospect we believe is the 2026 NFL draft's best-kept secret."
+    },
+    {
+      "id": "9b8c5e111a4a204523824757ad93ef5502ae8a56",
+      "source": "ESPN",
+      "title": "Schrager projects all 32 first-round picks: Four huge trades dominate his final NFL mock draft",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48550650/2026-nfl-mock-draft-peter-schrager-insider-intel-final-first-round-picks-predictions",
+      "publishedAt": "2026-04-23T13:48:01.000Z",
+      "publishedTs": 1776952081000,
+      "description": "Could teams jump all around Round 1 and shake things up? Will Jeremiyah Love and Sonny Styles go in the top five? Here's what Peter Schrager is hearing and predicting."
+    },
+    {
+      "id": "579679b05c41547ca4f3b224ce78445a8c9af931",
+      "source": "ESPN",
+      "title": "NFL Nation mock draft: Our team reporters predict landing spots in the first round",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48494104/mock-draft-2026-nfl-nation-first-round-predictions",
+      "publishedAt": "2026-04-23T13:48:01.000Z",
+      "publishedTs": 1776952081000,
+      "description": "Is Fernando Mendoza the only first-round quarterback? Our reporters make their picks."
+    },
+    {
+      "id": "2d429a46f395523ff255a22a67f9981e5f6a918a",
+      "source": "ESPN",
+      "title": "Vrabel to seek counseling, miss Day 3 of draft",
+      "url": "https://www.espn.com/nfl/story/_/id/48566969/mike-vrabel-seek-counseling-not-patriots-day-3-nfl-draft",
+      "publishedAt": "2026-04-23T13:41:52.000Z",
+      "publishedTs": 1776951712000,
+      "description": "Patriots coach Mike Vrabel won't be with the team for the third day of the NFL draft Saturday, as he plans to be with his family outside of Massachusetts."
+    },
+    {
+      "id": "529fe3b20fef1098645edca4cb4ce724a58cf07e",
+      "source": "ESPN",
+      "title": "Bettors split on Bailey, Reese as No. 2 overall pick",
+      "url": "https://www.espn.com/nfl/story/_/id/48569897/bettors-divided-bailey-reese-no-2-pick-nfl-draft",
+      "publishedAt": "2026-04-23T13:41:52.000Z",
+      "publishedTs": 1776951712000,
+      "description": "The betting market has been set on Fernando Mendoza going first in Thursday's NFL draft for months. But who will be the second pick, a selection owned by the Jets, is a different story. The odds on the second pick have moved dramatically in recent weeks."
+    },
+    {
+      "id": "2f85c5a3f90ceda474846a58a8abc244cf7a0926",
+      "source": "ESPN",
+      "title": "Cowboys won't talk long-term deal with Pickens",
+      "url": "https://www.espn.com/nfl/story/_/id/48561830/cowboys-say-talk-long-term-deal-george-pickens",
+      "publishedAt": "2026-04-23T13:41:52.000Z",
+      "publishedTs": 1776951712000,
+      "description": "The Cowboys will not discuss a long-term contract with George Pickens and want him to play this season on the franchise tag, executive Stephen Jones said."
+    },
+    {
+      "id": "7975e2d25da516e884e1cae9c2e1f03dcd48885f",
+      "source": "ESPN",
+      "title": "Sanders touts 'new vibe' under Browns' Monken",
+      "url": "https://www.espn.com/nfl/story/_/id/48553310/shedeur-sanders-says-todd-monken-brings-new-vibe-browns",
+      "publishedAt": "2026-04-23T13:41:52.000Z",
+      "publishedTs": 1776951712000,
+      "description": "Shedeur Sanders said there is a \"new vibe\" and \"new energy\" with the Browns under first-year coach Todd Monken and his staff."
+    },
+    {
+      "id": "7c28fd93198ddf8bb264db05dc3f45ee8b508094",
+      "source": "ESPN",
+      "title": "Sources: NFL prospect Banks eyes June clearance",
+      "url": "https://www.espn.com/nfl/story/_/id/48562038/sources-draft-prospect-caleb-banks-foot-expects-june-clearance",
+      "publishedAt": "2026-04-23T13:41:52.000Z",
+      "publishedTs": 1776951712000,
+      "description": "Florida's Caleb Banks, one of the top defensive tackles in this year's draft, is expected to be fully cleared for football activities in early June after offseason foot surgery, sources told ESPN."
+    },
+    {
+      "id": "e802e28c5b5926780b2a7f277fa1d8e14e2c2799",
+      "source": "ESPN",
+      "title": "Sources: Tomlin joining NBC as studio analyst",
+      "url": "https://www.espn.com/nfl/story/_/id/48551327/mike-tomlin-joins-nbc-nfl-studio-analyst-sources-confirm",
+      "publishedAt": "2026-04-23T13:41:52.000Z",
+      "publishedTs": 1776951712000,
+      "description": "Former Steelers coach Mike Tomlin is joining NBC's Sunday night pregame show, \"Football Night in America,\" as a studio analyst, sources confirmed to ESPN."
+    },
+    {
+      "id": "585330bca665d74e5373feacee931ba39e8ab034",
+      "source": "ESPN",
+      "title": "McVay says Nacua a full go for offseason program",
+      "url": "https://www.espn.com/nfl/story/_/id/48553704/rams-sean-mcvay-puka-nacua-doing-really-well-otas",
+      "publishedAt": "2026-04-23T13:41:52.000Z",
+      "publishedTs": 1776951712000,
+      "description": "Puka Nacua, who spent part of the offseason in rehab, will be a \"full participant\" in the team's offseason program, with coach Sean McVay saying Tuesday that the star WR \"looks great and is doing really well.\""
+    },
+    {
+      "id": "9a2610cd04a9050e1fbfe8f86cecc1a7abe01588",
+      "source": "ESPN",
+      "title": "Colts QB Jones (Achilles) back to throwing again",
+      "url": "https://www.espn.com/nfl/story/_/id/48552837/colts-qb-daniel-jones-achilles-back-throwing-again",
+      "publishedAt": "2026-04-23T13:41:52.000Z",
+      "publishedTs": 1776951712000,
+      "description": "Colts QB Daniel Jones, recovering from a ruptured Achilles tendon sustained just over four months ago, has begun dropping back and throwing again."
+    },
+    {
+      "id": "76018a475c8636e660a4e7da723dfcd29f590573",
+      "source": "ESPN",
+      "title": "Our NFL draft-day mock: Yates' final predictions for all 32 picks, plus Kiper's notes",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48543956/2026-nfl-mock-draft-final-intel-predictions-yates-kiper-round-1",
+      "publishedAt": "2026-04-23T13:34:13.000Z",
+      "publishedTs": 1776951253000,
+      "description": "Field Yates projects the first 32 draft picks one last time -- including a trade -- and Mel Kiper Jr. shares what he's hearing heading into Round 1 (8 p.m. ET on ESPN and ABC)."
+    },
+    {
+      "id": "4eb17383a1955de6c569ce975ee4373db100f743",
+      "source": "ESPN",
+      "title": "NFL draft cheat sheet: The prospects, team needs and sleepers you need to know",
+      "url": "https://www.espn.com/nfl/story/_/id/48503427/2026-nfl-draft-cheat-sheet-top-prospect-sleepers-fits-picks-rankings-stats-mocks",
+      "publishedAt": "2026-04-23T13:34:13.000Z",
+      "publishedTs": 1776951253000,
+      "description": "Here's the ultimate guide to this year's draft, including predictions and buzz."
+    },
+    {
+      "id": "fab26678e0f2dcc6d71fcd32c4bb23524e13b085",
+      "source": "ESPN",
+      "title": "Fortune teller: Egbuka predicted Baker and Emily Mayfield new child's name in November",
+      "url": "https://www.espn.com/nfl/story/_/id/48562655/tampa-bay-buccaneers-baker-mayfield-son-child-announcement",
+      "publishedAt": "2026-04-23T01:08:06.000Z",
+      "publishedTs": 1776906486000,
+      "description": "The Mayfields welcomed their son, Maverick, to the world April 16."
+    },
+    {
+      "id": "51b092264a207effc7cc4d8397ebb91096c6be44",
+      "source": "ESPN",
+      "title": "Ice melts: Drake seemingly trolls Caleb Williams during 'Iceman' rollout",
+      "url": "https://www.espn.com/nfl/story/_/id/48554162/drake-iceman-album-caleb-williams-bears-packers-jacket-troll",
+      "publishedAt": "2026-04-23T01:08:06.000Z",
+      "publishedTs": 1776906486000,
+      "description": "The Canadian rapper posed in front of blocks of ice while wearing a Packers jacket during his album rollout."
+    },
+    {
+      "id": "199fd20cbf778543cce7039d728741f479b0304a",
+      "source": "ESPN",
+      "title": "NFL draft faces a new insider betting risk",
+      "url": "https://www.espn.com/nfl/story/_/id/48496515/nfl-draft-picks",
+      "publishedAt": "2026-04-22T19:23:36.000Z",
+      "publishedTs": 1776885816000,
+      "description": "Former NFL execs say it's only a matter of time until someone parlays inside information on the draft."
     },
     {
       "id": "76b68268aad40bc1de0e4ba323ef790039edda71",
@@ -209,15 +191,6 @@
       "description": "The consensus top pick is bringing his unique mix of curiosity, quirk and command to the NFL."
     },
     {
-      "id": "db6838b9c88a1b34805bdeeb31f031081b7fb527",
-      "source": "ESPN",
-      "title": "The Leggy 100: An annual ranking of the best players in the NFL draft class",
-      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48479903/2026-nfl-draft-jeff-legwold-ranking-top-100-prospects",
-      "publishedAt": "2026-04-20T14:10:23.000Z",
-      "publishedTs": 1776694223000,
-      "description": "Jeff Legwold reveals his list of top NFL draft prospects for 2026, which is based purely on talent."
-    },
-    {
       "id": "bb523209f66181ab0b6e894c97f00b9c516cfb21",
       "source": "ESPN",
       "title": "Super Bowl 2027 on ESPN: Date, location, venue, more details",
@@ -225,6 +198,132 @@
       "publishedAt": "2026-02-19T13:05:38.000Z",
       "publishedTs": 1771506338000,
       "description": "The 2027 Super Bowl will air on ESPN for the first time in network history. Learn more information about Super Bowl LXI festivities now."
+    },
+    {
+      "id": "062d6a48a4bca2d6493414f7f9dfa19a5dd00e4b",
+      "source": "FantasyPros",
+      "title": "Tuli Tuipulotu to work on extension after NFL Draft",
+      "url": "https://www.fantasypros.com/nfl/news/582127/tuli-tuipulotu-to-work-on-extension-after-nfl-draft-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "f4e733b37f47daaed23a72c4dce8e925c479dbdb",
+      "source": "FantasyPros",
+      "title": "Derwin James Jr. to work on extension after NFL Draft",
+      "url": "https://www.fantasypros.com/nfl/news/582126/derwin-james-jr-to-work-on-extension-after-nfl-draft-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "350695cd6eaf47b9a970bcd5145955632b6703d1",
+      "source": "FantasyPros",
+      "title": "Myles Purchase waived by Giants",
+      "url": "https://www.fantasypros.com/nfl/news/582125/myles-purchase-waived-by-giants-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "da1e1994f99a3dbd1f18c2acae75b91cdd589568",
+      "source": "FantasyPros",
+      "title": "TJ Moore waived by Giants",
+      "url": "https://www.fantasypros.com/nfl/news/582124/tj-moore-waived-by-giants-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "15eb8fe3bc4a80d866dc7b940e03ecce2900f7f4",
+      "source": "FantasyPros",
+      "title": "Patrick McMorris waived by Giants",
+      "url": "https://www.fantasypros.com/nfl/news/582123/patrick-mcmorris-waived-by-giants-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "e361644e241b5ec3bdbdbb787ab873af7a3f0c60",
+      "source": "FantasyPros",
+      "title": "Da'Quan Felton waived by Giants",
+      "url": "https://www.fantasypros.com/nfl/news/582122/daquan-felton-waived-by-giants-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "8ad01e07ef354426140efda80bfcb041db431967",
+      "source": "FantasyPros",
+      "title": "Alvin Kamara's future in New Orleans could be impacted by NFL Draft",
+      "url": "https://www.fantasypros.com/nfl/news/582121/alvin-kamaras-future-new-orleans-could-be-impacted-by-nfl-draft-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "42a3b5862b08780dba80667827446fe498ca0bf1",
+      "source": "FantasyPros",
+      "title": "DaRon Bland (foot) trending in right direction",
+      "url": "https://www.fantasypros.com/nfl/news/582120/daron-bland-foot-trending-right-direction-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "81511258613c36f3f16aa4afd9a341dc8fb216ef",
+      "source": "FantasyPros",
+      "title": "Donovan Ezeiruaku (hip) trending in right direction",
+      "url": "https://www.fantasypros.com/nfl/news/582119/donovan-ezeiruaku-hip-trending-right-direction-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "d1d8128cc74131558359a7cd9514eef4a0cc9f0e",
+      "source": "FantasyPros",
+      "title": "Behren Morton has top-30 visit with Packers",
+      "url": "https://www.fantasypros.com/nfl/news/582118/behren-morton-has-top-30-visit-with-packers-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "775cce676f17a1069667ed78e4b8f08a3b176928",
+      "source": "FantasyPros",
+      "title": "Kyron Drones has top-30 visit with Packers",
+      "url": "https://www.fantasypros.com/nfl/news/582117/kyron-drones-has-top-30-visit-with-packers-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "e6217d16840a0965fc934111b19aa22d83930906",
+      "source": "FantasyPros",
+      "title": "Caleb Banks (foot) expected to be cleared by June",
+      "url": "https://www.fantasypros.com/nfl/news/582086/caleb-banks-foot-expected-to-be-cleared-by-june.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "95de195cd34d75714a47d93b744af8ced59ff84f",
+      "source": "FantasyPros",
+      "title": "Chris Bell (knee) ahead of schedule in rehab",
+      "url": "https://www.fantasypros.com/nfl/news/582085/chris-bell-knee-ahead-schedule-rehab-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "26211b704700ba8251c74c54e73c222c7425cabf",
+      "source": "FantasyPros",
+      "title": "George Pickens, Cowboys not expected to discuss long-term contract",
+      "url": "https://www.fantasypros.com/nfl/news/582035/george-pickens-cowboys-not-expected-to-discuss-long-term-contract.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
     },
     {
       "id": "ce97cac16caa3b6ea7d683068ee39a8a88ed3a3e",
@@ -321,132 +420,6 @@
       "source": "FantasyPros",
       "title": "Sean Tucker signs one-year deal with Bucs",
       "url": "https://www.fantasypros.com/nfl/news/581911/sean-tucker-signs-one-year-deal-with-bucs.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "97d35148b0bafbafbe15e8753dd1abd4333187b3",
-      "source": "FantasyPros",
-      "title": "Jimmy Garoppolo, Rams want QB to return but leaving door open",
-      "url": "https://www.fantasypros.com/nfl/news/581910/jimmy-garoppolo-rams-want-qb-to-return-but-leaving-door-open.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "f125f2044aa2cc22a63587e37efe35cfd728a893",
-      "source": "FantasyPros",
-      "title": "Kyle Pitts Sr. could be moved if Falcons find trade partner",
-      "url": "https://www.fantasypros.com/nfl/news/581909/kyle-pitts-sr-could-be-moved-if-falcons-find-trade-partner.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "03023738bb4bc2bd8e6039fb175168a27becde06",
-      "source": "FantasyPros",
-      "title": "Benito Jones visits Giants Tuesday",
-      "url": "https://www.fantasypros.com/nfl/news/581908/benito-jones-visits-giants-tuesday-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "29d0c157729ff5d3f5751e32a90d1cd6cdcaf3c1",
-      "source": "FantasyPros",
-      "title": "Mason Rudolph splitting reps to begin offseason program",
-      "url": "https://www.fantasypros.com/nfl/news/581907/mason-rudolph-splitting-reps-to-begin-offseason-program-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "21b8b79044bf65ef8ca6dbdf966873e63a03b747",
-      "source": "FantasyPros",
-      "title": "Will Howard splitting reps to begin Steelers offseason program",
-      "url": "https://www.fantasypros.com/nfl/news/581906/will-howard-splitting-reps-to-begin-steelers-offseason-program.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "65347baa4b1c861cd028fc1ab0d42ed8db7027ae",
-      "source": "FantasyPros",
-      "title": "Quinshon Judkins (leg) not practicing in voluntary minicamp Tuesday",
-      "url": "https://www.fantasypros.com/nfl/news/581822/quinshon-judkins-leg-not-practicing-voluntary-minicamp-tuesday-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "32c0f6d120bb3110f49c1e6ac089a61377ea5f64",
-      "source": "FantasyPros",
-      "title": "Deshaun Watson takes first reps in all three practice periods Tuesday",
-      "url": "https://www.fantasypros.com/nfl/news/581821/deshaun-watson-takes-first-reps-all-three-practice-periods-tuesday-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "78b9f64547cd6d692d29e5f575a7c01aa94d2402",
-      "source": "FantasyPros",
-      "title": "Lamar Jackson takes field for start of voluntary minicamp",
-      "url": "https://www.fantasypros.com/nfl/news/581820/lamar-jackson-takes-field-start-voluntary-minicamp-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "326defb1f9508f230d4a75b28fd261911ca5c4df",
-      "source": "FantasyPros",
-      "title": "Anthony Richardson Sr., Colts had some calls but nothing came to fruition",
-      "url": "https://www.fantasypros.com/nfl/news/581819/anthony-richardson-sr-colts-had-some-calls-but-nothing-came-to-fruition.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "79ec3a1dfc31efc969710dc5f657439e01c33b5f",
-      "source": "FantasyPros",
-      "title": "Dawand Jones (LCL) participating in drills at start of minicamp",
-      "url": "https://www.fantasypros.com/nfl/news/581818/dawand-jones-lcl-participating-drills-start-minicamp.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "914a755fc16360c07e65daa288a6a78e3a1c8f83",
-      "source": "FantasyPros",
-      "title": "Will Grier signs with Panthers",
-      "url": "https://www.fantasypros.com/nfl/news/581817/will-grier-signs-with-panthers.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "7ec5df38723e8ca62bc8ad0aee70519452e2fba1",
-      "source": "FantasyPros",
-      "title": "T.J. Edwards (ankle) targeting return later in summer",
-      "url": "https://www.fantasypros.com/nfl/news/581816/tj-edwards-ankle-targeting-return-later-summer.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "018f949f6c3576dbf1d64a6a802ca0533660d3b7",
-      "source": "FantasyPros",
-      "title": "Zach Tom (knee) underwent offseason surgery",
-      "url": "https://www.fantasypros.com/nfl/news/581815/zach-tom-knee-underwent-offseason-surgery.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "95d2217cb8531bf994ab3285cce2ce827759adc9",
-      "source": "FantasyPros",
-      "title": "Daniel Jones (Achilles) back to throwing and performing dropbacks",
-      "url": "https://www.fantasypros.com/nfl/news/581814/daniel-jones-achilles-back-to-throwing-performing-dropbacks.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
