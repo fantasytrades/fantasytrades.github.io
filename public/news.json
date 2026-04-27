@@ -1,6 +1,141 @@
 {
-  "generatedAt": "2026-04-26T13:07:22.376Z",
+  "generatedAt": "2026-04-27T13:54:30.154Z",
   "items": [
+    {
+      "id": "7da78cf90fa5f68b4fcbe043e51d020a26fbd333",
+      "source": "FantasyPros",
+      "title": "Jonah Coleman could hold immediate short-yardage role",
+      "url": "https://www.fantasypros.com/nfl/news/582933/jonah-coleman-could-hold-immediate-short-yardage-role-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "6c3105f1bafaf068a26ba4e7899f4b4e04005328",
+      "source": "FantasyPros",
+      "title": "Anfernee Jennings signs with Saints",
+      "url": "https://www.fantasypros.com/nfl/news/582932/anfernee-jennings-signs-with-saints.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "9e64f377d72703a36edc396e2ec86a8b38757dbd",
+      "source": "FantasyPros",
+      "title": "Donovan Smith retires from NFL after nine seasons",
+      "url": "https://www.fantasypros.com/nfl/news/582931/donovan-smith-retires-from-nfl-after-nine-seasons.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "a36cb2664936ae85c7d4a24b868d1eaf05ae05b5",
+      "source": "FantasyPros",
+      "title": "CJ Donaldson signs with Saints as UDFA",
+      "url": "https://www.fantasypros.com/nfl/news/582930/cj-donaldson-signs-with-saints-udfa.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "bb55d2ede81e5ca739c538c7d59c9f17372d9ac2",
+      "source": "FantasyPros",
+      "title": "Roydell Williams invited to Titans rookie minicamp",
+      "url": "https://www.fantasypros.com/nfl/news/582929/roydell-williams-invited-to-titans-rookie-minicamp-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "9d80d251a0058d08d7539f12e2dd453919c145a6",
+      "source": "FantasyPros",
+      "title": "Bryson Eason signs with 49ers as UDFA",
+      "url": "https://www.fantasypros.com/nfl/news/582928/bryson-eason-signs-with-49ers-udfa.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "9171c9a7751ffc813beb2a0169e33aad22ed576c",
+      "source": "FantasyPros",
+      "title": "Dean Lowry re-signs with Steelers",
+      "url": "https://www.fantasypros.com/nfl/news/582927/dean-lowry-re-signs-with-steelers-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "d591254fa3b31b48c78825b3f908e85e2231c61b",
+      "source": "FantasyPros",
+      "title": "Bishop Fitzgerald signs with Titans as UDFA",
+      "url": "https://www.fantasypros.com/nfl/news/582926/bishop-fitzgerald-signs-with-titans-udfa.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "eba7e874437649c7c0928375b24391b49deb371c",
+      "source": "FantasyPros",
+      "title": "Kenny Moore II yet to find interested suitor in trade",
+      "url": "https://www.fantasypros.com/nfl/news/582925/kenny-moore-ii-yet-to-find-interested-suitor-trade.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "f04ef960b22640fc22f47a0121047a769ec542ab",
+      "source": "FantasyPros",
+      "title": "Anthony Richardson Sr. yet to find interested suitor in trade",
+      "url": "https://www.fantasypros.com/nfl/news/582924/anthony-richardson-sr-yet-to-find-interested-suitor-trade.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "9c1800492ae0fa7416e28f19426c6ca376a42c9a",
+      "source": "FantasyPros",
+      "title": "Jermaine Burton invited to Bills rookie minicamp",
+      "url": "https://www.fantasypros.com/nfl/news/582873/jermaine-burton-invited-to-bills-rookie-minicamp-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "d6b24496d7c16fce915e5649282ee2ff640f6d11",
+      "source": "FantasyPros",
+      "title": "Diego Pavia accepts invite to Ravens rookie minicamp",
+      "url": "https://www.fantasypros.com/nfl/news/582870/diego-pavia-accepts-invite-to-ravens-rookie-minicamp.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "6af6108c05bf9d0862a77663ec624f19757f9072",
+      "source": "FantasyPros",
+      "title": "Jake Retzlaff signs with Seahawks as UDFA",
+      "url": "https://www.fantasypros.com/nfl/news/582823/jake-retzlaff-signs-with-seahawks-udfa-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "ae38f9a619d514a4577568140f2d288a413d6842",
+      "source": "FantasyPros",
+      "title": "Vincent Anthony Jr. signs with Chiefs as UDFA",
+      "url": "https://www.fantasypros.com/nfl/news/582820/vincent-anthony-jr-signs-with-chiefs-udfa.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "6d34ac24844dde2fee2fb661ad6f67a8d25365d5",
+      "source": "FantasyPros",
+      "title": "Lander Barton signs with Chargers as UDFA",
+      "url": "https://www.fantasypros.com/nfl/news/582819/lander-barton-signs-with-chargers-udfa-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
     {
       "id": "1bbd9e781d4915e94da9df505652d7a2b614b076",
       "source": "FantasyPros",
@@ -87,141 +222,6 @@
       "source": "FantasyPros",
       "title": "Chamon Metayer signs with Steelers as UDFA",
       "url": "https://www.fantasypros.com/nfl/news/582731/chamon-metayer-signs-with-steelers-udfa-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "2a6e4c769ee311a77793c09124a70dcfb22ef3e6",
-      "source": "FantasyPros",
-      "title": "Ethan Conner signs with Jaguars as UDFA",
-      "url": "https://www.fantasypros.com/nfl/news/582730/ethan-conner-signs-with-jaguars-udfa-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "4e46605ab537e27df561bfc2967a7fc7c5552145",
-      "source": "FantasyPros",
-      "title": "Rahsul Faison invited to three rookie minicamps",
-      "url": "https://www.fantasypros.com/nfl/news/582728/rahsul-faison-invited-to-three-rookie-minicamps.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "977da6a79e88ebbba8548d6bd303999d0ad65348",
-      "source": "FantasyPros",
-      "title": "Louis Moore signs with Dolphins as UDFA",
-      "url": "https://www.fantasypros.com/nfl/news/582726/louis-moore-signs-with-dolphins-udfa.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "9914ff394ffcae3ea7a01a1790b514ce8bc6fd49",
-      "source": "FantasyPros",
-      "title": "RJ Maryland signs with Packers as UDFA",
-      "url": "https://www.fantasypros.com/nfl/news/582725/rj-maryland-signs-with-packers-udfa.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "224ea26bab711350129f367e6fc76b210df26623",
-      "source": "FantasyPros",
-      "title": "J. Michael Sturdivant signs with Packers as UDFA",
-      "url": "https://www.fantasypros.com/nfl/news/582724/j-michael-sturdivant-signs-with-packers-udfa.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "020b50b6dc87c7ef1aca957083869e90f5b747b5",
-      "source": "FantasyPros",
-      "title": "Taurean York signs with Broncos as UDFA",
-      "url": "https://www.fantasypros.com/nfl/news/582723/taurean-york-signs-with-broncos-udfa-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "0e4193e447fe84efa2a9171fe0f0c7bc08293114",
-      "source": "FantasyPros",
-      "title": "Devon Marshall signs with Jaguars as UDFA",
-      "url": "https://www.fantasypros.com/nfl/news/582722/devon-marshall-signs-with-jaguars-udfa-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "11afed632143e7f785c878b6602b3caf3c419162",
-      "source": "FantasyPros",
-      "title": "Robert Henry Jr. signs with Commanders as UDFA",
-      "url": "https://www.fantasypros.com/nfl/news/582721/robert-henry-jr-signs-with-commanders-udfa.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "543d12687592679608fc9f5e19f6ade2b155d310",
-      "source": "FantasyPros",
-      "title": "Collin Wright signs with Texans as UDFA",
-      "url": "https://www.fantasypros.com/nfl/news/582720/collin-wright-signs-with-texans-udfa-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "6d219b566ac2ae70ab7c19f29e5e9ac4f4769f7b",
-      "source": "FantasyPros",
-      "title": "Diego Pounds signs with Ravens as UDFA",
-      "url": "https://www.fantasypros.com/nfl/news/582719/diego-pounds-signs-with-ravens-udfa.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "085c237280f5177c79b86dab7dd8fba958602b52",
-      "source": "FantasyPros",
-      "title": "Isaiah World signs with Chargers as UDFA",
-      "url": "https://www.fantasypros.com/nfl/news/582718/isaiah-world-signs-with-chargers-udfa.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "6be23fcf3230f29532a5a71e1b54e81d718e6e60",
-      "source": "FantasyPros",
-      "title": "Tyreak Sapp signs with Browns as UDFA",
-      "url": "https://www.fantasypros.com/nfl/news/582717/tyreak-sapp-signs-with-browns-udfa.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "67f7e19487e655e1a6af5a0ff2500e72e93bf96a",
-      "source": "FantasyPros",
-      "title": "Dae'Quan Wright signs with Eagles as UDFA",
-      "url": "https://www.fantasypros.com/nfl/news/582716/daequan-wright-signs-with-eagles-udfa-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "483b5e87879df671ea01c2da01d6ee8da8d0b98b",
-      "source": "FantasyPros",
-      "title": "Michael Trigg signs with Cowboys as UDFA",
-      "url": "https://www.fantasypros.com/nfl/news/582715/michael-trigg-signs-with-cowboys-udfa-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "8594fb8769c13f8b8d9ec124ef3120a0243654dd",
-      "source": "FantasyPros",
-      "title": "Marcus Allen signs with Vikings as UDFA",
-      "url": "https://www.fantasypros.com/nfl/news/582714/marcus-allen-signs-with-vikings-udfa.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
