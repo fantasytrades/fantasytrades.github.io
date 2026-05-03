@@ -1,6 +1,15 @@
 {
-  "generatedAt": "2026-05-02T13:12:34.084Z",
+  "generatedAt": "2026-05-03T13:11:15.920Z",
   "items": [
+    {
+      "id": "d6dc1db6c19f8ce3e12f5878c76aa7eb7f82fc5d",
+      "source": "FantasyPros",
+      "title": "David Njoku to visit Chargers Monday",
+      "url": "https://www.fantasypros.com/nfl/news/583985/david-njoku-to-visit-chargers-monday.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
     {
       "id": "6b91a8773e3151717322f5b81542a43abe8553cc",
       "source": "FantasyPros",
@@ -213,15 +222,6 @@
       "source": "FantasyPros",
       "title": "Isaiah Raikes released by Titans",
       "url": "https://www.fantasypros.com/nfl/news/583660/isaiah-raikes-released-by-titans.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "68dca09da97c0fa671d3649e2a933c604c4f4250",
-      "source": "FantasyPros",
-      "title": "Nate Lynn released by Titans",
-      "url": "https://www.fantasypros.com/nfl/news/583659/nate-lynn-released-by-titans.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
