@@ -1,167 +1,41 @@
 {
-  "generatedAt": "2026-05-07T14:08:54.813Z",
+  "generatedAt": "2026-05-08T13:48:19.871Z",
   "items": [
     {
-      "id": "017c6492e4558bb3020098df3ecdbc8f9c5e2892",
-      "source": "ESPN",
-      "title": "The biggest remaining roster hole for every NFL te...",
-      "url": "https://www.espn.com/nfl/story/_/id/48649984/2026-nfl-offseason-biggest-roster-holes-depth-needs-all-32-teams-postdraft",
-      "publishedAt": "2026-05-07T12:17:25.000Z",
-      "publishedTs": 1778156245000,
-      "description": "Even after free agency, trades and the draft, NFL teams still have at least one position that needs a boost. Here's one for every roster."
+      "id": "08aaea3da879b5df5785270b8615f9707aa32d98",
+      "source": "FantasyPros",
+      "title": "Jauan Jennings agrees to one year deal with Vikings",
+      "url": "https://www.fantasypros.com/nfl/news/584819/jauan-jennings-agrees-to-one-year-deal-with-vikings.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
     },
     {
-      "id": "4b2205fadd44ed1e30c27c11c0810fc4612810fd",
-      "source": "ESPN",
-      "title": "Who is on the hot seat after the NFL draft? 14 vet...",
-      "url": "https://www.espn.com/nfl/story/_/id/48675818/2026-nfl-offseason-draft-veteran-hot-seats-position-battles-rookies",
-      "publishedAt": "2026-05-07T12:17:25.000Z",
-      "publishedTs": 1778156245000,
-      "description": "Will Carrington Valentine get jumped by Brandon Cisse on the Green Bay depth chart?"
+      "id": "91f6fac04bdfd3b616292f4245bbe6f1c83e037a",
+      "source": "FantasyPros",
+      "title": "Taylor Heinicke retires after 11 years in NFL",
+      "url": "https://www.fantasypros.com/nfl/news/584816/taylor-heinicke-retires-after-11-years-nfl-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
     },
     {
-      "id": "9e7ae246f19ee749006f57f8ae5ea7e373c51fd0",
-      "source": "ESPN",
-      "title": "Pats' Maye backs Vrabel: 'Great human being'",
-      "url": "https://www.espn.com/nfl/story/_/id/48697495/patriots-qb-maye-backs-vrabel-not-worried-distraction",
-      "publishedAt": "2026-05-07T05:49:46.000Z",
-      "publishedTs": 1778132986000,
-      "description": "Patriots quarterback Drake Maye stood behind his coach and said he doesn't believe Mike Vrabel's off-field issues will be a distraction this season."
+      "id": "f6881dd47d9b4ca185c8cb905b611a1034d3492b",
+      "source": "FantasyPros",
+      "title": "Kenny Moore II released by Colts",
+      "url": "https://www.fantasypros.com/nfl/news/584781/kenny-moore-ii-released-by-colts.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
     },
     {
-      "id": "91607cd9ed717a17093fd06057e503ec9740f695",
-      "source": "ESPN",
-      "title": "QB Wilson weighing offer from Jets, TV career",
-      "url": "https://www.espn.com/nfl/story/_/id/48695339/russell-wilson-says-weighing-offer-jets-network-tv",
-      "publishedAt": "2026-05-07T05:49:46.000Z",
-      "publishedTs": 1778132986000,
-      "description": "Russell Wilson said Wednesday that he is weighing a contract offer from the New York Jets and a post-football career in network television."
-    },
-    {
-      "id": "1c0a9dba00978e05b9116a51c442d92cec558df6",
-      "source": "ESPN",
-      "title": "Manziel to give boxing a try, fight Menery in Vega...",
-      "url": "https://www.espn.com/boxing/story/_/id/48700105/johnny-manziel-bob-menery-boxing-fight-set-ufc-apex",
-      "publishedAt": "2026-05-07T05:49:46.000Z",
-      "publishedTs": 1778132986000,
-      "description": "Johnny Manziel will try his hand at the sweet science when he steps into a boxing ring May 23 at the UFC Apex in Las Vegas to face social media influencer Bob Menery."
-    },
-    {
-      "id": "d42a00cdf30606f7cc51c827e95e06831ac060e7",
-      "source": "ESPN",
-      "title": "Chef shies from financial questions in Diggs trial...",
-      "url": "https://www.espn.com/nfl/story/_/id/48685492/chef-shies-financial-questions-stefon-diggs-assault-trial",
-      "publishedAt": "2026-05-07T05:49:46.000Z",
-      "publishedTs": 1778132986000,
-      "description": "A jury found former New England Patriots receiver Stefon Diggs not guilty on charges of felony strangulation and misdemeanor assault and battery on Tuesday."
-    },
-    {
-      "id": "4574499be6743b92a6ef704e2d80d68393f5f755",
-      "source": "ESPN",
-      "title": "Sources: NFL, refs on verge of agreeing on CBA",
-      "url": "https://www.espn.com/nfl/story/_/id/48688152/sources-nflra-schedules-vote-ratify-new-cba-nfl",
-      "publishedAt": "2026-05-07T05:49:46.000Z",
-      "publishedTs": 1778132986000,
-      "description": "Negotiations between the NFL and the NFL Referees Association on a new CBA have progressed far enough that the union has scheduled a ratification vote for Thursday night, sources said."
-    },
-    {
-      "id": "94e93cc5637524d9995288474371785c26a636f0",
-      "source": "ESPN",
-      "title": "Source: Giants beef up D-line by adding Reader",
-      "url": "https://www.espn.com/nfl/story/_/id/48686672/source-giants-agree-two-year-deal-dt-dj-reader",
-      "publishedAt": "2026-05-07T05:49:46.000Z",
-      "publishedTs": 1778132986000,
-      "description": "The Giants have agreed to a two-year, $12.5 million contract sign veteran defensive tackle DJ Reader, a source told ESPN's Jeremy Fowler."
-    },
-    {
-      "id": "58e965527d9ea7381dd34099678a3e59b388cc73",
-      "source": "ESPN",
-      "title": "Source: Seahawks to sign edge rusher Fowler Jr.",
-      "url": "https://www.espn.com/nfl/story/_/id/48684397/source-seahawks-sign-veteran-edge-rusher-dante-fowler-jr",
-      "publishedAt": "2026-05-07T05:49:46.000Z",
-      "publishedTs": 1778132986000,
-      "description": "The Seahawks are signing veteran edge rusher Dante Fowler Jr. to a one-year deal worth up to $5 million, a source told the NFL Network on Tuesday."
-    },
-    {
-      "id": "2984e8fe6af795cf2ee9a3e8803d135fd27dd2cf",
-      "source": "ESPN",
-      "title": "Charges against Sneed from shooting dropped",
-      "url": "https://www.espn.com/nfl/story/_/id/48684719/charges-ljarius-sneed-shooting-dropped",
-      "publishedAt": "2026-05-07T05:49:46.000Z",
-      "publishedTs": 1778132986000,
-      "description": "A charge against L'Jarius Sneed stemming from a 2024 shooting has been dropped."
-    },
-    {
-      "id": "65bb0465568982d0a5ed3bbe2b626152e4e337b2",
-      "source": "ESPN",
-      "title": "👀 Reid's early 2027 NFL mock draft: Arch No. 1?",
-      "url": "https://www.espn.com/nfl/draft2027/story/_/id/48611355/2027-nfl-mock-draft-early-first-round-predictions-32-picks-manning-smith",
-      "publishedAt": "2026-05-07T05:49:46.000Z",
-      "publishedTs": 1778132986000,
-      "description": "We're still a full year out, but let's make way-too-early predictions for every first-round pick of the 2027 NFL draft. Will Arch Manning go No. 1? Jeremiah Smith?"
-    },
-    {
-      "id": "e61bd813ad5dc4763e9c3c51e6a3bd989d7f93f4",
-      "source": "ESPN",
-      "title": "Steelers' 2026 draft picks ranked from starters to...",
-      "url": "https://www.espn.com/nfl/story/_/id/48678873/pittsburgh-steelers-2026-draft-class-rookies-tiers-starters-projects",
-      "publishedAt": "2026-05-07T03:17:58.000Z",
-      "publishedTs": 1778123878000,
-      "description": "From Germie Bernard to Eli Heidenreich, who are the Pittsburgh rookies who can contribute immediately?"
-    },
-    {
-      "id": "c24df5425913e1924024c710818836c296db97d9",
-      "source": "ESPN",
-      "title": "Justin Herbert seemingly appears in Madison Beer t...",
-      "url": "https://www.espn.com/nfl/story/_/id/48696952/justin-berbert-los-angeles-chargers-madison-beer-music-video-teaser",
-      "publishedAt": "2026-05-07T00:47:19.000Z",
-      "publishedTs": 1778114839000,
-      "description": "The Grammy-nominated artist will release a new music video Friday that could feature the Chargers quarterback."
-    },
-    {
-      "id": "704334da105c121964bbee5d949e1e3b9106d0c4",
-      "source": "ESPN",
-      "title": "Joe Burrow and Justin Jefferson's Met Gala prep in...",
-      "url": "https://www.espn.com/nfl/story/_/id/48686585/joe-burrow-justin-jefferson-met-gala-sex-city",
-      "publishedAt": "2026-05-07T00:47:19.000Z",
-      "publishedTs": 1778114839000,
-      "description": "The former college teammates reunited while getting ready -- and their preparation routine included a unique element."
-    },
-    {
-      "id": "dfe4c4f8150b691f0a2eefe2712e09bddeab3e2c",
-      "source": "ESPN",
-      "title": "New NFL Power Rankings poll: We ranked all 32 team...",
-      "url": "https://www.espn.com/nfl/story/_/id/48630373/2026-nfl-power-rankings-offseason-postdraft-poll-most-improved-positions",
-      "publishedAt": "2026-05-06T12:17:37.000Z",
-      "publishedTs": 1778069857000,
-      "description": "How do all 32 NFL teams stack up after free agency and the draft? Here are our early rankings for next season, plus one spot each roster got better."
-    },
-    {
-      "id": "4bcb2ece7321ea3655bf16c2bca363b61dfe87e9",
-      "source": "ESPN",
-      "title": "Should the Texans pay C.J. Stroud? NFL execs from around the league weigh in",
-      "url": "https://www.espn.com/nfl/story/_/id/48610121/houston-texans-pay-cj-stroud-qb-market-nfl-execs",
-      "publishedAt": "2026-05-02T15:28:15.000Z",
-      "publishedTs": 1777735695000,
-      "description": "After paying Will Anderson, will Houston do the same with its franchise quarterback?"
-    },
-    {
-      "id": "506c46e178d9004046ca3aa637afb31f285d789d",
-      "source": "ESPN",
-      "title": "Is 2026 the comeback year for running backs? Insid...",
-      "url": "https://www.espn.com/fantasy/football/story/_/page/FFMockDraft-48610592/2026-fantasy-football-mock-draft-post-nfl-draft",
-      "publishedAt": "2026-05-01T17:01:11.000Z",
-      "publishedTs": 1777654871000,
-      "description": "Running backs went early as 10 ESPN fantasy analysts made their first draft picks of the year."
-    },
-    {
-      "id": "bb523209f66181ab0b6e894c97f00b9c516cfb21",
-      "source": "ESPN",
-      "title": "Super Bowl 2027 on ESPN: Date, location, venue, more details",
-      "url": "https://www.espn.com/nfl/story/_/id/47819308/super-bowl-2027-espn-how-watch-schedule-facts-stats",
-      "publishedAt": "2026-02-19T13:05:38.000Z",
-      "publishedTs": 1771506338000,
-      "description": "The 2027 Super Bowl will air on ESPN for the first time in network history. Learn more information about Super Bowl LXI festivities now."
+      "id": "511a5caf5d8bc7a5ce007e29b41f6d887ee280ce",
+      "source": "FantasyPros",
+      "title": "Aaron Rodgers to meet with Steelers this weekend, likely sign with them",
+      "url": "https://www.fantasypros.com/nfl/news/584738/aaron-rodgers-to-meet-with-steelers-this-weekend-likely-sign-with-them.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
     },
     {
       "id": "c03787d1ad16e11da20ea62f31f8b68c55eace7f",
@@ -339,42 +213,6 @@
       "source": "FantasyPros",
       "title": "Desmond Ridder released by Packers",
       "url": "https://www.fantasypros.com/nfl/news/584221/desmond-ridder-released-by-packers.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "8449c676fea3fa7aefbb2eb021eb1bec49c6552c",
-      "source": "FantasyPros",
-      "title": "Anthony Richardson reports for Colts voluntary offseason workouts Monday",
-      "url": "https://www.fantasypros.com/nfl/news/584220/anthony-richardson-reports-colts-voluntary-offseason-workouts-monday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "5cd6eb580cd6d7e7b4520709037a8fd20690d86b",
-      "source": "FantasyPros",
-      "title": "Seth Vernon released by Dolphins",
-      "url": "https://www.fantasypros.com/nfl/news/584219/seth-vernon-released-by-dolphins.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "58f75844d56ff42c6192b78ee81eccd7913c9646",
-      "source": "FantasyPros",
-      "title": "K.C. Ossai released by Dolphins",
-      "url": "https://www.fantasypros.com/nfl/news/584218/kc-ossai-released-by-dolphins.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "a19aba4a4d936f52f85b238b5e5ecc6593abf123",
-      "source": "FantasyPros",
-      "title": "Derrick McLendon released by Dolphins",
-      "url": "https://www.fantasypros.com/nfl/news/584217/derrick-mclendon-released-by-dolphins.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
