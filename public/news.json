@@ -1,6 +1,402 @@
 {
-  "generatedAt": "2026-05-11T14:51:53.877Z",
+  "generatedAt": "2026-05-12T14:26:00.525Z",
   "items": [
+    {
+      "id": "ef4e22ada2e37e5feb04f9672b93fc2537c5cacc",
+      "source": "ESPN",
+      "title": "What to know ahead of Thursday's full 2026 NFL sch...",
+      "url": "https://www.espn.com/nfl/story/_/page/nflschedulerelease-48704131/2026-nfl-schedule-release-bold-predictions-takeaways-revenge-games-all-32-teams",
+      "publishedAt": "2026-05-12T15:17:25.000Z",
+      "publishedTs": 1778599045000,
+      "description": "Seahawks will open a season that features nine international games. Come back for bold predictions."
+    },
+    {
+      "id": "684d946207194fb3b3d90c07c9b8f7ef8007a9aa",
+      "source": "ESPN",
+      "title": "Rivals Broncos, Chiefs to meet in first MNF game",
+      "url": "https://www.espn.com/nfl/story/_/id/48749308/broncos-chiefs-meet-first-monday-night-football-game-2026",
+      "publishedAt": "2026-05-12T13:27:53.000Z",
+      "publishedTs": 1778592473000,
+      "description": "The defending AFC West champion Broncos and Kansas City Chiefs will square off Sept. 14 in the first \"Monday Night Football\" game of the coming season."
+    },
+    {
+      "id": "c68ed11042e9fe44e5c3598c0ef6d3b175208799",
+      "source": "ESPN",
+      "title": "Bills to open new stadium in Week 2 vs. Lions",
+      "url": "https://www.espn.com/nfl/story/_/id/48744949/bills-play-first-regular-season-game-new-stadium-week-2",
+      "publishedAt": "2026-05-12T13:27:53.000Z",
+      "publishedTs": 1778592473000,
+      "description": "The Bills will play their first regular-season game at their new home, the newly constructed Highmark Stadium, in Week 2 against the Lions, it was announced Monday."
+    },
+    {
+      "id": "77b7f0c9d80362a0c71fd7a67593f6c7ebe7fc26",
+      "source": "ESPN",
+      "title": "Harbaugh-led Giants to host Cowboys in Week 1",
+      "url": "https://www.espn.com/nfl/story/_/id/48740437/john-harbaugh-giants-host-cowboys-week-1-sunday-night-football",
+      "publishedAt": "2026-05-12T13:27:53.000Z",
+      "publishedTs": 1778592473000,
+      "description": "The Giants will host the Cowboys on Sept. 13 in the first \"Sunday Night Football\" game of the 2026 season."
+    },
+    {
+      "id": "9c032149623e9258089285a9fbcfd6b3def0394a",
+      "source": "ESPN",
+      "title": "Sources: Chargers, TE Njoku agree to 1-yr. deal",
+      "url": "https://www.espn.com/nfl/story/_/id/48739754/sources-chargers-te-david-njoku-agree-one-year-deal",
+      "publishedAt": "2026-05-12T13:27:53.000Z",
+      "publishedTs": 1778592473000,
+      "description": "After nine years with the Browns, David Njoku has agreed to terms with the Chargers on a one-year deal worth up to $8 million, sources told NFL Network's Ian Rapoport."
+    },
+    {
+      "id": "2eeaf2a472da543bbac3d3775f8fe3f8f15c635c",
+      "source": "ESPN",
+      "title": "Vikes surprise Peterson with Ring of Honor news",
+      "url": "https://www.espn.com/nfl/story/_/id/48741817/vikings-induct-ex-rb-adrian-peterson-ring-honor",
+      "publishedAt": "2026-05-12T13:27:53.000Z",
+      "publishedTs": 1778592473000,
+      "description": "Adrian Peterson will enter the Minnesota Vikings' ring of honor this fall, the team announced Monday."
+    },
+    {
+      "id": "bf93a94703fc3cad86275cde9f3485dd5193a6d2",
+      "source": "ESPN",
+      "title": "Morton, SB starter for Cowboys and Broncos, dies",
+      "url": "https://www.espn.com/nfl/story/_/id/48746277/craig-morton-super-bowl-starter-cowboys-broncos-dies",
+      "publishedAt": "2026-05-12T13:27:53.000Z",
+      "publishedTs": 1778592473000,
+      "description": "Craig Morton, who spent 18 years in the NFL and became the first quarterback to start the Super Bowl for two franchises -- the Dallas Cowboys and Denver Broncos -- died over the weekend at 83."
+    },
+    {
+      "id": "42bbb7a539bf9149afff180dc07dde56a5ef3a80",
+      "source": "ESPN",
+      "title": "Steelers reward Boswell with 4-year, $28M deal",
+      "url": "https://www.espn.com/nfl/story/_/id/48742244/steelers-boswell-now-tied-aubrey-nfl-top-paid-kicker",
+      "publishedAt": "2026-05-12T13:27:53.000Z",
+      "publishedTs": 1778592473000,
+      "description": "The Steelers have agreed to terms with kicker Chris Boswell on a four-year, $28 million extension, his agency, CAA Football, told ESPN's Adam Schefter."
+    },
+    {
+      "id": "7312bc51aca27ad66aa4b4e1002da62f7611678b",
+      "source": "ESPN",
+      "title": "SB LIX dancer found guilty of resisting officer",
+      "url": "https://www.espn.com/nfl/story/_/id/48745453/super-bowl-lix-performer-found-guilty-resisting-officer",
+      "publishedAt": "2026-05-12T13:27:53.000Z",
+      "publishedTs": 1778592473000,
+      "description": "Zul-Qarnain Kwame Nantambu was found guilty of resisting an officer charge, a misdemeanor, after disrupting Kendrick Lamar's Super Bowl halftime performance with a flag that read \"Sudan and Free Gaza.\""
+    },
+    {
+      "id": "8706e1db805c01c75d3237244c0b2485e5f1d4dc",
+      "source": "ESPN",
+      "title": "💍 Michael Penix Jr. marries fiancée Olivia Carter...",
+      "url": "https://www.espn.com/nfl/story/_/id/48713394/michael-penix-jr-olivia-carter-wedding-atlanta-falcons",
+      "publishedAt": "2026-05-12T13:27:53.000Z",
+      "publishedTs": 1778592473000,
+      "description": "The Atlanta Falcons quarterback seemed to be recovering well from his ACL surgery, showing off his moves on the dance floor."
+    },
+    {
+      "id": "004835578570a3f33a15ed7b51a65a9f96e31fce",
+      "source": "ESPN",
+      "title": "Wait, why didn't my NFL team ____? Reasonable answ...",
+      "url": "https://www.espn.com/nfl/story/_/id/48742512/2026-nfl-offseason-10-teams-questions-explaining-missed-moves",
+      "publishedAt": "2026-05-12T13:25:35.000Z",
+      "publishedTs": 1778592335000,
+      "description": "Let's make sense of the Cowboys not extending George Pickens, the Steelers bypassing QB upgrades, the Dolphins not trading De'Von Achane and more."
+    },
+    {
+      "id": "10485a2c62f8f707d942241a1ef02ce9f31f0984",
+      "source": "ESPN",
+      "title": "Three questions facing Lamar Jackson and the Raven...",
+      "url": "https://www.espn.com/nfl/story/_/id/48741815/questions-facing-lamar-jackson-baltimore-ravens-ravens-center-tyler-linderbaum-nnamdi-madubuike",
+      "publishedAt": "2026-05-12T12:27:34.000Z",
+      "publishedTs": 1778588854000,
+      "description": "Heading into next week's organized team activities, the Ravens have some major questions to address."
+    },
+    {
+      "id": "2c3d1c1dee005e552057a9aac7501ca843eda8da",
+      "source": "ESPN",
+      "title": "The non-Round 1 impact rookies: Yates lists 20 sle...",
+      "url": "https://www.espn.com/nfl/draft2026/story/_/id/48702987/2026-nfl-draft-rookie-year-impact-middle-late-rounders",
+      "publishedAt": "2026-05-12T02:56:54.000Z",
+      "publishedTs": 1778554614000,
+      "description": "We picked out Day 2 and Day 3 NFL draft picks who could contribute right away, including R Mason Thomas and Antonio Williams."
+    },
+    {
+      "id": "d9016b3949d2f5221dfa7c22b31da950f71e8b2e",
+      "source": "ESPN",
+      "title": "Early NFL awards favorites, long shots: Which rook...",
+      "url": "https://www.espn.com/espn/betting/story/_/id/48687620/nfl-awards-offensive-rookie-year-coach-year-2026",
+      "publishedAt": "2026-05-12T02:56:54.000Z",
+      "publishedTs": 1778554614000,
+      "description": "There's still a long way to go until the 2026 season kicks off, but it's never too early to see who's a front-runner."
+    },
+    {
+      "id": "b19b681a21aa14738f105c8ee6533193a847e685",
+      "source": "ESPN",
+      "title": "The biggest remaining roster hole for every NFL te...",
+      "url": "https://www.espn.com/nfl/story/_/id/48649984/2026-nfl-offseason-biggest-roster-holes-depth-needs-all-32-teams-postdraft",
+      "publishedAt": "2026-05-11T20:35:52.000Z",
+      "publishedTs": 1778531752000,
+      "description": "Even after free agency, trades and the draft, NFL teams still have at least one position that needs a boost. Here's one for every roster."
+    },
+    {
+      "id": "ec838cfa4746acda4dddb438a842c8d3ac3ceb8a",
+      "source": "ESPN",
+      "title": "Who is on the hot seat after the NFL draft? 14 vet...",
+      "url": "https://www.espn.com/nfl/story/_/id/48675818/2026-nfl-offseason-draft-veteran-hot-seats-position-battles-rookies",
+      "publishedAt": "2026-05-11T20:35:52.000Z",
+      "publishedTs": 1778531752000,
+      "description": "Will Carrington Valentine get jumped by Brandon Cisse on the Green Bay depth chart?"
+    },
+    {
+      "id": "9d4de7c8fb6f8c61381dcfaa6f0f1718d8b544d6",
+      "source": "ESPN",
+      "title": "Fantasy buzz: Which players benefit most from Njok...",
+      "url": "https://www.espn.com/fantasy/football/story/_/id/40699880/fantasy-football-injuries-position-battles-nfl-news-analysis",
+      "publishedAt": "2026-05-11T16:12:51.000Z",
+      "publishedTs": 1778515971000,
+      "description": "Discussing the impact on Oronde Gadsden, Kyler Murray, Justin Jefferson, Jordan Addison and others this season."
+    },
+    {
+      "id": "5829cf0370b187dc31da7bc2c84c5bec29cf9470",
+      "source": "ESPN",
+      "title": "Field Yates' rankings: PPR top 160",
+      "url": "https://www.espn.com/fantasy/football/story/_/id/48711830/2026-fantasy-football-rankings-ppr-field-yates",
+      "publishedAt": "2026-05-11T16:12:51.000Z",
+      "publishedTs": 1778515971000,
+      "description": "Field provides his latest rankings for the upcoming season, which will be updated throughout the offseason."
+    },
+    {
+      "id": "b5551c5214e351ea43c54211f0dadd6ad8b7c5cb",
+      "source": "ESPN",
+      "title": "Baby No. 2 on the way for Christian McCaffrey, Oli...",
+      "url": "https://www.espn.com/nfl/story/_/id/48717338/christian-mccaffrey-olivia-culpo-second-baby-announcement",
+      "publishedAt": "2026-05-09T04:34:31.000Z",
+      "publishedTs": 1778301271000,
+      "description": "The San Francisco 49ers star and former Miss Universe announced that they are expecting their second child."
+    },
+    {
+      "id": "20ca9dbd4305c1d0c39dea36eb1db3fbb19ce0d0",
+      "source": "ESPN",
+      "title": "Justin Herbert stars in girlfriend Madison Beer's ...",
+      "url": "https://www.espn.com/nfl/story/_/id/48696952/justin-berbert-los-angeles-chargers-madison-beer-music-video-teaser",
+      "publishedAt": "2026-05-09T04:34:31.000Z",
+      "publishedTs": 1778301271000,
+      "description": "The Grammy-nominated artist and the Chargers quarterback share the screen together in the video."
+    },
+    {
+      "id": "bb523209f66181ab0b6e894c97f00b9c516cfb21",
+      "source": "ESPN",
+      "title": "Super Bowl 2027 on ESPN: Date, location, venue, more details",
+      "url": "https://www.espn.com/nfl/story/_/id/47819308/super-bowl-2027-espn-how-watch-schedule-facts-stats",
+      "publishedAt": "2026-02-19T13:05:38.000Z",
+      "publishedTs": 1771506338000,
+      "description": "The 2027 Super Bowl will air on ESPN for the first time in network history. Learn more information about Super Bowl LXI festivities now."
+    },
+    {
+      "id": "ea8eb397b549a3fe19932b2f1ce73966e6ac6113",
+      "source": "FantasyPros",
+      "title": "Rashawn Slater (knee) at Chargers voluntary practice Monday",
+      "url": "https://www.fantasypros.com/nfl/news/585414/rashawn-slater-knee-chargers-voluntary-practice-monday.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "3d6b31321a2cb4f9c0ba3022064f71dcc6104eba",
+      "source": "FantasyPros",
+      "title": "Joe Alt (ankle) at Chargers voluntary practice Monday",
+      "url": "https://www.fantasypros.com/nfl/news/585413/joe-alt-ankle-chargers-voluntary-practice-monday-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "2144beaed9ba0c9f4d51723047d76dcca1022159",
+      "source": "FantasyPros",
+      "title": "Aaron Rodgers did not meet with Steelers over the weekend",
+      "url": "https://www.fantasypros.com/nfl/news/585412/aaron-rodgers-did-not-meet-with-steelers-over-weekend.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "ce4d7ef85e03d0de1d115582a7a930b7850862c7",
+      "source": "FantasyPros",
+      "title": "Wesley Brown waived by Bucs",
+      "url": "https://www.fantasypros.com/nfl/news/585411/wesley-brown-waived-by-bucs.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "91f9f5eb01457a944be79f1c5d8e02e536997c2f",
+      "source": "FantasyPros",
+      "title": "Owen Wright released by Bucs",
+      "url": "https://www.fantasypros.com/nfl/news/585410/owen-wright-released-by-bucs-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "6138a9884a0aa2bc4dc9a391c48d89e1bfafaf54",
+      "source": "FantasyPros",
+      "title": "Noah Short released by Bucs",
+      "url": "https://www.fantasypros.com/nfl/news/585409/noah-short-released-by-bucs.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "382be6214317db8bc6436d4955e4c45e03c3e4bd",
+      "source": "FantasyPros",
+      "title": "Smith Vilbert signs with Vikings",
+      "url": "https://www.fantasypros.com/nfl/news/585390/smith-vilbert-signs-with-vikings-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "d3b7cf53e8d63f3bfe7e187b37021e62ef676008",
+      "source": "FantasyPros",
+      "title": "Michael Woods II signs with Broncos",
+      "url": "https://www.fantasypros.com/nfl/news/585388/michael-woods-ii-signs-with-broncos-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "60510dd01b0348a407e8a7c8b4d832a53914d8bd",
+      "source": "FantasyPros",
+      "title": "Chris Boswell signs four-year extension with Steelers",
+      "url": "https://www.fantasypros.com/nfl/news/585380/chris-boswell-signs-four-year-extension-with-steelers-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "45effc946b296a1621685d53bf38ae18f16d0f71",
+      "source": "FantasyPros",
+      "title": "Layden Robinson signs with Falcons",
+      "url": "https://www.fantasypros.com/nfl/news/585372/layden-robinson-signs-with-falcons-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "a3d9755569c05d5cdd3540f17b970b8b34dcc4eb",
+      "source": "FantasyPros",
+      "title": "Antonio Hamilton Sr. re-signs with Commanders",
+      "url": "https://www.fantasypros.com/nfl/news/585371/antonio-hamilton-sr-re-signs-with-commanders-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "0384c496696f730c2dd2946014b491194167a84c",
+      "source": "FantasyPros",
+      "title": "Kadarius Calloway signs with Bucs",
+      "url": "https://www.fantasypros.com/nfl/news/585370/kadarius-calloway-signs-with-bucs-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "fc8c699bbbc57b11a496c22be9d02faedead01c2",
+      "source": "FantasyPros",
+      "title": "Dean Patterson signs with Bucs",
+      "url": "https://www.fantasypros.com/nfl/news/585369/dean-patterson-signs-with-bucs-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "95d2cbef6b1a9c15cf13b59885c7a45d8580f677",
+      "source": "FantasyPros",
+      "title": "Yasir Holmes signs with Bucs",
+      "url": "https://www.fantasypros.com/nfl/news/585368/yasir-holmes-signs-with-bucs-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "59704cbdf3cde99bec720099d3c51a88480ef7ab",
+      "source": "FantasyPros",
+      "title": "Benton Whitley waived by Bucs",
+      "url": "https://www.fantasypros.com/nfl/news/585367/benton-whitley-waived-by-bucs-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "024677011776a920c9d17866ee0cb778011665bd",
+      "source": "FantasyPros",
+      "title": "Ochaun Mathis waived by Jets",
+      "url": "https://www.fantasypros.com/nfl/news/585366/ochaun-mathis-waived-by-jets.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "db6d036086eef2dbe90d3eae292706e27c682648",
+      "source": "FantasyPros",
+      "title": "Jaden Keller signs with Jets",
+      "url": "https://www.fantasypros.com/nfl/news/585365/jaden-keller-signs-with-jets-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "458afd9171da27af954233350e853058e1e099bf",
+      "source": "FantasyPros",
+      "title": "Scott Daly signs with Bucs",
+      "url": "https://www.fantasypros.com/nfl/news/585364/scott-daly-signs-with-bucs.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "c611a8d2eb8701219c37c20c145a4e71e0b77be7",
+      "source": "FantasyPros",
+      "title": "Ja'Quinden Jackson waived by Jaguars",
+      "url": "https://www.fantasypros.com/nfl/news/585362/jaquinden-jackson-waived-by-jaguars-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "ac8ba35f4263d76e00d81cf62de2e03186f61a7c",
+      "source": "FantasyPros",
+      "title": "Jordan White placed on Reserve/Retired List",
+      "url": "https://www.fantasypros.com/nfl/news/585361/jordan-white-placed-on-reserveretired-list.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "7137526b7d84549dace5e87320b7283efb1cb399",
+      "source": "FantasyPros",
+      "title": "Sal Wormley re-signs with Jaguars",
+      "url": "https://www.fantasypros.com/nfl/news/585360/sal-wormley-re-signs-with-jaguars-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "90f5862e1f343f955bc5ef871b0e4760437f8edf",
+      "source": "FantasyPros",
+      "title": "Ameer Abdullah signs with Jaguars",
+      "url": "https://www.fantasypros.com/nfl/news/585359/ameer-abdullah-signs-with-jaguars-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "63da9c894972657c0744e3a934620e6609efb5c8",
+      "source": "FantasyPros",
+      "title": "Mike Danna signs one-year deal with Bills",
+      "url": "https://www.fantasypros.com/nfl/news/585353/mike-danna-signs-one-year-deal-with-bills.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
     {
       "id": "774e9f6bf54e836a46205ead0f64f1d9368da162",
       "source": "FantasyPros",
@@ -15,213 +411,6 @@
       "source": "FantasyPros",
       "title": "Zah Frazier waived by Bears",
       "url": "https://www.fantasypros.com/nfl/news/585304/zah-frazier-waived-by-bears-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "460f68fdafec62b25dd14eba5423e38a6634bd78",
-      "source": "FantasyPros",
-      "title": "Rueben Bain Jr. signs rookie deal with Bucs",
-      "url": "https://www.fantasypros.com/nfl/news/585303/rueben-bain-jr-signs-rookie-deal-with-bucs.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "312c15cebe10c3e021da07351aea2b523466acbf",
-      "source": "FantasyPros",
-      "title": "TJ Hall signs rookie deal with Saints",
-      "url": "https://www.fantasypros.com/nfl/news/585302/tj-hall-signs-rookie-deal-with-saints-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "f2a695ecaec567fe533c131385ec8fbbee2bbded",
-      "source": "FantasyPros",
-      "title": "Barion Brown signs rookie deal with Saints",
-      "url": "https://www.fantasypros.com/nfl/news/585301/barion-brown-signs-rookie-deal-with-saints-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "a96f2f5ed72b43e28a2ca6a9ceb20ee40929d44a",
-      "source": "FantasyPros",
-      "title": "Lorenzo Styles signs rookie deal with Saints",
-      "url": "https://www.fantasypros.com/nfl/news/585300/lorenzo-styles-signs-rookie-deal-with-saints.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "82344e5115dd73601b7b97b13f68f041de75f86d",
-      "source": "FantasyPros",
-      "title": "Bryce Lance signs rookie deal with Saints",
-      "url": "https://www.fantasypros.com/nfl/news/585299/bryce-lance-signs-rookie-deal-with-saints.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "34dc24184c9d296531a743cccc91d415d9d81adb",
-      "source": "FantasyPros",
-      "title": "Jeremiah Wright signs rookie deal with Saints",
-      "url": "https://www.fantasypros.com/nfl/news/585298/jeremiah-wright-signs-rookie-deal-with-saints-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "0efb392d3aa3818c58175577eab805b52d3cb2c2",
-      "source": "FantasyPros",
-      "title": "Oscar Delp signs rookie deal with Saints",
-      "url": "https://www.fantasypros.com/nfl/news/585297/oscar-delp-signs-rookie-deal-with-saints-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "7e19da0c9fd19cdeb9bded8264625928483d243f",
-      "source": "FantasyPros",
-      "title": "Robert Spears-Jennings signs rookie deal with Steelers",
-      "url": "https://www.fantasypros.com/nfl/news/585296/robert-spears-jennings-signs-rookie-deal-with-steelers-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "f1c8a5e3a8549ed2a789a444223c1db48e9f7cf7",
-      "source": "FantasyPros",
-      "title": "Gabriel Rubio signs rookie deal with Steelers",
-      "url": "https://www.fantasypros.com/nfl/news/585295/gabriel-rubio-signs-rookie-deal-with-steelers.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "5f5df015f765290a382a7911a28063cca1be9d4f",
-      "source": "FantasyPros",
-      "title": "Kaden Wetjen signs rookie deal with Steelers",
-      "url": "https://www.fantasypros.com/nfl/news/585294/kaden-wetjen-signs-rookie-deal-with-steelers-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "923068eb90467413d54daf4cca583eb0fc3c9dd9",
-      "source": "FantasyPros",
-      "title": "John Bullock claimed off waivers by Bucs",
-      "url": "https://www.fantasypros.com/nfl/news/585293/john-bullock-claimed-off-waivers-by-bucs-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "e3dbf28f2106efd625cbe7adfc5e8fd7d66607b8",
-      "source": "FantasyPros",
-      "title": "Michael Coats Jr. signs with Browns",
-      "url": "https://www.fantasypros.com/nfl/news/585292/michael-coats-jr-signs-with-browns.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "7f8d39bdd824eb21eaa8887d5ca3b8a926de5645",
-      "source": "FantasyPros",
-      "title": "Sal Cannella waived by Browns",
-      "url": "https://www.fantasypros.com/nfl/news/585291/sal-cannella-waived-by-browns.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "5729eab037ce5fc48ccaab7885305a7070ccd760",
-      "source": "FantasyPros",
-      "title": "Kyler Murray, J.J. McCarthy could be in 'true competition' for starting job",
-      "url": "https://www.fantasypros.com/nfl/news/585290/kyler-murray-jj-mccarthy-could-be-true-competition-starting-job.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "c1b0dddf289e04e96e5d8e820dbfdaf3e5de39b3",
-      "source": "FantasyPros",
-      "title": "Brandon Walton signs with Falcons",
-      "url": "https://www.fantasypros.com/nfl/news/585289/brandon-walton-signs-with-falcons-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "73c6baf10d59fff106c6d74d0e546f7b11aa9aa5",
-      "source": "FantasyPros",
-      "title": "Scotty Miller signs with Bears",
-      "url": "https://www.fantasypros.com/nfl/news/585092/scotty-miller-signs-with-bears.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "b3fe9916414daf0a41ad622e0a9725c8ae855883",
-      "source": "FantasyPros",
-      "title": "KC Concepcion (knee) medically cleared",
-      "url": "https://www.fantasypros.com/nfl/news/584899/kc-concepcion-knee-medically-cleared.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "19a6c7c3957f410b64fe703baa190d6bfa32b4dd",
-      "source": "FantasyPros",
-      "title": "Breece Hall signs three-year extension with New York Jets",
-      "url": "https://www.fantasypros.com/nfl/news/584897/breece-hall-signs-three-year-extension-with-new-york-jets.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "3a2cf5e0ada5752baca8c2928d4d190037b754c7",
-      "source": "FantasyPros",
-      "title": "Brandon McManus released by Packers",
-      "url": "https://www.fantasypros.com/nfl/news/584882/brandon-mcmanus-released-by-packers-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "4943875c05da86b9574b85d78d0736b048974376",
-      "source": "FantasyPros",
-      "title": "Jeremiah Owusu-Koramoah (neck) placed on Reserve/PUP list",
-      "url": "https://www.fantasypros.com/nfl/news/584875/jeremiah-owusu-koramoah-neck-placed-on-reservepup-list.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "08aaea3da879b5df5785270b8615f9707aa32d98",
-      "source": "FantasyPros",
-      "title": "Jauan Jennings agrees to one year deal with Vikings",
-      "url": "https://www.fantasypros.com/nfl/news/584819/jauan-jennings-agrees-to-one-year-deal-with-vikings.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "91f6fac04bdfd3b616292f4245bbe6f1c83e037a",
-      "source": "FantasyPros",
-      "title": "Taylor Heinicke retires after 11 years in NFL",
-      "url": "https://www.fantasypros.com/nfl/news/584816/taylor-heinicke-retires-after-11-years-nfl-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "f6881dd47d9b4ca185c8cb905b611a1034d3492b",
-      "source": "FantasyPros",
-      "title": "Kenny Moore II released by Colts",
-      "url": "https://www.fantasypros.com/nfl/news/584781/kenny-moore-ii-released-by-colts.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
