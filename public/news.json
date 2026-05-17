@@ -1,6 +1,276 @@
 {
-  "generatedAt": "2026-05-16T13:22:29.851Z",
+  "generatedAt": "2026-05-17T13:20:51.657Z",
   "items": [
+    {
+      "id": "472153a4cc91342e80fbb7aca101a8167d479f3a",
+      "source": "ESPN",
+      "title": "'All right, who's Trey Smack?': How Matt Stover di...",
+      "url": "https://www.espn.com/nfl/story/_/id/48761323/nfl-green-bay-packers-trey-smack-kicker-draft-florida",
+      "publishedAt": "2026-05-17T12:41:36.000Z",
+      "publishedTs": 1779021696000,
+      "description": "Smack, the only kicker drafted in 2026, left lacrosse behind after a single kick of a football."
+    },
+    {
+      "id": "136f871af0e6d4b91810dbaf1cf511b8565e33ed",
+      "source": "ESPN",
+      "title": "If the Aaron Rodgers offense didn't work in 2025, ...",
+      "url": "https://www.espn.com/nfl/story/_/id/48791209/steelers-sign-aaron-rodgers-quarterback-2026-offense-mike-mccarthy",
+      "publishedAt": "2026-05-17T06:00:35.000Z",
+      "publishedTs": 1778997635000,
+      "description": "Does Rodgers have anything left? Will the Steelers' offense look the same as it did in 2025? And can running it back actually work for Pittsburgh?"
+    },
+    {
+      "id": "e1dbf67190df32ddeebba1a112cb2da9ec6fa834",
+      "source": "ESPN",
+      "title": "With Rodgers' return, Steelers now have a QB conun...",
+      "url": "https://www.espn.com/nfl/story/_/id/48732178/aaron-rodgers-return-resign-deal-pittsburgh-steelers-2026-quarterback-conundrum",
+      "publishedAt": "2026-05-17T06:00:35.000Z",
+      "publishedTs": 1778997635000,
+      "description": "Mike McCarthy typically carries three QBs into Week 1, so who's the odd man out in this four-person QB room?"
+    },
+    {
+      "id": "67d9d999217f1aa2ea9149e0fe2747ffdc5c6a1e",
+      "source": "ESPN",
+      "title": "Sources: Rodgers to sign 1-year deal with Steelers...",
+      "url": "https://www.espn.com/nfl/story/_/id/48791130/aaron-rodgers-sign-1-year-deal-steelers",
+      "publishedAt": "2026-05-17T01:57:35.000Z",
+      "publishedTs": 1778983055000,
+      "description": "Four-time MVP Aaron Rodgers is expected to return the Steelers on a one-year deal worth up to $25 million, sources told ESPN."
+    },
+    {
+      "id": "0db53b81a41e4fa781ab51966a38cd54b591d81a",
+      "source": "ESPN",
+      "title": "Chargers OC McDaniel in NFL accelerator program",
+      "url": "https://www.espn.com/nfl/story/_/id/48787734/chargers-oc-mike-mcdaniel-part-nfl-accelerator-program",
+      "publishedAt": "2026-05-17T01:57:35.000Z",
+      "publishedTs": 1778983055000,
+      "description": "The NFL's revamped accelerator program features several notable head coaching and general manager candidates -- and even a head coach from 2025 in Mike McDaniel."
+    },
+    {
+      "id": "78ac4aaa2f1d3118d6b68020c147e31e9f3aa256",
+      "source": "ESPN",
+      "title": "NFL pushes back on criticism of streaming games",
+      "url": "https://www.espn.com/nfl/story/_/id/48778847/nfl-pushes-back-criticism-streaming-games",
+      "publishedAt": "2026-05-17T01:57:35.000Z",
+      "publishedTs": 1778983055000,
+      "description": "The NFL is defending its expanded lineup of games on streaming platforms amid criticism from President Donald Trump and scrutiny from the U.S. Justice Department."
+    },
+    {
+      "id": "4872890ca1d4ec53b70a3d4052184209efeefc6d",
+      "source": "ESPN",
+      "title": "NFL sees Wednesday play as 'only good' for fans",
+      "url": "https://www.espn.com/nfl/story/_/id/48779217/nfl-says-following-fan-interest-midweek-games",
+      "publishedAt": "2026-05-17T01:57:35.000Z",
+      "publishedTs": 1778983055000,
+      "description": "Increased ratings and the league's focus on holiday seasons could lead to more games on nontraditional days, NFL officials said."
+    },
+    {
+      "id": "52967c2c2f36c26cd5e432f99c671a271da2b7ff",
+      "source": "ESPN",
+      "title": "Official: Mauro died from accidental drug overdose...",
+      "url": "https://www.espn.com/nfl/story/_/id/48781633/former-nfl-player-josh-mauro-died-fentanyl-cocaine-ethanol-overdose",
+      "publishedAt": "2026-05-17T01:57:35.000Z",
+      "publishedTs": 1778983055000,
+      "description": "Former NFL defensive lineman Josh Mauro died from an acute combination of fentanyl, cocaine and ethanol intoxication, according to online records from the Maricopa County Office of the Medical Examiner."
+    },
+    {
+      "id": "fcc7c7d3851f31e1659dc7a22e79463412f8f94f",
+      "source": "ESPN",
+      "title": "Pats-Seahawks SB rematch to kick off '26 season",
+      "url": "https://www.espn.com/nfl/story/_/id/48773123/full-2026-nfl-schedule-unveiled-patriots-seahawks-week-1",
+      "publishedAt": "2026-05-17T01:57:35.000Z",
+      "publishedTs": 1778983055000,
+      "description": "In a rematch of Super Bowl LX, the Seahawks will welcome the Patriots to Lumen Field for the 2026 NFL season opener, one of 272 games officially announced throughout the league Thursday night."
+    },
+    {
+      "id": "80fc1d5710cd7a1dc0eba3c1346a0242b2963930",
+      "source": "ESPN",
+      "title": "Deion: Shedeur endured 'hell' in draft, rookie yea...",
+      "url": "https://www.espn.com/nfl/story/_/id/48774097/deion-shedeur-endured-hell-predraft-rookie-browns",
+      "publishedAt": "2026-05-17T01:57:35.000Z",
+      "publishedTs": 1778983055000,
+      "description": "Deion Sanders said that his son Shedeur \"matured spiritually\" after enduring criticism and what he called untruthful reporting during his predraft process and rookie season with the Browns."
+    },
+    {
+      "id": "e6665dcbfe87facb6f08f992647dbfe4fa35d935",
+      "source": "ESPN",
+      "title": "Source: Nabers had 'cleanup,' hopeful for Week 1",
+      "url": "https://www.espn.com/nfl/story/_/id/48767796/source-giants-malik-nabers-target-week-1-2nd-surgery",
+      "publishedAt": "2026-05-17T01:57:35.000Z",
+      "publishedTs": 1778983055000,
+      "description": "Malik Nabers underwent a second procedure on his right knee earlier this offseason and the Giants remain hopeful the wide receiver will be ready for Week 1, a source confirmed to ESPN."
+    },
+    {
+      "id": "07b59600ee792a501716fa5102d555880b21f385",
+      "source": "ESPN",
+      "title": "🎥 2026 schedule reveals for all 32 NFL teams",
+      "url": "https://www.espn.com/nfl/story/_/id/48764468/nfl-2026-schedule-release-social-media-posts-reactions",
+      "publishedAt": "2026-05-17T01:57:35.000Z",
+      "publishedTs": 1778983055000,
+      "description": "From memes to mini movies, all 32 teams brought their A-games with clever schedule reveal posts."
+    },
+    {
+      "id": "0b722dd87053eb2d524b06db7cd97888f7d5f1b1",
+      "source": "ESPN",
+      "title": "Let's overreact to the NFL schedule release: Tough...",
+      "url": "https://www.espn.com/nfl/story/_/id/48758666/2026-nfl-schedule-release-overreactions-takeaways-best-games-opponents-matchups",
+      "publishedAt": "2026-05-16T14:29:24.000Z",
+      "publishedTs": 1778941764000,
+      "description": "How could strength of schedule impact postseason hopes for the Bears, Bengals and Chiefs? Does the Dolphins' slate point to them landing the top draft pick?"
+    },
+    {
+      "id": "cda6e4c482022ac1423a1b7667a18bdf69650a24",
+      "source": "ESPN",
+      "title": "Schedule release: Tracking all 32 teams and predic...",
+      "url": "https://www.espn.com/nfl/story/_/page/nflschedulerelease-48704131/2026-nfl-schedule-release-all-32-game-predictions-takeaways",
+      "publishedAt": "2026-05-16T14:29:24.000Z",
+      "publishedTs": 1778941764000,
+      "description": "Seahawks vs. Patriots will open a season that features nine international games. Here are predictions and more."
+    },
+    {
+      "id": "f25edf44bf5beb846f1420c864cbb41fe6a77db8",
+      "source": "ESPN",
+      "title": "What's next for the 2025 draft class? Solak answer...",
+      "url": "https://www.espn.com/nfl/story/_/id/48771161/2026-nfl-offseason-big-questions-second-year-sophomore-players-2025-draft",
+      "publishedAt": "2026-05-16T13:42:53.000Z",
+      "publishedTs": 1778938973000,
+      "description": "Should Travis Hunter play only defense? Can Ashton Jeanty and Emeka Egbuka break out? Is Will Campbell's role in danger? And what's next for Nick Emmanwori?"
+    },
+    {
+      "id": "7b0b0fe2f19666ccec359ea9d27c3c57583ed5a7",
+      "source": "ESPN",
+      "title": "UFL says in-game ref interviews strengthening tran...",
+      "url": "https://www.espn.com/nfl/story/_/id/48778323/ufl-game-referee-interviews-strengthening-transparency",
+      "publishedAt": "2026-05-16T12:39:23.000Z",
+      "publishedTs": 1778935163000,
+      "description": "The UFL believes in-game discussions can help focus postgame conversations on the competition rather than calls."
+    },
+    {
+      "id": "93ac46d1cff659777782df0a024a0d15dce94ca9",
+      "source": "ESPN",
+      "title": "Copy of Can Rams, Stafford repeat 2025 success with simila...",
+      "url": "https://www.espn.com/nfl/story/_/id/48751952/what-los-angeles-rams-learned-qb-matthew-stafford-mvp-season",
+      "publishedAt": "2026-05-16T02:54:12.000Z",
+      "publishedTs": 1778900052000,
+      "description": "The Rams allowed Stafford to spend time away from the facility, which helped the QB go into the season fresher than he has in years past."
+    },
+    {
+      "id": "7687d056eb7eb5ecf4b6057a951561a12b786024",
+      "source": "ESPN",
+      "title": "Will 13 personnel drive offenses in 2026? Barnwell...",
+      "url": "https://www.espn.com/nfl/story/_/id/48750958/2026-nfl-tight-ends-13-personnel-rams-mcvay-trends-draft-jumbo-barnwell",
+      "publishedAt": "2026-05-16T02:54:12.000Z",
+      "publishedTs": 1778900052000,
+      "description": "The Rams had success with tight end-heavy sets in 2025, and other teams could be trying to follow."
+    },
+    {
+      "id": "e595abe8d49daba229cea66087bca56b8467b5c5",
+      "source": "ESPN",
+      "title": "Fantasy football: Weighing the impact of each of t...",
+      "url": "https://www.espn.com/fantasy/football/story/_/id/48778888/fantasy-football-bye-week-scarcity-meter-weighing-impact-the-nine-bye-weeks-2026",
+      "publishedAt": "2026-05-15T21:45:26.000Z",
+      "publishedTs": 1778881526000,
+      "description": "With the schedule revealed, we look at the potential pitfalls, quirks, and reveal if -- and when -- Bye-maggedon will be upon us."
+    },
+    {
+      "id": "6f2a866b4f345c0385bee48ba16df11a8b780ab1",
+      "source": "ESPN",
+      "title": "Fantasy football: Why the 2026 NFL schedule benefi...",
+      "url": "https://www.espn.com/fantasy/football/story/_/id/48755471/fantasy-football-2026-nfl-schedule-strength",
+      "publishedAt": "2026-05-15T21:45:26.000Z",
+      "publishedTs": 1778881526000,
+      "description": "Mike Clay reacts with the players and teams most helped and hurt by the 2026 NFL schedule."
+    },
+    {
+      "id": "a4e1b187f6ea403e301e8ef76e346773f7d0130a",
+      "source": "ESPN",
+      "title": "Early Week 1 bets and futures to target following ...",
+      "url": "https://www.espn.com/espn/betting/story/_/id/48432437/2026-nfl-schedule-release-week-1-odds-lines-spreads-sports-betting-futures",
+      "publishedAt": "2026-05-15T17:36:21.000Z",
+      "publishedTs": 1778866581000,
+      "description": "With the full NFL schedule out, here are early bets we like for Week 1, as well as some futures to consider."
+    },
+    {
+      "id": "350b6573e152318f1a69bc0a0ef4fb12a5952b07",
+      "source": "ESPN",
+      "title": "Schedule release: Betting odds for every Week 1 ga...",
+      "url": "https://www.espn.com/espn/betting/story/_/id/48432180/2026-nfl-schedule-release-season-week-1-games-betting-odds-spreads-lines-highlights",
+      "publishedAt": "2026-05-15T17:36:21.000Z",
+      "publishedTs": 1778866581000,
+      "description": "Spreads, moneylines and totals for each Week 1 game in the NFL, plus other highlighted matchups."
+    },
+    {
+      "id": "bb523209f66181ab0b6e894c97f00b9c516cfb21",
+      "source": "ESPN",
+      "title": "Super Bowl 2027 on ESPN: Date, location, venue, more details",
+      "url": "https://www.espn.com/nfl/story/_/id/47819308/super-bowl-2027-espn-how-watch-schedule-facts-stats",
+      "publishedAt": "2026-02-19T13:05:38.000Z",
+      "publishedTs": 1771506338000,
+      "description": "The 2027 Super Bowl will air on ESPN for the first time in network history. Learn more information about Super Bowl LXI festivities now."
+    },
+    {
+      "id": "c4488cb60a7d07459d043ca7b7bc85b7f62203e9",
+      "source": "FantasyPros",
+      "title": "Taron Johnson sitting out of voluntary offseason workouts",
+      "url": "https://www.fantasypros.com/nfl/news/586323/taron-johnson-sitting-out-voluntary-offseason-workouts-contract-reas.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "211051faf057b34e0a4490741013bbc82fe7873c",
+      "source": "FantasyPros",
+      "title": "Lee Hunter signs rookie deal with Panthers",
+      "url": "https://www.fantasypros.com/nfl/news/586322/lee-hunter-signs-rookie-deal-with-panthers-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "e06be55777e4c8fc826fe13d0bf2bc93a3649fbd",
+      "source": "FantasyPros",
+      "title": "Rashad Rochelle signs with Seahawks",
+      "url": "https://www.fantasypros.com/nfl/news/586321/rashad-rochelle-signs-with-seahawks-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "bd35786ef2b4e8f2f2d1f69e4fd332ca6f7df832",
+      "source": "FantasyPros",
+      "title": "Aaron Rodger's returning to Steelers on one-year deal",
+      "url": "https://www.fantasypros.com/nfl/news/586278/aaron-rodgers-returning-to-steelers-on-one-year-deal.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "d987885c8f156d68ba0cf549cf98528b8b5345e2",
+      "source": "FantasyPros",
+      "title": "Brandon Cisse signs rookie deal with Packers",
+      "url": "https://www.fantasypros.com/nfl/news/586192/brandon-cisse-signs-rookie-deal-with-packers.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "dbd095ed00110fcb1aa3fd938791563554550a86",
+      "source": "FantasyPros",
+      "title": "Max Iheanachor signs rookie deal with Steelers",
+      "url": "https://www.fantasypros.com/nfl/news/586190/max-iheanachor-signs-rookie-deal-with-steelers-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "86974ab37e6d97be12efa259bbd9241e69cc81eb",
+      "source": "FantasyPros",
+      "title": "Tershawn Wharton (neck) underwent surgery, likely begin season on PUP list",
+      "url": "https://www.fantasypros.com/nfl/news/586189/tershawn-wharton-neck-underwent-surgery-to-likely-begin-season-on-pup-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
     {
       "id": "2b5f1ba095ea0db21fb80002eef807de114e2de6",
       "source": "FantasyPros",
@@ -150,69 +420,6 @@
       "source": "FantasyPros",
       "title": "Tanner McLachlan waived by Chargers",
       "url": "https://www.fantasypros.com/nfl/news/585875/tanner-mclachlan-waived-by-chargers.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "3233ecbef31f9221a6536727c3283444f96f3e87",
-      "source": "FantasyPros",
-      "title": "Niles King waived by Chargers",
-      "url": "https://www.fantasypros.com/nfl/news/585874/niles-king-waived-by-chargers.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "c1d8c2d2d2ccb5889d7a148b0e62e4f15439ea79",
-      "source": "FantasyPros",
-      "title": "Laekin Vakalahi signs with Chargers",
-      "url": "https://www.fantasypros.com/nfl/news/585873/laekin-vakalahi-signs-with-chargers.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "13410924d18c5c8db7cf40b48428e954dbfe8eb1",
-      "source": "FantasyPros",
-      "title": "Myles Purchase signs with Chargers",
-      "url": "https://www.fantasypros.com/nfl/news/585872/myles-purchase-signs-with-chargers.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "254ab25fe140196b622c6e33f8a8644e7d68d499",
-      "source": "FantasyPros",
-      "title": "Johnny Pascuzzi signs with Chargers",
-      "url": "https://www.fantasypros.com/nfl/news/585871/johnny-pascuzzi-signs-with-chargers.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "4341ea6e01efe9de7dbff70b6b7b7df83c9ebc19",
-      "source": "FantasyPros",
-      "title": "Will Ferrin released by Jets",
-      "url": "https://www.fantasypros.com/nfl/news/585870/will-ferrin-released-by-jets.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "28051b0bdf6c7f5695bcbd1a8e04765ce75b1b52",
-      "source": "FantasyPros",
-      "title": "Malik Nabers (knee) hopeful to be ready for Week 1",
-      "url": "https://www.fantasypros.com/nfl/news/585869/malik-nabers-knee-hopeful-to-be-ready-week-1.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "21999d9ed6f95bc663f7823a02846dfad702c8ce",
-      "source": "FantasyPros",
-      "title": "Devean Deal waived by Seahawks",
-      "url": "https://www.fantasypros.com/nfl/news/585868/devean-deal-waived-by-seahawks.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
