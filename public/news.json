@@ -1,23 +1,113 @@
 {
-  "generatedAt": "2026-05-25T14:53:39.684Z",
+  "generatedAt": "2026-05-26T15:28:28.880Z",
   "items": [
     {
-      "id": "06824f6e6b680cdadf598162a2f8c2e9ed6880d7",
+      "id": "8a464d8f08af5bc077272680473e241dac6cb197",
+      "source": "ESPN",
+      "title": "Source: Brissett, Cardinals not close on new deal",
+      "url": "https://www.espn.com/nfl/story/_/id/48846780/jacoby-brissett-not-close-reworked-deal-cardinals",
+      "publishedAt": "2026-05-26T15:01:14.000Z",
+      "publishedTs": 1779807674000,
+      "description": "A reworked deal between the Arizona Cardinals and quarterback Jacoby Brissett is still not close, a source told ESPN on Friday."
+    },
+    {
+      "id": "8048cf9c6786764967dbf71d19cc87d8277a9895",
+      "source": "ESPN",
+      "title": "Sources: Stafford lands 1-year, $55M extension",
+      "url": "https://www.espn.com/nfl/story/_/id/48839342/sources-matthew-stafford-rams-reach-1-year-55m-extension",
+      "publishedAt": "2026-05-26T15:01:14.000Z",
+      "publishedTs": 1779807674000,
+      "description": "Reigning NFL MVP Matthew Stafford and the Rams reached agreement on a one-year, $55 million extension, sources told ESPN's Adam Schefter. The QB is now tied to L.A. through the 2027 season, with $105 million remaining on his deal."
+    },
+    {
+      "id": "7c2b6ee4ca8d3ebd347128008b7566026141f100",
+      "source": "ESPN",
+      "title": "Source: Giants DL Robertson-Harris tears Achilles",
+      "url": "https://www.espn.com/nfl/story/_/id/48843258/source-giants-dl-roy-robertson-harris-tears-achilles",
+      "publishedAt": "2026-05-26T15:01:14.000Z",
+      "publishedTs": 1779807674000,
+      "description": "Giants defensive lineman Roy Robertson-Harris tore his Achilles at Thursday's OTA workout and is expected to miss the 2026 season, a source told ESPN."
+    },
+    {
+      "id": "4c9f31b1a3b6b8558960b0e9ef1ea973a788e88c",
+      "source": "ESPN",
+      "title": "Lions ink All-Pro LB Campbell to 4-year extension",
+      "url": "https://www.espn.com/nfl/story/_/id/48836875/lions-sign-all-pro-lb-jack-campbell-four-year-extension",
+      "publishedAt": "2026-05-26T15:01:14.000Z",
+      "publishedTs": 1779807674000,
+      "description": "The Lions have signed Jack Campbell to a four-year extension, putting him under contract with the franchise through the 2030 season. The deal is for $81 million and includes $51.5M guaranteed, sources told NFL Network's Ian Rapoport."
+    },
+    {
+      "id": "2224d86540a07651d809fe3c6dd72c6002aa0798",
+      "source": "ESPN",
+      "title": "🍼 Jordan Love, Ronika Stone welcome first child",
+      "url": "https://www.espn.com/nfl/story/_/id/48855003/green-bay-packers-jordan-love-ronika-stone-baby-announcement-daughter",
+      "publishedAt": "2026-05-26T15:01:14.000Z",
+      "publishedTs": 1779807674000,
+      "description": "Jordan Love and Ronika Stone have spent a full month with their newborn daughter."
+    },
+    {
+      "id": "87e1ada5f9700d629da902607baf2c392eb6dcb4",
+      "source": "ESPN",
+      "title": "Fernandez, star on '72 undefeated Dolphins, dies",
+      "url": "https://www.espn.com/nfl/story/_/id/48881180/manny-fernandez-star-1972-undefeated-dolphins-dies-79",
+      "publishedAt": "2026-05-26T15:01:13.000Z",
+      "publishedTs": 1779807673000,
+      "description": "Manny Fernandez, a two-time Super Bowl-winning defensive lineman with the Dolphins, has died at age 79."
+    },
+    {
+      "id": "8d01507184ba0bb6047d29116e56f8e061b0fdb1",
+      "source": "ESPN",
+      "title": "Carter halts talk of Giants rift over Dart's polit...",
+      "url": "https://www.espn.com/nfl/story/_/id/48856461/carter-halts-talk-giants-rift-dart-introduces-trump",
+      "publishedAt": "2026-05-26T15:01:13.000Z",
+      "publishedTs": 1779807673000,
+      "description": "Linebacker Abdul Carter was among Giants players who took to social media to shut down speculation that there was a locker room rift after quarterback Jaxson Dart introduced Donald Trump at a pep rally."
+    },
+    {
+      "id": "9e9e5009dcd3305e796fe504a2590a226225aa61",
+      "source": "ESPN",
+      "title": "Ex-QB Manziel pummels influencer in MMA debut",
+      "url": "https://www.espn.com/mma/story/_/id/48859493/johnny-manziel-dominates-mma-debut-says-fight-again",
+      "publishedAt": "2026-05-26T15:01:13.000Z",
+      "publishedTs": 1779807673000,
+      "description": "Former NFL quarterback Johnny Manziel flashed some skills as a fighter in his MMA debut, stopping social media influencer Bob Menery in the first round before saying one fight was \"good enough.\""
+    },
+    {
+      "id": "608b6fc7f971e8768c2b4396e8dc35c8a570be65",
+      "source": "ESPN",
+      "title": "Florida signs 'Teddy Bridgewater Act' into law",
+      "url": "https://www.espn.com/espn/story/_/id/48850984/florida-signs-teddy-bridgewater-act-law",
+      "publishedAt": "2026-05-26T15:01:13.000Z",
+      "publishedTs": 1779807673000,
+      "description": "Florida has signed the \"Teddy Bridgewater Act\" into law, meaning high school coaches in the state will now be able to use their own money to help their players with expenses such as food, transportation, physical therapy and rehabilitation services."
+    },
+    {
+      "id": "ab4ee243f4d19b46e56876bc63e093e9f1e8096e",
+      "source": "ESPN",
+      "title": "Who are the top quarterbacks in next year's NFL dr...",
+      "url": "https://www.espn.com/nfl/draft2027/story/_/id/48828988/2027-nfl-draft-quarterback-class-top-prospects-manning-moore-carr",
+      "publishedAt": "2026-05-26T14:46:31.000Z",
+      "publishedTs": 1779806791000,
+      "description": "Next year's QB draft class should be loaded, with big names such as Arch Manning, Dante Moore, CJ Carr and Trinidad Chambliss. Here's what you need to know."
+    },
+    {
+      "id": "962e9d352006b03cd2f9ad66d53b554aa9b32bd2",
+      "source": "ESPN",
+      "title": "Las Vegas Raiders to put 'a lot' of pressure on As...",
+      "url": "https://www.espn.com/nfl/story/_/id/48873026/las-vegas-raiders-nfl-pressure-ashton-jeanty-year-2",
+      "publishedAt": "2026-05-26T12:33:11.000Z",
+      "publishedTs": 1779798791000,
+      "description": "If Klint Kubiak's offense is going to function properly, it will need more out of the star running back."
+    },
+    {
+      "id": "f1a3eaad150cf6a11dc7896037befbfd99427d13",
       "source": "ESPN",
       "title": "'I Scored a Touchdown': Antwaan Randle El to Ward ...",
       "url": "https://www.espn.com/nfl/story/_/id/48845391/espn-scored-touchdown-super-bowl-pittsburgh-steelers-antwaan-randle-el-hines-ward-special-moment",
-      "publishedAt": "2026-05-25T13:19:42.000Z",
-      "publishedTs": 1779715182000,
+      "publishedAt": "2026-05-26T03:06:37.000Z",
+      "publishedTs": 1779764797000,
       "description": "The Steelers teammates share the details of the TD -- and the celebration -- from Super Bowl XL."
-    },
-    {
-      "id": "2852408246b3934f9d2982592d5c4a798b1b96e9",
-      "source": "ESPN",
-      "title": "Why drafting OSU's Carnell Tate to pair with Cam W...",
-      "url": "https://www.espn.com/nfl/story/_/id/48826160/tennessee-titans-wr-carnell-tate-perfect-pairing-cam-ward",
-      "publishedAt": "2026-05-25T12:23:21.000Z",
-      "publishedTs": 1779711801000,
-      "description": "With premium defensive options on the board, Tennessee made a unanimous decision to get an impact player on offense."
     },
     {
       "id": "b5d0de6e18128eb2b3a3a579a63f0cd5def2c060",
@@ -29,15 +119,6 @@
       "description": "The Steelers signing Jamel Dean? Solid move. The Colts guaranteeing big money to Daniel Jones? Not so much. Let's pick out offseason highs and lows in the AFC."
     },
     {
-      "id": "f57bfab8f0888133706fb55e7df7332fd3cb6c1c",
-      "source": "ESPN",
-      "title": "NFC North: QB buzz, plus underrated, surprising ro...",
-      "url": "https://www.espn.com/nfl/story/_/id/48834642/nfl-nfc-lions-packers-bears-vikings-kyler-murray-caleb-williams-jordan-love",
-      "publishedAt": "2026-05-24T22:51:22.000Z",
-      "publishedTs": 1779663082000,
-      "description": "The Bears, Packers, Lions and Vikings finished with winning records in 2025. Here's how their offseasons have impacted the NFC North."
-    },
-    {
       "id": "2d55c260a46c090240dad05c38c4c863de29420e",
       "source": "ESPN",
       "title": "'It means everything': A.J. Brown gets married to ...",
@@ -45,87 +126,6 @@
       "publishedAt": "2026-05-24T22:50:58.000Z",
       "publishedTs": 1779663058000,
       "description": "Eagles wide receiver became a husband over the weekend at Montage Laguna Beach in California."
-    },
-    {
-      "id": "1a6c08b564db516c53eee1904e8af4f162d6bd72",
-      "source": "ESPN",
-      "title": "Carter halts talk of Giants rift over Dart's polit...",
-      "url": "https://www.espn.com/nfl/story/_/id/48856461/carter-halts-talk-giants-rift-dart-introduces-trump",
-      "publishedAt": "2026-05-24T18:12:38.000Z",
-      "publishedTs": 1779646358000,
-      "description": "Linebacker Abdul Carter was among Giants players who took to social media to shut down speculation that there was a locker room rift after quarterback Jaxson Dart introduced Donald Trump at a pep rally."
-    },
-    {
-      "id": "9a9e1f0ebba5423b4f9740e37602c30c856f0ef0",
-      "source": "ESPN",
-      "title": "Ex-QB Manziel pummels influencer in MMA debut",
-      "url": "https://www.espn.com/mma/story/_/id/48859493/johnny-manziel-dominates-mma-debut-says-fight-again",
-      "publishedAt": "2026-05-24T18:12:38.000Z",
-      "publishedTs": 1779646358000,
-      "description": "Former NFL quarterback Johnny Manziel flashed some skills as a fighter in his MMA debut, stopping social media influencer Bob Menery in the first round before saying one fight was \"good enough.\""
-    },
-    {
-      "id": "92e82193c1160b084e2c3e865b23039097a9dcaf",
-      "source": "ESPN",
-      "title": "Florida signs 'Teddy Bridgewater Act' into law",
-      "url": "https://www.espn.com/espn/story/_/id/48850984/florida-signs-teddy-bridgewater-act-law",
-      "publishedAt": "2026-05-24T18:12:38.000Z",
-      "publishedTs": 1779646358000,
-      "description": "Florida has signed the \"Teddy Bridgewater Act\" into law, meaning high school coaches in the state will now be able to use their own money to help their players with expenses such as food, transportation, physical therapy and rehabilitation services."
-    },
-    {
-      "id": "1f1cede6a05bcc203e1744d8f14216a941c6b490",
-      "source": "ESPN",
-      "title": "Source: Brissett, Cardinals not close on new deal",
-      "url": "https://www.espn.com/nfl/story/_/id/48846780/jacoby-brissett-not-close-reworked-deal-cardinals",
-      "publishedAt": "2026-05-24T18:12:38.000Z",
-      "publishedTs": 1779646358000,
-      "description": "A reworked deal between the Arizona Cardinals and quarterback Jacoby Brissett is still not close, a source told ESPN on Friday."
-    },
-    {
-      "id": "67ab6befc82891359803cc7e1eccb530f80c4e2b",
-      "source": "ESPN",
-      "title": "Sources: Stafford lands 1-year, $55M extension",
-      "url": "https://www.espn.com/nfl/story/_/id/48839342/sources-matthew-stafford-rams-reach-1-year-55m-extension",
-      "publishedAt": "2026-05-24T18:12:38.000Z",
-      "publishedTs": 1779646358000,
-      "description": "Reigning NFL MVP Matthew Stafford and the Rams reached agreement on a one-year, $55 million extension, sources told ESPN's Adam Schefter. The QB is now tied to L.A. through the 2027 season, with $105 million remaining on his deal."
-    },
-    {
-      "id": "b817512a435f2b2a55d5f63e51a4a118fb9d2f38",
-      "source": "ESPN",
-      "title": "Source: Giants DL Robertson-Harris tears Achilles",
-      "url": "https://www.espn.com/nfl/story/_/id/48843258/source-giants-dl-roy-robertson-harris-tears-achilles",
-      "publishedAt": "2026-05-24T18:12:38.000Z",
-      "publishedTs": 1779646358000,
-      "description": "Giants defensive lineman Roy Robertson-Harris tore his Achilles at Thursday's OTA workout and is expected to miss the 2026 season, a source told ESPN."
-    },
-    {
-      "id": "89028bfeab4aee20a0c4a8e9b99524e64556027a",
-      "source": "ESPN",
-      "title": "Lions ink All-Pro LB Campbell to 4-year extension",
-      "url": "https://www.espn.com/nfl/story/_/id/48836875/lions-sign-all-pro-lb-jack-campbell-four-year-extension",
-      "publishedAt": "2026-05-24T18:12:38.000Z",
-      "publishedTs": 1779646358000,
-      "description": "The Lions have signed Jack Campbell to a four-year extension, putting him under contract with the franchise through the 2030 season. The deal is for $81 million and includes $51.5M guaranteed, sources told NFL Network's Ian Rapoport."
-    },
-    {
-      "id": "0d599b522e7200d196191826ceba3aa79652b9d7",
-      "source": "ESPN",
-      "title": "Source: Giants give GM Schoen multiyear deal",
-      "url": "https://www.espn.com/nfl/story/_/id/48839144/source-giants-give-gm-joe-schoen-multiyear-extension",
-      "publishedAt": "2026-05-24T18:12:38.000Z",
-      "publishedTs": 1779646358000,
-      "description": "The Giants and general manager Joe Schoen agreed to terms on a multiyear extension."
-    },
-    {
-      "id": "48ca251115dc3dd667e611faf49c0264833c7948",
-      "source": "ESPN",
-      "title": "🍼 Jordan Love, Ronika Stone welcome first child",
-      "url": "https://www.espn.com/nfl/story/_/id/48855003/green-bay-packers-jordan-love-ronika-stone-baby-announcement-daughter",
-      "publishedAt": "2026-05-24T18:12:38.000Z",
-      "publishedTs": 1779646358000,
-      "description": "Jordan Love and Ronika Stone have spent a full month with their newborn daughter."
     },
     {
       "id": "e3af257d115d055925dc469babd9af3323927508",
@@ -171,6 +171,15 @@
       "publishedAt": "2026-02-19T13:05:38.000Z",
       "publishedTs": 1771506338000,
       "description": "The 2027 Super Bowl will air on ESPN for the first time in network history. Learn more information about Super Bowl LXI festivities now."
+    },
+    {
+      "id": "f456f7bf4a2c778899cb9cc60b711938332a1042",
+      "source": "FantasyPros",
+      "title": "Rashee Rice: Chiefs have no plans to offer extension before season",
+      "url": "https://www.fantasypros.com/nfl/news/587793/rashee-rice-chiefs-have-no-plans-to-offer-extension-before-season.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
     },
     {
       "id": "b5836e31f403a1c20b7feaacc8b4790579fd4936",
@@ -375,15 +384,6 @@
       "source": "FantasyPros",
       "title": "Samori Toure works out for Texans",
       "url": "https://www.fantasypros.com/nfl/news/587188/samori-toure-works-out-texans-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "96ad73a4d5600b169b717e96c66e00767e402837",
-      "source": "FantasyPros",
-      "title": "Andrew Thomas dealing with foot and shoulder injuries",
-      "url": "https://www.fantasypros.com/nfl/news/587182/andrew-thomas-dealing-with-foot-shoulder-injuries.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
