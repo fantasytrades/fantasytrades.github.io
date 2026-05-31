@@ -1,103 +1,112 @@
 {
-  "generatedAt": "2026-05-30T13:38:46.547Z",
+  "generatedAt": "2026-05-31T13:44:51.061Z",
   "items": [
     {
-      "id": "fa7f130a343d1664cc384227abfc04eb31ddcc09",
+      "id": "aee87b107d122d50452bd1b0bdea520217aa1afc",
       "source": "ESPN",
-      "title": "'Not an Unc yet': Why Ravens' Lamar Jackson doesn'...",
-      "url": "https://www.espn.com/nfl/story/_/id/48900930/why-baltimore-ravens-qb-lamar-jackson-feel-old",
-      "publishedAt": "2026-05-30T12:19:16.000Z",
-      "publishedTs": 1780143556000,
-      "description": "With a new coach and new OC, Jackson said the start of this season is a \"breath of fresh air.\""
+      "title": "Offseason changes bring new look to Commanders: 'W...",
+      "url": "https://www.espn.com/nfl/story/_/id/48913350/offseason-changes-bringing-new-look-2026-commanders",
+      "publishedAt": "2026-05-31T12:17:31.000Z",
+      "publishedTs": 1780229851000,
+      "description": "Here are the changes on offense and defense that Washington has made -- so far -- this offseason."
     },
     {
-      "id": "7053fd0e847195935d23cc8ef94c7c88820e94bb",
+      "id": "74d6a0ffa67d3b0a89fd70d801194b85422fd8ef",
       "source": "ESPN",
-      "title": "Sources: Giants fear Olszewski has torn Achilles",
-      "url": "https://www.espn.com/nfl/story/_/id/48913425/giants-fear-wr-gunner-olszewski-torn-achilles-sources-say",
-      "publishedAt": "2026-05-29T22:14:04.000Z",
-      "publishedTs": 1780092844000,
-      "description": "Giants wide receiver Gunner Olszewski went down Friday during OTAs with a noncontact injury that the team fears is a torn Achilles tendon, sources told ESPN."
+      "title": "What A.J. Brown would bring to the Patriots' offen...",
+      "url": "https://www.espn.com/nfl/story/_/id/48913662/what-aj-brown-patriots-new-england-philadelphia-eagles-trade",
+      "publishedAt": "2026-05-31T12:17:30.000Z",
+      "publishedTs": 1780229850000,
+      "description": "An Eagles' trade with New England for the receiver has been rumored for months. Could it happen this week?"
     },
     {
-      "id": "33aaef0751bc8470a49a370a0297389e132e2a3e",
+      "id": "56de68cd6e16e3fe67aee4ec4f387d1e06602ea7",
       "source": "ESPN",
-      "title": "Source: Steelers assistant fired for misconduct",
-      "url": "https://www.espn.com/nfl/story/_/id/48912033/sources-steelers-fire-assistant-swinton-months-job",
-      "publishedAt": "2026-05-29T22:14:04.000Z",
-      "publishedTs": 1780092844000,
-      "description": "The Steelers have fired senior special teams assistant Derius Swinton II for a violation of club policy, sources told ESPN."
+      "title": "Sources: Vikings hire Seahawks' Teasley as GM",
+      "url": "https://www.espn.com/nfl/story/_/id/48920534/sources-vikings-hire-seahawks-nolan-teasley-new-gm",
+      "publishedAt": "2026-05-30T19:05:03.000Z",
+      "publishedTs": 1780167903000,
+      "description": "The Vikings have hired Nolan Teasley as their general manager, sources told NFL Network, concluding an unusual chapter for the franchise."
     },
     {
-      "id": "8f01a9c5f8c50df95951e98dc86bab228c78cbe6",
-      "source": "ESPN",
-      "title": "🏈 Simulating trades for Coleman, Kmet, more",
-      "url": "https://www.espn.com/nfl/story/_/id/48816864/2026-nfl-offseason-trade-offers-best-deals-coleman-kmet-richardson-thibodeaux",
-      "publishedAt": "2026-05-29T22:14:04.000Z",
-      "publishedTs": 1780092844000,
-      "description": "We proposed trade offers for Keon Coleman, Cole Kmet, Anthony Richardson Sr. and Kayvon Thibodeaux. Could any of them be on the move?"
-    },
-    {
-      "id": "26ad6088252a6f6be162ce1bc952c280ad759db9",
+      "id": "f3a3ed2dcd67477d8d30dbb4dbd8743a958b6a58",
       "source": "ESPN",
       "title": "Carter, Dart express unity after Trump dispute",
       "url": "https://www.espn.com/nfl/story/_/id/48913495/giants-carter-dart-express-unity-disagreement-trump",
-      "publishedAt": "2026-05-29T22:14:03.000Z",
-      "publishedTs": 1780092843000,
+      "publishedAt": "2026-05-30T19:05:03.000Z",
+      "publishedTs": 1780167903000,
       "description": "Giants teammates Jaxson Dart and Abdul Carter expressed solidarity Friday following their \"disagreement\" over the quarterback's involvement in an event for President Donald Trump."
     },
     {
-      "id": "c88b1333444d2b1a86f23352211e18c855eb8f44",
+      "id": "47e8d504970492cad44a5a5a07880ffb115963b9",
+      "source": "ESPN",
+      "title": "Sources: Giants fear Olszewski has torn Achilles",
+      "url": "https://www.espn.com/nfl/story/_/id/48913425/giants-fear-wr-gunner-olszewski-torn-achilles-sources-say",
+      "publishedAt": "2026-05-30T19:05:03.000Z",
+      "publishedTs": 1780167903000,
+      "description": "Giants wide receiver Gunner Olszewski went down during OTAs with a noncontact injury that the team fears is a torn Achilles tendon, sources told ESPN."
+    },
+    {
+      "id": "8955cde89242545cbaf9b45b1a19d2bf230c584c",
       "source": "ESPN",
       "title": "Nacua 'grateful' to Rams for support after lawsuit...",
       "url": "https://www.espn.com/nfl/story/_/id/48904688/puka-nacua-says-grateful-rams-support-lawsuit",
-      "publishedAt": "2026-05-29T22:14:03.000Z",
-      "publishedTs": 1780092843000,
+      "publishedAt": "2026-05-30T19:05:03.000Z",
+      "publishedTs": 1780167903000,
       "description": "Puka Nacua said he is \"grateful for the support\" from the Rams organization after a civil lawsuit was filed against him in March."
     },
     {
-      "id": "b5e9f0f03a003972ec23048bc3fab6fa640b13b2",
+      "id": "ee7bd6f47b7527467254f5327191fc84305a127e",
+      "source": "ESPN",
+      "title": "Source: Steelers assistant fired for misconduct",
+      "url": "https://www.espn.com/nfl/story/_/id/48912033/sources-steelers-fire-assistant-swinton-months-job",
+      "publishedAt": "2026-05-30T19:05:03.000Z",
+      "publishedTs": 1780167903000,
+      "description": "The Steelers have fired senior special teams assistant Derius Swinton II for a violation of club policy, sources told ESPN."
+    },
+    {
+      "id": "233dc34c58301328416c93d1621f0441d7f1563f",
       "source": "ESPN",
       "title": "49ers' Bosa 'far along' in rehab, eyes camp return...",
       "url": "https://www.espn.com/nfl/story/_/id/48904921/49ers-bosa-making-progress-back-training-camp",
-      "publishedAt": "2026-05-29T22:14:03.000Z",
-      "publishedTs": 1780092843000,
+      "publishedAt": "2026-05-30T19:05:03.000Z",
+      "publishedTs": 1780167903000,
       "description": "49ers defensive end Nick Bosa said he is making progress recovering from a torn ACL and could be back for the start of training camp or soon after, barring any setbacks."
     },
     {
-      "id": "9faf737b401729944e681146e7c5912f3a27261f",
+      "id": "8a239617d7d2a5101e8acf26d1deff1a2a99bfef",
       "source": "ESPN",
       "title": "Reid: Jailed Rice learning life lesson right now",
       "url": "https://www.espn.com/nfl/story/_/id/48903684/reid-chiefs-moving-forward-get-rice-caught-up",
-      "publishedAt": "2026-05-29T22:14:03.000Z",
-      "publishedTs": 1780092843000,
+      "publishedAt": "2026-05-30T19:05:03.000Z",
+      "publishedTs": 1780167903000,
       "description": "While most of the Chiefs participated in voluntary workouts this week, Rashee Rice was back in Texas serving his 30-day jail sentence after violating the terms of his probation for his role in a car crash that left multiple people injured."
     },
     {
-      "id": "88d5a35e13bb4b1fd19dbcf8f7af217d21273b67",
+      "id": "ccc339377160c0825d58a62459dd6aebc73c1114",
       "source": "ESPN",
       "title": "CMC: Workload monitored in practice, not games",
       "url": "https://www.espn.com/nfl/story/_/id/48905191/workload-managed-practice-not-games",
-      "publishedAt": "2026-05-29T22:14:03.000Z",
-      "publishedTs": 1780092843000,
+      "publishedAt": "2026-05-30T19:05:03.000Z",
+      "publishedTs": 1780167903000,
       "description": "49ers running back Christian McCaffrey said he doesn't want a lighter workload this season after leading the NFL with 413 touches last season."
     },
     {
-      "id": "5262d5d47fbdc0af5c8751a4877af36a8197626b",
+      "id": "0495ffba93d040d9ef2fdaea2b5ccc0987dde888",
       "source": "ESPN",
-      "title": "Stafford on Simpson pick: Get why Rams did it",
-      "url": "https://www.espn.com/nfl/story/_/id/48904862/rams-stafford-addresses-simpson-pick-own-future-deal",
-      "publishedAt": "2026-05-29T22:14:03.000Z",
-      "publishedTs": 1780092843000,
-      "description": "Matthew Stafford said Thursday he \"appreciated\" coach Sean McVay calling to tell him the team was going to draft QB Ty Simpson last month and understands why the Rams selected the former Bama star."
+      "title": "🏈 Simulating trades for Coleman, Kmet, more",
+      "url": "https://www.espn.com/nfl/story/_/id/48816864/2026-nfl-offseason-trade-offers-best-deals-coleman-kmet-richardson-thibodeaux",
+      "publishedAt": "2026-05-30T19:05:03.000Z",
+      "publishedTs": 1780167903000,
+      "description": "We proposed trade offers for Keon Coleman, Cole Kmet, Anthony Richardson Sr. and Kayvon Thibodeaux. Could any of them be on the move?"
     },
     {
-      "id": "b5d5fda367185f5fc70dac919d5ae5517f623896",
+      "id": "de2bb4e21c819c606e0f960295b6e7c073b53357",
       "source": "ESPN",
       "title": "Solak picks the 10 most improved units through off...",
       "url": "https://www.espn.com/nfl/story/_/id/48903726/2026-nfl-offseason-ranking-top-10-biggest-position-upgrades-improvements",
-      "publishedAt": "2026-05-29T15:48:05.000Z",
-      "publishedTs": 1780069685000,
+      "publishedAt": "2026-05-30T18:25:12.000Z",
+      "publishedTs": 1780165512000,
       "description": "Let's stack the 10 biggest upgrades at specific positions since the end of last season, including three teams' linebacker units."
     },
     {
@@ -117,6 +126,69 @@
       "publishedAt": "2026-05-29T12:52:25.000Z",
       "publishedTs": 1780059145000,
       "description": "We're picking out the offseason's highs (Vikings getting Kyler Murray on the veterans minimum) and lows (Niners taking Kaelon Black in Round 3) for every NFC team."
+    },
+    {
+      "id": "569f173a82e5f43ff6c69094f356bdf701ecb9c8",
+      "source": "FantasyPros",
+      "title": "Matthew Stafford expected to have reps managed in training camp",
+      "url": "https://www.fantasypros.com/nfl/news/588891/matthew-stafford-expected-to-have-reps-managed-training-camp.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "28942530a9a1d460f37857c5965a096152c20346",
+      "source": "FantasyPros",
+      "title": "Chris Rodriguez Jr. (undisclosed) misses OTAs early in week",
+      "url": "https://www.fantasypros.com/nfl/news/588890/chris-rodriguez-jr-undisclosed-misses-otas-early-week.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "eb44f3ad5a9fd2932650d7f4e2182900fd95d172",
+      "source": "FantasyPros",
+      "title": "Cam Skattebo (ankle) participates in positional drills in OTAs",
+      "url": "https://www.fantasypros.com/nfl/news/588889/cam-skattebo-ankle-participates-positional-drills-otas-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "86ad63284527bd4f37b07ee99e6905ad75698c73",
+      "source": "FantasyPros",
+      "title": "Chris Olave gained 10 pounds of muscle this offseason",
+      "url": "https://www.fantasypros.com/nfl/news/588888/chris-olave-gained-10-pounds-muscle-this-offseason-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "f55afff048e7a63dc1b8af0c8c964b3366d8be29",
+      "source": "FantasyPros",
+      "title": "Jakobi Meyers seems firm in WR1 duties",
+      "url": "https://www.fantasypros.com/nfl/news/588864/jakobi-meyers-seems-firm-wr1-duties.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "7902171ae5f5a12613210e533e2e41e43940dba4",
+      "source": "FantasyPros",
+      "title": "Brian Thomas Jr. holding edge for WR2 duties",
+      "url": "https://www.fantasypros.com/nfl/news/588863/brian-thomas-jr-holding-edge-wr2-duties.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "84199809a74b9912ecea9d4e291b38d7e2cacbbb",
+      "source": "FantasyPros",
+      "title": "Brenton Strange could be offense's most important player' behind Lawrence",
+      "url": "https://www.fantasypros.com/nfl/news/588860/brenton-strange-could-be-offenses-most-important-player-behind-lawrence.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
     },
     {
       "id": "6d9f03fe36e6a90f20622120c500e3c5a8a97582",
@@ -159,15 +231,6 @@
       "source": "FantasyPros",
       "title": "Brock Bowers: Raiders 'concocting multiple ways' to get TE involved",
       "url": "https://www.fantasypros.com/nfl/news/588654/brock-bowers-raiders-concocting-multiple-ways-to-get-te-involved-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "65e4522270df94cc02c12c37da3cf51b00cbd5a5",
-      "source": "FantasyPros",
-      "title": "Cam Skattebo (ankle) continuing to target Week 1 return",
-      "url": "https://www.fantasypros.com/nfl/news/588652/cam-skattebo-ankle-continuing-to-target-week-1-return.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
@@ -267,69 +330,6 @@
       "source": "FantasyPros",
       "title": "Chris Brooks takes first-team reps in 11-on-11 drills Wednesday",
       "url": "https://www.fantasypros.com/nfl/news/588510/chris-brooks-takes-first-team-reps-11-on-11-drills-wednesday-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "e96fab8c5263c3108ab1351f17a1fab6ed9afd77",
-      "source": "FantasyPros",
-      "title": "MarShawn Lloyd (undisclosed) sits out team drills Wednesday",
-      "url": "https://www.fantasypros.com/nfl/news/588509/marshawn-lloyd-undisclosed-sits-out-team-drills-wednesday-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "097df7c736af8647672f1df627f2623739b32ce0",
-      "source": "FantasyPros",
-      "title": "Jordan Watkins draws praise from HC Kyle Shanahan",
-      "url": "https://www.fantasypros.com/nfl/news/588508/jordan-watkins-draws-praise-from-hc-kyle-shanahan-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "702020b0017c49299ddced4252c85135b6dd990b",
-      "source": "FantasyPros",
-      "title": "Jacob Cowing draws praise from HC Kyle Shanahan",
-      "url": "https://www.fantasypros.com/nfl/news/588507/jacob-cowing-draws-praise-from-hc-kyle-shanahan-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "cceaf59d486ad96cb44aaa1532345641e83ad322",
-      "source": "FantasyPros",
-      "title": "Sincere McCormick waived by 49ers",
-      "url": "https://www.fantasypros.com/nfl/news/588478/sincere-mccormick-waived-by-49ers-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "2ca6520d030f65f6f0fb219c1ba9e69dded5b36c",
-      "source": "FantasyPros",
-      "title": "Jermar Jefferson signs with 49ers",
-      "url": "https://www.fantasypros.com/nfl/news/588477/jermar-jefferson-signs-with-49ers-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "97e9bc509830ec792a4476ebaed33911126fa146",
-      "source": "FantasyPros",
-      "title": "Mac Jones dealing with sore shoulder",
-      "url": "https://www.fantasypros.com/nfl/news/588476/mac-jones-dealing-with-sore-shoulder.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "69c8cef92e21fe346ec5b5ebac9b2bf51121aabb",
-      "source": "FantasyPros",
-      "title": "Trent Williams expected to report to OTAs next week",
-      "url": "https://www.fantasypros.com/nfl/news/588474/trent-williams-expected-to-report-to-otas-next-week.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
