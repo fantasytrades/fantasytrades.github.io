@@ -1,11 +1,155 @@
 {
-  "generatedAt": "2026-06-01T17:43:05.100Z",
+  "generatedAt": "2026-06-02T16:25:08.806Z",
   "items": [
     {
-      "id": "a75325dcb3ce7b31c9fb794e05705d6bf39d05fe",
+      "id": "9a8580b020f06714e1ca72eec2e58b712ee1540f",
       "source": "FantasyPros",
-      "title": "Myles Garrett: Browns finalizing trade to send him to Rams",
-      "url": "https://www.fantasypros.com/nfl/news/589137/myles-garrett-browns-finalizing-trade-to-send-him-to-rams.php",
+      "title": "Derick Hall agrees to 3-year, $42 million extension",
+      "url": "https://www.fantasypros.com/nfl/news/589275/derick-hall-agrees-to-3-year-42-million-extension.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "778f6f0e5cf1e8ca06750ff75460b2f1a55b070f",
+      "source": "FantasyPros",
+      "title": "Sidy Sow waived by Texans",
+      "url": "https://www.fantasypros.com/nfl/news/589258/sidy-sow-waived-by-texans-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "f0cfab9e2d0c6bdf9bc5ada5913144f012bea7fd",
+      "source": "FantasyPros",
+      "title": "Denzel Ward not expected to be traded by Browns",
+      "url": "https://www.fantasypros.com/nfl/news/589257/denzel-ward-not-expected-to-be-traded-by-browns.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "17fae4d22179661634139500eaac5e842b951612",
+      "source": "FantasyPros",
+      "title": "Daryl Porter Jr. waived by Bills",
+      "url": "https://www.fantasypros.com/nfl/news/589256/daryl-porter-jr-waived-by-bills.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "dd20d5abaad249875c2fab615f120e73fd2e832a",
+      "source": "FantasyPros",
+      "title": "Mac Dalena signs with Bills",
+      "url": "https://www.fantasypros.com/nfl/news/589255/mac-dalena-signs-with-bills.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "57e24e20dab6de24add66b8a25053a180c524e08",
+      "source": "FantasyPros",
+      "title": "Chris Rodriguez Jr. (undisclosed) remains absent from OTAs Monday",
+      "url": "https://www.fantasypros.com/nfl/news/589254/chris-rodriguez-jr-undisclosed-remains-absent-from-otas-monday.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "dbe5b83a25ea7c58a5fafec94692ffe8b7689e05",
+      "source": "FantasyPros",
+      "title": "Omar Cooper Jr. signs rookie contract with Jets",
+      "url": "https://www.fantasypros.com/nfl/news/589253/omar-cooper-jr-signs-rookie-contract-with-jets-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "5a513a22306add9664d170f479702f38cec6d6ce",
+      "source": "FantasyPros",
+      "title": "Chase Wilson signs with Jets",
+      "url": "https://www.fantasypros.com/nfl/news/589252/chase-wilson-signs-with-jets.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "f8c544982aa51be77283275013c45d52a8ace9bf",
+      "source": "FantasyPros",
+      "title": "Da'Quan Felton signs with Jets",
+      "url": "https://www.fantasypros.com/nfl/news/589251/daquan-felton-signs-with-jets.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "eab01b46205b4ac4dd3af9079266ce64db4574bd",
+      "source": "FantasyPros",
+      "title": "Bo Nix (ankle) expected to be 'observer' at Broncos OTAs this week",
+      "url": "https://www.fantasypros.com/nfl/news/589250/bo-nix-ankle-expected-to-be-observer-broncos-otas-this-week.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "f1cbcd2c355e489f37bbe2bc073e75339a7f2cc9",
+      "source": "FantasyPros",
+      "title": "Samori Toure signs with Eagles",
+      "url": "https://www.fantasypros.com/nfl/news/589249/samori-toure-signs-with-eagles.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "d7d854d1a4d85b22d4e7f732b5b7b6965317791c",
+      "source": "FantasyPros",
+      "title": "Seth Henigan released by Colts",
+      "url": "https://www.fantasypros.com/nfl/news/589229/seth-henigan-released-by-colts.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "9e67f0d8c4e136b6ddb734dbf4c53e4143c9a5c1",
+      "source": "FantasyPros",
+      "title": "Easton Stick signs with Colts",
+      "url": "https://www.fantasypros.com/nfl/news/589228/easton-stick-signs-with-colts.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "bb54832abc51c885163fbf85e4bb5eddfea199ef",
+      "source": "FantasyPros",
+      "title": "A.J. Brown traded to Patriots",
+      "url": "https://www.fantasypros.com/nfl/news/589167/aj-brown-traded-to-patriots-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "830bf2a202b75af5120f90c443015d8fdfc935bf",
+      "source": "FantasyPros",
+      "title": "Jared Verse traded to the Cleveland Browns",
+      "url": "https://www.fantasypros.com/nfl/news/589152/jared-verse-traded-to-cleveland-browns.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "6691aedfef464e8aaf74fbb75303932cf5fe401f",
+      "source": "FantasyPros",
+      "title": "Myles Garrett traded to the Los Angeles Rams",
+      "url": "https://www.fantasypros.com/nfl/news/589148/myles-garrett-traded-to-los-angeles-rams.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "b36719815b200a98e78860893814e533641c5d91",
+      "source": "FantasyPros",
+      "title": "JuJu Smith-Schuster signs with New York Giants",
+      "url": "https://www.fantasypros.com/nfl/news/589138/juju-smith-schuster-signs-with-new-york-giants.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
@@ -24,15 +168,6 @@
       "source": "FantasyPros",
       "title": "Braxton Berrios signing one-year deal with Giants",
       "url": "https://www.fantasypros.com/nfl/news/589123/braxton-berrios-signing-one-year-deal-with-giants.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "937149a97269f7374a3b251cb71af5f3186c2d42",
-      "source": "FantasyPros",
-      "title": "JuJu Smith-Schuster working out with Giants on Monday",
-      "url": "https://www.fantasypros.com/nfl/news/589102/juju-smith-schuster-working-out-with-giants-on-monday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
@@ -60,141 +195,6 @@
       "source": "FantasyPros",
       "title": "Gunner Olszewski (Achilles) to undergo surgery Monday",
       "url": "https://www.fantasypros.com/nfl/news/589074/gunner-olszewski-achilles-to-undergo-surgery-monday-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "569f173a82e5f43ff6c69094f356bdf701ecb9c8",
-      "source": "FantasyPros",
-      "title": "Matthew Stafford expected to have reps managed in training camp",
-      "url": "https://www.fantasypros.com/nfl/news/588891/matthew-stafford-expected-to-have-reps-managed-training-camp.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "28942530a9a1d460f37857c5965a096152c20346",
-      "source": "FantasyPros",
-      "title": "Chris Rodriguez Jr. (undisclosed) misses OTAs early in week",
-      "url": "https://www.fantasypros.com/nfl/news/588890/chris-rodriguez-jr-undisclosed-misses-otas-early-week.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "eb44f3ad5a9fd2932650d7f4e2182900fd95d172",
-      "source": "FantasyPros",
-      "title": "Cam Skattebo (ankle) participates in positional drills in OTAs",
-      "url": "https://www.fantasypros.com/nfl/news/588889/cam-skattebo-ankle-participates-positional-drills-otas-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "86ad63284527bd4f37b07ee99e6905ad75698c73",
-      "source": "FantasyPros",
-      "title": "Chris Olave gained 10 pounds of muscle this offseason",
-      "url": "https://www.fantasypros.com/nfl/news/588888/chris-olave-gained-10-pounds-muscle-this-offseason-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "f55afff048e7a63dc1b8af0c8c964b3366d8be29",
-      "source": "FantasyPros",
-      "title": "Jakobi Meyers seems firm in WR1 duties",
-      "url": "https://www.fantasypros.com/nfl/news/588864/jakobi-meyers-seems-firm-wr1-duties.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "7902171ae5f5a12613210e533e2e41e43940dba4",
-      "source": "FantasyPros",
-      "title": "Brian Thomas Jr. holding edge for WR2 duties",
-      "url": "https://www.fantasypros.com/nfl/news/588863/brian-thomas-jr-holding-edge-wr2-duties.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "84199809a74b9912ecea9d4e291b38d7e2cacbbb",
-      "source": "FantasyPros",
-      "title": "Brenton Strange could be offense's most important player' behind Lawrence",
-      "url": "https://www.fantasypros.com/nfl/news/588860/brenton-strange-could-be-offenses-most-important-player-behind-lawrence.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "6d9f03fe36e6a90f20622120c500e3c5a8a97582",
-      "source": "FantasyPros",
-      "title": "Greg Dulcich emerging as top weapon for Miami",
-      "url": "https://www.fantasypros.com/nfl/news/588727/greg-dulcich-emerging-top-weapon-miami.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "cfd280deb0a4673a302a6b8121ee4b0cfd0a1dc0",
-      "source": "FantasyPros",
-      "title": "Brian Branch (Achilles) improving, not practicing yet",
-      "url": "https://www.fantasypros.com/nfl/news/588657/brian-branch-achilles-improving-not-practicing-yet.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "bbfd716dae4e81cb2c5ae966e6753760e3d08c07",
-      "source": "FantasyPros",
-      "title": "Kerby Joseph (knee) improving, not practicing yet",
-      "url": "https://www.fantasypros.com/nfl/news/588656/kerby-joseph-knee-improving-not-practicing-yet.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "e5cce7ff1696c46cfec2868181726c2be7e967ab",
-      "source": "FantasyPros",
-      "title": "Sam LaPorta (back) improving, not practicing yet",
-      "url": "https://www.fantasypros.com/nfl/news/588655/sam-laporta-back-improving-not-practicing-yet.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "77065d3a0da5a9ac35b353476ae587b0df3a1787",
-      "source": "FantasyPros",
-      "title": "Brock Bowers: Raiders 'concocting multiple ways' to get TE involved",
-      "url": "https://www.fantasypros.com/nfl/news/588654/brock-bowers-raiders-concocting-multiple-ways-to-get-te-involved-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "79f59b4dea5a6482b49faba584a190d51de45658",
-      "source": "FantasyPros",
-      "title": "Jameis Winston reports to Giants OTAs",
-      "url": "https://www.fantasypros.com/nfl/news/588651/jameis-winston-reports-to-giants-otas.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "a7b23bff1ea5426e48c0da0a0d83df3b0b8a6e65",
-      "source": "FantasyPros",
-      "title": "Darius Slayton (sports hernia) remains absent from practice Friday",
-      "url": "https://www.fantasypros.com/nfl/news/588650/darius-slayton-sports-hernia-remains-absent-from-practice-friday-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "ab81a53eced6a5466e3e0a9d8fa11a60def47be5",
-      "source": "FantasyPros",
-      "title": "Jahmyr Gibbs in position to 'reset running back market'",
-      "url": "https://www.fantasypros.com/nfl/news/588649/jahmyr-gibbs-position-to-reset-running-back-market.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
