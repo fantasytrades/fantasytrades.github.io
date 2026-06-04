@@ -1,6 +1,375 @@
 {
-  "generatedAt": "2026-06-03T16:48:57.936Z",
+  "generatedAt": "2026-06-04T15:14:57.783Z",
   "items": [
+    {
+      "id": "be9c61dc229a460973fc7e7397485ea238835c73",
+      "source": "ESPN",
+      "title": "Sources: TE Washington, Steelers reach 4-yr. deal",
+      "url": "https://www.espn.com/nfl/story/_/id/48961024/sources-darnell-washington-steelers-reach-4-year-extension",
+      "publishedAt": "2026-06-04T15:13:18.000Z",
+      "publishedTs": 1780585998000,
+      "description": "The Pittsburgh Steelers and tight end Darnell Washington reached agreement on a four-year, $42 million extension, sources told ESPN's Jeremy Fowler."
+    },
+    {
+      "id": "b44b5afc66b79d59399efcd1dda1f180be3df23d",
+      "source": "ESPN",
+      "title": "49ers' Williams acknowledges career is near end",
+      "url": "https://www.espn.com/nfl/story/_/id/48960243/49ers-trent-williams-acknowledges-career-nearing-end",
+      "publishedAt": "2026-06-04T15:13:18.000Z",
+      "publishedTs": 1780585998000,
+      "description": "Trent Williams was reflective Wednesday and open about the likelihood that he will retire after two more seasons."
+    },
+    {
+      "id": "d6c8c32424ad4e2690673a03716b79f45ded76fa",
+      "source": "ESPN",
+      "title": "QB Darnold feels familiar with new OC's offense",
+      "url": "https://www.espn.com/nfl/story/_/id/48961312/seahawks-sam-darnold-sees-little-transition-brian-fleury-offense",
+      "publishedAt": "2026-06-04T15:13:18.000Z",
+      "publishedTs": 1780585998000,
+      "description": "Seahawks QB Sam Darnold will be playing for yet another new offensive coordinator in 2026. But Brian Fleury isn't installing an entirely new playbook, and Darnold is not starting from scratch."
+    },
+    {
+      "id": "5c9436e490640b616a899fb151f3b494d39920d9",
+      "source": "ESPN",
+      "title": "Niners' Kittle targets Week 1, says he's 'on track...",
+      "url": "https://www.espn.com/nfl/story/_/id/48960408/niners-kittle-achilles-targets-week-1-says-track",
+      "publishedAt": "2026-06-04T15:13:18.000Z",
+      "publishedTs": 1780585998000,
+      "description": "Niners tight end George Kittle said he's \"ahead of schedule\" in his recovery from a torn right Achilles and believes he's \"on track\" to return in Week 1 against the Rams."
+    },
+    {
+      "id": "414bed22da73ca2c54945f05c40a8fad70a3f869",
+      "source": "ESPN",
+      "title": "QB Wilson announces retirement after 14 seasons",
+      "url": "https://www.espn.com/nfl/story/_/id/48960076/russell-wilson-confirms-retiring-nfl-joining-cbs",
+      "publishedAt": "2026-06-04T15:13:17.000Z",
+      "publishedTs": 1780585997000,
+      "description": "Ten-time Pro Bowl quarterback Russell Wilson confirmed Wednesday that he's retiring from the NFL to take a job with CBS Sports."
+    },
+    {
+      "id": "9480de7634e9b2c05578315454f69b77441e54d3",
+      "source": "ESPN",
+      "title": "Warrant issued for Aiyuk after viral speeding post...",
+      "url": "https://www.espn.com/nfl/story/_/id/48958203/warrant-issued-49ers-brandon-aiyuk-viral-speeding-video",
+      "publishedAt": "2026-06-04T15:13:17.000Z",
+      "publishedTs": 1780585997000,
+      "description": "The Santa Clara County District Attorney's office issued a warrant for the arrest of 49ers wide receiver Brandon Aiyuk on a misdemeanor charge of exhibition of speeding."
+    },
+    {
+      "id": "92cf2857e96dd5e99627d700b2f44022c5b8570c",
+      "source": "ESPN",
+      "title": "Packers without Parsons until at least mid-October...",
+      "url": "https://www.espn.com/nfl/story/_/id/48958480/packers-micah-parsons-return-least-mid-october",
+      "publishedAt": "2026-06-04T15:13:17.000Z",
+      "publishedTs": 1780585997000,
+      "description": "Packers star Micah Parsons said he won't be making his 2026 debut until at least mid-October as he continues to recover from a torn ACL as well as a torn meniscus."
+    },
+    {
+      "id": "fcea6fc75dde84fb59b8c3f24f617bfc83c10702",
+      "source": "ESPN",
+      "title": "Browns' Verse: I'm not here to fill Garrett's shoe...",
+      "url": "https://www.espn.com/nfl/story/_/id/48958862/browns-jared-verse-not-here-fill-myles-garrett-shoes",
+      "publishedAt": "2026-06-04T15:13:17.000Z",
+      "publishedTs": 1780585997000,
+      "description": "New Browns edge rusher Jared Verse said he's not seeking to replace Myles Garrett after Monday's blockbuster trade."
+    },
+    {
+      "id": "e7ada195221bfb7a9db380b40344c6699bef4750",
+      "source": "ESPN",
+      "title": "👀 New FPI projections for the 2026 season",
+      "url": "https://www.espn.com/nfl/story/_/id/48845972/2026-nfl-season-football-power-index-projections-super-bowl-chances-simulations",
+      "publishedAt": "2026-06-04T15:13:17.000Z",
+      "publishedTs": 1780585997000,
+      "description": "ESPN's Football Power Index ratings are live. These simulations of the 2026 season provide playoff chances, potential draft order and our 1-32 team ranking."
+    },
+    {
+      "id": "1466dd4f1823a08c1be8922bf14d3fe1f05dcc7d",
+      "source": "ESPN",
+      "title": "10 NFL players who could get traded before the 202...",
+      "url": "https://www.espn.com/nfl/story/_/id/48947413/2026-nfl-trade-deadline-early-look-players-candidates-buzz-crosby-aiyuk-kamara",
+      "publishedAt": "2026-06-04T14:31:59.000Z",
+      "publishedTs": 1780583519000,
+      "description": "The trade deadline isn't until November, but we're making early predictions on players who could be available during the season."
+    },
+    {
+      "id": "341283253f408b47ec9f03e2a42a852bcb9e9f46",
+      "source": "ESPN",
+      "title": "100 things to know for the 2026 NFL season ... 100...",
+      "url": "https://www.espn.com/nfl/story/_/id/48894110/2026-nfl-season-100-days-nuggets-mvp-predictions-fantasy-rookies",
+      "publishedAt": "2026-06-04T13:55:19.000Z",
+      "publishedTs": 1780581319000,
+      "description": "100 things to know, including bold predictions, fantasy sleepers and injury buzz."
+    },
+    {
+      "id": "f5b2d1370322fd44131607acad0b1f1dbea3a3a0",
+      "source": "ESPN",
+      "title": "Who's really in charge of Vikings after hiring Nol...",
+      "url": "https://www.espn.com/nfl/story/_/id/48957789/nfl-minnesota-vikings-general-manager-nolan-teasley-kevin-oconnell-wilf",
+      "publishedAt": "2026-06-04T12:22:46.000Z",
+      "publishedTs": 1780575766000,
+      "description": "Teasley is the new GM, but coach Kevin O'Connell and former interim GM Rob Brzezinski will have their say."
+    },
+    {
+      "id": "6aed765d9079df12ec57ed02d5731468ebfaab8b",
+      "source": "ESPN",
+      "title": "Myth or reality? Examining the 'Madden curse' thro...",
+      "url": "https://www.espn.com/gaming/story/_/id/43741048/madden-curse-fact-fiction-11-years-cover-stars",
+      "publishedAt": "2026-06-03T22:21:25.000Z",
+      "publishedTs": 1780525285000,
+      "description": "Can Williams change the tide after Barkley's latest season was indicative of the long-alleged Madden curse? We broke down Madden cover stars that couldn't."
+    },
+    {
+      "id": "35a2399cdab21d55164adb9b4832b16e769f788b",
+      "source": "ESPN",
+      "title": "'I'm ready for it': After DJ Moore's exit, Rome Odunze embracing being Bears' WR1",
+      "url": "https://www.espn.com/nfl/story/_/id/48939149/chicago-bears-rome-odunze-embracing-being-wr1-dj-moore-exit",
+      "publishedAt": "2026-06-03T19:48:18.000Z",
+      "publishedTs": 1780516098000,
+      "description": "Chicago's Rome Odunze is looking for a more productive Year 3 with added responsibility after the team traded DJ Moore to the Bills."
+    },
+    {
+      "id": "8995ff3fb53621982480f1223e51f210bf42b9c3",
+      "source": "ESPN",
+      "title": "Barnwell makes sense of the Myles Garrett blockbus...",
+      "url": "https://www.espn.com/nfl/story/_/id/48939835/2026-nfl-offseason-trade-myles-garrett-jared-verse-rams-browns-draft-picks-barnwell",
+      "publishedAt": "2026-06-03T18:02:30.000Z",
+      "publishedTs": 1780509750000,
+      "description": "Does Myles Garrett really put the Rams over the top? Will the Browns regret the move? And how does Jared Verse fit in? Let's size up this massive trade."
+    },
+    {
+      "id": "ccb9d603e4c2e20e5463b67cb510a2633e52b7d3",
+      "source": "ESPN",
+      "title": "Which Bears pass catcher is the best value, riskie...",
+      "url": "https://www.espn.com/fantasy/football/story/_/id/48940783/2026-fantasy-football-rankings-draft-value-risk",
+      "publishedAt": "2026-06-03T12:39:51.000Z",
+      "publishedTs": 1780490391000,
+      "description": "Rome Odunze, Luther Burden III and Colston Loveland are being drafted close together."
+    },
+    {
+      "id": "1be41d505ab4f807d508ec64264bdba8877e301a",
+      "source": "ESPN",
+      "title": "Secrets to a successful fantasy football draft",
+      "url": "https://www.espn.com/fantasy/football/story/_/id/48937876/2026-fantasy-football-draft-secrets-tips-nfl",
+      "publishedAt": "2026-06-03T12:39:38.000Z",
+      "publishedTs": 1780490378000,
+      "description": "Mike Clay explains how understanding the basics of fantasy will help you build a winning team."
+    },
+    {
+      "id": "dc13d51e158c48b46dc3476a967b84a0437c4ca3",
+      "source": "ESPN",
+      "title": "Did New England finally get its WR1 in A.J. Brown?...",
+      "url": "https://www.espn.com/nfl/story/_/id/48912173/2026-nfl-offseason-aj-brown-trade-patriots-eagles-receiver-draft-picks-barnwell",
+      "publishedAt": "2026-06-02T19:07:49.000Z",
+      "publishedTs": 1780427269000,
+      "description": "A.J. Brown is heading to New England at long last. Does he put the Patriots over the top, and how does he fit in the offense? And what now for the Eagles?"
+    },
+    {
+      "id": "6df68037331e45eca02eefa534a7189e57ec5a1a",
+      "source": "ESPN",
+      "title": "Brown trade: Answering top questions on Eagles' de...",
+      "url": "https://www.espn.com/nfl/story/_/id/48894633/philadelphia-eagles-aj-brown-traded-patriots-new-england-next",
+      "publishedAt": "2026-06-02T19:07:49.000Z",
+      "publishedTs": 1780427269000,
+      "description": "Philly sent its No. 1 receiver to New England. How the trade impacts both teams, plus your fantasy league."
+    },
+    {
+      "id": "7f10f9d78e335e97df142d8eeb9bfbc4ebb93c83",
+      "source": "ESPN",
+      "title": "'Ego at the door': How Dolphins went from flashy to no-frills in just three months",
+      "url": "https://www.espn.com/nfl/story/_/id/48933195/miami-dolphins-rebuild-trades-offseason-otas-jeff-hafley-roster-nfl-draft",
+      "publishedAt": "2026-06-01T15:48:31.000Z",
+      "publishedTs": 1780328911000,
+      "description": "In a short span, Miami transformed from a team of stars to a roster and staff emphasizing the basics. Here's how."
+    },
+    {
+      "id": "7c9f2a701c4b1dd2b7b9eee6cdc4d0393190a66f",
+      "source": "FantasyPros",
+      "title": "George Kittle (Achilles) 'on track' in recovery",
+      "url": "https://www.fantasypros.com/nfl/news/589689/george-kittle-achilles-on-track-recovery-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "615b2bed7f6845d7621b10b4bb2e63bcacd1b089",
+      "source": "FantasyPros",
+      "title": "Mac Jones still battling sore shoulder",
+      "url": "https://www.fantasypros.com/nfl/news/589688/mac-jones-still-battling-sore-shoulder-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "452ffe2a483b4b0cc6f2c0ebd0e437710ec0ef58",
+      "source": "FantasyPros",
+      "title": "Maxx Crosby (knee) 'almost there' with rehab",
+      "url": "https://www.fantasypros.com/nfl/news/589687/maxx-crosby-knee-almost-there-with-rehab.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "8836f80041870a9773b00d171bfa3c78ae96cad2",
+      "source": "FantasyPros",
+      "title": "Chris Johnson signs rookie deal with Dolphins",
+      "url": "https://www.fantasypros.com/nfl/news/589686/chris-johnson-signs-rookie-deal-with-dolphins-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "762021df9fc914684e2724dacb9f9031ff4daab2",
+      "source": "FantasyPros",
+      "title": "Darius Alexander (illness) misses practice Wednesday",
+      "url": "https://www.fantasypros.com/nfl/news/589685/darius-alexander-illness-misses-practice-wednesday-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "be540290cb0b6b3872b5bfb47b4600c4e7a1c1bc",
+      "source": "FantasyPros",
+      "title": "Kadyn Proctor signs rookie deal with Dolphins",
+      "url": "https://www.fantasypros.com/nfl/news/589684/kadyn-proctor-signs-rookie-deal-with-dolphins-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "7c211bfcd49840e0e95b6c28d051a78df22606b7",
+      "source": "FantasyPros",
+      "title": "Chandler Martin waived by Eagles",
+      "url": "https://www.fantasypros.com/nfl/news/589683/chandler-martin-waived-by-eagles-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "87b917ccf122be54b5ab2242365b134442303619",
+      "source": "FantasyPros",
+      "title": "Da'Quan Felton waived by Jets",
+      "url": "https://www.fantasypros.com/nfl/news/589682/daquan-felton-waived-by-jets.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "01f1c850e4e6fa24eda50cfa438603e2e40afafd",
+      "source": "FantasyPros",
+      "title": "Jaden Smith signs with Cowboys",
+      "url": "https://www.fantasypros.com/nfl/news/589681/jaden-smith-signs-with-cowboys-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "41109f562488c81e6ea317a19e30eae025fd0da7",
+      "source": "FantasyPros",
+      "title": "Austin Jackson ahead of schedule in rehab",
+      "url": "https://www.fantasypros.com/nfl/news/589680/austin-jackson-ahead-schedule-rehab.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "9ac8c560e3405713ff7dbc061e7355f384f3869c",
+      "source": "FantasyPros",
+      "title": "Alex Highsmith (illness) misses practice Wednesday",
+      "url": "https://www.fantasypros.com/nfl/news/589679/alex-highsmith-illness-misses-practice-wednesday-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "e00d93d0cc6e3d64c4ef057052ca04c62787b8a5",
+      "source": "FantasyPros",
+      "title": "Quinshon Judkins (leg/ankle) participates in team drills Wednesday",
+      "url": "https://www.fantasypros.com/nfl/news/589678/quinshon-judkins-legankle-participates-team-drills-wednesday-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "96b03a3ec7609d2d8a4a994af21f34a94bd5cb67",
+      "source": "FantasyPros",
+      "title": "Dont'e Thornton Jr. wears red jersey in practice Wednesday",
+      "url": "https://www.fantasypros.com/nfl/news/589677/donte-thornton-jr-wears-red-jersey-practice-wednesday-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "679e15c30d10165ea43f4375e3408320fc7b60b6",
+      "source": "FantasyPros",
+      "title": "Darnell Washington agrees to four-year, $42 million extension",
+      "url": "https://www.fantasypros.com/nfl/news/589651/darnell-washington-agrees-to-four-year-42-million-extension-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "c57c4e3d885f041db69332a302c40204f64d98d7",
+      "source": "FantasyPros",
+      "title": "Russell Wilson announces retirement",
+      "url": "https://www.fantasypros.com/nfl/news/589634/russell-wilson-announces-retirement.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "6cfdbd16d724f9433e2cd8c49a9e0fc5e44f2ee6",
+      "source": "FantasyPros",
+      "title": "Younghoe Koo waived by Jets",
+      "url": "https://www.fantasypros.com/nfl/news/589603/younghoe-koo-waived-by-jets.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "0e1fee8db10ddef9eb06d43f2411c751aea6d163",
+      "source": "FantasyPros",
+      "title": "Jason Sanders signs with Jets",
+      "url": "https://www.fantasypros.com/nfl/news/589602/jason-sanders-signs-with-jets.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "5cebf414c38ecea481d8af7dea2d474eb1012311",
+      "source": "FantasyPros",
+      "title": "Micah Parsons (knee) targeting mid-October return",
+      "url": "https://www.fantasypros.com/nfl/news/589601/micah-parsons-knee-targeting-mid-october-return.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "0390729c591e09b3e10928d16f67642aca5110e3",
+      "source": "FantasyPros",
+      "title": "Brandon Aiyuk: has warrant issued for speeding",
+      "url": "https://www.fantasypros.com/nfl/news/589584/brandon-aiyuk-has-warrant-arrest-speeding-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "aec17874729766197f4df026a579604cc8d6757b",
+      "source": "FantasyPros",
+      "title": "Josh Sweat not expected to be traded this offseason",
+      "url": "https://www.fantasypros.com/nfl/news/589579/josh-sweat-not-expected-to-be-traded-this-offseason-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "7ab86eb0be8bf7a7e3b2f05076d8282849946918",
+      "source": "FantasyPros",
+      "title": "Alvin Kamara reports to Saints OTAs Wednesday",
+      "url": "https://www.fantasypros.com/nfl/news/589578/alvin-kamara-reports-to-saints-otas-wednesday-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
     {
       "id": "65bb3159510cd915608ea654db02cccb1da2cd1c",
       "source": "FantasyPros",
@@ -33,195 +402,6 @@
       "source": "FantasyPros",
       "title": "Jaelan Phillips misses practice Tuesday",
       "url": "https://www.fantasypros.com/nfl/news/589477/jaelan-phillips-misses-practice-tuesday-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "326755dc040fc594860b51aeb2cd56c62eb67840",
-      "source": "FantasyPros",
-      "title": "Bo Melton to return to being full-time wide receiver",
-      "url": "https://www.fantasypros.com/nfl/news/589476/bo-melton-to-return-to-being-full-time-wide-receiver-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "75a59e08ce2d1e430fda50cc2f4926cdcf19814b",
-      "source": "FantasyPros",
-      "title": "Austin Jackson sees uptick in practice activity Tuesday",
-      "url": "https://www.fantasypros.com/nfl/news/589475/austin-jackson-sees-uptick-practice-activity-tuesday-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "5964690d7530014c539f4f90f510e0bf479a6cca",
-      "source": "FantasyPros",
-      "title": "De'Von Achane (shoulder) sees uptick in reps in minicamp Tuesday",
-      "url": "https://www.fantasypros.com/nfl/news/589474/devon-achane-shoulder-sees-uptick-reps-minicamp-tuesday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "d0b5f6a98873b114dc2a5d71859c399c05489d9e",
-      "source": "FantasyPros",
-      "title": "Kendrick Bourne expected to see more snaps in slot",
-      "url": "https://www.fantasypros.com/nfl/news/589472/kendrick-bourne-expected-to-see-more-snaps-slot.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "33a9d871b29ec1864af9ab9d47a0a811c75be7f1",
-      "source": "FantasyPros",
-      "title": "Michael Wilson expected to play role as Z-receiver",
-      "url": "https://www.fantasypros.com/nfl/news/589471/michael-wilson-expected-to-play-role-z-receiver.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "05a11d6c2bd59b15262cc8498184f3b166a0a7ec",
-      "source": "FantasyPros",
-      "title": "Marvin Harrison Jr. expected to play role as X-receiver",
-      "url": "https://www.fantasypros.com/nfl/news/589470/marvin-harrison-jr-expected-to-play-role-x-receiver.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "3efbef14a72fd52d4b813738fdced89df6a4a189",
-      "source": "FantasyPros",
-      "title": "Bijan Robinson could land extension with Falcons this offseason",
-      "url": "https://www.fantasypros.com/nfl/news/589468/bijan-robinson-could-land-extension-with-falcons-this-offseason-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "b005c75106469d4dd48e2c64cf59fdda416365b5",
-      "source": "FantasyPros",
-      "title": "Brandon Graham released by Eagles",
-      "url": "https://www.fantasypros.com/nfl/news/589453/brandon-graham-released-by-eagles-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "57800279876cd9295a92dafcdbcf0725f7356875",
-      "source": "FantasyPros",
-      "title": "Kobie Turner rehabs off to side at OTAs Tuesday",
-      "url": "https://www.fantasypros.com/nfl/news/589452/kobie-turner-rehabs-off-to-side-otas-tuesday-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "c43cef4ad7265ca7c32f6046a9669ec5dc3c0fce",
-      "source": "FantasyPros",
-      "title": "Byron Young (knee) works off to side at OTAs Tuesday",
-      "url": "https://www.fantasypros.com/nfl/news/589450/byron-young-knee-works-off-to-side-otas-tuesday-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "6918724b95966aca5f68b7d13cdc7db1aa86cd93",
-      "source": "FantasyPros",
-      "title": "Rashod Bateman (personal) has not been at Ravens OTAs",
-      "url": "https://www.fantasypros.com/nfl/news/589448/rashod-bateman-personal-has-not-been-ravens-otas.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "695bdae85196d5b9b68dd383ceaee0bc687fe4e7",
-      "source": "FantasyPros",
-      "title": "Justin Herbert did not throw Tuesday as part of set plan",
-      "url": "https://www.fantasypros.com/nfl/news/589446/justin-herbert-did-not-throw-tuesday-part-set-plan.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "9198d9e46d09703e2a54a8c8c00061473a175e8a",
-      "source": "FantasyPros",
-      "title": "Eddie Walls III suffers an apparent leg injury Tuesday",
-      "url": "https://www.fantasypros.com/nfl/news/589444/eddie-walls-iii-suffers-apparent-leg-injury-tuesday-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "6f45786adcb8dbeb52813adaf42734f5602c6e02",
-      "source": "FantasyPros",
-      "title": "George Pickens yet to report to Cowboys camp",
-      "url": "https://www.fantasypros.com/nfl/news/589443/george-pickens-yet-to-report-to-cowboys-camp.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "ef96b97ecd971616804565972cb0c90d274c9121",
-      "source": "FantasyPros",
-      "title": "Robert Tonyan working out for Steelers",
-      "url": "https://www.fantasypros.com/nfl/news/589442/robert-tonyan-working-out-steelers-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "c40947e7c8c4a604f12389c78c7a14f3add467f1",
-      "source": "FantasyPros",
-      "title": "Derrick Graham agrees to deal with Texans",
-      "url": "https://www.fantasypros.com/nfl/news/589441/derrick-graham-agrees-to-deal-with-texans.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "b595e3800ac4b14e16e860e6908929ca2c8cb453",
-      "source": "FantasyPros",
-      "title": "Jonathon Brooks (knee) being held out of team drills in OTAs",
-      "url": "https://www.fantasypros.com/nfl/news/589440/jonathon-brooks-knee-being-held-out-team-drills-otas.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "6f6feea058ad7b75bce827128511b67e615b0dd3",
-      "source": "FantasyPros",
-      "title": "Makai Lemon (hamstring) not practicing, could miss minicamp",
-      "url": "https://www.fantasypros.com/nfl/news/589439/makai-lemon-hamstring-not-practicing-may-miss-minicamp.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "979e86a3a75e7c78d829fc7a9e4f11d667404b77",
-      "source": "FantasyPros",
-      "title": "Trey Benson (ankle) works off to side at OTAs Tuesday",
-      "url": "https://www.fantasypros.com/nfl/news/589438/trey-benson-ankle-works-off-to-side-otas-tuesday-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "cdb96d47920786b47bbd381f18167ac6d72b976a",
-      "source": "FantasyPros",
-      "title": "James Conner (ankle) works off to side at OTAs Tuesday",
-      "url": "https://www.fantasypros.com/nfl/news/589437/james-conner-ankle-works-off-to-side-otas-tuesday-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "60de2edc25e49f2a648e4cf0ccf6acb9865f4bd4",
-      "source": "FantasyPros",
-      "title": "Aaron Donald could be considering return to NFL",
-      "url": "https://www.fantasypros.com/nfl/news/589436/aaron-donald-could-be-considering-return-to-nfl.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
