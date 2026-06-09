@@ -1,6 +1,402 @@
 {
-  "generatedAt": "2026-06-08T15:52:27.915Z",
+  "generatedAt": "2026-06-09T14:51:22.703Z",
   "items": [
+    {
+      "id": "74b7ac320f27f484bbd4a5f18485eed7b4898c57",
+      "source": "ESPN",
+      "title": "32 NFL teams, 32 unanswered QB questions: Graziano...",
+      "url": "https://www.espn.com/nfl/story/_/id/48957897/2026-nfl-quarterback-questions-32-teams-battles-contracts-expectations-injuries",
+      "publishedAt": "2026-06-09T14:42:33.000Z",
+      "publishedTs": 1781016153000,
+      "description": "Are Baker Mayfield and Sam Darnold headed for big extensions? Can Bryce Young level up again? When will Fernando Mendoza start?"
+    },
+    {
+      "id": "3d5622e88ac30cf6abea9a7b7d566a69a5c64aaa",
+      "source": "ESPN",
+      "title": "Cap casualties to trade fireworks: Inside NFL's hi...",
+      "url": "https://www.espn.com/nfl/story/_/id/48976999/how-june-1-2026-blockbuster-trade-day-nfl-myles-garrett-aj-brown-jared-verse",
+      "publishedAt": "2026-06-09T14:37:44.000Z",
+      "publishedTs": 1781015864000,
+      "description": "More than 15 coaches, players and execs shed light on the back-to-back trades that happened on a key June day."
+    },
+    {
+      "id": "97c0c2a07e9707ba3b03e5851113e539f500d006",
+      "source": "ESPN",
+      "title": "Copy of 10 players who could get traded before the season'...",
+      "url": "https://www.espn.com/nfl/story/_/id/48947413/2026-nfl-trade-deadline-early-look-players-candidates-buzz-crosby-aiyuk-kamara",
+      "publishedAt": "2026-06-09T14:37:44.000Z",
+      "publishedTs": 1781015864000,
+      "description": "The NFL trade deadline isn't until November, but we're making early predictions on 10 players."
+    },
+    {
+      "id": "7678389d31038231de7c6a5dd5597e7227e0d001",
+      "source": "ESPN",
+      "title": "Aiyuk appears to imply 49ers 'scared' to cut him",
+      "url": "https://www.espn.com/nfl/story/_/id/49002414/brandon-aiyuk-appears-imply-49ers-scared-release-him",
+      "publishedAt": "2026-06-09T14:29:06.000Z",
+      "publishedTs": 1781015346000,
+      "description": "Brandon Aiyuk posted a video to Instagram on Sunday, appearing to imply that the 49ers are afraid to release him because he could land elsewhere and eventually make them regret letting him go."
+    },
+    {
+      "id": "a6bbbd46b489b175a3cec092bf493c62058d15d7",
+      "source": "ESPN",
+      "title": "Browns star LG Bitonio retires after 12 seasons",
+      "url": "https://www.espn.com/nfl/story/_/id/49009259/long-browns-guard-joel-bitonio-retires-12-seasons",
+      "publishedAt": "2026-06-09T14:29:06.000Z",
+      "publishedTs": 1781015346000,
+      "description": "Longtime Browns left guard Joel Bitonio announced his retirement Tuesday after 12 seasons in the NFL."
+    },
+    {
+      "id": "e396189d27485211021449932cb031440a8bd2a3",
+      "source": "ESPN",
+      "title": "Chiefs reunite with CB Sneed 2 years after trade",
+      "url": "https://www.espn.com/nfl/story/_/id/49002989/chiefs-signing-veteran-cb-ljarius-sneed-agents-say",
+      "publishedAt": "2026-06-09T14:29:06.000Z",
+      "publishedTs": 1781015346000,
+      "description": "The Chiefs are signing cornerback L'Jarius Sneed, his agents, the Katz Brothers, told ESPN's Adam Schefter."
+    },
+    {
+      "id": "011040926828ed11a9803eb59f0d42336262da8e",
+      "source": "ESPN",
+      "title": "Broncos' Cooper pleads not guilty; trial date set",
+      "url": "https://www.espn.com/nfl/story/_/id/49001482/broncos-cooper-pleads-not-guilty-trial-set-late-july",
+      "publishedAt": "2026-06-09T14:29:06.000Z",
+      "publishedTs": 1781015346000,
+      "description": "Broncos linebacker Jonathon Cooper pleaded not guilty Monday morning in a Douglas County (Colorado) courtroom to misdemeanor domestic violence charges."
+    },
+    {
+      "id": "d53408f2a8b79281da3aff916de555446b0c8fe5",
+      "source": "ESPN",
+      "title": "Giants' Carter leaves practice with ankle injury",
+      "url": "https://www.espn.com/nfl/story/_/id/49003543/giants-abdul-carter-leaves-practice-ankle-injury",
+      "publishedAt": "2026-06-09T14:29:06.000Z",
+      "publishedTs": 1781015346000,
+      "description": "Giants second-year edge rusher Abdul Carter left practice early Monday due to a minor ankle injury."
+    },
+    {
+      "id": "74f2f76e0c2b2b96c05864b7dda7bb094e30e71b",
+      "source": "ESPN",
+      "title": "Falcons say no QB1 battle until Penix fully health...",
+      "url": "https://www.espn.com/nfl/story/_/id/49003555/qb-coach-falcons-qb1-battle-penix-fully-healthy",
+      "publishedAt": "2026-06-09T14:29:06.000Z",
+      "publishedTs": 1781015346000,
+      "description": "The Falcons will not have a true quarterback competition between Tua Tagovailoa and Michael Penix Jr. until Penix is able to do all the things in practice that Tagovailoa can do, quarterbacks coach Alex Van Pelt said Monday."
+    },
+    {
+      "id": "26e48ec97b1a5538d2a20457c9beb8be6ce2b7f3",
+      "source": "ESPN",
+      "title": "Bears edge closer to move to Northwest Indiana",
+      "url": "https://www.espn.com/nfl/story/_/id/48976141/bears-edge-closer-move-new-stadium-northwest-indiana",
+      "publishedAt": "2026-06-09T14:29:06.000Z",
+      "publishedTs": 1781015346000,
+      "description": "The Bears took a significant step toward leaving Chicago on Friday after the team's board of directors voted Thursday to advance their stadium development plans in nearby Hammond, Indiana."
+    },
+    {
+      "id": "603eab8c1f1df38a6cac6ec00ee460f6aab419e6",
+      "source": "ESPN",
+      "title": "Bucs' Mayfield: Contract talks 'not anywhere close...",
+      "url": "https://www.espn.com/nfl/story/_/id/48976225/mayfield-contract-talks-not-anywhere-close-buccaneers",
+      "publishedAt": "2026-06-09T14:29:06.000Z",
+      "publishedTs": 1781015346000,
+      "description": "Speaking publicly for the first time this offseason, Buccaneers QB Baker Mayfield said that contract extension talks \"are not anywhere close to what we were thinking\" and that it's \"time to get something done long-term.\""
+    },
+    {
+      "id": "b2f224dbf90e3436e0cbc34826bed1c38d0a6e25",
+      "source": "ESPN",
+      "title": "🏈 QB battles, rookies, more from NFL minicamps",
+      "url": "https://www.espn.com/nfl/story/_/id/48988004/2026-nfl-minicamps-otas-teams-rookies-qbs-veterans-watching",
+      "publishedAt": "2026-06-09T14:29:06.000Z",
+      "publishedTs": 1781015346000,
+      "description": "NFL Nation frames minicamp storylines, including Jalen Hurts, Patrick Mahomes and QBs in Arizona and Minnesota."
+    },
+    {
+      "id": "7d506314f102283b1707f331177c3f8a4b9d1e14",
+      "source": "ESPN",
+      "title": "How did the DC Defenders get a retired champ back ...",
+      "url": "https://www.espn.com/united-football-league/story/_/id/49002139/ufl-dc-defenders-andre-mintze-pto-unretire",
+      "publishedAt": "2026-06-09T13:50:15.000Z",
+      "publishedTs": 1781013015000,
+      "description": "During Sunday's UFL playoffs semifinal, Mintze was asked about his \"two-week sabbatical from his real job.\" Mintze's response? \"Allegedly.\""
+    },
+    {
+      "id": "51f4df113364534820f2a19267842e980fcdbfa1",
+      "source": "ESPN",
+      "title": "Which NFL teams are most likely to have a big turn...",
+      "url": "https://www.espn.com/nfl/story/_/id/48951382/2026-nfl-season-worst-first-afc-nfc-division-odds-predictions-turnarounds",
+      "publishedAt": "2026-06-09T13:34:50.000Z",
+      "publishedTs": 1781012090000,
+      "description": "We stacked last season's last-place finishers in each division by their chances to jump all the way to first."
+    },
+    {
+      "id": "a3bcd5d2fe8138a9e5816a55c35029ab4e228199",
+      "source": "ESPN",
+      "title": "Copy of 'He's going to help us a lot': Why Chiefs believe ...",
+      "url": "https://www.espn.com/nfl/story/_/id/48995215/why-chiefs-believe-kenneth-walker-transform-offense-free-agency-otas-offseason-super-bowl",
+      "publishedAt": "2026-06-09T13:09:21.000Z",
+      "publishedTs": 1781010561000,
+      "description": "Walker is being asked to lift the Chiefs offense more than any running back before in the Mahomes era. Can he?"
+    },
+    {
+      "id": "4e902d69558624fc2b002e11311a0ae2a4abab59",
+      "source": "ESPN",
+      "title": "Copy of Why the Browns see a 'world of upside' in Jared Ve...",
+      "url": "https://www.espn.com/nfl/story/_/id/49000119/why-cleveland-browns-2026-nfl-see-world-upside-jared-verse-trade",
+      "publishedAt": "2026-06-09T13:09:21.000Z",
+      "publishedTs": 1781010561000,
+      "description": "\"This is an attacking front, and that's kind of my style,\" the edge rusher says of his new team in Cleveland."
+    },
+    {
+      "id": "2225fa0ae1df577b1070d768c564a3e5a1c049a1",
+      "source": "ESPN",
+      "title": "What's next for Jacoby Brissett, Cardinals?",
+      "url": "https://www.espn.com/nfl/story/_/id/49003255/next-jacoby-brissett-cardinals",
+      "publishedAt": "2026-06-09T13:08:42.000Z",
+      "publishedTs": 1781010522000,
+      "description": "After being named the Cardinals' starting QB, Jacoby Brissett wants to be paid accordingly."
+    },
+    {
+      "id": "d7e37a61fa3e3413c1c411fc6e77545eea246049",
+      "source": "ESPN",
+      "title": "NFL minicamp daily updates: Yes! Jaxson Dart is ad...",
+      "url": "https://www.espn.com/nfl/story/_/id/48950554/2026-nfl-minicamp-live-updates-teams-mandatory-camps-news-notes-depth-charts",
+      "publishedAt": "2026-06-09T12:40:24.000Z",
+      "publishedTs": 1781008824000,
+      "description": "New York opened up its mandatory minicamp, and Jordan Raanan shares insights from Monday's practice."
+    },
+    {
+      "id": "5f5eceb1e22b2e7407a461cc47226c83edfd796a",
+      "source": "ESPN",
+      "title": "Buzz: Don't be surprised if a Dolphin besides Acha...",
+      "url": "https://www.espn.com/fantasy/football/story/_/id/40699880/fantasy-football-injuries-position-battles-nfl-news-analysis",
+      "publishedAt": "2026-06-08T16:24:27.000Z",
+      "publishedTs": 1780935867000,
+      "description": "Eric Karabell explains what to expect from a Dolphins offense with low expectations."
+    },
+    {
+      "id": "e4482716ec4fc2a8b94f07c0efd57d4eaab8e962",
+      "source": "ESPN",
+      "title": "Injury report: The outlooks on injured stars",
+      "url": "https://www.espn.com/fantasy/football/story/_/id/48966261/2026-fantasy-football-nfl-injuries-mahomes-nabers",
+      "publishedAt": "2026-06-08T16:24:27.000Z",
+      "publishedTs": 1780935867000,
+      "description": "Stephania Bell breaks down the status of fantasy stars heading into the 2026 season, from QBs to TEs."
+    },
+    {
+      "id": "8750c6141a1a9554bc7a26e66a95e251029d39c9",
+      "source": "ESPN",
+      "title": "A pocket pair of 8s: Browns' Jared Verse, Dillion ...",
+      "url": "https://www.espn.com/nfl/story/_/id/48967523/cleveland-browns-jared-verse-dillon-gabriel-number-eight-jersey",
+      "publishedAt": "2026-06-05T13:12:25.000Z",
+      "publishedTs": 1780665145000,
+      "description": "NFL rules permit two players to wear duplicate numbers during OTAs and training camp, when rosters consist of 90 players, but that changes come late August."
+    },
+    {
+      "id": "5570eec494a0265a266afda63fc19d2ff406ec77",
+      "source": "ESPN",
+      "title": "New FPI projections for the 2026 NFL season: Which...",
+      "url": "https://www.espn.com/nfl/story/_/id/48845972/2026-nfl-season-football-power-index-projections-super-bowl-chances-simulations",
+      "publishedAt": "2026-06-04T13:55:19.000Z",
+      "publishedTs": 1780581319000,
+      "description": "ESPN's Football Power Index ratings are live. These simulations of the 2026 season provide playoff chances, potential draft order and our 1-32 team ranking."
+    },
+    {
+      "id": "341283253f408b47ec9f03e2a42a852bcb9e9f46",
+      "source": "ESPN",
+      "title": "100 things to know for the 2026 NFL season ... 100...",
+      "url": "https://www.espn.com/nfl/story/_/id/48894110/2026-nfl-season-100-days-nuggets-mvp-predictions-fantasy-rookies",
+      "publishedAt": "2026-06-04T13:55:19.000Z",
+      "publishedTs": 1780581319000,
+      "description": "100 things to know, including bold predictions, fantasy sleepers and injury buzz."
+    },
+    {
+      "id": "84420140f9ce2e172afc8ec81d490d175d9658b9",
+      "source": "FantasyPros",
+      "title": "Aidan Laros waived by Bucs",
+      "url": "https://www.fantasypros.com/nfl/news/590485/aidan-laros-waived-by-bucs.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "d04df49b87c7c30f4112ffdbfa6021266eec11fb",
+      "source": "FantasyPros",
+      "title": "B.T. Potter signs with Bucs",
+      "url": "https://www.fantasypros.com/nfl/news/590484/bt-potter-signs-with-bucs.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "87edfcdf33240ad5c1e256e9175fe3f43e5e6cee",
+      "source": "FantasyPros",
+      "title": "Heinrich Haarberg waived by Panthers",
+      "url": "https://www.fantasypros.com/nfl/news/590483/heinrich-haarberg-waived-by-panthers.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "508d0066e9651b7d7963a49712fd367ffd870d58",
+      "source": "FantasyPros",
+      "title": "Malick Meiga signs with Panthers",
+      "url": "https://www.fantasypros.com/nfl/news/590482/malick-meiga-signs-with-panthers-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "fdccfeaaf594aa176891728d5ca94cbc680d7e0a",
+      "source": "FantasyPros",
+      "title": "Caleb Lohner undergoes clean-up procedure",
+      "url": "https://www.fantasypros.com/nfl/news/590481/caleb-lohner-undergoes-clean-up-procedure-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "c1fe062302da23ee935a920e95dc20eebb0c89c9",
+      "source": "FantasyPros",
+      "title": "Ifeatu Melifonwu trying out at Seahawks minicamp",
+      "url": "https://www.fantasypros.com/nfl/news/590480/ifeatu-melifonwu-trying-out-seahawks-minicamp-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "8fccb07814a68aeedb7078e3516eacbcd99c4ea0",
+      "source": "FantasyPros",
+      "title": "Anfernee Orji trying out at Giants minicamp",
+      "url": "https://www.fantasypros.com/nfl/news/590479/anfernee-orji-trying-out-giants-minicamp-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "d512e9c0968f0aeb5c2f88c0fcd799d44680754e",
+      "source": "FantasyPros",
+      "title": "Marlon Davidson trying out at Giants minicamp",
+      "url": "https://www.fantasypros.com/nfl/news/590478/marlon-davidson-trying-out-giants-minicamp-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "87c80862d832712dc2df2d65bb814890c3c57771",
+      "source": "FantasyPros",
+      "title": "Josh Sweat reports to Cardinals' mandatory minicamp",
+      "url": "https://www.fantasypros.com/nfl/news/590477/josh-sweat-reports-to-cardinals-mandatory-minicamp.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "da176dca461b09f5d7d23648ea393589bfbdd545",
+      "source": "FantasyPros",
+      "title": "Quentin Skinner waived by Jets",
+      "url": "https://www.fantasypros.com/nfl/news/590476/quentin-skinner-waived-by-jets.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "885994262ed3a51b7083941fdf4f12f54ea62a84",
+      "source": "FantasyPros",
+      "title": "Jalen Walthall signs with Jets",
+      "url": "https://www.fantasypros.com/nfl/news/590475/jalen-walthall-signs-with-jets.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "094328fb3d6956bb335e07e46b14ed439082f5da",
+      "source": "FantasyPros",
+      "title": "Michael Penix Jr. (knee) hitting 'every single milestone' in recovery",
+      "url": "https://www.fantasypros.com/nfl/news/590474/michael-penix-jr-knee-hitting-every-single-milestone-recovery-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "a09b0802736c404fc3a5e444974af509ca1c7ca5",
+      "source": "FantasyPros",
+      "title": "Billy Bowman Jr. (Achilles) progressing in return",
+      "url": "https://www.fantasypros.com/nfl/news/590473/billy-bowman-jr-achilles-progressing-return.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "05d92a8552c00c710d63e7f1a404b8b9e0186e9c",
+      "source": "FantasyPros",
+      "title": "James Proche II to tryout in Eagles minicamp",
+      "url": "https://www.fantasypros.com/nfl/news/590472/james-proche-ii-to-tryout-eagles-minicamp.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "a112d323a903d2042f906625744b7cc664367955",
+      "source": "FantasyPros",
+      "title": "Chris Rodriguez Jr. (foot) expected to be full-go for training camp",
+      "url": "https://www.fantasypros.com/nfl/news/590471/chris-rodriguez-jr-foot-expected-to-be-full-go-training-camp-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "5b1cc4f527c7b798a4f8cdca6bf433a12bcb2b0e",
+      "source": "FantasyPros",
+      "title": "Caleb Lomu signs rookie deal with Patriots",
+      "url": "https://www.fantasypros.com/nfl/news/590470/caleb-lomu-signs-rookie-deal-with-patriots-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "ed16a77a735cd770aebf51fc75e24d1f740130bb",
+      "source": "FantasyPros",
+      "title": "Mansoor Delane signs rookie deal with Chiefs",
+      "url": "https://www.fantasypros.com/nfl/news/590469/mansoor-delane-signs-rookie-deal-with-chiefs-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "d9fe0eb0c5000db1e8f561e24c8876418bea530b",
+      "source": "FantasyPros",
+      "title": "Cam Skattebo (ankle) seen participating in drills at Monday's minicamp",
+      "url": "https://www.fantasypros.com/nfl/news/590468/cam-skattebo-ankle-seen-participating-drills-mondays-minicamp.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "284e1b1f3c82cf9210dbf794778bc43cd0ff4088",
+      "source": "FantasyPros",
+      "title": "Peter Woods signs rookie deal with Chiefs",
+      "url": "https://www.fantasypros.com/nfl/news/590467/peter-woods-signs-rookie-deal-with-chiefs.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "d86e74640b7da3047a85a2571daf4139a65707ef",
+      "source": "FantasyPros",
+      "title": "L'Jarius Sneed signs one-year deal with Chiefs",
+      "url": "https://www.fantasypros.com/nfl/news/590413/ljarius-sneed-signs-one-year-deal-with-chiefs.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "c76863151d7ac63ed16182181ae0348621c8ea36",
+      "source": "FantasyPros",
+      "title": "Abdul Carter (foot) initially believed to be okay",
+      "url": "https://www.fantasypros.com/nfl/news/590387/abdul-carter-foot-initially-believed-to-be-okay.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
     {
       "id": "a366c5cd9d2954848af9f0f34b7315ff11284226",
       "source": "FantasyPros",
@@ -24,204 +420,6 @@
       "source": "FantasyPros",
       "title": "Baker Mayfield 'not anywhere close' to signing new contract with Bucs",
       "url": "https://www.fantasypros.com/nfl/news/590114/baker-mayfield-not-anywhere-close-to-signing-new-contract-with-bucs.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "c18db35a755a4ee681ec3c87839a53ff17df6b9e",
-      "source": "FantasyPros",
-      "title": "Malachi Lawrence signs rookie deal with Cowboys",
-      "url": "https://www.fantasypros.com/nfl/news/590112/malachi-lawrence-signs-rookie-deal-with-cowboys-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "426dcad18048a669659914a86db44c177fc8197c",
-      "source": "FantasyPros",
-      "title": "Sean Murphy-Bunting missed last season with torn ACL",
-      "url": "https://www.fantasypros.com/nfl/news/590111/sean-murphy-bunting-missed-last-season-with-torn-acl.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "8a037b521236ddd92fe898352b68b06799fb30f3",
-      "source": "FantasyPros",
-      "title": "Marlin Klein (hamstring) sidelined during OTAs this week",
-      "url": "https://www.fantasypros.com/nfl/news/590109/marlin-klein-hamstring-sidelined-during-otas-this-week.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "6d7ad77faa0ac604a81ec08e9d0f6f9a5a3eaa93",
-      "source": "FantasyPros",
-      "title": "Jalen Walthall waived by Texans",
-      "url": "https://www.fantasypros.com/nfl/news/590108/jalen-walthall-waived-by-texans-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "e1ef1938e2317c736849bff94761756719c5643a",
-      "source": "FantasyPros",
-      "title": "Michael Hoecht (Achilles) aiming to be ready for Week 1",
-      "url": "https://www.fantasypros.com/nfl/news/590107/michael-hoecht-achilles-aiming-to-be-ready-week-1.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "78e193eaa2ed503dddce25c4570a680972bde1a1",
-      "source": "FantasyPros",
-      "title": "L'Jarius Sneed visits Chiefs Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/589860/ljarius-sneed-visits-chiefs-thursday-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "fb33f5d94cef659b36e4e57e7c2fe4535e013f35",
-      "source": "FantasyPros",
-      "title": "Nate Thomas to compete with Tyler Guyton at left tackle",
-      "url": "https://www.fantasypros.com/nfl/news/589859/nate-thomas-to-compete-with-tyler-guyton-left-tackle.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "d6c98f253a71ae682347301fe66fe350957cfdc9",
-      "source": "FantasyPros",
-      "title": "Tyler Guyton to compete with Nate Thomas at left tackle",
-      "url": "https://www.fantasypros.com/nfl/news/589858/tyler-guyton-to-compete-with-nate-thomas-left-tackle-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "abb4b5f8c38b80a50b9e92e8b0baba4be3abda57",
-      "source": "FantasyPros",
-      "title": "Eddie Walls III placed on IR",
-      "url": "https://www.fantasypros.com/nfl/news/589857/eddie-walls-iii-placed-on-ir.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "0a7f63dd7778bc80e7429265c9eec82467d22b39",
-      "source": "FantasyPros",
-      "title": "Chad Lindberg placed on IR",
-      "url": "https://www.fantasypros.com/nfl/news/589856/chad-lindberg-placed-on-ir.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "52fb9aad66b4f4cd57fdf2ec27aa673148be7716",
-      "source": "FantasyPros",
-      "title": "Sal Wormley waived by Jaguars",
-      "url": "https://www.fantasypros.com/nfl/news/589855/sal-wormley-waived-by-jaguars-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "a05f714f5d63293ba6b7c9cac4bba37f960be10d",
-      "source": "FantasyPros",
-      "title": "Keith Taylor Jr. (pec) placed on IR",
-      "url": "https://www.fantasypros.com/nfl/news/589854/keith-taylor-jr-pec-placed-on-ir.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "9fa547df55aaeeb409ad81d71685c81da23668d3",
-      "source": "FantasyPros",
-      "title": "Trystan Colon signs with Jaguars",
-      "url": "https://www.fantasypros.com/nfl/news/589853/trystan-colon-signs-with-jaguars-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "18ffa051c12b0664715dd0cc2158c5ff2c1b4ae9",
-      "source": "FantasyPros",
-      "title": "Kyre Duplessis signs with Lions",
-      "url": "https://www.fantasypros.com/nfl/news/589852/kyre-duplessis-signs-with-lions.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "68953ad00405cbce4ae8f2949bba9003fe962ca8",
-      "source": "FantasyPros",
-      "title": "Donovan Ezeiruaku (hip) expected to be ready for training camp",
-      "url": "https://www.fantasypros.com/nfl/news/589851/donovan-ezeiruaku-hip-expected-to-be-ready-training-camp-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "0c31f4cd7209fe594b44056156de90b578b598c6",
-      "source": "FantasyPros",
-      "title": "Seydou Traore signs rookie deal with Dolphins",
-      "url": "https://www.fantasypros.com/nfl/news/589850/seydou-traore-signs-rookie-deal-with-dolphins-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "3d53074ca29a11fae66b9ecaa6e52b56d6c8e310",
-      "source": "FantasyPros",
-      "title": "Benton Whitley signs with Browns",
-      "url": "https://www.fantasypros.com/nfl/news/589849/benton-whitley-signs-with-browns.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "375e61ad5a167347dbe5546240219c682d5b0a7f",
-      "source": "FantasyPros",
-      "title": "Chris Rodriguez Jr. (undisclosed) remains absent from OTAs",
-      "url": "https://www.fantasypros.com/nfl/news/589848/chris-rodriguez-jr-undisclosed-remains-absent-from-otas.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "4450dc9591741eed1dba3b5a2ebd6154bc6341ff",
-      "source": "FantasyPros",
-      "title": "AJ Barner underwent surgeries in offseason, to be ready for training camp",
-      "url": "https://www.fantasypros.com/nfl/news/589847/aj-barner-underwent-multiple-surgeries-expected-to-be-ready-training-c.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "adce31528da382c7a101a69b4af09d23abeb48d8",
-      "source": "FantasyPros",
-      "title": "A.J. Brown not expected to be limited by knee injury this season",
-      "url": "https://www.fantasypros.com/nfl/news/589846/aj-brown-not-expected-to-be-limited-by-knee-injury-this-season.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "03c526215016df208e22fc1c5a40dc8a9ac65bd5",
-      "source": "FantasyPros",
-      "title": "Kayshon Boutte could be traded",
-      "url": "https://www.fantasypros.com/nfl/news/589834/kayshon-boutte-could-be-traded.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "5cacea9e6a73c083bacd4ff972daf7a8eb52c534",
-      "source": "FantasyPros",
-      "title": "Kendrick Law suffers torn ACL",
-      "url": "https://www.fantasypros.com/nfl/news/589833/kendrick-law-suffers-torn-acl.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
