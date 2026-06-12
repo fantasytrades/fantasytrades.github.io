@@ -1,6 +1,78 @@
 {
-  "generatedAt": "2026-06-11T16:01:13.348Z",
+  "generatedAt": "2026-06-12T14:58:46.629Z",
   "items": [
+    {
+      "id": "d3a1eaa98df3a056a9f102fc1036ffd73fc81223",
+      "source": "FantasyPros",
+      "title": "Jerry Jeudy (hamstring) sits out of team drills Thursday",
+      "url": "https://www.fantasypros.com/nfl/news/591007/jerry-jeudy-hamstring-sits-out-team-drills-thursday-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "5413142d4a434b6e3c7c779efbedcc63759afa03",
+      "source": "FantasyPros",
+      "title": "Kenny Yeboah signs with Cardinals",
+      "url": "https://www.fantasypros.com/nfl/news/591006/kenny-yeboah-signs-with-cardinals-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "62b849dd8eb70cd2e2f91abcca53822568a329f4",
+      "source": "FantasyPros",
+      "title": "Bucky Irving (shoulder) takes part in practice Thursday",
+      "url": "https://www.fantasypros.com/nfl/news/591005/bucky-irving-shoulder-takes-part-practice-thursday-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "348b9d3fab796c84238f181f71d900390fb92fce",
+      "source": "FantasyPros",
+      "title": "Bo Nix (ankle) expected to participate in minicamp",
+      "url": "https://www.fantasypros.com/nfl/news/591004/bo-nix-ankle-expected-to-participate-minicamp-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "c4e221733fcc8953142ec90d56aa2e970425cd79",
+      "source": "FantasyPros",
+      "title": "Caleb Banks (foot) on track for training camp",
+      "url": "https://www.fantasypros.com/nfl/news/591003/caleb-banks-foot-on-track-training-camp-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "539f91f458c7d1177b0655f186e75b87060c8dbb",
+      "source": "FantasyPros",
+      "title": "Benjamin Morrison (leg) misses practice Thursday",
+      "url": "https://www.fantasypros.com/nfl/news/591002/benjamin-morrison-leg-misses-practice-thursday-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "118ed49ba329ddd41ddf0cdb4fb7f80a3915e95a",
+      "source": "FantasyPros",
+      "title": "Rashee Rice remains on track to be ready for training camp",
+      "url": "https://www.fantasypros.com/nfl/news/591001/rashee-rice-remains-on-track-to-be-ready-training-camp-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "d0f4aa3c7801b8cfbe53477918684a5815221d51",
+      "source": "FantasyPros",
+      "title": "Jalen Coker agrees to 3-year, $35 million extension with Panthers",
+      "url": "https://www.fantasypros.com/nfl/news/590965/jalen-coker-agrees-to-contract-extension-with-panthers.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
     {
       "id": "84e08c4257972a49133d2ef5d4ea72f1612eae9d",
       "source": "FantasyPros",
@@ -150,60 +222,6 @@
       "source": "FantasyPros",
       "title": "A.J. Epenesa signs with Eagles",
       "url": "https://www.fantasypros.com/nfl/news/590818/aj-epenesa-signs-with-eagles.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "365c23b5a3b90fafb215419b8f3022a617768525",
-      "source": "FantasyPros",
-      "title": "Jordan Mims waived by 49ers",
-      "url": "https://www.fantasypros.com/nfl/news/590816/jordan-mims-waived-by-49ers.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "ca3de345f0d4e83f6e368136610ecaf248b42dd3",
-      "source": "FantasyPros",
-      "title": "Sincere McCormick signs one-year deal with 49ers",
-      "url": "https://www.fantasypros.com/nfl/news/590815/sincere-mccormick-signs-one-year-deal-with-49ers.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "6e2ddbaee5c03d58a8b34547f48e870ad63e3231",
-      "source": "FantasyPros",
-      "title": "Tucker Kraft anticipates playing Week 1 without snap count",
-      "url": "https://www.fantasypros.com/nfl/news/590792/tucker-kraft-anticipates-playing-week-1-without-snap-count.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "bf3e7e4555852a375fbe3828508b3c0f97418766",
-      "source": "FantasyPros",
-      "title": "Sam Howell, Joe Milton III to get equal reps to be Cowboys QB2",
-      "url": "https://www.fantasypros.com/nfl/news/590754/sam-howell-joe-milton-iii-to-get-equal-reps-to-be-cowboys-qb2.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "df833c93ffa912ba2722f29e4a9bcfb27f2d744a",
-      "source": "FantasyPros",
-      "title": "Joe Milton III, Sam Howell to get equal reps to be Cowboys QB2",
-      "url": "https://www.fantasypros.com/nfl/news/590753/joe-milton-iii-sam-howell-to-get-equal-reps-to-be-cowboys-qb2.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "666b63ecbd09bcf7135c329bbb9c22553745ff44",
-      "source": "FantasyPros",
-      "title": "T.J. Bass receives snaps at center Tuesday",
-      "url": "https://www.fantasypros.com/nfl/news/590752/tj-bass-receives-snaps-center-tuesday-.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
