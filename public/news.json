@@ -1,29 +1,299 @@
 {
-  "generatedAt": "2026-06-15T17:14:11.597Z",
+  "generatedAt": "2026-06-16T16:51:57.612Z",
   "items": [
+    {
+      "id": "db5caaef6106b84bdc16ab1744dfe461d2428713",
+      "source": "ESPN",
+      "title": "Family to have Smith's brain checked for CTE",
+      "url": "https://www.espn.com/nfl/story/_/id/49081473/family-aldon-smith-having-brain-checked-cte",
+      "publishedAt": "2026-06-16T17:42:31.000Z",
+      "publishedTs": 1781631751000,
+      "description": "The family of Aldon Smith has decided to send his brain to medical experts in Boston to see whether CTE played a role in the former NFL defensive lineman's death."
+    },
+    {
+      "id": "41cfb9beb825d4567c48c394f8a70def5938b349",
+      "source": "ESPN",
+      "title": "Chiefs' Rice released from jail, dodges reporters",
+      "url": "https://www.espn.com/nfl/story/_/id/49083151/chiefs-rashee-rice-released-jail-dodges-reporters",
+      "publishedAt": "2026-06-16T17:42:31.000Z",
+      "publishedTs": 1781631751000,
+      "description": "Chiefs WR Rashee Rice was released from a Dallas County jail on Tuesday after serving a 30-day sentence for violating the terms of his probation."
+    },
+    {
+      "id": "15733f966944481ff37ddb2e1f921948b305378c",
+      "source": "ESPN",
+      "title": "Sources: Sorsby set to enter supplemental draft",
+      "url": "https://www.espn.com/nfl/story/_/id/49077466/texas-tech-transfer-qb-brendan-sorsby-plans-enter-nfl-supplemental-draft",
+      "publishedAt": "2026-06-16T17:42:31.000Z",
+      "publishedTs": 1781631751000,
+      "description": "Amid legal wrangling over his NCAA eligibility, Texas Tech transfer quarterback Brendan Sorsby plans to apply for the NFL's supplemental draft."
+    },
+    {
+      "id": "cdf1fdb769f66468832eab1682c98d3a104bd73d",
+      "source": "ESPN",
+      "title": "Source: Pickens reports ahead of Cowboys' camp",
+      "url": "https://www.espn.com/nfl/story/_/id/49073469/source-pickens-reports-ahead-cowboys-mandatory-minicamp",
+      "publishedAt": "2026-06-16T17:42:31.000Z",
+      "publishedTs": 1781631751000,
+      "description": "As a precursor to this week's mandatory minicamp, Dallas Cowboys wide receiver George Pickens took his physical Monday at The Star, according to a source."
+    },
+    {
+      "id": "87dd4c18e81ef593590b403c42a2c46d3902bb88",
+      "source": "ESPN",
+      "title": "Stefanski confirms Pearce's return to Falcons",
+      "url": "https://www.espn.com/nfl/story/_/id/49083278/falcons-confirm-james-pearce-jr-return-4-months-arrest",
+      "publishedAt": "2026-06-16T17:42:31.000Z",
+      "publishedTs": 1781631751000,
+      "description": "Falcons head coach Kevin Stefanski confirmed James Pearce Jr. has returned to the team four months after a domestic violence arrest and will do individual drills. The NFL says Pearce's case remains under review."
+    },
+    {
+      "id": "2dde453c4177a27d7202ee012a1ad27deb065b55",
+      "source": "ESPN",
+      "title": "Megatron sees record falling, Nacua as top threat",
+      "url": "https://www.espn.com/nfl/story/_/id/49078087/calvin-johnson-sees-puka-nacua-top-threat-receiving-mark",
+      "publishedAt": "2026-06-16T17:42:31.000Z",
+      "publishedTs": 1781631751000,
+      "description": "Calvin Johnson doesn't expect his single-season NFL record for receiving yards to last much longer. And if he had to guess, Rams star Puka Nacua will be the one to break it."
+    },
+    {
+      "id": "2b73b94775eb9e7e942726e20448347cca622531",
+      "source": "ESPN",
+      "title": "Sources: Jets, durable Tippmann reach $62M deal",
+      "url": "https://www.espn.com/nfl/story/_/id/49071420/sources-jets-guard-joe-tippmann-reach-4-year-62m-extension",
+      "publishedAt": "2026-06-16T17:42:31.000Z",
+      "publishedTs": 1781631751000,
+      "description": "The Jets and right guard Joe Tippmann have agreed to a four-year, $62 million contract extension that includes $31 million in new guarantees, sources told ESPN on Monday."
+    },
+    {
+      "id": "732b88e60568607946dc921dbaac2e8c84d64678",
+      "source": "ESPN",
+      "title": "NFL closes personal conduct review of WR Diggs",
+      "url": "https://www.espn.com/nfl/story/_/id/49042034/nfl-closes-personal-conduct-review-wr-stefon-diggs",
+      "publishedAt": "2026-06-16T17:42:31.000Z",
+      "publishedTs": 1781631751000,
+      "description": "The NFL has closed its review of wide receiver Stefon Diggs after determining there was insufficient evidence of a personal conduct policy violation, a league official told ESPN's Adam Schefter."
+    },
+    {
+      "id": "ea05a8a40a8acafd29bde2cbf06c09b4206ddcd6",
+      "source": "ESPN",
+      "title": "😐 Reid coy on Kelce-Swift wedding attendance",
+      "url": "https://www.espn.com/nfl/story/_/id/49033308/andy-reid-travis-kelce-taylor-swift-wedding-kansas-city-chiefs",
+      "publishedAt": "2026-06-16T17:42:31.000Z",
+      "publishedTs": 1781631751000,
+      "description": "According to Reid, despite being half of one of the most anticipated weddings in recent memory, Kelce is focused on training camp."
+    },
+    {
+      "id": "d5a1da89a3d921801925e27802508b0ccf67c23a",
+      "source": "ESPN",
+      "title": "NFL execs pick their 8 favorite offseason moves: W...",
+      "url": "https://www.espn.com/nfl/story/_/id/49071567/2026-offseason-nfl-execs-favorite-trades-signings-draft-picks-moves-waddle-garrett",
+      "publishedAt": "2026-06-16T17:16:08.000Z",
+      "publishedTs": 1781630168000,
+      "description": "We talked to sources around the NFL about their favorite moves of the offseason. The answers ranged from megadeals to a surprise draft pick."
+    },
+    {
+      "id": "1939cb135968295dc29a1358f194b0bb7fe8c043",
+      "source": "ESPN",
+      "title": "From QB battles to rookie progress, here's everyth...",
+      "url": "https://www.espn.com/nfl/story/_/id/48988004/2026-nfl-minicamps-otas-teams-rookies-qbs-veterans-watching",
+      "publishedAt": "2026-06-16T17:16:08.000Z",
+      "publishedTs": 1781630168000,
+      "description": "null"
+    },
+    {
+      "id": "9a90380d2962e82aad56bd64e14ae529ed7d724a",
+      "source": "ESPN",
+      "title": "Wait, Brendan Sorsby is now going to the NFL suppl...",
+      "url": "https://www.espn.com/nfl/story/_/id/49074711/2026-nfl-supplemental-draft-brendan-sorsby-quarterback-gambling-eligibility",
+      "publishedAt": "2026-06-16T14:26:34.000Z",
+      "publishedTs": 1781619994000,
+      "description": "How is Sorsby suddenly in the supplemental draft? How does it work, and which teams could be interested? And what is his value after his gambling violations in college?"
+    },
+    {
+      "id": "9f776aa0bfa5721f8df2b7267d1a9d8d0c1c30af",
+      "source": "ESPN",
+      "title": "Way-too-early NFL draft rankings for 2027: The top...",
+      "url": "https://www.espn.com/nfl/draft2027/story/_/id/49001685/nfl-draft-2027-top-five-every-position-players-watch",
+      "publishedAt": "2026-06-16T13:49:22.000Z",
+      "publishedTs": 1781617762000,
+      "description": "The NFL draft is a long way off, but Matt Miller and Jordan Reid ranked the five best prospects at every position. How do the top QBs, OTs, CBs and more stack up?"
+    },
+    {
+      "id": "d9e786b6d50c23a43e426821316930c6d07d5938",
+      "source": "ESPN",
+      "title": "2026 Fantasy Football Draft Guide: Rankings, mock drafts and analysis",
+      "url": "https://www.espn.com/fantasy/football/story/_/page/FFDraftGuide26-48677635/2026-fantasy-football-rankings-mock-draft-cheat-sheets-sleepers",
+      "publishedAt": "2026-06-16T13:39:20.000Z",
+      "publishedTs": 1781617160000,
+      "description": "Your one-stop shop as you prep for draft season, including rankings, projections and analysis."
+    },
+    {
+      "id": "048c09577d082e850f56be07116e9a68c4cbcd72",
+      "source": "ESPN",
+      "title": "'He feels more dangerous': What can Cowboys expect...",
+      "url": "https://www.espn.com/nfl/story/_/id/49071180/nfl-dallas-cowboys-brian-schottenheimer-jake-ferguson-demarvion-overshown",
+      "publishedAt": "2026-06-16T12:47:16.000Z",
+      "publishedTs": 1781614036000,
+      "description": "After a disappointing 7-9-1 debut as head coach, Schotty is focused on learning from his mistakes to push Dallas to new heights."
+    },
+    {
+      "id": "96768932ab2b2b128cc8c52a0f77d8755f37d148",
+      "source": "ESPN",
+      "title": "Raiders players' first impressions of QB Fernando ...",
+      "url": "https://www.espn.com/nfl/story/_/id/49041440/las-vegas-raiders-rookie-quarterback-fernando-mendoza-first-impressions-2026-otas",
+      "publishedAt": "2026-06-15T19:27:17.000Z",
+      "publishedTs": 1781551637000,
+      "description": "We asked players and coaches about their first impressions of the Raiders' rookie and No. 1 pick during OTAs."
+    },
+    {
+      "id": "bf29b2d2e6660c65343c939f69bb6878d829bfce",
+      "source": "ESPN",
+      "title": "Can the U.S. win it all? NFL players make World Cu...",
+      "url": "https://www.espn.com/nfl/story/_/id/49009790/nfl-players-world-cup-golden-boot-predictions-france-kylian-mbappe",
+      "publishedAt": "2026-06-13T21:59:33.000Z",
+      "publishedTs": 1781387973000,
+      "description": "We asked 29 NFL players to weigh in on who would win the Golden Boot and World Cup."
+    },
+    {
+      "id": "3ead0edaabd1a4941d35be71f53bc7eafb469047",
+      "source": "ESPN",
+      "title": "World Cup only amplifies NFL players' desire for a...",
+      "url": "https://www.espn.com/nfl/story/_/id/49030490/fifa-world-cup-grass-nfl-stadiums-debate-field-surface",
+      "publishedAt": "2026-06-13T21:59:32.000Z",
+      "publishedTs": 1781387972000,
+      "description": "The World Cup is the latest proof of concept that it's possible to have grass fields in all 30 NFL stadiums, even the domes. But obstacles remain from keeping it full time."
+    },
+    {
+      "id": "9f1a9943b5885cf192f886d0d5bd3caa89c0d39f",
+      "source": "FantasyPros",
+      "title": "Jordyn Tyson (hamstring) to continue rehab during minicamp",
+      "url": "https://www.fantasypros.com/nfl/news/591598/jordyn-tyson-hamstring-to-continue-rehab-during-minicamp-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "6425191073e2b6690468d9efd0fae50131157b80",
+      "source": "FantasyPros",
+      "title": "Michael Penix Jr. (knee) not cleared yet for 11-on-11 work",
+      "url": "https://www.fantasypros.com/nfl/news/591597/michael-penix-jr-knee-not-cleared-yet-11-on-11-work.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "f87556e0512b37c076e650336fa343a66c6fc9e5",
+      "source": "FantasyPros",
+      "title": "Zamir White recently worked out for Cowboys",
+      "url": "https://www.fantasypros.com/nfl/news/591596/zamir-white-recently-worked-out-cowboys-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "72ad2f55e3c2e72486353b8a6ace08bcdf3f3607",
+      "source": "FantasyPros",
+      "title": "Cade Klubnik (back) sitting out practice Tuesday",
+      "url": "https://www.fantasypros.com/nfl/news/591595/cade-klubnik-back-sitting-out-practice-tuesday-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "50462511092ac36c201b159cfd02091ac3a72074",
+      "source": "FantasyPros",
+      "title": "George Pickens officially reports to mandatory minicamp Tuesday",
+      "url": "https://www.fantasypros.com/nfl/news/591594/george-pickens-officially-reports-to-mandatory-minicamp-tuesday-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "6f1f3cfaf017eadfbca450a83eef3997c5fbf74e",
+      "source": "FantasyPros",
+      "title": "Rashee Rice released from jail Tuesday following 30-day stint",
+      "url": "https://www.fantasypros.com/nfl/news/591591/rashee-rice-released-from-jail-tuesday-following-30-day-stint.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "60b35eacea155da2614624cc02e9da59ee826532",
+      "source": "FantasyPros",
+      "title": "Jakobie Keeney-James released by Packers",
+      "url": "https://www.fantasypros.com/nfl/news/591590/jakobie-keeney-james-released-by-packers.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "a81128354ccd8cc29354a9b32458c4fa60f72344",
+      "source": "FantasyPros",
+      "title": "Luke Lachey signs with Packers",
+      "url": "https://www.fantasypros.com/nfl/news/591589/luke-lachey-signs-with-packers.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "be809690dd8fcde638c89d23c16030cfd520a9fe",
+      "source": "FantasyPros",
+      "title": "Keith Taylor Jr. released by Jaguars",
+      "url": "https://www.fantasypros.com/nfl/news/591588/keith-taylor-jr-released-by-jaguars-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "6621883729d4d288eb612a46c4a96b647ba78e4a",
+      "source": "FantasyPros",
+      "title": "Justin Herbert focusing on footwork and anticipatory throwing",
+      "url": "https://www.fantasypros.com/nfl/news/591587/justin-herbert-focusing-on-footwork-anticipatory-throwing.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "27a940c95f5b967b722b0370393fcc4be9b65478",
+      "source": "FantasyPros",
+      "title": "RJ Harvey underwent offseason surgery to repair torn labrum",
+      "url": "https://www.fantasypros.com/nfl/news/591529/rj-harvey-underwent-offseason-surgery-to-repair-torn-labrum.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "c58d8b9311aa3cf27a440891832df763760de84d",
+      "source": "FantasyPros",
+      "title": "Carter Warren waived by Dolphins",
+      "url": "https://www.fantasypros.com/nfl/news/591476/carter-warren-waived-by-dolphins-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "1791bbeab95aaf2516f529536e2ee42edfbb160b",
+      "source": "FantasyPros",
+      "title": "Kion Smith released by Dolphins",
+      "url": "https://www.fantasypros.com/nfl/news/591475/kion-smith-released-by-dolphins-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "682793aad772ba624e29ad7719e96a0c0e593dc5",
+      "source": "FantasyPros",
+      "title": "Major Burns signs with Dolphins",
+      "url": "https://www.fantasypros.com/nfl/news/591474/major-burns-signs-with-dolphins-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
     {
       "id": "926d5a2660bf73861f2bae1ba4c6ccf48da73479",
       "source": "FantasyPros",
       "title": "James Pearce Jr. expected to participate in minicamp this week",
       "url": "https://www.fantasypros.com/nfl/news/591461/james-pearce-jr-expected-to-participate-minicamp-this-week.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "3497249edcd08ef40da0f8d92904871d4f76f164",
-      "source": "FantasyPros",
-      "title": "George Pickens reports to Cowboys facility for mandatory minicamp",
-      "url": "https://www.fantasypros.com/nfl/news/591457/george-pickens-reports-to-cowboys-facility-mandatory-minicamp-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "0054b0ca9441f36eb205e33609cbfd820d511a17",
-      "source": "FantasyPros",
-      "title": "Michael Penix Jr. (knee) status unclear for minicamp",
-      "url": "https://www.fantasypros.com/nfl/news/591454/michael-penix-jr-knee-status-unclear-minicamp-.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
@@ -87,114 +357,6 @@
       "source": "FantasyPros",
       "title": "Dorian Strong re-signs with Bills",
       "url": "https://www.fantasypros.com/nfl/news/591446/dorian-strong-re-signs-with-bills-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "ab963387493e29311135dc0194aba47ed64b9e66",
-      "source": "FantasyPros",
-      "title": "Desmond Reid waived by Bills",
-      "url": "https://www.fantasypros.com/nfl/news/591444/desmond-reid-waived-by-bills.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "df4d189673f11c070a279c92ae3eb417eba2b223",
-      "source": "FantasyPros",
-      "title": "Deven Thompkins signs with Bills",
-      "url": "https://www.fantasypros.com/nfl/news/591443/deven-thompkins-signs-with-bills-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "d3a1eaa98df3a056a9f102fc1036ffd73fc81223",
-      "source": "FantasyPros",
-      "title": "Jerry Jeudy (hamstring) sits out of team drills Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/591007/jerry-jeudy-hamstring-sits-out-team-drills-thursday-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "5413142d4a434b6e3c7c779efbedcc63759afa03",
-      "source": "FantasyPros",
-      "title": "Kenny Yeboah signs with Cardinals",
-      "url": "https://www.fantasypros.com/nfl/news/591006/kenny-yeboah-signs-with-cardinals-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "62b849dd8eb70cd2e2f91abcca53822568a329f4",
-      "source": "FantasyPros",
-      "title": "Bucky Irving (shoulder) takes part in practice Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/591005/bucky-irving-shoulder-takes-part-practice-thursday-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "c4e221733fcc8953142ec90d56aa2e970425cd79",
-      "source": "FantasyPros",
-      "title": "Caleb Banks (foot) on track for training camp",
-      "url": "https://www.fantasypros.com/nfl/news/591003/caleb-banks-foot-on-track-training-camp-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "539f91f458c7d1177b0655f186e75b87060c8dbb",
-      "source": "FantasyPros",
-      "title": "Benjamin Morrison (leg) misses practice Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/591002/benjamin-morrison-leg-misses-practice-thursday-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "118ed49ba329ddd41ddf0cdb4fb7f80a3915e95a",
-      "source": "FantasyPros",
-      "title": "Rashee Rice remains on track to be ready for training camp",
-      "url": "https://www.fantasypros.com/nfl/news/591001/rashee-rice-remains-on-track-to-be-ready-training-camp-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "d0f4aa3c7801b8cfbe53477918684a5815221d51",
-      "source": "FantasyPros",
-      "title": "Jalen Coker agrees to 3-year, $35 million extension with Panthers",
-      "url": "https://www.fantasypros.com/nfl/news/590965/jalen-coker-agrees-to-contract-extension-with-panthers.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "84e08c4257972a49133d2ef5d4ea72f1612eae9d",
-      "source": "FantasyPros",
-      "title": "Deshaun Watson says he is fully healthy",
-      "url": "https://www.fantasypros.com/nfl/news/590917/deshaun-watson-says-he-is-fully-healthy-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "701fcde29ff0b4ea4ae3b9ff42f87c7a9ede7326",
-      "source": "FantasyPros",
-      "title": "Kaleb Proctor suffers torn meniscus, could miss entire season",
-      "url": "https://www.fantasypros.com/nfl/news/590916/kaleb-proctor-suffers-torn-meniscus-could-miss-entire-season.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "afb4e5636d87e745d94a451437607652406fb48f",
-      "source": "FantasyPros",
-      "title": "Garrett Williams (Achilles) could be ready for training camp",
-      "url": "https://www.fantasypros.com/nfl/news/590915/garrett-williams-achilles-could-be-ready-training-camp-.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
