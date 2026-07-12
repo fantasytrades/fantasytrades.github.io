@@ -1,11 +1,29 @@
 {
-  "generatedAt": "2026-07-11T13:18:24.589Z",
+  "generatedAt": "2026-07-12T13:18:41.901Z",
   "items": [
     {
-      "id": "dffee8e9483f58f97b19c81ff2eea43034a21740",
+      "id": "64fda8d01387204c7f8718cfe0bb1084fafd2ea2",
       "source": "FantasyPros",
-      "title": "Terrion Arnold clears waivers, expected to draw interest",
-      "url": "https://www.fantasypros.com/nfl/news/595329/terrion-arnold-clears-waivers-expected-to-draw-interest-.php",
+      "title": "Sam Roush signs rookie contract with Bears",
+      "url": "https://www.fantasypros.com/nfl/news/596139/sam-roush-signs-rookie-contract-with-bears.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "02effae8fc03698f8807d3db33a1d4ff160fa1cd",
+      "source": "FantasyPros",
+      "title": "Terrion Arnold takes physical for Texans",
+      "url": "https://www.fantasypros.com/nfl/news/596138/terrion-arnold-takes-physical-texans.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "8216f1a10cd6dd1fa05b3c5f0cd30a4ff87aab81",
+      "source": "FantasyPros",
+      "title": "Aaron Donald works out at Rams facility",
+      "url": "https://www.fantasypros.com/nfl/news/596137/aaron-donald-works-out-rams-facility.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
@@ -177,33 +195,6 @@
       "source": "FantasyPros",
       "title": "Levi Wentz signs with Steelers",
       "url": "https://www.fantasypros.com/nfl/news/592111/levi-wentz-signs-with-steelers-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "258eee6ed90abd81087acf87d3f0d56f92b80437",
-      "source": "FantasyPros",
-      "title": "Aidan Laros waived by Steelers",
-      "url": "https://www.fantasypros.com/nfl/news/592110/aidan-laros-waived-by-steelers-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "2ee0f0e44284c38d8259647e171306cd77d39227",
-      "source": "FantasyPros",
-      "title": "Daylan Carnell waived by Steelers",
-      "url": "https://www.fantasypros.com/nfl/news/592109/daylan-carnell-waived-by-steelers-.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "66452c6e1958379d930b60f9018d001e78113ab1",
-      "source": "FantasyPros",
-      "title": "Bryce Pierre waived from IR by Panthers",
-      "url": "https://www.fantasypros.com/nfl/news/592108/bryce-pierre-waived-from-ir-by-panthers.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
