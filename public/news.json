@@ -1,6 +1,15 @@
 {
-  "generatedAt": "2026-07-14T13:42:24.101Z",
+  "generatedAt": "2026-07-15T13:42:37.197Z",
   "items": [
+    {
+      "id": "a2acc56b2adab45de5a408bd2f8f5631d976e424",
+      "source": "FantasyPros",
+      "title": "Stefon Diggs drawing interest from at least five teams",
+      "url": "https://www.fantasypros.com/nfl/news/596353/stefon-diggs-drawing-interest-from-least-five-teams.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
     {
       "id": "02e26a011be74565b8ebad16d8a579aedcf41434",
       "source": "FantasyPros",
@@ -186,15 +195,6 @@
       "source": "FantasyPros",
       "title": "Ty Simpson remains without rookie deal",
       "url": "https://www.fantasypros.com/nfl/news/592664/ty-simpson-remains-without-rookie-deal.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "270be09e1e351261b36b0f6592912f531aa1ea2b",
-      "source": "FantasyPros",
-      "title": "Fernando Mendoza remains without rookie deal",
-      "url": "https://www.fantasypros.com/nfl/news/592663/fernando-mendoza-remains-without-rookie-deal.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
