@@ -1,6 +1,123 @@
 {
-  "generatedAt": "2026-07-21T13:48:48.059Z",
+  "generatedAt": "2026-07-22T13:52:48.139Z",
   "items": [
+    {
+      "id": "9e76046a9ea19597768c6f53c7b3b2cc57c21454",
+      "source": "FantasyPros",
+      "title": "Harrison Bryant released by Seahawks",
+      "url": "https://www.fantasypros.com/nfl/news/597406/harrison-bryant-released-by-seahawks.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "22dbae4f686be50c2a8fa05a90f31d0c217be4fe",
+      "source": "FantasyPros",
+      "title": "Brandon Johnson signs with Seahawks",
+      "url": "https://www.fantasypros.com/nfl/news/597405/brandon-johnson-signs-with-seahawks.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "a858fb9145914f55935c8a5dd63e3d52953e2205",
+      "source": "FantasyPros",
+      "title": "Sam LaPorta (back) fully cleared for training camp",
+      "url": "https://www.fantasypros.com/nfl/news/597398/sam-laporta-back-fully-cleared-training-camp-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "42d97c721b30cc267e0bbf2a078e9dfec0037d97",
+      "source": "FantasyPros",
+      "title": "Terrell Jennings placed on NFI list",
+      "url": "https://www.fantasypros.com/nfl/news/597376/terrell-jennings-placed-on-nfi-list-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "bc86f17acdfc76b84645fe901c206da6d2f1aa59",
+      "source": "FantasyPros",
+      "title": "CJ Dippre placed on PUP list",
+      "url": "https://www.fantasypros.com/nfl/news/597375/cj-dippre-placed-on-pup-list-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "8bd5f702d8fb99c66b4f758f9e057c0eecf6196b",
+      "source": "FantasyPros",
+      "title": "Harold Landry III (knee) placed on PUP list",
+      "url": "https://www.fantasypros.com/nfl/news/597374/harold-landry-iii-knee-placed-on-pup-list-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "d226f9321178c4f91fb42b4034942a0020101a00",
+      "source": "FantasyPros",
+      "title": "Chris Bell (knee) placed on NFI list",
+      "url": "https://www.fantasypros.com/nfl/news/597356/chris-bell-knee-placed-on-nfi-list.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "366ba5c146ccfad8095ce2727363a762ab3e934d",
+      "source": "FantasyPros",
+      "title": "Dom Jones (knee) waived by Browns",
+      "url": "https://www.fantasypros.com/nfl/news/597355/dom-jones-knee-waived-by-browns.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "b36efb99f3fb4d468e19ae24e581a583f4162a4d",
+      "source": "FantasyPros",
+      "title": "Jaycee Horn (foot) placed on NFI list",
+      "url": "https://www.fantasypros.com/nfl/news/597321/jaycee-horn-foot-placed-on-nfi-list.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "805eb02cd60bd4ef8550b11763415ed05ab70745",
+      "source": "FantasyPros",
+      "title": "Taylor Moton (blood clot) placed on NFI list",
+      "url": "https://www.fantasypros.com/nfl/news/597320/taylor-moton-blood-clot-placed-on-nfi-list.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "e2b0cae84e8d247ac8ad4d3c0b12b67bbc2806b3",
+      "source": "FantasyPros",
+      "title": "Bucky Irving (shoulder) says he will be good to go for training camp",
+      "url": "https://www.fantasypros.com/nfl/news/597319/bucky-irving-shoulder-says-he-will-be-good-to-go-training-camp-.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "37e741e6debce925d3e38384716e5fc4b6be1c1c",
+      "source": "FantasyPros",
+      "title": "Jacoby Brissett: no resolution for contract dispute before Cardinals report",
+      "url": "https://www.fantasypros.com/nfl/news/597318/jacoby-brissett-no-resolution-contract-dispute-before-cardinals-report.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "be5cbcd79b09ae92296a0ebddcdb3389d4b7e246",
+      "source": "FantasyPros",
+      "title": "Jordyn Brooks signs three year, $51 million deal with Miami",
+      "url": "https://www.fantasypros.com/nfl/news/597274/jordyn-brooks-signs-three-year-51-million-deal-with-miami.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
     {
       "id": "9515109a49730749df58faba7a544d06b2a52966",
       "source": "FantasyPros",
@@ -105,123 +222,6 @@
       "source": "FantasyPros",
       "title": "Khalil Dinkins placed on active/non-football injured list",
       "url": "https://www.fantasypros.com/nfl/news/596807/khalil-dinkins-placed-on-activenon-football-injured-list.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "f5448fb88bc1066f9fbb4ee728bc04a630968a7f",
-      "source": "FantasyPros",
-      "title": "Jack Bouwmeester signs 3-year deal with 49ers",
-      "url": "https://www.fantasypros.com/nfl/news/596806/jack-bouwmeester-signs-3-year-deal-with-49ers.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "5c7427b12666fd03dbe982e6ceafdbe7f6882fa9",
-      "source": "FantasyPros",
-      "title": "Deven Eastern placed on PUP list",
-      "url": "https://www.fantasypros.com/nfl/news/596803/deven-eastern-placed-on-pup-list.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "c965cbb13fbb5a9fed683e99eeef371e9c5bf142",
-      "source": "FantasyPros",
-      "title": "Ethan Pocic signs one-year deal with Ravens",
-      "url": "https://www.fantasypros.com/nfl/news/596580/ethan-pocic-signs-one-year-deal-with-ravens.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "6ae1d682ff2ba0077254f279a87d889796298159",
-      "source": "FantasyPros",
-      "title": "Levi Wallace retires from NFL",
-      "url": "https://www.fantasypros.com/nfl/news/596535/levi-wallace-retires-from-nfl.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "8c178c74d88d80380bb390ca4358ea2e9536d00c",
-      "source": "FantasyPros",
-      "title": "Brady Christensen re-signs with Panthers",
-      "url": "https://www.fantasypros.com/nfl/news/596534/brady-christensen-re-signs-with-panthers.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "b9091df91629a1138cc1548cc3e697a5809fcd51",
-      "source": "FantasyPros",
-      "title": "Patrick Mahomes II (knee) on track to be ready for Week 1",
-      "url": "https://www.fantasypros.com/nfl/news/596423/patrick-mahomes-ii-knee-on-track-to-be-ready-week-1.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "081d9ddf4e47c3f6e10bb306122b83cd6346d8af",
-      "source": "FantasyPros",
-      "title": "George Pickens to play 2026 season on franchise tag with Cowboys",
-      "url": "https://www.fantasypros.com/nfl/news/596403/george-pickens-to-play-2026-season-on-franchise-tag-with-cowboys.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "0b64dd9b18f506f236511f5c7ebc64e67447f32d",
-      "source": "FantasyPros",
-      "title": "Alvin Kamara staying with New Orleans Saints",
-      "url": "https://www.fantasypros.com/nfl/news/596379/alvin-kamara-staying-with-new-orleans-saints.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "3ce96cfdc9abd7dc320ff80c8c7b93d6ad24ae37",
-      "source": "FantasyPros",
-      "title": "Will Grier retires",
-      "url": "https://www.fantasypros.com/nfl/news/596368/will-grier-retires.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "a2acc56b2adab45de5a408bd2f8f5631d976e424",
-      "source": "FantasyPros",
-      "title": "Stefon Diggs drawing interest from at least five teams",
-      "url": "https://www.fantasypros.com/nfl/news/596353/stefon-diggs-drawing-interest-from-least-five-teams.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "02e26a011be74565b8ebad16d8a579aedcf41434",
-      "source": "FantasyPros",
-      "title": "Baker Mayfield played with sprained MCL and PCL after Week 2 last season",
-      "url": "https://www.fantasypros.com/nfl/news/596351/baker-mayfield-played-with-sprained-mcl-pcl-after-week-2-last-season.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "d75c0a880017aeb2583391b848c21df9d41c0816",
-      "source": "FantasyPros",
-      "title": "Isaiah McDuffie signs extension with Green Bay Packers",
-      "url": "https://www.fantasypros.com/nfl/news/596332/isaiah-mcduffie-signs-extension-with-green-bay-packers.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "64fda8d01387204c7f8718cfe0bb1084fafd2ea2",
-      "source": "FantasyPros",
-      "title": "Sam Roush signs rookie contract with Bears",
-      "url": "https://www.fantasypros.com/nfl/news/596139/sam-roush-signs-rookie-contract-with-bears.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
