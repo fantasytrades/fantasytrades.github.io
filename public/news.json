@@ -1,6 +1,186 @@
 {
-  "generatedAt": "2026-08-21T12:45:18.451Z",
+  "generatedAt": "2026-08-22T12:37:10.750Z",
   "items": [
+    {
+      "id": "c70ce1d5b25007bb888eaddae043d73ebbe35ab0",
+      "source": "FantasyPros",
+      "title": "Nick Chubb announces retirement",
+      "url": "https://www.fantasypros.com/nfl/news/603706/nick-chubb-announces-retirement.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "70ca7ebf63a4b00357c076551cb8ff2720aba423",
+      "source": "FantasyPros",
+      "title": "Tory Horton to 'be out for a period of time'",
+      "url": "https://www.fantasypros.com/nfl/news/603699/tory-horton-to-be-out-period-time.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "fdc4d543a9be0fd6ab96ea8b49d3148259d8aeec",
+      "source": "FantasyPros",
+      "title": "Zay Jones signing with Texans",
+      "url": "https://www.fantasypros.com/nfl/news/603662/zay-jones-signing-with-texans.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "8615c2d2da3453debe0e3785346c4754cc33de38",
+      "source": "FantasyPros",
+      "title": "Sterling Shepard signing with Texans",
+      "url": "https://www.fantasypros.com/nfl/news/603661/sterling-shepard-signing-with-texans.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "3fe44b9a8866ed53e1581fb13f6a5fa7e27c6ef0",
+      "source": "FantasyPros",
+      "title": "Josh Reynolds linked to Texans",
+      "url": "https://www.fantasypros.com/nfl/news/603647/josh-reynolds-linked-to-texans.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "8eec13b3ca395eba8fa07539a9725a8b218486fe",
+      "source": "FantasyPros",
+      "title": "Jayden Higgins (knee) officially placed on season-ending IR",
+      "url": "https://www.fantasypros.com/nfl/news/603621/jayden-higgins-knee-officially-placed-on-season-ending-ir.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "81661356f4bcf094b6d88cdfee8e2da897cf9d3f",
+      "source": "FantasyPros",
+      "title": "Tyreek Hill not expected to sign before Week 1",
+      "url": "https://www.fantasypros.com/nfl/news/603619/tyreek-hill-not-expected-to-sign-before-week-1.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "9253844df0c4669aaf523ddb11c49afd2abf0075",
+      "source": "FantasyPros",
+      "title": "Jake Bobo suffers \"serious\" knee injury",
+      "url": "https://www.fantasypros.com/nfl/news/603618/jake-bobo-suffers-serious-knee-injury.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "5d53109e2e647eb4575471d4a224e1cdbff0a4d1",
+      "source": "FantasyPros",
+      "title": "Carnell Tate returns to practice Friday",
+      "url": "https://www.fantasypros.com/nfl/news/603608/carnell-tate-returns-to-practice-friday.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "1d713b708a3396b8b0a0a423bf64903f8371279a",
+      "source": "FantasyPros",
+      "title": "Michael Penix Jr. (knee) waiting for full clearance, expects it 'real soon'",
+      "url": "https://www.fantasypros.com/nfl/news/603602/michael-penix-jr-knee-waiting-full-clearance-expects-it-real-soon.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "9aa3166d18209c2a84ff57a8f6ec3b59a7d25097",
+      "source": "FantasyPros",
+      "title": "Ennis Rakestraw Jr. suffers leg injury Thursday",
+      "url": "https://www.fantasypros.com/nfl/news/603601/ennis-rakestraw-jr-suffers-leg-injury-thursday.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "402e66468baea295a6bc0c79bf0e4a15ef7c1251",
+      "source": "FantasyPros",
+      "title": "Jimmy Rolder (leg) not ready to return to practice",
+      "url": "https://www.fantasypros.com/nfl/news/603600/jimmy-rolder-leg-not-ready-to-return-to-practice.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "86d8312bcc4d21e5233b19e6dcf51fb930c9faac",
+      "source": "FantasyPros",
+      "title": "Roydell Williams released by Colts",
+      "url": "https://www.fantasypros.com/nfl/news/603599/roydell-williams-released-by-colts.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "5ba92e36997d9a51bef9e0ba91ecfb6e51981dd9",
+      "source": "FantasyPros",
+      "title": "Timothy McKay waived by Jaguars",
+      "url": "https://www.fantasypros.com/nfl/news/603598/timothy-mckay-waived-by-jaguars.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "ac85d4d377bd2a0d81bfe8297cbcf6d9a00024a2",
+      "source": "FantasyPros",
+      "title": "Luke Grimm waived by Chargers",
+      "url": "https://www.fantasypros.com/nfl/news/603597/luke-grimm-waived-by-chargers.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "c8628f586635e1d7e8bd19f66a6a6e2874328727",
+      "source": "FantasyPros",
+      "title": "Liam Clifford signs with Chargers",
+      "url": "https://www.fantasypros.com/nfl/news/603595/liam-clifford-signs-with-chargers.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "0970f7fdb71f9ed47b9f562cb298fd2d5bdb1bf1",
+      "source": "FantasyPros",
+      "title": "Jeadyn Lukus waived by Browns",
+      "url": "https://www.fantasypros.com/nfl/news/603594/jeadyn-lukus-waived-by-browns.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "e7a49fba162f871939c001a0b61e78b88e38518b",
+      "source": "FantasyPros",
+      "title": "Jamil Muhammad signs with Browns",
+      "url": "https://www.fantasypros.com/nfl/news/603593/jamil-muhammad-signs-with-browns.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "5e32df56d78ee6657f6d0997f803ea0ce720d255",
+      "source": "FantasyPros",
+      "title": "Chase Lucas released by Bucs",
+      "url": "https://www.fantasypros.com/nfl/news/603592/chase-lucas-released-by-bucs.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "05a785a5f540fc02823fa5a5ee6a5d33970f9ad2",
+      "source": "FantasyPros",
+      "title": "Matthew McDoom signs with Bengals",
+      "url": "https://www.fantasypros.com/nfl/news/603591/matthew-mcdoom-signs-with-bengals.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
     {
       "id": "c8ee0f1f2aa27faf565d847950c924924a8cf5b3",
       "source": "FantasyPros",
@@ -33,195 +213,6 @@
       "source": "FantasyPros",
       "title": "Joey Porter Jr. drawing trade interest",
       "url": "https://www.fantasypros.com/nfl/news/603572/joey-porter-jr-drawing-trade-interest.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "99526866d6653fd8ca80458a89766a03a701d3ec",
-      "source": "FantasyPros",
-      "title": "Deebo Samuel Sr. starting against Chargers",
-      "url": "https://www.fantasypros.com/nfl/news/603571/deebo-samuel-sr-starting-against-chargers.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "d1521fdea764bf48bf35b59d01d48a110d9a66bf",
-      "source": "FantasyPros",
-      "title": "Fernando Mendoza to play roughly first half Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/603553/fernando-mendoza-to-play-roughly-first-half-thursday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "ce361cf14d2c7c6ac2488b467cb0eac64b48d834",
-      "source": "FantasyPros",
-      "title": "Danny Pinter (knee) to miss extended period of time",
-      "url": "https://www.fantasypros.com/nfl/news/603547/danny-pinter-knee-to-miss-extended-period-time.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "a7a86b7996afcca912c6b613a8b4c55d3509163e",
-      "source": "FantasyPros",
-      "title": "Khalil Shakir not practicing Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/603531/khalil-shakir-not-practicing-thursday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "9c0e157fde3f5eb7ab825f195f01544e6d19247f",
-      "source": "FantasyPros",
-      "title": "Kyler Murray will not play Saturday",
-      "url": "https://www.fantasypros.com/nfl/news/603529/kyler-murray-will-not-play-saturday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "d3565fd14f7217234217fc6e701568867ce971d8",
-      "source": "FantasyPros",
-      "title": "J.J. McCarthy to 'more than likely' start Saturday",
-      "url": "https://www.fantasypros.com/nfl/news/603528/jj-mccarthy-to-more-likely-start-saturday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "6803b83916b632f6823657981b8e59e7d6213943",
-      "source": "FantasyPros",
-      "title": "Geno Smith to start Friday",
-      "url": "https://www.fantasypros.com/nfl/news/603526/geno-smith-to-start-friday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "f39868ef525248fadfc0b6cbf2543eb01aefef7c",
-      "source": "FantasyPros",
-      "title": "Quinshon Judkins not seen at practice Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/603525/quinshon-judkins-not-seen-practice-thursday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "9e3e424cf585ea4fae21f6a9a8e1a4be6c2d82e8",
-      "source": "FantasyPros",
-      "title": "Puka Nacua (groin) not taking part in joint practice Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/603523/puka-nacua-groin-not-taking-part-joint-practice-thursday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "5dfa37705cbfa2b5103b806579352ce3a7c68f1c",
-      "source": "FantasyPros",
-      "title": "Myles Garrett (knee) not participating in joint practice Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/603522/myles-garrett-knee-not-participating-joint-practice-thursday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "392a1689a1e391cd9a6625b8cd2c99a95a68d733",
-      "source": "FantasyPros",
-      "title": "Sam LaPorta suffers hip injury, uncertain for Week 1",
-      "url": "https://www.fantasypros.com/nfl/news/603512/sam-laporta-suffers-hip-injury-uncertain-week-1.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "a6837a6567ae0070c57cc631b8eae1e45c3972a2",
-      "source": "FantasyPros",
-      "title": "C.J. Stroud expected to play Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/603510/cj-stroud-expected-to-play-thursday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "4209e346bc5a5afd4634bc14568b213be8ebe859",
-      "source": "FantasyPros",
-      "title": "Joe Burrow, Bengals starters set to be sidelined Saturday",
-      "url": "https://www.fantasypros.com/nfl/news/603507/joe-burrow-bengals-starters-set-to-be-sidelined-saturday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "9cfe24d7941213854d998fa487e2d2dc48c95053",
-      "source": "FantasyPros",
-      "title": "Cole Van Lanen activated from PUP list",
-      "url": "https://www.fantasypros.com/nfl/news/603506/cole-van-lanen-activated-from-pup-list.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "d67fb73cd521a9fa4a92eec9fd706707b73f2b27",
-      "source": "FantasyPros",
-      "title": "Malik Nabers (knee) won't participate in joint practices",
-      "url": "https://www.fantasypros.com/nfl/news/603504/malik-nabers-knee-wont-participate-joint-practices.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "c1ebaad3b69d5886b26e56b16786026a05881826",
-      "source": "FantasyPros",
-      "title": "Tyler Warren (groin) set to miss one week",
-      "url": "https://www.fantasypros.com/nfl/news/603503/tyler-warren-groin-set-to-miss-one-week.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "5c0a338ed5d5456ca43c7e51fb40ad7b44e785f4",
-      "source": "FantasyPros",
-      "title": "Ashton Gillotte suffers ruptured plantar fascia",
-      "url": "https://www.fantasypros.com/nfl/news/603502/ashton-gillotte-suffers-ruptured-plantar-fascia.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "bd1d436db264f2d9deb8774f35c97ff336c7c579",
-      "source": "FantasyPros",
-      "title": "Justin Fields likely to start Saturday",
-      "url": "https://www.fantasypros.com/nfl/news/603501/justin-fields-likely-to-start-saturday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "c0f7d016c8d25632e7f8b3728a0bbb4e733ab570",
-      "source": "FantasyPros",
-      "title": "Patrick Mahomes II set to be sidelined Saturday",
-      "url": "https://www.fantasypros.com/nfl/news/603500/patrick-mahomes-ii-set-to-be-sidelined-saturday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "1ff037f0eb8cd6ba6c5fa1de2dddfe82be97dda8",
-      "source": "FantasyPros",
-      "title": "Rachaad White (hamstring) won't play Saturday",
-      "url": "https://www.fantasypros.com/nfl/news/603498/rachaad-white-hamstring-wont-play-saturday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "5dc8f576cf0080fab9f2aea32c73d646636ecf69",
-      "source": "FantasyPros",
-      "title": "Taylor Rapp signs with Broncos",
-      "url": "https://www.fantasypros.com/nfl/news/603497/taylor-rapp-signs-with-broncos.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
