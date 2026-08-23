@@ -1,6 +1,69 @@
 {
-  "generatedAt": "2026-08-22T12:37:10.750Z",
+  "generatedAt": "2026-08-23T12:38:02.447Z",
   "items": [
+    {
+      "id": "b2c9472bddcd6c66a4c6daba212af4eb1f451f75",
+      "source": "FantasyPros",
+      "title": "De'Zhaun Stribling (shoulder) day-to-day",
+      "url": "https://www.fantasypros.com/nfl/news/603848/dezhaun-stribling-shoulder-day-to-day.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "806685729d0755a07834efb6e76ab593b62753c7",
+      "source": "FantasyPros",
+      "title": "Michael Penix Jr. (knee) cleared for team drills",
+      "url": "https://www.fantasypros.com/nfl/news/603823/michael-penix-jr-knee-cleared-team-drills.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "683c0e64ee325a2a460cc74b64629a242fb24a9a",
+      "source": "FantasyPros",
+      "title": "Rashawn Slater (knee) back practicing",
+      "url": "https://www.fantasypros.com/nfl/news/603817/rashawn-slater-knee-back-practicing.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "a0e3fb0d3d4c17227524fcf8588835db09b03c6d",
+      "source": "FantasyPros",
+      "title": "Jake Bobo (knee) placed on IR",
+      "url": "https://www.fantasypros.com/nfl/news/603816/jake-bobo-knee-placed-on-ir.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "f0172c37778867e0bdd60a53220e7b25355e5d0e",
+      "source": "FantasyPros",
+      "title": "Stefon Diggs expected to play against Lions",
+      "url": "https://www.fantasypros.com/nfl/news/603782/stefon-diggs-expected-to-play-against-lions.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "732e50fc57cf76ad09bea00fb69d3e697dbf6268",
+      "source": "FantasyPros",
+      "title": "Jayden Daniels expected to play against Lions",
+      "url": "https://www.fantasypros.com/nfl/news/603781/jayden-daniels-expected-to-play-against-lions.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "f6a932f08e3e2eb539a571325a9292fd459c53c5",
+      "source": "FantasyPros",
+      "title": "Terry McLaurin expected to play against Lions",
+      "url": "https://www.fantasypros.com/nfl/news/603780/terry-mclaurin-expected-to-play-against-lions.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
     {
       "id": "c70ce1d5b25007bb888eaddae043d73ebbe35ab0",
       "source": "FantasyPros",
@@ -65,28 +128,10 @@
       "description": ""
     },
     {
-      "id": "9253844df0c4669aaf523ddb11c49afd2abf0075",
-      "source": "FantasyPros",
-      "title": "Jake Bobo suffers \"serious\" knee injury",
-      "url": "https://www.fantasypros.com/nfl/news/603618/jake-bobo-suffers-serious-knee-injury.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
       "id": "5d53109e2e647eb4575471d4a224e1cdbff0a4d1",
       "source": "FantasyPros",
       "title": "Carnell Tate returns to practice Friday",
       "url": "https://www.fantasypros.com/nfl/news/603608/carnell-tate-returns-to-practice-friday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "1d713b708a3396b8b0a0a423bf64903f8371279a",
-      "source": "FantasyPros",
-      "title": "Michael Penix Jr. (knee) waiting for full clearance, expects it 'real soon'",
-      "url": "https://www.fantasypros.com/nfl/news/603602/michael-penix-jr-knee-waiting-full-clearance-expects-it-real-soon.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
@@ -150,69 +195,6 @@
       "source": "FantasyPros",
       "title": "Jeadyn Lukus waived by Browns",
       "url": "https://www.fantasypros.com/nfl/news/603594/jeadyn-lukus-waived-by-browns.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "e7a49fba162f871939c001a0b61e78b88e38518b",
-      "source": "FantasyPros",
-      "title": "Jamil Muhammad signs with Browns",
-      "url": "https://www.fantasypros.com/nfl/news/603593/jamil-muhammad-signs-with-browns.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "5e32df56d78ee6657f6d0997f803ea0ce720d255",
-      "source": "FantasyPros",
-      "title": "Chase Lucas released by Bucs",
-      "url": "https://www.fantasypros.com/nfl/news/603592/chase-lucas-released-by-bucs.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "05a785a5f540fc02823fa5a5ee6a5d33970f9ad2",
-      "source": "FantasyPros",
-      "title": "Matthew McDoom signs with Bengals",
-      "url": "https://www.fantasypros.com/nfl/news/603591/matthew-mcdoom-signs-with-bengals.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "c8ee0f1f2aa27faf565d847950c924924a8cf5b3",
-      "source": "FantasyPros",
-      "title": "Carson Beck (ribs) unlikely to play Saturday",
-      "url": "https://www.fantasypros.com/nfl/news/603576/carson-beck-ribs-unlikely-to-play-saturday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "0e1202c74bacbb5719c95daef71a2b170219167f",
-      "source": "FantasyPros",
-      "title": "Jacoby Brissett won't play Saturday",
-      "url": "https://www.fantasypros.com/nfl/news/603575/jacoby-brissett-wont-play-saturday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "7012d7d75b480382fbd2cc4b31471979c91ceebe",
-      "source": "FantasyPros",
-      "title": "George Kittle (Achilles) has chance to play in Week 1",
-      "url": "https://www.fantasypros.com/nfl/news/603574/george-kittle-achilles-has-chance-to-play-week-1.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "bd2277a6e83d83575ac514324c56afd697438084",
-      "source": "FantasyPros",
-      "title": "Joey Porter Jr. drawing trade interest",
-      "url": "https://www.fantasypros.com/nfl/news/603572/joey-porter-jr-drawing-trade-interest.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
