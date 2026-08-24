@@ -1,6 +1,69 @@
 {
-  "generatedAt": "2026-08-23T12:38:02.447Z",
+  "generatedAt": "2026-08-24T12:49:05.802Z",
   "items": [
+    {
+      "id": "3b93e6755b2c2ccf86535991efb9bce63959ae0c",
+      "source": "FantasyPros",
+      "title": "Zamir White traded to Saints",
+      "url": "https://www.fantasypros.com/nfl/news/603990/zamir-white-traded-to-saints.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "95560f0622c5ad98b3d16b7da37115e64d5c58c3",
+      "source": "FantasyPros",
+      "title": "Deion Jones traded to 49ers",
+      "url": "https://www.fantasypros.com/nfl/news/603989/deion-jones-traded-to-49ers.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "097ba3fd6cb83e4cd8622e114c8eb47af971897b",
+      "source": "FantasyPros",
+      "title": "Bud Clark (leg) carted off from Sunday's preseason game",
+      "url": "https://www.fantasypros.com/nfl/news/603981/bud-clark-leg-carted-off-from-sundays-preseason-game.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "9df832af71944206b8874b7ef52e28f838231238",
+      "source": "FantasyPros",
+      "title": "Ashton Jeanty believed to have sprained ankle",
+      "url": "https://www.fantasypros.com/nfl/news/603980/ashton-jeanty-believed-to-have-sprained-ankle.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "8518a5b53bd9f115eded4e95e4d4cd5b4e972482",
+      "source": "FantasyPros",
+      "title": "Alex Wright (Achilles) placed on season-ending IR",
+      "url": "https://www.fantasypros.com/nfl/news/603924/alex-wright-achilles-placed-on-season-ending-ir.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "8e508d58c1edd01e1e48bcb0d537416510d68078",
+      "source": "FantasyPros",
+      "title": "George Kittle (Achilles) activated from PUP",
+      "url": "https://www.fantasypros.com/nfl/news/603923/george-kittle-achilles-activated-from-pup.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "bbc56e90fe022487cc993d994a3d6fe180996ebd",
+      "source": "FantasyPros",
+      "title": "Tyler Biadasz (knee) placed on season-ending injured reserve",
+      "url": "https://www.fantasypros.com/nfl/news/603922/tyler-biadasz-knee-placed-on-season-ending-injured-reserve.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
     {
       "id": "b2c9472bddcd6c66a4c6daba212af4eb1f451f75",
       "source": "FantasyPros",
@@ -132,69 +195,6 @@
       "source": "FantasyPros",
       "title": "Carnell Tate returns to practice Friday",
       "url": "https://www.fantasypros.com/nfl/news/603608/carnell-tate-returns-to-practice-friday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "9aa3166d18209c2a84ff57a8f6ec3b59a7d25097",
-      "source": "FantasyPros",
-      "title": "Ennis Rakestraw Jr. suffers leg injury Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/603601/ennis-rakestraw-jr-suffers-leg-injury-thursday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "402e66468baea295a6bc0c79bf0e4a15ef7c1251",
-      "source": "FantasyPros",
-      "title": "Jimmy Rolder (leg) not ready to return to practice",
-      "url": "https://www.fantasypros.com/nfl/news/603600/jimmy-rolder-leg-not-ready-to-return-to-practice.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "86d8312bcc4d21e5233b19e6dcf51fb930c9faac",
-      "source": "FantasyPros",
-      "title": "Roydell Williams released by Colts",
-      "url": "https://www.fantasypros.com/nfl/news/603599/roydell-williams-released-by-colts.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "5ba92e36997d9a51bef9e0ba91ecfb6e51981dd9",
-      "source": "FantasyPros",
-      "title": "Timothy McKay waived by Jaguars",
-      "url": "https://www.fantasypros.com/nfl/news/603598/timothy-mckay-waived-by-jaguars.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "ac85d4d377bd2a0d81bfe8297cbcf6d9a00024a2",
-      "source": "FantasyPros",
-      "title": "Luke Grimm waived by Chargers",
-      "url": "https://www.fantasypros.com/nfl/news/603597/luke-grimm-waived-by-chargers.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "c8628f586635e1d7e8bd19f66a6a6e2874328727",
-      "source": "FantasyPros",
-      "title": "Liam Clifford signs with Chargers",
-      "url": "https://www.fantasypros.com/nfl/news/603595/liam-clifford-signs-with-chargers.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "0970f7fdb71f9ed47b9f562cb298fd2d5bdb1bf1",
-      "source": "FantasyPros",
-      "title": "Jeadyn Lukus waived by Browns",
-      "url": "https://www.fantasypros.com/nfl/news/603594/jeadyn-lukus-waived-by-browns.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
