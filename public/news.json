@@ -1,6 +1,168 @@
 {
-  "generatedAt": "2026-10-03T15:48:14.240Z",
+  "generatedAt": "2026-10-04T16:31:02.141Z",
   "items": [
+    {
+      "id": "1d9dd3f826220eabae1e32b88f8bb2447c64b95d",
+      "source": "FantasyPros",
+      "title": "Kenyon Sadiq (back) officially active for Week 4",
+      "url": "https://www.fantasypros.com/nfl/news/612029/kenyon-sadiq-back-officially-active-week-4.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "40db6dfcb97344536ad79bff33efbcc1af6cd6bb",
+      "source": "FantasyPros",
+      "title": "Eli Raridon (thigh) officially active for Week 4",
+      "url": "https://www.fantasypros.com/nfl/news/612028/eli-raridon-thigh-officially-active-week-4.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "0c06c420163878a8da676c1c121907f84aae2864",
+      "source": "FantasyPros",
+      "title": "Chris Moore (ankle) officially inactive for Week 4",
+      "url": "https://www.fantasypros.com/nfl/news/612027/chris-moore-ankle-officially-inactive-week-4.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "35101a73bc4b27c90b0fa92e9eb57a48100cc6e6",
+      "source": "FantasyPros",
+      "title": "Zay Flowers (hamstring) officially active for Week 4",
+      "url": "https://www.fantasypros.com/nfl/news/612026/zay-flowers-hamstring-officially-active-week-4.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "af6fee8ffc1547e2f515d910c1c362473673850e",
+      "source": "FantasyPros",
+      "title": "Lane Johnson (personal) officially inactive for Week 4",
+      "url": "https://www.fantasypros.com/nfl/news/612025/lane-johnson-personal-officially-inactive-week-4.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "35fc2b88de4e8377260f86f31e08e61e1b282c53",
+      "source": "FantasyPros",
+      "title": "Ray Davis (hamstring) officially active for Week 4",
+      "url": "https://www.fantasypros.com/nfl/news/612024/ray-davis-hamstring-officially-active-week-4.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "c86e3ddd8ccb1e8beafc83e0fca4e9f6e6564565",
+      "source": "FantasyPros",
+      "title": "Tyjae Spears (ankle) officially active for Week 4",
+      "url": "https://www.fantasypros.com/nfl/news/612023/tyjae-spears-ankle-officially-active-week-4.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "bd9a352cbeaffb5be675cd8d5c0151398f9e6696",
+      "source": "FantasyPros",
+      "title": "Marcus Mariota (knee) ruled out Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/612021/marcus-mariota-knee-ruled-out-sunday.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "7a314814db5e37069af11c73ebb6e625e94765d7",
+      "source": "FantasyPros",
+      "title": "Puka Nacua (groin) planning on full workload Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/612020/puka-nacua-groin-planning-on-full-workload-sunday.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "89abade5683d99e79b7fda48d440cf5a98e16b3c",
+      "source": "FantasyPros",
+      "title": "Baker Mayfield (thumb) to miss extended time",
+      "url": "https://www.fantasypros.com/nfl/news/612018/baker-mayfield-thumb-to-miss-extended-time.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "bdd81402604ed19f0306b8d6d011fc8ec262e7ff",
+      "source": "FantasyPros",
+      "title": "Austin Ekeler active for Week 4",
+      "url": "https://www.fantasypros.com/nfl/news/612017/austin-ekeler-active-week-4.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "f0899f77bfb198a2a4f9a11d38d86b91bbb82e60",
+      "source": "FantasyPros",
+      "title": "Ladd McConkey (foot) expected to play on Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/612016/ladd-mcconkey-foot-expected-to-play-on-sunday.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "cd7ad04382d3d7616fd20c94d55f714843857be4",
+      "source": "FantasyPros",
+      "title": "Jalen Coker (quad) unlikely to play on Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/612015/jalen-coker-quad-unlikely-to-play-on-sunday.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "68ba1cee88936e48a6e96fa200ee35cab9673e87",
+      "source": "FantasyPros",
+      "title": "Ashton Dulin (ankle) active for Week 4",
+      "url": "https://www.fantasypros.com/nfl/news/612014/ashton-dulin-ankle-active-week-4.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "4c990cc3426e17cd3be74b9279f21d2fce863ebb",
+      "source": "FantasyPros",
+      "title": "Terry McLaurin (hamstring) inactive for Week 4",
+      "url": "https://www.fantasypros.com/nfl/news/612013/terry-mclaurin-hamstring-inactive-week-4.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "9ba6004157272d07013f298bbe046b2f32216c23",
+      "source": "FantasyPros",
+      "title": "Ja'seem Reed elevated from Panthers practice squad",
+      "url": "https://www.fantasypros.com/nfl/news/611993/jaseem-reed-elevated-from-panthers-practice-squad.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "273ce280662d305320fda88aa4f12776373acf75",
+      "source": "FantasyPros",
+      "title": "Xavier Legette (knee) placed on IR",
+      "url": "https://www.fantasypros.com/nfl/news/611992/xavier-legette-knee-placed-on-ir.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "011e6b20757805428cfff8aaac9e1af2946cb0ae",
+      "source": "FantasyPros",
+      "title": "Jadarian Price (chest) placed on IR",
+      "url": "https://www.fantasypros.com/nfl/news/611991/jadarian-price-chest-placed-on-ir.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
     {
       "id": "e09663487bb1e6b280b110b6edb0487e3f099e22",
       "source": "FantasyPros",
@@ -20,15 +182,6 @@
       "description": ""
     },
     {
-      "id": "f38d8d592c22bbbbe4677409993dd05a45d0108e",
-      "source": "FantasyPros",
-      "title": "Terry McLaurin (hamstring) not expected to play Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/611988/terry-mclaurin-hamstring-not-expected-to-play-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
       "id": "99f89da26deb2b7abaf3b160e4f498b1b53070df",
       "source": "FantasyPros",
       "title": "Aaron Donald dealing with 'mild' back injury",
@@ -42,186 +195,6 @@
       "source": "FantasyPros",
       "title": "Tyson Bagent expected to start in Week 4 for Bears",
       "url": "https://www.fantasypros.com/nfl/news/611986/tyson-bagent-expected-to-start-week-4-bears.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "806272611aa9933652a88c638a28b36479968f00",
-      "source": "FantasyPros",
-      "title": "Marvin Mims Jr. (foot) off injury report Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/611985/marvin-mims-jr-foot-off-injury-report-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "35bfce8ebecacb6c89504185492730183948203c",
-      "source": "FantasyPros",
-      "title": "J.K. Dobbins (hip) off injury report Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/611984/jk-dobbins-hip-off-injury-report-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "8754a714f771797d34f3d2deff4798a5c7c54fa4",
-      "source": "FantasyPros",
-      "title": "Jaylen Waddle (foot) off injury report Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/611983/jaylen-waddle-foot-off-injury-report-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "c9027f9f1a325dd51cdc2d97a08255ab13bd5bc0",
-      "source": "FantasyPros",
-      "title": "Joey Porter Jr. off injury report Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/611982/joey-porter-jr-off-injury-report-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "906ed1c6942cf17fc1ad1b565cf634440af823a3",
-      "source": "FantasyPros",
-      "title": "Terrell Jennings works out for Steelers",
-      "url": "https://www.fantasypros.com/nfl/news/611981/terrell-jennings-works-out-steelers.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "9761647304321980b95e26efbefba66a667a930c",
-      "source": "FantasyPros",
-      "title": "Dre Greenlaw (quad) listed questionable Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/611980/dre-greenlaw-quad-listed-questionable-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "3013942361e0eabb2bd934308b8c8350950272de",
-      "source": "FantasyPros",
-      "title": "Mykel Williams (knee) ruled out Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/611979/mykel-williams-knee-ruled-out-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "6fc1c01259776e13fbce2ca20ba2c6159f519cc2",
-      "source": "FantasyPros",
-      "title": "Trent Williams (neck) off injury report Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/611978/trent-williams-neck-off-injury-report-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "bfd5da41fcb43cae5ddb6a0d79a9260ba5985b31",
-      "source": "FantasyPros",
-      "title": "Josh Sweat (groin) listed questionable Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/611977/josh-sweat-groin-listed-questionable-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "5878ef0ab24bc03aaa4315d9f83a16d12a17a450",
-      "source": "FantasyPros",
-      "title": "Dalvin Tomlinson (hamstring) ruled out Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/611976/dalvin-tomlinson-hamstring-ruled-out-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "ee16b0184edd76bd2c900027d2f6b6b58ed14a7c",
-      "source": "FantasyPros",
-      "title": "Julian Love (calf) available to play Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/611962/julian-love-calf-available-to-play-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "56fe193401e1c4b0ed89e388f5ec8e35e4d0b7f5",
-      "source": "FantasyPros",
-      "title": "Zach Charbonnet (knee) won't play Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/611961/zach-charbonnet-knee-wont-play-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "76ffe824d531e287c32b59a481718a0ecff52a1b",
-      "source": "FantasyPros",
-      "title": "George Holani (rib) good to go for Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/611960/george-holani-rib-good-to-go-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "f7d209bd548913665e9bfadd9c194b58bb5fbd2c",
-      "source": "FantasyPros",
-      "title": "Nick Emmanwori (ankle) will play Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/611959/nick-emmanwori-ankle-will-play-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "f18f96151bb55c3e079a7d619beb6cf29c4ee98a",
-      "source": "FantasyPros",
-      "title": "Kayode Awosika (leg) unavailable for Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/611958/kayode-awosika-leg-unavailable-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "795d7b3ca4f50946d684ec8ea02385fb21b0c20b",
-      "source": "FantasyPros",
-      "title": "Trey Lance (groin) questionable for Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/611957/trey-lance-groin-questionable-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "b6c8bac2cdb1e6c752dc83a8c9b47151a8054526",
-      "source": "FantasyPros",
-      "title": "Derwin James Jr. (hamstring) listed questionable for Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/611956/derwin-james-jr-hamstring-listed-questionable-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "92c8cf40b1df0cfeb4dcc9d1e2a011982853197a",
-      "source": "FantasyPros",
-      "title": "Keaton Mitchell (ankle) without injury designation for Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/611955/keaton-mitchell-ankle-without-injury-designation-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "d37e67160577d8fca53da1d3a2c982ff5ec35088",
-      "source": "FantasyPros",
-      "title": "Brenen Thompson (quad) unavailable for Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/611954/brenen-thompson-quad-unavailable-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "d493e22ed5c4bb5b5c10e427312314d441650590",
-      "source": "FantasyPros",
-      "title": "Charlie Kolar (arm) won't play Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/611953/charlie-kolar-arm-wont-play-sunday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
