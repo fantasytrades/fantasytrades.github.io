@@ -1,273 +1,279 @@
 {
   "source": "DynastyProcess Open Data",
   "generatedFor": "DynastyProcess dynasty 1QB",
-  "updatedAt": "2026-10-15T16:24:32.979Z",
-  "sourceUpdatedAt": "2026-10-09",
+  "updatedAt": "2026-10-16T16:10:26.010Z",
+  "sourceUpdatedAt": "2026-10-16",
   "calculatorUrl": "https://calc.dynastyprocess.com/",
   "openDataUrl": "https://github.com/dynastyprocess/data",
   "file": "values.csv",
   "complete": true,
   "counts": {
-    "players": 398,
-    "byId": 397,
-    "byName": 398,
+    "players": 422,
+    "byId": 418,
+    "byName": 422,
     "picks": 72,
-    "unmatchedSleeperIds": 0,
+    "unmatchedSleeperIds": 3,
     "derivedPicks": 12,
     "fallbackPlayers": 0
   },
   "players": [
     {
       "name": "Jaxon Smith-Njigba",
-      "value": 10136,
+      "value": 10160,
       "source": "dynastyprocess-open-data",
       "id": "9488"
     },
     {
       "name": "Ja'Marr Chase",
-      "value": 10113,
+      "value": 10160,
       "source": "dynastyprocess-open-data",
       "id": "7564"
     },
     {
       "name": "Bijan Robinson",
-      "value": 9558,
+      "value": 9580,
       "source": "dynastyprocess-open-data",
       "id": "9509"
     },
     {
+      "name": "Jahmyr Gibbs",
+      "value": 9292,
+      "source": "dynastyprocess-open-data",
+      "id": "9221"
+    },
+    {
       "name": "Amon-Ra St. Brown",
-      "value": 9270,
+      "value": 9184,
       "source": "dynastyprocess-open-data",
       "id": "7547"
     },
     {
       "name": "CeeDee Lamb",
-      "value": 9205,
+      "value": 8928,
       "source": "dynastyprocess-open-data",
       "id": "6786"
     },
     {
-      "name": "Jahmyr Gibbs",
-      "value": 9162,
-      "source": "dynastyprocess-open-data",
-      "id": "9221"
-    },
-    {
-      "name": "Puka Nacua",
-      "value": 8907,
-      "source": "dynastyprocess-open-data",
-      "id": "9493"
-    },
-    {
       "name": "Justin Jefferson",
-      "value": 8866,
+      "value": 8907,
       "source": "dynastyprocess-open-data",
       "id": "6794"
     },
     {
+      "name": "Puka Nacua",
+      "value": 8866,
+      "source": "dynastyprocess-open-data",
+      "id": "9493"
+    },
+    {
       "name": "Ashton Jeanty",
-      "value": 8498,
+      "value": 8340,
       "source": "dynastyprocess-open-data",
       "id": "12527"
     },
     {
       "name": "Malik Nabers",
-      "value": 7736,
+      "value": 7920,
       "source": "dynastyprocess-open-data",
       "id": "11632"
     },
     {
-      "name": "James Cook III",
-      "value": 7646,
-      "source": "dynastyprocess-open-data",
-      "id": "8138"
-    },
-    {
-      "name": "Drake London",
-      "value": 7486,
-      "source": "dynastyprocess-open-data",
-      "id": "8112"
-    },
-    {
       "name": "Jeremiyah Love",
-      "value": 7346,
+      "value": 7846,
       "source": "dynastyprocess-open-data",
       "id": "13287"
     },
     {
       "name": "Kenneth Walker III",
-      "value": 7176,
+      "value": 7700,
       "source": "dynastyprocess-open-data",
       "id": "8151"
     },
     {
+      "name": "James Cook III",
+      "value": 7556,
+      "source": "dynastyprocess-open-data",
+      "id": "8138"
+    },
+    {
+      "name": "Drake London",
+      "value": 7381,
+      "source": "dynastyprocess-open-data",
+      "id": "8112"
+    },
+    {
       "name": "Josh Allen",
-      "value": 7125,
+      "value": 6911,
       "source": "dynastyprocess-open-data",
       "id": "4984"
     },
     {
+      "name": "Chris Olave",
+      "value": 6798,
+      "source": "dynastyprocess-open-data",
+      "id": "8144"
+    },
+    {
+      "name": "Breece Hall",
+      "value": 6687,
+      "source": "dynastyprocess-open-data",
+      "id": "8155"
+    },
+    {
       "name": "Tetairoa McMillan",
-      "value": 6911,
+      "value": 6625,
       "source": "dynastyprocess-open-data",
       "id": "12526"
     },
     {
       "name": "Jonathan Taylor",
-      "value": 6782,
+      "value": 6593,
       "source": "dynastyprocess-open-data",
       "id": "6813"
     },
     {
-      "name": "Chris Olave",
-      "value": 6501,
-      "source": "dynastyprocess-open-data",
-      "id": "8144"
-    },
-    {
       "name": "Garrett Wilson",
-      "value": 6501,
+      "value": 6380,
       "source": "dynastyprocess-open-data",
       "id": "8146"
     },
     {
-      "name": "Omarion Hampton",
-      "value": 6486,
-      "source": "dynastyprocess-open-data",
-      "id": "12507"
-    },
-    {
-      "name": "Nico Collins",
-      "value": 6002,
-      "source": "dynastyprocess-open-data",
-      "id": "7569"
-    },
-    {
-      "name": "Breece Hall",
-      "value": 5960,
-      "source": "dynastyprocess-open-data",
-      "id": "8155"
-    },
-    {
-      "name": "Emeka Egbuka",
-      "value": 5946,
-      "source": "dynastyprocess-open-data",
-      "id": "12514"
-    },
-    {
       "name": "Brock Bowers",
-      "value": 5606,
+      "value": 6002,
       "source": "dynastyprocess-open-data",
       "id": "11604"
     },
     {
-      "name": "De'Von Achane",
-      "value": 5463,
-      "source": "dynastyprocess-open-data",
-      "id": "9226"
-    },
-    {
       "name": "Trey McBride",
-      "value": 5451,
+      "value": 5904,
       "source": "dynastyprocess-open-data",
       "id": "8130"
     },
     {
+      "name": "Nico Collins",
+      "value": 5862,
+      "source": "dynastyprocess-open-data",
+      "id": "7569"
+    },
+    {
+      "name": "Emeka Egbuka",
+      "value": 5541,
+      "source": "dynastyprocess-open-data",
+      "id": "12514"
+    },
+    {
       "name": "Lamar Jackson",
-      "value": 5287,
+      "value": 5274,
       "source": "dynastyprocess-open-data",
       "id": "4881"
     },
     {
-      "name": "DeVonta Smith",
-      "value": 5164,
-      "source": "dynastyprocess-open-data",
-      "id": "7525"
-    },
-    {
-      "name": "Christian McCaffrey",
-      "value": 4985,
-      "source": "dynastyprocess-open-data",
-      "id": "4034"
-    },
-    {
-      "name": "Carnell Tate",
-      "value": 4927,
-      "source": "dynastyprocess-open-data",
-      "id": "13279"
-    },
-    {
-      "name": "George Pickens",
-      "value": 4892,
-      "source": "dynastyprocess-open-data",
-      "id": "8137"
-    },
-    {
-      "name": "Drake Maye",
-      "value": 4745,
-      "source": "dynastyprocess-open-data",
-      "id": "11564"
-    },
-    {
-      "name": "A.J. Brown",
-      "value": 4745,
-      "source": "dynastyprocess-open-data",
-      "id": "5859"
-    },
-    {
-      "name": "Ladd McConkey",
-      "value": 4668,
-      "source": "dynastyprocess-open-data",
-      "id": "11635"
-    },
-    {
-      "name": "Rashee Rice",
-      "value": 4506,
-      "source": "dynastyprocess-open-data",
-      "id": "10229"
-    },
-    {
-      "name": "Patrick Mahomes II",
-      "value": 4495,
-      "source": "dynastyprocess-open-data",
-      "id": "4046"
-    },
-    {
-      "name": "Chase Brown",
-      "value": 4453,
-      "source": "dynastyprocess-open-data",
-      "id": "9224"
-    },
-    {
       "name": "Zay Flowers",
-      "value": 4422,
+      "value": 5249,
       "source": "dynastyprocess-open-data",
       "id": "9997"
     },
     {
-      "name": "Joe Burrow",
-      "value": 4289,
+      "name": "De'Von Achane",
+      "value": 5225,
       "source": "dynastyprocess-open-data",
-      "id": "6770"
+      "id": "9226"
+    },
+    {
+      "name": "Carnell Tate",
+      "value": 5188,
+      "source": "dynastyprocess-open-data",
+      "id": "13279"
+    },
+    {
+      "name": "Omarion Hampton",
+      "value": 5164,
+      "source": "dynastyprocess-open-data",
+      "id": "12507"
+    },
+    {
+      "name": "DeVonta Smith",
+      "value": 5092,
+      "source": "dynastyprocess-open-data",
+      "id": "7525"
+    },
+    {
+      "name": "Drake Maye",
+      "value": 5068,
+      "source": "dynastyprocess-open-data",
+      "id": "11564"
+    },
+    {
+      "name": "George Pickens",
+      "value": 4881,
+      "source": "dynastyprocess-open-data",
+      "id": "8137"
+    },
+    {
+      "name": "Patrick Mahomes II",
+      "value": 4689,
+      "source": "dynastyprocess-open-data",
+      "id": "4046"
     },
     {
       "name": "Jaylen Waddle",
-      "value": 4219,
+      "value": 4474,
       "source": "dynastyprocess-open-data",
       "id": "7526"
     },
     {
-      "name": "Rome Odunze",
-      "value": 4179,
+      "name": "Parker Washington",
+      "value": 4464,
       "source": "dynastyprocess-open-data",
-      "id": "11620"
+      "id": "9487"
+    },
+    {
+      "name": "Tyler Warren",
+      "value": 4319,
+      "source": "dynastyprocess-open-data",
+      "id": "12518"
+    },
+    {
+      "name": "Chase Brown",
+      "value": 4299,
+      "source": "dynastyprocess-open-data",
+      "id": "9224"
+    },
+    {
+      "name": "Ladd McConkey",
+      "value": 4279,
+      "source": "dynastyprocess-open-data",
+      "id": "11635"
+    },
+    {
+      "name": "A.J. Brown",
+      "value": 4259,
+      "source": "dynastyprocess-open-data",
+      "id": "5859"
+    },
+    {
+      "name": "Christian McCaffrey",
+      "value": 4259,
+      "source": "dynastyprocess-open-data",
+      "id": "4034"
     },
     {
       "name": "Luther Burden III",
-      "value": 3960,
+      "value": 4179,
       "source": "dynastyprocess-open-data",
       "id": "12519"
+    },
+    {
+      "name": "Joe Burrow",
+      "value": 4044,
+      "source": "dynastyprocess-open-data",
+      "id": "6770"
+    },
+    {
+      "name": "Colston Loveland",
+      "value": 3969,
+      "source": "dynastyprocess-open-data",
+      "id": "12517"
     },
     {
       "name": "Sam LaPorta",
@@ -276,1300 +282,1329 @@
       "id": "10859"
     },
     {
-      "name": "Jalen Hurts",
+      "name": "Christian Watson",
       "value": 3913,
+      "source": "dynastyprocess-open-data",
+      "id": "8167"
+    },
+    {
+      "name": "Jalen Hurts",
+      "value": 3742,
       "source": "dynastyprocess-open-data",
       "id": "6904"
     },
     {
       "name": "Caleb Williams",
-      "value": 3742,
+      "value": 3734,
       "source": "dynastyprocess-open-data",
       "id": "11560"
     },
     {
-      "name": "Marvin Harrison Jr.",
-      "value": 3699,
+      "name": "Rome Odunze",
+      "value": 3630,
       "source": "dynastyprocess-open-data",
-      "id": "11628"
-    },
-    {
-      "name": "Colston Loveland",
-      "value": 3664,
-      "source": "dynastyprocess-open-data",
-      "id": "12517"
+      "id": "11620"
     },
     {
       "name": "Tee Higgins",
-      "value": 3630,
+      "value": 3613,
       "source": "dynastyprocess-open-data",
       "id": "6801"
     },
     {
       "name": "Jayden Daniels",
-      "value": 3545,
+      "value": 3562,
       "source": "dynastyprocess-open-data",
       "id": "11566"
     },
     {
-      "name": "Jordyn Tyson",
-      "value": 3415,
-      "source": "dynastyprocess-open-data",
-      "id": "13281"
-    },
-    {
-      "name": "Jameson Williams",
-      "value": 3335,
-      "source": "dynastyprocess-open-data",
-      "id": "8148"
-    },
-    {
-      "name": "Tyler Warren",
-      "value": 3258,
-      "source": "dynastyprocess-open-data",
-      "id": "12518"
-    },
-    {
-      "name": "Kyren Williams",
-      "value": 3258,
-      "source": "dynastyprocess-open-data",
-      "id": "8150"
-    },
-    {
       "name": "Dalton Kincaid",
-      "value": 3243,
+      "value": 3407,
       "source": "dynastyprocess-open-data",
       "id": "10236"
     },
     {
-      "name": "Saquon Barkley",
-      "value": 3220,
-      "source": "dynastyprocess-open-data",
-      "id": "4866"
-    },
-    {
-      "name": "Makai Lemon",
-      "value": 3108,
-      "source": "dynastyprocess-open-data",
-      "id": "13294"
-    },
-    {
-      "name": "Christian Watson",
-      "value": 3008,
-      "source": "dynastyprocess-open-data",
-      "id": "8167"
-    },
-    {
-      "name": "Parker Washington",
-      "value": 2952,
-      "source": "dynastyprocess-open-data",
-      "id": "9487"
-    },
-    {
-      "name": "Trevor Lawrence",
-      "value": 2938,
-      "source": "dynastyprocess-open-data",
-      "id": "7523"
-    },
-    {
       "name": "Tucker Kraft",
-      "value": 2829,
+      "value": 3304,
       "source": "dynastyprocess-open-data",
       "id": "9484"
     },
     {
+      "name": "Jordyn Tyson",
+      "value": 3258,
+      "source": "dynastyprocess-open-data",
+      "id": "13281"
+    },
+    {
+      "name": "Kyren Williams",
+      "value": 3190,
+      "source": "dynastyprocess-open-data",
+      "id": "8150"
+    },
+    {
+      "name": "Rashee Rice",
+      "value": 3138,
+      "source": "dynastyprocess-open-data",
+      "id": "10229"
+    },
+    {
+      "name": "Trevor Lawrence",
+      "value": 3079,
+      "source": "dynastyprocess-open-data",
+      "id": "7523"
+    },
+    {
+      "name": "Jameson Williams",
+      "value": 3036,
+      "source": "dynastyprocess-open-data",
+      "id": "8148"
+    },
+    {
       "name": "Brock Purdy",
-      "value": 2738,
+      "value": 3008,
       "source": "dynastyprocess-open-data",
       "id": "8183"
     },
     {
-      "name": "Quinshon Judkins",
-      "value": 2700,
+      "name": "Saquon Barkley",
+      "value": 2856,
       "source": "dynastyprocess-open-data",
-      "id": "12512"
+      "id": "4866"
     },
     {
       "name": "TreVeyon Henderson",
-      "value": 2687,
+      "value": 2751,
       "source": "dynastyprocess-open-data",
       "id": "12529"
     },
     {
-      "name": "Justin Herbert",
-      "value": 2674,
+      "name": "Makai Lemon",
+      "value": 2687,
       "source": "dynastyprocess-open-data",
-      "id": "6797"
+      "id": "13294"
     },
     {
       "name": "Harold Fannin Jr.",
-      "value": 2417,
+      "value": 2457,
       "source": "dynastyprocess-open-data",
       "id": "12506"
     },
     {
-      "name": "Jadarian Price",
-      "value": 2334,
-      "source": "dynastyprocess-open-data",
-      "id": "13286"
-    },
-    {
-      "name": "Bucky Irving",
-      "value": 2334,
-      "source": "dynastyprocess-open-data",
-      "id": "11584"
-    },
-    {
-      "name": "Kyle Pitts Sr.",
-      "value": 2247,
-      "source": "dynastyprocess-open-data",
-      "id": "7553"
-    },
-    {
-      "name": "DJ Moore",
-      "value": 2175,
-      "source": "dynastyprocess-open-data",
-      "id": "4983"
-    },
-    {
       "name": "Travis Etienne Jr.",
-      "value": 2134,
+      "value": 2446,
       "source": "dynastyprocess-open-data",
       "id": "7543"
     },
     {
-      "name": "Kenyon Sadiq",
-      "value": 1989,
+      "name": "Justin Herbert",
+      "value": 2423,
       "source": "dynastyprocess-open-data",
-      "id": "13330"
+      "id": "6797"
     },
     {
-      "name": "DK Metcalf",
-      "value": 1980,
+      "name": "Quinshon Judkins",
+      "value": 2389,
       "source": "dynastyprocess-open-data",
-      "id": "5846"
+      "id": "12512"
     },
     {
-      "name": "Bo Nix",
-      "value": 1970,
+      "name": "DJ Moore",
+      "value": 2317,
       "source": "dynastyprocess-open-data",
-      "id": "11563"
+      "id": "4983"
     },
     {
-      "name": "Brian Thomas Jr.",
-      "value": 1934,
+      "name": "Bucky Irving",
+      "value": 2290,
       "source": "dynastyprocess-open-data",
-      "id": "11631"
-    },
-    {
-      "name": "Cam Skattebo",
-      "value": 1880,
-      "source": "dynastyprocess-open-data",
-      "id": "12481"
-    },
-    {
-      "name": "Denzel Boston",
-      "value": 1845,
-      "source": "dynastyprocess-open-data",
-      "id": "13346"
-    },
-    {
-      "name": "KC Concepcion Jr.",
-      "value": 1711,
-      "source": "dynastyprocess-open-data",
-      "id": "13298"
-    },
-    {
-      "name": "Terry McLaurin",
-      "value": 1699,
-      "source": "dynastyprocess-open-data",
-      "id": "5927"
-    },
-    {
-      "name": "Derrick Henry",
-      "value": 1699,
-      "source": "dynastyprocess-open-data",
-      "id": "3198"
+      "id": "11584"
     },
     {
       "name": "Javonte Williams",
-      "value": 1699,
+      "value": 2279,
       "source": "dynastyprocess-open-data",
       "id": "7588"
     },
     {
+      "name": "Kyle Pitts Sr.",
+      "value": 2134,
+      "source": "dynastyprocess-open-data",
+      "id": "7553"
+    },
+    {
+      "name": "KC Concepcion Jr.",
+      "value": 2094,
+      "source": "dynastyprocess-open-data",
+      "id": "13298"
+    },
+    {
+      "name": "DK Metcalf",
+      "value": 2060,
+      "source": "dynastyprocess-open-data",
+      "id": "5846"
+    },
+    {
+      "name": "Denzel Boston",
+      "value": 2046,
+      "source": "dynastyprocess-open-data",
+      "id": "13346"
+    },
+    {
+      "name": "Bo Nix",
+      "value": 1915,
+      "source": "dynastyprocess-open-data",
+      "id": "11563"
+    },
+    {
+      "name": "Jadarian Price",
+      "value": 1915,
+      "source": "dynastyprocess-open-data",
+      "id": "13286"
+    },
+    {
+      "name": "Kenyon Sadiq",
+      "value": 1880,
+      "source": "dynastyprocess-open-data",
+      "id": "13330"
+    },
+    {
       "name": "Isaiah Likely",
-      "value": 1687,
+      "value": 1810,
       "source": "dynastyprocess-open-data",
       "id": "8131"
     },
     {
-      "name": "Jordan Addison",
-      "value": 1671,
+      "name": "Brian Thomas Jr.",
+      "value": 1794,
       "source": "dynastyprocess-open-data",
-      "id": "9756"
+      "id": "11631"
     },
     {
-      "name": "Dak Prescott",
-      "value": 1633,
+      "name": "Derrick Henry",
+      "value": 1785,
       "source": "dynastyprocess-open-data",
-      "id": "3294"
+      "id": "3198"
     },
     {
-      "name": "Davante Adams",
-      "value": 1602,
+      "name": "Marvin Harrison Jr.",
+      "value": 1695,
       "source": "dynastyprocess-open-data",
-      "id": "2133"
+      "id": "11628"
     },
     {
-      "name": "Michael Wilson",
-      "value": 1521,
+      "name": "Cam Skattebo",
+      "value": 1679,
       "source": "dynastyprocess-open-data",
-      "id": "10232"
-    },
-    {
-      "name": "Bhayshul Tuten",
-      "value": 1486,
-      "source": "dynastyprocess-open-data",
-      "id": "12490"
-    },
-    {
-      "name": "Michael Pittman Jr.",
-      "value": 1421,
-      "source": "dynastyprocess-open-data",
-      "id": "6819"
-    },
-    {
-      "name": "C.J. Stroud",
-      "value": 1401,
-      "source": "dynastyprocess-open-data",
-      "id": "9758"
-    },
-    {
-      "name": "D'Andre Swift",
-      "value": 1391,
-      "source": "dynastyprocess-open-data",
-      "id": "6790"
-    },
-    {
-      "name": "Jordan Love",
-      "value": 1237,
-      "source": "dynastyprocess-open-data",
-      "id": "6804"
+      "id": "12481"
     },
     {
       "name": "Alec Pierce",
-      "value": 1214,
+      "value": 1565,
       "source": "dynastyprocess-open-data",
       "id": "8142"
     },
     {
+      "name": "Bhayshul Tuten",
+      "value": 1543,
+      "source": "dynastyprocess-open-data",
+      "id": "12490"
+    },
+    {
+      "name": "D'Andre Swift",
+      "value": 1521,
+      "source": "dynastyprocess-open-data",
+      "id": "6790"
+    },
+    {
+      "name": "Dak Prescott",
+      "value": 1493,
+      "source": "dynastyprocess-open-data",
+      "id": "3294"
+    },
+    {
+      "name": "C.J. Stroud",
+      "value": 1483,
+      "source": "dynastyprocess-open-data",
+      "id": "9758"
+    },
+    {
+      "name": "Michael Wilson",
+      "value": 1472,
+      "source": "dynastyprocess-open-data",
+      "id": "10232"
+    },
+    {
+      "name": "Jalen Coker",
+      "value": 1445,
+      "source": "dynastyprocess-open-data",
+      "id": "11646"
+    },
+    {
+      "name": "Michael Pittman Jr.",
+      "value": 1438,
+      "source": "dynastyprocess-open-data",
+      "id": "6819"
+    },
+    {
+      "name": "Jaxson Dart",
+      "value": 1425,
+      "source": "dynastyprocess-open-data",
+      "id": "12508"
+    },
+    {
+      "name": "Terry McLaurin",
+      "value": 1425,
+      "source": "dynastyprocess-open-data",
+      "id": "5927"
+    },
+    {
+      "name": "Jordan Addison",
+      "value": 1411,
+      "source": "dynastyprocess-open-data",
+      "id": "9756"
+    },
+    {
       "name": "George Kittle",
-      "value": 1194,
+      "value": 1303,
       "source": "dynastyprocess-open-data",
       "id": "4217"
     },
     {
       "name": "Josh Downs",
-      "value": 1175,
+      "value": 1303,
       "source": "dynastyprocess-open-data",
       "id": "9500"
     },
     {
-      "name": "Jaxson Dart",
-      "value": 1148,
+      "name": "Jordan Love",
+      "value": 1279,
       "source": "dynastyprocess-open-data",
-      "id": "12508"
-    },
-    {
-      "name": "Tyler Shough",
-      "value": 1132,
-      "source": "dynastyprocess-open-data",
-      "id": "12545"
+      "id": "6804"
     },
     {
       "name": "Matthew Golden",
-      "value": 1045,
+      "value": 1231,
       "source": "dynastyprocess-open-data",
       "id": "12501"
     },
     {
-      "name": "Jalen Coker",
-      "value": 997,
+      "name": "Tyler Shough",
+      "value": 1186,
       "source": "dynastyprocess-open-data",
-      "id": "11646"
-    },
-    {
-      "name": "Xavier Worthy",
-      "value": 990,
-      "source": "dynastyprocess-open-data",
-      "id": "11624"
+      "id": "12545"
     },
     {
       "name": "Jaylen Warren",
-      "value": 967,
+      "value": 1137,
       "source": "dynastyprocess-open-data",
       "id": "8228"
     },
     {
-      "name": "Chuba Hubbard",
-      "value": 944,
+      "name": "Davante Adams",
+      "value": 1110,
       "source": "dynastyprocess-open-data",
-      "id": "7594"
-    },
-    {
-      "name": "Mike Evans",
-      "value": 938,
-      "source": "dynastyprocess-open-data",
-      "id": "2216"
-    },
-    {
-      "name": "Jayden Higgins",
-      "value": 907,
-      "source": "dynastyprocess-open-data",
-      "id": "12484"
+      "id": "2133"
     },
     {
       "name": "Jared Goff",
-      "value": 901,
+      "value": 983,
       "source": "dynastyprocess-open-data",
       "id": "3163"
     },
     {
+      "name": "Chuba Hubbard",
+      "value": 969,
+      "source": "dynastyprocess-open-data",
+      "id": "7594"
+    },
+    {
       "name": "Wan'Dale Robinson",
-      "value": 866,
+      "value": 951,
       "source": "dynastyprocess-open-data",
       "id": "8126"
     },
     {
-      "name": "Kyle Monangai",
-      "value": 810,
+      "name": "Mike Evans",
+      "value": 920,
       "source": "dynastyprocess-open-data",
-      "id": "12534"
-    },
-    {
-      "name": "Omar Cooper Jr.",
-      "value": 807,
-      "source": "dynastyprocess-open-data",
-      "id": "13276"
-    },
-    {
-      "name": "David Montgomery",
-      "value": 788,
-      "source": "dynastyprocess-open-data",
-      "id": "5892"
-    },
-    {
-      "name": "Josh Jacobs",
-      "value": 777,
-      "source": "dynastyprocess-open-data",
-      "id": "5850"
+      "id": "2216"
     },
     {
       "name": "Fernando Mendoza",
-      "value": 773,
+      "value": 895,
       "source": "dynastyprocess-open-data",
       "id": "13269"
     },
     {
-      "name": "Bryce Young",
-      "value": 701,
+      "name": "Kyle Monangai",
+      "value": 886,
       "source": "dynastyprocess-open-data",
-      "id": "9228"
+      "id": "12534"
     },
     {
-      "name": "Antonio Williams",
-      "value": 701,
+      "name": "De'Zhaun Stribling",
+      "value": 846,
       "source": "dynastyprocess-open-data",
-      "id": "13301"
+      "id": "13417"
     },
     {
-      "name": "Jonathon Brooks",
-      "value": 688,
+      "name": "Jayden Higgins",
+      "value": 846,
       "source": "dynastyprocess-open-data",
-      "id": "11583"
-    },
-    {
-      "name": "Quentin Johnston",
-      "value": 675,
-      "source": "dynastyprocess-open-data",
-      "id": "9754"
-    },
-    {
-      "name": "Jake Ferguson",
-      "value": 659,
-      "source": "dynastyprocess-open-data",
-      "id": "8110"
+      "id": "12484"
     },
     {
       "name": "Blake Corum",
-      "value": 653,
+      "value": 830,
       "source": "dynastyprocess-open-data",
       "id": "11586"
     },
     {
-      "name": "Travis Kelce",
-      "value": 633,
+      "name": "Omar Cooper Jr.",
+      "value": 818,
       "source": "dynastyprocess-open-data",
-      "id": "1466"
-    },
-    {
-      "name": "Oronde Gadsden II",
-      "value": 633,
-      "source": "dynastyprocess-open-data",
-      "id": "12493"
-    },
-    {
-      "name": "Ricky Pearsall",
-      "value": 597,
-      "source": "dynastyprocess-open-data",
-      "id": "11638"
-    },
-    {
-      "name": "Dallas Goedert",
-      "value": 586,
-      "source": "dynastyprocess-open-data",
-      "id": "5022"
-    },
-    {
-      "name": "Brenton Strange",
-      "value": 586,
-      "source": "dynastyprocess-open-data",
-      "id": "9480"
-    },
-    {
-      "name": "Khalil Shakir",
-      "value": 583,
-      "source": "dynastyprocess-open-data",
-      "id": "8134"
-    },
-    {
-      "name": "Courtland Sutton",
-      "value": 581,
-      "source": "dynastyprocess-open-data",
-      "id": "5045"
+      "id": "13276"
     },
     {
       "name": "Terrance Ferguson",
-      "value": 563,
+      "value": 807,
       "source": "dynastyprocess-open-data",
       "id": "12487"
     },
     {
-      "name": "Stefon Diggs",
-      "value": 563,
+      "name": "Bryce Young",
+      "value": 762,
       "source": "dynastyprocess-open-data",
-      "id": "2449"
+      "id": "9228"
+    },
+    {
+      "name": "Juwan Johnson",
+      "value": 745,
+      "source": "dynastyprocess-open-data",
+      "id": "7002"
+    },
+    {
+      "name": "David Montgomery",
+      "value": 741,
+      "source": "dynastyprocess-open-data",
+      "id": "5892"
+    },
+    {
+      "name": "Xavier Worthy",
+      "value": 724,
+      "source": "dynastyprocess-open-data",
+      "id": "11624"
+    },
+    {
+      "name": "Antonio Williams",
+      "value": 691,
+      "source": "dynastyprocess-open-data",
+      "id": "13301"
+    },
+    {
+      "name": "Josh Jacobs",
+      "value": 688,
+      "source": "dynastyprocess-open-data",
+      "id": "5850"
+    },
+    {
+      "name": "Quentin Johnston",
+      "value": 684,
+      "source": "dynastyprocess-open-data",
+      "id": "9754"
+    },
+    {
+      "name": "Jonathon Brooks",
+      "value": 681,
+      "source": "dynastyprocess-open-data",
+      "id": "11583"
+    },
+    {
+      "name": "Courtland Sutton",
+      "value": 672,
+      "source": "dynastyprocess-open-data",
+      "id": "5045"
+    },
+    {
+      "name": "Chris Bell",
+      "value": 659,
+      "source": "dynastyprocess-open-data",
+      "id": "13311"
+    },
+    {
+      "name": "Brenton Strange",
+      "value": 659,
+      "source": "dynastyprocess-open-data",
+      "id": "9480"
+    },
+    {
+      "name": "Jake Ferguson",
+      "value": 647,
+      "source": "dynastyprocess-open-data",
+      "id": "8110"
+    },
+    {
+      "name": "Jonah Coleman",
+      "value": 570,
+      "source": "dynastyprocess-open-data",
+      "id": "13345"
     },
     {
       "name": "Chris Godwin Jr.",
-      "value": 556,
+      "value": 564,
       "source": "dynastyprocess-open-data",
       "id": "4037"
     },
     {
+      "name": "Baker Mayfield",
+      "value": 564,
+      "source": "dynastyprocess-open-data",
+      "id": "4892"
+    },
+    {
       "name": "Jayden Reed",
-      "value": 537,
+      "value": 564,
       "source": "dynastyprocess-open-data",
       "id": "10222"
     },
     {
       "name": "Jakobi Meyers",
-      "value": 528,
+      "value": 562,
       "source": "dynastyprocess-open-data",
       "id": "5947"
     },
     {
-      "name": "De'Zhaun Stribling",
-      "value": 525,
+      "name": "Oronde Gadsden II",
+      "value": 554,
       "source": "dynastyprocess-open-data",
-      "id": "13417"
+      "id": "12493"
     },
     {
-      "name": "Jonah Coleman",
-      "value": 513,
+      "name": "Stefon Diggs",
+      "value": 551,
       "source": "dynastyprocess-open-data",
-      "id": "13345"
-    },
-    {
-      "name": "Mark Andrews",
-      "value": 509,
-      "source": "dynastyprocess-open-data",
-      "id": "5012"
-    },
-    {
-      "name": "Matthew Stafford",
-      "value": 507,
-      "source": "dynastyprocess-open-data",
-      "id": "421"
-    },
-    {
-      "name": "Juwan Johnson",
-      "value": 507,
-      "source": "dynastyprocess-open-data",
-      "id": "7002"
-    },
-    {
-      "name": "Eli Stowers",
-      "value": 504,
-      "source": "dynastyprocess-open-data",
-      "id": "13349"
-    },
-    {
-      "name": "Baker Mayfield",
-      "value": 495,
-      "source": "dynastyprocess-open-data",
-      "id": "4892"
-    },
-    {
-      "name": "Kyler Murray",
-      "value": 467,
-      "source": "dynastyprocess-open-data",
-      "id": "5849"
-    },
-    {
-      "name": "Sam Darnold",
-      "value": 459,
-      "source": "dynastyprocess-open-data",
-      "id": "4943"
-    },
-    {
-      "name": "RJ Harvey",
-      "value": 430,
-      "source": "dynastyprocess-open-data",
-      "id": "12489"
-    },
-    {
-      "name": "Malik Willis",
-      "value": 418,
-      "source": "dynastyprocess-open-data",
-      "id": "8161"
+      "id": "2449"
     },
     {
       "name": "Romeo Doubs",
-      "value": 417,
+      "value": 509,
       "source": "dynastyprocess-open-data",
       "id": "8121"
     },
     {
+      "name": "Eli Stowers",
+      "value": 509,
+      "source": "dynastyprocess-open-data",
+      "id": "13349"
+    },
+    {
+      "name": "RJ Harvey",
+      "value": 495,
+      "source": "dynastyprocess-open-data",
+      "id": "12489"
+    },
+    {
+      "name": "Sam Darnold",
+      "value": 477,
+      "source": "dynastyprocess-open-data",
+      "id": "4943"
+    },
+    {
       "name": "Rhamondre Stevenson",
-      "value": 412,
+      "value": 465,
       "source": "dynastyprocess-open-data",
       "id": "7611"
     },
     {
+      "name": "Kyler Murray",
+      "value": 424,
+      "source": "dynastyprocess-open-data",
+      "id": "5849"
+    },
+    {
+      "name": "Dallas Goedert",
+      "value": 420,
+      "source": "dynastyprocess-open-data",
+      "id": "5022"
+    },
+    {
       "name": "Adonai Mitchell",
-      "value": 407,
+      "value": 412,
       "source": "dynastyprocess-open-data",
       "id": "11625"
     },
     {
+      "name": "Khalil Shakir",
+      "value": 404,
+      "source": "dynastyprocess-open-data",
+      "id": "8134"
+    },
+    {
       "name": "Cam Ward",
-      "value": 399,
+      "value": 393,
       "source": "dynastyprocess-open-data",
       "id": "12522"
     },
     {
-      "name": "Deebo Samuel Sr.",
-      "value": 394,
+      "name": "Matthew Stafford",
+      "value": 386,
       "source": "dynastyprocess-open-data",
-      "id": "5872"
+      "id": "421"
+    },
+    {
+      "name": "Travis Kelce",
+      "value": 379,
+      "source": "dynastyprocess-open-data",
+      "id": "1466"
+    },
+    {
+      "name": "Ricky Pearsall",
+      "value": 377,
+      "source": "dynastyprocess-open-data",
+      "id": "11638"
+    },
+    {
+      "name": "Mark Andrews",
+      "value": 377,
+      "source": "dynastyprocess-open-data",
+      "id": "5012"
     },
     {
       "name": "Rico Dowdle",
-      "value": 382,
+      "value": 346,
       "source": "dynastyprocess-open-data",
       "id": "7021"
     },
     {
-      "name": "Pat Bryant",
-      "value": 350,
+      "name": "Malik Willis",
+      "value": 341,
       "source": "dynastyprocess-open-data",
-      "id": "12492"
-    },
-    {
-      "name": "Chris Bell",
-      "value": 348,
-      "source": "dynastyprocess-open-data",
-      "id": "13311"
-    },
-    {
-      "name": "Tony Pollard",
-      "value": 338,
-      "source": "dynastyprocess-open-data",
-      "id": "5967"
-    },
-    {
-      "name": "Caleb Douglas",
-      "value": 314,
-      "source": "dynastyprocess-open-data",
-      "id": "13296"
-    },
-    {
-      "name": "Chig Okonkwo",
-      "value": 313,
-      "source": "dynastyprocess-open-data",
-      "id": "8210"
-    },
-    {
-      "name": "Tre' Harris",
-      "value": 311,
-      "source": "dynastyprocess-open-data",
-      "id": "12509"
-    },
-    {
-      "name": "Dalton Schultz",
-      "value": 297,
-      "source": "dynastyprocess-open-data",
-      "id": "5001"
-    },
-    {
-      "name": "Daniel Jones",
-      "value": 295,
-      "source": "dynastyprocess-open-data",
-      "id": "5870"
-    },
-    {
-      "name": "Jacory Croskey-Merritt",
-      "value": 294,
-      "source": "dynastyprocess-open-data",
-      "id": "12533"
-    },
-    {
-      "name": "Rashid Shaheed",
-      "value": 293,
-      "source": "dynastyprocess-open-data",
-      "id": "8676"
-    },
-    {
-      "name": "Brandon Aiyuk",
-      "value": 290,
-      "source": "dynastyprocess-open-data",
-      "id": "6803"
-    },
-    {
-      "name": "Jalen McMillan",
-      "value": 290,
-      "source": "dynastyprocess-open-data",
-      "id": "11618"
-    },
-    {
-      "name": "Woody Marks",
-      "value": 283,
-      "source": "dynastyprocess-open-data",
-      "id": "12474"
+      "id": "8161"
     },
     {
       "name": "Zach Charbonnet",
-      "value": 283,
+      "value": 330,
       "source": "dynastyprocess-open-data",
       "id": "9753"
     },
     {
-      "name": "Tank Dell",
-      "value": 283,
+      "name": "Jacory Croskey-Merritt",
+      "value": 330,
       "source": "dynastyprocess-open-data",
-      "id": "9502"
+      "id": "12533"
     },
     {
-      "name": "Travis Hunter",
-      "value": 276,
+      "name": "Daniel Jones",
+      "value": 321,
       "source": "dynastyprocess-open-data",
-      "id": "12530"
+      "id": "5870"
     },
     {
-      "name": "Ty Simpson",
-      "value": 270,
+      "name": "Tre' Harris",
+      "value": 312,
       "source": "dynastyprocess-open-data",
-      "id": "13275"
+      "id": "12509"
     },
     {
-      "name": "Ja'Kobi Lane",
-      "value": 267,
+      "name": "Chig Okonkwo",
+      "value": 299,
       "source": "dynastyprocess-open-data",
-      "id": "13293"
-    },
-    {
-      "name": "T.J. Hockenson",
-      "value": 239,
-      "source": "dynastyprocess-open-data",
-      "id": "5844"
-    },
-    {
-      "name": "Kayshon Boutte",
-      "value": 237,
-      "source": "dynastyprocess-open-data",
-      "id": "9504"
-    },
-    {
-      "name": "Tyreek Hill",
-      "value": 234,
-      "source": "dynastyprocess-open-data",
-      "id": "3321"
-    },
-    {
-      "name": "Tre Tucker",
-      "value": 233,
-      "source": "dynastyprocess-open-data",
-      "id": "10213"
-    },
-    {
-      "name": "Eli Raridon",
-      "value": 231,
-      "source": "dynastyprocess-open-data",
-      "id": "13421"
-    },
-    {
-      "name": "Anthony Richardson Sr.",
-      "value": 228,
-      "source": "dynastyprocess-open-data",
-      "id": "9229"
-    },
-    {
-      "name": "Jaylin Noel",
-      "value": 221,
-      "source": "dynastyprocess-open-data",
-      "id": "12536"
-    },
-    {
-      "name": "Emmett Johnson",
-      "value": 220,
-      "source": "dynastyprocess-open-data",
-      "id": "13337"
-    },
-    {
-      "name": "AJ Barner",
-      "value": 220,
-      "source": "dynastyprocess-open-data",
-      "id": "11603"
-    },
-    {
-      "name": "Jordan Mason",
-      "value": 217,
-      "source": "dynastyprocess-open-data",
-      "id": "8408"
-    },
-    {
-      "name": "J.K. Dobbins",
-      "value": 211,
-      "source": "dynastyprocess-open-data",
-      "id": "6806"
-    },
-    {
-      "name": "Tyler Allgeier",
-      "value": 205,
-      "source": "dynastyprocess-open-data",
-      "id": "8132"
-    },
-    {
-      "name": "Kenny Gainwell",
-      "value": 205,
-      "source": "dynastyprocess-open-data",
-      "id": "7567"
-    },
-    {
-      "name": "Rachaad White",
-      "value": 199,
-      "source": "dynastyprocess-open-data",
-      "id": "8136"
-    },
-    {
-      "name": "Michael Penix Jr.",
-      "value": 197,
-      "source": "dynastyprocess-open-data",
-      "id": "11559"
-    },
-    {
-      "name": "Jerry Jeudy",
-      "value": 193,
-      "source": "dynastyprocess-open-data",
-      "id": "6783"
-    },
-    {
-      "name": "Elic Ayomanor",
-      "value": 180,
-      "source": "dynastyprocess-open-data",
-      "id": "12499"
-    },
-    {
-      "name": "Hunter Henry",
-      "value": 178,
-      "source": "dynastyprocess-open-data",
-      "id": "3214"
-    },
-    {
-      "name": "Dontayvion Wicks",
-      "value": 177,
-      "source": "dynastyprocess-open-data",
-      "id": "9486"
-    },
-    {
-      "name": "Tyjae Spears",
-      "value": 175,
-      "source": "dynastyprocess-open-data",
-      "id": "9508"
-    },
-    {
-      "name": "Jacoby Brissett",
-      "value": 163,
-      "source": "dynastyprocess-open-data",
-      "id": "3257"
-    },
-    {
-      "name": "Germie Bernard",
-      "value": 159,
-      "source": "dynastyprocess-open-data",
-      "id": "13274"
+      "id": "8210"
     },
     {
       "name": "Ted Hurst III",
-      "value": 158,
+      "value": 298,
       "source": "dynastyprocess-open-data",
       "id": "13317"
     },
     {
-      "name": "Troy Franklin",
-      "value": 158,
+      "name": "Michael Penix Jr.",
+      "value": 294,
       "source": "dynastyprocess-open-data",
-      "id": "11627"
+      "id": "11559"
     },
     {
-      "name": "Isaac TeSlaa",
-      "value": 156,
+      "name": "Emmett Johnson",
+      "value": 287,
       "source": "dynastyprocess-open-data",
-      "id": "12535"
+      "id": "13337"
     },
     {
-      "name": "Aaron Jones Sr.",
-      "value": 154,
+      "name": "Ty Simpson",
+      "value": 280,
       "source": "dynastyprocess-open-data",
-      "id": "4199"
+      "id": "13275"
     },
     {
-      "name": "Max Klare",
-      "value": 148,
+      "name": "Deebo Samuel Sr.",
+      "value": 266,
       "source": "dynastyprocess-open-data",
-      "id": "13278"
+      "id": "5872"
+    },
+    {
+      "name": "Brandon Aiyuk",
+      "value": 265,
+      "source": "dynastyprocess-open-data",
+      "id": "6803"
+    },
+    {
+      "name": "Tank Dell",
+      "value": 262,
+      "source": "dynastyprocess-open-data",
+      "id": "9502"
+    },
+    {
+      "name": "Rashid Shaheed",
+      "value": 261,
+      "source": "dynastyprocess-open-data",
+      "id": "8676"
+    },
+    {
+      "name": "Pat Bryant",
+      "value": 260,
+      "source": "dynastyprocess-open-data",
+      "id": "12492"
+    },
+    {
+      "name": "Tony Pollard",
+      "value": 260,
+      "source": "dynastyprocess-open-data",
+      "id": "5967"
+    },
+    {
+      "name": "Tyreek Hill",
+      "value": 259,
+      "source": "dynastyprocess-open-data",
+      "id": "3321"
+    },
+    {
+      "name": "Jordan Mason",
+      "value": 244,
+      "source": "dynastyprocess-open-data",
+      "id": "8408"
+    },
+    {
+      "name": "Ja'Kobi Lane",
+      "value": 243,
+      "source": "dynastyprocess-open-data",
+      "id": "13293"
+    },
+    {
+      "name": "Caleb Douglas",
+      "value": 242,
+      "source": "dynastyprocess-open-data",
+      "id": "13296"
+    },
+    {
+      "name": "Kenny Gainwell",
+      "value": 237,
+      "source": "dynastyprocess-open-data",
+      "id": "7567"
+    },
+    {
+      "name": "Jalen McMillan",
+      "value": 229,
+      "source": "dynastyprocess-open-data",
+      "id": "11618"
+    },
+    {
+      "name": "Eli Raridon",
+      "value": 223,
+      "source": "dynastyprocess-open-data",
+      "id": "13421"
+    },
+    {
+      "name": "Rachaad White",
+      "value": 218,
+      "source": "dynastyprocess-open-data",
+      "id": "8136"
+    },
+    {
+      "name": "J.K. Dobbins",
+      "value": 216,
+      "source": "dynastyprocess-open-data",
+      "id": "6806"
+    },
+    {
+      "name": "Dalton Schultz",
+      "value": 201,
+      "source": "dynastyprocess-open-data",
+      "id": "5001"
+    },
+    {
+      "name": "Anthony Richardson Sr.",
+      "value": 198,
+      "source": "dynastyprocess-open-data",
+      "id": "9229"
+    },
+    {
+      "name": "AJ Barner",
+      "value": 197,
+      "source": "dynastyprocess-open-data",
+      "id": "11603"
+    },
+    {
+      "name": "Woody Marks",
+      "value": 194,
+      "source": "dynastyprocess-open-data",
+      "id": "12474"
+    },
+    {
+      "name": "T.J. Hockenson",
+      "value": 191,
+      "source": "dynastyprocess-open-data",
+      "id": "5844"
+    },
+    {
+      "name": "Jaylin Noel",
+      "value": 189,
+      "source": "dynastyprocess-open-data",
+      "id": "12536"
+    },
+    {
+      "name": "Kayshon Boutte",
+      "value": 184,
+      "source": "dynastyprocess-open-data",
+      "id": "9504"
+    },
+    {
+      "name": "Travis Hunter",
+      "value": 173,
+      "source": "dynastyprocess-open-data",
+      "id": "12530"
     },
     {
       "name": "Kaelon Black",
-      "value": 148,
+      "value": 171,
       "source": "dynastyprocess-open-data",
       "id": "13414"
     },
     {
-      "name": "Braelon Allen",
-      "value": 144,
+      "name": "Hunter Henry",
+      "value": 170,
       "source": "dynastyprocess-open-data",
-      "id": "11576"
-    },
-    {
-      "name": "Mike Washington Jr.",
-      "value": 130,
-      "source": "dynastyprocess-open-data",
-      "id": "13305"
-    },
-    {
-      "name": "Gunnar Helm",
-      "value": 127,
-      "source": "dynastyprocess-open-data",
-      "id": "12502"
-    },
-    {
-      "name": "Rashod Bateman",
-      "value": 127,
-      "source": "dynastyprocess-open-data",
-      "id": "7571"
-    },
-    {
-      "name": "Nicholas Singleton",
-      "value": 126,
-      "source": "dynastyprocess-open-data",
-      "id": "13288"
-    },
-    {
-      "name": "Jauan Jennings",
-      "value": 118,
-      "source": "dynastyprocess-open-data",
-      "id": "7049"
-    },
-    {
-      "name": "Keon Coleman",
-      "value": 114,
-      "source": "dynastyprocess-open-data",
-      "id": "11637"
-    },
-    {
-      "name": "Dylan Sampson",
-      "value": 113,
-      "source": "dynastyprocess-open-data",
-      "id": "12469"
-    },
-    {
-      "name": "Michael Mayer",
-      "value": 113,
-      "source": "dynastyprocess-open-data",
-      "id": "9482"
-    },
-    {
-      "name": "Geno Smith",
-      "value": 112,
-      "source": "dynastyprocess-open-data",
-      "id": "1373"
-    },
-    {
-      "name": "Malik Washington",
-      "value": 109,
-      "source": "dynastyprocess-open-data",
-      "id": "11610"
-    },
-    {
-      "name": "Brian Robinson Jr.",
-      "value": 108,
-      "source": "dynastyprocess-open-data",
-      "id": "8154"
-    },
-    {
-      "name": "Tyrone Tracy Jr.",
-      "value": 102,
-      "source": "dynastyprocess-open-data",
-      "id": "11655"
-    },
-    {
-      "name": "Mason Taylor",
-      "value": 102,
-      "source": "dynastyprocess-open-data",
-      "id": "12498"
-    },
-    {
-      "name": "Chris Rodriguez Jr.",
-      "value": 100,
-      "source": "dynastyprocess-open-data",
-      "id": "10219"
-    },
-    {
-      "name": "Greg Dulcich",
-      "value": 100,
-      "source": "dynastyprocess-open-data",
-      "id": "8172"
-    },
-    {
-      "name": "Cade Otton",
-      "value": 100,
-      "source": "dynastyprocess-open-data",
-      "id": "8111"
-    },
-    {
-      "name": "Tank Bigsby",
-      "value": 99,
-      "source": "dynastyprocess-open-data",
-      "id": "9225"
-    },
-    {
-      "name": "Malachi Fields",
-      "value": 98,
-      "source": "dynastyprocess-open-data",
-      "id": "13285"
-    },
-    {
-      "name": "Isaiah Bond",
-      "value": 96,
-      "source": "dynastyprocess-open-data",
-      "id": "12503"
-    },
-    {
-      "name": "J.J. McCarthy",
-      "value": 93,
-      "source": "dynastyprocess-open-data",
-      "id": "11565"
-    },
-    {
-      "name": "Chris Brazzell II",
-      "value": 91,
-      "source": "dynastyprocess-open-data",
-      "id": "13353"
-    },
-    {
-      "name": "Shedeur Sanders",
-      "value": 90,
-      "source": "dynastyprocess-open-data",
-      "id": "12524"
-    },
-    {
-      "name": "Elijah Arroyo",
-      "value": 89,
-      "source": "dynastyprocess-open-data",
-      "id": "12521"
-    },
-    {
-      "name": "Kaytron Allen",
-      "value": 82,
-      "source": "dynastyprocess-open-data",
-      "id": "13405"
-    },
-    {
-      "name": "Keaton Mitchell",
-      "value": 77,
-      "source": "dynastyprocess-open-data",
-      "id": "9511"
-    },
-    {
-      "name": "Kyle Williams",
-      "value": 73,
-      "source": "dynastyprocess-open-data",
-      "id": "12547"
-    },
-    {
-      "name": "Darnell Mooney",
-      "value": 73,
-      "source": "dynastyprocess-open-data",
-      "id": "7090"
+      "id": "3214"
     },
     {
       "name": "Oscar Delp",
-      "value": 72,
+      "value": 167,
       "source": "dynastyprocess-open-data",
       "id": "13319"
     },
     {
-      "name": "Pat Freiermuth",
-      "value": 72,
+      "name": "Mike Washington Jr.",
+      "value": 161,
       "source": "dynastyprocess-open-data",
-      "id": "7600"
+      "id": "13305"
     },
     {
-      "name": "Tory Horton",
-      "value": 70,
+      "name": "Germie Bernard",
+      "value": 158,
       "source": "dynastyprocess-open-data",
-      "id": "12497"
+      "id": "13274"
+    },
+    {
+      "name": "Tyler Allgeier",
+      "value": 152,
+      "source": "dynastyprocess-open-data",
+      "id": "8132"
+    },
+    {
+      "name": "Dontayvion Wicks",
+      "value": 151,
+      "source": "dynastyprocess-open-data",
+      "id": "9486"
+    },
+    {
+      "name": "Jauan Jennings",
+      "value": 140,
+      "source": "dynastyprocess-open-data",
+      "id": "7049"
+    },
+    {
+      "name": "Bryce Lance",
+      "value": 137,
+      "source": "dynastyprocess-open-data",
+      "id": "13420"
+    },
+    {
+      "name": "Braelon Allen",
+      "value": 133,
+      "source": "dynastyprocess-open-data",
+      "id": "11576"
+    },
+    {
+      "name": "Keaton Mitchell",
+      "value": 132,
+      "source": "dynastyprocess-open-data",
+      "id": "9511"
+    },
+    {
+      "name": "Gunnar Helm",
+      "value": 129,
+      "source": "dynastyprocess-open-data",
+      "id": "12502"
+    },
+    {
+      "name": "Tre Tucker",
+      "value": 124,
+      "source": "dynastyprocess-open-data",
+      "id": "10213"
+    },
+    {
+      "name": "Rashod Bateman",
+      "value": 120,
+      "source": "dynastyprocess-open-data",
+      "id": "7571"
+    },
+    {
+      "name": "Aaron Jones Sr.",
+      "value": 118,
+      "source": "dynastyprocess-open-data",
+      "id": "4199"
+    },
+    {
+      "name": "Greg Dulcich",
+      "value": 112,
+      "source": "dynastyprocess-open-data",
+      "id": "8172"
+    },
+    {
+      "name": "Max Klare",
+      "value": 109,
+      "source": "dynastyprocess-open-data",
+      "id": "13278"
+    },
+    {
+      "name": "J.J. McCarthy",
+      "value": 108,
+      "source": "dynastyprocess-open-data",
+      "id": "11565"
+    },
+    {
+      "name": "Nicholas Singleton",
+      "value": 108,
+      "source": "dynastyprocess-open-data",
+      "id": "13288"
+    },
+    {
+      "name": "Tyrone Tracy Jr.",
+      "value": 107,
+      "source": "dynastyprocess-open-data",
+      "id": "11655"
     },
     {
       "name": "Elijah Sarratt",
-      "value": 70,
+      "value": 107,
       "source": "dynastyprocess-open-data",
       "id": "13268"
     },
     {
-      "name": "Jalen Nailor",
-      "value": 68,
+      "name": "Chris Rodriguez Jr.",
+      "value": 106,
       "source": "dynastyprocess-open-data",
-      "id": "8180"
+      "id": "10219"
     },
     {
-      "name": "Alvin Kamara",
-      "value": 67,
+      "name": "Tyjae Spears",
+      "value": 106,
       "source": "dynastyprocess-open-data",
-      "id": "4035"
+      "id": "9508"
     },
     {
-      "name": "Ollie Gordon II",
-      "value": 67,
+      "name": "Dylan Sampson",
+      "value": 100,
       "source": "dynastyprocess-open-data",
-      "id": "12495"
+      "id": "12469"
     },
     {
-      "name": "Zachariah Branch",
-      "value": 66,
+      "name": "Malachi Fields",
+      "value": 99,
       "source": "dynastyprocess-open-data",
-      "id": "13320"
+      "id": "13285"
     },
     {
-      "name": "Aaron Rodgers",
-      "value": 66,
+      "name": "Jerry Jeudy",
+      "value": 97,
       "source": "dynastyprocess-open-data",
-      "id": "96"
+      "id": "6783"
     },
     {
-      "name": "Devaughn Vele",
-      "value": 66,
+      "name": "Tank Bigsby",
+      "value": 91,
       "source": "dynastyprocess-open-data",
-      "id": "11834"
+      "id": "9225"
     },
     {
-      "name": "Jack Bech",
-      "value": 65,
+      "name": "Isaac TeSlaa",
+      "value": 90,
       "source": "dynastyprocess-open-data",
-      "id": "12483"
-    },
-    {
-      "name": "Ryan Flournoy",
-      "value": 64,
-      "source": "dynastyprocess-open-data",
-      "id": "11783"
-    },
-    {
-      "name": "Chimere Dike",
-      "value": 64,
-      "source": "dynastyprocess-open-data",
-      "id": "12540"
-    },
-    {
-      "name": "Cooper Kupp",
-      "value": 63,
-      "source": "dynastyprocess-open-data",
-      "id": "4039"
-    },
-    {
-      "name": "Kimani Vidal",
-      "value": 60,
-      "source": "dynastyprocess-open-data",
-      "id": "11647"
-    },
-    {
-      "name": "David Njoku",
-      "value": 58,
-      "source": "dynastyprocess-open-data",
-      "id": "4033"
-    },
-    {
-      "name": "Tua Tagovailoa",
-      "value": 57,
-      "source": "dynastyprocess-open-data",
-      "id": "6768"
-    },
-    {
-      "name": "Colby Parkinson",
-      "value": 57,
-      "source": "dynastyprocess-open-data",
-      "id": "6865"
-    },
-    {
-      "name": "Calvin Ridley",
-      "value": 53,
-      "source": "dynastyprocess-open-data",
-      "id": "4981"
-    },
-    {
-      "name": "Kaleb Johnson",
-      "value": 52,
-      "source": "dynastyprocess-open-data",
-      "id": "12504"
-    },
-    {
-      "name": "Isiah Pacheco",
-      "value": 49,
-      "source": "dynastyprocess-open-data",
-      "id": "8205"
-    },
-    {
-      "name": "Kirk Cousins",
-      "value": 49,
-      "source": "dynastyprocess-open-data",
-      "id": "1166"
-    },
-    {
-      "name": "Deshaun Watson",
-      "value": 49,
-      "source": "dynastyprocess-open-data",
-      "id": "4017"
-    },
-    {
-      "name": "Evan Engram",
-      "value": 43,
-      "source": "dynastyprocess-open-data",
-      "id": "4066"
-    },
-    {
-      "name": "Theo Johnson",
-      "value": 42,
-      "source": "dynastyprocess-open-data",
-      "id": "11597"
-    },
-    {
-      "name": "Marvin Mims Jr.",
-      "value": 41,
-      "source": "dynastyprocess-open-data",
-      "id": "9494"
+      "id": "12535"
     },
     {
       "name": "Mac Jones",
-      "value": 39,
+      "value": 89,
       "source": "dynastyprocess-open-data",
       "id": "7527"
     },
     {
-      "name": "Hollywood Brown",
-      "value": 38,
+      "name": "Pat Freiermuth",
+      "value": 85,
       "source": "dynastyprocess-open-data",
-      "id": "5848"
+      "id": "7600"
     },
     {
-      "name": "Carson Beck",
-      "value": 36,
+      "name": "Jalen Nailor",
+      "value": 85,
       "source": "dynastyprocess-open-data",
-      "id": "13272"
+      "id": "8180"
     },
     {
-      "name": "Cyrus Allen",
-      "value": 36,
+      "name": "Brian Robinson Jr.",
+      "value": 85,
       "source": "dynastyprocess-open-data",
-      "id": "13413"
+      "id": "8154"
     },
     {
-      "name": "Jaylen Wright",
-      "value": 36,
+      "name": "Michael Mayer",
+      "value": 83,
       "source": "dynastyprocess-open-data",
-      "id": "11643"
+      "id": "9482"
     },
     {
-      "name": "Darius Slayton",
-      "value": 32,
+      "name": "Konata Mumpfield",
+      "value": 83,
       "source": "dynastyprocess-open-data",
-      "id": "6149"
+      "id": "12718"
     },
     {
-      "name": "Demond Claiborne",
-      "value": 31,
+      "name": "Ryan Flournoy",
+      "value": 78,
       "source": "dynastyprocess-open-data",
-      "id": "13347"
+      "id": "11783"
     },
     {
-      "name": "Calvin Austin III",
-      "value": 31,
+      "name": "Cade Otton",
+      "value": 78,
       "source": "dynastyprocess-open-data",
-      "id": "8125"
+      "id": "8111"
+    },
+    {
+      "name": "Jacoby Brissett",
+      "value": 74,
+      "source": "dynastyprocess-open-data",
+      "id": "3257"
+    },
+    {
+      "name": "Skyler Bell",
+      "value": 74,
+      "source": "dynastyprocess-open-data",
+      "id": "13402"
+    },
+    {
+      "name": "Troy Franklin",
+      "value": 73,
+      "source": "dynastyprocess-open-data",
+      "id": "11627"
+    },
+    {
+      "name": "Geno Smith",
+      "value": 71,
+      "source": "dynastyprocess-open-data",
+      "id": "1373"
+    },
+    {
+      "name": "Chris Brazzell II",
+      "value": 71,
+      "source": "dynastyprocess-open-data",
+      "id": "13353"
+    },
+    {
+      "name": "Kevin Coleman Jr.",
+      "value": 71,
+      "source": "dynastyprocess-open-data",
+      "id": "13338"
+    },
+    {
+      "name": "Mason Taylor",
+      "value": 70,
+      "source": "dynastyprocess-open-data",
+      "id": "12498"
+    },
+    {
+      "name": "Malik Washington",
+      "value": 67,
+      "source": "dynastyprocess-open-data",
+      "id": "11610"
+    },
+    {
+      "name": "Shedeur Sanders",
+      "value": 66,
+      "source": "dynastyprocess-open-data",
+      "id": "12524"
+    },
+    {
+      "name": "Zachariah Branch",
+      "value": 65,
+      "source": "dynastyprocess-open-data",
+      "id": "13320"
+    },
+    {
+      "name": "Matt Hibner",
+      "value": 65,
+      "source": "dynastyprocess-open-data"
+    },
+    {
+      "name": "Calvin Ridley",
+      "value": 64,
+      "source": "dynastyprocess-open-data",
+      "id": "4981"
+    },
+    {
+      "name": "Alvin Kamara",
+      "value": 64,
+      "source": "dynastyprocess-open-data",
+      "id": "4035"
+    },
+    {
+      "name": "Devaughn Vele",
+      "value": 63,
+      "source": "dynastyprocess-open-data",
+      "id": "11834"
+    },
+    {
+      "name": "Kirk Cousins",
+      "value": 61,
+      "source": "dynastyprocess-open-data",
+      "id": "1166"
+    },
+    {
+      "name": "Kaleb Johnson",
+      "value": 59,
+      "source": "dynastyprocess-open-data",
+      "id": "12504"
+    },
+    {
+      "name": "Kyle Williams",
+      "value": 57,
+      "source": "dynastyprocess-open-data",
+      "id": "12547"
     },
     {
       "name": "Keenan Allen",
-      "value": 31,
+      "value": 55,
       "source": "dynastyprocess-open-data",
       "id": "1479"
     },
     {
+      "name": "Elijah Arroyo",
+      "value": 52,
+      "source": "dynastyprocess-open-data",
+      "id": "12521"
+    },
+    {
+      "name": "Cyrus Allen",
+      "value": 52,
+      "source": "dynastyprocess-open-data",
+      "id": "13413"
+    },
+    {
+      "name": "Ollie Gordon II",
+      "value": 51,
+      "source": "dynastyprocess-open-data",
+      "id": "12495"
+    },
+    {
+      "name": "Elic Ayomanor",
+      "value": 50,
+      "source": "dynastyprocess-open-data",
+      "id": "12499"
+    },
+    {
+      "name": "Keon Coleman",
+      "value": 50,
+      "source": "dynastyprocess-open-data",
+      "id": "11637"
+    },
+    {
+      "name": "David Njoku",
+      "value": 50,
+      "source": "dynastyprocess-open-data",
+      "id": "4033"
+    },
+    {
+      "name": "Aaron Rodgers",
+      "value": 49,
+      "source": "dynastyprocess-open-data",
+      "id": "96"
+    },
+    {
       "name": "MarShawn Lloyd",
-      "value": 30,
+      "value": 47,
       "source": "dynastyprocess-open-data",
       "id": "11581"
     },
     {
-      "name": "Xavier Legette",
-      "value": 27,
+      "name": "Darnell Mooney",
+      "value": 47,
       "source": "dynastyprocess-open-data",
-      "id": "11626"
+      "id": "7090"
+    },
+    {
+      "name": "Deshaun Watson",
+      "value": 46,
+      "source": "dynastyprocess-open-data",
+      "id": "4017"
+    },
+    {
+      "name": "Chimere Dike",
+      "value": 43,
+      "source": "dynastyprocess-open-data",
+      "id": "12540"
+    },
+    {
+      "name": "Kimani Vidal",
+      "value": 42,
+      "source": "dynastyprocess-open-data",
+      "id": "11647"
+    },
+    {
+      "name": "Jack Bech",
+      "value": 41,
+      "source": "dynastyprocess-open-data",
+      "id": "12483"
+    },
+    {
+      "name": "Jaylen Wright",
+      "value": 40,
+      "source": "dynastyprocess-open-data",
+      "id": "11643"
+    },
+    {
+      "name": "Darnell Washington",
+      "value": 38,
+      "source": "dynastyprocess-open-data",
+      "id": "9479"
+    },
+    {
+      "name": "Tyquan Thornton",
+      "value": 33,
+      "source": "dynastyprocess-open-data",
+      "id": "8188"
+    },
+    {
+      "name": "Tua Tagovailoa",
+      "value": 33,
+      "source": "dynastyprocess-open-data",
+      "id": "6768"
+    },
+    {
+      "name": "Cooper Kupp",
+      "value": 32,
+      "source": "dynastyprocess-open-data",
+      "id": "4039"
+    },
+    {
+      "name": "Kaytron Allen",
+      "value": 32,
+      "source": "dynastyprocess-open-data",
+      "id": "13405"
+    },
+    {
+      "name": "Carson Beck",
+      "value": 31,
+      "source": "dynastyprocess-open-data",
+      "id": "13272"
+    },
+    {
+      "name": "Cole Payton",
+      "value": 30,
+      "source": "dynastyprocess-open-data",
+      "id": "13335"
+    },
+    {
+      "name": "James Conner",
+      "value": 30,
+      "source": "dynastyprocess-open-data",
+      "id": "4137"
     },
     {
       "name": "DeMario Douglas",
-      "value": 25,
+      "value": 30,
       "source": "dynastyprocess-open-data",
       "id": "9501"
     },
     {
-      "name": "Kendre Miller",
+      "name": "Marvin Mims Jr.",
+      "value": 28,
+      "source": "dynastyprocess-open-data",
+      "id": "9494"
+    },
+    {
+      "name": "Colby Parkinson",
+      "value": 27,
+      "source": "dynastyprocess-open-data",
+      "id": "6865"
+    },
+    {
+      "name": "Jalen Tolbert",
+      "value": 26,
+      "source": "dynastyprocess-open-data",
+      "id": "8117"
+    },
+    {
+      "name": "Tory Horton",
+      "value": 26,
+      "source": "dynastyprocess-open-data",
+      "id": "12497"
+    },
+    {
+      "name": "Tyson Bagent",
+      "value": 26,
+      "source": "dynastyprocess-open-data",
+      "id": "11256"
+    },
+    {
+      "name": "Brenen Thompson",
       "value": 25,
       "source": "dynastyprocess-open-data",
-      "id": "9757"
+      "id": "13380"
     },
     {
-      "name": "Ray Davis",
+      "name": "Malik Benson",
+      "value": 25,
+      "source": "dynastyprocess-open-data",
+      "id": "13329"
+    },
+    {
+      "name": "Darius Slayton",
       "value": 22,
       "source": "dynastyprocess-open-data",
-      "id": "11575"
+      "id": "6149"
     },
     {
-      "name": "Emanuel Wilson",
+      "name": "Cade Klubnik",
       "value": 21,
       "source": "dynastyprocess-open-data",
-      "id": "11435"
+      "id": "13303"
+    },
+    {
+      "name": "Evan Engram",
+      "value": 20,
+      "source": "dynastyprocess-open-data",
+      "id": "4066"
+    },
+    {
+      "name": "Cole Kmet",
+      "value": 20,
+      "source": "dynastyprocess-open-data",
+      "id": "6826"
+    },
+    {
+      "name": "Theo Johnson",
+      "value": 20,
+      "source": "dynastyprocess-open-data",
+      "id": "11597"
     },
     {
       "name": "Justin Fields",
@@ -1579,33 +1614,69 @@
     },
     {
       "name": "Jalen Milroe",
-      "value": 18,
+      "value": 19,
       "source": "dynastyprocess-open-data",
       "id": "12510"
     },
     {
-      "name": "Trey Benson",
+      "name": "Jaydon Blue",
+      "value": 18,
+      "source": "dynastyprocess-open-data",
+      "id": "12457"
+    },
+    {
+      "name": "Marcus Mariota",
+      "value": 18,
+      "source": "dynastyprocess-open-data",
+      "id": "2307"
+    },
+    {
+      "name": "Adam Randall",
       "value": 17,
       "source": "dynastyprocess-open-data",
-      "id": "11589"
+      "id": "13302"
     },
     {
-      "name": "Ben Sinnott",
+      "name": "Calvin Austin III",
+      "value": 17,
+      "source": "dynastyprocess-open-data",
+      "id": "8125"
+    },
+    {
+      "name": "Isiah Pacheco",
+      "value": 17,
+      "source": "dynastyprocess-open-data",
+      "id": "8205"
+    },
+    {
+      "name": "Ray Davis",
+      "value": 17,
+      "source": "dynastyprocess-open-data",
+      "id": "11575"
+    },
+    {
+      "name": "Xavier Legette",
       "value": 16,
       "source": "dynastyprocess-open-data",
-      "id": "11596"
+      "id": "11626"
     },
     {
-      "name": "Andrei Iosivas",
+      "name": "Jalen Royals",
       "value": 16,
       "source": "dynastyprocess-open-data",
-      "id": "10226"
+      "id": "12505"
     },
     {
-      "name": "Will Howard",
+      "name": "Devin Neal",
+      "value": 16,
+      "source": "dynastyprocess-open-data",
+      "id": "12476"
+    },
+    {
+      "name": "Charlie Kolar",
       "value": 15,
       "source": "dynastyprocess-open-data",
-      "id": "12511"
+      "id": "8127"
     },
     {
       "name": "Christian Kirk",
@@ -1614,34 +1685,142 @@
       "id": "4950"
     },
     {
-      "name": "Jalen Royals",
-      "value": 14,
+      "name": "Demond Claiborne",
+      "value": 15,
       "source": "dynastyprocess-open-data",
-      "id": "12505"
-    },
-    {
-      "name": "Brashard Smith",
-      "value": 12,
-      "source": "dynastyprocess-open-data",
-      "id": "12455"
-    },
-    {
-      "name": "Jaylin Lane",
-      "value": 11,
-      "source": "dynastyprocess-open-data",
-      "id": "12641"
+      "id": "13347"
     },
     {
       "name": "Seth McGowan",
-      "value": 11,
+      "value": 15,
       "source": "dynastyprocess-open-data",
       "id": "13424"
     },
     {
+      "name": "John Metchie III",
+      "value": 15,
+      "source": "dynastyprocess-open-data",
+      "id": "8147"
+    },
+    {
+      "name": "Isaiah Bond",
+      "value": 15,
+      "source": "dynastyprocess-open-data",
+      "id": "12503"
+    },
+    {
+      "name": "Trey Benson",
+      "value": 15,
+      "source": "dynastyprocess-open-data",
+      "id": "11589"
+    },
+    {
+      "name": "Hollywood Brown",
+      "value": 15,
+      "source": "dynastyprocess-open-data",
+      "id": "5848"
+    },
+    {
+      "name": "Erick All Jr.",
+      "value": 14,
+      "source": "dynastyprocess-open-data",
+      "id": "11592"
+    },
+    {
+      "name": "Joe Flacco",
+      "value": 14,
+      "source": "dynastyprocess-open-data",
+      "id": "19"
+    },
+    {
+      "name": "Emanuel Wilson",
+      "value": 14,
+      "source": "dynastyprocess-open-data",
+      "id": "11435"
+    },
+    {
+      "name": "Jameis Winston",
+      "value": 13,
+      "source": "dynastyprocess-open-data",
+      "id": "2306"
+    },
+    {
+      "name": "Jack Strand",
+      "value": 13,
+      "source": "dynastyprocess-open-data",
+      "id": "NA"
+    },
+    {
+      "name": "Taylen Green",
+      "value": 13,
+      "source": "dynastyprocess-open-data",
+      "id": "13306"
+    },
+    {
       "name": "Mack Hollins",
-      "value": 10,
+      "value": 12,
       "source": "dynastyprocess-open-data",
       "id": "4177"
+    },
+    {
+      "name": "Raheim Sanders",
+      "value": 12,
+      "source": "dynastyprocess-open-data",
+      "id": "12472"
+    },
+    {
+      "name": "Kendre Miller",
+      "value": 12,
+      "source": "dynastyprocess-open-data",
+      "id": "9757"
+    },
+    {
+      "name": "Drew Allar",
+      "value": 12,
+      "source": "dynastyprocess-open-data",
+      "id": "13289"
+    },
+    {
+      "name": "Spencer Rattler",
+      "value": 11,
+      "source": "dynastyprocess-open-data",
+      "id": "11562"
+    },
+    {
+      "name": "Chris Brooks",
+      "value": 11,
+      "source": "dynastyprocess-open-data",
+      "id": "11370"
+    },
+    {
+      "name": "Ben Sinnott",
+      "value": 11,
+      "source": "dynastyprocess-open-data",
+      "id": "11596"
+    },
+    {
+      "name": "Marlin Klein",
+      "value": 11,
+      "source": "dynastyprocess-open-data",
+      "id": "13307"
+    },
+    {
+      "name": "Darren Waller",
+      "value": 11,
+      "source": "dynastyprocess-open-data",
+      "id": "2505"
+    },
+    {
+      "name": "Sam Roush",
+      "value": 10,
+      "source": "dynastyprocess-open-data",
+      "id": "13322"
+    },
+    {
+      "name": "Colbie Young",
+      "value": 10,
+      "source": "dynastyprocess-open-data",
+      "id": "13477"
     },
     {
       "name": "Jerome Ford",
@@ -1650,62 +1829,128 @@
       "id": "8143"
     },
     {
-      "name": "Isaac Guerendo",
+      "name": "Andrei Iosivas",
       "value": 10,
       "source": "dynastyprocess-open-data",
-      "id": "11651"
-    },
-    {
-      "name": "Isaiah Davis",
-      "value": 10,
-      "source": "dynastyprocess-open-data",
-      "id": "11571"
-    },
-    {
-      "name": "Quinn Ewers",
-      "value": 9,
-      "source": "dynastyprocess-open-data",
-      "id": "12500"
-    },
-    {
-      "name": "Devin Singletary",
-      "value": 9,
-      "source": "dynastyprocess-open-data",
-      "id": "6130"
-    },
-    {
-      "name": "Jordan James",
-      "value": 9,
-      "source": "dynastyprocess-open-data",
-      "id": "12467"
-    },
-    {
-      "name": "Sean Tucker",
-      "value": 8,
-      "source": "dynastyprocess-open-data",
-      "id": "9506"
-    },
-    {
-      "name": "Roman Wilson",
-      "value": 8,
-      "source": "dynastyprocess-open-data",
-      "id": "11630"
-    },
-    {
-      "name": "George Holani",
-      "value": 8,
-      "source": "dynastyprocess-open-data",
-      "id": "12048"
+      "id": "10226"
     },
     {
       "name": "Jarquez Hunter",
-      "value": 8,
+      "value": 10,
       "source": "dynastyprocess-open-data",
       "id": "11569"
     },
     {
-      "name": "Trevor Etienne",
+      "name": "Sean Tucker",
+      "value": 10,
+      "source": "dynastyprocess-open-data",
+      "id": "9506"
+    },
+    {
+      "name": "Jordan James",
+      "value": 10,
+      "source": "dynastyprocess-open-data",
+      "id": "12467"
+    },
+    {
+      "name": "Tutu Atwell",
+      "value": 10,
+      "source": "dynastyprocess-open-data",
+      "id": "7562"
+    },
+    {
+      "name": "Haynes King",
+      "value": 10,
+      "source": "dynastyprocess-open-data",
+      "id": "13415"
+    },
+    {
+      "name": "Zavion Thomas",
+      "value": 10,
+      "source": "dynastyprocess-open-data",
+      "id": "13411"
+    },
+    {
+      "name": "Joshua Palmer",
+      "value": 9,
+      "source": "dynastyprocess-open-data",
+      "id": "7670"
+    },
+    {
+      "name": "George Holani",
+      "value": 9,
+      "source": "dynastyprocess-open-data",
+      "id": "12048"
+    },
+    {
+      "name": "J'Mari Taylor",
+      "value": 9,
+      "source": "dynastyprocess-open-data",
+      "id": "13348"
+    },
+    {
+      "name": "Mike Gesicki",
+      "value": 9,
+      "source": "dynastyprocess-open-data",
+      "id": "4993"
+    },
+    {
+      "name": "Cedric Tillman",
       "value": 8,
+      "source": "dynastyprocess-open-data",
+      "id": "10444"
+    },
+    {
+      "name": "Dont'e Thornton Jr.",
+      "value": 8,
+      "source": "dynastyprocess-open-data",
+      "id": "12541"
+    },
+    {
+      "name": "Quinn Ewers",
+      "value": 8,
+      "source": "dynastyprocess-open-data",
+      "id": "12500"
+    },
+    {
+      "name": "Eli Heidenreich",
+      "value": 8,
+      "source": "dynastyprocess-open-data",
+      "id": "13423"
+    },
+    {
+      "name": "Will Shipley",
+      "value": 8,
+      "source": "dynastyprocess-open-data",
+      "id": "11577"
+    },
+    {
+      "name": "Will Howard",
+      "value": 7,
+      "source": "dynastyprocess-open-data",
+      "id": "12511"
+    },
+    {
+      "name": "Samaje Perine",
+      "value": 7,
+      "source": "dynastyprocess-open-data",
+      "id": "4147"
+    },
+    {
+      "name": "Isaac Guerendo",
+      "value": 7,
+      "source": "dynastyprocess-open-data",
+      "id": "11651"
+    },
+    {
+      "name": "Efton Chism III",
+      "value": 7,
+      "source": "dynastyprocess-open-data",
+      "id": "12542"
+    },
+    {
+      "name": "Trevor Etienne",
+      "value": 7,
       "source": "dynastyprocess-open-data",
       "id": "12531"
     },
@@ -1716,16 +1961,16 @@
       "id": "12485"
     },
     {
-      "name": "Joshua Palmer",
+      "name": "Xavier Hutchinson",
       "value": 7,
       "source": "dynastyprocess-open-data",
-      "id": "7670"
+      "id": "10218"
     },
     {
-      "name": "Konata Mumpfield",
+      "name": "Isaiah Davis",
       "value": 7,
       "source": "dynastyprocess-open-data",
-      "id": "12718"
+      "id": "11571"
     },
     {
       "name": "Najee Harris",
@@ -1734,64 +1979,100 @@
       "id": "7528"
     },
     {
-      "name": "Ja'Tavion Sanders",
-      "value": 7,
+      "name": "Drew Lock",
+      "value": 6,
       "source": "dynastyprocess-open-data",
-      "id": "11600"
+      "id": "5854"
     },
     {
-      "name": "DJ Giddens",
-      "value": 7,
+      "name": "Barion Brown",
+      "value": 6,
       "source": "dynastyprocess-open-data",
-      "id": "12471"
+      "id": "13533"
+    },
+    {
+      "name": "CJ Daniels",
+      "value": 6,
+      "source": "dynastyprocess-open-data",
+      "id": "NA"
+    },
+    {
+      "name": "Devin Singletary",
+      "value": 6,
+      "source": "dynastyprocess-open-data",
+      "id": "6130"
+    },
+    {
+      "name": "Brashard Smith",
+      "value": 6,
+      "source": "dynastyprocess-open-data",
+      "id": "12455"
+    },
+    {
+      "name": "Jaylin Lane",
+      "value": 6,
+      "source": "dynastyprocess-open-data",
+      "id": "12641"
+    },
+    {
+      "name": "Tanner Koziol",
+      "value": 6,
+      "source": "dynastyprocess-open-data",
+      "id": "13408"
+    },
+    {
+      "name": "Jahan Dotson",
+      "value": 5,
+      "source": "dynastyprocess-open-data",
+      "id": "8119"
     },
     {
       "name": "Jordan Whittington",
-      "value": 6,
+      "value": 5,
       "source": "dynastyprocess-open-data",
       "id": "11623"
     },
     {
+      "name": "Riley Leonard",
+      "value": 5,
+      "source": "dynastyprocess-open-data",
+      "id": "12470"
+    },
+    {
+      "name": "Trey Lance",
+      "value": 5,
+      "source": "dynastyprocess-open-data",
+      "id": "7610"
+    },
+    {
+      "name": "Roman Wilson",
+      "value": 5,
+      "source": "dynastyprocess-open-data",
+      "id": "11630"
+    },
+    {
+      "name": "Devontez Walker",
+      "value": 5,
+      "source": "dynastyprocess-open-data",
+      "id": "11629"
+    },
+    {
       "name": "Justice Hill",
-      "value": 6,
+      "value": 5,
       "source": "dynastyprocess-open-data",
       "id": "5995"
     },
     {
-      "name": "Skyler Bell",
-      "value": 6,
-      "source": "dynastyprocess-open-data",
-      "id": "13402"
-    },
-    {
-      "name": "Will Shipley",
-      "value": 6,
-      "source": "dynastyprocess-open-data",
-      "id": "11577"
-    },
-    {
-      "name": "Tyquan Thornton",
+      "name": "Tanner McKee",
       "value": 5,
       "source": "dynastyprocess-open-data",
-      "id": "8188"
+      "id": "9230"
     },
     {
-      "name": "Bryce Lance",
+      "name": "Kalif Raymond",
       "value": 5,
       "source": "dynastyprocess-open-data",
-      "id": "13420"
-    },
-    {
-      "name": "Malik Benson",
-      "value": 5,
-      "source": "dynastyprocess-open-data",
-      "id": "13329"
-    },
-    {
-      "name": "Jaydon Blue",
-      "value": 5,
-      "source": "dynastyprocess-open-data",
-      "id": "12457"
+      "id": "3634"
     },
     {
       "name": "Dillon Gabriel",
@@ -1800,304 +2081,160 @@
       "id": "12486"
     },
     {
-      "name": "Tahj Brooks",
+      "name": "Josh Cameron",
       "value": 5,
       "source": "dynastyprocess-open-data",
-      "id": "12543"
-    },
-    {
-      "name": "Eli Heidenreich",
-      "value": 5,
-      "source": "dynastyprocess-open-data",
-      "id": "13423"
-    },
-    {
-      "name": "Justin Joly",
-      "value": 5,
-      "source": "dynastyprocess-open-data",
-      "id": "13400"
-    },
-    {
-      "name": "James Conner",
-      "value": 4,
-      "source": "dynastyprocess-open-data",
-      "id": "4137"
-    },
-    {
-      "name": "Kevin Coleman Jr.",
-      "value": 4,
-      "source": "dynastyprocess-open-data",
-      "id": "13338"
-    },
-    {
-      "name": "Devontez Walker",
-      "value": 4,
-      "source": "dynastyprocess-open-data",
-      "id": "11629"
-    },
-    {
-      "name": "Tyson Bagent",
-      "value": 4,
-      "source": "dynastyprocess-open-data",
-      "id": "11256"
-    },
-    {
-      "name": "Mike Gesicki",
-      "value": 4,
-      "source": "dynastyprocess-open-data",
-      "id": "4993"
-    },
-    {
-      "name": "Zavion Thomas",
-      "value": 4,
-      "source": "dynastyprocess-open-data",
-      "id": "13411"
-    },
-    {
-      "name": "Adam Randall",
-      "value": 4,
-      "source": "dynastyprocess-open-data",
-      "id": "13302"
-    },
-    {
-      "name": "Tanner Koziol",
-      "value": 4,
-      "source": "dynastyprocess-open-data",
-      "id": "13408"
-    },
-    {
-      "name": "Cole Payton",
-      "value": 4,
-      "source": "dynastyprocess-open-data",
-      "id": "13335"
-    },
-    {
-      "name": "Marcus Mariota",
-      "value": 4,
-      "source": "dynastyprocess-open-data",
-      "id": "2307"
-    },
-    {
-      "name": "Drew Allar",
-      "value": 4,
-      "source": "dynastyprocess-open-data",
-      "id": "13289"
-    },
-    {
-      "name": "Cade Klubnik",
-      "value": 4,
-      "source": "dynastyprocess-open-data",
-      "id": "13303"
-    },
-    {
-      "name": "Devin Neal",
-      "value": 4,
-      "source": "dynastyprocess-open-data",
-      "id": "12476"
-    },
-    {
-      "name": "Taylen Green",
-      "value": 4,
-      "source": "dynastyprocess-open-data",
-      "id": "13306"
-    },
-    {
-      "name": "Audric Estime",
-      "value": 4,
-      "source": "dynastyprocess-open-data",
-      "id": "11579"
-    },
-    {
-      "name": "Erick All Jr.",
-      "value": 4,
-      "source": "dynastyprocess-open-data",
-      "id": "11592"
-    },
-    {
-      "name": "Brenen Thompson",
-      "value": 4,
-      "source": "dynastyprocess-open-data",
-      "id": "13380"
-    },
-    {
-      "name": "Jameis Winston",
-      "value": 4,
-      "source": "dynastyprocess-open-data",
-      "id": "2306"
-    },
-    {
-      "name": "Joe Milton III",
-      "value": 4,
-      "source": "dynastyprocess-open-data",
-      "id": "11557"
-    },
-    {
-      "name": "Jack Endries",
-      "value": 3,
-      "source": "dynastyprocess-open-data",
-      "id": "13282"
-    },
-    {
-      "name": "Tai Felton",
-      "value": 3,
-      "source": "dynastyprocess-open-data",
-      "id": "12496"
-    },
-    {
-      "name": "Roschon Johnson",
-      "value": 3,
-      "source": "dynastyprocess-open-data",
-      "id": "10235"
-    },
-    {
-      "name": "Mitchell Evans",
-      "value": 3,
-      "source": "dynastyprocess-open-data",
-      "id": "12473"
-    },
-    {
-      "name": "Xavier Hutchinson",
-      "value": 3,
-      "source": "dynastyprocess-open-data",
-      "id": "10218"
-    },
-    {
-      "name": "Davis Mills",
-      "value": 3,
-      "source": "dynastyprocess-open-data",
-      "id": "7585"
-    },
-    {
-      "name": "Charlie Kolar",
-      "value": 3,
-      "source": "dynastyprocess-open-data",
-      "id": "8127"
-    },
-    {
-      "name": "Spencer Rattler",
-      "value": 3,
-      "source": "dynastyprocess-open-data",
-      "id": "11562"
-    },
-    {
-      "name": "Tanner McKee",
-      "value": 3,
-      "source": "dynastyprocess-open-data",
-      "id": "9230"
+      "id": "13394"
     },
     {
       "name": "Carson Wentz",
-      "value": 3,
+      "value": 5,
       "source": "dynastyprocess-open-data",
       "id": "3161"
     },
     {
-      "name": "Joe Flacco",
-      "value": 3,
+      "name": "Eric Rivers Jr.",
+      "value": 4,
       "source": "dynastyprocess-open-data",
-      "id": "19"
-    },
-    {
-      "name": "Jaleel McLaughlin",
-      "value": 3,
-      "source": "dynastyprocess-open-data",
-      "id": "11439"
-    },
-    {
-      "name": "Darnell Washington",
-      "value": 3,
-      "source": "dynastyprocess-open-data",
-      "id": "9479"
-    },
-    {
-      "name": "Dohnte Meyers",
-      "value": 3,
-      "source": "dynastyprocess-open-data",
-      "id": "13264"
-    },
-    {
-      "name": "Garrett Nussmeier",
-      "value": 3,
-      "source": "dynastyprocess-open-data",
-      "id": "13404"
-    },
-    {
-      "name": "Jack Strand",
-      "value": 3,
-      "source": "dynastyprocess-open-data",
-      "id": "NA"
-    },
-    {
-      "name": "Riley Leonard",
-      "value": 3,
-      "source": "dynastyprocess-open-data",
-      "id": "12470"
-    },
-    {
-      "name": "Rasheen Ali",
-      "value": 3,
-      "source": "dynastyprocess-open-data",
-      "id": "11570"
-    },
-    {
-      "name": "Jake Tonges",
-      "value": 3,
-      "source": "dynastyprocess-open-data",
-      "id": "8698"
-    },
-    {
-      "name": "Will Levis",
-      "value": 3,
-      "source": "dynastyprocess-open-data",
-      "id": "9999"
+      "id": "13316"
     },
     {
       "name": "Deion Burks",
-      "value": 3,
+      "value": 4,
       "source": "dynastyprocess-open-data",
       "id": "13333"
     },
     {
-      "name": "Marlin Klein",
-      "value": 3,
+      "name": "Davis Mills",
+      "value": 4,
       "source": "dynastyprocess-open-data",
-      "id": "13307"
+      "id": "7585"
     },
     {
-      "name": "Drew Lock",
-      "value": 3,
+      "name": "Jeff Caldwell",
+      "value": 4,
       "source": "dynastyprocess-open-data",
-      "id": "5854"
+      "id": "13392"
     },
     {
-      "name": "Haynes King",
-      "value": 3,
+      "name": "DJ Giddens",
+      "value": 4,
       "source": "dynastyprocess-open-data",
-      "id": "13415"
+      "id": "12471"
     },
     {
-      "name": "Cade Stover",
-      "value": 3,
+      "name": "Noah Fant",
+      "value": 4,
       "source": "dynastyprocess-open-data",
-      "id": "11599"
+      "id": "5857"
     },
     {
-      "name": "Cedric Tillman",
-      "value": 3,
+      "name": "Ja'Tavion Sanders",
+      "value": 4,
       "source": "dynastyprocess-open-data",
-      "id": "10444"
+      "id": "11600"
     },
     {
-      "name": "Trey Lance",
-      "value": 3,
+      "name": "Justin Joly",
+      "value": 4,
       "source": "dynastyprocess-open-data",
-      "id": "7610"
+      "id": "13400"
     },
     {
-      "name": "LeQuint Allen Jr.",
-      "value": 3,
+      "name": "KeAndre Lambert-Smith",
+      "value": 4,
       "source": "dynastyprocess-open-data",
-      "id": "12544"
+      "id": "12670"
+    },
+    {
+      "name": "Tyler Huntley",
+      "value": 4,
+      "source": "dynastyprocess-open-data",
+      "id": "7083"
+    },
+    {
+      "name": "Tai Felton",
+      "value": 4,
+      "source": "dynastyprocess-open-data",
+      "id": "12496"
+    },
+    {
+      "name": "Tyren Montgomery",
+      "value": 4,
+      "source": "dynastyprocess-open-data",
+      "id": "13600"
+    },
+    {
+      "name": "Savion Williams",
+      "value": 4,
+      "source": "dynastyprocess-open-data",
+      "id": "12482"
+    },
+    {
+      "name": "Garrett Nussmeier",
+      "value": 4,
+      "source": "dynastyprocess-open-data",
+      "id": "13404"
+    },
+    {
+      "name": "Emari Demercado",
+      "value": 4,
+      "source": "dynastyprocess-open-data",
+      "id": "11199"
+    },
+    {
+      "name": "Luke McCaffrey",
+      "value": 4,
+      "source": "dynastyprocess-open-data",
+      "id": "11650"
+    },
+    {
+      "name": "Jalon Daniels",
+      "value": 4,
+      "source": "dynastyprocess-open-data",
+      "id": "13425"
+    },
+    {
+      "name": "Malik Davis",
+      "value": 4,
+      "source": "dynastyprocess-open-data",
+      "id": "8800"
+    },
+    {
+      "name": "Dawson Knox",
+      "value": 4,
+      "source": "dynastyprocess-open-data",
+      "id": "5906"
+    },
+    {
+      "name": "Mitchell Evans",
+      "value": 4,
+      "source": "dynastyprocess-open-data",
+      "id": "12473"
+    },
+    {
+      "name": "Seydou Traore",
+      "value": 4,
+      "source": "dynastyprocess-open-data",
+      "id": "13429"
+    },
+    {
+      "name": "DeAndre Hopkins",
+      "value": 4,
+      "source": "dynastyprocess-open-data",
+      "id": "1426"
+    },
+    {
+      "name": "Dyami Brown",
+      "value": 4,
+      "source": "dynastyprocess-open-data",
+      "id": "7587"
+    },
+    {
+      "name": "Will Levis",
+      "value": 4,
+      "source": "dynastyprocess-open-data",
+      "id": "9999"
     },
     {
       "name": "Noah Gray",
@@ -2106,40 +2243,16 @@
       "id": "7828"
     },
     {
-      "name": "Cole Kmet",
+      "name": "Tyler Higbee",
       "value": 3,
       "source": "dynastyprocess-open-data",
-      "id": "6826"
+      "id": "3271"
     },
     {
-      "name": "Gardner Minshew II",
+      "name": "Tahj Brooks",
       "value": 3,
       "source": "dynastyprocess-open-data",
-      "id": "6011"
-    },
-    {
-      "name": "Sam Roush",
-      "value": 3,
-      "source": "dynastyprocess-open-data",
-      "id": "13322"
-    },
-    {
-      "name": "Colbie Young",
-      "value": 3,
-      "source": "dynastyprocess-open-data",
-      "id": "13477"
-    },
-    {
-      "name": "Kenny Pickett",
-      "value": 3,
-      "source": "dynastyprocess-open-data",
-      "id": "8160"
-    },
-    {
-      "name": "Jake Browning",
-      "value": 3,
-      "source": "dynastyprocess-open-data",
-      "id": "6111"
+      "id": "12543"
     },
     {
       "name": "Mason Rudolph",
@@ -2148,76 +2261,225 @@
       "id": "4972"
     },
     {
-      "name": "Jalon Daniels",
+      "name": "Joey Aguilar",
+      "value": 3,
+      "source": "dynastyprocess-open-data"
+    },
+    {
+      "name": "Rasheen Ali",
       "value": 3,
       "source": "dynastyprocess-open-data",
-      "id": "13425"
+      "id": "11570"
     },
     {
-      "name": "Noah Fant",
+      "name": "LeQuint Allen Jr.",
       "value": 3,
       "source": "dynastyprocess-open-data",
-      "id": "5857"
+      "id": "12544"
     },
     {
-      "name": "J. Michael Sturdivant",
+      "name": "Olamide Zaccheaus",
       "value": 3,
       "source": "dynastyprocess-open-data",
-      "id": "13770"
+      "id": "6271"
     },
     {
-      "name": "Tyler Higbee",
+      "name": "Jake Tonges",
       "value": 3,
       "source": "dynastyprocess-open-data",
-      "id": "3271"
+      "id": "8698"
     },
     {
-      "name": "Josh Cameron",
+      "name": "Ty Johnson",
       "value": 3,
       "source": "dynastyprocess-open-data",
-      "id": "13394"
+      "id": "6039"
     },
     {
-      "name": "Tyler Huntley",
-      "value": 2,
+      "name": "Zach Ertz",
+      "value": 3,
       "source": "dynastyprocess-open-data",
-      "id": "7083"
+      "id": "1339"
     },
     {
-      "name": "Zach Wilson",
-      "value": 2,
+      "name": "Kendrick Bourne",
+      "value": 3,
       "source": "dynastyprocess-open-data",
-      "id": "7538"
+      "id": "4454"
+    },
+    {
+      "name": "Kenny Pickett",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "8160"
     },
     {
       "name": "Jordan Watkins",
-      "value": 2,
+      "value": 3,
       "source": "dynastyprocess-open-data",
       "id": "12634"
     },
     {
-      "name": "Dont'e Thornton Jr.",
-      "value": 2,
+      "name": "Treylon Burks",
+      "value": 3,
       "source": "dynastyprocess-open-data",
-      "id": "12541"
+      "id": "8135"
     },
     {
-      "name": "Luke McCaffrey",
-      "value": 2,
+      "name": "Jack Endries",
+      "value": 3,
       "source": "dynastyprocess-open-data",
-      "id": "11650"
+      "id": "13282"
     },
     {
-      "name": "Jimmy Garoppolo",
-      "value": 2,
+      "name": "Reggie Virgil",
+      "value": 3,
       "source": "dynastyprocess-open-data",
-      "id": "1837"
+      "id": "13297"
+    },
+    {
+      "name": "Joe Royer",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "13435"
+    },
+    {
+      "name": "Jake Browning",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "6111"
+    },
+    {
+      "name": "Audric Estime",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "11579"
+    },
+    {
+      "name": "Gardner Minshew II",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "6011"
+    },
+    {
+      "name": "Roschon Johnson",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "10235"
+    },
+    {
+      "name": "Cade Stover",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "11599"
+    },
+    {
+      "name": "Jaren Kanak",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "13422"
+    },
+    {
+      "name": "Roman Hemby",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "13416"
+    },
+    {
+      "name": "Dean Connors",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "13315"
+    },
+    {
+      "name": "Jaleel McLaughlin",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "11439"
     },
     {
       "name": "Aidan O'Connell",
-      "value": 2,
+      "value": 3,
       "source": "dynastyprocess-open-data",
       "id": "10866"
+    },
+    {
+      "name": "Robert Henry Jr.",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "13418"
+    },
+    {
+      "name": "Luke Musgrave",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "9481"
+    },
+    {
+      "name": "Joe Mixon",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "4018"
+    },
+    {
+      "name": "Terion Stewart",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "13780"
+    },
+    {
+      "name": "Austin Hooper",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "3202"
+    },
+    {
+      "name": "Jaydn Ott",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "13419"
+    },
+    {
+      "name": "Jimmy Horn Jr.",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "12523"
+    },
+    {
+      "name": "Mark Gronowski",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "13816"
+    },
+    {
+      "name": "Josh Oliver",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "5973"
+    },
+    {
+      "name": "Nate Boerkircher",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "13299"
+    },
+    {
+      "name": "Zach Wilson",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "7538"
+    },
+    {
+      "name": "Greg Dortch",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "5970"
+    },
+    {
+      "name": "Dae'Quan Wright",
+      "value": 3,
+      "source": "dynastyprocess-open-data",
+      "id": "13331"
     },
     {
       "name": "Andy Dalton",
@@ -2226,1054 +2488,978 @@
       "id": "829"
     },
     {
-      "name": "Kendrick Law",
+      "name": "Jeremy Ruckert",
       "value": 2,
       "source": "dynastyprocess-open-data",
-      "id": "13412"
+      "id": "8145"
     },
     {
-      "name": "Jalen Tolbert",
+      "name": "KaVontae Turpin",
       "value": 2,
       "source": "dynastyprocess-open-data",
-      "id": "8117"
+      "id": "8917"
     },
     {
-      "name": "Sam Howell",
+      "name": "Jimmy Garoppolo",
       "value": 2,
       "source": "dynastyprocess-open-data",
-      "id": "8162"
+      "id": "1837"
     },
     {
-      "name": "Tyrod Taylor",
+      "name": "John Michael Gyllenborg",
       "value": 2,
       "source": "dynastyprocess-open-data",
-      "id": "827"
+      "id": "13342"
     },
     {
-      "name": "Jarrett Stidham",
+      "name": "Raheem Mostert",
       "value": 2,
       "source": "dynastyprocess-open-data",
-      "id": "6136"
+      "id": "2749"
     },
     {
-      "name": "Savion Williams",
+      "name": "DJ Rodgers",
+      "value": 2,
+      "source": "dynastyprocess-open-data"
+    },
+    {
+      "name": "Will Kacmarek",
       "value": 2,
       "source": "dynastyprocess-open-data",
-      "id": "12482"
+      "id": "13434"
     },
     {
-      "name": "John Metchie III",
+      "name": "Dallen Bentley",
       "value": 2,
       "source": "dynastyprocess-open-data",
-      "id": "8147"
+      "id": "13577"
     },
     {
-      "name": "Jahan Dotson",
+      "name": "Michael Trigg",
       "value": 2,
       "source": "dynastyprocess-open-data",
-      "id": "8119"
+      "id": "13401"
     },
     {
-      "name": "Kyle McCord",
+      "name": "Dohnte Meyers",
       "value": 2,
       "source": "dynastyprocess-open-data",
-      "id": "12494"
-    },
-    {
-      "name": "Treylon Burks",
-      "value": 2,
-      "source": "dynastyprocess-open-data",
-      "id": "8135"
-    },
-    {
-      "name": "Kendrick Bourne",
-      "value": 2,
-      "source": "dynastyprocess-open-data",
-      "id": "4454"
-    },
-    {
-      "name": "Mitchell Trubisky",
-      "value": 2,
-      "source": "dynastyprocess-open-data",
-      "id": "3976"
-    },
-    {
-      "name": "Brady Cook",
-      "value": 2,
-      "source": "dynastyprocess-open-data",
-      "id": "12538"
-    },
-    {
-      "name": "CJ Daniels",
-      "value": 2,
-      "source": "dynastyprocess-open-data",
-      "id": "NA"
-    },
-    {
-      "name": "Nick Mullens",
-      "value": 2,
-      "source": "dynastyprocess-open-data",
-      "id": "4464"
-    },
-    {
-      "name": "Barion Brown",
-      "value": 2,
-      "source": "dynastyprocess-open-data",
-      "id": "13533"
-    },
-    {
-      "name": "KeAndre Lambert-Smith",
-      "value": 2,
-      "source": "dynastyprocess-open-data",
-      "id": "12670"
-    },
-    {
-      "name": "Kyle Allen",
-      "value": 2,
-      "source": "dynastyprocess-open-data",
-      "id": "5127"
-    },
-    {
-      "name": "Reggie Virgil",
-      "value": 2,
-      "source": "dynastyprocess-open-data",
-      "id": "13297"
-    },
-    {
-      "name": "Stetson Bennett IV",
-      "value": 2,
-      "source": "dynastyprocess-open-data",
-      "id": "10857"
-    },
-    {
-      "name": "Kurtis Rourke",
-      "value": 2,
-      "source": "dynastyprocess-open-data",
-      "id": "12477"
-    },
-    {
-      "name": "Olamide Zaccheaus",
-      "value": 2,
-      "source": "dynastyprocess-open-data",
-      "id": "6271"
-    },
-    {
-      "name": "Sam Ehlinger",
-      "value": 2,
-      "source": "dynastyprocess-open-data",
-      "id": "7583"
-    },
-    {
-      "name": "Tutu Atwell",
-      "value": 2,
-      "source": "dynastyprocess-open-data",
-      "id": "7562"
-    },
-    {
-      "name": "Tommy DeVito",
-      "value": 1,
-      "source": "dynastyprocess-open-data",
-      "id": "11292"
-    },
-    {
-      "name": "Kaden Wetjen",
-      "value": 1,
-      "source": "dynastyprocess-open-data",
-      "id": "13491"
-    },
-    {
-      "name": "Josh Johnson",
-      "value": 1,
-      "source": "dynastyprocess-open-data",
-      "id": "260"
-    },
-    {
-      "name": "Jimmy Horn Jr.",
-      "value": 1,
-      "source": "dynastyprocess-open-data",
-      "id": "12523"
-    },
-    {
-      "name": "Case Keenum",
-      "value": 1,
-      "source": "dynastyprocess-open-data",
-      "id": "1737"
-    },
-    {
-      "name": "Sean Clifford",
-      "value": 1,
-      "source": "dynastyprocess-open-data",
-      "id": "10983"
+      "id": "13264"
     }
   ],
   "byId": {
-    "19": 3,
-    "96": 66,
-    "260": 1,
-    "421": 507,
-    "827": 2,
+    "19": 14,
+    "96": 49,
+    "421": 386,
     "829": 2,
-    "1166": 49,
-    "1373": 112,
-    "1466": 633,
-    "1479": 31,
-    "1737": 1,
+    "1166": 61,
+    "1339": 3,
+    "1373": 71,
+    "1426": 4,
+    "1466": 379,
+    "1479": 55,
     "1837": 2,
-    "2133": 1602,
-    "2216": 938,
-    "2306": 4,
-    "2307": 4,
-    "2449": 563,
-    "3161": 3,
-    "3163": 901,
-    "3198": 1699,
-    "3214": 178,
-    "3257": 163,
+    "2133": 1110,
+    "2216": 920,
+    "2306": 13,
+    "2307": 18,
+    "2449": 551,
+    "2505": 11,
+    "2749": 2,
+    "3161": 5,
+    "3163": 983,
+    "3198": 1785,
+    "3202": 3,
+    "3214": 170,
+    "3257": 74,
     "3271": 3,
-    "3294": 1633,
-    "3321": 234,
-    "3976": 2,
-    "4017": 49,
-    "4033": 58,
-    "4034": 4985,
-    "4035": 67,
-    "4037": 556,
-    "4039": 63,
-    "4046": 4495,
-    "4066": 43,
-    "4137": 4,
-    "4177": 10,
-    "4199": 154,
-    "4217": 1194,
-    "4454": 2,
-    "4464": 2,
-    "4866": 3220,
-    "4881": 5287,
-    "4892": 495,
-    "4943": 459,
+    "3294": 1493,
+    "3321": 259,
+    "3634": 5,
+    "4017": 46,
+    "4018": 3,
+    "4033": 50,
+    "4034": 4259,
+    "4035": 64,
+    "4037": 564,
+    "4039": 32,
+    "4046": 4689,
+    "4066": 20,
+    "4137": 30,
+    "4147": 7,
+    "4177": 12,
+    "4199": 118,
+    "4217": 1303,
+    "4454": 3,
+    "4866": 2856,
+    "4881": 5274,
+    "4892": 564,
+    "4943": 477,
     "4950": 15,
     "4972": 3,
-    "4981": 53,
-    "4983": 2175,
-    "4984": 7125,
-    "4993": 4,
-    "5001": 297,
-    "5012": 509,
-    "5022": 586,
-    "5045": 581,
-    "5127": 2,
-    "5844": 239,
-    "5846": 1980,
-    "5848": 38,
-    "5849": 467,
-    "5850": 777,
-    "5854": 3,
-    "5857": 3,
-    "5859": 4745,
-    "5870": 295,
-    "5872": 394,
-    "5892": 788,
-    "5927": 1699,
-    "5947": 528,
-    "5967": 338,
-    "5995": 6,
+    "4981": 64,
+    "4983": 2317,
+    "4984": 6911,
+    "4993": 9,
+    "5001": 201,
+    "5012": 377,
+    "5022": 420,
+    "5045": 672,
+    "5844": 191,
+    "5846": 2060,
+    "5848": 15,
+    "5849": 424,
+    "5850": 688,
+    "5854": 6,
+    "5857": 4,
+    "5859": 4259,
+    "5870": 321,
+    "5872": 266,
+    "5892": 741,
+    "5906": 4,
+    "5927": 1425,
+    "5947": 562,
+    "5967": 260,
+    "5970": 3,
+    "5973": 3,
+    "5995": 5,
     "6011": 3,
+    "6039": 3,
     "6111": 3,
-    "6130": 9,
-    "6136": 2,
-    "6149": 32,
-    "6271": 2,
-    "6768": 57,
-    "6770": 4289,
-    "6783": 193,
-    "6786": 9205,
-    "6790": 1391,
-    "6794": 8866,
-    "6797": 2674,
-    "6801": 3630,
-    "6803": 290,
-    "6804": 1237,
-    "6806": 211,
-    "6813": 6782,
-    "6819": 1421,
-    "6826": 3,
-    "6865": 57,
-    "6904": 3913,
-    "7002": 507,
-    "7021": 382,
-    "7049": 118,
-    "7083": 2,
-    "7090": 73,
-    "7523": 2938,
-    "7525": 5164,
-    "7526": 4219,
-    "7527": 39,
+    "6130": 6,
+    "6149": 22,
+    "6271": 3,
+    "6768": 33,
+    "6770": 4044,
+    "6783": 97,
+    "6786": 8928,
+    "6790": 1521,
+    "6794": 8907,
+    "6797": 2423,
+    "6801": 3613,
+    "6803": 265,
+    "6804": 1279,
+    "6806": 216,
+    "6813": 6593,
+    "6819": 1438,
+    "6826": 20,
+    "6865": 27,
+    "6904": 3742,
+    "7002": 745,
+    "7021": 346,
+    "7049": 140,
+    "7083": 4,
+    "7090": 47,
+    "7523": 3079,
+    "7525": 5092,
+    "7526": 4474,
+    "7527": 89,
     "7528": 7,
-    "7538": 2,
-    "7543": 2134,
-    "7547": 9270,
-    "7553": 2247,
-    "7562": 2,
-    "7564": 10113,
-    "7567": 205,
-    "7569": 6002,
-    "7571": 127,
-    "7583": 2,
-    "7585": 3,
-    "7588": 1699,
+    "7538": 3,
+    "7543": 2446,
+    "7547": 9184,
+    "7553": 2134,
+    "7562": 10,
+    "7564": 10160,
+    "7567": 237,
+    "7569": 5862,
+    "7571": 120,
+    "7585": 4,
+    "7587": 4,
+    "7588": 2279,
     "7591": 19,
-    "7594": 944,
-    "7600": 72,
-    "7610": 3,
-    "7611": 412,
-    "7670": 7,
+    "7594": 969,
+    "7600": 85,
+    "7610": 5,
+    "7611": 465,
+    "7670": 9,
     "7828": 3,
-    "8110": 659,
-    "8111": 100,
-    "8112": 7486,
-    "8117": 2,
-    "8119": 2,
-    "8121": 417,
-    "8125": 31,
-    "8126": 866,
-    "8127": 3,
-    "8130": 5451,
-    "8131": 1687,
-    "8132": 205,
-    "8134": 583,
-    "8135": 2,
-    "8136": 199,
-    "8137": 4892,
-    "8138": 7646,
-    "8142": 1214,
+    "8110": 647,
+    "8111": 78,
+    "8112": 7381,
+    "8117": 26,
+    "8119": 5,
+    "8121": 509,
+    "8125": 17,
+    "8126": 951,
+    "8127": 15,
+    "8130": 5904,
+    "8131": 1810,
+    "8132": 152,
+    "8134": 404,
+    "8135": 3,
+    "8136": 218,
+    "8137": 4881,
+    "8138": 7556,
+    "8142": 1565,
     "8143": 10,
-    "8144": 6501,
-    "8146": 6501,
-    "8147": 2,
-    "8148": 3335,
-    "8150": 3258,
-    "8151": 7176,
-    "8154": 108,
-    "8155": 5960,
+    "8144": 6798,
+    "8145": 2,
+    "8146": 6380,
+    "8147": 15,
+    "8148": 3036,
+    "8150": 3190,
+    "8151": 7700,
+    "8154": 85,
+    "8155": 6687,
     "8160": 3,
-    "8161": 418,
-    "8162": 2,
-    "8167": 3008,
-    "8172": 100,
-    "8180": 68,
-    "8183": 2738,
-    "8188": 5,
-    "8205": 49,
-    "8210": 313,
-    "8228": 967,
-    "8408": 217,
-    "8676": 293,
+    "8161": 341,
+    "8167": 3913,
+    "8172": 112,
+    "8180": 85,
+    "8183": 3008,
+    "8188": 33,
+    "8205": 17,
+    "8210": 299,
+    "8228": 1137,
+    "8408": 244,
+    "8676": 261,
     "8698": 3,
-    "9221": 9162,
-    "9224": 4453,
-    "9225": 99,
-    "9226": 5463,
-    "9228": 701,
-    "9229": 228,
-    "9230": 3,
-    "9479": 3,
-    "9480": 586,
-    "9482": 113,
-    "9484": 2829,
-    "9486": 177,
-    "9487": 2952,
-    "9488": 10136,
-    "9493": 8907,
-    "9494": 41,
-    "9500": 1175,
-    "9501": 25,
-    "9502": 283,
-    "9504": 237,
-    "9506": 8,
-    "9508": 175,
-    "9509": 9558,
-    "9511": 77,
-    "9753": 283,
-    "9754": 675,
-    "9756": 1671,
-    "9757": 25,
-    "9758": 1401,
-    "9997": 4422,
-    "9999": 3,
-    "10213": 233,
-    "10218": 3,
-    "10219": 100,
-    "10222": 537,
-    "10226": 16,
-    "10229": 4506,
-    "10232": 1521,
+    "8800": 4,
+    "8917": 2,
+    "9221": 9292,
+    "9224": 4299,
+    "9225": 91,
+    "9226": 5225,
+    "9228": 762,
+    "9229": 198,
+    "9230": 5,
+    "9479": 38,
+    "9480": 659,
+    "9481": 3,
+    "9482": 83,
+    "9484": 3304,
+    "9486": 151,
+    "9487": 4464,
+    "9488": 10160,
+    "9493": 8866,
+    "9494": 28,
+    "9500": 1303,
+    "9501": 30,
+    "9502": 262,
+    "9504": 184,
+    "9506": 10,
+    "9508": 106,
+    "9509": 9580,
+    "9511": 132,
+    "9753": 330,
+    "9754": 684,
+    "9756": 1411,
+    "9757": 12,
+    "9758": 1483,
+    "9997": 5249,
+    "9999": 4,
+    "10213": 124,
+    "10218": 7,
+    "10219": 106,
+    "10222": 564,
+    "10226": 10,
+    "10229": 3138,
+    "10232": 1472,
     "10235": 3,
-    "10236": 3243,
-    "10444": 3,
-    "10857": 2,
+    "10236": 3407,
+    "10444": 8,
     "10859": 3932,
-    "10866": 2,
-    "10983": 1,
-    "11256": 4,
-    "11292": 1,
-    "11435": 21,
+    "10866": 3,
+    "11199": 4,
+    "11256": 26,
+    "11370": 11,
+    "11435": 14,
     "11439": 3,
-    "11557": 4,
-    "11559": 197,
-    "11560": 3742,
-    "11562": 3,
-    "11563": 1970,
-    "11564": 4745,
-    "11565": 93,
-    "11566": 3545,
-    "11569": 8,
+    "11559": 294,
+    "11560": 3734,
+    "11562": 11,
+    "11563": 1915,
+    "11564": 5068,
+    "11565": 108,
+    "11566": 3562,
+    "11569": 10,
     "11570": 3,
-    "11571": 10,
-    "11575": 22,
-    "11576": 144,
-    "11577": 6,
-    "11579": 4,
-    "11581": 30,
-    "11583": 688,
-    "11584": 2334,
-    "11586": 653,
-    "11589": 17,
-    "11592": 4,
-    "11596": 16,
-    "11597": 42,
+    "11571": 7,
+    "11575": 17,
+    "11576": 133,
+    "11577": 8,
+    "11579": 3,
+    "11581": 47,
+    "11583": 681,
+    "11584": 2290,
+    "11586": 830,
+    "11589": 15,
+    "11592": 14,
+    "11596": 11,
+    "11597": 20,
     "11599": 3,
-    "11600": 7,
-    "11603": 220,
-    "11604": 5606,
-    "11610": 109,
-    "11618": 290,
-    "11620": 4179,
-    "11623": 6,
-    "11624": 990,
-    "11625": 407,
-    "11626": 27,
-    "11627": 158,
-    "11628": 3699,
-    "11629": 4,
-    "11630": 8,
-    "11631": 1934,
-    "11632": 7736,
-    "11635": 4668,
-    "11637": 114,
-    "11638": 597,
-    "11643": 36,
-    "11646": 997,
-    "11647": 60,
-    "11650": 2,
-    "11651": 10,
-    "11655": 102,
-    "11783": 64,
-    "11834": 66,
-    "12048": 8,
-    "12455": 12,
-    "12457": 5,
-    "12467": 9,
-    "12469": 113,
-    "12470": 3,
-    "12471": 7,
-    "12473": 3,
-    "12474": 283,
-    "12476": 4,
-    "12477": 2,
-    "12481": 1880,
-    "12482": 2,
-    "12483": 65,
-    "12484": 907,
+    "11600": 4,
+    "11603": 197,
+    "11604": 6002,
+    "11610": 67,
+    "11618": 229,
+    "11620": 3630,
+    "11623": 5,
+    "11624": 724,
+    "11625": 412,
+    "11626": 16,
+    "11627": 73,
+    "11628": 1695,
+    "11629": 5,
+    "11630": 5,
+    "11631": 1794,
+    "11632": 7920,
+    "11635": 4279,
+    "11637": 50,
+    "11638": 377,
+    "11643": 40,
+    "11646": 1445,
+    "11647": 42,
+    "11650": 4,
+    "11651": 7,
+    "11655": 107,
+    "11783": 78,
+    "11834": 63,
+    "12048": 9,
+    "12455": 6,
+    "12457": 18,
+    "12467": 10,
+    "12469": 100,
+    "12470": 5,
+    "12471": 4,
+    "12472": 12,
+    "12473": 4,
+    "12474": 194,
+    "12476": 16,
+    "12481": 1679,
+    "12482": 4,
+    "12483": 41,
+    "12484": 846,
     "12485": 7,
     "12486": 5,
-    "12487": 563,
-    "12489": 430,
-    "12490": 1486,
-    "12492": 350,
-    "12493": 633,
-    "12494": 2,
-    "12495": 67,
-    "12496": 3,
-    "12497": 70,
-    "12498": 102,
-    "12499": 180,
-    "12500": 9,
-    "12501": 1045,
-    "12502": 127,
-    "12503": 96,
-    "12504": 52,
-    "12505": 14,
-    "12506": 2417,
-    "12507": 6486,
-    "12508": 1148,
-    "12509": 311,
-    "12510": 18,
-    "12511": 15,
-    "12512": 2700,
-    "12514": 5946,
-    "12517": 3664,
-    "12518": 3258,
-    "12519": 3960,
-    "12521": 89,
-    "12522": 399,
-    "12523": 1,
-    "12524": 90,
-    "12526": 6911,
-    "12527": 8498,
-    "12529": 2687,
-    "12530": 276,
-    "12531": 8,
-    "12533": 294,
-    "12534": 810,
-    "12535": 156,
-    "12536": 221,
-    "12538": 2,
-    "12540": 64,
-    "12541": 2,
-    "12543": 5,
+    "12487": 807,
+    "12489": 495,
+    "12490": 1543,
+    "12492": 260,
+    "12493": 554,
+    "12495": 51,
+    "12496": 4,
+    "12497": 26,
+    "12498": 70,
+    "12499": 50,
+    "12500": 8,
+    "12501": 1231,
+    "12502": 129,
+    "12503": 15,
+    "12504": 59,
+    "12505": 16,
+    "12506": 2457,
+    "12507": 5164,
+    "12508": 1425,
+    "12509": 312,
+    "12510": 19,
+    "12511": 7,
+    "12512": 2389,
+    "12514": 5541,
+    "12517": 3969,
+    "12518": 4319,
+    "12519": 4179,
+    "12521": 52,
+    "12522": 393,
+    "12523": 3,
+    "12524": 66,
+    "12526": 6625,
+    "12527": 8340,
+    "12529": 2751,
+    "12530": 173,
+    "12531": 7,
+    "12533": 330,
+    "12534": 886,
+    "12535": 90,
+    "12536": 189,
+    "12540": 43,
+    "12541": 8,
+    "12542": 7,
+    "12543": 3,
     "12544": 3,
-    "12545": 1132,
-    "12547": 73,
-    "12634": 2,
-    "12641": 11,
-    "12670": 2,
-    "12718": 7,
-    "13264": 3,
-    "13268": 70,
-    "13269": 773,
-    "13272": 36,
-    "13274": 159,
-    "13275": 270,
-    "13276": 807,
-    "13278": 148,
-    "13279": 4927,
-    "13281": 3415,
+    "12545": 1186,
+    "12547": 57,
+    "12634": 3,
+    "12641": 6,
+    "12670": 4,
+    "12718": 83,
+    "13264": 2,
+    "13268": 107,
+    "13269": 895,
+    "13272": 31,
+    "13274": 158,
+    "13275": 280,
+    "13276": 818,
+    "13278": 109,
+    "13279": 5188,
+    "13281": 3258,
     "13282": 3,
-    "13285": 98,
-    "13286": 2334,
-    "13287": 7346,
-    "13288": 126,
-    "13289": 4,
-    "13293": 267,
-    "13294": 3108,
-    "13296": 314,
-    "13297": 2,
-    "13298": 1711,
-    "13301": 701,
-    "13302": 4,
-    "13303": 4,
-    "13305": 130,
-    "13306": 4,
-    "13307": 3,
-    "13311": 348,
-    "13317": 158,
-    "13319": 72,
-    "13320": 66,
-    "13322": 3,
-    "13329": 5,
-    "13330": 1989,
-    "13333": 3,
-    "13335": 4,
-    "13337": 220,
-    "13338": 4,
-    "13345": 513,
-    "13346": 1845,
-    "13347": 31,
-    "13349": 504,
-    "13353": 91,
-    "13380": 4,
-    "13394": 3,
-    "13400": 5,
-    "13402": 6,
-    "13404": 3,
-    "13405": 82,
-    "13408": 4,
-    "13411": 4,
-    "13412": 2,
-    "13413": 36,
-    "13414": 148,
-    "13415": 3,
-    "13417": 525,
-    "13420": 5,
-    "13421": 231,
-    "13423": 5,
-    "13424": 11,
-    "13425": 3,
-    "13477": 3,
-    "13491": 1,
-    "13533": 2,
-    "13770": 3,
-    "NA": 2
+    "13285": 99,
+    "13286": 1915,
+    "13287": 7846,
+    "13288": 108,
+    "13289": 12,
+    "13293": 243,
+    "13294": 2687,
+    "13296": 242,
+    "13297": 3,
+    "13298": 2094,
+    "13299": 3,
+    "13301": 691,
+    "13302": 17,
+    "13303": 21,
+    "13305": 161,
+    "13306": 13,
+    "13307": 11,
+    "13311": 659,
+    "13315": 3,
+    "13316": 4,
+    "13317": 298,
+    "13319": 167,
+    "13320": 65,
+    "13322": 10,
+    "13329": 25,
+    "13330": 1880,
+    "13331": 3,
+    "13333": 4,
+    "13335": 30,
+    "13337": 287,
+    "13338": 71,
+    "13342": 2,
+    "13345": 570,
+    "13346": 2046,
+    "13347": 15,
+    "13348": 9,
+    "13349": 509,
+    "13353": 71,
+    "13380": 25,
+    "13392": 4,
+    "13394": 5,
+    "13400": 4,
+    "13401": 2,
+    "13402": 74,
+    "13404": 4,
+    "13405": 32,
+    "13408": 6,
+    "13411": 10,
+    "13413": 52,
+    "13414": 171,
+    "13415": 10,
+    "13416": 3,
+    "13417": 846,
+    "13418": 3,
+    "13419": 3,
+    "13420": 137,
+    "13421": 223,
+    "13422": 3,
+    "13423": 8,
+    "13424": 15,
+    "13425": 4,
+    "13429": 4,
+    "13434": 2,
+    "13435": 3,
+    "13477": 10,
+    "13533": 6,
+    "13577": 2,
+    "13600": 4,
+    "13780": 3,
+    "13816": 3,
+    "NA": 6
   },
   "byName": {
-    "jaxon smith njigba": 10136,
-    "ja marr chase": 10113,
-    "bijan robinson": 9558,
-    "amon ra st brown": 9270,
-    "ceedee lamb": 9205,
-    "jahmyr gibbs": 9162,
-    "puka nacua": 8907,
-    "justin jefferson": 8866,
-    "ashton jeanty": 8498,
-    "malik nabers": 7736,
-    "james cook": 7646,
-    "drake london": 7486,
-    "jeremiyah love": 7346,
-    "kenneth walker": 7176,
-    "josh allen": 7125,
-    "tetairoa mcmillan": 6911,
-    "jonathan taylor": 6782,
-    "chris olave": 6501,
-    "garrett wilson": 6501,
-    "omarion hampton": 6486,
-    "nico collins": 6002,
-    "breece hall": 5960,
-    "emeka egbuka": 5946,
-    "brock bowers": 5606,
-    "de von achane": 5463,
-    "trey mcbride": 5451,
-    "lamar jackson": 5287,
-    "devonta smith": 5164,
-    "christian mccaffrey": 4985,
-    "carnell tate": 4927,
-    "george pickens": 4892,
-    "drake maye": 4745,
-    "a j brown": 4745,
-    "ladd mcconkey": 4668,
-    "rashee rice": 4506,
-    "patrick mahomes": 4495,
-    "chase brown": 4453,
-    "zay flowers": 4422,
-    "joe burrow": 4289,
-    "jaylen waddle": 4219,
-    "rome odunze": 4179,
-    "luther burden": 3960,
+    "jaxon smith njigba": 10160,
+    "ja marr chase": 10160,
+    "bijan robinson": 9580,
+    "jahmyr gibbs": 9292,
+    "amon ra st brown": 9184,
+    "ceedee lamb": 8928,
+    "justin jefferson": 8907,
+    "puka nacua": 8866,
+    "ashton jeanty": 8340,
+    "malik nabers": 7920,
+    "jeremiyah love": 7846,
+    "kenneth walker": 7700,
+    "james cook": 7556,
+    "drake london": 7381,
+    "josh allen": 6911,
+    "chris olave": 6798,
+    "breece hall": 6687,
+    "tetairoa mcmillan": 6625,
+    "jonathan taylor": 6593,
+    "garrett wilson": 6380,
+    "brock bowers": 6002,
+    "trey mcbride": 5904,
+    "nico collins": 5862,
+    "emeka egbuka": 5541,
+    "lamar jackson": 5274,
+    "zay flowers": 5249,
+    "de von achane": 5225,
+    "carnell tate": 5188,
+    "omarion hampton": 5164,
+    "devonta smith": 5092,
+    "drake maye": 5068,
+    "george pickens": 4881,
+    "patrick mahomes": 4689,
+    "jaylen waddle": 4474,
+    "parker washington": 4464,
+    "tyler warren": 4319,
+    "chase brown": 4299,
+    "ladd mcconkey": 4279,
+    "a j brown": 4259,
+    "christian mccaffrey": 4259,
+    "luther burden": 4179,
+    "joe burrow": 4044,
+    "colston loveland": 3969,
     "sam laporta": 3932,
-    "jalen hurts": 3913,
-    "caleb williams": 3742,
-    "marvin harrison": 3699,
-    "colston loveland": 3664,
-    "tee higgins": 3630,
-    "jayden daniels": 3545,
-    "jordyn tyson": 3415,
-    "jameson williams": 3335,
-    "tyler warren": 3258,
-    "kyren williams": 3258,
-    "dalton kincaid": 3243,
-    "saquon barkley": 3220,
-    "makai lemon": 3108,
-    "christian watson": 3008,
-    "parker washington": 2952,
-    "trevor lawrence": 2938,
-    "tucker kraft": 2829,
-    "brock purdy": 2738,
-    "quinshon judkins": 2700,
-    "treveyon henderson": 2687,
-    "justin herbert": 2674,
-    "harold fannin": 2417,
-    "jadarian price": 2334,
-    "bucky irving": 2334,
-    "kyle pitts": 2247,
-    "dj moore": 2175,
-    "travis etienne": 2134,
-    "kenyon sadiq": 1989,
-    "dk metcalf": 1980,
-    "bo nix": 1970,
-    "brian thomas": 1934,
-    "cam skattebo": 1880,
-    "denzel boston": 1845,
-    "kc concepcion": 1711,
-    "terry mclaurin": 1699,
-    "derrick henry": 1699,
-    "javonte williams": 1699,
-    "isaiah likely": 1687,
-    "jordan addison": 1671,
-    "dak prescott": 1633,
-    "davante adams": 1602,
-    "michael wilson": 1521,
-    "bhayshul tuten": 1486,
-    "michael pittman": 1421,
-    "c j stroud": 1401,
-    "d andre swift": 1391,
-    "jordan love": 1237,
-    "alec pierce": 1214,
-    "george kittle": 1194,
-    "josh downs": 1175,
-    "jaxson dart": 1148,
-    "tyler shough": 1132,
-    "matthew golden": 1045,
-    "jalen coker": 997,
-    "xavier worthy": 990,
-    "jaylen warren": 967,
-    "chuba hubbard": 944,
-    "mike evans": 938,
-    "jayden higgins": 907,
-    "jared goff": 901,
-    "wan dale robinson": 866,
-    "kyle monangai": 810,
-    "omar cooper": 807,
-    "david montgomery": 788,
-    "josh jacobs": 777,
-    "fernando mendoza": 773,
-    "bryce young": 701,
-    "antonio williams": 701,
-    "jonathon brooks": 688,
-    "quentin johnston": 675,
-    "jake ferguson": 659,
-    "blake corum": 653,
-    "travis kelce": 633,
-    "oronde gadsden": 633,
-    "ricky pearsall": 597,
-    "dallas goedert": 586,
-    "brenton strange": 586,
-    "khalil shakir": 583,
-    "courtland sutton": 581,
-    "terrance ferguson": 563,
-    "stefon diggs": 563,
-    "chris godwin": 556,
-    "jayden reed": 537,
-    "jakobi meyers": 528,
-    "de zhaun stribling": 525,
-    "jonah coleman": 513,
-    "mark andrews": 509,
-    "matthew stafford": 507,
-    "juwan johnson": 507,
-    "eli stowers": 504,
-    "baker mayfield": 495,
-    "kyler murray": 467,
-    "sam darnold": 459,
-    "rj harvey": 430,
-    "malik willis": 418,
-    "romeo doubs": 417,
-    "rhamondre stevenson": 412,
-    "adonai mitchell": 407,
-    "cam ward": 399,
-    "deebo samuel": 394,
-    "rico dowdle": 382,
-    "pat bryant": 350,
-    "chris bell": 348,
-    "tony pollard": 338,
-    "caleb douglas": 314,
-    "chig okonkwo": 313,
-    "tre harris": 311,
-    "dalton schultz": 297,
-    "daniel jones": 295,
-    "jacory croskey merritt": 294,
-    "rashid shaheed": 293,
-    "brandon aiyuk": 290,
-    "jalen mcmillan": 290,
-    "woody marks": 283,
-    "zach charbonnet": 283,
-    "tank dell": 283,
-    "travis hunter": 276,
-    "ty simpson": 270,
-    "ja kobi lane": 267,
-    "t j hockenson": 239,
-    "kayshon boutte": 237,
-    "tyreek hill": 234,
-    "tre tucker": 233,
-    "eli raridon": 231,
-    "anthony richardson": 228,
-    "jaylin noel": 221,
-    "emmett johnson": 220,
-    "aj barner": 220,
-    "jordan mason": 217,
-    "j k dobbins": 211,
-    "tyler allgeier": 205,
-    "kenny gainwell": 205,
-    "rachaad white": 199,
-    "michael penix": 197,
-    "jerry jeudy": 193,
-    "elic ayomanor": 180,
-    "hunter henry": 178,
-    "dontayvion wicks": 177,
-    "tyjae spears": 175,
-    "jacoby brissett": 163,
-    "germie bernard": 159,
-    "ted hurst": 158,
-    "troy franklin": 158,
-    "isaac teslaa": 156,
-    "aaron jones": 154,
-    "max klare": 148,
-    "kaelon black": 148,
-    "braelon allen": 144,
-    "mike washington": 130,
-    "gunnar helm": 127,
-    "rashod bateman": 127,
-    "nicholas singleton": 126,
-    "jauan jennings": 118,
-    "keon coleman": 114,
-    "dylan sampson": 113,
-    "michael mayer": 113,
-    "geno smith": 112,
-    "malik washington": 109,
-    "brian robinson": 108,
-    "tyrone tracy": 102,
-    "mason taylor": 102,
-    "chris rodriguez": 100,
-    "greg dulcich": 100,
-    "cade otton": 100,
-    "tank bigsby": 99,
-    "malachi fields": 98,
-    "isaiah bond": 96,
-    "j j mccarthy": 93,
-    "chris brazzell": 91,
-    "shedeur sanders": 90,
-    "elijah arroyo": 89,
-    "kaytron allen": 82,
-    "keaton mitchell": 77,
-    "kyle williams": 73,
-    "darnell mooney": 73,
-    "oscar delp": 72,
-    "pat freiermuth": 72,
-    "tory horton": 70,
-    "elijah sarratt": 70,
-    "jalen nailor": 68,
-    "alvin kamara": 67,
-    "ollie gordon": 67,
-    "zachariah branch": 66,
-    "aaron rodgers": 66,
-    "devaughn vele": 66,
-    "jack bech": 65,
-    "ryan flournoy": 64,
-    "chimere dike": 64,
-    "cooper kupp": 63,
-    "kimani vidal": 60,
-    "david njoku": 58,
-    "tua tagovailoa": 57,
-    "colby parkinson": 57,
-    "calvin ridley": 53,
-    "kaleb johnson": 52,
-    "isiah pacheco": 49,
-    "kirk cousins": 49,
-    "deshaun watson": 49,
-    "evan engram": 43,
-    "theo johnson": 42,
-    "marvin mims": 41,
-    "mac jones": 39,
-    "hollywood brown": 38,
-    "carson beck": 36,
-    "cyrus allen": 36,
-    "jaylen wright": 36,
-    "darius slayton": 32,
-    "demond claiborne": 31,
-    "calvin austin": 31,
-    "keenan allen": 31,
-    "marshawn lloyd": 30,
-    "xavier legette": 27,
-    "demario douglas": 25,
-    "kendre miller": 25,
-    "ray davis": 22,
-    "emanuel wilson": 21,
+    "christian watson": 3913,
+    "jalen hurts": 3742,
+    "caleb williams": 3734,
+    "rome odunze": 3630,
+    "tee higgins": 3613,
+    "jayden daniels": 3562,
+    "dalton kincaid": 3407,
+    "tucker kraft": 3304,
+    "jordyn tyson": 3258,
+    "kyren williams": 3190,
+    "rashee rice": 3138,
+    "trevor lawrence": 3079,
+    "jameson williams": 3036,
+    "brock purdy": 3008,
+    "saquon barkley": 2856,
+    "treveyon henderson": 2751,
+    "makai lemon": 2687,
+    "harold fannin": 2457,
+    "travis etienne": 2446,
+    "justin herbert": 2423,
+    "quinshon judkins": 2389,
+    "dj moore": 2317,
+    "bucky irving": 2290,
+    "javonte williams": 2279,
+    "kyle pitts": 2134,
+    "kc concepcion": 2094,
+    "dk metcalf": 2060,
+    "denzel boston": 2046,
+    "bo nix": 1915,
+    "jadarian price": 1915,
+    "kenyon sadiq": 1880,
+    "isaiah likely": 1810,
+    "brian thomas": 1794,
+    "derrick henry": 1785,
+    "marvin harrison": 1695,
+    "cam skattebo": 1679,
+    "alec pierce": 1565,
+    "bhayshul tuten": 1543,
+    "d andre swift": 1521,
+    "dak prescott": 1493,
+    "c j stroud": 1483,
+    "michael wilson": 1472,
+    "jalen coker": 1445,
+    "michael pittman": 1438,
+    "jaxson dart": 1425,
+    "terry mclaurin": 1425,
+    "jordan addison": 1411,
+    "george kittle": 1303,
+    "josh downs": 1303,
+    "jordan love": 1279,
+    "matthew golden": 1231,
+    "tyler shough": 1186,
+    "jaylen warren": 1137,
+    "davante adams": 1110,
+    "jared goff": 983,
+    "chuba hubbard": 969,
+    "wan dale robinson": 951,
+    "mike evans": 920,
+    "fernando mendoza": 895,
+    "kyle monangai": 886,
+    "de zhaun stribling": 846,
+    "jayden higgins": 846,
+    "blake corum": 830,
+    "omar cooper": 818,
+    "terrance ferguson": 807,
+    "bryce young": 762,
+    "juwan johnson": 745,
+    "david montgomery": 741,
+    "xavier worthy": 724,
+    "antonio williams": 691,
+    "josh jacobs": 688,
+    "quentin johnston": 684,
+    "jonathon brooks": 681,
+    "courtland sutton": 672,
+    "chris bell": 659,
+    "brenton strange": 659,
+    "jake ferguson": 647,
+    "jonah coleman": 570,
+    "chris godwin": 564,
+    "baker mayfield": 564,
+    "jayden reed": 564,
+    "jakobi meyers": 562,
+    "oronde gadsden": 554,
+    "stefon diggs": 551,
+    "romeo doubs": 509,
+    "eli stowers": 509,
+    "rj harvey": 495,
+    "sam darnold": 477,
+    "rhamondre stevenson": 465,
+    "kyler murray": 424,
+    "dallas goedert": 420,
+    "adonai mitchell": 412,
+    "khalil shakir": 404,
+    "cam ward": 393,
+    "matthew stafford": 386,
+    "travis kelce": 379,
+    "ricky pearsall": 377,
+    "mark andrews": 377,
+    "rico dowdle": 346,
+    "malik willis": 341,
+    "zach charbonnet": 330,
+    "jacory croskey merritt": 330,
+    "daniel jones": 321,
+    "tre harris": 312,
+    "chig okonkwo": 299,
+    "ted hurst": 298,
+    "michael penix": 294,
+    "emmett johnson": 287,
+    "ty simpson": 280,
+    "deebo samuel": 266,
+    "brandon aiyuk": 265,
+    "tank dell": 262,
+    "rashid shaheed": 261,
+    "pat bryant": 260,
+    "tony pollard": 260,
+    "tyreek hill": 259,
+    "jordan mason": 244,
+    "ja kobi lane": 243,
+    "caleb douglas": 242,
+    "kenny gainwell": 237,
+    "jalen mcmillan": 229,
+    "eli raridon": 223,
+    "rachaad white": 218,
+    "j k dobbins": 216,
+    "dalton schultz": 201,
+    "anthony richardson": 198,
+    "aj barner": 197,
+    "woody marks": 194,
+    "t j hockenson": 191,
+    "jaylin noel": 189,
+    "kayshon boutte": 184,
+    "travis hunter": 173,
+    "kaelon black": 171,
+    "hunter henry": 170,
+    "oscar delp": 167,
+    "mike washington": 161,
+    "germie bernard": 158,
+    "tyler allgeier": 152,
+    "dontayvion wicks": 151,
+    "jauan jennings": 140,
+    "bryce lance": 137,
+    "braelon allen": 133,
+    "keaton mitchell": 132,
+    "gunnar helm": 129,
+    "tre tucker": 124,
+    "rashod bateman": 120,
+    "aaron jones": 118,
+    "greg dulcich": 112,
+    "max klare": 109,
+    "j j mccarthy": 108,
+    "nicholas singleton": 108,
+    "tyrone tracy": 107,
+    "elijah sarratt": 107,
+    "chris rodriguez": 106,
+    "tyjae spears": 106,
+    "dylan sampson": 100,
+    "malachi fields": 99,
+    "jerry jeudy": 97,
+    "tank bigsby": 91,
+    "isaac teslaa": 90,
+    "mac jones": 89,
+    "pat freiermuth": 85,
+    "jalen nailor": 85,
+    "brian robinson": 85,
+    "michael mayer": 83,
+    "konata mumpfield": 83,
+    "ryan flournoy": 78,
+    "cade otton": 78,
+    "jacoby brissett": 74,
+    "skyler bell": 74,
+    "troy franklin": 73,
+    "geno smith": 71,
+    "chris brazzell": 71,
+    "kevin coleman": 71,
+    "mason taylor": 70,
+    "malik washington": 67,
+    "shedeur sanders": 66,
+    "zachariah branch": 65,
+    "matt hibner": 65,
+    "calvin ridley": 64,
+    "alvin kamara": 64,
+    "devaughn vele": 63,
+    "kirk cousins": 61,
+    "kaleb johnson": 59,
+    "kyle williams": 57,
+    "keenan allen": 55,
+    "elijah arroyo": 52,
+    "cyrus allen": 52,
+    "ollie gordon": 51,
+    "elic ayomanor": 50,
+    "keon coleman": 50,
+    "david njoku": 50,
+    "aaron rodgers": 49,
+    "marshawn lloyd": 47,
+    "darnell mooney": 47,
+    "deshaun watson": 46,
+    "chimere dike": 43,
+    "kimani vidal": 42,
+    "jack bech": 41,
+    "jaylen wright": 40,
+    "darnell washington": 38,
+    "tyquan thornton": 33,
+    "tua tagovailoa": 33,
+    "cooper kupp": 32,
+    "kaytron allen": 32,
+    "carson beck": 31,
+    "cole payton": 30,
+    "james conner": 30,
+    "demario douglas": 30,
+    "marvin mims": 28,
+    "colby parkinson": 27,
+    "jalen tolbert": 26,
+    "tory horton": 26,
+    "tyson bagent": 26,
+    "brenen thompson": 25,
+    "malik benson": 25,
+    "darius slayton": 22,
+    "cade klubnik": 21,
+    "evan engram": 20,
+    "cole kmet": 20,
+    "theo johnson": 20,
     "justin fields": 19,
-    "jalen milroe": 18,
-    "trey benson": 17,
-    "ben sinnott": 16,
-    "andrei iosivas": 16,
-    "will howard": 15,
+    "jalen milroe": 19,
+    "jaydon blue": 18,
+    "marcus mariota": 18,
+    "adam randall": 17,
+    "calvin austin": 17,
+    "isiah pacheco": 17,
+    "ray davis": 17,
+    "xavier legette": 16,
+    "jalen royals": 16,
+    "devin neal": 16,
+    "charlie kolar": 15,
     "christian kirk": 15,
-    "jalen royals": 14,
-    "brashard smith": 12,
-    "jaylin lane": 11,
-    "seth mcgowan": 11,
-    "mack hollins": 10,
+    "demond claiborne": 15,
+    "seth mcgowan": 15,
+    "john metchie": 15,
+    "isaiah bond": 15,
+    "trey benson": 15,
+    "hollywood brown": 15,
+    "erick all": 14,
+    "joe flacco": 14,
+    "emanuel wilson": 14,
+    "jameis winston": 13,
+    "jack strand": 13,
+    "taylen green": 13,
+    "mack hollins": 12,
+    "raheim sanders": 12,
+    "kendre miller": 12,
+    "drew allar": 12,
+    "spencer rattler": 11,
+    "chris brooks": 11,
+    "ben sinnott": 11,
+    "marlin klein": 11,
+    "darren waller": 11,
+    "sam roush": 10,
+    "colbie young": 10,
     "jerome ford": 10,
-    "isaac guerendo": 10,
-    "isaiah davis": 10,
-    "quinn ewers": 9,
-    "devin singletary": 9,
-    "jordan james": 9,
-    "sean tucker": 8,
-    "roman wilson": 8,
-    "george holani": 8,
-    "jarquez hunter": 8,
-    "trevor etienne": 8,
+    "andrei iosivas": 10,
+    "jarquez hunter": 10,
+    "sean tucker": 10,
+    "jordan james": 10,
+    "tutu atwell": 10,
+    "haynes king": 10,
+    "zavion thomas": 10,
+    "joshua palmer": 9,
+    "george holani": 9,
+    "j mari taylor": 9,
+    "mike gesicki": 9,
+    "cedric tillman": 8,
+    "dont e thornton": 8,
+    "quinn ewers": 8,
+    "eli heidenreich": 8,
+    "will shipley": 8,
+    "will howard": 7,
+    "samaje perine": 7,
+    "isaac guerendo": 7,
+    "efton chism": 7,
+    "trevor etienne": 7,
     "tez johnson": 7,
-    "joshua palmer": 7,
-    "konata mumpfield": 7,
+    "xavier hutchinson": 7,
+    "isaiah davis": 7,
     "najee harris": 7,
-    "ja tavion sanders": 7,
-    "dj giddens": 7,
-    "jordan whittington": 6,
-    "justice hill": 6,
-    "skyler bell": 6,
-    "will shipley": 6,
-    "tyquan thornton": 5,
-    "bryce lance": 5,
-    "malik benson": 5,
-    "jaydon blue": 5,
+    "drew lock": 6,
+    "barion brown": 6,
+    "cj daniels": 6,
+    "devin singletary": 6,
+    "brashard smith": 6,
+    "jaylin lane": 6,
+    "tanner koziol": 6,
+    "jahan dotson": 5,
+    "jordan whittington": 5,
+    "riley leonard": 5,
+    "trey lance": 5,
+    "roman wilson": 5,
+    "devontez walker": 5,
+    "justice hill": 5,
+    "tanner mckee": 5,
+    "kalif raymond": 5,
     "dillon gabriel": 5,
-    "tahj brooks": 5,
-    "eli heidenreich": 5,
-    "justin joly": 5,
-    "james conner": 4,
-    "kevin coleman": 4,
-    "devontez walker": 4,
-    "tyson bagent": 4,
-    "mike gesicki": 4,
-    "zavion thomas": 4,
-    "adam randall": 4,
-    "tanner koziol": 4,
-    "cole payton": 4,
-    "marcus mariota": 4,
-    "drew allar": 4,
-    "cade klubnik": 4,
-    "devin neal": 4,
-    "taylen green": 4,
-    "audric estime": 4,
-    "erick all": 4,
-    "brenen thompson": 4,
-    "jameis winston": 4,
-    "joe milton": 4,
-    "jack endries": 3,
-    "tai felton": 3,
-    "roschon johnson": 3,
-    "mitchell evans": 3,
-    "xavier hutchinson": 3,
-    "davis mills": 3,
-    "charlie kolar": 3,
-    "spencer rattler": 3,
-    "tanner mckee": 3,
-    "carson wentz": 3,
-    "joe flacco": 3,
-    "jaleel mclaughlin": 3,
-    "darnell washington": 3,
-    "dohnte meyers": 3,
-    "garrett nussmeier": 3,
-    "jack strand": 3,
-    "riley leonard": 3,
-    "rasheen ali": 3,
-    "jake tonges": 3,
-    "will levis": 3,
-    "deion burks": 3,
-    "marlin klein": 3,
-    "drew lock": 3,
-    "haynes king": 3,
-    "cade stover": 3,
-    "cedric tillman": 3,
-    "trey lance": 3,
-    "lequint allen": 3,
+    "josh cameron": 5,
+    "carson wentz": 5,
+    "eric rivers": 4,
+    "deion burks": 4,
+    "davis mills": 4,
+    "jeff caldwell": 4,
+    "dj giddens": 4,
+    "noah fant": 4,
+    "ja tavion sanders": 4,
+    "justin joly": 4,
+    "keandre lambert smith": 4,
+    "tyler huntley": 4,
+    "tai felton": 4,
+    "tyren montgomery": 4,
+    "savion williams": 4,
+    "garrett nussmeier": 4,
+    "emari demercado": 4,
+    "luke mccaffrey": 4,
+    "jalon daniels": 4,
+    "malik davis": 4,
+    "dawson knox": 4,
+    "mitchell evans": 4,
+    "seydou traore": 4,
+    "deandre hopkins": 4,
+    "dyami brown": 4,
+    "will levis": 4,
     "noah gray": 3,
-    "cole kmet": 3,
-    "gardner minshew": 3,
-    "sam roush": 3,
-    "colbie young": 3,
-    "kenny pickett": 3,
-    "jake browning": 3,
-    "mason rudolph": 3,
-    "jalon daniels": 3,
-    "noah fant": 3,
-    "j michael sturdivant": 3,
     "tyler higbee": 3,
-    "josh cameron": 3,
-    "tyler huntley": 2,
-    "zach wilson": 2,
-    "jordan watkins": 2,
-    "dont e thornton": 2,
-    "luke mccaffrey": 2,
-    "jimmy garoppolo": 2,
-    "aidan o connell": 2,
+    "tahj brooks": 3,
+    "mason rudolph": 3,
+    "joey aguilar": 3,
+    "rasheen ali": 3,
+    "lequint allen": 3,
+    "olamide zaccheaus": 3,
+    "jake tonges": 3,
+    "ty johnson": 3,
+    "zach ertz": 3,
+    "kendrick bourne": 3,
+    "kenny pickett": 3,
+    "jordan watkins": 3,
+    "treylon burks": 3,
+    "jack endries": 3,
+    "reggie virgil": 3,
+    "joe royer": 3,
+    "jake browning": 3,
+    "audric estime": 3,
+    "gardner minshew": 3,
+    "roschon johnson": 3,
+    "cade stover": 3,
+    "jaren kanak": 3,
+    "roman hemby": 3,
+    "dean connors": 3,
+    "jaleel mclaughlin": 3,
+    "aidan o connell": 3,
+    "robert henry": 3,
+    "luke musgrave": 3,
+    "joe mixon": 3,
+    "terion stewart": 3,
+    "austin hooper": 3,
+    "jaydn ott": 3,
+    "jimmy horn": 3,
+    "mark gronowski": 3,
+    "josh oliver": 3,
+    "nate boerkircher": 3,
+    "zach wilson": 3,
+    "greg dortch": 3,
+    "dae quan wright": 3,
     "andy dalton": 2,
-    "kendrick law": 2,
-    "jalen tolbert": 2,
-    "sam howell": 2,
-    "tyrod taylor": 2,
-    "jarrett stidham": 2,
-    "savion williams": 2,
-    "john metchie": 2,
-    "jahan dotson": 2,
-    "kyle mccord": 2,
-    "treylon burks": 2,
-    "kendrick bourne": 2,
-    "mitchell trubisky": 2,
-    "brady cook": 2,
-    "cj daniels": 2,
-    "nick mullens": 2,
-    "barion brown": 2,
-    "keandre lambert smith": 2,
-    "kyle allen": 2,
-    "reggie virgil": 2,
-    "stetson bennett": 2,
-    "kurtis rourke": 2,
-    "olamide zaccheaus": 2,
-    "sam ehlinger": 2,
-    "tutu atwell": 2,
-    "tommy devito": 1,
-    "kaden wetjen": 1,
-    "josh johnson": 1,
-    "jimmy horn": 1,
-    "case keenum": 1,
-    "sean clifford": 1
+    "jeremy ruckert": 2,
+    "kavontae turpin": 2,
+    "jimmy garoppolo": 2,
+    "john michael gyllenborg": 2,
+    "raheem mostert": 2,
+    "dj rodgers": 2,
+    "will kacmarek": 2,
+    "dallen bentley": 2,
+    "michael trigg": 2,
+    "dohnte meyers": 2
   },
   "pickValues": {
-    "2026-1.01": 6250,
-    "2026-1.02": 5463,
-    "2026-1.03": 4426,
-    "2026-1.04": 3599,
-    "2026-1.05": 2937,
-    "2026-1.06": 2406,
-    "2026-1.07": 1979,
-    "2027-1": 1882,
-    "2026-1.08": 1633,
-    "2028-1": 1505,
+    "2026-1.01": 6265,
+    "2026-1.02": 5502,
+    "2026-1.03": 4455,
+    "2026-1.04": 3620,
+    "2026-1.05": 2952,
+    "2026-1.06": 2416,
+    "2026-1.07": 1984,
+    "2027-1": 1885,
+    "2026-1.08": 1635,
+    "2028-1": 1508,
     "2026-1.09": 1352,
-    "2026-1.10": 1124,
-    "2026-2.01": 658,
-    "2026-2.02": 554,
-    "2026-2.03": 469,
-    "2026-2.04": 397,
-    "2026-2.05": 338,
-    "2026-2.06": 289,
-    "2026-2.07": 247,
-    "2027-2": 231,
-    "2026-2.08": 212,
-    "2028-2": 185,
-    "2026-2.09": 183,
-    "2026-2.10": 158,
-    "2026-3.01": 104,
-    "2026-3.02": 91,
-    "2026-3.03": 80,
-    "2026-3.04": 71,
-    "2026-3.05": 63,
-    "2026-3.06": 56,
-    "2026-3.07": 49,
-    "2027-3": 45,
-    "2026-3.08": 44,
-    "2026-3.09": 39,
-    "2028-3": 36,
-    "2026-3.10": 35,
-    "2026-4.01": 25,
-    "2026-4.02": 23,
-    "2026-4.03": 21,
-    "2026-4.04": 19,
-    "2026-4.05": 17,
-    "2026-4.06": 15,
-    "2026-4.07": 14,
-    "2026-4.08": 13,
-    "2027-4": 13,
-    "2026-4.09": 12,
-    "2026-4.10": 11,
-    "2028-4": 10,
-    "2026-5.01": 9,
+    "2026-1.10": 1121,
+    "2026-2.01": 652,
+    "2026-2.02": 548,
+    "2026-2.03": 462,
+    "2026-2.04": 391,
+    "2026-2.05": 332,
+    "2026-2.06": 282,
+    "2026-2.07": 241,
+    "2027-2": 226,
+    "2026-2.08": 206,
+    "2028-2": 181,
+    "2026-2.09": 177,
+    "2026-2.10": 153,
+    "2026-3.01": 100,
+    "2026-3.02": 87,
+    "2026-3.03": 76,
+    "2026-3.04": 67,
+    "2026-3.05": 59,
+    "2026-3.06": 52,
+    "2026-3.07": 46,
+    "2027-3": 42,
+    "2026-3.08": 41,
+    "2026-3.09": 36,
+    "2028-3": 34,
+    "2026-3.10": 32,
+    "2026-4.01": 23,
+    "2026-4.02": 21,
+    "2026-4.03": 19,
+    "2026-4.04": 17,
+    "2026-4.05": 16,
+    "2026-4.06": 14,
+    "2026-4.07": 13,
+    "2026-4.08": 12,
+    "2027-4": 12,
+    "2026-4.09": 11,
+    "2026-4.10": 10,
+    "2028-4": 9,
+    "2026-5.01": 8,
     "2026-5.02": 8,
     "2026-5.03": 7,
     "2026-5.04": 7,
-    "2026-5.05": 7,
+    "2026-5.05": 6,
     "2026-5.06": 6,
     "2026-5.07": 6,
-    "2026-5.08": 6,
+    "2026-5.08": 5,
     "2026-5.09": 5,
     "2027-5": 5,
     "2026-5.10": 5,
     "2028-5": 4,
-    "2026-6.01": 7.2,
+    "2026-6.01": 6.4,
     "2026-6.02": 6.4,
     "2026-6.03": 5.6,
     "2026-6.04": 5.6,
-    "2026-6.05": 5.6,
+    "2026-6.05": 4.8,
     "2026-6.06": 4.8,
     "2026-6.07": 4.8,
-    "2026-6.08": 4.8,
+    "2026-6.08": 4,
     "2026-6.09": 4,
     "2026-6.10": 4,
     "2027-6": 4,
