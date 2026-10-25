@@ -1,6 +1,123 @@
 {
-  "generatedAt": "2026-10-24T15:27:53.941Z",
+  "generatedAt": "2026-10-25T15:38:11.327Z",
   "items": [
+    {
+      "id": "07511a42f6a1f88cda2415b4a07ac740f759b5b8",
+      "source": "FantasyPros",
+      "title": "Tyjae Spears (knee) officially inactive for Week 7",
+      "url": "https://www.fantasypros.com/nfl/news/615696/tyjae-spears-knee-officially-inactive-week-7.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "35bdd6c3f21f34a50740e3c008fc68a78fa5dfd7",
+      "source": "FantasyPros",
+      "title": "Calvin Ridley (hip) officially inactive for Week 7",
+      "url": "https://www.fantasypros.com/nfl/news/615695/calvin-ridley-hip-officially-inactive-week-7.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "3a4cca082f8a9a392d4035b214e8508f7f46fb19",
+      "source": "FantasyPros",
+      "title": "Dylan Sampson (knee) officially active for Week 7",
+      "url": "https://www.fantasypros.com/nfl/news/615694/dylan-sampson-knee-officially-active-week-7.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "002d620de3f88f88a04bc0d999d724d6619014fe",
+      "source": "FantasyPros",
+      "title": "Breece Hall (quad) unlikely to play Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/615693/breece-hall-quad-unlikely-to-play-sunday.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "7a85b7378fceaeeeb50aa673e6c6b6c1a214ae8d",
+      "source": "FantasyPros",
+      "title": "Rico Dowdle (knee) active for Week 7",
+      "url": "https://www.fantasypros.com/nfl/news/615681/rico-dowdle-knee-active-week-7.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "b9fae09e1d7256bcb45c8afc5c63fa6f06be1b89",
+      "source": "FantasyPros",
+      "title": "Dontayvion Wicks (ankle) out for Week 7",
+      "url": "https://www.fantasypros.com/nfl/news/615654/dontayvion-wicks-ankle-out-week-7.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "a9272d77af7ae83aa623f407a4147f95ea223b9f",
+      "source": "FantasyPros",
+      "title": "DeVonta Smith (hamstring) ruled out vs. Dallas",
+      "url": "https://www.fantasypros.com/nfl/news/615653/devonta-smith-hamstring-ruled-out-vs-dallas.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "edad481edd50ebf64ef03138a8ff648edafef272",
+      "source": "FantasyPros",
+      "title": "Tyler Huntley set to start vs. Bengals",
+      "url": "https://www.fantasypros.com/nfl/news/615651/tyler-huntley-set-to-starts-vs-bengals.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "cb8b6eafcd616923796cca454023e4df9e0a5c71",
+      "source": "FantasyPros",
+      "title": "Lamar Jackson (ankle) ruled out for Week 7",
+      "url": "https://www.fantasypros.com/nfl/news/615650/lamar-jackson-ankle-ruled-out-week-7.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "1eba98c2eebca9ce6447ad199fd990394cccee74",
+      "source": "FantasyPros",
+      "title": "Sauce Gardner (calf) will not play in Week 7",
+      "url": "https://www.fantasypros.com/nfl/news/615647/sauce-gardner-calf-will-not-play-week-7.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "7d70ccef03dd3457d5ebb9c099d8e9502739b736",
+      "source": "FantasyPros",
+      "title": "Divine Deablo (arm) will not play in Week 7",
+      "url": "https://www.fantasypros.com/nfl/news/615646/divine-deablo-arm-will-not-play-week-7.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "6612dcd0bddb2fd64408014954089d41da9fa239",
+      "source": "FantasyPros",
+      "title": "Antoine Winfield Jr. (rib) will not play Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/615644/antoine-winfield-jr-rib-will-not-play-sunday.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "8c8c5c1d1cb4c1f12f5a44827750bd62504abaed",
+      "source": "FantasyPros",
+      "title": "Zach Charbonnet (knee) will not play in Week 7",
+      "url": "https://www.fantasypros.com/nfl/news/615638/zach-charbonnet-knee-will-not-play-week-7.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
     {
       "id": "3190bf6a0b8b7c566f68bb7265dc3e2ee6f2977f",
       "source": "FantasyPros",
@@ -105,123 +222,6 @@
       "source": "FantasyPros",
       "title": "Christian Kirk (calf) questionable for Sunday",
       "url": "https://www.fantasypros.com/nfl/news/615558/christian-kirk-calf-questionable-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "d484d5490136c72be7fc32bc1633f7411e7bbd78",
-      "source": "FantasyPros",
-      "title": "Deebo Samuel Sr. (hamstring) won't play Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/615557/deebo-samuel-sr-hamstring-wont-play-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "1621784094ed8a8df282e56281f3b658d281eed7",
-      "source": "FantasyPros",
-      "title": "Mike Evans (ribs/Achilles) ruled out for Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/615556/mike-evans-ribsachilles-ruled-out-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "4b5d2364dac429aa9d57ec970b83bf63996c5958",
-      "source": "FantasyPros",
-      "title": "Matthew Golden (shoulder) off injury report for Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/615555/matthew-golden-shoulder-off-injury-report-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "78870b2bcc6d35c60687914bd614776895ecc4c8",
-      "source": "FantasyPros",
-      "title": "Bo Melton (back) questionable to play Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/615554/bo-melton-back-questionable-to-play-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "542f7f2ca676679e418e47910866707b168328c1",
-      "source": "FantasyPros",
-      "title": "Savion Williams (ankle) will play Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/615553/savion-williams-ankle-will-play-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "89bb45e9e2e098b0bb5f831b861cb2f1cce13012",
-      "source": "FantasyPros",
-      "title": "Christian Watson (ankle) officially cleared to play Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/615552/christian-watson-ankle-officially-cleared-to-play-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "625d3c39f825e974333aa151dec36399e2d5f2fc",
-      "source": "FantasyPros",
-      "title": "Jordan Love (back) without injury designation for Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/615551/jordan-love-back-without-injury-designation-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "39aff1135e2e3d94b045c7dbb6cc45b9f93cc9c3",
-      "source": "FantasyPros",
-      "title": "Aaron Banks (knee/toe) listed questionable for Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/615550/aaron-banks-kneetoe-listed-questionable-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "546de6ecf6b4136996c25b44b05db4a446ea3e19",
-      "source": "FantasyPros",
-      "title": "Andrew Vorhees (foot) will play Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/615549/andrew-vorhees-foot-will-play-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "c4aea3b07fdae035c7876c6a23eb5a119c92cb97",
-      "source": "FantasyPros",
-      "title": "John Simpson (groin) available to play Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/615548/john-simpson-groin-available-to-play-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "3339abb1b4567e402ba0a36c29897c60cd89db45",
-      "source": "FantasyPros",
-      "title": "Cam Jurgens (concussion) set to play Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/615547/cam-jurgens-concussion-set-to-play-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "22a5855aaf795cdf76e18bb51628a225ab15e53e",
-      "source": "FantasyPros",
-      "title": "Ronnie Stanley (toe/ankle) cleared to play Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/615546/ronnie-stanley-toeankle-cleared-to-play-sunday.php",
-      "publishedAt": null,
-      "publishedTs": 0,
-      "description": ""
-    },
-    {
-      "id": "f04bbcceaf3f683ed3235c9aab4657eabe284e19",
-      "source": "FantasyPros",
-      "title": "Rashod Bateman (shoulder) good to go for Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/615544/rashod-bateman-shoulder-good-to-go-sunday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
