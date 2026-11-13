@@ -1,200 +1,488 @@
 {
-  "generatedAt": "2026-11-12T19:35:29.655Z",
+  "generatedAt": "2026-11-13T19:16:10.139Z",
   "items": [
     {
-      "id": "bed63a6665fe93d0b6de0d0ed99d97afd61bd7b5",
+      "id": "ff71ded22db860656b52cfd46efd89a9a26e83e1",
+      "source": "ESPN",
+      "title": "Sources: WR Brown gets his wish, to be released by Eagles",
+      "url": "https://www.espn.com/nfl/story/_/id/50473514/sources-eagles-release-wr-hollywood-brown-per-request",
+      "publishedAt": "2026-11-13T19:09:37.000Z",
+      "publishedTs": 1794596977000,
+      "description": "Receiver Hollywood Brown, who has played sparingly over the first half of the season, is being released by the Eagles upon his request, sources told ESPN."
+    },
+    {
+      "id": "4bb4cdc6f5b47f8441202b61f404817ba8e0b5a9",
+      "source": "ESPN",
+      "title": "Jaguars holding out new players Davis, Bates to give them bye",
+      "url": "https://www.espn.com/nfl/story/_/id/50472481/jaguars-holding-new-players-jordan-davis-jessie-bates-give-bye",
+      "publishedAt": "2026-11-13T19:09:37.000Z",
+      "publishedTs": 1794596977000,
+      "description": "The Jaguars are holding out newly acquired Jordan Davis and Jessie Bates to give them a bye week."
+    },
+    {
+      "id": "6c156a128c54d7dcd6ed5977d9265b64bbaab3a2",
+      "source": "ESPN",
+      "title": "Rookie WR Tate among multiple Titans starters ruled out vs. Jags",
+      "url": "https://www.espn.com/nfl/story/_/id/50473143/rookie-wr-carnell-tate-multiple-titans-ruled-out",
+      "publishedAt": "2026-11-13T19:09:37.000Z",
+      "publishedTs": 1794596977000,
+      "description": "The Titans will be without multiple starters against the Jaguars on Sunday, including rookie wide receiver Carnell Tate."
+    },
+    {
+      "id": "dfc88ee8c3da523f368a438a2cda612fa0911c30",
+      "source": "ESPN",
+      "title": "St. Brown eyes a 2028 Olympics flag football run for Germany",
+      "url": "https://www.espn.com/nfl/story/_/id/50473202/amon-ra-st-brown-eyes-2028-olympics-flag-football-run-germany",
+      "publishedAt": "2026-11-13T19:09:37.000Z",
+      "publishedTs": 1794596977000,
+      "description": "- Lions star Amon-Ra St. Brown says he wants to play flag football for Germany at the 2028 Los Angeles Olympics."
+    },
+    {
+      "id": "0e9c21d795a00ffc70d74ac8db8d145f897d772a",
+      "source": "ESPN",
+      "title": "Commanders' Daniels getting into 'that rhythm' after late TD, win over Giants",
+      "url": "https://www.espn.com/nfl/story/_/id/50469451/commanders-jayden-daniels-redemption-game-winning-drive",
+      "publishedAt": "2026-11-13T19:09:37.000Z",
+      "publishedTs": 1794596977000,
+      "description": "Commanders quarterback Jayden Daniels shook off two interceptions and multiple weeks of failed late-game drives to deliver when Washington needed him most."
+    },
+    {
+      "id": "e0da99c8744fb86d7f81a90eff6fd91ad0794805",
+      "source": "ESPN",
+      "title": "Harbaugh bemoans 'loophole' after nixed trade, urges NFL to look into it",
+      "url": "https://www.espn.com/nfl/story/_/id/50464601/chargers-jim-harbaugh-irked-broncos-nixed-trade",
+      "publishedAt": "2026-11-13T19:09:37.000Z",
+      "publishedTs": 1794596977000,
+      "description": "Chargers coach Jim Harbaugh on Thursday expressed frustration with the Denver Broncos about a nixed trade this week involving linebacker Daiyan Henley."
+    },
+    {
+      "id": "13ff4eb826422b0c310148d4a3ee1353d3107648",
+      "source": "ESPN",
+      "title": "✨ Top 50 prospects in the 2027 NFL draft class",
+      "url": "https://www.espn.com/nfl/draft2027/story/_/id/50068479/2027-nfl-draft-rankings-jordan-reid-top-prospects-players-positions",
+      "publishedAt": "2026-11-13T19:09:37.000Z",
+      "publishedTs": 1794596977000,
+      "description": "Jordan Reid updated his rankings for the 2027 NFL draft class with 50 players -- including eight quarterbacks and an elite wide receiver prospect."
+    },
+    {
+      "id": "7a280289d7ee74a00f5881c380257406a2fea1d0",
+      "source": "ESPN",
+      "title": "Injured QB Jackson doing 'well' as Ravens eye 6-10 weeks out, Minter says",
+      "url": "https://www.espn.com/nfl/story/_/id/50472222/ravens-lamar-jackson-injury-typical-line-6-10-weeks",
+      "publishedAt": "2026-11-13T19:09:36.000Z",
+      "publishedTs": 1794596976000,
+      "description": "Ravens coach Jesse Minter's update on Lamar Jackson's recovery process calls such timelines \"challenging to predict.\""
+    },
+    {
+      "id": "a9b46c4e803f392e3f2c450d8d02618a3fa9e009",
+      "source": "ESPN",
+      "title": "Falcons sign DE Thomas, CB Henderson to multiyear extensions",
+      "url": "https://www.espn.com/nfl/story/_/id/50471659/falcons-sign-de-thomas-cb-henderson-multiyear-extensions",
+      "publishedAt": "2026-11-13T19:09:36.000Z",
+      "publishedTs": 1794596976000,
+      "description": "The Atlanta Falcons have signed defensive end Cameron Thomas and cornerback C.J. Henderson to multiyear contract extensions, the team announced Friday."
+    },
+    {
+      "id": "4076eab9231dee50c9314baa601267c8693f7488",
+      "source": "ESPN",
+      "title": "It's Mendoza time: Graziano on the Raiders' decision to sit the rookie QB ... until now",
+      "url": "https://www.espn.com/nfl/story/_/id/50462155/raiders-starting-fernando-mendoza-plan-decision-graziano",
+      "publishedAt": "2026-11-13T19:02:14.000Z",
+      "publishedTs": 1794596534000,
+      "description": "The Raiders had a plan for Fernando Mendoza in Year 1 and stuck to it as long as they could."
+    },
+    {
+      "id": "fce2cf6d8bb49664fc3eeb62a1c0dfe05dfd4608",
+      "source": "ESPN",
+      "title": "Our guide to every Week 10 game: Matchup previews, predictions, picks and nuggets",
+      "url": "https://www.espn.com/nfl/story/_/id/50453355/week-10-picks-predictions-schedule-fantasy-odds-2026",
+      "publishedAt": "2026-11-13T19:02:14.000Z",
+      "publishedTs": 1794596534000,
+      "description": "There are 13 more games in Week 10, and we have picks, predictions and more for all of them."
+    },
+    {
+      "id": "e60d9fcc67ac21cf15d321c0eb193491657b1b7d",
+      "source": "ESPN",
+      "title": "NFC North real or not: Bears a solid favorite? Cousins puts Vikings in command?",
+      "url": "https://www.espn.com/nfl/story/_/id/50462993/lions-packers-bears-vikings-nfc-north",
+      "publishedAt": "2026-11-13T18:21:09.000Z",
+      "publishedTs": 1794594069000,
+      "description": "What will Kirk Cousins and Micah Parsons mean for the best division in football, or will the Bears hang on?"
+    },
+    {
+      "id": "d1172af62f175a5319f10b5925be80eaabb1aaef",
+      "source": "ESPN",
+      "title": "It's a battle for the AFC North: Steelers at Bengals Week 10 primer",
+      "url": "https://www.espn.com/nfl/story/_/id/50464709/afc-north-steelers-bengals-rodgers-burrow-week-10",
+      "publishedAt": "2026-11-13T18:21:09.000Z",
+      "publishedTs": 1794594069000,
+      "description": "Aaron Rodgers and Joe Burrow and their 6-2 teams face off Sunday night, and Ben Baby and Brooke Pryor break down the matchup."
+    },
+    {
+      "id": "6beaee69ee9d30eba5efdbe0bfb5b1a376948a69",
+      "source": "ESPN",
+      "title": "Execs predict the season's second half: Who will win division races, MVP, the Super Bowl?",
+      "url": "https://www.espn.com/nfl/story/_/id/50462723/2026-nfl-playoffs-mvp-super-bowl-breakout-players-divisions",
+      "publishedAt": "2026-11-13T18:09:49.000Z",
+      "publishedTs": 1794593389000,
+      "description": "Who will win the most competitive divisions, and who's in line for awards? We asked sources around the NFL at midseason."
+    },
+    {
+      "id": "084a84435e39270033010e1c3b7c98aa2d2dd43f",
+      "source": "ESPN",
+      "title": "Midseason awards: The top candidates to win MVP, Rookie of the Year, more",
+      "url": "https://www.espn.com/nfl/story/_/id/50452792/2026-midseason-awards-ranking-mvp-rookies-coaches-barnwell",
+      "publishedAt": "2026-11-13T18:09:49.000Z",
+      "publishedTs": 1794593389000,
+      "description": "Joe Burrow for MVP? We ranked the top contenders to win eight NFL awards through Week 9."
+    },
+    {
+      "id": "dc5ea92b3579a56a350492296c3c2a6494293afd",
+      "source": "ESPN",
+      "title": "Is Chuba Hubbard the biggest X factor to spark a Panthers turnaround?",
+      "url": "https://www.espn.com/nfl/story/_/id/50463509/chuba-hubbard-x-factor-spark-carolina-panthers",
+      "publishedAt": "2026-11-13T16:08:35.000Z",
+      "publishedTs": 1794586115000,
+      "description": "Meet Carolina's team captain, a locker room leader and a relentless running back who is \"chasing greatness myself.\""
+    },
+    {
+      "id": "588ed8b64372d6e424c44fb14823a7c73d1bc3c0",
+      "source": "ESPN",
+      "title": "Does Packers' Christian Watson + Matthew Golden = 3,000 yards?",
+      "url": "https://www.espn.com/nfl/story/_/id/50455566/packers-christian-watson-matthew-golden-3000-yards",
+      "publishedAt": "2026-11-13T16:08:34.000Z",
+      "publishedTs": 1794586114000,
+      "description": "Watson and Golden are on pace to join a rare club of WR pairs who combined for 3,000 yards."
+    },
+    {
+      "id": "1e657c13bdbae8aea5be9d97daaa720b2c08f821",
+      "source": "ESPN",
+      "title": "Jayden Daniels' late TD keeps Commanders' NFC East hopes alive with win over Giants",
+      "url": "https://www.espn.com/nfl/story/_/id/50466279/new-york-giants-washington-commanders-week-10-tnf",
+      "publishedAt": "2026-11-13T16:07:33.000Z",
+      "publishedTs": 1794586053000,
+      "description": "New York couldn't close out a win against Washington, giving up a late touchdown drive. Its division lead is now shrinking."
+    },
+    {
+      "id": "af023e53fd983d5af2d67deb8ab517d8885c9891",
+      "source": "ESPN",
+      "title": "Love throws for 5K yards? Mendoza shines in Vegas? Don't be surprised!",
+      "url": "https://www.espn.com/fantasy/football/story/_/id/50463616/fantasy-football-start-sit-sleepers-breakouts-week-10",
+      "publishedAt": "2026-11-13T12:59:58.000Z",
+      "publishedTs": 1794574798000,
+      "description": "Elite WRs compensate for the lack of a running game in Green Bay, while there's unwarranted caution for Vegas' QB."
+    },
+    {
+      "id": "9743cf1f5cbb8d6c3cfec5add17eaf8671a0a9fe",
+      "source": "ESPN",
+      "title": "The Playbook: Shadow Reports, lineup locks and projected scores for Week 10",
+      "url": "https://www.espn.com/fantasy/football/story/_/id/50433086/fantasy-playbook-projections-lineup-locks-week-10-shadow",
+      "publishedAt": "2026-11-13T12:59:58.000Z",
+      "publishedTs": 1794574798000,
+      "description": "An all-encompassing look at the matchups to exploit or avoid and lineup locks in fantasy, as well as projected scores for all NFL games."
+    },
+    {
+      "id": "9db04cb867acf6bb798fcc3a2f0c837673a2a532",
+      "source": "ESPN",
+      "title": "Titans' Rivalries combination, Ravens' all-black threads top NFL Week 10 uniforms",
+      "url": "https://www.espn.com/nfl/story/_/id/50448015/nfl-week-10-uniforms",
+      "publishedAt": "2026-11-12T22:24:35.000Z",
+      "publishedTs": 1794522275000,
+      "description": "Here's a look at what each NFL team is wearing in Week 10, led by the Tennessee Titans' Rivalries look."
+    },
+    {
+      "id": "08dbf1d7f3a20c51b34fd75adc1aab8401d49481",
+      "source": "ESPN",
+      "title": "How Travis Hunter sweetens Jessie Bates' move to Jaguars",
+      "url": "https://www.espn.com/nfl/story/_/id/50464631/jaguars-jessie-bates-trade-travis-hunter",
+      "publishedAt": "2026-11-12T22:24:35.000Z",
+      "publishedTs": 1794522275000,
+      "description": "The safety's young nephews were thrilled to learn their uncle would be Hunter's teammate."
+    },
+    {
+      "id": "6ff66e9d610ba618a1492c2cc73188f7247737ec",
+      "source": "ESPN",
+      "title": "Ranking the top 25 NFL draft prospects",
+      "url": "https://www.espn.com/nfl/draft2027/story/_/id/50182998/2027-nfl-draft-rankings-kiper-big-board-top-prospects",
+      "publishedAt": "2026-11-12T21:27:02.000Z",
+      "publishedTs": 1794518822000,
+      "description": "Seven quarterbacks ranked in the top 25? This NFL draft class could be fun. Mel Kiper Jr. stacks the best players on the board as of mid-November."
+    },
+    {
+      "id": "ebe240634465f5c3f7189bb4d4a56a616271ee3b",
+      "source": "ESPN",
+      "title": "Does Cousins fix Vikings' offense? Should Rams have added? Barnwell on deadline",
+      "url": "https://www.espn.com/nfl/story/_/id/50442897/2026-trade-deadline-barnwell-questions-cousins-downs",
+      "publishedAt": "2026-11-12T15:10:51.000Z",
+      "publishedTs": 1794496251000,
+      "description": "Making sense of Kirk Cousins to the Vikings, Josh Downs to the Chiefs, four teams' deadline silence and more."
+    },
+    {
+      "id": "68c178c45cec03791fe13bc921c5978343000434",
+      "source": "ESPN",
+      "title": "Cousins to Vikings and Mendoza as Raiders' QB1? Let's size up this big deadline trade",
+      "url": "https://www.espn.com/nfl/story/_/id/50444528/kirk-cousins-trade-minnesota-vikings-las-vegas-raiders",
+      "publishedAt": "2026-11-12T14:29:07.000Z",
+      "publishedTs": 1794493747000,
+      "description": "We answered big questions surrounding the trade of quarterback Kirk Cousins from the Raiders to the Vikings."
+    },
+    {
+      "id": "c3de8403594b00d8a20644fb48a52853647c2dc8",
+      "source": "ESPN",
+      "title": "Winners, losers of the NFL trade deadline: Chiefs get a WR, Vikings get a QB, Chargers stay quiet",
+      "url": "https://www.espn.com/nfl/story/_/id/50443388/2026-nfl-trade-deadline-winners-losers-best-worst-deals",
+      "publishedAt": "2026-11-12T14:29:06.000Z",
+      "publishedTs": 1794493746000,
+      "description": "Which teams made the best -- and worst -- moves before the NFL trade deadline? We're making sense of all the action."
+    },
+    {
+      "id": "aba9418a9858a496f45fc723dc5d7f92d2bba63a",
+      "source": "ESPN",
+      "title": "Seven things Solak thinks: Jags to the Super Bowl? Plus, early All-Pro picks and more",
+      "url": "https://www.espn.com/nfl/story/_/id/50434129/week-10-seven-things-solak-thinks-trade-deadline-all-pro",
+      "publishedAt": "2026-11-12T13:05:50.000Z",
+      "publishedTs": 1794488750000,
+      "description": "Checking in with takes on the Jaguars winning the AFC, Shedeur Sanders not earning a starting role and more."
+    },
+    {
+      "id": "d0fadc4cd2db5c500e96979bfec4e44a38f2964f",
+      "source": "ESPN",
+      "title": "NFL awards: Joe Burrow moves past Josh Allen as MVP favorite, Jordan Love joins race",
+      "url": "https://www.espn.com/espn/betting/story/_/id/48476156/2026-nfl-awards-betting-odds-mvp-rookie-year-offensive-defensive-player-coach",
+      "publishedAt": "2026-11-10T19:24:19.000Z",
+      "publishedTs": 1794338659000,
+      "description": "Who are the favorites to win seasonlong honors? Here are the odds for MVP, Rookie of the Year and more."
+    },
+    {
+      "id": "39add9af48437b0f9116dc0361df135e627a3f9d",
+      "source": "ESPN",
+      "title": "Jaguars climb Super Bowl odds board, entire NFC North favored to make playoffs",
+      "url": "https://www.espn.com/espn/betting/story/_/id/47809892/2026-super-bowl-lxi-odds-nfl-sports-betting-season-win-totals-playoffs",
+      "publishedAt": "2026-11-10T19:24:19.000Z",
+      "publishedTs": 1794338659000,
+      "description": "Every NFL team's win total, as well as odds to win the division, the conference and Super Bowl LXI."
+    },
+    {
+      "id": "03876281c380786261007302fa5ab9a2b17be71f",
       "source": "FantasyPros",
-      "title": "Garrett Wilson (concussion) practices Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/619558/garrett-wilson-concussion-practices-thursday.php",
+      "title": "Divine Deablo (forearm) listed doubtful Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/619841/divine-deablo-forearm-listed-doubtful-sunday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "cf42e298bbd0e2f1c519349c9d12dcebc44397f0",
+      "id": "b5936d0048bf6ee51eb86ff73eeb6226bbbbe102",
       "source": "FantasyPros",
-      "title": "Micah Parsons returns to practice Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/619557/micah-parsons-returns-to-practice-thursday.php",
+      "title": "Zachariah Branch (hamstring) ruled out Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/619840/zachariah-branch-hamstring-ruled-out-sunday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "5ddb326bd885716c31ca615f7860d86fde1d2cfd",
+      "id": "71a6a2c941c03979a3f626b1e30368d32f3cf04d",
       "source": "FantasyPros",
-      "title": "Sean Rhyan (ankle) not practicing Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/619556/sean-rhyan-ankle-not-practicing-thursday.php",
+      "title": "Josh Woods listed questionable Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/619839/josh-woods-listed-questionable-sunday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "a0c91cf32248059da1de139c7e5ee04bc3502112",
+      "id": "082ab371787f5dea188e0f6ae6eb8409fe30dbf1",
       "source": "FantasyPros",
-      "title": "Elgton Jenkins (knee) back at practice Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/619555/elgton-jenkins-knee-back-practice-thursday.php",
+      "title": "James Pearce Jr. (back) listed questionable Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/619838/james-pearce-jr-back-listed-questionable-sunday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "334886a3b227a88eb29f1933c44cc2f0405f59ee",
+      "id": "8a5a03314c80f11356a8da3ea81e44f2dccc0001",
       "source": "FantasyPros",
-      "title": "Michael Burton (calf) misses practice Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/619554/michael-burton-calf-misses-practice-thursday.php",
+      "title": "Gervon Dexter Sr. (illness) listed questionable Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/619837/gervon-dexter-sr-illness-listed-questionable-sunday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "07c1c9530dfdc6f93d67686690fad8fc31099d0d",
+      "id": "4a1be30247a159b1e1f44164db31b6cbd22e0d1b",
       "source": "FantasyPros",
-      "title": "Ronnie Hickman Jr. (concussion) not practicing Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/619553/ronnie-hickman-jr-concussion-not-practicing-thursday.php",
+      "title": "Jon Gaines II (ankle) ruled out Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/619836/jon-gaines-ii-ankle-ruled-out-sunday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "2ace4f575b315c5e8e8e7f3a7951e736e3ed0e32",
+      "id": "1cef22e6e7bbce54dc295519b4adcb0f861b97de",
       "source": "FantasyPros",
-      "title": "Denzel Boston (toe) misses practice Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/619552/denzel-boston-toe-misses-practice-thursday.php",
+      "title": "Hjalte Froholdt (concussion) ruled out Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/619835/hjalte-froholdt-concussion-ruled-out-sunday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "3d4a51eefd3d2dc4c27ba94c57767cd4850a26b4",
+      "id": "59c9d5d36c7356015a8768d91c333bb931ad0573",
       "source": "FantasyPros",
-      "title": "Chris Bell (knee) not seen practicing Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/619551/chris-bell-knee-not-seen-practicing-thursday.php",
+      "title": "George Pickens (hamstring) practices Friday",
+      "url": "https://www.fantasypros.com/nfl/news/619834/george-pickens-hamstring-practices-friday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "610146d3ff15cdc1964938fb5209f0b012c1cf5a",
+      "id": "dd3b91276b4343befc858e134108885cc17a6e06",
       "source": "FantasyPros",
-      "title": "Aaron Brewer (concussion) not practicing Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/619550/aaron-brewer-concussion-not-practicing-thursday.php",
+      "title": "Javon Bullard (ankle/knee) back at practice Friday",
+      "url": "https://www.fantasypros.com/nfl/news/619833/javon-bullard-ankleknee-back-practice-friday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "533c295ab0fb3b13e8ae2c43fc46bd449ba576ec",
+      "id": "e71ea8f94da9c8b5ccbaa45afdb15a683e0b8961",
       "source": "FantasyPros",
-      "title": "Woody Marks suffers knee injury in practice Wednesday, status uncertain",
-      "url": "https://www.fantasypros.com/nfl/news/619549/woody-marks-suffers-knee-injury-practice-wednesday-status-uncertain.php",
+      "title": "Lukas Van Ness (back) returns to practice Friday",
+      "url": "https://www.fantasypros.com/nfl/news/619832/lukas-van-ness-back-returns-to-practice-friday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "3b77077b5ac4ee008bc1baf2d340c5a75e603987",
+      "id": "99b3ee09781d1821c94845188c884ef12363d71e",
       "source": "FantasyPros",
-      "title": "Azeez Al-Shaair (groin/personal) not practicing Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/619548/azeez-al-shaair-groinpersonal-not-practicing-thursday.php",
+      "title": "Xavier McKinney misses practice Friday",
+      "url": "https://www.fantasypros.com/nfl/news/619831/xavier-mckinney-misses-practice-friday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "a5023679208f16bb849486ebe2300f8bf8e622f1",
+      "id": "df34b0e3a49f1e97718d85d8912264fa078cfc22",
       "source": "FantasyPros",
-      "title": "Trey Smack (calf) to log full practice Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/619546/trey-smack-calf-to-log-full-practice-thursday.php",
+      "title": "Israel Abanikanda to serve as Cowboys RB2 Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/619820/israel-abanikanda-to-serve-cowboys-rb2-sunday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "00ed14d27e95763ae82be57f76236b6ef7c6f523",
+      "id": "dac18d992ba83d51bfffd5f8cc17b481b0ecfb58",
       "source": "FantasyPros",
-      "title": "Josh Jacobs (finger) to undergo surgery Friday",
-      "url": "https://www.fantasypros.com/nfl/news/619545/josh-jacobs-finger-to-undergo-surgery-friday.php",
+      "title": "Jonathon Brooks (groin) listed doubtful Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/619819/jonathon-brooks-groin-listed-doubtful-sunday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "4c32184bfb5959c34d7c97dc458b2ecab0ef6134",
+      "id": "accbb5cd2ab31e5175697ca141ecf6ead858d98d",
       "source": "FantasyPros",
-      "title": "Brian Parker II has practice window opened",
-      "url": "https://www.fantasypros.com/nfl/news/619544/brian-parker-ii-has-practice-window-opened.php",
+      "title": "Xavier Legette (knee) listed questionable Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/619818/xavier-legette-knee-listed-questionable-sunday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "f61bcb28bb2031b558d952421ebe2d656d34d71e",
+      "id": "6c8baf50c753cf5dc75d87008eb1393291ab1d26",
       "source": "FantasyPros",
-      "title": "Jalen Davis has practice window opened",
-      "url": "https://www.fantasypros.com/nfl/news/619543/jalen-davis-has-practice-window-opened.php",
+      "title": "Jaelan Phillips (hamstring) listed questionable Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/619817/jaelan-phillips-hamstring-listed-questionable-sunday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "b4701470cb7ef92aff14832c0afce291f52e83fc",
+      "id": "0f58aae2b3b227da4f76c3b79eac930c7aacb978",
       "source": "FantasyPros",
-      "title": "Keylan Rutledge (neck/shoulder) not seen at practice Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/619542/keylan-rutledge-neckshoulder-not-seen-practice-thursday.php",
+      "title": "Bam Knight clears concussion protocol, will play Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/619816/bam-knight-clears-concussion-protocol-will-play-sunday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "0b0b0ea3dfa1daea8cbacfda8021c02cf656af50",
+      "id": "21a230a0b71e06eb96231325bb5502dbeae9b43c",
       "source": "FantasyPros",
-      "title": "David Montgomery (groin) working off to side during practice Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/619540/david-montgomery-groin-working-off-to-side-during-practice-thursday.php",
+      "title": "Hollywood Brown waived by Eagles",
+      "url": "https://www.fantasypros.com/nfl/news/619815/hollywood-brown-waived-by-eagles.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "72d6178b6aad058dfc6fa05eb87379844209e0ae",
+      "id": "62060e7c8fad620b92be6a44b39da9cdfa3e4b1d",
       "source": "FantasyPros",
-      "title": "Rhamondre Stevenson (knee) works off to side in practice Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/619538/rhamondre-stevenson-knee-works-off-to-side-practice-thursday.php",
+      "title": "Elijah Higgins signs three-year extension with Cardinals",
+      "url": "https://www.fantasypros.com/nfl/news/619814/elijah-higgins-signs-three-year-extension-with-cardinals.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "6ccdbda2f302b5d920ddebac04cf3562afa730ad",
+      "id": "7af77c47418481bcdef9e7bbfb8870c04410693d",
       "source": "FantasyPros",
-      "title": "A.J. Brown (knee) practices Thursday",
-      "url": "https://www.fantasypros.com/nfl/news/619537/aj-brown-knee-practices-thursday.php",
+      "title": "Marvin Harrison Jr. (hamstring) not practicing Friday",
+      "url": "https://www.fantasypros.com/nfl/news/619813/marvin-harrison-jr-hamstring-not-practicing-friday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "db2b7716dd0b2d497d859c322c9c12109cde4529",
+      "id": "e7b6152e7404447acb3682e785a10228e2349411",
       "source": "FantasyPros",
-      "title": "Andrei Iosivas (thumb) has practice window opened",
-      "url": "https://www.fantasypros.com/nfl/news/619536/andrei-iosivas-thumb-has-practice-window-opened.php",
+      "title": "Michael Burton (calf) not practicing Friday",
+      "url": "https://www.fantasypros.com/nfl/news/619812/michael-burton-calf-not-practicing-friday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "b7ce58525be9d2f831de3c11bd571b2cab9eac01",
+      "id": "bde957a774ae02a2be2854d2a995c3dd5058ee0a",
       "source": "FantasyPros",
-      "title": "Harrison Mevis signs with Ravens practice squad",
-      "url": "https://www.fantasypros.com/nfl/news/619535/harrison-mevis-signs-with-ravens-practice-squad.php",
+      "title": "Ronnie Hickman Jr. (concussion) not practicing Friday",
+      "url": "https://www.fantasypros.com/nfl/news/619811/ronnie-hickman-jr-concussion-not-practicing-friday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "ab144634d2631da50c18719d5a60ba2c3ab22234",
+      "id": "e4f647ea14d59cec7ad29bd6711e6d767f16e67e",
       "source": "FantasyPros",
-      "title": "Daiyan Henley will not be traded to Broncos",
-      "url": "https://www.fantasypros.com/nfl/news/619466/daiyan-henley-will-not-be-traded-to-broncos.php",
+      "title": "Denzel Boston (toe) back at practice Friday",
+      "url": "https://www.fantasypros.com/nfl/news/619810/denzel-boston-toe-back-practice-friday.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "450762686b9d42278273fdde399a25b1fdcc6109",
+      "source": "FantasyPros",
+      "title": "Hunter Henry (foot) off injury report Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/619809/hunter-henry-foot-off-injury-report-sunday.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "b80ac0277d198bff9f6d79c1932fd678bf6528da",
+      "source": "FantasyPros",
+      "title": "Rhamondre Stevenson (knee) listed questionable Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/619808/rhamondre-stevenson-knee-listed-questionable-sunday.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "11f80015899d08132255f13afca289ae57018caa",
+      "source": "FantasyPros",
+      "title": "A.J. Brown (ankle/knee) listed questionable Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/619807/aj-brown-ankleknee-listed-questionable-sunday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
