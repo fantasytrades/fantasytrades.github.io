@@ -1,191 +1,506 @@
 {
-  "generatedAt": "2026-11-15T18:31:18.469Z",
+  "generatedAt": "2026-11-16T21:41:03.504Z",
   "items": [
     {
-      "id": "1267c5091118f9f393176268a9110eb3c4012006",
+      "id": "2a6a31e1e04b6008e3058dd80a741f6ebb4b3dce",
+      "source": "ESPN",
+      "title": "Sources: Patriots fear QB Maye has broken ankle, could miss rest of season",
+      "url": "https://www.espn.com/nfl/story/_/id/50500352/patriots-qb-drake-maye-leg-miss-extended-sources-say",
+      "publishedAt": "2026-11-16T21:17:08.000Z",
+      "publishedTs": 1794863828000,
+      "description": "The Patriots are concerned that Drake Maye sustained a fractured ankle, sources told ESPN, an injury that could sideline the star QB for the rest of the season."
+    },
+    {
+      "id": "45a4a0ec3a321ba8f86cfe3376a0e938875b6ba9",
+      "source": "ESPN",
+      "title": "Sources: Lions' Hutchinson out for season with torn ACL, possibly more knee damage",
+      "url": "https://www.espn.com/nfl/story/_/id/50501291/sources-aidan-hutchinson-season-torn-acl",
+      "publishedAt": "2026-11-16T21:17:08.000Z",
+      "publishedTs": 1794863828000,
+      "description": "Lions star Aidan Hutchinson is out for the season with what initial tests showed to be a torn ACL in his right knee, sources told NFL Network."
+    },
+    {
+      "id": "912e7efea395c4067be135dfe845591b54e0e86f",
+      "source": "ESPN",
+      "title": "Vikings WR Addison needs thumb surgery, is candidate for IR",
+      "url": "https://www.espn.com/nfl/story/_/id/50503437/vikings-wr-jordan-addison-needs-thumb-surgery",
+      "publishedAt": "2026-11-16T21:17:08.000Z",
+      "publishedTs": 1794863828000,
+      "description": "Vikings wide receiver Jordan Addison needs to undergo surgery on his thumb and is a candidate for injured reserve, coach Kevin O'Connell said Monday."
+    },
+    {
+      "id": "0e697fb03b9e14836b60732d284a4c502e2075b7",
+      "source": "ESPN",
+      "title": "Seahawks' Macdonald 'optimistic' QB Darnold returns after bye week",
+      "url": "https://www.espn.com/nfl/story/_/id/50504531/seahawks-macdonald-optimisitic-qb-darnold-plays-bye-week",
+      "publishedAt": "2026-11-16T21:17:08.000Z",
+      "publishedTs": 1794863828000,
+      "description": "Seahawks coach Mike Macdonald is \"optimistic\" QB Sam Darnold will return to his starting role after the team's bye week."
+    },
+    {
+      "id": "e6b7dc33a424b0885eb356b586d66c725814cd6b",
+      "source": "ESPN",
+      "title": "Parsons still has 'hurdles' to clear, but plan still is for return vs. Rams",
+      "url": "https://www.espn.com/nfl/story/_/id/50504228/lafleur-plans-parsons-return-thanksgiving-eve",
+      "publishedAt": "2026-11-16T21:17:08.000Z",
+      "publishedTs": 1794863828000,
+      "description": "The Packers still hope Micah Parsons will be ready to make his return for the Thanksgiving Eve game at the Rams in Week 12."
+    },
+    {
+      "id": "1c2763d1419bd5ae7ebc20d0f6d7790383f8d5ee",
+      "source": "ESPN",
+      "title": "'Power' outage: Jets' Glenn ceded defensive playcalling to DC against Bills",
+      "url": "https://www.espn.com/nfl/story/_/id/50502248/jets-aaron-glenn-ceded-defensive-playcalling-sunday",
+      "publishedAt": "2026-11-16T21:17:08.000Z",
+      "publishedTs": 1794863828000,
+      "description": "Amid a prolonged defensive slide, Aaron Glenn handed the playcalling duties Sunday to defensive coordinator Brian Duker, Glenn revealed Monday."
+    },
+    {
+      "id": "9cbdb71133551f78a2f5a115dce5fd9c73faea67",
+      "source": "ESPN",
+      "title": "Dolphins cut kicker Gonzalez a day after costly misses in loss to Colts",
+      "url": "https://www.espn.com/nfl/story/_/id/50502391/dolphins-cut-kicker-zane-gonzalez-day-costly-misses",
+      "publishedAt": "2026-11-16T21:17:08.000Z",
+      "publishedTs": 1794863828000,
+      "description": "The Dolphins waived kicker Zane Gonzalez on Monday, a day after he missed two field goals and an extra point in a 24-22 loss to the Colts."
+    },
+    {
+      "id": "68a9762c75151b715d34b15c65f30460078580e2",
+      "source": "ESPN",
+      "title": "Sources: Cowboys RG Booker, CB Bland have high ankle sprains",
+      "url": "https://www.espn.com/nfl/story/_/id/50502772/sources-cowboys-rg-booker-cb-bland-high-ankle-sprains",
+      "publishedAt": "2026-11-16T21:17:08.000Z",
+      "publishedTs": 1794863828000,
+      "description": "The Cowboys are looking at multiple week absences for right guard Tyler Booker and cornerback DaRon Bland because of high ankle sprains, sources told ESPN."
+    },
+    {
+      "id": "5299fcbea043db18bcade30b5e69fa42e15ab44c",
+      "source": "ESPN",
+      "title": "🥨 Amon-Ra St. Brown explains Munich fit, TD celly",
+      "url": "https://www.espn.com/nfl/story/_/id/50493599/amon-ra-st-brown-german-roots-lederhosen-munich",
+      "publishedAt": "2026-11-16T21:17:08.000Z",
+      "publishedTs": 1794863828000,
+      "description": "Inspired by his mother, St. Brown paired a memorable performance with a coordinated Bavarian look alongside his Lions teammates."
+    },
+    {
+      "id": "439ee2607c750d02c1fae6a89a9ae75f3c23e795",
+      "source": "ESPN",
+      "title": "The Jaguars are outscoring opponents by 125 points through 10 weeks: Here's how",
+      "url": "https://www.espn.com/nfl/story/_/id/50498566/jaguars-outscoring-opponents-10-weeks",
+      "publishedAt": "2026-11-16T20:51:50.000Z",
+      "publishedTs": 1794862310000,
+      "description": "Sunday's victory over the Titans was Jacksonville's fifth win by 17 or more points this season -- the most in the NFL."
+    },
+    {
+      "id": "3a85e0a07f641e129aea4b21dd3cc258fb97d865",
+      "source": "ESPN",
+      "title": "Drake Maye injury: Is the Patriots' season over? Can Tommy DeVito carry the offense?",
+      "url": "https://www.espn.com/nfl/story/_/id/50503981/drake-maye-ankle-injury-patriots-tommy-devito-stats",
+      "publishedAt": "2026-11-16T20:51:35.000Z",
+      "publishedTs": 1794862295000,
+      "description": "If the QB doesn't return in 2026, New England faces an uphill battle against some of the NFL's best teams."
+    },
+    {
+      "id": "9f9eb2f1236ea8cffd12bea1e3e0b6610742899c",
+      "source": "ESPN",
+      "title": "Big questions: Are Bengals a Super Bowl threat? Could 49ers' offense be even better?",
+      "url": "https://www.espn.com/nfl/story/_/id/50443510/week-10-sunday-games-takeaways-questions-2026",
+      "publishedAt": "2026-11-16T20:21:23.000Z",
+      "publishedTs": 1794860483000,
+      "description": "Our NFL Nation reporters react to all the action, answering the biggest questions coming out of each Sunday game. Here's what we learned from Week 10."
+    },
+    {
+      "id": "5b6a57b807cdc6f51cbf40ea7c2feb8873bdeb96",
+      "source": "ESPN",
+      "title": "Let's overreact to Week 10: Cousins changes the NFC North? Hardware for Mahomes, Shanahan?",
+      "url": "https://www.espn.com/nfl/story/_/id/50491464/week-10-overreactions-2026-graziano-cousins-mahomes",
+      "publishedAt": "2026-11-16T20:21:22.000Z",
+      "publishedTs": 1794860482000,
+      "description": "Will Kirk Cousins be the difference in the NFC North? The Browns are going to the playoffs ... but not the Patriots? Patrick Mahomes for MVP and Kyle Shanahan for COY?"
+    },
+    {
+      "id": "3388c909702fbfc54fe379c303444bdd594ebdc0",
+      "source": "ESPN",
+      "title": "Coaching commiseration: How Chargers' Harbaugh, Ravens' Minter aim to revive their seasons",
+      "url": "https://www.espn.com/nfl/story/_/id/50471544/chargers-jim-harbaugh-ravens-jesse-minter-week-10",
+      "publishedAt": "2026-11-16T19:37:20.000Z",
+      "publishedTs": 1794857840000,
+      "description": "Los Angeles stands at 0-8 on the season while Baltimore deals with its worst three-game stretch in team history."
+    },
+    {
+      "id": "d7684b277cdf5d817c6fda7b381a875173a7872e",
+      "source": "ESPN",
+      "title": "What is wrong with the Chargers' offense this season? Bowen points to five major factors",
+      "url": "https://www.espn.com/nfl/story/_/id/50462293/los-angeles-chargers-offensive-struggles-herbert-mcdaniel-hampton",
+      "publishedAt": "2026-11-16T19:37:20.000Z",
+      "publishedTs": 1794857840000,
+      "description": "Are Justin Herbert and Omarion Hampton both taking steps back? We looked at the tape for answers."
+    },
+    {
+      "id": "e0c9064a3d94efa1309a4efb50720a2420178ad7",
+      "source": "ESPN",
+      "title": "Early bets for Week 11: Two games we're jumping on right now",
+      "url": "https://www.espn.com/espn/betting/story/_/id/50501527/nfl-week-11-betting-odds-props-early-picks-predictions",
+      "publishedAt": "2026-11-16T18:43:30.000Z",
+      "publishedTs": 1794854610000,
+      "description": "Which Week 11 lines offered immediate value once odds came out? Here are the early bets we like."
+    },
+    {
+      "id": "e0ff89eeea2bd6a5a78854022cb19152fe0a77fa",
+      "source": "ESPN",
+      "title": "Week 11 odds for every game: Five teams double-digit favorites",
+      "url": "https://www.espn.com/espn/betting/story/_/id/50501650/2026-nfl-week-11-schedule-odds-point-spreads-totals",
+      "publishedAt": "2026-11-16T18:43:30.000Z",
+      "publishedTs": 1794854610000,
+      "description": "Updated odds, spreads, totals and FPI predictions for every NFL game in Week 11."
+    },
+    {
+      "id": "41906b61ffe8ef02f0dcfe2ea1ca396b7c0909ad",
+      "source": "ESPN",
+      "title": "Two games, 14 hours, 242 plays: Inside four NFL referees' unprecedented same-day doubleheader",
+      "url": "https://www.espn.com/nfl/story/_/id/50497412/nfl-referee-ref-crew-two-games",
+      "publishedAt": "2026-11-16T18:12:44.000Z",
+      "publishedTs": 1794852764000,
+      "description": "An inside look at the 14-hour day of four referees who worked an afternoon game in Indianapolis and the Sunday night game in Cincinnati."
+    },
+    {
+      "id": "01c988c1efab0c2b1b37b506363044aab04c46b9",
+      "source": "ESPN",
+      "title": "Free agents: Replacing Drake Maye? Trust in Tyson?",
+      "url": "https://www.espn.com/fantasy/football/story/_/page/FFWaiverWirePickUp-50500480/fantasy-football-waivers-free-agent-pickups-nfl-week-11",
+      "publishedAt": "2026-11-16T16:58:37.000Z",
+      "publishedTs": 1794848317000,
+      "description": "Eric Karabell lists the top available options to replace Drake Maye and more."
+    },
+    {
+      "id": "054cc290e415f7a7d834325893d367716abfa6ca",
+      "source": "ESPN",
+      "title": "Fantasy buzz: Downs shines in Chiefs debut and who else got the ball in Week 10?",
+      "url": "https://www.espn.com/fantasy/football/story/_/id/40699880/fantasy-football-injuries-position-battles-nfl-news-analysis",
+      "publishedAt": "2026-11-16T16:58:37.000Z",
+      "publishedTs": 1794848317000,
+      "description": "Which players saw ample fantasy football opportunities in Week 10, and which were limited?"
+    },
+    {
+      "id": "f931ec8ed6480d9e0c0ad11446ed599a06af51eb",
+      "source": "ESPN",
+      "title": "Concerns for four NFL teams on the playoff bubble: Barnwell on the Cowboys, Patriots, Raiders, Texans",
+      "url": "https://www.espn.com/nfl/story/_/id/50491459/week-10-playoff-bubble-cowboys-raiders-texans-patriots",
+      "publishedAt": "2026-11-16T13:37:27.000Z",
+      "publishedTs": 1794836247000,
+      "description": "The Cowboys' defense got lit up, the Patriots lost Drake Maye, the Raiders are adjusting to Fernando Mendoza, and the Texans can't find support for C.J. Stroud."
+    },
+    {
+      "id": "786729d4cc48111d30ecd8540883d5f180d75dcd",
+      "source": "ESPN",
+      "title": "Tiering all 32 teams' chances to make the playoffs, from the locks to the long shots",
+      "url": "https://www.espn.com/nfl/story/_/id/50463347/2026-nfl-playoffs-chances-odds-tiers-32-teams-nfc-afc",
+      "publishedAt": "2026-11-16T13:37:27.000Z",
+      "publishedTs": 1794836247000,
+      "description": "We placed all 32 teams into tiers based on their likelihood of making the playoffs."
+    },
+    {
+      "id": "d4e9355dfc2654dc8a0f114096353053048645ec",
+      "source": "ESPN",
+      "title": "Burrow tight-lipped after joining elite QB club, but admits he played like 'a great one'",
+      "url": "https://www.espn.com/nfl/story/_/id/50499235/bengals-joe-burrow-4-touchdowns-win-vs-steelers-puts-company-tom-brady-peyton-manning",
+      "publishedAt": "2026-11-16T13:07:43.000Z",
+      "publishedTs": 1794834463000,
+      "description": "Bengals QB Joe Burrow threw for 409 yards with four touchdowns and no interceptions Sunday night, becoming just the third player in NFL history after Tom Brady and Peyton Manning to throw at least 20 passing touchdowns in a five-game span."
+    },
+    {
+      "id": "e10fd9c8272d88a50d27b34040d178cb24762b5d",
+      "source": "ESPN",
+      "title": "'Brought the star power': 49ers' petty posts aimed at Cowboys tops NFL Week 10 trolls",
+      "url": "https://www.espn.com/nfl/story/_/id/50497055/nfl-week-10-trolls",
+      "publishedAt": "2026-11-16T01:25:59.000Z",
+      "publishedTs": 1794792359000,
+      "description": "NFL teams kept it petty in Week 10, led by the San Francisco 49ers poking fun at the Dallas Cowboys."
+    },
+    {
+      "id": "9832c77926ff8968a92d0e9e06e1ea5f77aeb85a",
+      "source": "ESPN",
+      "title": "Ja'Marr Chase leads NFL Week 10 arrivals ahead of 'SNF'",
+      "url": "https://www.espn.com/nfl/story/_/id/50465223/nfl-week-10-fashionable-arrivals",
+      "publishedAt": "2026-11-16T01:25:59.000Z",
+      "publishedTs": 1794792359000,
+      "description": "NFL stars continue to turn game-day arrivals into their own weekly fashion showcase."
+    },
+    {
+      "id": "e3416f82f0efb1c805f1b11a4765d396b73fe7f2",
+      "source": "ESPN",
+      "title": "Ranking the top 10 Super Bowl performances by a defender: From Aaron Donald to Richard Dent",
+      "url": "https://www.espn.com/nfl/story/_/id/50454197/top-10-super-bowl-individual-defensive-performances",
+      "publishedAt": "2026-11-15T23:03:49.000Z",
+      "publishedTs": 1794783829000,
+      "description": "Not all Super Bowl MVPs were quarterbacks or offensive stars. We listed 10 standout individual defensive performances."
+    },
+    {
+      "id": "cd569b46852392b7e54c510906db241179eeeaf7",
+      "source": "ESPN",
+      "title": "NFL draft standouts, notes off Saturday's college games: Jackson Harris, Boubacar Traore rising?",
+      "url": "https://www.espn.com/nfl/draft2027/story/_/id/49881131/2027-nfl-draft-risers-questions-college-football-prospects",
+      "publishedAt": "2026-11-15T17:43:37.000Z",
+      "publishedTs": 1794764617000,
+      "description": "Is Jackson Harris the WR3 in the class? And has Boubacar Traore emerged as the No. 3 edge rusher? Here's our weekly draft spin, including top standouts."
+    },
+    {
+      "id": "671e7ebf573ea5c179f078d4645a00d6422c51d3",
+      "source": "ESPN",
+      "title": "Reid ranks the top 50 prospects in the 2027 NFL draft class",
+      "url": "https://www.espn.com/nfl/draft2027/story/_/id/50068479/2027-nfl-draft-rankings-jordan-reid-top-prospects-players-positions",
+      "publishedAt": "2026-11-15T17:43:37.000Z",
+      "publishedTs": 1794764617000,
+      "description": "Jordan Reid updated his rankings for the 2027 NFL draft class with 50 players -- including eight quarterbacks and an elite wide receiver prospect."
+    },
+    {
+      "id": "2ec9ec0e3c9e72cbfd00032ae8ecedb48a8141bf",
+      "source": "ESPN",
+      "title": "Does Cousins fix Vikings' offense? Should Rams have added? Barnwell on deadline",
+      "url": "https://www.espn.com/nfl/story/_/id/50442897/2026-trade-deadline-barnwell-questions-cousins-downs",
+      "publishedAt": "2026-11-14T02:35:13.000Z",
+      "publishedTs": 1794623713000,
+      "description": "Making sense of Kirk Cousins to the Vikings, Josh Downs to the Chiefs, four teams' deadline silence and more."
+    },
+    {
+      "id": "79e8cba061a694d858a8749b3eed5512dbc93715",
+      "source": "ESPN",
+      "title": "Seven things Solak thinks: Jags to the Super Bowl? Plus, early All-Pro picks and more",
+      "url": "https://www.espn.com/nfl/story/_/id/50434129/week-10-seven-things-solak-thinks-trade-deadline-all-pro",
+      "publishedAt": "2026-11-14T02:35:13.000Z",
+      "publishedTs": 1794623713000,
+      "description": "Checking in with takes on the Jaguars winning the AFC, Shedeur Sanders not earning a starting role and more."
+    },
+    {
+      "id": "c5bef725e65f803402c161f12768413a1bb3738f",
+      "source": "ESPN",
+      "title": "Midseason awards: The top candidates to win MVP, Rookie of the Year, more",
+      "url": "https://www.espn.com/nfl/story/_/id/50452792/2026-midseason-awards-ranking-mvp-rookies-coaches-barnwell",
+      "publishedAt": "2026-11-13T22:55:15.000Z",
+      "publishedTs": 1794610515000,
+      "description": "Joe Burrow for MVP? We ranked the top contenders to win eight NFL awards through Week 9."
+    },
+    {
+      "id": "cb4808cd5f43e16faefb134ce7f4d40f9a5bc992",
+      "source": "ESPN",
+      "title": "Execs predict the season's second half: Who will win division races, MVP, the Super Bowl?",
+      "url": "https://www.espn.com/nfl/story/_/id/50462723/2026-nfl-playoffs-mvp-super-bowl-breakout-players-divisions",
+      "publishedAt": "2026-11-13T22:55:14.000Z",
+      "publishedTs": 1794610514000,
+      "description": "Who will win the most competitive divisions, and who's in line for awards? We asked sources around the NFL at midseason."
+    },
+    {
+      "id": "f5db69d3727539ee5ddfa01a8ef980e2dac8f398",
       "source": "FantasyPros",
-      "title": "Travis Kelce (ankle) heads to locker room Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/620234/travis-kelce-ankle-heads-to-locker-room-sunday.php",
+      "title": "Denzel Perryman activated from IR",
+      "url": "https://www.fantasypros.com/nfl/news/620596/denzel-perryman-activated-from-ir.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "a8d202de2970afe6776eca43c084b5cfcf990b35",
+      "id": "a8bf4e4e81a0a47595e693a06ebbb7e67234396e",
       "source": "FantasyPros",
-      "title": "A.J. Brown (hamstring) questionable to return Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/620228/aj-brown-hamstring-questionable-to-return-sunday.php",
+      "title": "David Njoku (fibula) activated from IR",
+      "url": "https://www.fantasypros.com/nfl/news/620595/david-njoku-fibula-activated-from-ir.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "53d52fce6625e72154b203da05a739875633f33c",
+      "id": "42ad1af4a9b2f5e4982a3baca1446e4c93f15460",
       "source": "FantasyPros",
-      "title": "Aidan Hutchinson (knee) ruled out Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/620227/aidan-hutchinson-knee-ruled-out-sunday.php",
+      "title": "Luther Burden III (concussion) practices Monday",
+      "url": "https://www.fantasypros.com/nfl/news/620591/luther-burden-iii-concussion-practices-monday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "e5c2161650fbce17d90378fd7aea4439aa21cccc",
+      "id": "0c3bb3ab83e7036721cc766b86be4688d11195be",
       "source": "FantasyPros",
-      "title": "Adonai Mitchell (knee) officially active for Week 10",
-      "url": "https://www.fantasypros.com/nfl/news/620224/adonai-mitchell-knee-officially-active-week-10.php",
+      "title": "Kyle Monangai (thumb/toe) practices Monday",
+      "url": "https://www.fantasypros.com/nfl/news/620589/kyle-monangai-thumbtoe-practices-monday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "b7228be6bfe89a250d706a43c0076b17a8a4c9cf",
+      "id": "118983563ed37dfad2a66159e40b2c0f30c48f01",
       "source": "FantasyPros",
-      "title": "Omar Cooper Jr. (ankle) officially active for Week 10",
-      "url": "https://www.fantasypros.com/nfl/news/620223/omar-cooper-jr-ankle-officially-active-week-10.php",
+      "title": "Brock Bowers (ankle) confirmed to be day-to-day",
+      "url": "https://www.fantasypros.com/nfl/news/620586/brock-bowers-ankle-confirmed-to-be-day-to-day.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "3797b95c347540ba433476961752efd6e4fe5aa2",
+      "id": "4887cb8e37a56a4d92137177d4b5b66b2e85702e",
       "source": "FantasyPros",
-      "title": "Garrett Wilson (concussion) officially active for Week 10",
-      "url": "https://www.fantasypros.com/nfl/news/620222/garrett-wilson-concussion-officially-active-week-10.php",
+      "title": "Micah Parsons (knee) trending towards Week 12 return",
+      "url": "https://www.fantasypros.com/nfl/news/620579/micah-parsons-knee-trending-towards-week-12-return.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "d8758f1d6d1443db6084ed9f3879fd8374c92557",
+      "id": "47831c5087d8f54eb2a51d91db9a557624e605cf",
       "source": "FantasyPros",
-      "title": "Tyjae Spears (knee) officially active for Week 10",
-      "url": "https://www.fantasypros.com/nfl/news/620221/tyjae-spears-knee-officially-active-week-10.php",
+      "title": "Geno Smith (ankle) to undergo MRI Monday",
+      "url": "https://www.fantasypros.com/nfl/news/620578/geno-smith-ankle-to-undergo-mri-monday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "3f3a9d6f886f5dfc885a92ac85cb75c4e8de83dd",
+      "id": "e6ffc7cad3aa29665f372a4e2c76f612c518824d",
       "source": "FantasyPros",
-      "title": "Travis Etienne Jr. (hamstring) officially active for Week 10",
-      "url": "https://www.fantasypros.com/nfl/news/620220/travis-etienne-jr-hamstring-officially-active-week-10.php",
+      "title": "George Holani week-to-week with MCL sprain",
+      "url": "https://www.fantasypros.com/nfl/news/620577/george-holani-week-to-week-with-mcl-sprain.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "f06c868068bc78af8dd29226072359eca67626af",
+      "id": "52a5a59d050367c0b58fe08d8ab5d7acb06d0284",
       "source": "FantasyPros",
-      "title": "Chris Bell (knee) officially inactive for Week 10",
-      "url": "https://www.fantasypros.com/nfl/news/620219/chris-bell-knee-officially-inactive-week-10.php",
+      "title": "Zach Ertz signs with Eagles active roster",
+      "url": "https://www.fantasypros.com/nfl/news/620563/zach-ertz-signs-with-eagles-active-roster.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "0e1fd8950d6a3de8dfcbd73bcefc30b6e00a5ecf",
+      "id": "c624f1c3fdb696d83457b0102bd6b6b2fdd160ee",
       "source": "FantasyPros",
-      "title": "Denzel Boston (toe) officially active for Week 10",
-      "url": "https://www.fantasypros.com/nfl/news/620218/denzel-boston-toe-officially-active-week-10.php",
+      "title": "Jordan Addison (thumb) to likely go on short-term IR",
+      "url": "https://www.fantasypros.com/nfl/news/620562/jordan-addison-thumb-to-likely-go-on-short-term-ir.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "acda954dd62c85aaef1e79595bc215e9a5d2fba0",
+      "id": "7f0b23126c9f22fbcb3d445bf791ed12d182f53a",
       "source": "FantasyPros",
-      "title": "Jordan Addison (thumb) inactive for Week 10",
-      "url": "https://www.fantasypros.com/nfl/news/620217/jordan-addison-thumb-inactive-week-10.php",
+      "title": "Andrew Van Ginkel exits Week 10 with quad injury",
+      "url": "https://www.fantasypros.com/nfl/news/620561/andrew-van-ginkel-exits-week-10-with-quad-injury.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "c352827245e0fe0ddb201c3287971ff455128d17",
+      "id": "c0b662cdebc4c9327f9a18e6444dc12df39718bd",
       "source": "FantasyPros",
-      "title": "Drake Maye (ankle) ruled out",
-      "url": "https://www.fantasypros.com/nfl/news/620216/drake-maye-ankle-ruled-out.php",
+      "title": "Sam Darnold could return in Week 12",
+      "url": "https://www.fantasypros.com/nfl/news/620560/sam-darnold-could-return-week-12.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "7f89be3ae5fe750bee6fde341b3fc3f43fac36d1",
+      "id": "20544d9d04ab53f2aeee6968d029695be1ac8133",
       "source": "FantasyPros",
-      "title": "Will Anderson Jr. (ankle) expected to play Sunday",
-      "url": "https://www.fantasypros.com/nfl/news/620212/will-anderson-jr-ankle-expected-to-play-sunday.php",
+      "title": "Malik Willis' surgery decision still pending",
+      "url": "https://www.fantasypros.com/nfl/news/620559/malik-willis-surgery-decision-still-pending.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "1c8ca2526b56c05b1d0195c6d1caf973ffbdd33d",
+      "id": "a4ab48e116c9fe4d451589a73d8acc9d5f236304",
       "source": "FantasyPros",
-      "title": "Sione Vaki (ankle) active for Week 10",
-      "url": "https://www.fantasypros.com/nfl/news/620204/sione-vaki-ankle-active-week-10.php",
+      "title": "Cooper Rush signs with Tampa Bay practice squad",
+      "url": "https://www.fantasypros.com/nfl/news/620558/cooper-rush-signs-with-tampa-bay-practice-squad.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "b7c2e613f05138d5feb7fd488dc523674558565b",
+      "id": "5ef109cc13fa02f683056619f3ed1e99353a3ea8",
       "source": "FantasyPros",
-      "title": "Rhamondre Stevenson (knee) active for Week 10",
-      "url": "https://www.fantasypros.com/nfl/news/620202/rhamondre-stevenson-knee-active-week-10.php",
+      "title": "DaRon Bland suffers ankle injury Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/620557/daron-bland-suffers-ankle-injury-sunday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "76178f89ecf3e31079495f36942507cd555cc9f7",
+      "id": "f0a88941e2a35703dc23954b27f951c1ed0dfa5d",
       "source": "FantasyPros",
-      "title": "Amon-Ra St. Brown (rib) active for Week 10",
-      "url": "https://www.fantasypros.com/nfl/news/620201/amon-ra-st-brown-rib-active-week-10.php",
+      "title": "Zane Gonzalez waived by Dolphins",
+      "url": "https://www.fantasypros.com/nfl/news/620555/zane-gonzalez-waived-by-dolphins.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "91c59c2ea656ef4e9d8c5d992831cdd873f725fc",
+      "id": "83017b4e6b65724a8e8454d314fc9290390cfdf0",
       "source": "FantasyPros",
-      "title": "Carter Runyon elevated by Raiders",
-      "url": "https://www.fantasypros.com/nfl/news/620180/carter-runyon-elevated-by-raiders.php",
+      "title": "Tyler Booker suffers high ankle sprain",
+      "url": "https://www.fantasypros.com/nfl/news/620554/tyler-booker-suffers-high-ankle-sprain.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "a88e0cfa2ac5ed31c8f0af37ab5b1a3d36331ba7",
+      "id": "9c0487e96d3a8838884e1a88acb5444172e867b2",
       "source": "FantasyPros",
-      "title": "Jake McQuaide elevated by Rams",
-      "url": "https://www.fantasypros.com/nfl/news/620179/jake-mcquaide-elevated-by-rams.php",
+      "title": "Steelers D/ST dismal in loss Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/620553/steelers-dst-dismal-loss-sunday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "308e1807b2a78f2b7604a837053fd73f989854ae",
+      "id": "a21f21de78dc56c2b6d5cf329b6bb68482f1c7c7",
       "source": "FantasyPros",
-      "title": "Damarion Williams elevated by Rams",
-      "url": "https://www.fantasypros.com/nfl/news/620178/damarion-williams-elevated-by-rams.php",
+      "title": "Chris Boswell perfect in loss Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/620552/chris-boswell-perfect-loss-sunday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "a4da31ac08a8b79fe57b4e49185a0474ea737ec4",
+      "id": "f85005a8a48101f5e7eb0fb4ece4302c3e0db0b0",
       "source": "FantasyPros",
-      "title": "Trevon Diggs elevated by Seahawks",
-      "url": "https://www.fantasypros.com/nfl/news/620177/trevon-diggs-elevated-by-seahawks.php",
+      "title": "Drake Maye (ankle) out indefinitely",
+      "url": "https://www.fantasypros.com/nfl/news/620551/drake-maye-ankle-out-indefinitely.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
     },
     {
-      "id": "95878043058184298134c4923313de05a1a935d5",
+      "id": "00f7e6e77859835d0447b2c5ed41dc304bc83256",
       "source": "FantasyPros",
-      "title": "Bobby Hart elevated by Seahawks",
-      "url": "https://www.fantasypros.com/nfl/news/620176/bobby-hart-elevated-by-seahawks.php",
+      "title": "Darnell Washington uninvolved in loss Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/620550/darnell-washington-uninvolved-loss-sunday.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "d9cdc01a2a2ac438aa98f277dcd1e86577aeaeaa",
+      "source": "FantasyPros",
+      "title": "Pat Freiermuth finds end zone Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/620549/pat-freiermuth-finds-end-zone-sunday.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "af1ce4e899c76733d202d052e68bb3390c20045e",
+      "source": "FantasyPros",
+      "title": "Germie Bernard held without catch in loss Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/620548/germie-bernard-held-without-catch-loss-sunday.php",
+      "publishedAt": null,
+      "publishedTs": 0,
+      "description": ""
+    },
+    {
+      "id": "2782392a0ef185384060c36904347e6502f22f2a",
+      "source": "FantasyPros",
+      "title": "Rico Dowdle quiet in loss Sunday",
+      "url": "https://www.fantasypros.com/nfl/news/620547/rico-dowdle-quiet-loss-sunday.php",
       "publishedAt": null,
       "publishedTs": 0,
       "description": ""
